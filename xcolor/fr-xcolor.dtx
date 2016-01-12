@@ -200,7 +200,7 @@
 % \def\LC{\Package{color}}
 % \def\LCP{\Package{color} package}
 % \def\XC{\Package{xcolor}}
-% \def\XCP{\Package{xcolor} package}
+% \def\XCP{extension \Package{xcolor}}
 % \def\XCW{\texttt{\href{http://www.ukern.de/tex/xcolor.html}{www.ukern.de/tex/xcolor.html}}}
 % \def\URL#1{\texttt{\url{#1}}}
 % \def\CTAN#1#2{\texttt{\href{http://www.ctan.org/tex-archive/#1}{CTAN/#1#2}}}
@@ -225,20 +225,21 @@
 % \colorlet{tablerowcolor}{gray!12.5}
 %
 %
-%
-% \title{Extending \LaTeX's color facilities: the \XCP}
+% %%%%% Relecture nécessaire jusqu'à la marque "à traduire" à faire %%%%%
+% \title{Extending \LaTeX's color facilities: l'\XCP}
 % \author{\href{mailto:xcolor@ukern.de}{\fboxrule0pt\fboxsep2pt\fbox{Dr. Uwe Kern}}}
 % \date{\XCfileversion{} (\XCfiledate)
-%       \thanks{This package can be downloaded from \CTAN{macros/latex/contrib/xcolor/}{}.
-%               There is also an \textsf{xcolor} homepage: \XCW.
-%               Please send error reports and suggestions for improvements to the author:
+%       \thanks{Cette extension peut être téléchargée à partir de \CTAN{macros/latex/contrib/xcolor/}{}.
+%               Il existe aussi un site Internet dédié à \textsf{xcolor} : \XCW.
+%               N'hésitez à envoyer vos constats d'erreur et suggestions d'amélioration à l'auteur :
 %               \texttt{\href{mailto:xcolor@ukern.de}{xcolor@ukern.de}}.}}
 % \maketitle
 %
+%
 % \begin{abstract}
 % \noindent
-% \XC{} provides easy driver-independent access to several kinds of colors, tints, shades, tones, and mixes of arbitrary colors by means of color expressions like |\color{red!50!green!20!blue}|.
-% It allows to select a document-wide target color model and offers tools for automatic color schemes, conversion between twelve color models, alternating table row colors, color blending and masking, color separation, and color wheel calculations.
+% \XC{} met à disposition un accès simple et indépendant des pilotes graphiques à de multiples types de couleurs, teintes, nuances, ton et mélanges de couleurs arbitraires par le biais d'expressions dédiées comme |\color{red!50!green!20!blue}|.
+% Il permet de sélectionner un modèle de couleur à l'échelle du document et offre des outils d'assortiment de couleurs automatiques, de conversion des couleurs entre douze modèles colorimétriques, d'utilisation de couleurs alternées pour des lignes de tableau, de mélange et de masque de couleur, de séparation de couelru et roue de calcul de couleur.
 % \end{abstract}
 %
 % \phantomsection\pdfbookmark[1]{\contentsname}{toc}
@@ -250,41 +251,42 @@
 % \clearpage
 % \section{Introduction}
 %
-% \subsection{Purpose of this package}
+% \subsection{Objectif de cette extension}
 %
-% The \LCP{} provides a powerful and stable tool for handling colors within (pdf)\LaTeX{} in a consistent and driver-independent way, supporting several color models (slightly less driver-independent).
+% L'\LCP{} met à disposition un outil puissant et stable pour manipuler les couleurs dans (pdf)\LaTeX{} de façon cohérent et indépendamment des pilotes graphiques, tout en supportant différents modèles colorimétriques (de manière un peu moins indépendantes des pilotes).
 %
-% Nevertheless, it is sometimes a bit clumsy to use, especially in cases where slight color variations, color mixes or color conversions are involved:
-% this usually implies the usage of another program that calculates the necessary parameters, which are then copied into a |\definecolor| command in \LaTeX.
-% Quite often, also a pocket calculator is involved in the treatment of issues like the following:
+% Néanmoins, il est parfois un peu laborieux de l'utiliser, particulièrement dans les cas où de légères variations de couleur, des mélanges de couleur ou des conversions de couleur sont en jeu :
+% ceci implique d'habitude l'utisation d'un autre programme qui calcule les paramètres souhaités, paramètres alors copiés dans une commande |\definecolor| dans \LaTeX.
+% Assez fréquemment, une calculatrice de poche est également retenue dans le traitement de problèmes comme ceux indiqués ci-après :
 % \begin{itemize}
-% \item My company has defined a corporate color, and the printing office tells me how expensive it is to use more than two colors in our new brochure, whereas all kinds of tints (e.g., a 75\% version) of our color can be used at no extra cost.
-% But how to access these color variations in \LaTeX?\\
-% (Answer: |\color{CorporateColor!75}| etc.)
-% \item My friend uses a nice color which I would like to apply in my own documents; unfortunately, it is defined in the \Model{hsb} model which is not supported in my favorite application pdf\LaTeX.
-% What to do now?\\
-% (Answer: just use the \Model{hsb} definitions, \XC{} will do the necessary calculations)
-% \item How does a mixture of 40\% \Color{green} and 60\% \Color{yellow} look like?\\
-% (Answer: 40\% \testclr{green} $+$ 60\% \testclr{yellow} $=$ \testclr{green!40!yellow}, e.g., |\color{green!40!yellow}|)
-% \item And how does its complementary color look like?\\
-% (Answer: \testclr{-green!40!yellow}, accessible via |\color{-green!40!yellow}|)
-% \item Now I want to mix three parts of the last color with two parts of its complement and one part of \Color{red}.
-% How does that look?\\
-% (Answer: $3\times$ \testclr{-green!40!yellow} $+ 2\times$ \testclr{green!40!yellow} $+ 1\times$ \testclr{red} $=$ \testclr{rgb:-green!40!yellow,3;green!40!yellow,2;red,1}, the last color being accessible via |\color{rgb:-green!40!yellow,3;green!40!yellow,2;red,1}|)
-% \item I know that light waves of 485nm are within the visible range. But which color do they represent?\\
-% (Answer: approximately \testclr[wave]{485}, via |\color[wave]{485}|)
-% \item My printing office wants all color definitions in my document to be transformed into the \Model{cmyk} model.
-% How can I do the calculations efficiently?\\
-% (Answer: |\usepackage[cmyk]{xcolor}| or |\selectcolormodel{cmyk}|)
-% \item I have a table with 50 rows.
-% How can I get alternating colors for entire rows without copying 50 |\rowcolor| commands? The alternating scheme should start in the 3rd row.\\
-% (Answer: something like |\rowcolors{3}{OddColor}{EvenColor}|)
+% \item Ma société a défini une couleur d'entreprise et le service des impressions m' a dit combien il est coûteux d'utiliser plus de deux couleurs dans notre nouveau brochure, alors même que toutes les teintes de notre couleur (par exemple, une version à 75\%) peuvent être utilisées sans aucun surcoût.
+% Mais comment accéder à ces variations de couleur avec \LaTeX?\\
+% (Réponse: |\color{CouleurEntreprise!75}| etc.)
+% \item Mon ami utilise une belle couleur que je souhaiterais appliquer à mes propres documents; malheureusement, elle est définie le modèle \Model{hsb} qui n'est pas accepté dans mon application pdf\LaTeX favorite.
+% Que faire alors ?\\
+% (Réponse : utiliser tout simplement les définitions \Model{hsb}, \XC{} fera les calculs nécessaires.)
+% \item Qu'affiche le mélange de 40\% de \Color{green} et de 60\% de \Color{yellow} ?\\
+% (Réponse : 40\% \testclr{green} $+$ 60\% \testclr{yellow} $=$ \testclr{green!40!yellow}, soit |\color{green!40!yellow}|)
+% \item Et quelle est l'aspect de sa couleur complémentaire ?\\
+% (Réponse: \testclr{-green!40!yellow}, accessible via |\color{-green!40!yellow}|)
+% \item Maintenant, je souhaite mélanger trois mesures de la dernière couleur avec deux mesures de sa complémentaire et une mesure de \Color{red}.
+% Qu'est-ce que cela donne ?\\
+% (Réponse: $3\times$ \testclr{-green!40!yellow} $+ 2\times$ \testclr{green!40!yellow} $+ 1\times$ \testclr{red} $=$ \testclr{rgb:-green!40!yellow,3;green!40!yellow,2;red,1}, cette dernière couleur étant accessible via |\color{rgb:-green!40!yellow,3;green!40!yellow,2;red,1}|)
+% \item Je sais qu'un rayonnement de longeur d'onde de 485nm appartient au spectre visible. Mais quelle couleur a-t-il ?\\
+% (Réponse : approximativement \testclr[wave]{485}, via |\color[wave]{485}|)
+% \item Mon service de impressions souhaite que toutes les définitions de couleurs dans mon document soit basculées en modèle \Model{cmyk} (CMJN en français).
+% Comment puis-je faire ces calculs efficacement ?\\
+% (Réponse : |\usepackage[cmyk]{xcolor}| ou |\selectcolormodel{cmyk}|)
+% \item J'ai un tableau de 50 lignes.
+% Comment puis-je obtenir des lignes de tableau avec des couleurs alternées sans recours à la copie de 50 commandes |\rowcolor| ? Ce motif alterné devrait d'ailleurs commencer à partir de la troisième ligne.\\
+% (Réponse: quelque chose comme |\rowcolors{3}{CouleurImpaire}{CouleurPaire}|)
 % \end{itemize}
-% These are some of the issues solved by the \XCP.
-% Its purpose can be summarized as to maintain the characteristics of \LC, while providing additional features and flexibility with (hopefully) easy-to-use interfaces.
+% Ceci répresente quelques uns des problème résolus par l'\XCP.
+% Son objectif peut être résumé en la conservation des caractéristiques de \LC, tout en apportant des fonctionnalités additionnelles et de la flexibilité avec des interfaces simples d'utilisation (avec un peu de chance).
 %
 %
 %
+% %%%%% A traduire %%%%%
 % \subsection{Color tints, shades, tones, and complements}
 %
 % According to \cite{smith} we define the terms
