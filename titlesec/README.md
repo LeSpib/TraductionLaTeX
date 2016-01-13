@@ -1,0 +1,18 @@
+## Traduction de l'extension *titlesec*
+
+L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *titlesec* utilisable avec LaTeX.
+
+### Quelques termes récurrents dans la traduction de ce document
+- ** En attente **
+
+### Avancement de la traduction, en vision table de matières
+- [ ] En-tête du document tex (définitions, métadonnées)
+- [ ] Pages d'avant-propos (1 page)
+- [ ] Introduction (1 page)
+- [ ] Commandes simples(1 page)
+- [ ] Interface avancée (7 pages)
+- [ ] Notes additionnelles (2 pages)
+- [ ] titleps et styles de page (6 pages)
+- [ ] La table des matières : l'extension titletoc (1 page)
+- [ ] La philosophie de titlesec (1 page)
+- [ ] Annexes (4 pages)
