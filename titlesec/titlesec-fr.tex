@@ -41,19 +41,19 @@
 \usepackage{textcomp,pslatex}
 \usepackage[linktocpage]{hyperref}
 
-\title{The \textsf{titlesec}, \textsf{titleps} and \textsf{titletoc} 
-Packages\footnote{The \textsf{titlesec} package is currently at 
-version 2.10.0.  \copyright{} 1998--2011 Javier Bezos.
-The \textsf{titletoc} package is currently at 
-version 1.6.  The \textsf{titleps} package is currently at version 
-1.1.0 \copyright{} 1999--2011 Javier Bezos.  All Rights 
-Reserved.}}
+% %%%%% Relecture nécessaire à faire, surtout les passages avec des "*" %%%%%
 
-\author{Javier Bezos\footnote{For bug reports, comments and
-suggestions go to \href{http://www.tex-tipografia.com/contact.html}%
-{\texttt{http://www.tex-tipografia.com/contact.html}}.  English
-is not my strong point, so contact me when you find mistakes in the
-manual.  Other packages by the same author: \textsf{gloss} (with
+\title{Les extensions \textsf{titlesec}, \textsf{titleps} et \textsf{titletoc} 
+\footnote{L'extension \textsf{titlesec} est actuellement en version 2.10.0.  
+\copyright{} 1998--2011 Javier Bezos. L'extension \textsf{titletoc} est actuellement 
+en version 1.6. L'exntesion \textsf{titleps} est actuellement en version 1.1.0  
+\copyright{} 1999--2011 Javier Bezos.  Javier Bezos. Tous droits réservés.}}
+
+\author{Javier Bezos\footnote{Pour des rapports d'erreur, commentaires et 
+suggestions, allez à \href{http://www.tex-tipografia.com/contact.html}%
+{\texttt{http://www.tex-tipografia.com/contact.html}}.  L'anglais n'étant pas mon 
+point fort, contactez-moi lorsque vous trouvez des erreurs dans ce manuel.  
+D'autres extensions du même auteur : \textsf{gloss} (avec
 Jos\'e Luis D\'{\i}az), \textsf{enumitem, accents, tensind, esindex,
 dotlessi, babeltools}.}}
 
@@ -106,138 +106,138 @@ dotlessi, babeltools}.}}
 \tableofcontents
 \section{Introduction}
 
-This package is essentially a replacement---partial or total---for the 
-\LaTeX{} macros related with sections---namely titles, headers and 
-contents.  The goal is to provide new features unavailable in current 
-\LaTeX{}; if you just want a more friendly interface than that of 
-standard \LaTeX{} but without changing the way \LaTeX{} works you may 
-consider using \textsf{fancyhdr}, by Piet van Oostrum, \textsf{sectsty},
-by Rowland McDonnell, and \textsf{tocloft}, by Peter Wilson, which you
-can make pretty things with.\footnote{Since the sectioning commands 
-are rewritten, their behaviour could be somewhat different 
-in some cases.}
+Cette extension est essentiellement un remplacement --- partiel ou total --- des 
+macros \LaTeX{} liées au sectionnement ---  principalement les titres, en-têtes et 
+tables des matières. Le but est d'apporter de nouvelles fonctionnalités non disponibles 
+actuellement sous \LaTeX{} : si vous souhaitez juste une interface plus accessible 
+que celle d'un \LaTeX{} standard mais sans changer la façon dont \LaTeX{} travaille, 
+vous pouvez recourir à \textsf{fancyhdr} de Piet van Oostrum, \textsf{sectsty} de 
+Rowland McDonnell et \textsf{tocloft} de Peter Wilson, avec lesquels vous pouvez 
+faire de jolies choses. \footnote{Dans la mesure où les commandes de sectionnement 
+sont réécrites, leur comportement peut être quelque peu différent dans certains 
+cas.}
 
-Some of the new features provided are:
+Entre autres nouvelles fonctionnalités se trouvent :
 \begin{itemize}
-\item Different classes and ``shapes'' of titles, with tools for very 
-fancy formats.  You can define different formats for left and right 
-pages, or numbered and unnumbered titles, measure the width of the 
-title, add a new section level, use graphics, and many more.  The 
-Appendix shows a good deal of examples, so jump forward right now!
+\item différentes classes et ``formes'' de titres, avec des outils autorisant une 
+grande variété de formats. Vous pouvez définir des formats différents pour les pages 
+de gauche et de droite, avec des titres numérotés ou pas, mesurer la longueur d'un
+titre, ajouter un nouveau niveau de sectionnement, utiliser des graphiques et bien 
+plus encore. L'Annexe montre un bon nombre d'exemples : allez-y tout de suite !
 
-\item Headers and footers defined with no |\...mark| intermediates,
-and perhaps containing top, first \emph{and} bot marks at the same time.
-Top marks correctly synchronized with titles, without 
-incompatibilities with the float mechanism. Decorative elements easily
-added, including picture environments.
+\item des en-têtes et pieds de pages définis sans utilisation des commandes de 
+type |\...mark|, et contenant éventuellement *des marques de haut, de première valeur 
+\emph{et} de double valeur*. Des marques de haut de page correctement synchronisées avec les 
+titres, sans incompatibilités avec la mécanique des flottants. Des éléments 
+décoratifs ajoutés aisément, incluant des environnements d'image.
 
-\item Pretty free form contents, with the possibility of grouping 
-entries of different levels in a paragraph or changing the format
-of entries in the middle of a document.
+\item de jolies tables des matières de forme libre, avec la possibiité de grouper les 
+entrées de différents niveaux en un paragraphe ou de changer les formats des entrées 
+au milieu d'un document. 
 \end{itemize}
-\textsf{Titlesec} works with the standard classes and with many
-others, including the AMS ones, and it runs smoothly with
-\textsf{hyperref}.\footnote{However, be aware the AMS classes
-reimplement the original internal commands.  These changes will be
-lost here.  The compatibility with \textsf{hyperref} has been tested
-with \textsf{dvips}, \textsf{dvipdfm} and \textsf{pdftex} but it is an
-unsupported feature.  Please, check your version of
-\textsf{hyperref} is compatible with \textsf{titlesec}.}
-Unfortunately, it is not compatible with \textsf{memoir}, which
-provides its own tools with a limited subset of the features available
-in \textsf{titlesec}.
+\textsf{Titlesec} fonctionne avec les classes standards et de nombreuses autres, 
+incluant celles de l'AMS, et elle fonctionne sans aucune difficulté avec 
+\textsf{hyperref}.\footnote{Cependant, notez bien que les classes AMS réimplémentent 
+les commandes internes d'origine. Ces changements seront perdus ici. La 
+compatibilité avec \textsf{hyperref} a été testée avec \textsf{dvips}, 
+\textsf{dvipdfm} et \textsf{pdftex} mais il s'agit d'une fonctionnalité non 
+suivie. Pensez à vérifier que votre version d'\textsf{hyperref} est compatible 
+avec \textsf{titlesec}. } Malheureusement, elle n'est pas compatible avec 
+\textsf{memoir}, qui propose ses propres outils avec un sous-ensemble limité 
+des fonctionnalités disponibles dans \textsf{titlesec}.
 
-As usual, load the package in the standard way with 
-|\usepackage|.  Then, redefine the sectioning commands with the 
-simple, predefined settings (see section ``Quick Reference'') or with 
-the provided commands if you want more elaborate formats (see section 
-``Advanced Interface.'')  In the latter case, you only need to 
-redefine the commands you'll use.  Both methods are available at the
-same time, but because |\part| is usually implemented in a
-non-standard way, it remains untouched by the simple settings and
-should be changed with the help of the ``Advanced Interface.''
+Comme d'habitude, chargez l'extension de façon classique avec |\usepackage|. 
+Redéfinissez alors les commandes de sectionnement avec les paramétrages simples 
+prédéfinis (voir section ``Interface simple'') ou avec les commandes mises à 
+disposition si vous souhaitez des formats plus élaborés (voir section 
+``Interface avancée''). Dans ce dernier cas, vous avez uniquement besoin de 
+rédéfinir les commandes que vous utiliserez. Les deux méthodes sont disponibles 
+au même moment mais parce que |\part| est habituellement implémentée de façon 
+non standard, elle reste inchangée par les paramétrages prédéfinis et doit 
+être modifiée avec l'aide de l'``Interface Avancée''.
 
 
-\section{Quick Reference}
-%~~~~~~~~~~~~~~~~~~~~~~
+\section{Interface simple}
+%~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The easiest way to change the format is by means of a set of package 
-options and a couple of commands. If you feel happy with the
-functionality provided by this set of tools, you need not go
-further in this manual. Just read this section and ignore the
-subsequent ones.
+La façon la plus simple de changer le format se fait par le moyen d'un ensemble 
+d'options de l'extension et par un couple de commandes. Si les fonctionnalités 
+apportées par cet ensemble d'outils vous donne satisfaction, vous n'avez pas besoin 
+d'aller plus loin dans ce manuel. Lisez uniquement cette section et ignorez les 
+suivantes. 
 
 \subsection{Format}
 
-There are three option groups controlling font, size and align.  You 
-need not set all of these groups, since a default is provided for each 
-one; however, you must use at least an option from them if you want
-this ``easy setup.'' 
+Il y a trois groupes d'options contrôlant les fontes, tailles et alignements. 
+Vous n'avez pas besoin de définir tous ces groupes puisque des valeurs par défaut 
+sont disponibles pour chacun; cependant, vous devez au moins utiliser une option 
+parmi celles possibles si vous souhaitez utiliser ce ``paramétrage simple''.
+
 \begin{desc}
 |rm sf tt md bf up it sl sc|
 \end{desc}
-Select the corresponding family/series/shape.  Default is |bf|.  
+Option sélectionnant la famille/série/forme correspondante. La valeur par défaut est |bf|.
 
 \begin{desc}
 |big medium small tiny|
 \end{desc}
-Set the size of titles.
-Default is |big|, which gives the size of standard classes.
-With |tiny|, sections (except chapters) are typed in the text
-size. |medium| and |small| are intermediate layouts.
+Option sélectionnnant la taille des titres. Elle est fixée par défaut à |big|, ce qui donne 
+la taille retenue dans les classes standards. Avec |tiny|, les sectionnements 
+(chapitres exceptés) sont composées à la même taille que le texte. |Medium| et 
+|small| sont des présentations intermédiaires aux deux premières.
 
 \begin{desc}
 |raggedleft center raggedright|
 \end{desc}
 
-Control the alignment.
+Option contrôlant l'alignement.
 
-\subsection{Spacing}
+\subsection{Espacement}
 
 \begin{desc}
 |compact|
 \end{desc}
-This option is independent from those above and reduces the spacing
-above and below the titles.
+Cette option est indépendante de celles vues ci-dessus et réduit l'espace au-dessus 
+et au-dessous des titres. 
 
-\subsection{Uppercase}
+\subsection{Majuscules}
 
 \begin{desc}
 |uppercase|
 \end{desc}
 
-\fbox{2.9} Uppercases titles.  Depending on the class, it might not work in
-\verb|\chapter| and \verb|\part|.
+\fbox{2.9} Mise en majuscules des titres. Selon la classe, cela peut ne marcher avec 
+\verb|\chapter| et \verb|\part|.
 
-\subsection{Tools}
+\subsection{Outils}
 
 \begin{desc}
-|\titlelabel{<label-format>}|
+|\titlelabel{<format-du-label>}|
 \end{desc}
-Changes the label format in sections, subsections, etc. A
-|\thetitle| command is provided which is respectively |\thesection|,
-|\thesubsection|, etc. The default value in standard classes is
+Changement du format du label des sections, sous-sections, etc. Une commande |\thetitle| 
+est fournie et correspond respectivement à |\thesection|, |\thesubsection|, etc. La 
+valeur par défaut des classes standards est 
 \begin{verbatim}
 \titlelabel{\thetitle\quad}
 \end{verbatim}
-and you may add a dot after the counter simply with
+et vous pouvez simplement ajouter un point après le compteur avec
 \begin{verbatim}
 \titlelabel{\thetitle.\quad}
 \end{verbatim}
-That was done in this document.
+Ceci a été fait dans ce document.
 
 \begin{desc}
-|\titleformat*{<command>}{<format>}|
+|\titleformat*{<commande>}{<format>}|
 \end{desc}
 
-This command allows to change the |<format>| of a sectioning
-command, as for example:
+Cette commande permet de changer le |<format>| d'une commande de sectionnement, comme
+par exemple :
 \begin{verbatim}
 \titleformat*{\section}{\itshape}
 \end{verbatim}
 
-\section{Advanced Interface}
-%~~~~~~~~~~~~~~~~~~~~~~~~
+\section{Interface avancée}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Two commands are provided to change the title format.  The first one
 is used for the ``internal'' format, i.~e., shape, font, label\dots,
