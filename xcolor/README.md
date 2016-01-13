@@ -7,6 +7,7 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *xc
 - *color wheel* : cercle chromatique ;
 - *complement* : complémentaire ou couleur complémentaire ;
 - *shade* : nuance ;
+- *spot color* : ton direct (vu sur Wikipédia) ;
 - *tint* : teinte ;
 - *tone* : ton ;
 
@@ -16,7 +17,7 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *xc
 - [ ] Introduction (3 pages)
   - [x] Objectif de cette extension
   - [x] Teintes, nuances, tons et couleurs complémentaires
-  - [ ] Modèles colorimétriques
+  - [x] Modèles colorimétriques
   - [ ] Cercles chromatiques et couleurs harmoniques
 - [ ] L'interface utilisateur (24 pages)
 - [ ] Exemples (7 pages)

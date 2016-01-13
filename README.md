@@ -8,6 +8,7 @@ L'objectif de ce dépôt GIT est de traduire en français la documentation de di
 
 ### Quelques termes récurrents dans la traduction des documents
 - *driver* : pilote (informatique, graphique...) ;
+- *error report* : rapports d'erreur
 - *package* : extension ;
 
 ### Liste des paquets en cours de traitements
