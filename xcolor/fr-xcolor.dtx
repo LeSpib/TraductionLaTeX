@@ -192,13 +192,13 @@
 % \def\Function#1{\textit{#1}\index{color functions\levelchar\textit{#1}\string|usage}}
 % \def\Op#1#2{#1\nolimits_{\,\Model{#2}}}
 % \def\med{\mathop{\textrm{med}}}
-% \def\mix{\mathop{\textrm{mix}}}
+% \def\mix{\mathop{\textrm{mélange}}}
 % \def\rd{\mathop{\textrm{round}}}
-% \def\tint{\mathop{\textrm{tint}}}
-% \def\shade{\mathop{\textrm{shade}}}
-% \def\tone{\mathop{\textrm{tone}}}
+% \def\tint{\mathop{\textrm{teinte}}}
+% \def\shade{\mathop{\textrm{nuance}}}
+% \def\tone{\mathop{\textrm{ton}}}
 % \def\LC{\Package{color}}
-% \def\LCP{\Package{color} package}
+% \def\LCP{extension \Package{color}}
 % \def\XC{\Package{xcolor}}
 % \def\XCP{extension \Package{xcolor}}
 % \def\XCW{\texttt{\href{http://www.ukern.de/tex/xcolor.html}{www.ukern.de/tex/xcolor.html}}}
@@ -234,7 +234,6 @@
 %               N'hésitez à envoyer vos constats d'erreur et suggestions d'amélioration à l'auteur :
 %               \texttt{\href{mailto:xcolor@ukern.de}{xcolor@ukern.de}}.}}
 % \maketitle
-%
 %
 % \begin{abstract}
 % \noindent
@@ -286,35 +285,35 @@
 %
 %
 %
-% %%%%% A traduire %%%%%
-% \subsection{Color tints, shades, tones, and complements}
+% \subsection{Teintes, nuances, tons et couleurs complémentaires}
 %
-% According to \cite{smith} we define the terms
+% Sur la base de \cite{smith} nous définissons les termes suivants :
 % \begin{itemize}
-% \item \textbf{\Index{tint}}: a color with \Color{white} added,
-% \item \textbf{\Index{shade}}: a color with \Color{black} added,
-% \item \textbf{\Index{tone}}: a color with \Color{gray} added.
+% \item \textbf{\Index{teinte}}: une couleur à laquelle est ajoutée du \Color{blanc} (white) ;
+% \item \textbf{\Index{nuance}}: une couleur à laquelle est ajoutée du \Color{noir} (black) ;
+% \item \textbf{\Index{ton}}: une couleur à laquelle est ajoutée du \Color{gris} (gray).
 % \end{itemize}
-% These are special cases of a general function
-% $\mix(C,C',p)$ which constructs a new color, consisting of $p$ parts of color $C$ and $1-p$ parts of color $C'$, where $0\le p\le1$.
-% Thus, we set
+% Ce sont des cas spéciaux d'une fonction plus générale
+% $\mix(C,C',p)$ qui construit une nouvelle couleur, composée de $p$ mesures de la couleur $C$ et de $1-p$ mesures de la couleur $C'$, où $0\le p\le1$.
+% Aussi, nous posons 
 % \begin{align}
 % \tint(C,p) &:= \mix(C,|white|,p)\\
 % \shade(C,p) &:= \mix(C,|black|,p)\\
 % \tone(C,p) &:= \mix(C,|gray|,p)
 % \end{align}
-% where |white|, |black|, and |gray| are model-specific constants, see table \vref{tab.const}.
-% Further we define the term
+% où |white|, |black|, and |gray| sont des constantes dépendantes des modèles, comme présentées en table \vref{tab.const}.
+% Par la suite, nous définissons le terme :
 % \begin{itemize}
-% \item \textbf{complement}: a color $C^*$ that yields \Color{white} if superposed with the original color $C$,
+% \item \textbf{complémentaire}: une couleur $C^*$ qui génère du \Color{blanc} si elle est mélangée avec la couleur d'origine $C$,
 % \end{itemize}
-% knowing that there are also different concepts of complementarity in place (e.g., opposite colors on \emph{color wheels}).
-% See section \vref{sec.cnv} for calculation details and section \vref{sec.harmony} for some remarks on color wheels.
+% sachant qu'il existe également différents concepts de complémentarité (par exemple des couleurs opposées sur les \emph{cercles chromatiques}).
+% Voir la section \vref{sec.cnv} pour le détail des calculs et la section \vref{sec.harmony} pour certaines remarques sur les cercles chromatiques.
 %
 %
 %
-% \subsection{Color models}
+% \subsection{Modèles colorimétriques}
 %
+% %%%%% A traduire %%%%%
 % A color model is a tool to describe or represent a certain set of colors in a way that is suitable for the desired target device, e.g., a screen or a printer.
 % There are proprietary models (like \Index{Pantone} or \Index{HKS}) that provide finite sets of colors (often called \emph{\Index{spot color}s}), where the user has to choose from without caring about parametrisations; on the other hand, there are parameter-driven models like \Model{gray}, \Model{rgb}, and \Model{cmyk}, that aim to represent large finite or even (theoretically) infinite sets of colors, built on very small subsets of base colors and rules, how to construct other colors from these base colors.
 % For example, a large range of colors can be constructed by linear combinations of the base colors \Color{red}, \Color{green}, and \Color{blue}.
