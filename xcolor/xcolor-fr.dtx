@@ -240,8 +240,8 @@
 %
 % \begin{abstract}
 % \noindent
-% \XC{} met à disposition un accès simple et indépendant des pilotes graphiques à de multiples types de couleurs, teintes, nuances, ton et mélanges de couleurs arbitraires par le biais d'expressions dédiées comme |\color{red!50!green!20!blue}|.
-% Il permet de sélectionner un modèle de couleur à l'échelle du document et offre des outils d'assortiment de couleurs automatiques, de conversion des couleurs entre douze modèles colorimétriques, d'utilisation de couleurs alternées pour des lignes de tableau, de mélange et de masque de couleur, de séparation de couelru et roue de calcul de couleur.
+% \XC{} met à disposition, simplement et indépendamment des pilotes graphiques, à de multiples types de couleurs, teintes, nuances, tons et mélanges de couleurs arbitraires par le biais d'expressions dédiées comme |\color{red!50!green!20!blue}|.
+% Il permet de sélectionner un modèle de couleur à l'échelle du document et offre des outils d'assortiment de couleurs automatiques, de conversion des couleurs entre douze modèles colorimétriques, d'utilisation de couleurs alternées pour des lignes de tableau, de mélange et de masque de couleur, de séparation de couleur et de calculs de cercle chromatique.
 % \end{abstract}
 %
 % \phantomsection\pdfbookmark[1]{\contentsname}{toc}
@@ -344,8 +344,8 @@
 % Nous commençons avec un cercle chromatique quelconque :
 % \begin{itemize}
 % \item les \textbf{couleurs complémentaires} sont situées à une distance de 180\Circ{} sur le cercle ;
-% \item les \textbf{} correspondent à trois couleurs séparées par 120\Circ ;
-% \item les \textbf{} correspondent à quatre couleurs séparées par 90\Circ.
+% \item les *\textbf{}* correspondent à trois couleurs séparées par 120\Circ ;
+% \item les *\textbf{}* correspondent à quatre couleurs séparées par 90\Circ.
 % \end{itemize}
 % Nous supposons maintenant que le cercle est décomposé en $2n$ secteurs de taille égale :
 % \begin{itemize}
@@ -366,13 +366,13 @@
 %
 % \subsubsection{Installation de l'extension}
 %
-% First of all, put \File{xcolor.sty} and all the \File{.def} files to some place where (pdf)\LaTeX{} finds them.
-% A typical place according to the \emph{\TeX\ Directory Structure} (TDS) would be the directory |texmf/tex/latex/xcolor|, where |texmf| denotes the main directory of your \TeX\ installation.
-% Additionally, put \File{xcolor.pro} to a place where \Program{dvips} finds it, typically |texmf/dvips/xcolor|.
-% Usually, you will have to run some kind of filename database update in order to make the files known and quickly searchable to the \TeX\ system.
-% Then simply use \XC{} (instead of \LC) in your document.
-% Thus, the general command is |\usepackage|\oarg{options}|{xcolor}| in the document preamble.
-% Table \vref{tab.package} shows what has to be taken into account with respect to the package loading order.
+% Il faut tout d'abord placer \File{xcolor.sty} et tous les fichiers dans un répertoire où (pdf)\LaTeX{} les trouvera.
+% Un emplacement classique selon le *\emph{\TeX\ Directory Structure} (TDS)* serait le répertoire |texmf/tex/latex/xcolor|, où |texmf| est à remplacer par le répertoire principal de votre installation de \TeX\.
+% De plus, il faut placer \File{xcolor.pro} à un endroit où \Program{dvips} le trouvera, typiquement |texmf/dvips/xcolor|.
+% Normalement, vous devez lancer une mise à jour de votre base de noms de fichiers afin que ces fichiers soient connus et facilement retrouvables dans l'arborescence \TeX\.
+% Par la suite, il suffit simplement d'utiliser \XC{} (au lieu de \LC) dans votre document.
+% Pour cela, la commande générale d'appel est |\usepackage|\oarg{options}|{xcolor}| dans le préambule du document.
+% La table \vref{tab.package} montre dans quel ordre certaines extensions doivent être alors chargées.
 %
 %
 % \subsubsection{Package options}
