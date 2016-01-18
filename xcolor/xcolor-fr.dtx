@@ -76,11 +76,11 @@
 %%   *.pro -> /dvips/xcolor/
 %%
 %% Create the documentation:
-%%   `latex xcolor.dtx'
-%%   `latex xcolor.dtx'
+%%   `latex xcolor-fr.dtx'
+%%   `latex xcolor-fr.dtx'
 %%   `makeindex -s gind.ist xcolor.idx'
-%%   `latex xcolor.dtx'
-%%   `latex xcolor.dtx'
+%%   `latex xcolor-fr.dtx'
+%%   `latex xcolor-fr.dtx'
 %%
 %% Run the test files (N=1,2,...):
 %%   `latex xcolorN.tex'
@@ -89,7 +89,7 @@
 \def\batchfile{xcolor.ins}
 \input docstrip.tex
 \askforoverwritefalse
-\generate{\file{xcolor.lox}{\from{xcolor.dtx}{extract}}}
+\generate{\file{xcolor.lox}{\from{xcolor-fr.dtx}{extract}}}
 \batchinput{xcolor.lox}
 \endbatchfile
 \end{filecontents*}
@@ -97,10 +97,13 @@
 %
 %<*driver>
 \listfiles
-\ProvidesFile{xcolor.dtx}[\XCfiledate\space\XCfileversion\space
-                          `xcolor' source and documentation (UK)]
+\ProvidesFile{xcolor-fr.dtx}[\XCfiledate\space\XCfileversion\space
+                          `xcolor' source and documentation (FR)]
 \documentclass{ltxdoc}
 \usepackage[table,showerrors,dvipsnames,hyperref]{xcolor}[2005/06/06]
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
 \usepackage{chngpage,varioref,tabularx,amsmath,amsthm}
 \usepackage
  [\GinDriver,hyperindex=false,bookmarks,bookmarksopen,bookmarksopenlevel=1,%
@@ -117,7 +120,7 @@
 \pagestyle{myheadings}
 \markright{\hskip-2.5cm xcolor \XCfileversion\space(\XCfiledate)}
 \begin{document}
- \DocInput{xcolor.dtx}
+ \DocInput{xcolor-fr.dtx}
  \let\Section\section\def\section*#1{\Section*{#1}\addcontentsline{toc}{section}{#1}}
  \begin{adjustwidth}{-2.5cm}{}
  \def\markboth#1#2{}\PrintIndex
@@ -138,7 +141,7 @@
     \fi
     \space[\XCfiledate\space\XCfileversion\space#4\space(UK)]}
   \usepreamble\ukhead
-  \file{#2.\ifcase#1sty\or tex\or def\or pro\fi}{\from{xcolor.dtx}{#3}}}
+  \file{#2.\ifcase#1sty\or tex\or def\or pro\fi}{\from{xcolor-fr.dtx}{#3}}}
 \generate{
 \ukfile0{xcolor}{package}{LaTeX color extensions}
 \ukfile2{svgnam}{svgnames}{Predefined colors according to SVG 1.1}
@@ -1586,6 +1589,7 @@
 % \small
 % \begin{adjustwidth}{-2.5cm}{}
 % \makeatletter
+% \shorthandoff{:}
 % \def\ColorLoop#1#2{\@tfor\@@tmp:={}{-rgb}{-cmy}{-hsb}{-gray}\do
 %   {\ifcase#1
 %    \expandafter\Colorloop\expandafter{\expandafter\ukColor\@@tmp}{#2}\or
@@ -1598,6 +1602,7 @@
 % \def\Colorshow#1{\texttt{#1}&
 %   \multicolumn2{l@{}}{\expandafter\let\expandafter\@@tmp\csname\string\color@#1\endcsname
 %   \edef\@@tmp{\expandafter\@gobbletwo\@@tmp}\Meaning{@@tmp}}\\}
+% \shorthandon{:}
 % \makeatother
 % \sbox0{\testclr{red}}\XCdim\wd0
 % \begin{tabular}{@{}lll@{}}
@@ -8292,4 +8297,4 @@ f(color)box &
 % \fi
 \endinput
 %%
-%% End of file `xcolor.dtx'.
+%% End of file `xcolor-fr.dtx'.
