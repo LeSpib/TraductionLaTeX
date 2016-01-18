@@ -320,49 +320,48 @@
 % Enfin, il existe certaines couleurs comme l'\Color{or} ou l'\Color{argent} qui sont difficilement reproductibles par des modèles paramétriques avec des encres standard ou des imprimantes laser.
 %
 %
+%
+% \subsection{Cercles chromatiques et accords de couleurs}\label{sec.harmony}
+%
+% Il s'est développé une longue histoire du placement de couleurs (*teintes*) sur des cercles pour discuter de problèmes théoriques ou pratiques sur les couleurs (par exemple \People{Isaac}{Newton}, \People{Johann Wolfgang von}{Goethe}).
+% Une explication de ceci pourrait être que le cercle lui-même est un outil tout naturel pour illustrer des relations communes aussi bien que des propriétés opposées.
+%
+% De nos jours, une certaine confusion portant sur les notions associées aux couleurs existe, dans la mesure où deux grands domaines qui y sont liés --- l'art et le design graphique d'une part, la théorie scientifique de couleur de l'autre --- tendent à utiliser les même mots pour décrire les propriétés de la couleur bien qu'en décrivant parfois des faits très différents !
+% Ainsi, l'apparence des cercles chromatiques diffère autant que la signification de concepts comme couleurs `primaires' ou `complémentaires'. 
+%
+%
+% \paragraph{Construction d'un cercle chromatique typique}
+% Tout d'abord, trois \emph{couleurs primaires} sont placées sur le cercle à 0\Circ, 120\Circ, 240\Circ (les artistes choisissent souvent le triplet \Color{rouge}, \Color{jaune}, \Color{bleu}, tandis que les scientifiques spécialistes de la couleur préféreront le triplet \Color{rouge}, \Color{vert}, \Color{bleu}).
+% Ensuite, les trois \emph{coulerus secondaires} sont placées à 60\Circ, 180\Circ, 300\Circ.
+% Puis, six \emph{couleurs tertiaires} pourront être placées au milieu de chaque arc (30\Circ, 90\Circ, \dots).
+% C'est pourquoi les cercles chromatiques sont fréquemment décrits par douze couleurs équidistantes bien que l'algorithme puisse être prolongé à merci.
+%
+%
+% \paragraph{Harmonies de couleur issues du cercle}
+% Nous commençons avec un cercle chromatique quelconque :
+% \begin{itemize}
+% \item les \textbf{couleurs complémentaires} sont situées à une distance de 180\Circ{} sur le cercle ;
+% \item les \textbf{} correspondent à trois couleurs séparées par 120\Circ ;
+% \item les \textbf{} correspondent à quatre couleurs séparées par 90\Circ.
+% \end{itemize}
+% Nous supposons maintenant que le cercle est décomposé en $2n$ secteurs de taille égale :
+% \begin{itemize}
+% \item les \textbf{couleurs complémentaires adjacentes} d'une couleur donnée sont les deux voisines immédiates de la couleur complémentaire, caractérisées par les positions $\frac{n\pm1}{2n}\cdot360^\circ$,
+% \item les \textbf{couleurs analogues} d'une couleur donnée sont les deux ou quatre voisines, caractérisées par les positions  $\pm\frac{1}{2n}\cdot360^\circ$ and $\pm\frac{2}{2n}\cdot360^\circ$.
+% \end{itemize}
+% Vu les méthodes utilisées pour générer des accords de couleur, nous concluons que les résultats dépendent fortement de la manière dont nous construisons le cercle.
+% Qui plus est, le choix de $n$ affectera également le résultat visuel.
+% Des exemples sont donnés en figure \vref{fig.harmony}.
+%
+%
 % %%%%% A traduire %%%%%
 %
-% \subsection{Color wheels and color harmony}\label{sec.harmony}
-%
-% There has been a long history of placing colors (hues) on wheels in order to discuss theoretical or practical color issues (e.g., \People{Isaac}{Newton}, \People{Johann Wolfgang von}{Goethe}).
-% One reason may be that the circle itself is a natural tool to demonstrate common relationships as well as opposite properties.
-%
-% Nowadays, there exists some confusion about notions, since both major areas related to color --- art and graphics design on one hand, scientific color theory on the other hand --- tend to use the same words to describe color properties, however meaning sometimes very different facts!
-% Thus, the appearance of color wheels differs as well as the meaning of concepts like `primary' or `complementary' colors.
-%
-%
-% \paragraph{Typical color wheel construction}
-% First, three \emph{primary colors} are placed at 0\Circ, 120\Circ, 240\Circ (artists often choose \Color{red}, \Color{yellow}, \Color{blue}, whereas color scientists might prefer \Color{red}, \Color{green}, \Color{blue}).
-% Next, three \emph{secondary colors} are put at 60\Circ, 180\Circ, 300\Circ.
-% Then, six \emph{tertiary colors} may be placed in between (30\Circ, 90\Circ, \dots).
-% This is why color wheels are frequently described to consist of twelve equidistant colors, although the algorithm can be repeated arbitrarily often.
-%
-%
-% \paragraph{Color harmonies derived from a wheel}
-% We start with an arbitrary color wheel:
-% \begin{itemize}
-% \item \textbf{complementary colors} have a distance of 180\Circ{} on the wheel,
-% \item \textbf{color triads} consist of three colors in 120\Circ{} steps,
-% \item \textbf{color tetrads} consist of four colors in 90\Circ{} steps.
-% \end{itemize}
-% We assume now that the wheel is partitioned into $2n$ sectors of equal size:
-% \begin{itemize}
-% \item \textbf{split complementary colors} of a given color are the two immediate neighbours of its complementary color, characterised by the positions $\frac{n\pm1}{2n}\cdot360^\circ$,
-% \item \textbf{analogous colors} to a given color are its two or four neighbours, characterised by the positions $\pm\frac{1}{2n}\cdot360^\circ$ and $\pm\frac{2}{2n}\cdot360^\circ$.
-% \end{itemize}
-% Given these methods to generate `color harmonies', we conclude that the results depend heavily on how we constructed the wheel!
-% Moreover, the choice of $n$ will affect the visual results as well.
-% Examples are shown in figure \vref{fig.harmony}.
-%
-%
-%
-%
 % \clearpage
-% \section{The User Interface}
+% \section{L'interface utilisateur}
 %
-% \subsection{Preparation}
+% \subsection{Préparation}
 %
-% \subsubsection{Package installation}
+% \subsubsection{Installation de l'extension}
 %
 % First of all, put \File{xcolor.sty} and all the \File{.def} files to some place where (pdf)\LaTeX{} finds them.
 % A typical place according to the \emph{\TeX\ Directory Structure} (TDS) would be the directory |texmf/tex/latex/xcolor|, where |texmf| denotes the main directory of your \TeX\ installation.
