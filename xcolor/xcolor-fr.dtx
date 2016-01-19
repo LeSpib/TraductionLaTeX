@@ -228,12 +228,11 @@
 % \colorlet{tablerowcolor}{gray!12.5}
 %
 %
-% %%%%% Relecture nécessaire jusqu'à la marque "à traduire" à faire %%%%%
-% \title{Extending \LaTeX's color facilities: l'\XCP}
+% \title{\'{E}largissement des capacités de \LaTeX\ en matière de couleur : l'\XCP}
 % \author{\href{mailto:xcolor@ukern.de}{\fboxrule0pt\fboxsep2pt\fbox{Dr. Uwe Kern}}}
 % \date{\XCfileversion{} (\XCfiledate)
 %       \thanks{Cette extension peut être téléchargée à partir de \CTAN{macros/latex/contrib/xcolor/}{}.
-%               Il existe aussi un site Internet dédié à \textsf{xcolor} : \XCW.
+%               Un site Internet dédié à \textsf{xcolor} existe égalemetn : \XCW.
 %               N'hésitez à envoyer vos constats d'erreur et suggestions d'amélioration à l'auteur :
 %               \texttt{\href{mailto:xcolor@ukern.de}{xcolor@ukern.de}}.}}
 % \maketitle
@@ -255,33 +254,33 @@
 %
 % \subsection{Objectif de cette extension}
 %
-% L'\LCP{} met à disposition un outil puissant et stable pour manipuler les couleurs dans (pdf)\LaTeX{} de façon cohérent et indépendamment des pilotes graphiques, tout en supportant différents modèles colorimétriques (de manière un peu moins indépendantes des pilotes).
+% L'\LCP{} met à disposition un outil puissant et stable pour manipuler les couleurs dans (pdf)\LaTeX{} de façon cohérente, indépendamment des pilotes graphiques, tout en supportant différents modèles colorimétriques (de manière un peu moins indépendante des pilotes).
 %
 % Néanmoins, il est parfois un peu laborieux de l'utiliser, particulièrement dans les cas où de légères variations de couleur, des mélanges de couleur ou des conversions de couleur sont en jeu :
 % ceci implique d'habitude l'utisation d'un autre programme qui calcule les paramètres souhaités, paramètres alors copiés dans une commande |\definecolor| dans \LaTeX.
 % Assez fréquemment, une calculatrice de poche est également retenue dans le traitement de problèmes comme ceux indiqués ci-après :
 % \begin{itemize}
-% \item Ma société a défini une couleur d'entreprise et le service des impressions m' a dit combien il est coûteux d'utiliser plus de deux couleurs dans notre nouveau brochure, alors même que toutes les teintes de notre couleur (par exemple, une version à 75\%) peuvent être utilisées sans aucun surcoût.
-% Mais comment accéder à ces variations de couleur avec \LaTeX?\\
+% \item Ma société a défini une couleur d'entreprise et le service des impressions m'a dit combien il est coûteux d'utiliser plus de deux couleurs dans notre nouveau brochure, alors même que toutes les teintes de notre couleur (par exemple, une version à 75\%) peuvent être utilisées sans aucun surcoût.
+% Comment accéder à ces variations de couleur avec \LaTeX?\\
 % (Réponse: |\color{CouleurEntreprise!75}| etc.)
-% \item Mon ami utilise une belle couleur que je souhaiterais appliquer à mes propres documents; malheureusement, elle est définie le modèle \Model{hsb} qui n'est pas accepté dans mon application pdf\LaTeX favorite.
+% \item Mon ami utilise une belle couleur que je souhaiterais appliquer à mes propres documents; malheureusement, elle est définie avec le modèle \Model{hsb} qui n'est pas accepté par mon application pdf\LaTeX\ favorite.
 % Que faire alors ?\\
 % (Réponse : utiliser tout simplement les définitions \Model{hsb}, \XC{} fera les calculs nécessaires.)
 % \item Qu'affiche le mélange de 40\% de \Color{green} et de 60\% de \Color{yellow} ?\\
 % (Réponse : 40\% \testclr{green} $+$ 60\% \testclr{yellow} $=$ \testclr{green!40!yellow}, soit |\color{green!40!yellow}|)
 % \item Et quelle est l'aspect de sa couleur complémentaire ?\\
 % (Réponse: \testclr{-green!40!yellow}, accessible via |\color{-green!40!yellow}|)
-% \item Maintenant, je souhaite mélanger trois mesures de la dernière couleur avec deux mesures de sa complémentaire et une mesure de \Color{red}.
+% \item Maintenant, je souhaite mélanger trois mesures de la dernière couleur avec deux mesures de sa complémentaire et une mesure de \Color{rouge}.
 % Qu'est-ce que cela donne ?\\
-% (Réponse: $3\times$ \testclr{-green!40!yellow} $+ 2\times$ \testclr{green!40!yellow} $+ 1\times$ \testclr{red} $=$ \testclr{rgb:-green!40!yellow,3;green!40!yellow,2;red,1}, cette dernière couleur étant accessible via |\color{rgb:-green!40!yellow,3;green!40!yellow,2;red,1}|)
-% \item Je sais qu'un rayonnement de longeur d'onde de 485nm appartient au spectre visible. Mais quelle couleur a-t-il ?\\
+% (Réponse: $3\times$ \testclr{-green!40!yellow} $+ 2\times$ \testclr{green!40!yellow} $+ 1\times$ \testclr{red} $=$ \testclr{rgb:-green!40!yellow,3;green!40!yellow,2;red,1}, cette couleur étant accessible via |\color{rgb:-green!40!yellow,3;green!40!yellow,2;red,1}|)
+% \item Je sais qu'un rayonnement de longueur d'onde de 485nm appartient au spectre visible. Mais quelle couleur a-t-il ?\\
 % (Réponse : approximativement \testclr[wave]{485}, via |\color[wave]{485}|)
-% \item Mon service de impressions souhaite que toutes les définitions de couleurs dans mon document soit basculées en modèle \Model{cmyk} (CMJN en français).
+% \item Mon service des impressions souhaite que toutes les définitions de couleur dans mon document soit basculées en modèle \Model{cmyk} (CMJN en français).
 % Comment puis-je faire ces calculs efficacement ?\\
 % (Réponse : |\usepackage[cmyk]{xcolor}| ou |\selectcolormodel{cmyk}|)
 % \item J'ai un tableau de 50 lignes.
-% Comment puis-je obtenir des lignes de tableau avec des couleurs alternées sans recours à la copie de 50 commandes |\rowcolor| ? Ce motif alterné devrait d'ailleurs commencer à partir de la troisième ligne.\\
-% (Réponse: quelque chose comme |\rowcolors{3}{CouleurImpaire}{CouleurPaire}|)
+% Comment puis-je obtenir des lignes de tableau avec deux couleurs alternées (A pour les lignes paires et B pour les lignes impaires) sans recours à la copie de 50 commandes |\rowcolor| ? Ce motif alterné devrait d'ailleurs commencer à partir de la troisième ligne.\\
+% (Réponse: \emph{grosso modo} |\rowcolors{3}{CouleurA}{CouleurB}|)
 % \end{itemize}
 % Ceci répresente quelques uns des problème résolus par l'\XCP.
 % Son objectif peut être résumé en la conservation des caractéristiques de \LC, tout en apportant des fonctionnalités additionnelles et de la flexibilité avec des interfaces simples d'utilisation (avec un peu de chance).
@@ -369,23 +368,23 @@
 % Il faut tout d'abord placer \File{xcolor.sty} et tous les fichiers dans un répertoire où (pdf)\LaTeX{} les trouvera.
 % Un emplacement classique selon le *\emph{\TeX\ Directory Structure} (TDS)* serait le répertoire |texmf/tex/latex/xcolor|, où |texmf| est à remplacer par le répertoire principal de votre installation de \TeX\.
 % De plus, il faut placer \File{xcolor.pro} à un endroit où \Program{dvips} le trouvera, typiquement |texmf/dvips/xcolor|.
-% Normalement, vous devez lancer une mise à jour de votre base de noms de fichiers afin que ces fichiers soient connus et facilement retrouvables dans l'arborescence \TeX\.
+% Normalement, vous devez lancer une mise à jour de votre base de noms de fichiers afin que ces fichiers soient connus et facilement retrouvables dans l'arborescence \TeX.
 % Par la suite, il suffit simplement d'utiliser \XC{} (au lieu de \LC) dans votre document.
 % Pour cela, la commande générale d'appel est |\usepackage|\oarg{options}|{xcolor}| dans le préambule du document.
 % La table \vref{tab.package} montre dans quel ordre certaines extensions doivent être alors chargées.
 %
 %
-% \subsubsection{Package options}
+% \subsubsection{Options de l'extension}
 %
-% In general, there are several types of options:
+% En général, plusieurs types d'options existent :
 % \begin{itemize}
-% \item options that determine the color driver as explained in \cite{dpc} and \cite{color}, currently: \Option{dvips}, \Option{xdvi}, \Option{dvipdf}, \Option{dvipdfm}, \Option{dvipdfmx}, \Option{pdftex}, \Option{dvipsone}, \Option{dviwindo}, \Option{emtex}, \Option{dviwin}, \Option{oztex}, \Option{textures}, \Option{pctexps}, \Option{pctexwin}, \Option{pctexhp}, \Option{pctex32}, \Option{truetex}, \Option{tcidvi}, \Option{vtex}, \Option{xetex},
-% \item options that determine the target color model\footnote{Section \vref{sec.tgt} explains how this setting can be overridden at any point in a document.} (\Option{natural}, \Option{rgb}, \Option{cmy}, \Option{cmyk}, \Option{hsb}, \Option{gray}, \Option{RGB}, \Option{HTML}, \Option{HSB}, \Option{Gray}) or disable colored output (\Option{monochrome}),
-% \item options that control whether and how certain sets of predefined colors are being loaded: \Option{dvipsnames}, \Option{dvipsnames*}, \Option{svgnames}, \Option{svgnames*}, \Option{x11names}, \Option{x11names*},
-% \item options that determine which other packages are to be loaded or supported: \Option{table}, \Option{fixpdftex},
-% \Option{hyperref},
-% \item options that influence the behaviour of other commands: \Option{prologue}, \Option{kernelfbox}, \Option{xcdraw}, \Option{noxcdraw}, \Option{fixinclude}, \Option{showerrors}, \Option{hideerrors},
-% \item obsolete options:
+% \item les options qui déterminent le pilote graphique comme expliqué dans \cite{dpc} et \cite{color}, soit actuellement : \Option{dvips}, \Option{xdvi}, \Option{dvipdf}, \Option{dvipdfm}, \Option{dvipdfmx}, \Option{pdftex}, \Option{dvipsone}, \Option{dviwindo}, \Option{emtex}, \Option{dviwin}, \Option{oztex}, \Option{textures}, \Option{pctexps}, \Option{pctexwin}, \Option{pctexhp}, \Option{pctex32}, \Option{truetex}, \Option{tcidvi}, \Option{vtex}, \Option{xetex} ;
+% \item les options qui déterminent le modèle colorimétrique cible \footnote{La section \vref{sec.tgt} explique comment ce paramétrage peut être annulé n'importe où dans un document.} (\Option{natural}, \Option{rgb}, \Option{cmy}, \Option{cmyk}, \Option{hsb}, \Option{gray}, \Option{RGB}, \Option{HTML}, \Option{HSB}, \Option{Gray}) ou une sortie avec des couleurs désactivées (\Option{monochrome}) ;
+% \item les options qui contrôlent si certains ensembles de couleurs prédéfinies sont chargés et comment : \Option{dvipsnames}, \Option{dvipsnames*}, \Option{svgnames}, \Option{svgnames*}, \Option{x11names}, \Option{x11names*} ;
+% \item les options qui déterminent quelles autres extensions doivent être chargées ou supportées : \Option{table}, \Option{fixpdftex},
+% \Option{hyperref} ;
+% \item les options qui influencent le comportement d'autres commandes : \Option{prologue}, \Option{kernelfbox}, \Option{xcdraw}, \Option{noxcdraw}, \Option{fixinclude}, \Option{showerrors}, \Option{hideerrors} ;
+% \item les options obsolètes :
 % \oOption{pst},
 % \oOption{override}, \oOption{usenames}, \oOption{nodvipsnames}.
 % \end{itemize}
