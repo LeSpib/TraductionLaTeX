@@ -24,7 +24,10 @@
 \def\docdate{2011-12-15}
 
 \documentclass[a4paper]{ltxguide}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage[sf,bf,compact,topmarks,calcwidth,pagestyles]{titlesec}
+\usepackage[french]{babel}
 \usepackage{titletoc}
 \def\gobble#1{}
 \def\cs#1{\expandafter\gobble\string\\#1}
@@ -46,7 +49,7 @@
 \title{Les extensions \textsf{titlesec}, \textsf{titleps} et \textsf{titletoc} 
 \footnote{L'extension \textsf{titlesec} est actuellement en version 2.10.0.  
 \copyright{} 1998--2011 Javier Bezos. L'extension \textsf{titletoc} est actuellement 
-en version 1.6. L'exntesion \textsf{titleps} est actuellement en version 1.1.0  
+en version 1.6. L'extension \textsf{titleps} est actuellement en version 1.1.0  
 \copyright{} 1999--2011 Javier Bezos.  Javier Bezos. Tous droits réservés.}}
 
 \author{Javier Bezos\footnote{Pour des rapports d'erreur, commentaires et 
@@ -119,7 +122,7 @@ cas.}
 
 Entre autres nouvelles fonctionnalités se trouvent :
 \begin{itemize}
-\item différentes classes et ``formes'' de titres, avec des outils autorisant une 
+\item différentes classes et \og formes\fg{} de titres, avec des outils autorisant une 
 grande variété de formats. Vous pouvez définir des formats différents pour les pages 
 de gauche et de droite, avec des titres numérotés ou pas, mesurer la longueur d'un
 titre, ajouter un nouveau niveau de sectionnement, utiliser des graphiques et bien 
@@ -148,13 +151,13 @@ des fonctionnalités disponibles dans \textsf{titlesec}.
 
 Comme d'habitude, chargez l'extension de façon classique avec |\usepackage|. 
 Redéfinissez alors les commandes de sectionnement avec les paramétrages simples 
-prédéfinis (voir section ``Interface simple'') ou avec les commandes mises à 
+prédéfinis (voir section \og Interface simple \fg{}) ou avec les commandes mises à 
 disposition si vous souhaitez des formats plus élaborés (voir section 
-``Interface avancée''). Dans ce dernier cas, vous avez uniquement besoin de 
+\og Interface avancée \fg{}). Dans ce dernier cas, vous avez uniquement besoin de 
 rédéfinir les commandes que vous utiliserez. Les deux méthodes sont disponibles 
 au même moment mais parce que |\part| est habituellement implémentée de façon 
 non standard, elle reste inchangée par les paramétrages prédéfinis et doit 
-être modifiée avec l'aide de l'``Interface Avancée''.
+être modifiée avec l'aide de l'\og Interface Avancée \fg{}.
 
 
 \section{Interface simple}
@@ -171,7 +174,7 @@ suivantes.
 Il y a trois groupes d'options contrôlant les fontes, tailles et alignements. 
 Vous n'avez pas besoin de définir tous ces groupes puisque des valeurs par défaut 
 sont disponibles pour chacun; cependant, vous devez au moins utiliser une option 
-parmi celles possibles si vous souhaitez utiliser ce ``paramétrage simple''.
+parmi celles possibles si vous souhaitez utiliser ce \og paramétrage simple \fg{}.
 
 \begin{desc}
 |rm sf tt md bf up it sl sc|
@@ -181,10 +184,10 @@ Option sélectionnant la famille/série/forme correspondante. La valeur par déf
 \begin{desc}
 |big medium small tiny|
 \end{desc}
-Option sélectionnnant la taille des titres. Elle est fixée par défaut à |big|, ce qui donne 
+Option sélectionnant la taille des titres. Elle est fixée par défaut à |big|, ce qui donne 
 la taille retenue dans les classes standards. Avec |tiny|, les sectionnements 
 (chapitres exceptés) sont composées à la même taille que le texte. |Medium| et 
-|small| sont des présentations intermédiaires aux deux premières.
+|small| sont des présentations intermédiaires entre les deux premières.
 
 \begin{desc}
 |raggedleft center raggedright|
@@ -239,29 +242,29 @@ par exemple :
 \section{Interface avancée}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Two commands are provided to change the title format.  The first one
-is used for the ``internal'' format, i.~e., shape, font, label\dots,
-the second one defines the ``external'' format, i.~e., spacing before
-and after, indentation, etc.  This scheme is intended to easy
-definitions, since in most of cases you will want to modify either
-spacing or format.\footnote{Information is ``extracted'' from the
-class sectioning commands, except for chapter and part.  Standard
-definitions with |\cs{@startsection}| are presumed---if sections have
-been defined without that macro, arbitrary values for the format an
-the spacing are provided, which you may change later.  (Sadly, there
-is no way to catch the chapter or part formats, and one similar to
-that of standard classes will be used.)} That redefines existing
-sectioning commands, but does not create \emph{new} ones.  New
-sectioning levels can be added with |\titleclass|, as described below,
-and then their format can be set with the commands described here.
+Deux commandes sont mises à disposition pour changer le format des titres. La première
+est utilisée pour le format \og interne \fg{}, autrement dit la forme, la fonte, le 
+label, etc. La seconde définit le format \og externe \fg{}, autrement dit l'espacement
+avant et après, l'indentation, etc. Ce principe est pensé pour simplifier les 
+définitions car, dans la plus plupart des cas, vous souhaiterez modifier soit 
+l'espacement, soit le format\footnote{L'information est \og extraite \fg{} des 
+commandes de sectionnement de la classe, excepté pour les chapitres et parties. Les
+définitions sont supposées utiliser |\cs{@startsection}| --- si les sections ont été
+définies sans cette commande, des valeurs arbitraires de format sont proposées et 
+peuvent être modifiées par la suite. Malheureusement, il n'y a pas de manière de
+récupérer les formats des chapitres ou parties ; un format similaire à celui des 
+classes standards est alors utilisé.}. Ceci redéfinit les commandes de sectionnement
+existantes mais n'en crée par de \emph{nouvelles}. De nouveaux niveaux de 
+sectionnement peuvent être ajoutés avec |\titleclass|, comme décrit ci-après, et
+leur format peut être fixé par les commandes décrites ici.
 
 \subsection{Format}
 
-A set of shapes is provided, which controls the basic distribution of
-elements in a title. The available shapes are:
+Un ensemble de formes contrôlant la distribution basique des éléments d'un titre
+est proposé. Les formes disponibles sont :
 \begin{description}
-\item[hang] is the default value, with a hanging label.  (Like the 
-standard |\section|.)
+\item[hang] est la valeur par défaut, avec un label *hanging* (comme la |\section| 
+standard).
 
 \item[block] typesets the whole title in a block (a paragraph) without 
 additional formatting.  Useful in centered titles\,\footnote{The label 
@@ -356,7 +359,7 @@ It defaults to |\chaptername| except in appendices where it
 is |\appendixname|. Use it instead of |\chaptername| when defining
 a chapter.
 
-\subsection{Spacing}
+\subsection{Espacement}
 
 \begin{desc}
 |\titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}[<right-sep>]|
