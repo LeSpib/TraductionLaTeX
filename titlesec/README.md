@@ -4,6 +4,7 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *ti
 
 ### Quelques termes récurrents dans la traduction de ce document
 - *contents* : table des matières, sommaire
+- *label* : numérotation
 
 ### Avancement de la traduction, en vision table de matières
 - [ ] En-tête du document tex (définitions, métadonnées)
@@ -11,8 +12,8 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *ti
 - [x] Introduction (1 page)
 - [x] Interface simple (1 page)
 - [ ] Interface avancée (7 pages)
-  - [ ] Format
-  - [ ] Espacement
+  - [x] Format
+  - [x] Espacement
   - [ ] Outils liés à l'espacement
   - [ ] Filets
   - [ ] Styles de page

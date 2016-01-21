@@ -215,11 +215,11 @@ et au-dessous des titres.
 \subsection{Outils}
 
 \begin{desc}
-|\titlelabel{<format-du-label>}|
+|\titlelabel{<format-de-numérotation>}|
 \end{desc}
-Changement du format du label des sections, sous-sections, etc. Une commande |\thetitle| 
-est fournie et correspond respectivement à |\thesection|, |\thesubsection|, etc. La 
-valeur par défaut des classes standards est 
+Changement du format de la numérotation des sections, sous-sections, etc. Une 
+commande |\thetitle| est fournie et correspond respectivement à |\thesection|, 
+|\thesubsection|, etc. La valeur par défaut des classes standards est 
 \begin{verbatim}
 \titlelabel{\thetitle\quad}
 \end{verbatim}
@@ -243,10 +243,10 @@ par exemple :
 %~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Deux commandes sont mises à disposition pour changer le format des titres. La première
-est utilisée pour le format \og interne \fg{}, autrement dit la forme, la fonte, le 
-label, etc. La seconde définit le format \og externe \fg{}, autrement dit l'espacement
-avant et après, l'indentation, etc. Ce principe est pensé pour simplifier les 
-définitions car, dans la plus plupart des cas, vous souhaiterez modifier soit 
+est utilisée pour le format \og interne \fg{}, autrement dit la forme, la fonte, 
+la numérotation, etc. La seconde définit le format \og externe \fg{}, autrement dit 
+l'espacement avant et après, l'indentation, etc. Ce principe est pensé pour simplifier 
+les définitions car, dans la plus plupart des cas, vous souhaiterez modifier soit 
 l'espacement, soit le format\footnote{L'information est \og extraite \fg{} des 
 commandes de sectionnement de la classe, excepté pour les chapitres et parties. Les
 définitions sont supposées utiliser |\cs{@startsection}| --- si les sections ont été
@@ -263,22 +263,23 @@ leur format peut être fixé par les commandes décrites ici.
 Un ensemble de formes contrôlant la distribution basique des éléments d'un titre
 est proposé. Les formes disponibles sont :
 \begin{description}
-\item[hang] est la valeur par défaut, avec un label *hanging* (comme la |\section| 
-standard).
+\item[hang] est la valeur par défaut, avec une numérotation en retrait (comme avec 
+|\section| des classes standards).
 
 \item[block] compose le titre complet en un bloc (un paragraphe) sans mise en forme
-additionnelle. Utile pour les titres centrés\footnote{Le label sera légèrement 
-déplacé vers la gauche si le titre fait plus d'une ligne de long et que la forme
-\texttt{hang} est utilisée, exception faite des cas avec des |\string\\| 
+additionnelle. Utile pour les titres centrés\footnote{La numérotation sera 
+légèrement déplacé vers la gauche si le titre fait plus d'une ligne de long et que 
+la forme \texttt{hang} est utilisée, exception faite des cas avec des |\string\\| 
 explicites.} et les mises en forme spéciales (incluant des outils graphiques 
 comme |picture|, |pspicture|, etc.).
 
-\item[display] place le label dans un paragraphe séparé (comme dans le 
-|\chapter| standard).
+\item[display] place la numérotation dans un paragraphe séparé (comme avec 
+|\chapter| dans les classes standards).
 
-\item[runin] Un titre *run-in* (comme le |\paragraph| standard).
+\item[runin] Un titre suivi directement du texte sur la même ligne (comme avec 
+|\paragraph| dans les classes standards).
 
-\item[leftmargin] place le titre *dans* la marge gauche. Les titres en bas de page
+\item[leftmargin] place le titre dans la marge de gauche. Les titres en bas de page
 sont déplacés sur la page suivante et ne *stick out* pas dans la marge du bas, ce 
 qui signifie que de longs titres peuvent mener à des pages trop peu 
 remplies\footnote{Cependant, les flottants placés une ou deux lignes après le 
@@ -295,7 +296,7 @@ superposer. Un synonyme obsolète à cette forme est |margin|.
 est plus que le titre (sinon, ils se superposent). Les commentaires associés à
 |leftmargin| s'appliquent également ici. 
 
-\item[wrap] est assez proche de |drop|.  La seule différence est que tandis que
+\item[wrap] est assez proche de |drop|.  La seule différence est que, tandis que
 l'espace réservé dans |drop| pour le titre est fixé, il est automatiquement 
 ajusté avec |wrap| à la ligne la plus longue. Les limitations expliquées 
 ci-après pour |calcwidth| s'appliquent également ici.
@@ -307,7 +308,7 @@ Notez bien, cependant, que certaines formes n'ont aucun sens dans le cas des
 chapitres et des parties.
 
 \begin{desc}
-|\titleformat{<commande>}[<forme>]{<format>}{<label>}{<sep>}{<avant-code>}[<après-code>]|
+|\titleformat{<commande>}[<forme>]{<format>}{<num>}{<sep>}{<code-avant>}[<code-après>]|
 \end{desc}
 
 Ici,
@@ -319,35 +320,34 @@ ou |\subparagraph|.
 \item La forme du paragraphe est fixée par |<forme>|, dont les valeurs possibles sont
 celles décrites ci-dessus.
 
-\item |<format>| is the format to be applied to the whole
-title---label and text.  This part can contain vertical material (and
-horizontal with some shapes) which is typeset just after the space
-above the title.
+\item |<format>| est le format appliqué à l'ensemble du titre --- numérotation et 
+texte. Cet argument peut contenir des éléments verticaux (et horizontaux avec 
+certaines formes) qui sont composés juste après l'espace au-dessus du titre.
 
-\item The label is defined in |<label>|.  You may leave it empty if
-there is no section label at that level, but this is not recommended
-because by doing so the number is not suppressed in the table of
-contents and running heads.
+\item La numérotation est définie dans |<num>|.  Vous pouvez le laisser vide s'il 
+n'y a pas de numérotation de sectionnement à ce niveau, mais cela n'est pas 
+recommandé car le nombre n'est pas supprimé dans la table des matières et dans 
+les en-têtes (ou titres courants).
  
-\item |<sep>| is the horizontal separation between label and title 
-body and must be a length (it must not be empty). This space is 
-vertical in |display| shape; in |frame| it is the distance from text 
-to frame. Both |<label>| and |<sep>| are ignored in starred versions 
-of sectioning commands. If you are using |picture| and the like, set 
-this parameter to 0 pt.
+\item |<sep>| est la séparation horizontale entre la numérotation et le corps du
+titre et doit être une longueur (qui ne doit pas être vide). Cet espace est 
+vertical dans la forme |display| ; dans |frame|, il s'agit de la distance entre 
+le texte et l'encadrement. |<num>| et |<sep>| sont tous deux ignorés dans les 
+versions étoilées des commandes de sectionnement. Si vous utilisez |picture| et 
+ses semblables, mettez ce paramètre à 0 pt.
 
-\item |<before-code>| is code preceding the title body. The very last 
-command can take an argument, which is the title 
-text.\footnote{Remember font size can be changed safely between 
-paragraphs only, and changes in the text should be made local with 
-a group; otherwise the leading might be wrong---too large or too small.}
-However, with the package option \texttt{explicit} the title must
-be given explicitly with |#1| (see below).
+\item |<code-avant>| est un code précédent le corps du titre. La toute dernière 
+commande peut prendre un argument qui est le texte du titre\footnote{Rappelez-vous 
+que la taille de la fonte peut être changée de façon sécurisée uniquement entre 
+les paragraphes et que les changements dans le texte doivent être faits localement
+avec un groupe; Sinon le *leading* pourrait être faux --- trop grand ou trop 
+petit.}. Toutefois, avec l'option d'extension \texttt{explicit}, le titre doit
+être donné explicitement avec |#1| (voir ci-dessous).
 
-\item |<after-code>| is code following the title body. The typeset
-material is in vertical mode with |hang|, |block| and |display|;
-in horizontal mode with |runin| and |leftmargin| (\fbox{2.7} with the latter,
-at the beginning of the paragraph). Otherwise is ignored.
+\item |<code-après>| est le code suivant le corps du titre. Le matériel alors 
+composé est en mode vertical avec |hang|, |block| et |display| tandis qu'il est 
+en mode horizontal avec |runin| et |leftmargin| (\fbox{2.7} avec ce dernier au 
+début du paragraphe). Sinon, le code est ignoré.
 \end{itemize}
 
 \begin{desc}
@@ -361,59 +361,60 @@ lorsque vous définissez un chapitre.
 \subsection{Espacement}
 
 \begin{desc}
-|\titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}[<right-sep>]|
+|\titlespacing*{<commande>}{<gauche>}{<avant-sep>}{<après-sep>}[<droite-sep>]|
 \end{desc}
 
-The starred version kills the indentation of the paragraph 
-following the title, except in |drop|, |wrap| and |runin| where this
-possibility does not make sense.
+La version étoilée supprime l'indentation du paragraphe suivant le titre, sauf
+avec |drop|, |wrap| et |runin| pour lesquels cette possibilité n'a pas de 
+sens. 
+
 \begin{itemize}
-\item |<left>| increases the left margin, except in the |...margin|, 
-and |drop| shape, where this parameter sets the title width, in 
-|wrap|, the maximum width, and in |runin|, the indentation just before 
-the title.  With negative value the title overhangs.\footnote{This 
-parameter is not equal to |<indent>| of |\cs{@startsection}|, which 
-doesn't work correctly.  With a negative value in the latter and if 
-|<indent>| is larger than the label width, the first line of the title 
-will start in the outer margin, as expected, but the subsequent lines 
-will not; worse, those lines will be shortened at the right margin.}
+\item |<gauche>| augmente la marge de gauche, sauf pour les formes |...margin| 
+et |drop| où ce paramètre fixe la largeur du titre, pour |wrap|, la largeur 
+maximale, et dans |runin| l'indentation juste avant le titre. Avec une 
+valeur négative, le titre *overhangs* \footnote{Ce paramètre n'est pas 
+équivalent à |<indent>| de |\cs{@startsection}|, qui ne fonctionne pas 
+correctement. Avec une valeur négative dans ce dernier et si |<indent>| est
+plus grand que la largeur de la numérotation, la première ligne du titre 
+commencera dans la marge extérieure, comme attendu, mais les lignes suivantes 
+ne le feront pas; pire, les lignes seront raccourcis du côté de la marge 
+droite.}.
 
-\item |<before-sep>| is the vertical space before the title.
+\item |<sep-avant>| est l'espace vertical avant le titre.
 
-\item |<after-sep>| is the separation between title and text---vertical 
-with |hang|, |block|, and |display|, and horizontal with |runin|, 
-|drop|, |wrap| and |...margin|. By making the value negative, you may 
-define an effective space of less than |\parskip|.\footnote{See 
-Goossens, Mittelbach and Samarin: \textit{The \LaTeX{} Companion}, 
-Reading, Addison Wesley, 1993, p.~25.}
+\item |<sep-après>| est la séparation entre le titre et le texte --- verticale 
+avec |hang|, |block|, et |display|, horizontale avec |runin|, |drop|, |wrap| 
+and |...margin|. En retenant une valeur négative, vous pouvez définir un
+espace réel plus petit que que |\parskip|\footnote{Voir  
+Goossens, Mittelbach and Samarin: \textit{\LaTeX{} Companion}, 
+Reading, Addison Wesley, 1993, p.~25.}.
 
-\item The |hang|, |block| and |display| shapes have the 
-possibility of increasing the |<right-sep>| margin with this optional 
-argument.
+\item Les formes |hang|, |block| et |display| disposent de la possibilité 
+d'augmenter la marge |<sep-droit>| avec cet argument optionnel.
 \end{itemize}
 
-If you dislike typing the full skip values, including the |plus| and 
-|minus| parameters, an abbreviation |*|$n$ is provided. In the 
-|<before-sep>| argument this is equivalent to $n$ |ex| with some 
-stretchability and a minute shrinkability. In the
-|<after-sep>| some stretchability (smaller) and no shrinkability.%
-\footnote{They stand for $n$ times |1ex plus .3ex minus .06ex| and
-|1ex plus .1ex|, respectively.} Thus, you can write
+Si vous n'aimez pas saisir les valeurs complètes des espaces, incluant les
+paramètres |plus| et |moins|, une abréviation |*|$n$ est disponible. Dans 
+l'argument |<sep-avant>| c'est équivalent à $n$ |ex| avec une certaine 
+extensibilité et une infime compressabilité. Dans le |<sep-après>|, une 
+certaine extensibilité (plus petite) et aucun compressabilité\footnote{Ils
+correspondent à $n$ fois |1ex plus .3ex minus .06ex| et |1ex plus .1ex|
+respectivement.}. Ainsi vous pouvez écrire :
 \begin{verbatim}
 \titlespacing{\section}{0pt}{*4}{*1.5}
 \end{verbatim}
-The lengths |\beforetitleunit| and |\aftertitleunit| are used
-as units in the |*| settings and you can change them if you do not like
-the predefined values (or for slight changes in the makeup, for
-example).
+Les longueurs |\beforetitleunit| et |\aftertitleunit| sont utilisées 
+comme unités dans les paramètres |*| et vous pouvez les changer si vous
+n'aimez pas les valeurs prédéfinies (ou pour de légers changements dans 
+la composition, par exemple).
 
-\textbf{Notes.} |\titlespacing| does not work with either |\chapter|
-and |\part| unless you change its title format as well by means of
-|\titleformat|, the simple settings, or |\titleclass|. Arguments in
-|\titlespacing| must be dimensions;  |\stretch| includes a command and
-hence raises an error.
+\textbf{Notes.} |\titlespacing| ne fonctionne pas avec |\chapter| et 
+|\part| à moins que vous ne changiez leur format de titre aussi bien par
+l'utilisation de |\titleformat|, les paramétrages simples ou |\titleclass|. 
+Les arguments de |\titlespacing| doivent être des dimensions;  |\stretch| 
+inclut une commande et ainsi génère une erreur.
 
-\subsection{Spacing related tools}
+\subsection{Outils liés à l'espacement}
 
 These commands are provided as tools for |\titleformat| and 
 |\titlespacing|.
