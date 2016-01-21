@@ -266,59 +266,58 @@ est proposé. Les formes disponibles sont :
 \item[hang] est la valeur par défaut, avec un label *hanging* (comme la |\section| 
 standard).
 
-\item[block] typesets the whole title in a block (a paragraph) without 
-additional formatting.  Useful in centered titles\,\footnote{The label 
-will be slightly displaced to the left if the title is two or more 
-lines long and the \texttt{hang} shape is used, except with explicit 
-|\string\\|.} and special formatting (including graphic tools such as 
-|picture|, |pspicture|, etc.)
+\item[block] compose le titre complet en un bloc (un paragraphe) sans mise en forme
+additionnelle. Utile pour les titres centrés\footnote{Le label sera légèrement 
+déplacé vers la gauche si le titre fait plus d'une ligne de long et que la forme
+\texttt{hang} est utilisée, exception faite des cas avec des |\string\\| 
+explicites.} et les mises en forme spéciales (incluant des outils graphiques 
+comme |picture|, |pspicture|, etc.).
 
-\item[display] puts the label in a separate paragraph. (Like the
-standard |\chapter|.)
+\item[display] place le label dans un paragraphe séparé (comme dans le 
+|\chapter| standard).
 
-\item[runin] A run-in title.  (Like the standard |\paragraph|.)
+\item[runin] Un titre *run-in* (comme le |\paragraph| standard).
 
-\item[leftmargin] puts the title at the left margin.  Titles at the 
-very end of a page will be moved to the next one and will not stick 
-out in the bottom margin, which means large titles can lead to 
-underfull pages.\footnote{However, floats following the title a couple 
-of lines after will interfere with the page breaking used here and 
-sometimes the title may stick out.} In this case you may increase the 
-stretchability of the page elements, use |\raggedbottom| or use the 
-package option |nobottomtitles| described below.  Since the mechanism 
-used is independent from that of the margin pars, they can overlap.  
-A deprecated synonymous is |margin|.
+\item[leftmargin] place le titre *dans* la marge gauche. Les titres en bas de page
+sont déplacés sur la page suivante et ne *stick out* pas dans la marge du bas, ce 
+qui signifie que de longs titres peuvent mener à des pages trop peu 
+remplies\footnote{Cependant, les flottants placés une ou deux lignes après le 
+titre interfèrent avec la découpe de page utilisée ici et le titre peut parfois 
+rester placé en bas de page}. Dans ce cas, vous pouvez augmenter l'étirabilité 
+des éléments de la page, utiliser |\raggedbottom| ou utiliser l'option d'extension 
+|nobottomtitles| décrite ci-après. Dans la mesure où le mécanisme retenu est 
+indépendant de celui des paragraphes placés dans les marges, ils peuvent se
+superposer. Un synonyme obsolète à cette forme est |margin|.
 
-\item[rightmargin] is like |leftmargin| but at the right margin.
+\item[rightmargin] est similaire à |leftmargin| mais pour la marge de droite.
 
-\item[drop] wraps the text around the title, provided the
-first paragraph is longer than the title (if not, they overlap).
-The comments in |leftmargin| also apply here. 
+\item[drop] dispose le texte autour du titre, uniquement si le premier paragraphe
+est plus que le titre (sinon, ils se superposent). Les commentaires associés à
+|leftmargin| s'appliquent également ici. 
 
-\item[wrap] is quite similar to drop.  The only difference is 
-while the space reserved in drop for the title is fixed, in wrap is 
-automatically readjusted to the longest line.  The limitations 
-explained below related to |calcwidth| also apply here.
+\item[wrap] est assez proche de |drop|.  La seule différence est que tandis que
+l'espace réservé dans |drop| pour le titre est fixé, il est automatiquement 
+ajusté avec |wrap| à la ligne la plus longue. Les limitations expliquées 
+ci-après pour |calcwidth| s'appliquent également ici.
 
-\item[frame] Similar to display, but the title will be framed.
+\item[frame] Similaire à |display|, mais le titre sera encadré.
 \end{description}
 
-Note, however, some shapes do not make sense in chapters and
-parts.
+Notez bien, cependant, que certaines formes n'ont aucun sens dans le cas des
+chapitres et des parties.
 
 \begin{desc}
-|\titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]|
+|\titleformat{<commande>}[<forme>]{<format>}{<label>}{<sep>}{<avant-code>}[<après-code>]|
 \end{desc}
 
-Here
+Ici,
 \begin{itemize}
-\item |<command>| is the sectioning command to be redefined, i.~e., 
-|\part|,
-|\chapter|, |\section|, |\subsection|, |\subsubsection|, |\paragraph| 
-or |\subparagraph|.
+\item |<commande>| est la commande de sectionnement à redéfinir, autrement dit  
+|\part|, |\chapter|, |\section|, |\subsection|, |\subsubsection|, |\paragraph| 
+ou |\subparagraph|.
 
-\item The paragraph shape is set by |<shape>|, whose possible
-values are those described above.
+\item La forme du paragraphe est fixée par |<forme>|, dont les valeurs possibles sont
+celles décrites ci-dessus.
 
 \item |<format>| is the format to be applied to the whole
 title---label and text.  This part can contain vertical material (and
@@ -355,9 +354,9 @@ at the beginning of the paragraph). Otherwise is ignored.
 |\chaptertitlename|
 \end{desc}
 
-It defaults to |\chaptername| except in appendices where it
-is |\appendixname|. Use it instead of |\chaptername| when defining
-a chapter.
+Elle renvoit par défaut à |\chaptername| sauf dans le cas des annexes où elle
+renvoit vers |\appendixname|. Utilisez-là en lieu et place de |\chaptername| 
+lorsque vous définissez un chapitre.
 
 \subsection{Espacement}
 
