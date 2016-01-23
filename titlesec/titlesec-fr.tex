@@ -132,7 +132,7 @@ Entre autres nouvelles fonctionnalités se trouvent :
 \begin{itemize}
 \item différentes classes et \og formes\fg{} de titres, avec des outils autorisant une 
 grande variété de formats. Vous pouvez définir des formats différents pour les pages 
-de gauche et de droite, avec des titres numérotés ou pas, mesurer la longueur d'un
+de gauche et de droite, avec des titres numérotés ou pas, mesurer la largeur d'un
 titre, ajouter un nouveau niveau de sectionnement, utiliser des graphiques et bien 
 plus encore. L'Annexe montre un bon nombre d'exemples : allez-y tout de suite !
 
@@ -519,7 +519,7 @@ marginaux.
 \begin{desc}
 |\titleline[<alignement>]{<matériel horizontal>}|\\
 |\titlerule[<hauteur>]|\\
-|\titlerule*[<longueur>]{<texte>}|
+|\titlerule*[<largeur>]{<texte>}|
 \end{desc}
 
 La commande |\titleline| permet l'insertion d'une ligne, qui peut contenir
@@ -531,101 +531,96 @@ le paramètre optionnel |<alignement>| (|l|, |r| ou |c|) peut aider, de telle so
 que vous puissiez simplement saisir |\titleline[c]{CHAPTER}|\footnote{La valeur 
 part défaut est le paramètre \texttt{s} de la commande \texttt{\cs{makebox}}.}.
 
-\tradini
-Using |\titleline| in places where vertical material is not expected 
-can lead to anomalous results.  In other words, you can use it in the 
-|<format>| (always) and |<after-code>| (|hang|, |display| and |block|) 
-arguments; and in the |display| shape at the very beginning of the 
-|<before-code>| and |<label>| argument as well.  But try it out, because 
-very likely it works in other places.
+L'utilisation de |\titleline| à des endroits où un matériel vertical n'est pas
+attendu peut conduire à des anomalies. En d'autres termes, vous pouvez l'utiliser
+dans les \trad{arguments} |<format>| (toujours) and |<code-après>|, que ce soit dans les 
+formes |hang|, |display| et |block|. Pour la forme |display|, vous pouvez la placer au tout début des \trad{arguments} |<before-code>| et |<label>|. Mais vous pouvez tester cette
+commande ailleurs : il y a de grandes chances qu'elle fonctionne à d'autres endroits.
 
-The |\titlerule| command, which is enclosed automatically in
-|\titleline| if necessary, can be used to build rules and
-fillers. The unstarred
-version draws rules of height .4 pt, or |<height>| if present.
-For example:
+La commande |\titlerule|, qui est incluse automatiquement dans |\titleline| si 
+nécessaire, peut être utilisée pour construire des filets et des \trad{fillers}. La
+version non étoilée trace des filets épais de 0.4 pt ou de |<height>| si ce dernier est
+présent. 
+Par exemple,
 \begin{verbatim}
 \titlerule[.8pt]%
 \vspace{1pt}%
 \titlerule
 \end{verbatim}
-draws two rules of different heights with a separation of
-1 pt.
+traces deux filets de différents épaisseurs avec une séparation de 1 pt.
 
-The starred version makes leaders with the |<text>|
-repeated in boxes of its natural width. The width of the boxes
-can be changed to |<width>|, but the first box remains with
-its natural width so that the |<text>| is aligned to the left
-and right edges of the space to be filled.
-
-For instance, with
+La version étoilée fait des \trad{leaders} avec le |<texte>| répété dans des boîtes
+de sa largeur naturelle. Cette largeur de boîte peut être modifiée avec |<largeur>| 
+mais la largeur de la première boîte reste inchangée pour que le |<texte>| soit 
+aligné avec les bords gauche et droit de l'espace à remplir.
+  
+Par exemple, avec
 \begin{verbatim}
 \titleformat{\section}[leftmargin]
   {\titlerule*[1pc]{.}%
    \vspace{1ex}%
    \bfseries}
-  {... definition follows
+  {... definitions à la suite
 \end{verbatim}
-leaders spanning over both main text and title precede the section.
+des \trad{leaders} s'étendant au-dessus du texte principal et du titre précèdent 
+la section.
 
 \begin{desc}
-|calcwidth| \quad (Package option)
+|calcwidth| \quad (option d'extension)
 \end{desc}
 
-The |wrap| shape has the capability of measuring the lines in the title 
-to format the paragraph.  This capability may be extended to other 
-three shapes---namely |display|, |block| and |hang|---with this 
-package option.  The length of the longest line is returned in 
-|\titlewidth|.\footnote{There are two further 
-parameters, |\string\titlewidthfirst| and |\string\titlewidthlast|, 
-which return the length of the first and last lines. There are not 
-specific tools for using them, but you can assign their values to 
-|\string\titlewidth| and then use |\string\titleline*|.}
+La forme |wrap| a la capacité de mesurer les lignes du titre pour mettre en forme le
+paragraphe. Cette capacité peut être étendue à trois autres formes --- |display|, 
+|block| et |hang| --- avec cette option d'extension. La longueur de la plus longue 
+ligne est restituée dans |\titlewidth|\footnote{Il existe deux paramètres plus fins 
+|\string\titlewidthfirst| and |\string\titlewidthlast| qui restituent la longueur 
+de la première et de la dernière ligne respectivement. Il n'y a pas de fonctions 
+dédiées pour s'en servir mais vous pouvez assigner leurs valeurs à 
+|\string\titlewidth| et utiliser alors |\string\titleline*|.}.
 
-As far as \TeX{} is concerned, any box is considered typeset material. 
-If the box has been enlarged with blank space, or if conversely a box 
-with text has been smashed, the value of |\titlewidth| may be wrong 
-(as far as humans is concerned). The |hang| shape, for instance, uses 
-internally such a kind of boxes, but in this case this behaviour is 
-desired when the title is flushed right; otherwise the |block| shape 
-produces better results. In other words, using boxes whose natural 
-width has been overridden may be wrong.\footnote{Which include 
-justified lines, whose interword spacing has been enlarged.} Further, 
-some commands may confuse \TeX{} and stop parsing the title. But if 
-you stick to text, |\\| and |\\[...]| (and it is very unlikely you 
-might want something else), there will be no problems.
+Du point de vue de \TeX{}, toute boîte est considérée comme du matériel composable.
+Si une boîte a été élargie avec de l'espace ou, inversement, si un boîte avec du
+texte a été réduite, la valeur de |\titlewidth| peut être fausse (du point de vue
+d'un humain). La forme |hang|, par exemple, recourt en interne à de telles boîtes mais, 
+dans ce cas, ce comportement est souhaité quand le titre est aligné à droite ; sinon
+la forme |block| produit de meilleurs résultats. En d'autres termes, l'utilisation de
+boîtes dont la largeur a été manipulée peut être source d'erreurs\footnote{Ce qui
+inclut les lignes justifiées dont l'espace \trad{inter-mot} a été augmenté.}. Pour
+être complet, certaines commandes peuvent embrouiller \TeX{} et interrompre l'analyse
+du titre. Mais, si vous vous en tenez à du texte, |\\| et |\\[...]| (et il y a peu de 
+chance que vous puissiez avoir besoin d'autre chose), vous ne devriez pas rencontrer
+de problèmes.
 
-Another 
-important point is the |<before-code>|, |<label>|, |<sep>|, and 
-|<title>| parameters (but not |<after-code>|) are evaluated twice at local 
-scope; if you increase a counter \emph{globally}, you are increasing 
-it twice. In most of cases, placing the conflicting assignment in the 
-|<after-code>| parameter will be ok, but alternativey you can use the 
-following macro.
+Un autre point important est que les paramètres |<code-avant>|, |<num>|, |<sep>|, et 
+|<titre>| (mais pas |<code-après>|) sont évalués deux fois au niveau local; si vous
+augmentez un compteur  \emph{globalement}, vous l'augmenterez alors deux fois. Dans
+la plupart des cas, placer une \trad{assignation conflictuelle} dans le |<code-après>| 
+passera mais vous pouvez également passer la commande suivante.
 
 \begin{desc}
-|\iftitlemeasuring{<true>}{<false>}|
+|\iftitlemeasuring{<vrai>}{<faux>}|
 \end{desc}
 
-\fbox{2.9} When the title is being measured (first pass), the |<true>|
-branch is used, and when the title is actually typeset (second pass) 
-the |<false>| branch is used.
+\fbox{2.9} Quand le titre est mesuré (première passe), l'argument |<vrai>| est
+traité tandis que, quand le titre est réellement composé (seconde passe), l'argument 
+|<faux>| est traité.
 
 \begin{desc}
-|\titleline*[<align>]{<horizontal material>}|
+|\titleline*[<alignement>]{<matériel horizontal>}|
 \end{desc}
-A variant of |\titleline| to be used only with |calcwidth|.
-The text will be enclosed first in a box of width |\titlewidth|; this box
-will be in turn enclosed in the main box with the specified alignment.
-There is no equivalent |\titlerule| and therefore you must enclose
-it explicitly in a |\titleline*| if you want the |\titlewidth| to
-be taken into account:
+
+Une variante de |\titleline| à utiliser uniquement avec |calcwidth|. Le texte sera
+d'abord placé dans une boîte de largeur |\titlewidth|; cette boîte sera à son tour
+placé dans la boîte principal avec l'alignement indiqué. Il n'y a pas d'équivalent
+|\titlerule| et ceci explique pourquoi vous devez le placer explicitement dans un
+|\titleline*| si vous voulez que |\titlewidth| soit pris en compte :
 \begin{verbatim}
 \titleline*[c]{\titlerule[.8pc]}
 \end{verbatim}
 
-\subsection{Page styles}
+\subsection{Styles de page}
 
+\tradini
 \fbox{2.8} You can assign a page style to levels of class |top| and
 |page|, as well as the default chapter with the following command:%
 \footnote{Named in the short-lived version 2.7 as 
@@ -1636,7 +1631,7 @@ fixé à 0 pt.
 \titleformat{\section}[block]
   {\normalfont\bfseries\filcenter}{\fbox{\itshape\thesection}}{1em}{}
 
-\section[Appendix]{Ceci est un exemple de la commande de section définie ci-dessous et, je dirais même plus, ceci est un exemple de la commande de section définie ci-dessous}
+\section[Annexes]{Ceci est un exemple de la commande de section définie ci-dessous et, je dirais même plus, ceci est un exemple de la commande de section définie ci-dessous}
 
 \begin{verbatim}
 \titleformat{\section}[block]
@@ -1653,7 +1648,7 @@ fixé à 0 pt.
   {8pt}
   {\Large\bfseries\filcenter}
 
-\section[Appendix]{Un titre encadré}
+\section[Annexes]{Un titre encadré}
 
 \begin{verbatim}
 \titleformat{\section}[frame]
@@ -1673,7 +1668,7 @@ fixé à 0 pt.
    \normalfont\itshape}
   {\thesection.}{.5em}{}
 
-\section[Appendix]{Un titre avec filet horizontal}
+\section[Annexes]{Un titre avec filet horizontal}
 
 \begin{verbatim}
 \titleformat{\section}
@@ -1689,7 +1684,7 @@ fixé à 0 pt.
   {\normalfont\sffamily}
   {\thesection}{.5em}{\titlerule\\[.8ex]\bfseries}
   
-\section[Appendix]{Un autre titre avec filet horizontal}
+\section[Annexes]{Un autre titre avec filet horizontal}
 
 \begin{verbatim}
 \titleformat{\section}[block]
@@ -1709,12 +1704,12 @@ fixé à 0 pt.
 \titlespacing{\section}
   {5pc}{*2}{*2}[5pc]
 
-\section[Appendix]{La largeur du filet ci-dessus est celle de la
+\section[Annexes]{La largeur du filet ci-dessus est celle de la
   plus longue ligne de ce titre augmentée de deux picas}
 
 \leavevmode
 
-\section[Appendix]{Celui-ci est plus court}
+\section[Annexes]{Celui-ci est plus court}
 
 \begin{verbatim}
 \titleformat{\section}[block]
@@ -1738,7 +1733,7 @@ fixé à 0 pt.
 \titlespacing{\section}
   {3pc}{*3}{*2}[3pc]
 
-\section[Appendix]{Ceci est un exemple de la commande de section définie ci-dessous 
+\section[Annexes]{Ceci est un exemple de la commande de section définie ci-dessous 
 et, je dirais même plus, ceci est un exemple de la commande de section définie 
 ci-dessous. Répétons-le : ceci est un exemple de la commande de section définie 
 ci-dessous et, je dirais même plus, ceci est un exemple de la commande de section 
@@ -1781,7 +1776,7 @@ et cette partie est le corps du texte associé\ldots
 \titlespacing{\section}
   {12pc}{1.5ex plus .1ex minus .2ex}{1pc}
 
-\section[Appendix]{Un exemple simple d'une forme \og wrap \fg{} sur une section}
+\section[Annexes]{Un exemple simple d'une forme \og wrap \fg{} sur une section}
 
 Suivi d'un peu de texte pour montrer le résultat. Suivi d'un peu de texte pour 
 montrer le résultat. Suivi d'un peu de texte pour montrer le résultat. Suivi d'un 
@@ -1789,7 +1784,7 @@ peu de texte pour montrer le résultat. Suivi d'un peu de texte pour montrer le
 résultat. Suivi d'un peu de texte pour montrer le résultat. Suivi d'un peu de 
 texte pour montrer le résultat.
 
-\section[Appendix]{Et un autre}
+\section[Annexes]{Et un autre}
 
 Notez comment le texte enveloppe (en anglais, \og wrap \fg{}) le titre et que
 l'espace qui lui est réservé est automatiquement réajustée. Et il est suivi par un 
@@ -1812,9 +1807,9 @@ illustrer le propos.
 \titlespacing{\section}
   {\parindent}{1.5ex plus .1ex minus .2ex}{0pt}
 
-\section[Appendix]{Un titre attaché à l'ancienne}
+\section[Annexes]{Un titre attaché à l'ancienne}
 
-Bien sûr, vous pourriez préférer un point après le titre. Dans ce cas, l'argument
+Bien sûr, vous pourriez préférer juste un point après le titre. Dans ce cas, l'argument
 optionnel devrait être |[.]| et l'espace attenante devrait avoir une valeur 
 assez forte (1em, par exemple).
 
@@ -1885,7 +1880,7 @@ avec quelques rares changements.
    \vspace{1pc}%
    \Huge}
 
-\section[Appendix]{Le titre}
+\section[Annexes]{Le titre}
 
 \begin{verbatim}
 \titleformat{\chapter}[display]
@@ -1914,7 +1909,7 @@ avec quelques rares changements.
   [\vspace{2ex}%
    \titlerule]
 
-\section[Appendix]{Le titre}
+\section[Annexes]{Le titre}
 
 \begin{verbatim}
 \renewcommand{\thechapter}{\Roman{chapter}}
