@@ -28,6 +28,14 @@
 \usepackage[utf8]{inputenc}
 \usepackage[sf,bf,compact,topmarks,calcwidth,pagestyles]{titlesec}
 \usepackage[french]{babel}
+% Bloc pour traduction
+\usepackage{color}
+\usepackage{pifont}
+\definecolor{orange5}{RGB}{255,153,0} 
+\newcommand{\trad}[1]{\textbf{\textcolor{orange5}{\noindent\ding{54} #1 \ding{54}}}}
+\newcommand{\tradini}{\color{orange5}\ding{54}}
+\newcommand{\tradfin}{\ding{54}\color{black}}
+% Fin du bloc qui doit être retiré une fois le travail achevé
 \usepackage{titletoc}
 \def\gobble#1{}
 \def\cs#1{\expandafter\gobble\string\\#1}
@@ -129,8 +137,8 @@ titre, ajouter un nouveau niveau de sectionnement, utiliser des graphiques et bi
 plus encore. L'Annexe montre un bon nombre d'exemples : allez-y tout de suite !
 
 \item des en-têtes et pieds de pages définis sans utilisation des commandes de 
-type |\...mark|, et contenant éventuellement *des marques de haut, de première valeur 
-\emph{et} de double valeur*. Des marques de haut de page correctement synchronisées avec les 
+type |\...mark|, et contenant éventuellement \trad{des marques de haut, de première valeur 
+\emph{et} de double valeur}. Des marques de haut de page correctement synchronisées avec les 
 titres, sans incompatibilités avec la mécanique des flottants. Des éléments 
 décoratifs ajoutés aisément, incluant des environnements d'image.
 
@@ -340,7 +348,7 @@ ses semblables, mettez ce paramètre à 0 pt.
 commande peut prendre un argument qui est le texte du titre\footnote{Rappelez-vous 
 que la taille de la fonte peut être changée de façon sécurisée uniquement entre 
 les paragraphes et que les changements dans le texte doivent être faits localement
-avec un groupe; Sinon le *leading* pourrait être faux --- trop grand ou trop 
+avec un groupe; Sinon le \trad{leading} pourrait être faux --- trop grand ou trop 
 petit.}. Toutefois, avec l'option d'extension \texttt{explicit}, le titre doit
 être donné explicitement avec |#1| (voir ci-dessous).
 
@@ -372,7 +380,7 @@ sens.
 \item |<gauche>| augmente la marge de gauche, sauf pour les formes |...margin| 
 et |drop| où ce paramètre fixe la largeur du titre, pour |wrap|, la largeur 
 maximale, et dans |runin| l'indentation juste avant le titre. Avec une 
-valeur négative, le titre *overhangs* \footnote{Ce paramètre n'est pas 
+valeur négative, le titre \trad{overhangs} \footnote{Ce paramètre n'est pas 
 équivalent à |<indent>| de |\cs{@startsection}|, qui ne fonctionne pas 
 correctement. Avec une valeur négative dans ce dernier et si |<indent>| est
 plus grand que la largeur de la numérotation, la première ligne du titre 
@@ -396,8 +404,8 @@ d'augmenter la marge |<sep-droit>| avec cet argument optionnel.
 Si vous n'aimez pas saisir les valeurs complètes des espaces, incluant les
 paramètres |plus| et |moins|, une abréviation |*|$n$ est disponible. Dans 
 l'argument |<sep-avant>| c'est équivalent à $n$ |ex| avec une certaine 
-extensibilité et une infime compressabilité. Dans le |<sep-après>|, une 
-certaine extensibilité (plus petite) et aucun compressabilité\footnote{Ils
+\trad{extensibilité} et une infime \trad{compressabilité}. Dans le |<sep-après>|, une 
+certaine \trad{extensibilité} (plus petite) et aucune \trad{compressabilité}\footnote{Ils
 correspondent à $n$ fois |1ex plus .3ex minus .06ex| et |1ex plus .1ex|
 respectivement.}. Ainsi vous pouvez écrire :
 \begin{verbatim}
@@ -416,122 +424,114 @@ inclut une commande et ainsi génère une erreur.
 
 \subsection{Outils liés à l'espacement}
 
-These commands are provided as tools for |\titleformat| and 
-|\titlespacing|.
+Ces commandes sont fournies comme outils pour |\titleformat| et |\titlespacing|.
 
 \begin{desc}
 |\filright  \filcenter  \filleft  \fillast  \filinner  \filouter|
 \end{desc}
 
-Variants of the |\ragged...| commands, with slight differences.  In
-particular, the |\ragged...| commands kills the left and right spaces
-set by |\titlespacing|.\footnote{Remember the package
-\textsf{ragged2e} provides some additional commands for alignment,
-too, like \texttt{\string\justifying}.} |\fillast| justifies the
-paragraph, except the last line which is
-centered.\footnote{Admittedly, a weird name, but it is short.} These
-commands work in the |frame| label, too.
+Variantes des commandes |\ragged...|, avec de légères différences. En particulier,
+les commandes |\ragged...| suppriment les espaces à droite et à gauche disposés par
+|\titlespacing|\footnote{Rappelez-vous que l'extension \textsf{ragged2e} définit 
+quelques commandes additionnelles pour l'alignement comme 
+\texttt{\string\justifying}.}. |fillast| justifie le paragraphe, à l'exception 
+de sa dernière ligne qui est centrée\footnote{Le nom est un petit peu étrange 
+mais il est court.}. Ces commandes fonctionnent également pour la numérotation
+associée à |frame|.
 
-|\filinner| and |\filouter| are |\filleft| or |\filright| depending
-on the page. Because of the asynchronous \TeX{} page 
-breaking, these commands can be used in |\chapter| only.
-If you want a general tool to set different formats depending
-on the page, see ``Extended settings'' below.
+|\filinner| et |\filouter| correspondent à |\filleft| ou |\filright| selon la page
+où elles se trouvent. Du fait du découpage asynchrones des pages par \TeX{}, ces
+commandes peuvent être utilisées uniquement dans |\chapter|. Si vous souhaitez un
+outil général pour définir différents formats dépendant de la page, voyez \og
+\trad{Paramétrage étendu}\fg{} ci-dessous.
 
 \begin{desc}
 |\wordsep|
 \end{desc}
 
-The inter-word space for the current font. 
+L'espace \trad{inter-mot} pour la fonte courante.
 
 \begin{desc}
-|indentafter noindentafter| \quad (Package options)
+|indentafter noindentafter| \quad (options d'extension)
 \end{desc}
 
-By-pass the settings for all of sectioning commands.%
-\footnote{Formerly |indentfirst| and |nonindentfirst|, now
-deprecated.}
-
+Contournement des paramétrages pour toutes les commandes de 
+sectionnement\footnote{Anciennement nommées |indentfirst| et |nonindentfirst|, 
+maintenant obsolètes.}
 
 \begin{desc}
-|rigidchapters rubberchapters| \quad (Package options)
+|rigidchapters rubberchapters| \quad (options d'extension)
 \end{desc}
 
-With |rigidchapters| the space for chapter titles is always the same, 
-and |<after-sep>| in |\titlespacing| does not mean the space from the 
-bottom of the text title to the text body as described above, but from 
-the \textit{top} of the text title, i.~e., |<before-sep>| $+$ 
-|<after-sep>| now is a fixed distance from the top of the page body to 
-the main text. The default is |rubberchapters| where |<after-sep>| is 
-the separation between title and text as usual. Actually, the name is 
-misleading because it applies not only to the default chapter, but to 
-any title of top class. (More on classes below.)
+Avec |rigidchapters|, l'espacement pour les titres des chapitres est toujours
+le même et |sep-après| dans |\titlespacing| ne représente pas l'espace entre le bas du texte du titre et le corps du texte comme décrit plus hat mais depuis le haut du texte du titre, autrement |<sep-avant>| $+$ |<sep-après>| est maintenant une distance fixe entre le haut du \trad{corps de page} et le texte principal. La valeur par défaut est |rubberchapters| où |<sep-après>| désigne la séparation
+entre le titre et le texte, comme à l'accoutumée. En effet le nom est trompeur car
+il ne s'applique pas qu'au chapitre par défaut mais à tout titre de \trad{classe haute} (les classes sont développées dans la suite du document).
 
 \begin{desc}
-|bottomtitles nobottomtitles nobottomtitles*|  \quad (Package options)
+|bottomtitles nobottomtitles nobottomtitles*|  \quad (options d'extension)
 \end{desc}
 
-If |nobottomtitles| is set, titles close to the bottom margin will 
-be moved to the next page and the margin will be ragged.  The minimal 
-space required in the bottom margin not to move the title is set 
-(approximately) by
+Si |nobottomtitles| est sélectionné, les titres proches de la marge du bas sont
+renvoyés en page suivante et la marge sera \trad{ragged}. L'espace minimal requis pour
+que la marge du bas ne déplace pas le titre est fixée (approximativement) par
 \begin{verbatim}
 \renewcommand{\bottomtitlespace}{<length>}
 \end{verbatim}
-whose default value is |.2\textheight|.  A simple ragged bottom on the 
-page before is obtained with a value of 0 pt.  |bottomtitles| is the 
-default, which simply sets |\bottomtitlespace| to a negative value.
+dont la valeur par défaut est |.2\textheight|. Une simple marge \trad{ragged} sur 
+la page précédente est obtenue en mettant une valeur de 0 pt. |bottomtitles| est
+l'option par défaut, qui donne à |\bottomtitlespace| une valeur négative.
 
-The |nobottomtitles*| option provides more accurate computations but
-titles of |margin|, |wrap| or |drop| shapes could be badly 
-placed. Usually, you should use the starred version.
+L'option |nobottomtitles*| fournit des calculs plus précis mais les titres des 
+formes |margin|, |wrap| ou |drop| peuvent être mal placés. En temps normal, vous
+devriez utiliser la version étoilée.
 
 \begin{desc}
-|aftersep largestsep|  \quad (Package options)
+|aftersep largestsep|  \quad (options d'extension)
 \end{desc}
 
-By default, when there are two consecutive titles the |<after-sep>| 
-space from the first one is used between them.  Sometimes this is not 
-the desired behaviour, especially when the |<before-sep>| space is much 
-larger than the |<after-sep>| one (otherwise the default seems 
-preferable).  With |largestsep| the largest of them is used.  
-Default is |aftersep|.
+Par défaut, lorsqu'il y a deux titres consécutifs, l'espace |<sep-après>| du 
+premier titre est utilisé entre les deux titres. Parfois, ce comportement n'est
+pas souhaité, en particulier quand l'espace |<sep-avant>| est plus grand que 
+|<sep-après>| (sinon le comportement par défaut semble préférable). Avec 
+|largestsep|, le plus grand espace est utilisé. La valeur par défaut est |aftersep|.
 
 \begin{desc}
 |\\  \\*|\\
-|pageatnewline|  \quad (Package option)
+|pageatnewline|  \quad (options d'extension)
 \end{desc}
 
-\fbox{2.6} In version 2.6 and later, \verb|\\| does not allow a page
-break and therefore is equivalent to \verb|\\*|.  Since I presume none
-wants a page break inside a title, this has been made the default.  If
-for some extrange reason you want to allow page breaks inside the
-titles, use the package option \verb|pageatnewline|, which is provided
-for backward compatibility.
+\fbox{2.6} Dans les versions 2.6 et suivantes, \verb|\\| ne permet pas de saut de
+page et devient un équivalent de \verb|\\*|. Comme je présume que personne ne 
+veux un saut de page dans un titre, ceci est le comportement par défaut. Si, pour
+une raison étrange, vous souhaitez autoriser ces sauts de page dans les titres, 
+utilisez l'option \verb|pageatnewline|, qui est founie pour des questions 
+de rétrocompatibilité.
 
-\subsection{Rules}
+\subsection{Filets}
 
-The package includes some tools for helping in adding rules and other
-stuff below or above the title. Since the margins in titles may be modified,
-these macros take into account the local settings to place rules properly.
-They also take into account the space used by marginal titles.
+L'extension inclut des outils pour aider à l'ajout de filets et autres éléments 
+au-dessus et au-dessous du titre. Les marges des titres pouvant être modifiées, 
+ces commandes prennent en compte les paramètres locaux pour placer les filets
+proprement. Elles tient également compte de l'espace utilisé dans les titres 
+marginaux.
 
 \begin{desc}
-|\titleline[<align>]{<horizontal material>}|\\
-|\titlerule[<height>]|\\
-|\titlerule*[<width>]{<text>}|
+|\titleline[<alignement>]{<matériel horizontal>}|\\
+|\titlerule[<hauteur>]|\\
+|\titlerule*[<longueur>]{<texte>}|
 \end{desc}
 
-The |\titleline| command allows inserting a line, which may
-contain text and other ``horizontal'' material. it is intended 
-mainly for rules and leaders but in fact is also useful for other 
-purposes.  The line has a fixed width and hence must be filled, i.e., 
-|\titleline{CHAPTER}| produces an underfull box.  Here the optional 
-|<align>| (|l|, |r| or |c|) helps, so that you simply type, say, 
-|\titleline[c]{CHAPTER}|.%
-\footnote{The default is the \texttt{s} parameter of the
-\texttt{\cs{makebox}} command.}
+La commande |\titleline| permet l'insertion d'une ligne, qui peut contenir
+du texte et d'autres matériaux \og horizontaux \fg{}. Elle est pensée 
+principalement pour des filets et des \trad{leaders} mais elle peut servir également
+pour d'autres besoins. La ligne a une largeur fixée et doit être remplie, 
+autrement dit |\titleline{CHAPITRE}| produit une boîte \trad{sous-remplie}. Ici 
+le paramètre optionnel |<alignement>| (|l|, |r| ou |c|) peut aider, de telle sorte
+que vous puissiez simplement saisir |\titleline[c]{CHAPTER}|\footnote{La valeur 
+part défaut est le paramètre \texttt{s} de la commande \texttt{\cs{makebox}}.}.
 
+\tradini
 Using |\titleline| in places where vertical material is not expected 
 can lead to anomalous results.  In other words, you can use it in the 
 |<format>| (always) and |<after-code>| (|hang|, |display| and |block|) 
@@ -1610,19 +1610,21 @@ be printed in the toc as well. Here is the code:
   {\contentslabel[\thecontentslabel\secmark]{1.5pc}}{..}{..}
 \end{verbatim}
 
-\section{The \textsf{titlesec} philosophy}
+\tradfin
+\section{La philosophie de \textsf{titlesec}}
 
-Once you have read the documentation it should be clear this
-is not a package for the casual user who likes the standard
-layout and wants to make simple changes. This is a tool for the
-serious typographer who has a clear idea of what layout wants
-and do not have the skill to get it. No attempt is made to improve
-your taste in section formatting.
+Une fois que vous avez lu cette documentation, il devrait être clair que cette
+extension n'est pas destinée à l'utilisateur occasionnel qui aime la présentation
+classique et souhaite juste y apporter quelques modifications simples. Il s'agit ici
+d'un outil pour le typographe sérieux qui a une idée claire de la présentation 
+souhaitée et qui n'avait auparavant pas les moyens pour l'obtenir. Rien n'est fait non
+plus pour améliorer votre goût en matière de mise en forme des sectionnements.
 
-\section{Appendix}
 
-The following examples will be illustrative. In this part, the
-|\parskip| is 0 pt.
+\section{Annexes}
+
+Les exemples suivants servent d'illustrations. Dans cette partie, |\parskip| est
+fixé à 0 pt.
 
 \begingroup
 
@@ -1634,9 +1636,7 @@ The following examples will be illustrative. In this part, the
 \titleformat{\section}[block]
   {\normalfont\bfseries\filcenter}{\fbox{\itshape\thesection}}{1em}{}
 
-\section[Appendix]{This is an 
-example of the section command defined below and, what's more, this 
-is an example of the section command defined below}
+\section[Appendix]{Ceci est un exemple de la commande de section définie ci-dessous et, je dirais même plus, ceci est un exemple de la commande de section définie ci-dessous}
 
 \begin{verbatim}
 \titleformat{\section}[block]
@@ -1653,7 +1653,7 @@ is an example of the section command defined below}
   {8pt}
   {\Large\bfseries\filcenter}
 
-\section[Appendix]{A framed title}
+\section[Appendix]{Un titre encadré}
 
 \begin{verbatim}
 \titleformat{\section}[frame]
@@ -1673,7 +1673,7 @@ is an example of the section command defined below}
    \normalfont\itshape}
   {\thesection.}{.5em}{}
 
-\section[Appendix]{A Ruled Title}
+\section[Appendix]{Un titre avec filet horizontal}
 
 \begin{verbatim}
 \titleformat{\section}
@@ -1689,7 +1689,7 @@ is an example of the section command defined below}
   {\normalfont\sffamily}
   {\thesection}{.5em}{\titlerule\\[.8ex]\bfseries}
   
-\section[Appendix]{Another Ruled Title}
+\section[Appendix]{Un autre titre avec filet horizontal}
 
 \begin{verbatim}
 \titleformat{\section}[block]
@@ -1709,13 +1709,12 @@ is an example of the section command defined below}
 \titlespacing{\section}
   {5pc}{*2}{*2}[5pc]
 
-\section[Appendix]{The length of the ``rule'' above
-  is that of the longest line in this title increased by
-  two picas}
+\section[Appendix]{La largeur du filet ci-dessus est celle de la
+  plus longue ligne de ce titre augmentée de deux picas}
 
 \leavevmode
 
-\section[Appendix]{This one is shorter}
+\section[Appendix]{Celui-ci est plus court}
 
 \begin{verbatim}
 \titleformat{\section}[block]
@@ -1739,13 +1738,11 @@ is an example of the section command defined below}
 \titlespacing{\section}
   {3pc}{*3}{*2}[3pc]
 
-\section[Appendix]{This is an example of the section
-command defined below
-and, what's more, this is 
-an example of the section command defined below. Let us repeat it.
-This is an example of the section command defined below
-and, what's more, this is 
-an example of the section command defined below}
+\section[Appendix]{Ceci est un exemple de la commande de section définie ci-dessous 
+et, je dirais même plus, ceci est un exemple de la commande de section définie 
+ci-dessous. Répétons-le : ceci est un exemple de la commande de section définie 
+ci-dessous et, je dirais même plus, ceci est un exemple de la commande de section 
+définie ci-dessous}
 
 \begin{verbatim}
 \titleformat{\section}[display]
@@ -1765,8 +1762,8 @@ an example of the section command defined below}
 \titlespacing{\section}
   {\parindent}{*2}{\wordsep}
   
-\section*{This part is the title itself}
-and this part is the section body\ldots
+\section*{Cette partie est le titre lui-même}
+et cette partie est le corps du texte associé\ldots
 
 \begin{verbatim}
 \titleformat{\section}[runin]
@@ -1784,21 +1781,20 @@ and this part is the section body\ldots
 \titlespacing{\section}
   {12pc}{1.5ex plus .1ex minus .2ex}{1pc}
 
-\section[Appendix]{A Simple Example of the
-  ``wrap'' Section Shape}
+\section[Appendix]{Un exemple simple d'une forme \og wrap \fg{} sur une section}
 
-Which is followed by some text to show the result.  Which is followed 
-by some text to show the result.  Which is followed by some text to 
-show the result.  Which is followed by some text to show the result.  
-Which is followed by some text to show the result.  Which is followed 
-by some text to show the result.  Which is followed 
-by some text to show the result.
+Suivi d'un peu de texte pour montrer le résultat. Suivi d'un peu de texte pour 
+montrer le résultat. Suivi d'un peu de texte pour montrer le résultat. Suivi d'un 
+peu de texte pour montrer le résultat. Suivi d'un peu de texte pour montrer le
+résultat. Suivi d'un peu de texte pour montrer le résultat. Suivi d'un peu de 
+texte pour montrer le résultat.
 
-\section[Appendix]{And another}
+\section[Appendix]{Et un autre}
 
-Note how the text wraps the title and the space reserved to it is
-readjusted automatically. And it is followed by some text to 
-show the result.  Which is followed by some text to show the result.
+Notez comment le texte enveloppe (en anglais, \og wrap \fg{}) le titre et que
+l'espace qui lui est réservé est automatiquement réajustée. Et il est suivi par un 
+peu de texte pour illustrer le propos. Et il est suivi par un peu de texte pour
+illustrer le propos.
 
 \begin{verbatim}
 \titleformat{\section}[wrap]
@@ -1816,11 +1812,11 @@ show the result.  Which is followed by some text to show the result.
 \titlespacing{\section}
   {\parindent}{1.5ex plus .1ex minus .2ex}{0pt}
 
-\section[Appendix]{Old-fashioned runin title}
+\section[Appendix]{Un titre attaché à l'ancienne}
 
-Of course, you would prefer just a dot after the title. In
-this case the optional argument should be |[.]| and the space
-after a sensible value (1em, for example).
+Bien sûr, vous pourriez préférer un point après le titre. Dans ce cas, l'argument
+optionnel devrait être |[.]| et l'espace attenante devrait avoir une valeur 
+assez forte (1em, par exemple).
 
 \begin{verbatim}
 \titleformat{\section}[runin]
@@ -1841,15 +1837,13 @@ after a sensible value (1em, for example).
 \titlespacing{\section}
   {4pc}{1.5pc plus .1ex minus .2ex}{1pc}
 
-\section*{Example of margin section}
+\section*{Exemple de section marginale}
 
-Which is followed by some text to show the result.
-But do not stop reading, because the following example illustrates how
-to take advantage of other packages. The last command in the last
-argument can take an argument, which is the title with no
-additional command inside it. We just give the code, but you
-may try it by yourself. Thus, with the \textsf{soul} package
-you may say
+Suivi d'un peu de texte pour montrer le résultat. Mais ne vous arrêtez pas de lire car
+l'exemple qui suit illustre comment tirer parti d'autres extensions. La dernière 
+commande dans le dernier argument peut prendre un argument, à savoir le titre sans 
+autre commande additionnelle incluse. Nous donnons ici juste le code mais vous pouvez
+l'essayer. Donc, avec l'extension \textsf{soul}, vous pourriez écrire
 \begin{verbatim}
 \newcommand{\secformat}[1]{\MakeLowercase{\so{#1}}}
    % \so spaces out letters
@@ -1860,7 +1854,7 @@ you may say
   {\secformat}
 \end{verbatim}
 
-The margin title above was defined:
+Le titre marginal ci-dessus a été défini avec le code suivant :
 \begin{verbatim}
 \titleformat{\section}[leftmargin]
   {\normalfont
@@ -1874,9 +1868,9 @@ The margin title above was defined:
 
 \examplesep
 
-The following examples are intended for chapters. However, this
-document lacks of |\chapter| and are showed using |\section|s
-with slight changes.
+Les exemples suivants sont pensés pour des chapitres. Cependant, cette documentation 
+ne dispose par de la commande |\chapter| et illustre ce point en utilisant |\section|
+avec quelques rares changements.  
 
 \titlespacing{\section}{0pt}{*4}{*4}
 \titleformat{\section}[display]
@@ -1891,7 +1885,7 @@ with slight changes.
    \vspace{1pc}%
    \Huge}
 
-\section[Appendix]{The Title}
+\section[Appendix]{Le titre}
 
 \begin{verbatim}
 \titleformat{\chapter}[display]
@@ -1920,7 +1914,7 @@ with slight changes.
   [\vspace{2ex}%
    \titlerule]
 
-\section[Appendix]{The Title}
+\section[Appendix]{Le titre}
 
 \begin{verbatim}
 \renewcommand{\thechapter}{\Roman{chapter}}
@@ -1941,15 +1935,15 @@ with slight changes.
 
 \bigskip 
 
-\subsection{A full example}
+\subsection{Un exemple complet}
 
-Now an example of a complete title scheme follows.
+Voici maintenant un exemple complet d'une structure de titres.
 
 \begin{verbatim}
 \documentclass[twoside]{report}
 \usepackage[sf,sl,outermarks]{titlesec}
 
-% \chapter, \subsection...: no additional code
+% \chapter, \subsection...: pas de code additionnel
 
 \titleformat{\section}
   {\LARGE\sffamily\slshape}
@@ -1963,7 +1957,8 @@ Now an example of a complete title scheme follows.
 \titlespacing{\paragraph}
   {5pc}{1.5ex minus .1 ex}{1pc}
 
-% 5+1=6, ie, the negative left margin in section
+% 5+1=6, autrement dit, la marge négative de gauche dans 
+% la section
 
 \widenhead{6pc}{0pc}
   
@@ -1983,11 +1978,11 @@ Now an example of a complete title scheme follows.
 
 \begin{document}
 
----TOC
+---Table des matières
 
 \pagestyle{main}
 
----Body
+---Corps du document
 
 \pagestyle{special}
 
@@ -1995,10 +1990,10 @@ Now an example of a complete title scheme follows.
 \end{document}
 \end{verbatim}
 
-\subsection{Standard Classes}
+\subsection{Classes standards}
 
-Now follows, for your records, how sectioning commands of standard 
-classes could be defined.
+Voici, pour votre information, comment peuvent être définies les commandes des classes
+standards.
 \begin{verbatim}
 \titleformat{\chapter}[display]
   {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
@@ -2021,15 +2016,14 @@ classes could be defined.
 \titlespacing*{\subparagraph} {\parindent}{3.25ex plus 1ex minus .2ex}{1em}
 \end{verbatim}
 
-\subsection{Chapter Example}
+\subsection{Exemple de chapitre}
 
-A final example shows how to take advantage of the |picture|
-environment for fancy sectioning formats. Even with the simple
-tools provided by standard \LaTeX{} you may create impressive
-titles but you may devise more elaborated
-ones with, for instance, |pspicture| (\textsf{PSTricks}
-package) or by including graphics created with the help of external
-programs.
+Un dernier exemple montre comment tirer parti de l'environnement |picture| pour
+des formats de sectionnement moins courants. Même avec les outils simples fournis
+par la version standard de \LaTeX{}, vous pouvez créer des titres marquants. Mais
+vous pouvez en faire d'encore plus élaborés avec, par exemple, |pspicture| 
+(de l'extension \textsf{PSTricks}) ou en incorporant des graphiques créés avec
+l'aide de programmes externes.
 
 \begin{verbatim}
 \usepackage[dvips]{color}
@@ -2038,8 +2032,8 @@ programs.
 \DeclareFixedFont{\chapterfont}{T1}{phv}{bx}{n}{11cm}
 
 \titlespacing{\chapter}{0pt}{0pt}{210pt}
-% Most of titles have some depth. The total space is
-% a bit larger than the picture box.
+% La plupart des titres ont un peu de profondeur. L'espace total
+% est un peu plus large que la boîte contenant l'image.
 
 \titleformat{\chapter}[block]
   {\begin{picture}(330,200)}
@@ -2048,15 +2042,15 @@ programs.
        \chapterfont\textcolor[named]{SkyBlue}{\thechapter}}}
    \put(0,230){%
      \makebox(0,0)[lb]{%
-       \Huge\sffamily\underline{Chapter \thechapter}}}}
+       \Huge\sffamily\underline{Chapitre \thechapter}}}}
   {0pt}
   {\put(0,190){\parbox[t]{300pt}{%
      \Huge\sffamily\filright#1}}}
   [\end{picture}]
 \end{verbatim}
 
-(The exact values to be used depend on the text area,
-class, |\unitlength|, paper size, etc.)
+(Les valeurs exaces à utiliser dépendent de la zone de texte, de la classe,
+de |\unitlength|, du format du papier, etc.)
 
 \end{document}
 
