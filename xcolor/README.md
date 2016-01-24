@@ -3,25 +3,27 @@
 L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *xcolor* utilisable avec LaTeX.
 
 ### Quelques termes récurrents dans la traduction de ce document
+- *brightness* : luminosité ;
 - *color harmony* : accord de couleurs ;
 - *color model* : modèle colorimétrique ;
 - *color wheel* : cercle chromatique ;
 - *complement* : complémentaire ou couleur complémentaire ;
+- *hue* : teinte ;
 - *shade* : nuance ;
 - *spot color* : ton direct (vu sur Wikipédia) ;
 - *tint* : teinte ;
-- *tone* : ton ;
+- *tone* : ton.
 
 ### Avancement de la traduction, en vision table de matières
 - [ ] En-tête du document tex (définitions, métadonnées)
 - [ ] Pages d'avant-propos (3 pages) 
-- [ ] Introduction (3 pages) 
+- [x] Introduction (3 pages) 
   - [x] Objectif de cette extension **À relire**
   - [x] Teintes, nuances, tons et couleurs complémentaires **À relire**
   - [x] Modèles colorimétriques **À relire**
   - [x] Cercles chromatiques et accords de couleurs **À relire**
 - [ ] L'interface utilisateur (24 pages) 
-  - [ ] Préparation
+  - [x] Préparation
   - [ ] Modèles colorimétriques
   - [ ] *Arguments and terminology*
   - [ ] *Predefined colors*

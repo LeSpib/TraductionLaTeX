@@ -117,6 +117,13 @@
 \makeatletter
 \def\Meaning#1{\texttt{\expandafter\expandafter\expandafter\strip@prefix\expandafter\meaning\csname #1\endcsname}}
 \makeatother
+% Bloc pour traduction
+\usepackage{pifont}
+\definecolor{orange5}{RGB}{255,153,0} 
+\newcommand{\trad}[1]{\textbf{\textcolor{orange5}{\noindent\ding{54} #1 \ding{54}}}}
+\newcommand{\tradini}{\color{orange5}\ding{54}}
+\newcommand{\tradfin}{\ding{54}\color{black}}
+% Fin du bloc qui doit être retiré une fois le travail achevé
 \pagestyle{myheadings}
 \markright{\hskip-2.5cm xcolor \XCfileversion\space(\XCfiledate)}
 \begin{document}
@@ -325,7 +332,7 @@
 %
 % \subsection{Cercles chromatiques et accords de couleurs}\label{sec.harmony}
 %
-% Il s'est développé une longue histoire du placement de couleurs (*teintes*) sur des cercles pour discuter de problèmes théoriques ou pratiques sur les couleurs (par exemple \People{Isaac}{Newton}, \People{Johann Wolfgang von}{Goethe}).
+% Il s'est développé une longue histoire du placement de couleurs (\trad{teintes}) sur des cercles pour discuter de problèmes théoriques ou pratiques sur les couleurs (par exemple \People{Isaac}{Newton}, \People{Johann Wolfgang von}{Goethe}).
 % Une explication de ceci pourrait être que le cercle lui-même est un outil tout naturel pour illustrer des relations communes aussi bien que des propriétés opposées.
 %
 % De nos jours, une certaine confusion portant sur les notions associées aux couleurs existe, dans la mesure où deux grands domaines qui y sont liés --- l'art et le design graphique d'une part, la théorie scientifique de couleur de l'autre --- tendent à utiliser les même mots pour décrire les propriétés de la couleur bien qu'en décrivant parfois des faits très différents !
@@ -343,8 +350,8 @@
 % Nous commençons avec un cercle chromatique quelconque :
 % \begin{itemize}
 % \item les \textbf{couleurs complémentaires} sont situées à une distance de 180\Circ{} sur le cercle ;
-% \item les *\textbf{}* correspondent à trois couleurs séparées par 120\Circ ;
-% \item les *\textbf{}* correspondent à quatre couleurs séparées par 90\Circ.
+% \item les \trad{\textbf{}} correspondent à trois couleurs séparées par 120\Circ ;
+% \item les \trad{\textbf{}} correspondent à quatre couleurs séparées par 90\Circ.
 % \end{itemize}
 % Nous supposons maintenant que le cercle est décomposé en $2n$ secteurs de taille égale :
 % \begin{itemize}
@@ -356,7 +363,6 @@
 % Des exemples sont donnés en figure \vref{fig.harmony}.
 %
 %
-% %%%%% A traduire %%%%%
 %
 % \clearpage
 % \section{L'interface utilisateur}
@@ -366,13 +372,12 @@
 % \subsubsection{Installation de l'extension}
 %
 % Il faut tout d'abord placer \File{xcolor.sty} et tous les fichiers dans un répertoire où (pdf)\LaTeX{} les trouvera.
-% Un emplacement classique selon le *\emph{\TeX\ Directory Structure} (TDS)* serait le répertoire |texmf/tex/latex/xcolor|, où |texmf| est à remplacer par le répertoire principal de votre installation de \TeX\.
+% Un emplacement classique selon le \trad{\emph{\TeX\ Directory Structure} (TDS)} serait le répertoire |texmf/tex/latex/xcolor|, où |texmf| est à remplacer par le répertoire principal de votre installation de \TeX\.
 % De plus, il faut placer \File{xcolor.pro} à un endroit où \Program{dvips} le trouvera, typiquement |texmf/dvips/xcolor|.
 % Normalement, vous devez lancer une mise à jour de votre base de noms de fichiers afin que ces fichiers soient connus et facilement retrouvables dans l'arborescence \TeX.
 % Par la suite, il suffit simplement d'utiliser \XC{} (au lieu de \LC) dans votre document.
 % Pour cela, la commande générale d'appel est |\usepackage|\oarg{options}|{xcolor}| dans le préambule du document.
 % La table \vref{tab.package} montre dans quel ordre certaines extensions doivent être alors chargées.
-%
 %
 % \subsubsection{Options de l'extension}
 %
@@ -388,20 +393,21 @@
 % \oOption{pst},
 % \oOption{override}, \oOption{usenames}, \oOption{nodvipsnames}.
 % \end{itemize}
-% All available package options (except driver selection and obsolete options) are listed in table \vref{tab.opt}.
+% Toutes les options de l'extension (hors les sélections des pilotes et les options obsolètes) sont listées en table \vref{tab.opt}.
 % \DescribeMacro\GetGinDriver
 % \DescribeMacro\GinDriver
-% In order to facilitate the co-operation with the \Package{hyperref} package, there is a command |\GetGinDriver|\footnote{This command is executed automatically if the package option \Option{hyperref} is used.} that grabs the driver actually used and puts it into the command |\GinDriver|.
-% The latter can then be used within \Package{hyperref} (or other packages), see the code example on page \pageref{ex.range}.
-% If there is no corresponding \Package{hyperref} option, \Option{hypertex} will be taken as default.
+% Afin de faciliter la coopération avec l'extension \Package{hyperref}, il existe une commande |\GetGinDriver|\footnote{Cette commande est exécutée automatiquement si l'option d'extension \Option{hyperref} est sélectionnée.} qui récupère le nom du pilote effectivement utilisé et qui le place dans la commande |\GinDriver|.
+
+% Ce dernier peut alors être utilisé au sein de l'extension \Package{hyperref} (ou toute autre extension), voir l'exemple de code en page \pageref{ex.range}. 
+% S'il n'y a pas d'option \Package{hyperref} correspondante, l'option \Option{hypertex} sera prise par défaut.
 %
-% Warning: there is a substantial difference between \XC{} and \LC{} regarding how the \Option{dvips} option is being handled.
-% The \LCP{} implicitly invokes the \Option{dvipsnames} option, whenever one of the |dvips|, |oztex|, |xdvi| drivers is selected.
-% This makes documents less portable, since whenever one of these colors is used without explicit \Option{dvipsnames} option, other drivers like |pdftex| will issue error messages because of unknown colors.
-% Therefore, \XC{} always requires an explicit \Option{dvipsnames} option to use these names --- which then works for all drivers.
+% Attention : il y a une différence substantielle entre \XC{} et \LC{} dans la façon de manier l'option \Option{dvips}.
+% L'\LCP{} appelle implicitement l'option \Option{dvipsnames} dès qu'un des pilotes |dvips|, |oztex| ou |xdvi| est sélectionné.
+% Ceci rend les documents moins portables dans la mesure où, à chaque fois qu'une des couleurs est utilisée sans l'appel explicite de l'option \Option{dvipsnames}, les autres pilotes comme |pdftex| renvoient un message d'erreur pour cause de couleur inconnue.
+% C'est pourquoi \XC{} nécessite toujours explicitement l'option \Option{dvipsnames} pour utiliser ces noms --- qui fonctionnent alors pour tous les pilotes. 
 %
 %
-% \begin{table}[p]\caption{Package options}\label{tab.opt}
+% \begin{table}[p]\caption{Options de l'extension}\label{tab.opt}
 % \extrarowheight2pt
 % \begin{adjustwidth}{-2.5cm}{}
 % \advance\textwidth2.5cm
@@ -410,43 +416,43 @@
 % \hline
 % \rowcolor{tableheadcolor}
 % \em Option & \em Description\\
-% \Option{natural}& (Default.) Keep all colors in their model, except \Model{RGB} (converted to \Model{rgb}), \Model{HSB} (converted to \Model{hsb}), and \Model{Gray} (converted to \Model{gray}).\\
-% \Option{rgb}& Convert all colors to the \Model{rgb} model.\\
-% \Option{cmy}& Convert all colors to the \Model{cmy} model.\\
-% \Option{cmyk}& Convert all colors to the \Model{cmyk} model.\\
-% \Option{hsb}& Convert all colors to the \Model{hsb} model.\\
-% \Option{gray}& Convert all colors to the \Model{gray} model. Especially useful to simulate how a black \& white printer will output the document.\\
-% \Option{RGB}& Convert all colors to the \Model{RGB} model (and afterwards to \Model{rgb}).\\
-% \Option{HTML}& Convert all colors to the \Model{HTML} model (and afterwards to \Model{rgb}).\\
-% \Option{HSB}& Convert all colors to the \Model{HSB} model (and afterwards to \Model{hsb}).\\
-% \Option{Gray}& Convert all colors to the \Model{Gray} model (and afterwards to \Model{gray}).\\
+% \Option{natural}& (valeur par défaut.) Garde toutes les couleurs dans leur modèle, à l'expcetion de \Model{RGB} (converti en \Model{rgb}), \Model{HSB} (converti en \Model{hsb}), et \Model{Gray} (converti en \Model{gray}).\\
+% \Option{rgb}& Convertit toutes les couleurs en modèle \Model{rgb}.\\
+% \Option{cmy}& Convertit toutes les couleurs en modèle \Model{cmy}.\\
+% \Option{cmyk}& Convertit toutes les couleurs en modèle \Model{cmyk}.\\
+% \Option{hsb}& Convertit toutes les couleurs en modèle \Model{hsb}.\\
+% \Option{gray}&  Convertit toutes les couleurs en modèle \Model{gray}. Particulièrement utile pour simuler un rendu en noir et blanc d'une imprimante monochrome.\\
+% \Option{RGB}& Convertit toutes les couleurs en modèle \Model{RGB} (et ensuite en \Model{rgb}).\\
+% \Option{HTML}& Convertit toutes les couleurs en modèle \Model{HTML} (et ensuite en \Model{rgb}).\\
+% \Option{HSB}& Convertit toutes les couleurs en modèle \Model{HSB} (et ensuite en \Model{hsb}).\\
+% \Option{Gray}& Convertit toutes les couleurs en modèle \Model{Gray} (et ensuite en \Model{gray}).\\
 % \hline
-% \Option{dvipsnames}, \Option{dvipsnames*}& Load a set of predefined colors.\footnotemark[1]\\
-% \Option{svgnames}, \Option{svgnames*}& Load a set of predefined colors according to \Index{SVG} 1.1.\footnotemark[1]\\
-% \Option{x11names}, \Option{x11names*}& Load a set of predefined colors according to \Index{Unix}/\Index{X11}.\footnotemark[1]\\
+% \Option{dvipsnames}, \Option{dvipsnames*}& Charge un ensemble de couleurs prédéfinies.\footnotemark[1]\\
+% \Option{svgnames}, \Option{svgnames*}& Charge un ensemble de couleurs prédéfinies selon la norme \Index{SVG} 1.1.\footnotemark[1]\\
+% \Option{x11names}, \Option{x11names*}& Charge un ensemble de couleurs prédéfinies selon la norme \Index{Unix}/\Index{X11}.\footnotemark[1]\\
 % \hline
-% \Option{table}& Load the \Package{colortbl} package, in order to use the tools for coloring rows, columns, and cells within tables.\\
-% \Option{fixpdftex}& Load the \Package{pdfcolmk} package, in order to improve |pdftex|'s color behaviour (see section \vref{sec.fixpdftex}).\\
-% \Option{hyperref}& Support the \Package{hyperref} package in terms of color expressions by defining additional keys (see section \vref{sec.hyperref}).\\
+% \Option{table}& Charge l'extension \Package{colortbl} contenant les outils de colorisation des lignes, colonnes et cellules dans des tables.\\
+% \Option{fixpdftex}& Charge l'extension \Package{pdfcolmk} permettant d'améliorer la gestion des couleurs dee |pdftex| (voir section \vref{sec.fixpdftex}).\\
+% \Option{hyperref}& Permet de prendre en charge l'extension \Package{hyperref} pour les \trad{expressions de couleur} en définissant des \trad{clés} additionnelles (voir section \vref{sec.hyperref}).\\
 % \hline
-% \Option{prologue}& Write prologue information to \File{.xcp} file for every color definition (as described in section \vref{sec.prologue}).\\
+% \Option{prologue}& \'{E}crit des informations en début de fichier \File{.xcp} pour chaque définition de couleur (comme décrit en section \vref{sec.prologue}).\\
 % \hline
-% \Option{kernelfbox}& Use \LaTeX{} kernel method to draw \texttt{\string\f(rame)box} frames\footnotemark[2].\\
+% \Option{kernelfbox}& Utilise la méthode du noyau \LaTeX{} pour dessiner des boîtes \texttt{\string\f(rame)box}\footnotemark[2].\\
 % \Option{xcdraw}& Use driver-specific commands to draw frames and color boxes.\footnotemark[2]\\
-% \Option{noxcdraw}& (Default.) Use generic code to draw frames and color boxes.\footnotemark[2]\\
-% \Option{fixinclude}& Prevent |dvips| color reset before \File{.eps} file inclusion (see section \vref{sec.fixinclude}).\\
+% \Option{noxcdraw}& (Valeur par défaut.) Utilise un code générique pour dessiner les encadrements et boîets de couleur.\footnotemark[2]\\
+% \Option{fixinclude}& Empêche la réinitialisation de couleur de |dvips| avant l'inclusion de fichier \File{.eps} (voir section \vref{sec.fixinclude}).\\
 % \hline
 % \Option{showerrors}& (Default.) Display an error message if an undefined color is being used (same behaviour as in the original \LCP).\\
-% \Option{hideerrors}& Display only a warning if an undefined color is being used, and replace this color by \Color{black}.\\
+% \Option{hideerrors}& Affiche seulement une alerte en cas d'utilisation d'une couleur non définie et remplace cette couleur par du \Color{noir}.\\
 % \hline\hline
-% \multicolumn2{c}{\footnotemark[1]\,See section \vref{sec.additionalcolors}.\quad \footnotemark[2]\,See section \vref{sec.fbox}.}\\
+% \multicolumn2{c}{\footnotemark[1]\,Voir section \vref{sec.additionalcolors}.\quad \footnotemark[2]\,Voir section \vref{sec.fbox}.}\\
 % \hline
 % \end{tabularx}
 % \end{adjustwidth}
 % \end{table}
 %
 %
-% \begin{table}[htbp]\caption{Package loading order}\label{tab.package}
+% \begin{table}[htbp]\caption{Ordre de chargement des extensions}\label{tab.package}
 % \begin{adjustwidth}{-2.5cm}{}
 % \raggedleft
 % \extrarowheight2pt
@@ -454,62 +460,62 @@
 % \begin{tabular}{l*{6}{c}}
 % \hline
 % \rowcolor{tableheadcolor}
-% \em Action/Package    & \Package{colortbl}& \Package{pdfcolmk}& \Package{hyperref}& \Package{pstricks}& \LC& \Package{pstcol}\\
-% load before \XC       & no & no & allowed & allowed\rlap{\footnotemark[1]} & no & no  \\
-% load with \XC{} option& \Option{table} & \Option{fixpdftex} & --- & --- & --- & --- \\
-% load after \XC        & no & allowed & allowed & allowed & no & no \\
+% \em Chargement/Extension    & \Package{colortbl}& \Package{pdfcolmk}& \Package{hyperref}& \Package{pstricks}& \LC& \Package{pstcol}\\
+% Avant \XC       & non & non & permis & permis\rlap{\footnotemark[1]} & non & non  \\
+% Avec l'option \XC{}& \Option{table} & \Option{fixpdftex} & --- & --- & --- & --- \\
+% Après \XC        & non & permis & permis & permis & non & non \\
 % \hline\hline
-% \multicolumn6{c}{\footnotemark[1]\,recent \Package{pstricks} versions do load \XC\ by default}\\
+% \multicolumn6{c}{\footnotemark[1]\,Les versions récentes de \Package{pstricks} chargent \XC\ par défaut.}\\
 % \hline
 % \end{tabular}
 % \end{adjustwidth}
 % \end{table}
 %
 %
-% \begin{table}[htbp]\caption{Supported color models}\label{tab.mod}
+% \begin{table}[htbp]\caption{Modèles colorimétriques supportés}\label{tab.mod}
 % \raggedleft
 % \extrarowheight2pt
 % \rowcolors{3}{tablerowcolor}{}
 % \begin{tabular}{l>{\em}l>{$}l<{$}rl}
 % \hline
 % \rowcolor{tableheadcolor}
-% \emph{Name}  & Base colors/notions & \emph{Parameter range}& \multicolumn2{>{\columncolor{tableheadcolor}}l}{\emph{Default}}\\
-% \Model{rgb} & red, green, blue & \left[0,1\right]^3&& \\
-% \Model{cmy} & cyan, magenta, yellow & \left[0,1\right]^3&& \\
-% \Model{cmyk} & cyan, magenta, yellow, black & \left[0,1\right]^4&& \\
-% \Model{hsb} & hue, saturation, brightness & \left[0,1\right]^3&& \\
-% \Model{Hsb} & hue\Circ\!, saturation, brightness & \left[0,H\right]\times\left[0,1\right]^2&$H=$& $\mkern-15mu\rangeHsb$\\
-% \Model{tHsb} & hue\Circ\!, saturation, brightness & \left[0,H\right]\times\left[0,1\right]^2&$H=$& $\mkern-15mu\rangeHsb$\\
-% \Model{gray} & gray & \left[0,1\right]&& \\
-% \Model{RGB} & Red, Green, Blue & \{0,1,\dots,L\}^3& $L\,=$& $\mkern-15mu\rangeRGB$\\
+% \emph{Nom}  & Couleurs de base/notions & \emph{Intervalle de valeur}& \multicolumn2{>{\columncolor{tableheadcolor}}l}{\emph{Par défaut}}\\
+% \Model{rgb} & rouge, vert, bleu & \left[0,1\right]^3&& \\
+% \Model{cmy} & cyan, magenta, jaune & \left[0,1\right]^3&& \\
+% \Model{cmyk} & cyan, magenta, jaune, noir & \left[0,1\right]^4&& \\
+% \Model{hsb} & teinte, saturation, luminosité & \left[0,1\right]^3&& \\
+% \Model{Hsb} & teinte\Circ\!, saturation, luminosité & \left[0,H\right]\times\left[0,1\right]^2&$H=$& $\mkern-15mu\rangeHsb$\\
+% \Model{tHsb} & teinte\Circ\!, saturation, luminosité & \left[0,H\right]\times\left[0,1\right]^2&$H=$& $\mkern-15mu\rangeHsb$\\
+% \Model{gray} & gris & \left[0,1\right]&& \\
+% \Model{RGB} & Rouge, Vert, Bleu & \{0,1,\dots,L\}^3& $L\,=$& $\mkern-15mu\rangeRGB$\\
 % \Model{HTML} & RRGGBB & \{\texttt{000000},\dots,\texttt{FFFFFF}\}&& \\
-% \Model{HSB} & Hue, Saturation, Brightness & \{0,1,\dots,M\}^3& $M=$& $\mkern-15mu\rangeHSB$\\
-% \Model{Gray} & Gray & \{0,1,\dots,N\}& $N\,=$& $\mkern-15mu\rangeGray$\\
+% \Model{HSB} & Teinte, Saturation, Luminosité & \{0,1,\dots,M\}^3& $M=$& $\mkern-15mu\rangeHSB$\\
+% \Model{Gray} & Gris & \{0,1,\dots,N\}& $N\,=$& $\mkern-15mu\rangeGray$\\
 % \Model{wave} & lambda \emph{(nm)}& \left[363,814\right]&& \\
 % \hline\hline
-% \multicolumn5{c}{$L,M,N$ are positive integers; $H$ is a positive real number}\\
+% \multicolumn5{c}{$L,M,N$ sont des nombres entiers positifs; $H$ est un entier réel positif}\\
 % \hline
 % \end{tabular}
 % \end{table}
 %
 %
-% \subsubsection{Executing additional initialisation commands}
+% \subsubsection{\'{E}xecution de commandes additionnelles à l'initialisation}
 %
 % \DescribeMacro\xcolorcmd
-% Here is a simple interface to pass commands that should be executed at the end of the \XCP{} (immediately before the initialising |\color{black}| is executed).
-% Just say |\def\xcolorcmd|\marg{commands} at some point before \XC{} is loaded.
+% Voici un interface simple pour passer des commandes devant être exécutées à la fin de l'extension \XCP{} (immédiatement avant que l'initialisation de |\color{black}| ne soit traitée).
+% Indiquez juste |\def\xcolorcmd|\marg{commandes} avant le chargement de \XC{}.
 %
-% Example: assuming that |a.tex| is a complete \LaTeX{} document, a command like
-% `|latex \def\xcolorcmd{\colorlet{black}{red}}\input{a}|'
-% at the console generates a file |a.dvi| with all occurences of \Color{black} being replaced by \Color{red}, without the necessity to change the source file itself.
-% (The exact spelling of the console command might vary across operating systems and \TeX{} distributions.)
+% Exemple: en supposant que |a.tex| soit un document \LaTeX{} complet, une commande comme 
+% \og|latex \def\xcolorcmd{\colorlet{black}{red}}\input{a}|\fg{}
+% saisie en invite de commande génère un fichier |a.dvi| avec toutes les occurences de \Color{noir} remplacées par du \Color{rouge}, sans besoin de modifier le fichier source lui-même.
+% (La ligne de commande peut varier selon les systèmes d'exploitation et les distributions de \TeX{}).
 %
 %
 %
-% \subsection{Color models}
+% \subsection{Modèles colorimétriques}
 %
-% \subsubsection{Supported color models}
-%
+% \subsubsection{Modèles colorimétriques supportés}
+% \tradini
 % The list of supported color models and their parameter ranges is given in table \vref{tab.mod}.
 % We emphasize that this color support is independent of the chosen driver.
 %
@@ -3513,7 +3519,7 @@
 %
 % \end{multicols}
 % \end{adjustwidth}
-%
+% \tradfin
 % \StopEventually{}
 % \clearpage
 %
