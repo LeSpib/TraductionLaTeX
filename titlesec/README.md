@@ -17,9 +17,9 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *ti
   - [x] Espacement
   - [x] Outils liés à l'espacement
   - [x] Filets
-  - [ ] Styles de page
-  - [ ] Breaks
-  - [ ] Other Package Options
+  - [x] Styles de page
+  - [x] Saut de page
+  - [ ] Autres options de l'extension
   - [ ] Extended Settings
   - [ ] Creating new levels and changing the class
 - [ ] Notes additionnelles (2 pages)

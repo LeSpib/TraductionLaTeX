@@ -621,71 +621,70 @@ placé dans la boîte principal avec l'alignement indiqué. Il n'y a pas d'équi
 \subsection{Styles de page}
 
 \tradini
-\fbox{2.8} You can assign a page style to levels of class |top| and
-|page|, as well as the default chapter with the following command:%
-\footnote{Named in the short-lived version 2.7 as 
-\texttt{\string\titlepagestyle}.}
+\fbox{2.8} Vous pouvez assigner un style de page à des \trad{niveaux de classe} |top| 
+ou |page|, aussi bien qu'au chapitre de base avec la commande 
+suivante\footnote{Nommée dans l'éphémère version 2.7 \texttt{\string\titlepagestyle}.} :
 \begin{desc}
-|\assignpagestyle{<command>}{<pagestyle>}|
+|\assignpagestyle{<commande>}{<style de page>}|
 \end{desc}
 Par exemple, pour supprimer le numéro de page avec les chapitres :
 \begin{verbatim}
 \assignpagestyle{\chapter}{empty}
 \end{verbatim}
 
-\subsection{Breaks}
+\subsection{Sauts de page}
 
 \begin{desc}
 |\sectionbreak    \subsectionbreak     \subsubsectionbreak|\\
 |\paragraphbreak  \subparagraphbreak   \<section>break|
 \end{desc}
 
-By defining these command with |\newcommand| different page breaks
-could be applied to different levels. In those undefined, a penalty
-with the internal value provided by the class is used (typically
-$-300$). For instance,
+En définissant ces commandes avec |\newcommand| différents saut de page peuvent
+être appliqués à différents niveaux hiérarchiques. Dans celles non définies, une
+pénalité avec une valeur interne fournie par la classe est retenue (typiquement
+$-300$). Par exemple,
 \begin{verbatim}
 \newcommand{\sectionbreak}{\clearpage}
 \end{verbatim}
-makes sections begin a new page. In some layouts, the space
-above the title is preserved even if the section begins a new
-page; that's accomplished with:
+fait que les sections commencent sur une nouvelle page. Dans certaines mises en 
+page, l'espace au-dessus du titre est préservé même si la section commence sur
+une nouvelle page; ceci est accompli avec:
 \begin{verbatim}
 \newcommand{\sectionbreak}{%
   \addpenalty{-300}%
   \vspace*{0pt}}
 \end{verbatim}
 
-\fbox{2.6} \verb|\<section>break| is available in the \verb|top| class,
-too.  Suitable values would be \verb|\cleardoublepage| (the default if
-\verb|openright|) and \verb|\clearpage| (the default if
-\verb|openany|).  Thus, you can override \verb|openright| by defining
-\verb|\chapterbreak| as \verb|\clearpage|, provided its class has been
-changed to \verb|top| (in this example, parts will continue with the
-\verb|openright| setting).
+\fbox{2.6} \verb|\<section>break| est également disponible avec la classe 
+\verb|top|. Les valeurs admises sont \verb|\cleardoublepage| (valeur par 
+défaut avec \verb|openright|) et \verb|\clearpage| (valeur par défaut avec 
+\verb|openany|). Ainsi, vous pouvez contourner \verb|openright| en définissant
+\verb|\chapterbreak| comme \verb|\clearpage|, du moment que sa classe a été 
+changée en \verb|top| (dans cet exemple, les parties conserveront le 
+paramétrage \verb|openright|).
 
 \begin{desc}
 |\chaptertolists|
 \end{desc}
 
-\fbox{2.6} If defined, the usual white space written to lists (ie,
-List of Figures and List of Tables) is replaced by the code in this
-command.  If you do not want the white space when a chapter begins,
-define it to empty, i.e.,
+\fbox{2.6} Si cette commande est définie, \trad{l'espace blanc écrit d'habitude 
+dans les listes} (que sont la liste des figures et la liste des tables)
+est remplacé par le code de cette commande. Si vous ne voulez pas de l'espace
+quand un chapitre commence, définissez-le comme vide, autrement dit,
 \begin{verbatim}
 \newcommand{\chaptertolists}{}
 \end{verbatim}
 
-This command is not a general tool to control
-spacing in lists, and is available only in titles of top class, so
-it will not work with the default chapters except if you change their
-class (on the other hand, |\...tolists| can be used in any title whose
-class is top).
+Cette commande n'est pas un outil général pour contrôler l'espacement dans
+les listes et n'est valable que dans les titres de classe \trad{top}. Aussi,
+elle ne fonctionnera pas avec les chapitres \trad{de base} sauf si vous changez
+leur classe (d'un autre côté, |\...tolists| peut être utilisé dans tout
+titre dans la classe est \trad{top}).
 
-\subsection{Other Package Options}
+\subsection{Autres options de l'extension}
 
 \begin{desc}
-|explicit| \quad (Package option)
+|explicit| \quad (option d'extension)
 \end{desc}
 
 \fbox{2.7} With it, the title is not implicit after |<before-code>| but
