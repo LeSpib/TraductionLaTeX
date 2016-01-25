@@ -2,7 +2,7 @@
 
 L'objectif de ce projet est de traduire en français la documentation de différentes extensions de LaTeX.
 
-*The goal of this project is to translate in french some LaTeX packages documentations* 
+*The goal of this project is to translate in french some LaTeX packages documentations.* 
 
 ### Aspects juridiques
 
@@ -18,6 +18,7 @@ En quelques mots: ne modifiez pas un document si vous trouvez une faute, indique
 *In short words: do not modify a document if you find a mistake, just contact the right person (the author of the package, the person who translated it, the translation team, etc).*
 
 ### Liste des paquets en cours de traitement
+- [ ] *geometry* ;
 - [ ] *titlesec* ;
 - [ ] *xcolor*.
 
@@ -29,7 +30,6 @@ En quelques mots: ne modifiez pas un document si vous trouvez une faute, indique
 - [ ] *datetime2* (gros) ;
 - [ ] *etoc* ;
 - [ ] *fontspec* ;
-- [ ] *geometry* ;
 - [ ] *glossaries* (énorme) ;
 - [ ] *hyperref* ;
 - [ ] *pgfplots* (énorme) ;
