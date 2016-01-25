@@ -6,7 +6,7 @@ L'objectif est de traduire la documentation de l'extension *geometry* utilisable
 
 ### Avancement de la traduction, en vision table de matières
 - [ ] En-tête du document tex (définitions, métadonnées)
-- [ ] Page d'avant-propos
+- [x] Page d'avant-propos
 - [ ] Preface to version 5 (1 page)
 - [ ] Introduction (1 page)
 - [ ] Page geometry (2 pages)

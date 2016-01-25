@@ -105,6 +105,14 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 \usepackage{graphicx}
 \usepackage[a4paper, hmargin=2.5cm, vmargin=1cm, 
         includeheadfoot]{geometry}
+% Bloc pour traduction
+\usepackage{color}
+\usepackage{pifont}
+\definecolor{orange5}{RGB}{255,153,0} 
+\newcommand{\trad}[1]{\textbf{\textcolor{orange5}{\noindent\ding{54} #1 \ding{54}}}}
+\newcommand{\tradini}{\color{orange5}\ding{54}}
+\newcommand{\tradfin}{\ding{54}\color{black}}
+% Fin du bloc qui doit être retiré une fois le travail achevé
 \DeclareRobustCommand\XeTeX{%
       X\lower.5ex\hbox{\kern-.07em\reflectbox{E}}%
       \kern-.15em\TeX}
@@ -112,7 +120,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
       X\lower.5ex\hbox{\kern-.07em\reflectbox{E}}%
       \kern-.15em\LaTeX}
 \begin{document}
- \DocInput{geometry.dtx}
+ \DocInput{geometry-fr.dtx}
 \end{document}
 %</driver>
 % \fi
@@ -137,7 +145,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %
 % \GetFileInfo{geometry.sty}
 %
-% \title{The \textsf{geometry} package}
+% \title{L'extension \textsf{geometry}}
 % \date{\filedate\ \fileversion}
 % \author{Hideo Umeki\\\texttt{latexgeometry@gmail.com}}
 %
@@ -182,15 +190,16 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % \maketitle
 %
 % \begin{abstract}
-% This package provides a flexible and easy interface to page dimensions.
-% You can change the page layout with intuitive parameters. For instance,
-% if you want to set a margin to 2cm from each edge of the paper,
-% you can type just |\usepackage[margin=2cm]{geometry}|. 
-% The page layout can be changed in the middle of the document
-% with |\newgeometry| command.  
+% Cette extension met à disposition une interface flexible et simple pour traiter
+% les dimensions des pages. Vous pouvez ainsi changer la mise en page avec des
+% paramètres intuitifs. Par exemple, si vous voulez fixer une marge de 2 cm pour
+% chaque bord de la feuille, vous pouvez juste taper 
+% |\usepackage[margin=2cm]{geometry}|. L'aspect de la page peut être changé en 
+% cours de document avec la commande |\newgeometry|.
 % \end{abstract}
 %
-% \section{Preface to version 5}
+% \section{Préface à la version 5}
+% \tradini
 %
 % \begin{itemize}
 %  \item \textbf{Changing page layout mid-document.}\par
@@ -3831,6 +3840,7 @@ A sample margin note in the left side.]%
 \end{document}
 %SAVE_INTACT
 %</samples>
+%\tradfin
 %    \end{macrocode}
 %
 % \Finale
