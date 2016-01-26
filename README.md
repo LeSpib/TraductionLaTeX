@@ -18,6 +18,7 @@ En quelques mots: ne modifiez pas un document si vous trouvez une faute, indique
 *In short words: do not modify a document if you find a mistake, just contact the right person (the author of the package, the person who translated it, the translation team, etc).*
 
 ### Liste des paquets en cours de traitement
+- [ ] *fontspec* ;
 - [ ] *geometry* ;
 - [ ] *titlesec* ;
 - [ ] *xcolor*.
@@ -29,7 +30,6 @@ En quelques mots: ne modifiez pas un document si vous trouvez une faute, indique
 - [ ] *datatool* (énorme) ;
 - [ ] *datetime2* (gros) ;
 - [ ] *etoc* ;
-- [ ] *fontspec* ;
 - [ ] *glossaries* (énorme) ;
 - [ ] *hyperref* ;
 - [ ] *pgfplots* (énorme) ;

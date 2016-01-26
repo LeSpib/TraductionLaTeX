@@ -498,7 +498,7 @@ pas souhaité, en particulier quand l'espace |<sep-avant>| est plus grand que
 
 \begin{desc}
 |\\  \\*|\\
-|pageatnewline|  \quad (options d'extension)
+|pageatnewline|  \quad (option d'extension)
 \end{desc}
 
 \fbox{2.6} Dans les versions 2.6 et suivantes, \verb|\\| ne permet pas de saut de
@@ -620,7 +620,6 @@ placé dans la boîte principal avec l'alignement indiqué. Il n'y a pas d'équi
 
 \subsection{Styles de page}
 
-\tradini
 \fbox{2.8} Vous pouvez assigner un style de page à des \trad{niveaux de classe} |top| 
 ou |page|, aussi bien qu'au chapitre de base avec la commande 
 suivante\footnote{Nommée dans l'éphémère version 2.7 \texttt{\string\titlepagestyle}.} :
@@ -639,7 +638,7 @@ Par exemple, pour supprimer le numéro de page avec les chapitres :
 |\paragraphbreak  \subparagraphbreak   \<section>break|
 \end{desc}
 
-En définissant ces commandes avec |\newcommand| différents saut de page peuvent
+En définissant ces commandes avec |\newcommand|, différents saut de page peuvent
 être appliqués à différents niveaux hiérarchiques. Dans celles non définies, une
 pénalité avec une valeur interne fournie par la classe est retenue (typiquement
 $-300$). Par exemple,
@@ -656,12 +655,11 @@ une nouvelle page; ceci est accompli avec:
 \end{verbatim}
 
 \fbox{2.6} \verb|\<section>break| est également disponible avec la classe 
-\verb|top|. Les valeurs admises sont \verb|\cleardoublepage| (valeur par 
+\trad{\verb|top|}. Les valeurs admises sont \verb|\cleardoublepage| (valeur par 
 défaut avec \verb|openright|) et \verb|\clearpage| (valeur par défaut avec 
-\verb|openany|). Ainsi, vous pouvez contourner \verb|openright| en définissant
-\verb|\chapterbreak| comme \verb|\clearpage|, du moment que sa classe a été 
-changée en \verb|top| (dans cet exemple, les parties conserveront le 
-paramétrage \verb|openright|).
+\verb|openany|). Ainsi, vous pouvez annuler l'effet de \verb|openright| en définissant \verb|\chapterbreak| comme \verb|\clearpage|, du moment que sa 
+classe a été changée en \verb|top| (dans cet exemple, les parties conserveront 
+le paramétrage \verb|openright|).
 
 \begin{desc}
 |\chaptertolists|
@@ -687,54 +685,52 @@ titre dans la classe est \trad{top}).
 |explicit| \quad (option d'extension)
 \end{desc}
 
-\fbox{2.7} With it, the title is not implicit after |<before-code>| but
-must be given explicitly with |#1| as in, for example:
+\fbox{2.7} Avec cette option, le titre n'est pas implicite à la fin de |<code-avant>| mais doit être indiqué explicitement avec |#1| comme dans, par exemple :
 \begin{verbatim} 
 \titleformat{\section}
  {..}
  {\thesection}{..}{#1.}
 \end{verbatim}
-(Compare it with the example in section \ref{sec:dotafter}.) 
+(Comparez ceci avec l'exemple de la section \ref{sec:dotafter}.) 
 
 \begin{desc}
-|newparttoc oldparttoc| \quad (Package options)
+|newparttoc oldparttoc| \quad (options d'extension)
 \end{desc}
 
-Standard parts write the toc entry number in a non standard way.
-You may change that with |newparttoc| so that \textsf{titletoc}
-or a similar package can manipulate the entry. (That works only if
-|\part| has been redefined.)
+Les parties standards écrivent leur numéro en table des matières de façon non
+standard. Vous pouvez changer cela avec |newparttoc| de façon à ce que  
+\textsf{titletoc} ou une extension similaire puisse manipuler cette entrée.
+Standard parts write the toc entry number in a non standard way (ceci fonctionne
+dans le cas où |\part| a été redéfini).
 
 \begin{desc}
-|clearempty| \quad (Package options)
+|clearempty| \quad (option d'extension)
 \end{desc}
 
-Modifies the behaviour of |\cleardoublepage| so that the |empty| page
-style will be used in empty pages.
+Modifie le comportement de |\cleardoublepage| de sorte que le style de page 
+|empty| soit utilisé dans les pages vides.
 
 \begin{desc}
-|toctitles| \quad (Package option)
+|toctitles| \quad (option d'extension)
 \end{desc}
 
-\fbox{2.6} Changes the behaviour of the optional argument in
-sectioning titles so that it sets only the running heads and not the
-TOC entries, which will be based on the full title.
+\fbox{2.6} Change le comportement de l'argument optionnel dans les 
+commandes de sectionnement de telle manière qu'elles fixent uniquement le
+titre en en-tête et non l'entrée en table des matières qui sera donc basée sur le titre complet.
 
 \begin{desc}
-|newlinetospace| \quad (Package option)
+|newlinetospace| \quad (option d'extension)
 \end{desc}
 
-\fbox{2.6} Replaces every occurrence of \verb|\\| or \verb|\\*| in
-titles by a space in running heads and TOC entries.  This way, you
-do not have to repeat the title just to remove a formatting command.
+\fbox{2.6} Remplace chaque occurrence de \verb|\\| ou \verb|\\*| dans les
+titres par une espace dans les en-têtes et les entrées en table des 
+matières. De cette façon, vous n'avez pas à répéter le titre juste pour
+retrancher une commande de mise en forme. 
 
-
-
-
-\subsection{Extended Settings}
+\subsection{Paramétrages étendus}
 %~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The first argument of both |\titleformat| and |\titlespacing| has an 
+\tradini The first argument of both |\titleformat| and |\titlespacing| has an 
 extended syntax which
 allows to set different formats depending on the context.\footnote{% 
 The \textsf{keyval} package is required for making use of it.} This 

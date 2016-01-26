@@ -1,0 +1,24 @@
+\def\testfeature#1#2{%^^A
+  \fontspec{\examplefont}#2 & \fontspec[#1]{\examplefont}#2\\[1ex]}
+\def \examplefont{Code2000}
+\def \arabictext{العربي}
+\def \devanagaritext{हिन्दी}
+\def \bengalitext{লেখ}
+\def \gujaratitext{મર્યાદા-સૂચક નિવેદન}
+\def \malayalamtext{നമ്മുടെ പാരബര്യ}
+\def \gurmukhitext{ਆਦਿ ਸਚੁ ਜੁਗਾਦਿ ਸਚੁ}
+\def \tamiltext{தமிழ் தேடி}
+\def \hebrewtext{רִדְתָּֽהּ}
+\def \vietnamesetext{cấp số mỗi}
+\begin{tabular}{r@{\quad}l}
+  \testfeature{Script=Arabic}{\arabictext}
+  \testfeature{Script=Devanagari}{\devanagaritext}
+  \testfeature{Script=Bengali}{\bengalitext}
+  \testfeature{Script=Gujarati}{\gujaratitext}
+  \testfeature{Script=Malayalam}{\malayalamtext}
+  \testfeature{Script=Gurmukhi}{\gurmukhitext}
+  \testfeature{Script=Tamil}{\tamiltext}
+  \testfeature{Script=Hebrew}{\hebrewtext}
+  \def\examplefont{Doulos SIL}
+  \testfeature{Language=Vietnamese}{\vietnamesetext}
+\end{tabular}

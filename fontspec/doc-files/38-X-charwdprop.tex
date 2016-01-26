@@ -1,0 +1,8 @@
+  \def\texta{ようこそ}\def\textb{ワカヨタレソ}
+  \def\test{\makebox[2cm][l]{\texta}%
+            \makebox[2.5cm][l]{\textb}%
+            \makebox[2.5cm][l]{abcdef}}
+  \fontspec{Hiragino Mincho Pro}
+  {\addfontfeature{CharacterWidth=Proportional}\test}\\
+  {\addfontfeature{CharacterWidth=Full}\test}\\
+  {\addfontfeature{CharacterWidth=Half}\test}

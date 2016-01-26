@@ -1,0 +1,9 @@
+  \Huge \rule{0pt}{2cm}
+  \newcounter{var}
+  \whiledo{\value{var}<9}{%
+    \edef\1{%
+    \noexpand\fontspec[Variant=\thevar,
+      Color=0099\thevar\thevar]{Zapfino}}\1%
+    \makebox[0.75\width]{d}%
+    \stepcounter{var}}
+  \hspace*{2cm}
