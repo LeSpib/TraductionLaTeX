@@ -104,7 +104,8 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
-\usepackage{chngpage,varioref,tabularx,amsmath,amsthm}
+\usepackage[french]{varioref}
+\usepackage{chngpage,tabularx,amsmath,amsthm}
 \usepackage
  [\GinDriver,hyperindex=false,bookmarks,bookmarksopen,bookmarksopenlevel=1,%
   pdftitle={xcolor \XCfileversion{} (\XCfiledate)},pdfauthor={Dr. Uwe Kern},%
@@ -442,7 +443,7 @@
 % \Option{noxcdraw}& (Valeur par défaut.) Utilise un code générique pour dessiner les encadrements et boîets de couleur.\footnotemark[2]\\
 % \Option{fixinclude}& Empêche la réinitialisation de couleur de |dvips| avant l'inclusion de fichier \File{.eps} (voir section \vref{sec.fixinclude}).\\
 % \hline
-% \Option{showerrors}& (Default.) Display an error message if an undefined color is being used (same behaviour as in the original \LCP).\\
+% \Option{showerrors}& (Valeur par défaut.) Affiche un message d'erreur si une couleur non définie est utilisée (comportement similaire à celui de l'\LCP\ originale).\\
 % \Option{hideerrors}& Affiche seulement une alerte en cas d'utilisation d'une couleur non définie et remplace cette couleur par du \Color{noir}.\\
 % \hline\hline
 % \multicolumn2{c}{\footnotemark[1]\,Voir section \vref{sec.additionalcolors}.\quad \footnotemark[2]\,Voir section \vref{sec.fbox}.}\\
@@ -520,27 +521,27 @@
 % Notez bien que le support de ces couleurs est indépendant du pilote graphique
 % choisi.
 %
-% Ce \og support des modèles colorimétriques \fg{} permet aussi de spécifier des couleurs directement avec leurs paramètres, par exemple avec |\textcolor[cmy]{0.7,0.5,0.3}{toto}| (\textcolor[cmy]{0.7,0.5,0.3}{toto}) ou |\textcolor[HTML]{AFFE90}{toto}| (\textcolor[HTML]{AFFE90}{toto}).
+% Ce support permet d'ailleurs de spécifier des couleurs directement avec leurs paramètres, par exemple avec |\textcolor[cmy]{0.7,0.5,0.3}{toto}| (\textcolor[cmy]{0.7,0.5,0.3}{toto}) ou |\textcolor[HTML]{AFFE90}{toto}| (\textcolor[HTML]{AFFE90}{toto}).
 %
-% \tradini
 % \paragraph{\Model{rgb}, \Model{cmyk}, \Model{hsb}, \Model{gray}}
-% These are the models supported by \Index{PostScript} directly.
-% We therefore refer to \cite{plrm} for a description of their properties and relations.
-% There is a special command
+% Ce sont les modèles supportés directement par \Index{PostScript}.
+% C'est pourquoi \trad{nous nous référons} à \cite{plrm} pour une description de leurs propriétés et relations.
+% Il existe une commande spécifique
 % \DescribeMacro\adjustUCRBG
-% to fine-tune the mechanisms of \emph{undercolor-removal} and \emph{black-generation} during conversion to the \Model{cmyk} model, see section \vref{sec.cmy2cmyk} for details.
+% pour régler finement les mécanismes de \trad{\emph{undercolor-removal}} and \trad{\emph{black-generation]}} durant la conversion vers le modèle \Model{cmyk}, voir section \vref{sec.cmy2cmyk} pour plus de détails.
 %
 % \paragraph{\Model{cmy}}
-% This is mainly a model for intermediary calculation steps.
-% With respect to that, it is a simple complement of \Model{rgb}.
-% As far as visualisation is concerned, \Model{cmy} is treated as \Model{cmyk} with $k=0$.
+% Il s'agit principalement d'un modèle pour les étapes de calcul intermédiaire.
+% De ce fait, il s'agit d'un simple complément de \Model{rgb}.
+% En terme d'affichage, \Model{cmy} est traité comme \Model{cmyk} avec $k=0$.
 %
 % \paragraph{\Model{HTML}}
-% This is a model derived from \Model{rgb} in order to enable input of color parameters from web pages or CSS files.
-% Therefore, it is not really a color model of its own right, but rather a user interface for convenience.
-% It is worth mentioning that \Model{HTML} accepts any combination of the characters |0|--|9|, |A|--|F|, |a|--|f|, as long as the string has a length of exactly 6~characters.
-% However, outputs of conversions to \Model{HTML} will always consist of numbers and \emph{uppercase} letters.
+% Ce modèle est dérivé de \Model{rgb} afin de permettre l'entrée de paramètres de couleurs pour les pages web ou les fichiers CSS.
+% Aussi, ce n'est pas un modèle colorimétrique en tant que tel mais plutôt une interface utilisateur commode.
+% Il est important de mentionner que \Model{HTML} accepte toutes les combinaisons de caractères |0|--|9|, |A|--|F|, |a|--|f|, tant que la chaîne de caractères a une longueur de 6 caractères exactement.
+% Cependant, les résultats de conversion en \Model{HTML} consisteront en des nombres et des lettres \emph{majuscules}.
 %
+% \tradini
 % \paragraph{\Model{Hsb}, \Model{tHsb}}
 % Firstly, \Model{Hsb} is a `user interface' model, mapping $\emph{hue}\in[0,1]$ onto $\emph{hue\Circ}\in[0,H]$, where $H$ is given by |\def\rangeHsb|\marg{H}.
 % \DescribeMacro\rangeHsb
