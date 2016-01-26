@@ -730,14 +730,13 @@ retrancher une commande de mise en forme.
 \subsection{Paramétrages étendus}
 %~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\tradini The first argument of both |\titleformat| and |\titlespacing| has an 
-extended syntax which
-allows to set different formats depending on the context.\footnote{% 
-The \textsf{keyval} package is required for making use of it.} This 
-argument can be a list of key/value pairs in the form:
+Le premier argument de |\titleformat| et de |\titlespacing| 
+dispose d'une syntaxe étendue qui permet de \trad{fixer} différentes mises en forme
+dépendant du contexte\footnote{L'extension \textsf{keyval} est requise pour pouvoir utiliser cette syntaxe.}. Cet argument peut être une liste de paires clé/valeur de la forme :
 \begin{desc}
-|<key>=<value>, <key>=<value>, <key>, <key>,...|
+|<clé>=<valeur>, <clé>=<valeur>, <clé>, <clé>,...|
 \end{desc}
+\tradini 
 Currently, only pages and unnumbered versions are taken care of,
 besides the sectioning command name. Thus, the available keys are:
 \begin{itemize}
