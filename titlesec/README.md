@@ -18,10 +18,10 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *ti
   - [x] Outils liés à l'espacement
   - [x] Filets
   - [x] Styles de page
-  - [x] Saut de page
-  - [ ] Autres options de l'extension
-  - [ ] Extended Settings
-  - [ ] Creating new levels and changing the class
+  - [x] Sauts de page
+  - [x] Autres options de l'extension
+  - [x] Paramétrages étendus
+  - [ ] Création de nouveaux niveaux et changement de classe
 - [ ] Notes additionnelles (2 pages)
 - [ ] titleps et styles de page (6 pages)
 - [ ] La table des matières : l'extension titletoc (1 page)

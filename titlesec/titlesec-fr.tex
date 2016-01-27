@@ -736,28 +736,24 @@ dépendant du contexte\footnote{L'extension \textsf{keyval} est requise pour pou
 \begin{desc}
 |<clé>=<valeur>, <clé>=<valeur>, <clé>, <clé>,...|
 \end{desc}
-\tradini 
-Currently, only pages and unnumbered versions are taken care of,
-besides the sectioning command name. Thus, the available keys are:
+
+Actuellement, seules les pages et les versions non numérotées sont prises en charge, \trad{besides} le nom de la commande de sectionnement. Ainsi, les clés disponibles sont :
 \begin{itemize}
-\item |name|. Allowed values are |\chapter|, |\section|, etc.
-\item |page|. Allowed values are |odd| or |even|.
-\item |numberless|. A valueless key. it is not necessary unless you
-want to set different numbered (without this key) and unnumbered
-(with |numberless|) variants.
+\item |name|. Les valeeurs possibles sont |\chapter|, |\section|, etc.
+\item |page|. Les valeurs possibles sont |odd| ou |even|.
+\item |numberless|. Une clé sans valeur. Elle ne sert que si vous souhaitez disposer de 
+variantes numérotées (sans cette clé) et non numérotées (avec |numberless|).
 \end{itemize}
-The basic form described above with the name of a sectioning
-command, say
+La forme basique décrite ci-dessus avec le nom de la commande de sectionnement, par exemple
 \begin{verbatim}
 \titleformat{\section} ...
 \end{verbatim}
-is in fact an abbreviation for
+est en fait une abréviation pour
 \begin{verbatim}
 \titleformat{name=\section} ...
 \end{verbatim}
-
-Let's suppose we'd like a layout with titles in the
-outer margin. We might set something like
+Supposons que nous souhaitons une mise en page avec des titres dans la marge extérieure. 
+Nous pourrions définir quelque chose comme 
 \begin{verbatim}
 \titleformat{name=\section,page=even}[leftmargin]
   {\filleft\scshape}{\thesection}{.5em}{}
@@ -765,41 +761,38 @@ outer margin. We might set something like
 \titleformat{name=\section,page=odd}[rightmargin]
   {\filright\scshape}{\thesection}{.5em}{}
 \end{verbatim}
-Since the page information is written to the |aux| file, at
-least two runs are necessary to get the desired result.
+Dans la mesure où l'information de page est écrite dans le fichier |aux|, il faut deux compilations au minimum pour obtenir le résultat souhaité.
 
-The ``number'' version is usually fine when generating unnumbered 
-variants since removing the label is the only change required in most 
-cases, but if you need some special formatting, there is the 
-|numberless| key which defines an alternative version for sections 
-without numbers (namely those with level below |secnumdepth|, in the 
-front and back matters and, of course, the starred version). For 
-instance
+
+La version numérotée est généralement une base convenable pour parvenir à générer la 
+version non numérotée car la suppression de la numérotation est le seul changement 
+requis dans la plupart des cas. Mais, si vous avez besoin de mises en forme spéciales, 
+la clé |numberless| existe et définit une version alternative des sections sans numéros 
+(autrement dit celles avec un niveau sous |secnumdepth|, dans la \trad{front and back 
+matters} et, bien entendu, la version étoilée). Par exemple
 \begin{verbatim}
-\titleformat{name=\section}{...% The normal definition follows
-\titleformat{name=\section,numberless}{...% The unnumbered
-% definition follows
+\titleformat{name=\section}{...% La définition normale suit
+\titleformat{name=\section,numberless}{...% La définition 
+% non numérotée suit
 \end{verbatim}
-Neither |<label>| nor |<sep>| are ignored in |numberless|
-variants.
+|<label>| et |<sep>| ne sont pas ignorés dans les variantes avec |numberless|.
 
-These keys are available to both |\titleformat| and
-|\titlespacing|. By using |page| in one (or both) of them, odd and
-even pages will be formatted differently. Actually,
-``even'' and ``odd'' are well established \LaTeX{} terms, but
-misleading. In one side printing the ``odd'' pages refer
-to ``even'' pages as well (cf.\@ |\oddsidemargin|.)
+Ces clés sont disponibles à la fois pour |\titleformat| et |\titlespacing|. 
+En utilisant |page| dans l'une d'elles (ou les deux), les pages paires et impaires
+seront mises en forme différemment. En effet, \og paire \fg{} et \og impaire \fg{}
+sont des termes bien établis avec \LaTeX{} mais souvent source de confusion. Dans une 
+impression en recto uniquement, les pages \og impaires \fg{} sont également des
+pages \og paires \fg{} (cf.\@ |\oddsidemargin|).
 
-If you intend to create different odd/even \emph{and} 
-different numbered/unnumbered versions, it is recommended defining
-the four variants. 
+Si vous souhaitez créer différentes versions pour les pages paires/impaires \emph{et}
+avec ou sans numérotation, il est recommandé de définir quatres variantes.
 
-If you remove the page specifier from a sectioning command you
-must remove the |.aux| file.
+Si vous retirez la clé |page| d'une commande de sectionnement, vous devez supprimer le
+fichier |.aux|.
 
-\subsection{Creating new levels and changing the class}
+\subsection{Création de nouveaux niveaux et changement de classe}
 
-While the shapes and the like modify the behaviour of titles related
+\tradini While the shapes and the like modify the behaviour of titles related
 to the surrounding text, title classes allow to change the generic
 behaviour of them.  With the help of classes you may insert, say, a
 new |subchapter| level between |chapter| and |section|, or creating a
