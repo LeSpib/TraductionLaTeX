@@ -541,38 +541,38 @@
 % Il est important de mentionner que \Model{HTML} accepte toutes les combinaisons de caractères |0|--|9|, |A|--|F|, |a|--|f|, tant que la chaîne de caractères a une longueur de 6 caractères exactement.
 % Cependant, les résultats de conversion en \Model{HTML} consisteront en des nombres et des lettres \emph{majuscules}.
 %
-% \tradini
 % \paragraph{\Model{Hsb}, \Model{tHsb}}
-% Firstly, \Model{Hsb} is a `user interface' model, mapping $\emph{hue}\in[0,1]$ onto $\emph{hue\Circ}\in[0,H]$, where $H$ is given by |\def\rangeHsb|\marg{H}.
+% Premièrement, \Model{Hsb} est un modèle \og interface utilisateur \fg{} transformant $\emph{teinte}\in[0,1]$ en $\emph{teinte\Circ}\in[0,H]$, où $H$ est donné par |\def\rangeHsb|\marg{H}.
 % \DescribeMacro\rangeHsb
-% Thus, if $H=360$, we can think of a circle or wheel to specify the \emph{hue\Circ} parameter.
-% Secondly, \Model{Hsb} is the basis for \Model{tHsb}, also named \pModel{tuned} \Model{Hsb}, which enables the user to apply a piecewise linear transformation on \emph{hue\Circ} by shifting selected \emph{hue\Circ} values forward or backward on the circle.
-% This transformation is defined by |\def\rangetHsb{|$x_1,y_1;x_2,y_2;\dots$|}|
+% Aussi, si $H=360$, nous pouvons penser à un cercle ou une roue pour \trad{décrire} le paramètre \emph{teinte\Circ}.
+% 
+% Deuxièmement, \Model{Hsb} est la base du \Model{tHsb}, également nommé \Model{Hsb} \pModel{réglé},qui permet à l'utilisateur d'appliquer une transformation linéaire \trad{piecewise} sur \emph{teinte\Circ} en déplaçant la \emph{teinte\Circ} sélectionnée en avant ou en arrière sur le cercle.
+% La transformation est définie par |\def\rangetHsb{|$x_1,y_1;x_2,y_2;\dots$|}|
 % \DescribeMacro\rangetHsb
-% which specifies that $\emph{hue\Circ}=x_1$ in \Model{tHsb} means $\emph{hue\Circ}=y_1$ in \Model{Hsb}, etc.
-% For example, \Color{yellow} is at 60\Circ{} in the \Model{Hsb} circle (\Color{red} being at 0\Circ), however, in most color wheels used by artists, \Color{yellow} is at 120\Circ.
-% Therefore, a `|120,60|' entry would make sense if we planned to replicate an artist's color wheel via \Model{tHsb}.
-% See section \vref{sec.tHsb2Hsb} for the exact transformation formula and further restrictions, and section \vref{sec.harmony} for color wheels and color harmonies.
-% Figure \vref{fig.tHsb} may serve for comparison purposes.
+% qui indique que $\emph{hue\Circ}=x_1$ dans \Model{tHsb} signifie $\emph{hue\Circ}=y_1$ dans \Model{Hsb}, etc.
+% Par exemple, le \Color{jaune} est placé à 60\Circ{} dans le cercle \Model{Hsb} (le \Color{rouge} étant à 0\Circ); cependant dans la plus plupart des cercles chromatiques servant aux artistes, le \Color{jaune} est à 120\Circ.
+% Ainsi, une entrée \og |120,60| \fg{} ferait sens si nous avions décidé de répliquer un cercle chromatique d'artiste par le biais de \Model{tHsb}.
+% Voir la section \vref{sec.tHsb2Hsb} pour la formule exacte de la transformation et les restrictions avancées, et la section \vref{sec.harmony} pour les cercles chromatiques et les accords de couleur.
+% La figure \vref{fig.tHsb} peut servir pour effectuer des comparaisons.
 %
-% Example: `|\def\rangetHsb{|\texttt{\rangetHsb}|}|' is in fact \XC's default setting.
+% Exemple: `|\def\rangetHsb{|\texttt{\rangetHsb}|}|' correspond en fait au paramétrage par défaut de \XC.
 %
 % \paragraph{\Model{wave}}
-% With this model we try to make wavelengths transformable to standard color models, in order to approximate the visual appearance of light waves.
-% While the visible spectrum covers a range of approximately 400--750\,nm, the implementation in \XC{} generally allows for all real `wavelengths' $\lambda$ that have an absolute value less than \csname strip@pt\endcsname\maxdimen{} (the biggest number \TeX{} can represent as a dimension).
-% However, the probability of getting any non-black color outside the range of $\lambda\in[363,814]$ is exactly zero.
-% Therefore, figure \vref{fig.spectrum} illustrates only the mentioned wavelength interval.
-% Note that it is not possible to convert other models to \Model{wave} in a sensible way, since the latter covers only a limited range of colors.
+% Avec ce modèle nous essayons de transformer les longueurs d'onde en un modèle de colorimétrique standard afin de réaliser une approximation de l'apparence visuelle des ondes lumineuses.
+% Tandis que le spectre visible couvre un intervalle de valeur de 400 à 750 nm, l'implémentation dans \XC{} permet de traiter toutes les longueurs d'onde qui ont une valeur absolue inférieur à \csname strip@pt\endcsname\maxdimen{} (le plus grand nombre que \TeX{} puisse considérer comme une dimension).
+% Toutefois, la probabilité d'obtenir une couleur différente du noir hors de plage de valeur $[363,814]$ est très précisément nulle.
+% Aussi, la figure \vref{fig.spectrum} illustre seulement l'intervalle de valeur mention ci-dessus.
+% Notez qu'il n'est pas possible de convertir fidèlement les autres modèles en \Model{wave} puisque ce dernier ne couvre qu'un ensemble limité de couleurs. 
 %
 % \paragraph{\Model{RGB}, \Model{HSB}, \Model{Gray}}
-% These are derived models, turning the continuous $[0,1]$ parameter ranges of \Model{rgb}, \Model{hsb}, and \Model{gray} to finite sets of integers; we therefore use the term \emph{integer models}.
-% The constants $L, M, N$ of table \ref{tab.mod} are defined via the commands |\def\rangeRGB|\marg{L},
+% Ce sont des modèles dérivés, transformant la plage de valeurs continue $[0,1]$ des paramètres de \Model{rgb}, \Model{hsb} et \Model{gray} en un ensemble de valeurs finies ; ce qui nous nous fait les désigner par le terme de \emph{modèles entiers}.
+% Les constantes $L, M, N$ de la table \ref{tab.mod} sont définies par les commandes |\def\rangeRGB|\marg{L},
 % \DescribeMacro\rangeRGB
 % |\def\rangeHSB|\marg{M},
 % \DescribeMacro\rangeHSB
 % and |\def\rangeGray|\marg{N}.
 % \DescribeMacro\rangeGray
-% Changes of these constants can be done \emph{before} or \emph{after} the \XCP{} is loaded, e.g.,
+% La modification de ces constantes peut être fait \emph{avant} ou \emph{après} que l'\XCP{} ait été chargée, par exemple :
 % \label{ex.range}\begin{verbatim}
 % \documentclass{article}
 % ...
@@ -589,8 +589,9 @@
 % \end{verbatim}
 %
 %
-% \subsubsection{Substituting individual color models}\label{sec.subst}
+% \subsubsection{Substitution de modéles colorimétriques individuels}\label{sec.subst}
 %
+% \tradini
 % \DescribeMacro\substitutecolormodel
 %   \marg{source model}\marg{target model-list}\\
 % Substitute \Meta{source model} by the first actually present model that occurs in \Meta{target model-list}.
