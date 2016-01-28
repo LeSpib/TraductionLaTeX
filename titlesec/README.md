@@ -26,7 +26,7 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *ti
   - [x] Numérotations à largeur fixée
   - [ ] Versions étoilées
   - [ ] Variantes
-  - [ ] Mettre un point après un titre de section
+  - [ ] Placement d'un point après un titre de section
 - [ ] titleps et styles de page (6 pages)
 - [ ] La table des matières : l'extension titletoc (1 page)
 - [x] La philosophie de titlesec (1 page)
