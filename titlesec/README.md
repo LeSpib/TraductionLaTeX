@@ -21,8 +21,12 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *ti
   - [x] Sauts de page
   - [x] Autres options de l'extension
   - [x] Paramétrages étendus
-  - [ ] Création de nouveaux niveaux et changement de classe
+  - [x] Création de nouveaux niveaux et changement de classe
 - [ ] Notes additionnelles (2 pages)
+  - [x] Numérotations à largeur fixée
+  - [ ] Versions étoilées
+  - [ ] Variantes
+  - [ ] Mettre un point après un titre de section
 - [ ] titleps et styles de page (6 pages)
 - [ ] La table des matières : l'extension titletoc (1 page)
 - [x] La philosophie de titlesec (1 page)

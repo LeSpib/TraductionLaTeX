@@ -620,9 +620,10 @@ placé dans la boîte principal avec l'alignement indiqué. Il n'y a pas d'équi
 
 \subsection{Styles de page}
 
-\fbox{2.8} Vous pouvez assigner un style de page à des \trad{niveaux de classe} |top| 
-ou |page|, aussi bien qu'au chapitre de base avec la commande 
-suivante\footnote{Nommée dans l'éphémère version 2.7 \texttt{\string\titlepagestyle}.} :
+\fbox{2.8} Vous pouvez assigner un style de page à des niveaux ayant la classe |top| 
+ou |page| (voir \ref{classes}, page \pageref{classes}), aussi bien qu'au chapitre de 
+base avec la commande suivante\footnote{Nommée dans l'éphémère version 2.7 
+\texttt{\string\titlepagestyle}.} :
 \begin{desc}
 |\assignpagestyle{<commande>}{<style de page>}|
 \end{desc}
@@ -655,9 +656,10 @@ une nouvelle page; ceci est accompli avec:
 \end{verbatim}
 
 \fbox{2.6} \verb|\<section>break| est également disponible avec la classe 
-\trad{\verb|top|}. Les valeurs admises sont \verb|\cleardoublepage| (valeur par 
+\verb|top|. Les valeurs admises sont \verb|\cleardoublepage| (valeur par 
 défaut avec \verb|openright|) et \verb|\clearpage| (valeur par défaut avec 
-\verb|openany|). Ainsi, vous pouvez annuler l'effet de \verb|openright| en définissant \verb|\chapterbreak| comme \verb|\clearpage|, du moment que sa 
+\verb|openany|). Ainsi, vous pouvez annuler l'effet de \verb|openright| en définissant 
+\verb|\chapterbreak| comme \verb|\clearpage|, du moment que sa 
 classe a été changée en \verb|top| (dans cet exemple, les parties conserveront 
 le paramétrage \verb|openright|).
 
@@ -685,7 +687,8 @@ titre dans la classe est \trad{top}).
 |explicit| \quad (option d'extension)
 \end{desc}
 
-\fbox{2.7} Avec cette option, le titre n'est pas implicite à la fin de |<code-avant>| mais doit être indiqué explicitement avec |#1| comme dans, par exemple :
+\fbox{2.7} Avec cette option, le titre n'est pas implicite à la fin de |<code-avant>| 
+mais doit être indiqué explicitement avec |#1| comme dans, par exemple :
 \begin{verbatim} 
 \titleformat{\section}
  {..}
@@ -731,15 +734,18 @@ retrancher une commande de mise en forme.
 %~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Le premier argument de |\titleformat| et de |\titlespacing| 
-dispose d'une syntaxe étendue qui permet de \trad{fixer} différentes mises en forme
-dépendant du contexte\footnote{L'extension \textsf{keyval} est requise pour pouvoir utiliser cette syntaxe.}. Cet argument peut être une liste de paires clé/valeur de la forme :
+dispose d'une syntaxe étendue qui permet de paramétrer différentes mises en forme
+dépendant du contexte\footnote{L'extension \textsf{keyval} est requise pour pouvoir 
+utiliser cette syntaxe.}. Cet argument peut être une liste de paires clé/valeur de 
+la forme :
 \begin{desc}
 |<clé>=<valeur>, <clé>=<valeur>, <clé>, <clé>,...|
 \end{desc}
 
-Actuellement, seules les pages et les versions non numérotées sont prises en charge, \trad{besides} le nom de la commande de sectionnement. Ainsi, les clés disponibles sont :
+Actuellement, seules les pages et les versions non numérotées sont prises en charge, 
+\trad{besides} le nom de la commande de sectionnement. Ainsi, les clés disponibles sont :
 \begin{itemize}
-\item |name|. Les valeeurs possibles sont |\chapter|, |\section|, etc.
+\item |name|. Les valeurs possibles sont |\chapter|, |\section|, etc.
 \item |page|. Les valeurs possibles sont |odd| ou |even|.
 \item |numberless|. Une clé sans valeur. Elle ne sert que si vous souhaitez disposer de 
 variantes numérotées (sans cette clé) et non numérotées (avec |numberless|).
@@ -761,15 +767,17 @@ Nous pourrions définir quelque chose comme
 \titleformat{name=\section,page=odd}[rightmargin]
   {\filright\scshape}{\thesection}{.5em}{}
 \end{verbatim}
-Dans la mesure où l'information de page est écrite dans le fichier |aux|, il faut deux compilations au minimum pour obtenir le résultat souhaité.
+Dans la mesure où l'information de page est écrite dans le fichier |aux|, il faut deux 
+compilations au minimum pour obtenir le résultat souhaité.
 
 
 La version numérotée est généralement une base convenable pour parvenir à générer la 
 version non numérotée car la suppression de la numérotation est le seul changement 
 requis dans la plupart des cas. Mais, si vous avez besoin de mises en forme spéciales, 
 la clé |numberless| existe et définit une version alternative des sections sans numéros 
-(autrement dit celles avec un niveau sous |secnumdepth|, dans la \trad{front and back 
-matters} et, bien entendu, la version étoilée). Par exemple
+(autrement dit celles avec un niveau sous |secnumdepth|, dans les parties préliminaires et 
+annexes du document\footnote{respectivement obtenue avec |\cs{frontmatter}| et |\cs{backmatter}|.}
+et, bien entendu, la version étoilée). Par exemple
 \begin{verbatim}
 \titleformat{name=\section}{...% La définition normale suit
 \titleformat{name=\section,numberless}{...% La définition 
@@ -790,104 +798,104 @@ avec ou sans numérotation, il est recommandé de définir quatres variantes.
 Si vous retirez la clé |page| d'une commande de sectionnement, vous devez supprimer le
 fichier |.aux|.
 
-\subsection{Création de nouveaux niveaux et changement de classe}
+\subsection{Création de nouveaux niveaux et changement de classe} \label{classes}
 
-\tradini While the shapes and the like modify the behaviour of titles related
-to the surrounding text, title classes allow to change the generic
-behaviour of them.  With the help of classes you may insert, say, a
-new |subchapter| level between |chapter| and |section|, or creating a
-scheme of your own.  \emph{Making a consistent scheme and defining all
-of related stuff like counters, macros, format, spacing and, if there
-is a TOC, TOC format is left to the responsibility of the user.} There
-are three classes: |page| is like the book |\part|, in a single page,
-|top| is like |\chapter|, which begins a page and places the title at
-the top, and |straight| is intended for titles in the middle of
-text.\footnote{There is an further class named |part| to emulate the
-article |\cs{part}|, but you should not use it at all.  Use the
-|straight| class instead.  Remember some features rely in these
-classes and \textsf{titlesec} does not change by default the
-definition of \texttt{\string\part} and \texttt{\string\chapter}.}
+Quand les formes et autres modifient le comportement des titres en lien avec le texte
+voisin, les classes de titre autorisent le changement de leur comportement générique.
+Avec l'aide des classes, vous pouvez insérer, par exemple, un nouveau niveau |subchapter| 
+entre |chapter| et |section|, ou créer un nouveau plan de votre cru \emph{Faire un plan
+cohérent et définir tous les éléments liés comme les compteurs, les commandes, les 
+formats, l'espacement et, s'il y a une table des matières, le format de cette table est
+laissé à la responsabilité de l'utilisateur.}. Il existe trois classes : |page| est comme
+|\part| (issue de la classe book) sur une page séparée, |top| est comme |chapter| en 
+commençant sur une nouvelle page et en plaçant le titre en haut de page, |straight| est
+pensé pour les titres en milieu de texte\footnote{Il existe une autre classe nommée
+|part| qui sert à émuler le |\cs{part}| de la classe article mais vous ne devriez pas 
+l'utiliser du tout. Utiliser la classe |straight| à la place. Rappelez vous que certaines
+fonctionnalités reposent sur ces classes et que ne change pas \textsf{titlesec} par défaut 
+les définitions de \texttt{\string\part} et \texttt{\string\chapter}.}. 
 
 \begin{desc}
-|\titleclass{<name>}{<class>}|\\
-|\titleclass{<name>}{<class>}[<super-level-cmd>]|
+|\titleclass{<nom>}{<classe>}|\\
+|\titleclass{<nom>}{<classe>}[<commande-du-niveau-supérieur>]|
 \end{desc}
 
-If you do not use the optional argument, you just change
-the |<class>| of |<name>|. For example:
+Si vous n'utilisez pas l'argument optionnel, vous changez juste la |<classe>| de
+|<nom>|. Par exemple:
 \begin{verbatim}
 \titleclass{\part}{straight}
 \end{verbatim}
-makes |part| of |straight| class.
+attribue la classe |straight| à |part|.
 
-When the second form is used, the level number is the following of 
-|<super-level-cmd>|. For example:
+Quand la seconde forme est utilisée, le numéro du niveau est directement sous celui du
+|<commande-du-niveau-supérieur>|. Par exemple:
 \begin{verbatim}
 \titleclass{\subchapter}{straight}[\chapter]
 \newcounter{subchapter}
 \renewcommand{\thesubchapter}{\Alph{subchapter}}
 \end{verbatim}
-creates a level under chapter (some additional code is shown as well,
-but you must add to it the corresponding |\titleformat| and 
-|\titlespacing| settings).\footnote{Regarding counters, the
-\textsf{remreset} package can be useful.}
-If the chapter level is 0, then the subchapter one is 1; the levels 
-below are increased by one (section is 2, subsection is 3, and so on).
+crée un niveau sous celui du chapitre (du code additionnel est montré ici 
+mais vous devez lui ajouter les paramétrages |\titleformat| et|\titlespacing| 
+correspondant)\footnote{En ce qui concerne les compteurs, l'extension 
+\textsf{remreset} peut être utile.}. 
+Si le niveau du chapitre est zéro alors celui du sous-chapitre est 1; les
+niveaux en dessous sont incrémenté de 1 (la section devient 2, la sous-section 3
+et ainsi de suite).
 
+Il existe deux commandes de sectionnement qui exécutent quelques actions 
+supplémentaires selon leur nom et ignorant la classe :
 There are two sectioning commands which perform some extra actions
 depending of its name and ignoring the class:
 \begin{itemize}
-\item |\chapter| logs the string defined in |\chaptertitlename|
- and the matter is taken into account.
-\item |\part| does not encapsulates the label in the toc entry,
-except if you use the |newparttoc| option.
+\item |\chapter| enregistre la chaîne définie dans |\chaptertitlename| et la prend
+ en compte.
+\item |\part| n'encapsule pas la numérotation de l'entrée en table des 
+matières sauf si vous utilisez l'option |newparttoc|.
 \end{itemize}
 
 \begin{desc}
-|loadonly| \quad (Package option)
+|loadonly| \quad (option d'extension)
 \end{desc}
 
-Let us suppose you want to create your sectioning commands from scratch.
-This package option ignores any previous definitions, if any,
-and hence removes the possibility of using the options described
-in ``Quick Reference.'' Then you use the \textsf{titlesec}
-tools, and define the corresponding counters and labels.
+Supposons que vous voulez créer vos commandes de sectionnement à partir 
+de rien. Cette option d'extension ignore tous les définitions antérieures, si elles
+existent, et retire ainsi la possibilité d'utiliser les options décrites dans
+\og Interface simple \fg{}. Alors, vous pouvez utiliser les outils de 
+\textsf{titlesec} et construire les compteurs et numérotations correspondantes.
 
 \begin{desc}
-|\titleclass{<name>}[<start-level-num>]{<class>}|
+|\titleclass{<nom>}[<numéro-de-niveau-initial>]{<classe>}|
 \end{desc}
 
-Here, the |<name>| title is considered the top level, with number
-|<start-level-num>| (typically 0 or $-$1).  It should be used only
-when creating sectioning commands from scratch with the help of
-|loadonly|, and there must be exactly one (no more, no less)
-declaration of this kind.  After it, the rest of levels are added as
-explained above.
+Ici, le titre |<nom>| est considéré comme le plus haut niveau, avec un
+numéro |<numéro-de-niveau-initial>| (typiquement 0 ou $-$1). Cette commande devrait
+être maniée uniquement lors de la création de commande de sectionnement à partir de
+rien avec l'aide de |loadonly| et il doit y avoir une unique déclaration de ce type.
+Après celle-ci, le reste des niveaux est ajouté comme défini ci-dessus.
 
-\section{Additional Notes}
+\section{Notes additionelles}
 %~~~~~~~~~~~~~~~~~~~~~~~~
 
-This part describes briefly some \LaTeX{} commands, useful
-when defining sectioning titles.
+Cette partie décrit brièvement quelques commandes \LaTeX{}, utiles lors de la définition
+de commandes de sectionnement.
 
-\subsection{Fixed Width Labels}
+\subsection{Numérotations à largeur fixée}
 
-The |\makebox| command allows to use fixed width label, which
-makes the left margin of the actual title (not the label) to lie
-in the same place. For instance (only the relevant code is
-provided):
+La commande |\makebox|  permet d'utiliser une numérotation à largeur fixée, ce qui
+fait reposer la marge gauche du titre actuel (pas la numérotation) au même endroit.
+Par exemple (seul le code important est indiqué) :
 \begin{verbatim}
 \titleformat{\section}
   {..}
   {\makebox[2em]{\thesection}}{..}{..}
 \end{verbatim}
 
-See your \LaTeX{} manual for further reference on boxing commands.
+Voir votre manuel \LaTeX{} pour plus d'information sur les commandes portant sur les boîtes.
 
-\subsection{Starred Versions}
+\subsection{Versions étoilées}
 \label{s:starred}
 
-Using sectioning commands in the starred version is strongly 
+\tradini Using sectioning commands in the starred version is strongly 
 discouraged.  Instead, you can use a set of markup oriented commands 
 which are easy to define and modify, if necessary.  Thus, you can test 
 different layouts before choosing amongst them.
@@ -962,7 +970,7 @@ While the standard \LaTeX{} commands are easier and more
 direct for simple cases, I think the proposed method above is
 far preferable in large documents.
 
-\subsection{Variants}
+\subsection{Variantes}
 
 Let's suppose we want to mark some sections as ``advanced topics''
 with an asterisk after the label.
@@ -989,7 +997,7 @@ That marks sections but not subsections. If you like being
 redundant and marking the subsection level as well, you must
 define it accordingly.
 
-\subsection{Putting a Dot after the Section Title}
+\subsection{Placement d'un point après un titre de section}
 \label{sec:dotafter}
 
 Today this styling is not used, but formerly it was fairly common.
