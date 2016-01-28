@@ -47,6 +47,8 @@ Ces marques sont gérées par quelques commandes placées en préambule de docum
 
 De nombreux termes se retrouvent dans les différentes documents traduits. Cette section sert de pense-bête sur ce sujet en regroupant certains de ces termes. Chaque traduction d'extension reprend dans son ReadMe dédié ce principe, de façon plus ciblée.
 
+- *control sequence* : commande ;
+- *cropmarks* : traits de coupe (source Wiktionnaire) ;
 - *driver* : pilote (informatique, graphique...) ;
 - *error report* : rapports d'erreur ;
 - *package* : extension.

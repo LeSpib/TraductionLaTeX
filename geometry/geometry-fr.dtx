@@ -105,6 +105,9 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 \usepackage{graphicx}
 \usepackage[a4paper, hmargin=2.5cm, vmargin=1cm, 
         includeheadfoot]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
 % Bloc pour traduction
 \usepackage{color}
 \usepackage{pifont}
@@ -199,69 +202,71 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % \end{abstract}
 %
 % \section{Préface à la version 5}
-% \tradini
+% 
 %
 % \begin{itemize}
-%  \item \textbf{Changing page layout mid-document.}\par
-%   The new commands \cs{newgeometry\{$\cdots$\}} and
-%   \cs{restoregeometry} allow users to change page dimensions in the
-%   middle of the document. \cs{newgeometry} is almost similar to 
-%   \cs{geometry} except that \cs{newgeometry} disables all the options
-%   specified in the preamble and skips the papersize-related options:
-%    |landscape|, |portrait| and paper size options (such as
-%    |papersize|, |paper=a4paper| and so forth).
-%  \item \textbf{A new set of options to specify the layout area.}\par
-%   The options specified for the area, in which the page dimensions
-%   are calculated, are added: \textsf{layout}, \textsf{layoutsize}, 
-%   \textsf{layoutwidth}, \textsf{layoutheight} and so forth.
-%   These options would help to print the specified
-%   layout to a different sized paper.  For example, with |a4paper|
-%   and |layout=a5paper|, the \Gm\ package uses `A5' layout to
-%   calculate margins with the paper size still `A4'.
-%  \item \textbf{A new driver option |xetex|.}\par
-%   The new driver option |xetex| is added. The driver auto-detection
-%   routine has been revised so as to avoid an error with undefined
-%   control sequences. Note that `geometry.cfg' in \TeX{} Live, which
-%   disables the auto-detection routine and sets |pdftex|, is no
-%   longer necessary and has no problem even though it still exists.
-%   To set |xetex| is strongly recommended with \XeLaTeX{}.
-%  \item \textbf{New paper size presets for JIS B-series and ISO C-series.}\par
-%   The papersize presets |b0j| to |b6j| for JIS (Japanese Industrial
-%   Standards) B-series and |c0paper| to |c6paper| for ISO C-series
-%   (v5.4$\sim$) are added.
-%  \item \textbf{Changing default for underspecified margin.}\par
-%   In the previous version, if only one margin was specified,
-%   |bottom=1cm| for example, then \Gm\ set the other margin with
-%   the margin ratio (1:1 by default for the vertical dimensions)
-%   and got |top=1cm| in this case.
-%   The version 5 sets the text-body size with the default |scale|
-%   ($=0.7$) and determine the unspecified margin. (See Section~\ref{sec:rules}) 
-%  \item \textbf{The option |showframe| and |showcrop| works on every page.}\par
-%   With |showframe| option, the page frames are shown on every page.
-%   In addition, a new option |showcrop| prints crop marks at each
-%   corner of layout area on every page. Note that the marks would be
-%   invisible without specifying the layout size smaller than paper size.
-%   Version 5.4 introduced a new |\shipout| overloading process using
-%   \textsf{atbegshi} package, so the \textsf{atbegshi} package
-%   is required when showframe or showcrop option is specified.
-%  \item \textbf{Loading geometry.cfg precedes processing class options.}\par
-%    The previous version loaded \textsf{geometry.cfg} after
-%    processing the document class options.  Now that the config file is
-%    loaded before processing the class options, you can change the
-%    behavior specified in \textsf{geometry.cfg} by adding options
-%    into |\documentclass| as well as |\usepackage| and |\geometry|.
-%  \item \textbf{Deleted options: |compat2| and |twosideshift|.}
-%    The version 5 has no longer compatibility with the previous ones.
-%    |compat2| and |twosideshift| are gone for simplicity. 
+%  \item \textbf{Changement de la mise en page en cours de document.}\par
+%   Les nouvelles commandes \cs{newgeometry\{$\cdots$\}} et \cs{restoregeometry}
+%   permettent à l'utilisateur de changer les dimensions de la page en cours
+%   de document. \cs{newgeometry} est assez similaire à \cs{geometry}, à ceci
+%   près que \cs{newgeometry} désactive toutes les options indiquées dans le
+%   préambule mais conserve les options liées à la taille du papier :  
+%   |landscape|, |portrait| et les options de format (telles que |papersize|, 
+%   |paper=a4paper| et ainsi de suite).
+%  \item \textbf{Un nouvel ensemble d'options pour spécifier la zone de mise en page.}\par
+%   Les options spécifiant la zone dans laquelle sont calculées les dimensions de la page 
+%   sont ajoutées : \textsf{layout}, \textsf{layoutsize}, 
+%   \textsf{layoutwidth}, \textsf{layoutheight} et ainsi de suite.
+%   Ces options aident à imprimer la mise en forme pour une autre taille de papier.
+%   Par exemple, avec |a4paper| et |layout=a5paper|, l'extension \Gm\ utilise la mise 
+%   en forme A5 pour calculer les marges avec un format de papier A4.
+%  \item \textbf{Une nouvelle option de pilote |xetex|.}\par
+%   Une nouvelle option de pilote, |xetex|, est ajoutée. La routine d'auto-détection des 
+%   pilotes a été revue pour éviter une erreur avec les commandes non 
+%   définies. Notez que \og geometry.cfg \fg{} (dans \TeX{} Live), qui désactive la routine 
+%   d'auto-détection et sélectionne |pdftex|, n'est plus nécessaire et ne crée plus de 
+%   problème quand bien même il existe toujours. Sélectionner |xetex| est fortement 
+%   recommandé avec \XeLaTeX{}.
+%  \item \textbf{Nouveux formats de papier prédéfinis pour les formats JIS B 
+%  et les formats ISO C}\par
+%   Les formats de papier prédéfinis |b0j| à |b6j| pour les formats JIS 
+%   (Japanese Industrial Standards) B et |c0paper| à |c6paper| pour les formats ISO C
+%   (v5.4$\sim$) sont ajoutés.
+%  \item \textbf{Changement des valeurs par défaut pour les marges sous-définies.}\par
+%   Dans les versions précédentes, si une marge seulement était spécifiée, |bottom=1cm|
+%   par exemple, alors \Gm\ fixait l'autre marge avec le ratio de marge (1\string:1 par défaut
+%   pour les dimensions verticales) et obtenait |top=1cm| dans ce cas.
+%   La version 5 fixe la taille du corps du texte avec la valeur par défaut |scale|
+%   ($=0.7$) et détermine la marge non spécifiée. (Voir Section~\ref{sec:rules}) 
+%  \item \textbf{Les options |showframe| et |showcrop| fonctionnent sur chaque 
+%   page.}\par
+%   Avec l'option |showframe|, le cadre de la page est affiché sur 
+%   chaque page. En complément, une nouvelle option |showcrop| affiche les traits
+%   de coupe à chaque coin de la zone de mise en page sur chaque page.
+%   Notez que les marques seront invisibles sans spécification d'une taille de mise
+%   en page plus petite que la taille du papier. 
+%   La version 5.4 introduit un nouveau processus de débordement |\shipout| utilisant
+%   l'extension \textsf{atbegshi} impliquant le chargement de cette extension quand
+%   les options |showframe| ou |showcrop| sont sélectionnées.
+%  \item \textbf{Le chargement de geometry.cfg précède le traitement des options de 
+%  classe.}\par
+%    La version antérieure chargeait \textsf{geometry.cfg} après avoir traité
+%    les options de classe du document. Maintenant que le fichier de configuration
+%    est chargé avant, vous pouvez changer le comportement indiqué dans  
+%    \textsf{geometry.cfg} en ajoutant des options dans |\documentclass| aussi bien
+%    que dans |\usepackage| et |\geometry|.
+%  \item \textbf{Options supprimées: |compat2| et |twosideshift|.}
+%    La version 5 n'est plus compatible avec ces options |compat2| et |twosideshift| 
+%    pour des raisons de simplification. 
 % \end{itemize}
 %
 % \section{Introduction}
 %
-% To set dimensions for page layout in \LaTeX\ is not straightforward. 
-% You need to adjust several \LaTeX{} native dimensions to place a text area
-% where you want.
-% If you want to center the text area in the paper you use, for example, 
-% you have to specify native dimensions as follows:
+% Fixer des dimensions pour une mise en page sou \LaTeX\ n'est pas immédiat.
+% Vous devez ajuster plusieurs dimensions inhérentes à \LaTeX{} pour placer
+% une zone de texte où vous le souhaitez.
+% Si vous voulez centrer la zone de texte dans un papier que vous utilisez, par exemple,
+% vous devez spécifier les dimensions fondamentales suivantes :
 % \begin{quote}
 %    |\usepackage{calc}|\\
 %    |\setlength\textwidth{7in}|\\
@@ -270,43 +275,43 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    |\setlength\topmargin{(\paperheight-\textheight|\\
 %    |                      -\headheight-\headsep-\footskip)/2 - 1in}|.
 % \end{quote}
-% Without package \textsl{calc}, the above example would need
-% more tedious settings. Package \Gm\ provides an easy
-% way to set page layout parameters. In this case, what you have to do
-% is just
+% Sans l'extension \textsl{calc}, l'exemple ci-dessus demanderait des réglages
+% plus fastidieux. L'extension \Gm\ présente une façon simple de fixer des
+% paramètres de mise en page. Dans ce cas, ce que vous avez à faire est juste  
 % \begin{quote}
 %    |\usepackage[text={7in,10in},centering]{geometry}|. 
 % \end{quote}
-% Besides centering problem, setting margins from each edge of the paper is
-% also troublesome. But \Gm\ also make it easy.
-% If you want to set each margin to 1.5in, you can type
+% En plus du centrage, le réglage des marges par rapport à chaque bord de la feuille
+% est également problématique. Mais \Gm\ simplifie aussi ce point.
+% Si vous souhaitez fixer chaque marge à $1,8$ cm, vous pouvez saisir
 % \begin{quote}
-%    |\usepackage[margin=1.5in]{geometry}| 
+%    |\usepackage[margin=3.8cm]{geometry}| 
 % \end{quote}
-% Thus, the geometry package has an auto-completion mechanism, in which
-% unspecified dimensions are automatically determined.
-% The \Gm\ package will be also useful when you have to set page layout
-% obeying the following strict instructions: for example,
+% De fait, l'extension \Gm\ dispose d'un mécanisme d'auto-complétion dans lequel
+% les dimensions manquantes sont automatiquement déterminées.
+% L'extension \Gm\ sera également utile lorsque vous avez à traiter la mise en page
+% en suivant des instructions strictes. Par exemple,
 % \begin{quote}\slshape
-%   The total allowable width of the text area is $6.5$ inches wide by $8.75$
-%   inches high. The top margin on each page should be $1.2$ inches from
-%   the top edge of the page. The left margin should be $0.9$ inch from 
-%   the left edge. The footer with page number should be at the bottom
-%   of the text area.
-% \end{quote}
-% In this case, using \Gm\ you can type
+%   La largeur maximale de la zone de texte est de $16,5$cm de large par $22,25$ cm
+%   de haut. La marge de tête sur chaque page doit être de $3$ cm depuis le bord 
+%   haut de la feuille. La marge gauche doit être de $2.3$ cm depuis le bord gauche. 
+%   Le pied de page avec le numéro de la page doit être en bas de la zone de texte.
+ % \end{quote}
+% Dans ce cas, avec \Gm\ vous saisissez
 % \begin{quote}
-% |\usepackage[total={6.5in,8.75in},|\\
-% |            top=1.2in, left=0.9in, includefoot]{geometry}|.
+% |\usepackage[total={16.5cm,22.25cm},|\\
+% |            top=3cm, left=2.3cm, includefoot]{geometry}|.
 % \end{quote}
 %
-% Setting a text area on the paper in document preparation system has some
-% analogy to placing a window on the background in the window system. 
-% The name `geometry' comes from the |-geometry| option used for specifying
-% a size and location of a window in X Window System.
+% Définir une zone de texte sur papier dans un système de préparation de document
+% présente certaines analogies avec le placement d'une fenêtre dans un système 
+% d'environnement de bureau. 
+% Le nom \og geometry \fg{} provient de l'option |-geometry| utilisée pour spécifier
+% la taille et la localisation d'une fenêtre dans l'environnement de bureau X Window.
 %
-% \section{Page geometry}
+% \section{Anatomie d'une page}
 %
+% \tradini
 % Figure~\ref{fig:layout} shows the page layout dimensions defined
 % in the \Gm\ package.
 % The page layout contains a \gpart{total body} (printable area) and \gpart{margins}. 

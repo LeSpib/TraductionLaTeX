@@ -3,13 +3,14 @@
 L'objectif est de traduire la documentation de l'extension *geometry* utilisable avec LaTeX.
 
 ### Quelques termes récurrents dans la traduction de ce document
+- *paper size* : format (de papier)
 
 ### Avancement de la traduction, en vision table de matières
 - [ ] En-tête du document tex (définitions, métadonnées)
 - [x] Page d'avant-propos
-- [ ] Preface to version 5 (1 page)
-- [ ] Introduction (1 page)
-- [ ] Page geometry (2 pages)
+- [x] Préface à la version 5 (1 page)
+- [x] Introduction (1 page)
+- [ ] Anatomie d'une page (2 pages)
 - [ ] User interface (1 page)
 - [ ] Option details (6 pages)
 - [ ] Processing options (3 pages)
