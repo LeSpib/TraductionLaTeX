@@ -12,7 +12,7 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *ti
 - [x] Pages d'avant-propos (1 page)
 - [x] Introduction (1 page)
 - [x] Interface simple (1 page)
-- [ ] Interface avancée (7 pages)
+- [x] Interface avancée (7 pages)
   - [x] Format
   - [x] Espacement
   - [x] Outils liés à l'espacement
@@ -22,12 +22,12 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *ti
   - [x] Autres options de l'extension
   - [x] Paramétrages étendus
   - [x] Création de nouveaux niveaux et changement de classe
-- [ ] Notes additionnelles (2 pages)
+- [x] Notes additionnelles (2 pages)
   - [x] Numérotations à largeur fixée
-  - [ ] Versions étoilées
-  - [ ] Variantes
-  - [ ] Placement d'un point après un titre de section
-- [ ] titleps et styles de page (6 pages)
-- [ ] La table des matières : l'extension titletoc (1 page)
+  - [x] Versions étoilées
+  - [x] Variantes
+  - [x] Placement d'un point après un titre de section
+- [ ] L'extension titleps et les styles de page (1 page)
+- [ ] La table des matières : l'extension titletoc (6 pages)
 - [x] La philosophie de titlesec (1 page)
 - [x] Annexes (4 pages)

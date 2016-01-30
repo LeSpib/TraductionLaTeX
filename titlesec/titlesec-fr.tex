@@ -52,8 +52,6 @@
 \usepackage{textcomp,pslatex}
 \usepackage[linktocpage]{hyperref}
 
-% %%%%% Relecture nécessaire à faire, surtout les passages avec des "*" %%%%%
-
 \title{Les extensions \textsf{titlesec}, \textsf{titleps} et \textsf{titletoc} 
 \footnote{L'extension \textsf{titlesec} est actuellement en version 2.10.0.  
 \copyright{} 1998--2011 Javier Bezos. L'extension \textsf{titletoc} est actuellement 
@@ -142,14 +140,13 @@ type |\...mark|, et contenant éventuellement \trad{des marques de haut, de prem
 titres, sans incompatibilités avec la mécanique des flottants. Des éléments 
 décoratifs ajoutés aisément, incluant des environnements d'image.
 
-\item de jolies tables des matières de forme libre, avec la possibiité de grouper les 
+\item de jolies tables des matières de forme libre, avec la possibilité de grouper les 
 entrées de différents niveaux en un paragraphe ou de changer les formats des entrées 
 au milieu d'un document. 
 \end{itemize}
 \textsf{Titlesec} fonctionne avec les classes standards et de nombreuses autres, 
 incluant celles de l'AMS, et elle fonctionne sans aucune difficulté avec 
-\textsf{hyperref}.\footnote{Cependant, notez bien que les classes AMS réimplémentent 
-les commandes internes d'origine. Ces changements seront perdus ici. La 
+\textsf{hyperref}.\footnote{Cependant, notez bien que les classes AMS implémentent à nouveau les commandes internes d'origine. Ces changements seront perdus ici. La 
 compatibilité avec \textsf{hyperref} a été testée avec \textsf{dvips}, 
 \textsf{dvipdfm} et \textsf{pdftex} mais il s'agit d'une fonctionnalité non 
 suivie. Pensez à vérifier que votre version d'\textsf{hyperref} est compatible 
@@ -162,7 +159,7 @@ Redéfinissez alors les commandes de sectionnement avec les paramétrages simple
 prédéfinis (voir section \og Interface simple \fg{}) ou avec les commandes mises à 
 disposition si vous souhaitez des formats plus élaborés (voir section 
 \og Interface avancée \fg{}). Dans ce dernier cas, vous avez uniquement besoin de 
-rédéfinir les commandes que vous utiliserez. Les deux méthodes sont disponibles 
+redéfinir les commandes que vous utiliserez. Les deux méthodes sont disponibles 
 au même moment mais parce que |\part| est habituellement implémentée de façon 
 non standard, elle reste inchangée par les paramétrages prédéfinis et doit 
 être modifiée avec l'aide de l'\og Interface Avancée \fg{}.
@@ -288,7 +285,7 @@ comme |picture|, |pspicture|, etc.).
 |\paragraph| dans les classes standards).
 
 \item[leftmargin] place le titre dans la marge de gauche. Les titres en bas de page
-sont déplacés sur la page suivante et ne *stick out* pas dans la marge du bas, ce 
+sont déplacés sur la page suivante et ne \trad{stick out} pas dans la marge du bas, ce 
 qui signifie que de longs titres peuvent mener à des pages trop peu 
 remplies\footnote{Cependant, les flottants placés une ou deux lignes après le 
 titre interfèrent avec la découpe de page utilisée ici et le titre peut parfois 
@@ -362,8 +359,8 @@ début du paragraphe). Sinon, le code est ignoré.
 |\chaptertitlename|
 \end{desc}
 
-Elle renvoit par défaut à |\chaptername| sauf dans le cas des annexes où elle
-renvoit vers |\appendixname|. Utilisez-là en lieu et place de |\chaptername| 
+Elle renvoie par défaut à |\chaptername| sauf dans le cas des annexes où elle
+renvoi vers |\appendixname|. Utilisez-là en lieu et place de |\chaptername| 
 lorsque vous définissez un chapitre.
 
 \subsection{Espacement}
@@ -464,9 +461,9 @@ maintenant obsolètes.}
 \end{desc}
 
 Avec |rigidchapters|, l'espacement pour les titres des chapitres est toujours
-le même et |sep-après| dans |\titlespacing| ne représente pas l'espace entre le bas du texte du titre et le corps du texte comme décrit plus hat mais depuis le haut du texte du titre, autrement |<sep-avant>| $+$ |<sep-après>| est maintenant une distance fixe entre le haut du \trad{corps de page} et le texte principal. La valeur par défaut est |rubberchapters| où |<sep-après>| désigne la séparation
+le même et |sep-après| dans |\titlespacing| ne représente pas l'espace entre le bas du texte du titre et le corps du texte comme décrit plus haut mais depuis le haut du texte du titre, autrement |<sep-avant>| $+$ |<sep-après>| est maintenant une distance fixe entre le haut du \trad{corps de page} et le texte principal. La valeur par défaut est |rubberchapters| où |<sep-après>| désigne la séparation
 entre le titre et le texte, comme à l'accoutumée. En effet le nom est trompeur car
-il ne s'applique pas qu'au chapitre par défaut mais à tout titre de \trad{classe haute} (les classes sont développées dans la suite du document).
+il ne s'applique pas qu'au chapitre par défaut mais à tout titre de \trad{classe} |top| (les classes sont développées dans la suite du document).
 
 \begin{desc}
 |bottomtitles nobottomtitles nobottomtitles*|  \quad (options d'extension)
@@ -505,7 +502,7 @@ pas souhaité, en particulier quand l'espace |<sep-avant>| est plus grand que
 page et devient un équivalent de \verb|\\*|. Comme je présume que personne ne 
 veux un saut de page dans un titre, ceci est le comportement par défaut. Si, pour
 une raison étrange, vous souhaitez autoriser ces sauts de page dans les titres, 
-utilisez l'option \verb|pageatnewline|, qui est founie pour des questions 
+utilisez l'option \verb|pageatnewline|, qui est fournie pour des questions 
 de rétrocompatibilité.
 
 \subsection{Filets}
@@ -560,7 +557,7 @@ Par exemple, avec
   {\titlerule*[1pc]{.}%
    \vspace{1ex}%
    \bfseries}
-  {... definitions à la suite
+  {... définitions à la suite
 \end{verbatim}
 des \trad{leaders} s'étendant au-dessus du texte principal et du titre précèdent 
 la section.
@@ -702,9 +699,8 @@ mais doit être indiqué explicitement avec |#1| comme dans, par exemple :
 
 Les parties standards écrivent leur numéro en table des matières de façon non
 standard. Vous pouvez changer cela avec |newparttoc| de façon à ce que  
-\textsf{titletoc} ou une extension similaire puisse manipuler cette entrée.
-Standard parts write the toc entry number in a non standard way (ceci fonctionne
-dans le cas où |\part| a été redéfini).
+\textsf{titletoc} ou une extension similaire puisse manipuler cette entrée (ceci 
+fonctionne dans le cas où |\part| a été redéfini).
 
 \begin{desc}
 |clearempty| \quad (option d'extension)
@@ -793,7 +789,7 @@ impression en recto uniquement, les pages \og impaires \fg{} sont également des
 pages \og paires \fg{} (cf.\@ |\oddsidemargin|).
 
 Si vous souhaitez créer différentes versions pour les pages paires/impaires \emph{et}
-avec ou sans numérotation, il est recommandé de définir quatres variantes.
+avec ou sans numérotation, il est recommandé de définir quatre variantes.
 
 Si vous retirez la clé |page| d'une commande de sectionnement, vous devez supprimer le
 fichier |.aux|.
@@ -835,7 +831,7 @@ Quand la seconde forme est utilisée, le numéro du niveau est directement sous 
 \renewcommand{\thesubchapter}{\Alph{subchapter}}
 \end{verbatim}
 crée un niveau sous celui du chapitre (du code additionnel est montré ici 
-mais vous devez lui ajouter les paramétrages |\titleformat| et|\titlespacing| 
+mais vous devez lui ajouter les paramétrages |\titleformat| et |\titlespacing| 
 correspondant)\footnote{En ce qui concerne les compteurs, l'extension 
 \textsf{remreset} peut être utile.}. 
 Si le niveau du chapitre est zéro alors celui du sous-chapitre est 1; les
@@ -844,8 +840,6 @@ et ainsi de suite).
 
 Il existe deux commandes de sectionnement qui exécutent quelques actions 
 supplémentaires selon leur nom et ignorant la classe :
-There are two sectioning commands which perform some extra actions
-depending of its name and ignoring the class:
 \begin{itemize}
 \item |\chapter| enregistre la chaîne définie dans |\chaptertitlename| et la prend
  en compte.
@@ -873,7 +867,7 @@ numéro |<numéro-de-niveau-initial>| (typiquement 0 ou $-$1). Cette commande de
 rien avec l'aide de |loadonly| et il doit y avoir une unique déclaration de ce type.
 Après celle-ci, le reste des niveaux est ajouté comme défini ci-dessus.
 
-\section{Notes additionelles}
+\section{Notes additionnelles}
 %~~~~~~~~~~~~~~~~~~~~~~~~
 
 Cette partie décrit brièvement quelques commandes \LaTeX{}, utiles lors de la définition
@@ -895,89 +889,87 @@ Voir votre manuel \LaTeX{} pour plus d'information sur les commandes portant sur
 \subsection{Versions étoilées}
 \label{s:starred}
 
-\tradini Using sectioning commands in the starred version is strongly 
-discouraged.  Instead, you can use a set of markup oriented commands 
-which are easy to define and modify, if necessary.  Thus, you can test 
-different layouts before choosing amongst them.
+Recourir à la version étoilée dans les commandes de sectionnement est fortement
+découragé. En lieu et place, vous pouvez utiliser un ensemble de commandes \trad{markup
+oriented} qui sont facile à définir et modifier si nécessaire. Ainsi, vous pouvez tester
+différentes mises en page avant de choisir l'une d'entre elles.
 
-Firstly remember if you say
+Tout d'abord, rappelez-vous que si vous écrivez
 \begin{verbatim}
 \setcounter{secnumdepth}{0}
 \end{verbatim}
-sections will be not numbered but they will be included in both toc
-and headers.
+les sections ne seront pas numérotées mais seront inclues dans la table des matières
+et les en-têtes.
 
-Now, let's
-suppose you want to include some sections with a special content;
-for example, a section (or more) with exercises. We will use an
-environment named |exercises| whose usage is:
+Maintenant, supposons que vous voulez des sections avec un contenu spécial; par exemple,
+une section (ou plus) avec des exercices. Nous utiliserons un environnement nommé
+|exercices| tel que : 
 \begin{verbatim}
 \section{A section}
-Text of a normal section.
+Texte d'une section normale.
 
-\begin{exercises}
-\section{Exercises A}
-Some exercises
+\begin{exercices}
+\section{Exercices A}
+Des exercices
 
-\section{Exercises B}
-Some exercises
-\end{exercises}
+\section{Exercices B}
+Des exercices
+\end{exercices}
 \end{verbatim}
 
-The following definition suppresses numbers but neither toc lines
-nor headers.
+La définition suivante supprime les nombres mais pas les entrées en table des 
+matières et pas les impacts sur l'en-tête.
 \begin{verbatim}
-\newenvironment{exercises}
+\newenvironment{exercices}
   {\setcounter{secnumdepth}{0}}
   {\setcounter{secnumdepth}{2}}
 \end{verbatim}
 
-The following one adds a toc line but headers will remain
-untouched:
+La suivante ajoute une entrée en table des matières mais ne modifie pas l'en-tête.
 \begin{verbatim}
-\newenvironment{exercises}
+\newenvironment{exercices}
  {\setcounter{secnumdepth}{0}%
   \renewcommand\sectionmark[1]{}}
  {\setcounter{secnumdepth}{2}}
 \end{verbatim}
 
-The following one updates the headers but there will be
-no toc line:
+La suivante met à jour l'en-tête mais ne crée pas d'entrée en table des matières.
 \begin{verbatim}
-\newenvironment{exercises}
+\newenvironment{exercices}
  {\setcounter{secnumdepth}{0}%
   \addtocontents{toc}{\protect\setcounter{tocdepth}{0}\ignorespaces}}
  {\setcounter{secnumdepth}{2}%
   \addtocontents{toc}{\protect\setcounter{tocdepth}{2}\ignorespaces}}
 \end{verbatim}
-(I find the latter a bit odd in this particular example; the
-first and second options are more sensible. The |\ignorespaces|
-is not very important, and you need not it unless there is
-unwanted space in the toc.)
+(Je trouve ce dernier cas un peu étrange dans notre exemple; le premier et le deuxième 
+cas ont bien plus de sens. Par ailleurs, les |\ignorespaces| ne sont pas très importants et 
+ils ne sont nécessaires que si vous avez des espaces non souhaités dans la table des 
+matières.) 
 
-That works with standard classes, but if you are using
-\textsf{fancyhdr} or \textsf{titlesec} to define headers you need 
-further refinement to kill the section number. In \textsf{titlesec}
-that's accomplished with |\ifthesection| (see below).
+Ceci fonctionne avec les classes standards mais, si vous utilisez \textsf{fancyhdr} ou
+\textsf{titlesec} pour définir les en-têtes, il faudra avoir recours à des mécaniques 
+plus avancées pour supprimer les numéros de section. Dans \textsf{titlesec}, ceci 
+s'obtient avec |\ifthesection| (voir ci-dessous).
 
-As you can see, there are no |\addcontentsline|, no
-|\markboth|, no |\section*|, just logical structure. Of 
-course you may change it as you wish; for example if you decide
-these sections should be typeset in small typeface, include
-|\small|, and if you realize you do not like that, remove it.
+Comme vous pouvez le voir, il n'y a pas de |\addcontentsline|, de |\markboth| ou de 
+|\section*|, juste de la structure logique. Bien entendu, vous pouvez changer ce point
+à merci; par exemple, si vous décidez que ces sections doivent être composées en
+petits caractères (avec |\small|) et que vous réalisez que vous n'aimez pas cela, 
+retirez-le.
 
-While the standard \LaTeX{} commands are easier and more
-direct for simple cases, I think the proposed method above is
-far preferable in large documents.
+Tandis que les commandes d'un \LaTeX{} standard sont plus faciles et directes 
+pour les cas simples, je pense que la méthode proposée ci-dessus est de loin préférable
+pour les longs documents.
+
 
 \subsection{Variantes}
 
-Let's suppose we want to mark some sections as ``advanced topics''
-with an asterisk after the label.
-The following code does the job:
+Supposons que vous souhaitez marquer des sections comme \og sujet avancé \fg{}
+par une astérisque après la numérotation. 
+Le code suivant effectue cette mise en forme :
 \begin{verbatim}
 \newcommand{\secmark}{}
-\newenvironment{advanced}
+\newenvironment{avance}
   {\renewcommand{\secmark}{*}}
   {}
 \titleformat{\section}
@@ -985,23 +977,24 @@ The following code does the job:
   {\thesection\secmark\quad}{..}{..}
 \end{verbatim}
 
-To mark the sections write
+Pour marquer une section, écrivez :
 \begin{verbatim}
-\begin{advanced}
+\begin{avance}
 \section{...}
 ...
-\end{advanced}
+\end{avance}
 \end{verbatim}
 
-That marks sections but not subsections. If you like being
-redundant and marking the subsection level as well, you must
-define it accordingly.
+Ceci marque les sections mais pas les sous-sections. Si vous souhaitez un peu de
+redondance en marquant les sous-sections également, vous devez les définir de
+façon similaire.
 
 \subsection{Placement d'un point après un titre de section}
 \label{sec:dotafter}
 
-Today this styling is not used, but formerly it was fairly common.
-The basic technique was described above, but here is a reminder:
+De nos jours, ce style n'est plus en usage mais il était relativement courant
+auparavant. 
+La technique de base a été décrite ci-dessus mais en voici un rappel :
 \begin{verbatim}
 \newcommand{\periodafter}[1]{#1.}
 \titleformat{\section}
@@ -1009,21 +1002,21 @@ The basic technique was described above, but here is a reminder:
  {\thesection}{..}{..\periodafter}
 \end{verbatim}
 
-If you had to combine this dot with some command (perhaps an
-underlining), you can say:
+Si vous avez à combiner ce point avec une commande (tel un soulignement), vous pouvez
+saisir :
 \begin{verbatim}
 \newcommand{\periodafter}[2]{#1{#2.}}
 \titleformat{\section}
  {..}
- {\thesection}{..}{..\periodafter{\ul}} % \ul from soul package
+ {\thesection}{..}{..\periodafter{\ul}} % \ul de l'extension soul
 \end{verbatim}
 
-However, you might prefer the package option \texttt{explicit}.
+Cependant, vous pourriez préférer ici l'option d'extension \texttt{explicit}.
 
-\section{\textsf{titleps} and Page Styles}
+\section{L'extension \textsf{titleps} et les styles de page}
 %~~~~~~~~~~~~~~~~~~~
 
-The \textsf{titleps} package provides tools for one-stage setting of
+\tradini The \textsf{titleps} package provides tools for one-stage setting of
 page styles (headlines and footlines).  A higher-level interface is
 used, where the mark mechanism is hidden and there is no need to deal
 with |\leftmark|s and |\rightmark|s -- just use a command or variable

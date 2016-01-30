@@ -51,4 +51,5 @@ De nombreux termes se retrouvent dans les différentes documents traduits. Cette
 - *cropmarks* : traits de coupe (source Wiktionnaire) ;
 - *driver* : pilote (informatique, graphique...) ;
 - *error report* : rapports d'erreur ;
+- *header* : en-tête ;
 - *package* : extension.
