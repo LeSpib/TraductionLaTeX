@@ -285,7 +285,7 @@ comme |picture|, |pspicture|, etc.).
 |\paragraph| dans les classes standards).
 
 \item[leftmargin] place le titre dans la marge de gauche. Les titres en bas de page
-sont déplacés sur la page suivante et ne \trad{stick out} pas dans la marge du bas, ce 
+sont déplacés sur la page suivante et ne restent pas isolés dans la marge du bas, ce 
 qui signifie que de longs titres peuvent mener à des pages trop peu 
 remplies\footnote{Cependant, les flottants placés une ou deux lignes après le 
 titre interfèrent avec la découpe de page utilisée ici et le titre peut parfois 
@@ -463,7 +463,7 @@ maintenant obsolètes.}
 Avec |rigidchapters|, l'espacement pour les titres des chapitres est toujours
 le même et |sep-après| dans |\titlespacing| ne représente pas l'espace entre le bas du texte du titre et le corps du texte comme décrit plus haut mais depuis le haut du texte du titre, autrement |<sep-avant>| $+$ |<sep-après>| est maintenant une distance fixe entre le haut du \trad{corps de page} et le texte principal. La valeur par défaut est |rubberchapters| où |<sep-après>| désigne la séparation
 entre le titre et le texte, comme à l'accoutumée. En effet le nom est trompeur car
-il ne s'applique pas qu'au chapitre par défaut mais à tout titre de \trad{classe} |top| (les classes sont développées dans la suite du document).
+il ne s'applique pas qu'au chapitre par défaut mais à tout titre de classe |top| (les classes sont développées dans la suite du document).
 
 \begin{desc}
 |bottomtitles nobottomtitles nobottomtitles*|  \quad (options d'extension)
@@ -521,7 +521,9 @@ marginaux.
 
 La commande |\titleline| permet l'insertion d'une ligne, qui peut contenir
 du texte et d'autres matériaux \og horizontaux \fg{}. Elle est pensée 
-principalement pour des filets et des \trad{leaders} mais elle peut servir également
+principalement pour des filets et des points de conduite\footnote{Suite de points 
+régulièrement espacés qui se trouvent dasn les tables de matières le plus souvent.} 
+mais elle peut servir également
 pour d'autres besoins. La ligne a une largeur fixée et doit être remplie, 
 autrement dit |\titleline{CHAPITRE}| produit une boîte \trad{sous-remplie}. Ici 
 le paramètre optionnel |<alignement>| (|l|, |r| ou |c|) peut aider, de telle sorte
@@ -530,14 +532,16 @@ part défaut est le paramètre \texttt{s} de la commande \texttt{\cs{makebox}}.}
 
 L'utilisation de |\titleline| à des endroits où un matériel vertical n'est pas
 attendu peut conduire à des anomalies. En d'autres termes, vous pouvez l'utiliser
-dans les \trad{arguments} |<format>| (toujours) and |<code-après>|, que ce soit dans les 
-formes |hang|, |display| et |block|. Pour la forme |display|, vous pouvez la placer au tout début des \trad{arguments} |<before-code>| et |<label>|. Mais vous pouvez tester cette
-commande ailleurs : il y a de grandes chances qu'elle fonctionne à d'autres endroits.
+dans les arguments |<format>| (toujours) and |<code-après>|, que ce soit dans les 
+formes |hang|, |display| et |block|. Pour la forme |display|, vous pouvez la 
+placer au tout début des arguments |<before-code>| et |<label>|. Mais vous pouvez 
+tester cette commande ailleurs : il y a de grandes chances qu'elle fonctionne à 
+d'autres endroits.
 
 La commande |\titlerule|, qui est incluse automatiquement dans |\titleline| si 
-nécessaire, peut être utilisée pour construire des filets et des \trad{fillers}. La
-version non étoilée trace des filets épais de 0.4 pt ou de |<height>| si ce dernier est
-présent. 
+nécessaire, peut être utilisée pour construire des filets et des motifs de 
+remplissage. La version non étoilée trace des filets épais de 0.4 pt ou de |<height>| 
+si ce dernier est présent. 
 Par exemple,
 \begin{verbatim}
 \titlerule[.8pt]%
@@ -546,10 +550,11 @@ Par exemple,
 \end{verbatim}
 traces deux filets de différents épaisseurs avec une séparation de 1 pt.
 
-La version étoilée fait des \trad{leaders} avec le |<texte>| répété dans des boîtes
-de sa largeur naturelle. Cette largeur de boîte peut être modifiée avec |<largeur>| 
-mais la largeur de la première boîte reste inchangée pour que le |<texte>| soit 
-aligné avec les bords gauche et droit de l'espace à remplir.
+La version étoilée fait une variante des points de conduite en remplaçant les
+points par le motif repété du |<texte>| dans une boîte de sa largeur naturelle. 
+Cette largeur de boîte peut être modifiée avec |<largeur>| mais la largeur de 
+la première boîte reste inchangée pour que le |<texte>| soit aligné avec les 
+bords gauche et droit de l'espace à remplir.
   
 Par exemple, avec
 \begin{verbatim}
@@ -559,7 +564,7 @@ Par exemple, avec
    \bfseries}
   {... définitions à la suite
 \end{verbatim}
-des \trad{leaders} s'étendant au-dessus du texte principal et du titre précèdent 
+des points de conduite s'étendant au-dessus du texte principal et du titre précèdent 
 la section.
 
 \begin{desc}
@@ -673,10 +678,10 @@ quand un chapitre commence, définissez-le comme vide, autrement dit,
 \end{verbatim}
 
 Cette commande n'est pas un outil général pour contrôler l'espacement dans
-les listes et n'est valable que dans les titres de classe \trad{top}. Aussi,
-elle ne fonctionnera pas avec les chapitres \trad{de base} sauf si vous changez
+les listes et n'est valable que dans les titres de classe |top|. Aussi,
+elle ne fonctionnera pas avec les chapitres standards sauf si vous changez
 leur classe (d'un autre côté, |\...tolists| peut être utilisé dans tout
-titre dans la classe est \trad{top}).
+titre dans la classe est |top|).
 
 \subsection{Autres options de l'extension}
 
@@ -1060,46 +1065,44 @@ complémentaire.
 \section{L'extension \textsf{titletoc} et la table des matières}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\tradini This package is a companion to the \textsf{titlesec} package and it 
-handles
-toc entries. However, it is an independent package and you can use
-it alone. The philosophy is similar to that of \textsf{titlesec}---instead
-of hooking the commands as defined by standard \LaTeX{} and classes,
-there are new commands which you can format the toc entries with
-in a generic way. This means you have to learn just
-two new basic command and a couple of tools, no more, and you have access 
-to
-new features. Paragraph format
-and fonts are set with commands like |\\|, 
-|\makebox|,
-|\large|, |\itshape|, and so on, and entries are not shaped in any
-fashion because they are pretty free form.
+Cette extension accompagne l'extension \textsf{titlesec} et gère les entrées en
+table des matières. Cependant elle constitue une extension indépendante et peut
+être utilisée seule. Sa philosophie est similaire à celle de \textsf{titlesec}---
+au lieu de manipuler les commandes définies par la version standard et ses classes,
+elle propose de nouvelles commandes avec lesquelles vous pouvez établir le format
+des entrées de table de façon générique. Ceci implique que vous avez juste à 
+apprendre deux nouvelles commandes basiques et deux outils, ni plus ni moins, et
+vous avez alors accès à de nouvelles fonctionnalités. La mise en forme des
+paragraphes et les fontes associées sont traitées avec des commandes comme
+|\\|, |\makebox|, |\large|, |\itshape| et ainsi de suite. Les entrées en elles-mêmes
+ne sont pas mises en forme de quelque manière que ce soit car elles sont souvent
+de forme libre.
 
-The behaviour of entries
-defined with \textsf{titletoc} are different at some points
-to those created with the standard commands. In particular:
+Le comportement des entrées définies avec \textsf{titletoc} est différent à
+certains points de celui de celles créées avec les commandes standards. En 
+particulier :
 \begin{itemize}
-\item Pages are never broken between entries if the first one is
-of an higher level than the second one as, for instance, between
-a section and a subsection. If both of them are of the same
-level, the break is allowed, and if the first is lower than
-the second, it is considered a good place for a page break.
-
-\item The symbols in the leaders are not centered but flushed
-right. That is usually more convenient.
+\item les pages ne sont jamais coupées entre entrées si la première est d'un rang 
+plus élevé sur la seconde, par exemple entre une section et une sous-section. Si
+les deux entrées sont de même niveau, la coupure est autorisée. Enfin, si la 
+première entrée est d'un niveau inférieur à la seconde, la possible coupure est 
+alors considérée comme pertinente ;
+\item Les symboles remplaçant les points dans des points de conduite ne sont pas 
+centrés mais alignés à droite. Ceci est généralement plus pratique. 
 \end{itemize}
 
-I would like to note no attempt to handle tocs can be complete
-because the standard \LaTeX{} commands write directly some formatting
-commands which cannot be removed.  This is particularly important in
-lists of figures and tables, and in the |\part| command.\footnote{But
-some of these issues are fixed by \textsf{titlesec}.}
+Je souhaite ici souligner qu'aucun essai pour manipuler les tables des matières
+ne peut être complet car les commandes standards de \LaTeX{} écrivent directement
+des commandes de mises en forme qui ne peuvent être retranchées. C'est tout 
+particulièrement le cas pour les listes de figures et de tables et pour la
+commande |\part|\footnote{Mais certains de ces problèmes sont résolus par 
+\textsf{titlesec}.}
 
-\subsection{A ten-minute guide to \textsf{titletoc}}
+\subsection{Visite guidée de \textsf{titletoc} en 10 minutes}
 
-Toc entries are treated as rectangular areas where the text
-and probably a filler will be written. Let's draw such an
-area (of course, the lines themselves are not printed):
+Les entrées de table de matière sont traitées comme des zones rectangulaires où
+le texte et un probable élément de remplissage seront composés. Dessinons une
+telle zone (les lignes ne seront pas ici affichées) :
 \setlength{\unitlength}{1cm}
 \begin{center}
 \begin{picture}(8,2.2)
@@ -1109,16 +1112,16 @@ area (of course, the lines themselves are not printed):
 \put(7,1){\line(0,1){1}}
 \put(0,.7){\vector(1,0){1}}
 \put(8,.7){\vector(-1,0){1}}
-\put(0,.2){\makebox(1,.5)[b]{\textit{left}}}
-\put(7,.2){\makebox(1,.5)[b]{\textit{right}}}
+\put(0,.2){\makebox(1,.5)[b]{\textit{gauche}}}
+\put(7,.2){\makebox(1,.5)[b]{\textit{droite}}}
 \end{picture}
 \end{center}
 
-The space between the left page margin and the left edge of
-the area will be named |<left>|; similarly we have |<right>|.
-You are allowed to modify the beginning of the first line and
-the ending of the last line. For example by ``taking up'' both
-places with |\hspace*{2pc}| the area becomes:
+L'espace entre la marge gauche de la page et le bord gauche de notre zone
+sera nommé |gauche|; de manière similaire se définit |<droite>|. Vous êtes
+autorisé à modifier le début de la première ligne et la fin de la dernière
+ligne. Par exemple, en augmentant leur taille avec |\hspace*{0.5cm}|, cette 
+zone devient :
 \begin{center}
 \begin{picture}(8,2.2)
 \put(1,1){\line(1,0){5.5}}
@@ -1131,12 +1134,12 @@ places with |\hspace*{2pc}| the area becomes:
 \put(7,1.5){\line(0,1){.5}}
 \put(0,.7){\vector(1,0){1}}
 \put(8,.7){\vector(-1,0){1}}
-\put(0,.2){\makebox(1,.5)[b]{\textit{left}}}
-\put(7,.2){\makebox(1,.5)[b]{\textit{right}}}
+\put(0,.2){\makebox(1,.5)[b]{\textit{gauche}}}
+\put(7,.2){\makebox(1,.5)[b]{\textit{droite}}}
 \end{picture}
 \end{center}
-And by ``clearing'' space in both places with |\hspace*{-2pc}|
-the area becomes:
+Et en retranchant de l'espace à ces deux endroits avec |\hspace*{-0.5cm}|,
+la zone ressemble alors à ceci :
 \begin{center}
 \begin{picture}(8,2.2)
 \put(1,1){\line(1,0){6.5}}
@@ -1149,66 +1152,65 @@ the area becomes:
 \put(7,1.5){\line(0,1){.5}}
 \put(0,.7){\vector(1,0){1}}
 \put(8,.7){\vector(-1,0){1}}
-\put(0,.2){\makebox(1,.5)[b]{\textit{left}}}
-\put(7,.2){\makebox(1,.5)[b]{\textit{right}}}
+\put(0,.2){\makebox(1,.5)[b]{\textit{gauche}}}
+\put(7,.2){\makebox(1,.5)[b]{\textit{droite}}}
 \end{picture}
 \end{center}
 
-If you have seen tocs, the latter should be familiar to you--
-the label at the very beginning, the page at the very end:
+Si vous avez déjà vu des tables de matières, ce qui suit devrait vous être
+familier --- la numérotation en tout début et le numéro de page tout à la
+fin :
 \begin{verbatim}
-    3.2  This is an example showing that toc
-         entries fits in that scheme . . . .   4
+    3.2  Ceci est un exemple montant une entrée de table des matières
+         respectant ce principe . . . . . . . . . . . . . . . . . . .   4
 \end{verbatim}
 
-All you need is to put these elements in the right way.  If you have 
-reserved the space with |\hspace*{-2pc}|, simply put a box 2 pc 
-width 
-containing the section label or page so that this space will be
-retrieved; this layout is used so often that two commands are provided
-which does that for you:
+Tout ce dont vous avez besoin est de mettre ces éléments dans les bonnes 
+positions. Si vous avez réservé l'espace avec |\hspace*{-0.5cm}|, mettez 
+simplement une boîte de 0,5 cm de large contenant la numérotation ou le numéro
+de page pour que cet espace soit récupéré ; cette présentation est si 
+courante que deux commandes sont données pour la générer pour vous : 
 \begin{itemize}
-\item |\contentslabel{<length>}| creates the space at the beginning 
-and
-   prints the section number.
-\item |\contentspage| creates a space at the end of length |<right>|
-   and prints the page number aligned at the right.
+\item |\contentslabel{<longueur>}| crée l'espace au début et y place la
+numérotation ;
+\item |\contentspage| crée l'espace à la fin de largeur  |<droite>| et y 
+écrit le numéro de page aligné à droite.
 \end{itemize}
 
-Now, we are about to show the three basic commands:
+Maintenant, nous allons voir trois commandes basiques :
 
 \begin{desc}
-|\dottedcontents{<section>}[<left>]{<above-code>}|\\
-|                {<label width>}{<leader width>}|
+|\dottedcontents{<section>}[<gauche>]{<code-dessus>}|\\
+|                {<largeur-num>}{<largeur-motif>}|
 \end{desc}
 
 Here:
 \begin{itemize}
-\item |<section>| is the section name without backslash: |part|,
-  |chapter|, |section|, etc. |figure| and |table| are allowed, too.
-  (The backlash is omitted because we are dealing with the concept
-   and not the |\part|, |\section|, etc. macros themselves. 
-  Furthermore, |figure| and |table| are environments.)
+\item |<section>| est le nom de la \trad{section} sans l'antislash : |part|,
+  |chapter|, |section|, etc. |figure| et |table| sont autorisés également
+  (l'antislash est omis car nous nous occupons du concept et non des
+  commandes de sectionnement elles-mêmes. Par ailleurs, |figure| et |table| 
+  sont des environnements).
 
-\item |<above-code>| is code for the global formatting of the entry.
-  Vertical material is allowed. At this point the value of
-  |\thecontentslabel| (see below) is known which enables you to
-  take decisions depending on its value (with the help of
-  the \textsf{ifthen} package). You may use the \textsf{titlesec}
-  |\filleft|, |\filright|, |\filcenter| and |\fillast| commands. 
+\item |<code-dessus>| est le code mettant en forme globalement l'entrée.
+  Des éléments verticaux sont autorisés. À ce niveau, la valeur de 
+  |\thecontentslabel| (voir ci-dessous) est connue, ce qui permet de prendre
+  des décisions basées sur sa valeur (avec l'aide de l'extension 
+  \textsf{ifthen}). Vous pouvez utiliser les commandes de \textsf{titlesec}
+  |\filleft|, |\filright|, |\filcenter| et |\fillast|. 
 
-\item |<left>| even if bracketed is currently mandatory and it
-  sets the left margin from the left page margin.
+\item |<gauche>|, même s'il est mis entre crochet, est actuellement obligatoire
+  et fixe l'espacement à gauche à partir de la marge gauche de la page.
   
-\item |<label width>| is the width of the space created for the label,
-  as described  above.
+\item |<largeur-num>| est la largeur de l'espace créé pour la numérotation 
+  comme décrit ci-dessus.
   
-\item |<leader width>| is the width of the box containing the char to
-  be used as filler, as described below.
+\item |<largeur-motif>| est la largeur de la boîte contenant le caractère
+  qui va servir de motif au remplissage de la ligne, comme décrit ci-dessous.
 \end{itemize}
 
-The definitions for section and subsection entries in the \textsf{book}
-class are roughly equivalent to: 
+Les définitions des entrées pour les sections et sous-sections dans la classe 
+\textsf{book} sont à peu près équivalentes à :
 \begin{verbatim}
 \contentsmargin{2.55em}
 \dottedcontents{section}[3.8em]{}{2.3em}{1pc}
@@ -1216,71 +1218,71 @@ class are roughly equivalent to:
 \end{verbatim}
 
 \begin{desc}
-|\titlecontents{<section>}[<left>]{<above-code>}|\\
-|              {<numbered-entry-format>}{<numberless-entry-format>}|\\
-|              {<filler-page-format>}[<below-code>]|
+|\titlecontents{<section>}[<gauche>]{<code-dessus>}|\\
+|              {<format-entrée-numérotée>}{<format-entrée-non-numérotée>}|\\
+|              {<format-remplissage-page>}[<code-dessous>]|
 \end{desc}
 
-Here |<section>|, |<left>| and |<above-code>| like above, and
+Ici |<section>|, |<gauche>| and |<code-dessus>| fonctionnent comme ci-dessus et
 \begin{itemize}
-\item |<numbered-entry-format>| is in horizontal mode and it will
-  be used just before the entry title. As in |\titleformat|, the
-  last command can take an argument with the title.
+\item |<format-entrée-numérotée>| est en mode horizontal et va être utilisée
+  juste avant le titre de l'entrée. Comme dans |\titleformat|, la dernière 
+  commande ici peut prendre comme argument le titre ;
 
-\item |<numberless-entry-format>| is like the above if there is, well,
-  no label.
+\item |<format-entrée-non-numérotée>| est comme le précédent argument... en 
+  l'absence de numérotation ;
 
-\item|<filler-page-format>| is self explanatory. Fillers are created
-with the |\titlerule| command which is shared by that package and
-\textsf{titlesec}. However, when used in this context its behaviour
-changes a little to fit the needs of toc leaders.\footnote{For
-\TeX{}nicians, the default |\cs{xleaders}| becomes 
-|\cs{leaders}|.} You might prefer a |\hspace| instead.
+\item|<format-remplissage-page>| se comprend d'elle-même. Les éléments de remplissage
+  sont créés avec la commande |\titlerule| qui est partagée entre cette extension et
+  \textsf{titlesec}. Cependant, utilisée dans ce contexte, son comportement change 
+  quelque peu pour convenir aux besoins des points de conduite de la table des 
+  matières\footnote{Pour les \TeX{}niciens, |\cs{xleaders}| devient ici 
+  |\cs{leaders}|.}. Vous pourriez préférer un |\hspace| à la place.
 
-\item And finally |<below-code>| is code following the entry for, say,
-  vertical space.
+\item et, enfin, |<code-dessous>| est le code suivant l'entrée pour, par exemple,
+  un espace vertical.
 \end{itemize}
 
-When defining entries, use |\addvspace| if you want to add vertical
-space, and |\\*| instead of |\\| for line breaks.
+Lors de la définition des entrées, utilisez |\addvspace| si vous voulez ajouter un
+espace vertical et |\\*| au lieu de  |\\| pour des retours à la ligne.
 
-This command can be used in the middle of a document to change
-the format of toc/lot/lof entries at any point. The new format is
-written to the toc file and hence two runs are necessary to
-see the changes.
+Cette commande peut être utilisée en cours de document pour changer le format des
+entrées des tables des matières, listes des tables et des listes à n'importe quel
+moment. Le nouveau format est écrit dans le fichier toc et nécessite donc deux 
+compilations pour être observable.
 
 \begin{desc}
-|\contentsmargin{<right>}|
+|\contentsmargin{<droite>}|
 \end{desc}
 
-The value set is used in all of sections. If you are wondering
-why, the answer is quite simple: in most of cases the |<right>|
-margin will be constant. However, you are allowed to change
-it locally in the |<before-code>| arguments. Note as well that
-the default space in standard classes does not leave room to
-display boldfaced page number above 100 and therefore you
-might want to set a larger margin with this command.
+La valeur fixée est utilisée dans toutes les sections. Si vous vous demandez
+pourquoi, la réponse est plutôt simple : dans la plupart des cas, la marge
+|<droite>| sera constante. Cependant, vous avez le droit de la changer localement
+dans les arguments |<code-avant>|. Notez d'ailleurs que l'espace par défaut des
+classes standards ne laisse pas de place pour afficher des numéros de page 
+dépassant 100 en gras et vous pourriez avoir besoin de fixer une largeur de marge
+plus importante avec cette commande.
 
-The \textsf{book} class formats section entries
-similarly (but not equally) to:
+La mise en forme des entrées de section de la classe \textsf{book} est similaire
+(mais pas égale) à :
 \begin{verbatim}
 \titlecontents{section}
-              [3.8em] % ie, 1.5em (chapter) + 2.3em 
+              [3.8em] % autrement dit, 1.5em (chapitre) + 2.3em 
               {}
               {\contentslabel{2.3em}}
               {\hspace*{-2.3em}}
               {\titlerule*[1pc]{.}\contentspage}
 \end{verbatim}
-Compare this definition with that given above and you will
-understand how |\dottedcontents| is defined.
+Comparez cette définition avec celle donnée plus haut et vous comprendrez
+comment |\dottedcontents| est défini.
 
-Although standard classes use font dependent units (mainly em),
-it is recommended using absolute ones (pc, pt, etc.) to ensure
-they entries are aligned correctly.
+Bien les classes standards se servent d'unités dépendant de la taille des 
+caractères (principalement l'em), il est recommandé de se servir d'unités
+absolues (cm, pt, etc.) pour garantir le bon alignement des entrées.
 
-\subsection{And more}
+\subsection{Et bien plus}
 
-Strict typographical rules state full text lines shouldn't 
+\tradini Strict typographical rules state full text lines shouldn't 
 surpass the last dot of the leaders; ideally they should be aligned.  
 Surprisingly enough, \TeX{} lacks of a tool for doing that 
 automatically---when you fill a box with leading dots, they can be 
