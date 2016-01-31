@@ -1013,54 +1013,54 @@ saisir :
 
 Cependant, vous pourriez préférer ici l'option d'extension \texttt{explicit}.
 
-\section{L'extension \textsf{titleps} et les styles de page}
-%~~~~~~~~~~~~~~~~~~~
+\section{L'extension \textsf{titleps} et le style de page}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\tradini The \textsf{titleps} package provides tools for one-stage setting of
-page styles (headlines and footlines).  A higher-level interface is
-used, where the mark mechanism is hidden and there is no need to deal
-with |\leftmark|s and |\rightmark|s -- just use a command or variable
-registered as a ``mark'' as the expected value will be returned, i.e.,
-those when the mark was emitted, either by a sectioning command or
-explicitly with |\chaptermark|, |\sectionmark|, etc.  A simple
-example, whose meaning should be obvious, is:
+L'extension \textsf{titleps} fournit des outils pour configurer en une 
+étape les styles de pages (en-têtes et pieds de page). Une interface de plus haut
+niveau est ici utilisée : la mécanique des marques est cachée et il n'y a
+pas besoin de gérer les commandes |\leftmark| et |\rightmark|. Il suffit d'utiliser
+une commande ou une variable déclarée comme une \og marque \fg{} pour que la valeur
+voulue soit restituée, autrement dit, celles utilisées lors la marque est émise (soit 
+par une commande de sectionnement soit explicitement par |\chaptermark|, 
+|\sectionmark|, etc). Un simple exemple, dont le sens devrait être évident, est ainsi :
 \begin{verbatim}
 \newpagestyle{main}{
-  \sethead[\thepage][\chaptertitle][(\thesection] % even
-          {\thesection)}{\sectiontitle}{\thepage}} % odd
+  \sethead[\thepage][\chaptertitle][(\thesection] % paire
+          {\thesection)}{\sectiontitle}{\thepage}} % impaire
 \pagestyle{main}
 \end{verbatim}
 
-Other features are:
+Les autres fonctionnalités sont :
 \begin{itemize}
-\item Working top marks, compatible with floats (unlike the standard 
-|\topmark|, which does not work correctly in \LaTeX{}).
-\item Access to top, first and bot marks in a single headline/footline
-(e.g., the first and last section numbers).
-\item Marks for more than 2 sectioning levels.
-\item Simple (and not so simple) headrules and footrules.
-\item Headlines and footlines for pages with floats.
-\item Headlines and footlines for specific floats (a sort of 
-|\thispagestyle| for floats).
-\item Multiple sets of marks (named here \emph{markset}s and 
-\textit{extra marks}).
+\item des marques de début de page (\emph{top mark}) compatibles avec les flottants 
+(contrairement au |\topmark| standard, qui ne fonctionne pas correctement dans \LaTeX{}) ;
+\item l'accès aux marques de début de page ou de fin de page (\emph{bottom mark}) ainsi 
+qu'à la première marque (\emph{first mark}) dans un unique en-tête ou pied de page (par 
+exemple les numéros des premières et dernières sections) ;
+\item des marques pour plus de deux niveaux de sectionnement ;
+\item des filets d'en-tête et de pied de page simples (ou bien moins simples) ;
+\item des lignes d'en-tête et de pied de page pour les pages avec des flottants ;
+\item des lignes d'en-tête et de pied de page des flottants spécifiques (une sorte 
+de |\thispagestyle| pour flottants) ;
+\item de multiples ensembles de marques (désignés sous les termes \emph{lots de marques
+} et \textit{marques supplémentaires}).
 \end{itemize}
 
-It can be used without \textsf{titlesec}, but you will get most of 
-it when used together.  To load it as a separate package, use the
-customary \verb|\usepackage{titleps}|, but with \textsf{titlesec} you
-have to load it with:
+L'extension peut être utilisée sans \textsf{titlesec} mais vous en tirerez le meilleur
+en usage combiné. Pour la charger seule, saisissez le traditionnel 
+\verb|\usepackage{titleps}|. Pour la charger avec \textsf{titlesec}, passez par :
 \begin{verbatim}
 \usepackage[pagestyles]{titlesec}
 \end{verbatim}
 
-Please, read |titleps.pdf| (or typeset |titleps.tex|) for further 
-information.
+Vous pouvez lire |titleps.pdf| (ou éditer |titleps.tex|) pour toute information
+complémentaire.
 
-\section{Contents: The \textsf{titletoc} package}
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\section{L'extension \textsf{titletoc} et la table des matières}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This package is a companion to the \textsf{titlesec} package and it 
+\tradini This package is a companion to the \textsf{titlesec} package and it 
 handles
 toc entries. However, it is an independent package and you can use
 it alone. The philosophy is similar to that of \textsf{titlesec}---instead
