@@ -31,12 +31,12 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *ti
   - [x] Placement d'un point après un titre de section
 - [x] L'extension titleps et les styles de page (1 page)
 - [ ] La table des matières : l'extension titletoc (6 pages)
-  - [ ] Visite guidée de titletoc en 10 minutes
+  - [x] Visite guidée de titletoc en 10 minutes
   - [ ] Et bien plus
   - [ ] Table des matières partielle
   - [ ] Liste partielle
   - [ ] Exemples
   - [ ] Insertion d'une figure en table des matières
-  - [ ] Marquage des entrées avec des astérisques
+  - [x] Repérage d'entrées avec des astérisques
 - [x] La philosophie de titlesec (1 page)
 - [x] Annexes (4 pages)

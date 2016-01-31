@@ -1282,66 +1282,66 @@ absolues (cm, pt, etc.) pour garantir le bon alignement des entrées.
 
 \subsection{Et bien plus}
 
-\tradini Strict typographical rules state full text lines shouldn't 
-surpass the last dot of the leaders; ideally they should be aligned.  
-Surprisingly enough, \TeX{} lacks of a tool for doing that 
-automatically---when you fill a box with leading dots, they can be 
-centered in the box with the |\cleaders| primitive , ``justified'' 
-with |\xleaders| or aligned with the outermost enclosing box with 
-|\leaders|, but there is no way to align them with the ``current'' 
-margin.
+Des règles typographiques strictes indiquent que les lignes de texte pleines
+ne peuvent aller plus loin que le dernier point d'un ensemble de points de 
+conduite ; idéalement, elles devraient être alignées avec ce point. De façon
+assez étonnante, \TeX{} ne dispose pas d'un outil pour faire ceci 
+automatiquement --- lorsque vous remplissez une boîte de points de conduite,
+ils peuvent être centrés dans la boîte avec |\cleaders|, justifiés avec 
+|\xleaders| ou alignés avec le bord extérieur de la boîte qui les contient 
+avec |\leaders| mais il n'y a pas de façon de les aligner avec la marge
+\og courante \fg{}.
 
-So, the only way to get a fine layout is by hand.  To do , you can 
-use the an optional argument in the |\contentsmargin| command whose 
-syntax in full is the following:
+Aussi, la seule façon d'obtenir un bon rendu est de le faire à la main. 
+Pour cela, vous pouvez utiliser l'argument optionnel dans la commande
+|\contentsmargin| dans la syntaxe complète est la suivante :
 \begin{desc}
-|\contentsmargin[<correction>]{<right>}|
+|\contentsmargin[<correction>]{<droite>}|
 \end{desc}
 
-The |<correction>| length is added to the |<right>| one in all of lines 
-except the last one, where the leaders are placed.  For instance, if 
-the text lines are 6 pt longer than the last dot, you should rewrite the 
-|\contentsmargin| command to add a  |<correction>| of 6 pt.%
-\footnote{Usefully,  many dvi previewers allow to get the coordinates of
-the pointed location.}  Unlike the standard \LaTeX{} tools, the 
-|\titlerule*| command has been designed so that the |<correction>| 
-will have the minimum value possible.
+La longueur de |<correction>| est ajoutée à celle de |<right>| dans toutes les
+lignes sauf la dernière, où les points de conduite sont placés. Par exemple, si 
+les lignes de texte font 6 pt de plus que celles du dernier point, vous devriez
+la commande |\contentsmargin| pour y ajouter une |<correction>| de 6 
+pt\footnote{Pour vous aider, de nombreux prévisualisateurs de dvi permettent 
+d'obtenir les coordonnées de la localisation pointée.}. Contrairement aux 
+outils \LaTeX{} standards, la commande |\titlerule*| a été développée pour
+que la |<correction>| ait la valeur la plus petite possible.
 
 \begin{desc}
 |\thecontentslabel  \thecontentspage|
 \end{desc}
 
-Contains the text with the label and the page with no additional
-formatting, except  written by the class.
+Ces commandes contiennent le texte de la numérotation et de la page sans autre
+mise en forme que celle générée par la classe.
 
 \begin{desc}
-|\contentslabel[<format>]{<space>}|\\
+|\contentslabel[<format>]{<espace>}|\\
 |\contentspage[<format>]|
 \end{desc}
 
-As described above, but with different |<format>|s. The defaults are
-just |\thecontentslabel| and |\thecontentspage|, respectively.
+Comme décrit plus haut, mais avec différents |<format>|s. Les valeurs par
+défaut sont juste |\thecontentslabel| et |\thecontentspage|, respectivement.
 
 \begin{desc}
-|\contentspush{<text>}|
+|\contentspush{<texte>}|
 \end{desc}
 
-Prints the |<text>| and increases
-|<left>| by the width of |<text>|. It is similar to
-the hang shape of \textsf{titlesec}.
+Affiche le |<texte>| et augmente |<gauche>| de la largeur du |<texte>|. Ceci 
+est similiaire à la forme |hang| de \textsf{titlesec}.
 
 \begin{desc}
-|\titlecontents*{<section>}[<left>]{<above-code>}|\\
-|               {<numbered-entry-format>}{<numberless-entry-format>}|\\
-|               {<filler-page-format>}[<separator>]|\\[3pt]
-|            |\textit{or ...}|{<filler-page-format>}[<separator>][<end>]|\\
-|            |\textit{or ...}|{<filler-page-format>}[<begin>][<separator>][<end>]|
+|\titlecontents*{<section>}[<gauche>]{<code-dessus>}|\\
+|               {<format-entrée-numérotée>}{<format-entrée-non-numérotée>}|\\
+|               {<format-remplissage-page>}[<séparateur>]|\\[3pt]
+|            |\textit{ou ...}|{<format-remplissage-page>}[<séparateur>][<fin>]|\\
+|            |\textit{ou ...}|{<format-remplissage-page>}[<début>][<séparateur>][<fin>]|
 \end{desc}
 
-This starred version groups the entries in a single paragraph.
-The |<separator>| argument is the separator between entries, and
-there is a further optional argument with an ending
-punctuation.  For example, this document sets:
+Cette version étoilée regroupe les entrées dans un unique paragraphe. 
+L'argument |<séparateur>| est le séparateur entre les entrées et il y
+a un argument optionnel pour une ponctuation finale. Par exemple, ce
+document demande :
 \begin{verbatim}
 \titlecontents*{subsection}[1.5em]
   {\small}
@@ -1350,11 +1350,11 @@ punctuation.  For example, this document sets:
   {, \thecontentspage}
   [.---][.]
 \end{verbatim}
-whose result is showed in the contents at the very beginning of
-this document. Note  the paragraph format must be written in
-the |<above-code>| argument.
+dont le résultat est affiché dans la table des matières en tout début
+de ce document. Notez que la mise en forme du paragraphe doit être 
+écrite dans l'argument |<code-dessus>|.
 
-Let us explain how the optional arguments works.  First note the number
+\tradini Let us explain how the optional arguments works.  First note the number
 of them determines their meaning---since there should be a separator
 between entries this one is always present; on the other hand,
 |<begin>| is rarely used and hence it has the lowest ``preference.''
@@ -1552,7 +1552,7 @@ after an em-space.
 The chapter title is centered with the chapter label on top
 of it. There is no page number.
 
-\subsection{Inserting a figure in the contents}
+\subsection{Insertion d'une figure en table des matières}
 
 The |\addtocontents| command is still available and you may use
 it to perform special operation, like inserting a figure just before
@@ -1574,13 +1574,14 @@ In the place where a figure is inserted write:
 \begin{verbatim}
 \addtocontents{\protect\figureintoc{myfig}}
 \end{verbatim}
+\tradfin
 
-\subsection{Marking entries with asterisks}
+\subsection{Repérage d'entrées avec des astérisques}
 
-Let's now resume a problem explained in relation with
-\textsf{titlesec}: marking sections with asterisks to
-denote an ``advanced topic'' unless the star should
-be printed in the toc as well. Here is the code:
+Retrouvons maintenant un problème expliqué en relation avec \textsf{titlesec} : 
+placer une astérisque sur les sections abordant un \og sujet complexe \fg{} auquel
+nous ajoutons le besoin de faire figurer l'astérisque dans la table des matières. 
+Voici le code :
 \begin{verbatim}
 \newcommand{\secmark}{}
 \newcommand{\marktotoc}[1]{\renewcommand{\secmark}{#1}}
@@ -1595,7 +1596,6 @@ be printed in the toc as well. Here is the code:
   {\contentslabel[\thecontentslabel\secmark]{1.5pc}}{..}{..}
 \end{verbatim}
 
-\tradfin
 \section{La philosophie de \textsf{titlesec}}
 
 Une fois que vous avez lu cette documentation, il devrait être clair que cette
