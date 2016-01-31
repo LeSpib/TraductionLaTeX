@@ -591,35 +591,55 @@
 %
 % \subsubsection{Substitution de modéles colorimétriques individuels}\label{sec.subst}
 %
-% \tradini
 % \DescribeMacro\substitutecolormodel
-%   \marg{source model}\marg{target model-list}\\
-% Substitute \Meta{source model} by the first actually present model that occurs in \Meta{target model-list}.
-% Only color models of type \Meta{num model} are allowed;
-% all changes are local to the current group, but a prepended |\xglobal| is obeyed.
+%   \marg{modèle source}\marg{liste de modèles cibles}\\
+% Substitue le \Meta{modèle source} par le premier modèle disponible apparaissant dans 
+% la \Meta{liste de modèles cibles}.
+% Seuls les modèles de type \Meta{modèle numérique} sont possibles; tous les 
+% changements sont locaux au groupe courant, mais un |\xglobal| préfixé est respecté.
 %
-% Example: assume the actual driver has an incorrect implementation of \Model{hsb} whereas \Model{rgb} looks well.
-% Then |\substitutecolormodel{hsb}{rgb}| could be a good choice, since it converts --- from that point onwards --- all definitions of \Model{hsb} colors by \XC's algorithms into \Model{rgb} specifications, without touching other models.
+% Exemple : supposons que le pilote actuel a une implémentation incorrecte de
+% \Model{hsb} tandis que \Model{rgb} paraît correct.
+% Alors |\substitutecolormodel{hsb}{rgb}| pourrait être un bon choix puisqu'il convertit
+% --- à partir de ce point --- toutes les définitions des couleurs \Model{hsb} en 
+% spécifications du modèle \Model{rgb} par le biais des algorithmes de \XC, sans toucher 
+% aux autres modèles.
 %
 %
-% \subsubsection{Changing the target color model within a document}\label{sec.tgt}
+% \subsubsection{Changement du modèle colorimétrique cible dans un document}\label{sec.tgt}
 %
 % \DescribeMacro\selectcolormodel
 %   \marg{num model}\\
-% Sets the target model to \Meta{num model}, where the latter is one of the model names allowed as package option (i.e., \Option{natural}, \Option{rgb}, \Option{cmy}, \Option{cmyk}, \Option{hsb}, \Option{gray}, \Option{RGB}, \Option{HTML}, \Option{HSB}, \Option{Gray}), see figure \vref{fig.tgt} for an example.
-% There are two possible hooks, where the conversion to the target model can take place:
+% Définit le modèle cible au \Meta{modèle numérique}, où ce dernier est un des noms de 
+% modèles autorisés comme option de l'extension (autrement dit, \Option{natural}, 
+% \Option{rgb}, \Option{cmy}, \Option{cmyk}, \Option{hsb}, \Option{gray}, \Option{RGB}, 
+% \Option{HTML}, \Option{HSB}, \Option{Gray}), voir figure \vref{fig.tgt} pour un 
+% exemple.
+% Il y a deux possibilités pour rendre possible la conversion au modèle cible :
 % \begin{itemize}
-% \item \DescribeMacro\ifconvertcolorsD at color \emph{definition} time\footnote{This means that all \emph{newly} defined colors will be first converted to the target model, then saved.} (i.e., within |\definecolor| and friends); this is controlled by the switch |\ifconvertcolorsD|;
-% \item \DescribeMacro\ifconvertcolorsU at time of color \emph{usage} (immediately before a color is displayed, therefore covering colors that have been defined in other models or that are being specified directly like |\color[rgb]{.1,.2,.3}|); this is controlled by the switch |\ifconvertcolorsU|.
+% \item \DescribeMacro\ifconvertcolorsD au moment de la \emph{définition} des 
+% couleurs\footnote{Ceci signifie que toute couleur \emph{nouvellement} définie sera
+% d'abord convertie dans le modèle cible, puis sauvegardée.} (autrement dit dans 
+% |\definecolor| et ses assimilées); ceci est contrôlé par la bascule
+% |\ifconvertcolorsD|;
+% \item \DescribeMacro\ifconvertcolorsU au moment de l'\emph{utilisation} des couleurs
+% (immédiatement avant que la couleur soit affichée, ce qui traite qui ont été définies
+% dans d'autres modèles ou qui ont été définies directement comme avec 
+% |\color[rgb]{.1,.2,.3}|) ; ceci est contrôlé par la bascule |\ifconvertcolorsU|.
 % \end{itemize}
-% Both switches are set to `true' by selecting any of the models, except \Option{natural}, which sets them to `false'.
-% This applies for selection via a package option as well as via |\selectcolormodel|.
-% Why don't we simply convert all colors at time of usage?
-% If many colors are involved, it can save some processing time when all conversions are already done during color definitions.
-% Best performance can be achieved by |\usepackage[rgb,...]{xcolor}\convertcolorsUfalse|, which is actually the way how \XC{} worked up to version 1.07.
+% Les deux bascules valent \og vrai \fg{} en sélectionnant n'importe quel modèle, à 
+% l'exception de \Option{natural} qui leur donne la valeur \og faux \fg{}.
+% Ceci \trad{s'applique} à une sélection par le biais d'une option d'extension comme par le
+% biais de |\selectcolormodel|.
+% Pourquoi ne convertissons-nous pas toutes les couleurs au moment de l'utilisation ? 
+% Si de nombreuses couleurs sont impliquées, cela peut économiser du temps de traitement
+% lorsque les conversions sont déjà faites au moment des définitions. 
+% De meilleures performances peuvent être obtenues par 
+% |\usepackage[rgb,...]{xcolor}\convertcolorsUfalse|, ce qui est en fait la façon dont
+% \XC{} fonctionnait jusqu'à la version 1.07.
 %
 %
-% \begin{table}[p]\caption{Arguments and terminology}\label{tab.term}
+% \begin{table}[p]\caption{Arguments et terminologie}\label{tab.term}
 % \def\RS{\ensuremath{\to}\space}
 % \footnotesize\raggedleft
 % \extrarowheight2pt
@@ -630,64 +650,64 @@
 % \begin{tabularx}{\textwidth}{lX}
 % \hline
 % \rowcolor{tableheadcolor}
-% \em Element & \em Replacement string\\
-% \Meta*{empty}& \RS empty string `'\\
-% \Meta*{minus}& \RS non-empty string consisting of one or more minus signs `|-|'\\
-% \Meta*{plus}& \RS non-empty string consisting of one or more plus signs `|+|'\\
+% \em \'{E}lement & \em Chaîne de remplacement\\
+% \Meta*{vide}& \RS chaîne vide `'\\
+% \Meta*{moins}& \RS chaîne non vide contenant un ou plusieurs signes `|-|'\\
+% \Meta*{plus}& \RS chaîne non vide contenant un ou plusieurs signes  `|+|'\\
 % \hline
-% \Meta*{int}& \RS integer number\hfill(\emph{integer})\\
-% \Meta*{num}& \RS non-negative integer number\hfill(\emph{number})\\
-% \Meta*{dec}& \RS real number\hfill(\emph{decimal})\\
-% \Meta*{div}& \RS non-zero real number\hfill(\emph{divisor})\\
-% \Meta*{pct}& \RS real number from the interval $[0,100]$\hfill(\emph{percentage})\\
+% \Meta*{ent}& \RS nombre entier\hfill(\emph{entier})\\
+% \Meta*{num}& \RS nombre entier positif\hfill(\emph{nombre})\\
+% \Meta*{déc}& \RS nombre réel\hfill(\emph{décimal})\\
+% \Meta*{div}& \RS nombre réel non nul\hfill(\emph{diviseur})\\
+% \Meta*{pct}& \RS nombre réel dans l'intervalle $[0,100]$\hfill(\emph{pourcentage})\\
 % \hline
-% \Meta*{id}& \RS non-empty string consisting of letters and digits\hfill(\emph{identifier})\\
+% \Meta*{id}& \RS chaîne non vide contenant des lettres et des chiffres\hfill(\emph{identifiant})\\
 % \Meta*{ext id}& \RS \Meta{id}\newline
 %                 \RS \Meta[1]{id}|=|\Meta[2]{id}\\
-% \Meta*{id-list}& \RS \Meta[1]{ext id}|,|\Meta[2]{ext id}|,...,|\Meta[l]{ext id}\\
-% \Meta*{name}& \RS \Meta{id}\hfill(\emph{explicit name})\newline
-%               \RS `|.|'\hfill(\emph{implicit name})\\
-% \Meta*{core model}& \RS `|rgb|', `|cmy|', `|cmyk|', `|hsb|', `|gray|'\hfill(\emph{core models})\\
-% \Meta*{num model}& \RS \Meta{core model}\newline
-%                    \RS `|RGB|', `|HTML|', `|HSB|', `|Gray|'\hfill(\emph{integer models})\newline
-%                    \RS `|Hsb|', `|tHsb|', `|wave|'\hfill(\emph{decimal models})\\
-% \Meta*{model}& \RS \Meta{num model}\hfill(\emph{numerical models})\newline
-%                \RS `|named|'\hfill(\emph{pseudo model})\\
-% \Meta*{model-list}& \RS \Meta[1]{model}|/|\Meta[2]{model}|/.../|\Meta[m]{model} \hfill(\emph{multiple models})\newline
-%                     \RS \Meta{core model}|:|\Meta[1]{model}|/|\Meta[2]{model}|/.../|\Meta[m]{model}\\
-% \Meta*{spec}& \RS comma-separated list of numerical values\hfill(\emph{explicit specification})\newline
-%               \RS space-separated list of numerical values\hfill(\emph{explicit specification})\newline
-%               \RS name of a `named' color\hfill(\emph{implicit specification})\\
-% \Meta*{spec-list}& \RS \Meta[1]{spec}|/|\Meta[2]{spec}|/.../|\Meta[m]{spec} \hfill(\emph{multiple specifications})\\
-% \Meta*{type}& \RS \Meta{empty}\newline
+% \Meta*{id-liste}& \RS \Meta[1]{ext id}|,|\Meta[2]{ext id}|,...,|\Meta[l]{ext id}\\
+% \Meta*{nom}& \RS \Meta{id}\hfill(\emph{nom explicite})\newline
+%               \RS `|.|'\hfill(\emph{nom implicite})\\
+% \Meta*{modèle central}& \RS `|rgb|', `|cmy|', `|cmyk|', `|hsb|', `|gray|'\hfill(\emph{modèles centraux})\\
+% \Meta*{modèle numérique}& \RS \Meta{modèle central}\newline
+%                    \RS `|RGB|', `|HTML|', `|HSB|', `|Gray|'\hfill(\emph{modèles entiers})\newline
+%                    \RS `|Hsb|', `|tHsb|', `|wave|'\hfill(\emph{modèles décimaux})\\
+% \Meta*{modèle}& \RS \Meta{modèle numérique}\hfill(\emph{modèles numériques})\newline
+%                \RS `|named|'\hfill(\emph{pseudo-modèle})\\
+% \Meta*{modèle-liste}& \RS \Meta[1]{modèle}|/|\Meta[2]{modèle}|/.../|\Meta[m]{modèle} \hfill(\emph{modèles multiples})\newline
+%                     \RS \Meta{modèle central}|:|\Meta[1]{modèle}|/|\Meta[2]{modèle}|/.../|\Meta[m]{modèle}\\
+% \Meta*{spec}& \RS liste de valeurs numériques séparées par des virgules\hfill(\emph{spécification explicite})\newline
+%               \RS liste de valeurs numériques séparées par des virgules\hfill(\emph{spécification explicite})\newline
+%               \RS nom d'une couleur \og nommée \fg{}\hfill(\emph{spécification implicite})\\
+% \Meta*{spec-liste}& \RS \Meta[1]{spec}|/|\Meta[2]{spec}|/.../|\Meta[m]{spec} \hfill(\emph{spécifications multiples})\\
+% \Meta*{type}& \RS \Meta{vide}\newline
 %               \RS `|named|', `|ps|'\\
 % \hline
-% \Meta*{expr}& \RS \Meta{prefix}\Meta{name}\Meta{mix expr}\Meta{postfix}\hfill(\emph{standard color expression})\\
-% \Meta*{prefix}& \RS \Meta{empty}\newline
-%                 \RS \Meta{minus}\hfill(\emph{complement indicator})\\
-% \Meta*{mix expr}& \RS |!|\Meta[1]{pct}|!|\Meta[1]{name}|!|\Meta[2]{pct}|!|\Meta[2]{name}|!...!|\Meta[n]{pct}|!|\Meta[n]{name} \hfill(\emph{complete mix expr.})\newline
-%                   \RS |!|\Meta[1]{pct}|!|\Meta[1]{name}|!|\Meta[2]{pct}|!|\Meta[2]{name}|!...!|\Meta[n]{pct} \hfill(\emph{incomplete mix expr.})\\
-% \Meta*{postfix}& \RS \Meta{empty}\newline
-%                  \RS |!!|\Meta{plus}\hfill(\emph{series step})\newline
-%                  \RS |!![|\Meta{num}|]|\hfill(\emph{series access})\\
+% \Meta*{expr}& \RS \Meta{préfixe}\Meta{nom}\Meta{expr mélangée}\Meta{suffixe}\hfill(\emph{expression de couleur standard})\\
+% \Meta*{prefix}& \RS \Meta{vide}\newline
+%                 \RS \Meta{moins}\hfill(\emph{indicateur complémentaire})\\
+% \Meta*{mix expr}& \RS |!|\Meta[1]{pct}|!|\Meta[1]{nom}|!|\Meta[2]{pct}|!|\Meta[2]{nom}|!...!|\Meta[n]{pct}|!|\Meta[n]{nom} \hfill(\emph{expression de mélange complète})\newline
+%                   \RS |!|\Meta[1]{pct}|!|\Meta[1]{nom}|!|\Meta[2]{pct}|!|\Meta[2]{nom}|!...!|\Meta[n]{pct} \hfill(\emph{expression de mélange incomplète})\\
+% \Meta*{suffixe}& \RS \Meta{vide}\newline
+%                  \RS |!!|\Meta{plus}\hfill(\trad{\emph{series step}})\newline
+%                  \RS |!![|\Meta{num}|]|\hfill(\trad{\emph{series access}})\\
 % \hline
-% \Meta*{ext expr}& \RS \Meta{core model}|,|\Meta{div}|:|\Meta[1]{expr}|,|\Meta[1]{dec}|;|\Meta[2]{expr}|,|\Meta[2]{dec}|;...;|\Meta[k]{expr}|,|\Meta[k]{dec}\newline
-%                   \RS \Meta{core model}|:|\Meta[1]{expr}|,|\Meta[1]{dec}|;|\Meta[2]{expr}|,|\Meta[2]{dec}|;...;|\Meta[k]{expr}|,|\Meta[k]{dec}\\
+% \Meta*{ext expr}& \RS \Meta{modèle central}|,|\Meta{div}|:|\Meta[1]{expr}|,|\Meta[1]{déc}|;|\Meta[2]{expr}|,|\Meta[2]{déc}|;...;|\Meta[k]{expr}|,|\Meta[k]{déc}\newline
+%                   \RS \Meta{modèle central}|:|\Meta[1]{expr}|,|\Meta[1]{déc}|;|\Meta[2]{expr}|,|\Meta[2]{déc}|;...;|\Meta[k]{expr}|,|\Meta[k]{déc}\\
 % \hline
-% \Meta*{func expr}& \RS |>|\Meta{function}|,|\Meta[1]{arg}|,|\Meta[2]{arg}|,...,|\Meta[j]{arg}\hfill(\emph{color function expression})\\
-% \Meta*{function}& \RS `|wheel|', `|twheel|'\hfill(\emph{color functions})\\
+% \Meta*{fonct expr}& \RS |>|\Meta{fonction}|,|\Meta[1]{arg}|,|\Meta[2]{arg}|,...,|\Meta[j]{arg}\hfill(\emph{expression de fonction de couleur})\\
+% \Meta*{fonction}& \RS `|wheel|', `|twheel|'\hfill(\emph{fonctions de couleur})\\
 % \hline
-% \Meta*{color}& \RS \Meta{color expr}\Meta[1]{func expr}\Meta[2]{func expr}|...|\Meta[i]{func expr}\\
-% \Meta*{color expr}& \RS \Meta{name}\newline
+% \Meta*{couleur}& \RS \Meta{couleur expr}\Meta[1]{fonction expr}\Meta[2]{fonction expr}|...|\Meta[i]{fonction expr}\\
+% \Meta*{couleur expr}& \RS \Meta{nom}\newline
 %                     \RS \Meta{expr}\newline
 %                     \RS \Meta{ext expr}\\
 % \hline\hline
 % \rowcolor{white}
-% Remarks:& Each \RS denotes a possible replacement string for the element in the left column;
-%           however, further context-dependent restrictions may apply.
-%           See main text for details.
-%           A string `|foo|' is always to be understood without the quotes.
-%           $i,j,k,l,m,n$ denote non-negative integers, $k,l,m,n>0$, $m\le8$.\\
+% Remarques:& chaque \RS indique une chaîne de remplacement possible pour un élément 
+% de la colonne de gauche ; cependant, des restrictions avancées dépendantes du 
+% contexte peuvent s'appliquer. Voir le texte principal pour plus de détails.
+% La chaîne `toto' doit toujours être comprise sans les apostrophes. $i,j,k,l,m,n$ 
+% indiquent des entiers positifs, $k,l,m,n>0$, $m\le8$.\\
 % \hline
 % \end{tabularx}
 % \end{adjustwidth}
@@ -695,14 +715,17 @@
 %
 %
 %
-% \subsection{Arguments and terminology}\label{sec.term}
+% \subsection{Arguments et terminologie}\label{sec.term}
 %
-% Before we describe \XC's color-related commands in detail, we define several elements or identifiers that appear repeatedly within arguments of those commands.
-% A general syntax overview is given in table \vref{tab.term}.
+% Avant de décrire en détail les commandes liées aux couleurs de \XC, nous 
+% définissons plusieurs éléments ou identifiants qui apparaissent de façon
+% répétée dans les arguments de ces commandes.
+% Une vue générale de la syntaxe est donnée dans la table \vref{tab.term}.
 %
 %
-% \subsubsection{Additional remarks and restrictions on arguments}
+% \subsubsection{Remarques additionnelles et restrictions sur les arguments}
 %
+% \tradini
 % \paragraph{Basic strings and numbers}
 % \DescribeArg{empty}
 % \DescribeArg{minus}

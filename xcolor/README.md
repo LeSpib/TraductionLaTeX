@@ -24,7 +24,7 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *xc
   - [x] Cercles chromatiques et accords de couleurs **À relire**
 - [ ] L'interface utilisateur (24 pages) 
   - [x] Préparation
-  - [ ] Modèles colorimétriques
+  - [x] Modèles colorimétriques
   - [ ] *Arguments and terminology*
   - [ ] *Predefined colors*
   - [ ] *Color definition*
