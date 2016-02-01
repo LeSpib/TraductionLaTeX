@@ -32,7 +32,7 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *ti
 - [x] L'extension titleps et les styles de page (1 page)
 - [ ] La table des matières : l'extension titletoc (6 pages)
   - [x] Visite guidée de titletoc en 10 minutes
-  - [ ] Et bien plus
+  - [x] Et bien plus
   - [ ] Table des matières partielle
   - [ ] Liste partielle
   - [ ] Exemples

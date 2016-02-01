@@ -1354,32 +1354,31 @@ dont le résultat est affiché dans la table des matières en tout début de ce 
 Notez que la mise en forme du paragraphe doit être écrite dans l'argument 
 |<code-dessus>|.
 
-\tradini Let us explain how the optional arguments works.  First note the number
-of them determines their meaning---since there should be a separator
-between entries this one is always present; on the other hand,
-|<begin>| is rarely used and hence it has the lowest ``preference.''
-The simplest case is when the titles are of the same level; in this
-case the |<sepatator>| and the |<end>| parameters (which default to
-empty) are inserted between consecutive entries and at the end of the
-block, respectively.  |<before-code>| is executed just once at the
-very beginning of the block and its declarations are local to the
-whole set of entries.
+Expliquons comment fonctionnent les arguments optionnels. Notez d'une part que leur 
+nombre détermine leur sens --- comme il doit y avoir un séparateur entre les entrées,
+celui est toujours présent; d'autre part, |<begin>| est rarement utilisé et est
+défavorisé en n'apparaissant que dans la version ayant le plus d'argument. Le cas 
+le plus simple est celui où les titres ont le même niveau; dans ce cas, les
+paramètres |<séparateur>| et |<end>| (dont les valeurs par défaut sont des vides) 
+sont respectivement insérés entre des entrées consécutives et à la fin du bloc. 
+|<code-avant>| est exécuté une seule fois au tout début du bloc et ses déclarations
+sont locales à l'ensemble des entrées.
 
-Now suppose we want to group entries of two levels; in this 
-case a nesting principle applies.  To fix ideas, we will use section 
-and subsection.  When a subsection entry begins after a section one, 
-|<before-code>| is executed and |<begin>| of subsection is 
-inserted, which should contain text format only.  Then subsections are 
-added inserting separators as explained above.  When a section 
-arrives, the ending punctuation of subsection and the separator of 
-section is added (except if the block is finished by a subsection, 
-where the ending of section is added instead).  We said ``after a 
-section'' because a subsection never begins a block.\footnote{In rare 
-cases that could be necessary, yet.} The 
-subsection entries are nested inside the section ones, and 
-declarations are again local.
+Maintenant supposons que nous souhaitons grouper les entrées de deux niveaux ;
+dans ce cas un principe d'imbrication s'applique. Pour détailler ce point, nous
+illustrerons avec une section et une sous-section. Quand une entrée de sous-section
+commence après une section, |<code-avant>| est exécuté et |<début>| (de
+sous-section) est inséré, qui contient de la mise en forme de texte uniquement. Les
+sous-sections sont ajoutées en insérant des séparateurs comme expliqué ci-dessus.
+Quand une section arrive, la ponctuation finale de la sous-section et le séparateur
+de la section sont ajoutés (à moins que le bloc ne s'achève par une sous-section, 
+auquel cas seule la fin de la section est ajoutée). Nous avons \og après une 
+section \fg{} car une sous-section ne commence jamais un bloc\footnote{Dans de 
+rares cas, cela pourrait être nécessaire, cependant.}. Les entrées de sous-section
+sont regroupées au sein de chaque entrée de section et les déclarations sont 
+à nouveau locales.
 
-An example will illustrate that.
+Un exemple va illustrer ceci :
 \begin{verbatim}
 \titlecontents*{section}[0pt]
   {\small\itshape}{}{}
@@ -1389,60 +1388,61 @@ An example will illustrate that.
   {\upshape}{}{}
   {, \thecontentspage}[ (][. ][)]
 \end{verbatim}
-produces something similar to:
+Ce code produit quelque chose similaire à :
 $$\begin{minipage}{\textwidth}
-\small\itshape The first section \textbullet\ The second one  \textbullet\ 
-The third one {\upshape(A subsection in it, 1. Another, 2)} \textbullet\ A
-fourth section {\upshape(A subsection in it, 1. Another, 2)}.
+\small\itshape La première section \textbullet\ La deuxième  \textbullet\ 
+La troisième {\upshape(Une sous-section, 1. Une autre, 2)} \textbullet\ La 
+quatrième {\upshape(Une sous-section, 1. Une autre, 2)}.
 \end{minipage}$$
 
 \begin{desc}
-|\contentsuse{<name>}{<ext>}|
+|\contentsuse{<nom>}{<extension>}|
 \end{desc}
 
-Makes \textsf{titletoc} aware of the existence of a contents file with 
-|<ext>| extension. Mainly, it makes sure the command 
-|\contentsfinish| is added at the end of the corresponding 
-contents (and which must be added at the end of tocs made by hand). 
-The package performs
+Cette commande rend \textsf{titletoc} sensible à l'existence d'un fichier de
+table de matières (ou d'un fichier de liste) avec l'extension |<extension>|. 
+Elle a pour rôle principal de s'assurer que la commande |\contentsfinish| 
+est ajoutée à la fin de la table ou liste ciblée (et qui doit être ajoutée
+à la fin des tables des matières faites manuellement).
+L'extension exécute 
 \begin{verbatim}
 \contentsuse{figure}{lof}
 \contentsuse{table}{lot}
 \end{verbatim}
 
 % \begin{desc}
-% |\titlelevels{<top>}{<level-list>}|
+% |\titlelevels{<haut>}{<niveau-liste>}|
 % \end{desc}
 % 
-% If you are not using \textsf{titlesec}, this command modifies
-% the list of level names. Only necessary if you have been devised
-% your own scheme of titles.
+% Si vous n'utilisez par \textsf{titlesec}, cette commande modifie
+% la liste des noms de niveau. N'est nécessaire que vous avez constitué
+% votre propre hiérarchie de titres.
 
 \begin{desc}
-|leftlabels  rightlabels| \quad (Package options)
+|leftlabels  rightlabels| \quad (options d'extension)
 \end{desc}
 
-These package options set how the labels are aligned in 
+Ces options d'extension définissent l'alignement des numérotations dans
 |\contentslabel|.
-Default is |rightlabels|. With |leftlabels| the default |<format>| for
-|\contentslabel| becomes |\thecontenstlabel\enspace|.
+La valeur par défaut est |rightlabels|. Avec |leftlabels| le |<format>| par
+défaut pour |\contentslabel| devient |\thecontenstlabel\enspace|.
 
 \begin{desc}
-|dotinlabels| \quad (Package option)
+|dotinlabels| \quad (options d'extension)
 \end{desc}
 
-With this package option, a dot is added after the label in 
-|\contentslabel|.
+Avec cette option d'extension, un point est ajouté après la numérotation
+dans |\contentslabel|.
 
-\subsection{Partial TOC's}
+\subsection{Table des matières partielle}
 
 \begin{desc}
-|\startcontents[<name>]|
+|\startcontents[<nom>]|
 \end{desc}
 
-At the point where this command is used, a partial toc begins (note
+\tradini At the point where this command is used, a partial toc begins (note
 the document doesn't require a |\tableofcontents| for partial tocs to
-work).  The |<name>| argument allows different sets of tocs and it
+work).  The |<nom>| argument allows different sets of tocs and it
 defaults to |default|.  These sets may be intermingled, but usually
 will be nested.  For example, you may want two kinds of partial tocs:
 by part and by chapter (besides the full toc, of course).  When a part
@@ -1452,26 +1452,26 @@ part and chapter.\footnote{\emph{All} partial tocs are stored in a
 single file with extension |.ptc|.}
 
 \begin{desc}
-|\stopcontents[<name>]|\\
-|\resumecontents[<name>]|
+|\stopcontents[<nom>]|\\
+|\resumecontents[<nom>]|
 \end{desc}
 
-Stops the partial toc of |<name>| kind, which may be resumed.
+Stops the partial toc of |<nom>| kind, which may be resumed.
 Since partial contents are stopped by |\startcontents| if necessary,
 those macros will not be used very often.
 
 \begin{desc}
-|\printcontents[<name>]{<prefix>}{<start-level>}{<toc-code>}|
+|\printcontents[<nom>]{<préfixe>}{<niveau-début>}{<code-table>}|
 \end{desc}
 
-Print the current partial toc of |<name>| kind. The format
-of the main toc entries are used, except if there is a |<prefix>|.
-In such a case, the format of |<prefix><level>| is used, provided
+Print the current partial toc of |<nom>| kind. The format
+of the main toc entries are used, except if there is a |<préfixe>|.
+In such a case, the format of |<préfixe><niveau>| is used, provided
 it is defined. For example, if prefix is |l| and the format of
 |lsection| is defined, then this definition will be used; otherwise,
-the format is that of |section|. The |<start-level>| parameter sets the
+the format is that of |section|. The |<niveau-début>| parameter sets the
 top level of the tocs---for a part toc it would be |0| (chapter), for a
-chapter toc |1| (section), and so on. Finally, |<toc-code>| is
+chapter toc |1| (section), and so on. Finally, |<code-table>| is
 local code for the current toc; it may be used to change the
 |tocdepth| value or |\contentsmargin|, for instance.
 
@@ -1491,20 +1491,20 @@ A simple usage might look like (provided you are using
 The included entries are those in levels 1 to 2 inclusive (i.e., 1 
 and 2).
 
-\subsection[Partial lists]{Partial lists \normalfont\normalsize\fbox{2.6}}
+\subsection[Liste partielle]{Liste partielle \normalfont\normalsize\fbox{2.6}}
 
 You may want to create partial LOFs and LOTs. The systax is similar to
 that of partial TOCs and what was said for them can be applied here.
 The commands are:
 \begin{desc}
-|\startlist[<name>]{<list>}|\\
-|\stoplist[<name>]{<list>}|\\
-|\resumelist[<name>]{<list>}|\\
-|\printlist[<name>]{<list>}{<prefix>}{<toc-code>}|
+|\startlist[<nom>]{<liste>}|\\
+|\stoplist[<nom>]{<liste>}|\\
+|\resumelist[<nom>]{<liste>}|\\
+|\printlist[<nom>]{<liste>}{<préfixe>}{<code-table>}|
 \end{desc}
 
-Here |<list>| is either |lof| or |lot|.  Note as well |\printlist|
-does not have the |<start-level>| argument, because figures and tables
+Here |<liste>| is either |lof| or |lot|.  Note as well |\printlist|
+does not have the |<début-niveau>| argument, because figures and tables
 have not levels.  Currently, only those two float lists are supported,
 but in a future release support for more kinds of float lists will be
 added.  Unfortunately, many classes write some formatting commands to
@@ -1512,9 +1512,9 @@ these lists (more precisely, \verb|\addvspace|s in chapters); I'm
 still not sure how to remove these commands without removing as well
 others which can be wanted, but for the time being a quick trick to
 remove these spaces is to redefine \verb|\addvspace| in the
-|<toc-code>| with |\renewcommand\addvspace[1]{}|.
+|<code-table>| with |\renewcommand\addvspace[1]{}|.
 
-\subsection{Examples}
+\subsection{Exemples}
 
 \begin{verbatim}
 \titlecontents{chapter}
