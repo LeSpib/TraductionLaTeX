@@ -1545,7 +1545,7 @@ le titre sans motif de remplissage mais avec un espace d'un em.
               {CHAPTER \thecontentslabel\\*[.2pc]%
                \huge}
               {\huge}
-              {}  % That is, without page number
+              {}  % Autrement dit, sans numéro de page.
               [\addvspace{.5pc}]
 \end{verbatim}
               
@@ -1554,27 +1554,26 @@ Le titre du chapitre est centré avec la numérotation de chapitre
 
 \subsection{Insertion d'une figure en table des matières}
 
-\tradini The |\addtocontents| command is still available and you may use
-it to perform special operation, like inserting a figure just before
-or after of an entry. Sadly, fragile
-arguments are not allowed and writing complex code could be a mess.
-The trick is to define a command to perform the required operations
-which in turn is written with |\protect|.
+La commande |\addtocontents| est toujours disponible et vous pouvez l'utiliser
+pour exécuter des opérations particulières, comme insérer une figure juste
+avant ou après une entrée. Hélas, les arguments fragiles ne sont pas autorisés
+et écrire un code complexe peut devenir un enfer. L'astuce est de définir 
+une commande qui effectue les opérations souhaitées et en la faisant précéder
+de la commande |\protect|.
 
-Let's suppose we want to insert a figure before an entry.
+Supposons que nous voulons insérer une figure avant une entrée.
 \begin{verbatim}
 \newcommand{\figureintoc}[1]{
   \begin{figure}
     \includegraphics{#1}%
   \end{figure}}
 \end{verbatim}
-makes the dirty work.
-
-In the place where a figure is inserted write:
+contribue à rendre le travail peu satisfaisant. En lieu et place, préférez
+la syntaxe suivante :
 \begin{verbatim}
 \addtocontents{\protect\figureintoc{myfig}}
 \end{verbatim}
-\tradfin
+
 
 \subsection{Repérage d'entrées avec des astérisques}
 
