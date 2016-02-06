@@ -1440,46 +1440,47 @@ dans |\contentslabel|.
 |\startcontents[<nom>]|
 \end{desc}
 
-\tradini At the point where this command is used, a partial toc begins (note
-the document doesn't require a |\tableofcontents| for partial tocs to
-work).  The |<nom>| argument allows different sets of tocs and it
-defaults to |default|.  These sets may be intermingled, but usually
-will be nested.  For example, you may want two kinds of partial tocs:
-by part and by chapter (besides the full toc, of course).  When a part
-begins, write |\startcontents[parts]|, and when a chapter
-|\startcontents[chapters]|.  This way a new toc is started at each
-part and chapter.\footnote{\emph{All} partial tocs are stored in a
-single file with extension |.ptc|.}
+\trad{Bien relire}\`{A} l'endroit où cette commande est utilisée, une table des matières partielle
+(notez que le document ne nécessite pas la présence d'un |\tableofcontents| pour
+que les tables de matières partielles fonctionnent). L'argument |<nom>| autorise
+différents ensembles de table de matières et sa valeur par défaut est |default|.
+Ces ensembles peuvent être mélangés mais sont d'habitude séparés. Par exemple,
+vous pouvez souhaiter deux types de tables de matières partielles : par partie
+et par chapitre (en plus de la table générale complète, bien entendu). Quand 
+une partie commence, écrivez |\startcontents[parts]| et, quand un chapitre
+commence, |\startcontents[chapters]|. De cette manière, une nouvelle table est
+entamée pour chaque partie et chapitre\footnote{\emph{Toutes} les tables partielles
+sont stockées dans un unique fichier d'extension |.ptc|.}.
 
 \begin{desc}
 |\stopcontents[<nom>]|\\
 |\resumecontents[<nom>]|
 \end{desc}
 
-Stops the partial toc of |<nom>| kind, which may be resumed.
-Since partial contents are stopped by |\startcontents| if necessary,
-those macros will not be used very often.
+La première commande arrête la table partielle de type |<nom>| , qui peut être ensuite
+poursuivi avec la seconde. Comme les tables partielles peuvent être interrompues
+avec |\startcontents| si nécessaire, ces commandes ne seront pas souvent utilisées.
 
 \begin{desc}
 |\printcontents[<nom>]{<préfixe>}{<niveau-début>}{<code-table>}|
 \end{desc}
 
-Print the current partial toc of |<nom>| kind. The format
-of the main toc entries are used, except if there is a |<préfixe>|.
-In such a case, the format of |<préfixe><niveau>| is used, provided
-it is defined. For example, if prefix is |l| and the format of
-|lsection| is defined, then this definition will be used; otherwise,
-the format is that of |section|. The |<niveau-début>| parameter sets the
-top level of the tocs---for a part toc it would be |0| (chapter), for a
-chapter toc |1| (section), and so on. Finally, |<code-table>| is
-local code for the current toc; it may be used to change the
-|tocdepth| value or |\contentsmargin|, for instance.
+Cette commande affiche la table des matière actuelle de type |<nom>|. Le format 
+des entrées de la table principale est utilisé, sauf si il y a un |<préfixe>|.
+Dans ce cas, le format de |<préfixe><niveau>| est utilisé s'il existe. Par
+exemple, si le préfixe est |l| et que le format |lsection| est défini, alors la
+définition sera utilisée; sinon le format est celui de |section|. L'argument
+|<niveau-début>| fixe le niveau le plus haut des tables de matières --- pour une
+table de matières d'une partie ce devrait être |0| (chapitre), pour une table de
+matières d'un chapitre |1| (section) et ainsi de suite. Enfin, |<code-table>| 
+est un code local pour la table locale ; il peut être utilisé pour changer la
+valeur de |tocdepth| ou |\contentsmargin|, par exemple.
 
-A simple usage might look like (provided you are using 
-\textsf{titlesec} as well):
+Une utilisation somple pourrait ressembler à ce qui suit (en supposant que vous
+utilisez aussi \textsf{titlesec}):
 \begin{verbatim}
 \titleformat{\chapter}[display]
-  {...}{...}{...}  % Your definitions come here
+  {...}{...}{...}  % Vos définitions sont ici
   [\vspace*{4pc}%
    \startcontents
    \printcontents{l}{1}{\setcounter{tocdepth}{2}}]
@@ -1488,12 +1489,11 @@ A simple usage might look like (provided you are using
   {\small\itshape}{}{}
   {}[ \textbullet\ ][.]
 \end{verbatim}
-The included entries are those in levels 1 to 2 inclusive (i.e., 1 
-and 2).
+Les entrées ici traitées sont celles de niveau 1 et 2.
 
 \subsection[Liste partielle]{Liste partielle \normalfont\normalsize\fbox{2.6}}
 
-You may want to create partial LOFs and LOTs. The systax is similar to
+\tradini You may want to create partial LOFs and LOTs. The systax is similar to
 that of partial TOCs and what was said for them can be applied here.
 The commands are:
 \begin{desc}
