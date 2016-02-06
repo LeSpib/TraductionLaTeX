@@ -35,7 +35,7 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *ti
   - [x] Et bien plus
   - [x] Table des matières partielle
   - [x] Liste partielle
-  - [ ] Exemples
+  - [x] Exemples
   - [ ] Insertion d'une figure en table des matières
   - [x] Repérage d'entrées avec des astérisques
 - [x] La philosophie de titlesec (1 page)
