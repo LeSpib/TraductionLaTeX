@@ -33,8 +33,8 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *ti
 - [ ] La table des matières : l'extension titletoc (6 pages)
   - [x] Visite guidée de titletoc en 10 minutes
   - [x] Et bien plus
-  - [ ] Table des matières partielle
-  - [ ] Liste partielle
+  - [x] Table des matières partielle
+  - [x] Liste partielle
   - [ ] Exemples
   - [ ] Insertion d'une figure en table des matières
   - [x] Repérage d'entrées avec des astérisques

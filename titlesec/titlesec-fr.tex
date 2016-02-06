@@ -1493,9 +1493,9 @@ Les entrées ici traitées sont celles de niveau 1 et 2.
 
 \subsection[Liste partielle]{Liste partielle \normalfont\normalsize\fbox{2.6}}
 
-\tradini You may want to create partial LOFs and LOTs. The systax is similar to
-that of partial TOCs and what was said for them can be applied here.
-The commands are:
+Vous pouvez créer des tables partielles de figures et de tables. La syntaxe est
+ici similaire à celle des tables des matières et ce qui a été dit à leur propos
+peut être appliqué également ici. Les commandes sont :
 \begin{desc}
 |\startlist[<nom>]{<liste>}|\\
 |\stoplist[<nom>]{<liste>}|\\
@@ -1503,16 +1503,16 @@ The commands are:
 |\printlist[<nom>]{<liste>}{<préfixe>}{<code-table>}|
 \end{desc}
 
-Here |<liste>| is either |lof| or |lot|.  Note as well |\printlist|
-does not have the |<début-niveau>| argument, because figures and tables
-have not levels.  Currently, only those two float lists are supported,
-but in a future release support for more kinds of float lists will be
-added.  Unfortunately, many classes write some formatting commands to
-these lists (more precisely, \verb|\addvspace|s in chapters); I'm
-still not sure how to remove these commands without removing as well
-others which can be wanted, but for the time being a quick trick to
-remove these spaces is to redefine \verb|\addvspace| in the
-|<code-table>| with |\renewcommand\addvspace[1]{}|.
+Ici, la |<liste>| est soit |lof| pour les figures, soit |lot| pour les tables.
+Notez également que |\printlist| n'a pas d'argument |<début-niveau>| parce que
+les tables de figures et de tables n'ont pas de niveau. Actuellement, seules
+ces deux types de tables sont gérés mais dans une prochaine version le support
+d'autres tables sera ajouté. Malheureusement, de nombreuses classes placent
+des commandes de mise en forme dans ces listes (plus exactement, 
+\verb|\addvspace| dans les chapitres); je ne suis pas sûr de savoir comment
+retrancher ces commandes sans en retirer d'autres qui peuvent être souhaitées. 
+En attendant, une astuce revient à retirer ces espaces en redéfinissant
+\verb|\addvspace| dans |<code-table>| avec |\renewcommand\addvspace[1]{}|.
 
 \subsection{Exemples}
 
@@ -1531,7 +1531,7 @@ remove these spaces is to redefine \verb|\addvspace| in the
               [\addvspace{.5pc}]
 \end{verbatim}
 
-The chapter number is out at the edge of the page margin, in a font
+\tradini The chapter number is out at the edge of the page margin, in a font
 larger than the font of the title. If the chapter lacks of number
 (because, say, it is the preface or the bibliography) it is not
 boldfaced. The page number follows the title without fillers, but
