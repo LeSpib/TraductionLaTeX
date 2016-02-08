@@ -1,24 +1,25 @@
-% +--------------------------------------------------+
-% | Typeset this file to get the documentation.      |
-% +--------------------------------------------------+
+% +----------------------------------------------------+
+% | Compilez ce fichier pour obtenir la documentation. |
+% +----------------------------------------------------+
 %
-% Copyright (c) 1998-2011 by Javier Bezos.
-% All Rights Reserved.
+% Copyright (c) 1998-2011 de Javier Bezos.
+% Tous droits réservés. 
 %
-% This file is part of the titlesec distribution release 2.10.0
-% -----------------------------------------------------------
+% Ce fichier est une partie de la distribution de titlesec en version 2.10.0
+% --------------------------------------------------------------------------
 %
-% It may be distributed and/or modified under the
-% conditions of the LaTeX Project Public License, either version 1.3
-% of this license or (at your option) any later version.
-% The latest version of this license is in
+% Il peut être distribué et/ou modifié sous les conditions définies par la
+% LaTeX Project Public License, soit en version 1.3, soit (à votre choix) en
+% toute version ultérieure.
+% La dernière version de cette license est à l'adresse :
 %   http://www.latex-project.org/lppl.txt
-% and version 1.3 or later is part of all distributions of LaTeX
-% version 2003/12/01 or later.
+% et la version 1.3 et les suivantes se retrouve dans toutes les distributions
+% de LaTeX dès la version 2003/12/01.
 % 
-% This work has the LPPL maintenance status "maintained".
+% Ce travail a le statut LPPL de maintenance "maintenu".
 % 
-% The Current Maintainer of this work is Javier Bezos.
+% L'actuel mainteneur est Javier Bezos.
+
 
 \def\fileversion{2.10.0}
 \def\docdate{2011-12-15}
@@ -56,7 +57,7 @@
 \footnote{L'extension \textsf{titlesec} est actuellement en version 2.10.0.  
 \copyright{} 1998--2011 Javier Bezos. L'extension \textsf{titletoc} est actuellement 
 en version 1.6. L'extension \textsf{titleps} est actuellement en version 1.1.0  
-\copyright{} 1999--2011 Javier Bezos.  Javier Bezos. Tous droits réservés.}}
+\copyright{} 1999--2011 Javier Bezos. Tous droits réservés.}}
 
 \author{Javier Bezos\footnote{Pour des rapports d'erreur, commentaires et 
 suggestions, allez à \href{http://www.tex-tipografia.com/contact.html}%
@@ -116,28 +117,28 @@ dotlessi, babeltools}.}}
 \section{Introduction}
 
 Cette extension est essentiellement un remplacement --- partiel ou total --- des 
-macros \LaTeX{} liées au sectionnement ---  principalement les titres, en-têtes et 
-tables des matières. Le but est d'apporter de nouvelles fonctionnalités non disponibles 
-actuellement sous \LaTeX{} : si vous souhaitez juste une interface plus accessible 
-que celle d'un \LaTeX{} standard mais sans changer la façon dont \LaTeX{} travaille, 
+commandes \LaTeX{} liées au sectionnement ---  principalement les titres, en-têtes et 
+tables des matières. Le but est d'apporter de nouvelles fonctionnalités avancées à
+ \LaTeX{} : si vous souhaitez juste une interface plus accessible 
+que celle du \LaTeX{} classique sans changer la façon dont \LaTeX{} travaille, 
 vous pouvez recourir à \textsf{fancyhdr} de Piet van Oostrum, \textsf{sectsty} de 
 Rowland McDonnell et \textsf{tocloft} de Peter Wilson, avec lesquels vous pouvez 
-faire de jolies choses. \footnote{Dans la mesure où les commandes de sectionnement 
+faire de belles choses\footnote{Dans la mesure où les commandes de sectionnement 
 sont réécrites, leur comportement peut être quelque peu différent dans certains 
-cas.}
+cas.}.
 
 Entre autres nouvelles fonctionnalités se trouvent :
 \begin{itemize}
 \item différentes classes et \og formes\fg{} de titres, avec des outils autorisant une 
 grande variété de formats. Vous pouvez définir des formats différents pour les pages 
-de gauche et de droite, avec des titres numérotés ou pas, mesurer la largeur d'un
-titre, ajouter un nouveau niveau de sectionnement, utiliser des graphiques et bien 
+de gauche et de droite, des titres numérotés ou pas. Vous pouvez aussi mesurer la largeur 
+d'un titre, ajouter de nouveaux niveaux de sectionnement, utiliser des graphiques et bien 
 plus encore. L'Annexe montre un bon nombre d'exemples : allez-y tout de suite !
 
-\item des en-têtes et pieds de pages définis sans utilisation des commandes de 
-type |\...mark|, et contenant éventuellement \trad{des marques de haut, de première valeur 
-\emph{et} de double valeur}. Des marques de haut de page correctement synchronisées avec les 
-titres, sans incompatibilités avec la mécanique des flottants. Des éléments 
+\item des en-têtes et pieds de pages définis sans utilisation des commandes de marque
+(type |\...mark|), contenant au besoin des marques de haut de page, de première valeur 
+\emph{et} de bas de page. Des marques de haut de page correctement synchronisées avec les 
+titres, sans incompatibilité avec la mécanique des flottants. Des éléments 
 décoratifs ajoutés aisément, incluant des environnements d'image.
 
 \item de jolies tables des matières de forme libre, avec la possibilité de grouper les 
@@ -145,60 +146,66 @@ entrées de différents niveaux en un paragraphe ou de changer les formats des e
 au milieu d'un document. 
 \end{itemize}
 \textsf{Titlesec} fonctionne avec les classes standards et de nombreuses autres, 
-incluant celles de l'AMS, et elle fonctionne sans aucune difficulté avec 
-\textsf{hyperref}.\footnote{Cependant, notez bien que les classes AMS implémentent à nouveau les commandes internes d'origine. Ces changements seront perdus ici. La 
+telles celles de l'AMS, et interagit sans aucune difficulté avec 
+\textsf{hyperref}\footnote{Cependant, notez bien que les classes AMS implémentent à 
+nouveau les commandes internes d'origine. Ces changements seront perdus ici. La 
 compatibilité avec \textsf{hyperref} a été testée avec \textsf{dvips}, 
 \textsf{dvipdfm} et \textsf{pdftex} mais il s'agit d'une fonctionnalité non 
 suivie. Pensez à vérifier que votre version d'\textsf{hyperref} est compatible 
-avec \textsf{titlesec}. } Malheureusement, elle n'est pas compatible avec 
-\textsf{memoir}, qui propose ses propres outils avec un sous-ensemble limité 
+avec \textsf{titlesec}.}. Malheureusement, elle n'est pas compatible avec 
+\textsf{memoir}, ce dernier proposant ses propres outils avec un sous-ensemble limité 
 des fonctionnalités disponibles dans \textsf{titlesec}.
 
 Comme d'habitude, chargez l'extension de façon classique avec |\usepackage|. 
-Redéfinissez alors les commandes de sectionnement avec les paramétrages simples 
-prédéfinis (voir section \og Interface simple \fg{}) ou avec les commandes mises à 
-disposition si vous souhaitez des formats plus élaborés (voir section 
+Redéfinissez alors les commandes de sectionnement soit avec les paramétrages simples 
+prédéfinis (voir section \og Interface simplifiée \fg{}), soit avec les commandes 
+mises à disposition si vous souhaitez des formats plus élaborés (voir section 
 \og Interface avancée \fg{}). Dans ce dernier cas, vous avez uniquement besoin de 
 redéfinir les commandes que vous utiliserez. Les deux méthodes sont disponibles 
-au même moment mais parce que |\part| est habituellement implémentée de façon 
-non standard, elle reste inchangée par les paramétrages prédéfinis et doit 
-être modifiée avec l'aide de l'\og Interface Avancée \fg{}.
+au même moment mais, |\part| étant souvent implémentée de façon non standard, elle 
+reste inchangée par les paramétrages prédéfinis et doit être modifiée avec l'aide 
+de l'\og Interface avancée \fg{}.
 
 
-\section{Interface simple}
-%~~~~~~~~~~~~~~~~~~~~~~~~~
+\section{Interface simplifiée}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-La façon la plus simple de changer le format se fait par le moyen d'un ensemble 
-d'options de l'extension et par un couple de commandes. Si les fonctionnalités 
-apportées par cet ensemble d'outils vous donne satisfaction, vous n'avez pas besoin 
-d'aller plus loin dans ce manuel. Lisez uniquement cette section et ignorez les 
-suivantes. 
+La façon la plus simple de changer le format se fait avec un ensemble d'options 
+d'extension et par deux commandes. Si les fonctionnalités apportées par cet ensemble 
+d'outils vous donne satisfaction, vous n'avez pas besoin d'aller plus loin dans ce 
+manuel. Lisez uniquement cette section et ignorez les suivantes. 
 
 \subsection{Format}
 
 Il y a trois groupes d'options contrôlant les fontes, tailles et alignements. 
 Vous n'avez pas besoin de définir tous ces groupes puisque des valeurs par défaut 
 sont disponibles pour chacun; cependant, vous devez au moins utiliser une option 
-parmi celles possibles si vous souhaitez utiliser ce \og paramétrage simple \fg{}.
+parmi celles possibles si vous souhaitez utiliser ce \og paramétrage simplifié 
+\fg{}.
 
 \begin{desc}
 |rm sf tt md bf up it sl sc|
 \end{desc}
-Option sélectionnant la famille/série/forme correspondante. La valeur par défaut est |bf|.
+Cette option sélectionne la famille/série/forme correspondante. La valeur par 
+défaut est |bf|.
 
 \begin{desc}
 |big medium small tiny|
 \end{desc}
-Option sélectionnant la taille des titres. Elle est fixée par défaut à |big|, ce qui donne 
-la taille retenue dans les classes standards. Avec |tiny|, les sectionnements 
-(chapitres exceptés) sont composées à la même taille que le texte. |Medium| et 
-|small| sont des présentations intermédiaires entre les deux premières.
+Cette option sélectionne la taille des titres. Elle est fixée par défaut à |big|, 
+ce qui donne la taille retenue dans les classes standards. Avec |tiny|, les 
+niveaux de sectionnements (chapitres exceptés) sont composées à la même taille 
+que le texte. |medium| et |small| sont des présentations intermédiaires entre 
+les deux premières.
 
 \begin{desc}
 |raggedleft center raggedright|
 \end{desc}
 
-Option contrôlant l'alignement.
+Cette option contrôle l'alignement, chaque valeur permettant respectivement 
+alignement à droite\footnote{Le terme anglais est à rapprocher du terme 
+typographique français \og drapeau gauche \fg{}.}, le centrage et l'alignement 
+à gauche.
 
 \subsection{Espacement}
 
@@ -522,7 +529,7 @@ marginaux.
 La commande |\titleline| permet l'insertion d'une ligne, qui peut contenir
 du texte et d'autres matériaux \og horizontaux \fg{}. Elle est pensée 
 principalement pour des filets et des points de conduite\footnote{Suite de points 
-régulièrement espacés qui se trouvent dasn les tables de matières le plus souvent.} 
+régulièrement espacés qui se trouvent dans les tables de matières le plus souvent.} 
 mais elle peut servir également
 pour d'autres besoins. La ligne a une largeur fixée et doit être remplie, 
 autrement dit |\titleline{CHAPITRE}| produit une boîte \trad{sous-remplie}. Ici 
@@ -534,13 +541,13 @@ L'utilisation de |\titleline| à des endroits où un matériel vertical n'est pa
 attendu peut conduire à des anomalies. En d'autres termes, vous pouvez l'utiliser
 dans les arguments |<format>| (toujours) and |<code-après>|, que ce soit dans les 
 formes |hang|, |display| et |block|. Pour la forme |display|, vous pouvez la 
-placer au tout début des arguments |<before-code>| et |<label>|. Mais vous pouvez 
+placer au tout début des arguments |<code-avant>| et |<num>|. Mais vous pouvez 
 tester cette commande ailleurs : il y a de grandes chances qu'elle fonctionne à 
 d'autres endroits.
 
 La commande |\titlerule|, qui est incluse automatiquement dans |\titleline| si 
 nécessaire, peut être utilisée pour construire des filets et des motifs de 
-remplissage. La version non étoilée trace des filets épais de 0.4 pt ou de |<height>| 
+remplissage. La version non étoilée trace des filets épais de 0.4 pt ou de |<hauteur>| 
 si ce dernier est présent. 
 Par exemple,
 \begin{verbatim}
@@ -551,7 +558,7 @@ Par exemple,
 traces deux filets de différents épaisseurs avec une séparation de 1 pt.
 
 La version étoilée fait une variante des points de conduite en remplaçant les
-points par le motif repété du |<texte>| dans une boîte de sa largeur naturelle. 
+points par le motif répété du |<texte>| dans une boîte de sa largeur naturelle. 
 Cette largeur de boîte peut être modifiée avec |<largeur>| mais la largeur de 
 la première boîte reste inchangée pour que le |<texte>| soit aligné avec les 
 bords gauche et droit de l'espace à remplir.
@@ -1118,7 +1125,7 @@ telle zone (les lignes ne seront pas ici affichées) :
 \end{center}
 
 L'espace entre la marge gauche de la page et le bord gauche de notre zone
-sera nommé |gauche|; de manière similaire se définit |<droite>|. Vous êtes
+sera nommé |<gauche>|; de manière similaire se définit |<droite>|. Vous êtes
 autorisé à modifier le début de la première ligne et la fin de la dernière
 ligne. Par exemple, en augmentant leur taille avec |\hspace*{0.5cm}|, cette 
 zone devient :
@@ -1184,7 +1191,7 @@ Maintenant, nous allons voir trois commandes basiques :
 |                {<largeur-num>}{<largeur-motif>}|
 \end{desc}
 
-Here:
+Ici:
 \begin{itemize}
 \item |<section>| est le nom de la \trad{section} sans l'antislash : |part|,
   |chapter|, |section|, etc. |figure| et |table| sont autorisés également
@@ -1303,7 +1310,7 @@ La longueur de |<correction>| est ajoutée à celle de |<right>| dans toutes les
 lignes sauf la dernière, où les points de conduite sont placés. Par exemple, si 
 les lignes de texte font 6 pt de plus que celles du dernier point, vous devriez
 la commande |\contentsmargin| pour y ajouter une |<correction>| de 6 
-pt\footnote{Pour vous aider, de nombreux prévisualisateurs de dvi permettent 
+pt\footnote{Pour vous aider, de nombreux \trad{prévisualisateurs} de dvi permettent 
 d'obtenir les coordonnées de la localisation pointée.}. Contrairement aux 
 outils \LaTeX{} standards, la commande |\titlerule*| a été développée pour
 que la |<correction>| ait la valeur la plus petite possible.
@@ -1320,7 +1327,7 @@ mise en forme que celle générée par la classe.
 |\contentspage[<format>]|
 \end{desc}
 
-Comme décrit plus haut, mais avec différents |<format>|s. Les valeurs par
+Comme décrit plus haut, mais avec différents types de |<format>|. Les valeurs par
 défaut sont juste |\thecontentslabel| et |\thecontentspage|, respectivement.
 
 \begin{desc}
@@ -1328,7 +1335,7 @@ défaut sont juste |\thecontentslabel| et |\thecontentspage|, respectivement.
 \end{desc}
 
 Affiche le |<texte>| et augmente |<gauche>| de la largeur du |<texte>|. Ceci 
-est similiaire à la forme |hang| de \textsf{titlesec}.
+est similaire à la forme |hang| de \textsf{titlesec}.
 
 \begin{desc}
 |\titlecontents*{<section>}[<gauche>]{<code-dessus>}|\\
@@ -1356,10 +1363,10 @@ Notez que la mise en forme du paragraphe doit être écrite dans l'argument
 
 Expliquons comment fonctionnent les arguments optionnels. Notez d'une part que leur 
 nombre détermine leur sens --- comme il doit y avoir un séparateur entre les entrées,
-celui est toujours présent; d'autre part, |<begin>| est rarement utilisé et est
+celui est toujours présent; d'autre part, |<début>| est rarement utilisé et est
 défavorisé en n'apparaissant que dans la version ayant le plus d'argument. Le cas 
 le plus simple est celui où les titres ont le même niveau; dans ce cas, les
-paramètres |<séparateur>| et |<end>| (dont les valeurs par défaut sont des vides) 
+paramètres |<séparateur>| et |<fin>| (dont les valeurs par défaut sont des vides) 
 sont respectivement insérés entre des entrées consécutives et à la fin du bloc. 
 |<code-avant>| est exécuté une seule fois au tout début du bloc et ses déclarations
 sont locales à l'ensemble des entrées.
@@ -1476,7 +1483,7 @@ matières d'un chapitre |1| (section) et ainsi de suite. Enfin, |<code-table>|
 est un code local pour la table locale ; il peut être utilisé pour changer la
 valeur de |tocdepth| ou |\contentsmargin|, par exemple.
 
-Une utilisation somple pourrait ressembler à ce qui suit (en supposant que vous
+Une utilisation simple pourrait ressembler à ce qui suit (en supposant que vous
 utilisez aussi \textsf{titlesec}):
 \begin{verbatim}
 \titleformat{\chapter}[display]
@@ -1531,7 +1538,7 @@ En attendant, une astuce revient à retirer ces espaces en redéfinissant
               [\addvspace{.5pc}]
 \end{verbatim}
 
-\trad{Vérifier} Le numéro de chapiter est placé au bord de la marge de la
+\trad{Vérifier} Le numéro de chapitre est placé au bord de la marge de la
 page, dans une fonte plus grande que celle du titre. Si le chapitre n'a
 pas de numérotation (parce qu'il s'agit, par exemple, d'une préface ou
 d'une bibliographie), il n'est pas mis en gras.  Le numéro de page suit
@@ -1830,7 +1837,7 @@ autre commande additionnelle incluse. Nous donnons ici juste le code mais vous p
 l'essayer. Donc, avec l'extension \textsf{soul}, vous pourriez écrire
 \begin{verbatim}
 \newcommand{\secformat}[1]{\MakeLowercase{\so{#1}}}
-   % \so spaces out letters
+   % \so écarte les lettres
 \titleformat{\section}[block]
   {\normalfont\scshape\filcenter}
   {\thesection}
@@ -2033,7 +2040,7 @@ l'aide de programmes externes.
   [\end{picture}]
 \end{verbatim}
 
-(Les valeurs exaces à utiliser dépendent de la zone de texte, de la classe,
+(Les valeurs exactes à utiliser dépendent de la zone de texte, de la classe,
 de |\unitlength|, du format du papier, etc.)
 
 \end{document}

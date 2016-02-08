@@ -13,7 +13,7 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *ti
 - [ ] En-tête du document tex (définitions, métadonnées)
 - [x] Pages d'avant-propos (1 page)
 - [x] Introduction (1 page)
-- [x] Interface simple (1 page)
+- [x] Interface simplifiée (1 page)
 - [x] Interface avancée (7 pages)
   - [x] Format
   - [x] Espacement
