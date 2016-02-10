@@ -116,9 +116,9 @@ dotlessi, babeltools}.}}
 \tableofcontents
 \section{Introduction}
 
-Cette extension est essentiellement un remplacement --- partiel ou total --- des 
-commandes \LaTeX{} liées au sectionnement ---  principalement les titres, en-têtes et 
-tables des matières. Le but est d'apporter de nouvelles fonctionnalités avancées à
+Cette extension est pour l'essentiel un remplacement --- partiel ou total --- des 
+commandes \LaTeX{} liées au sectionnement, traitant ainsi les titres, en-têtes et 
+tables des matières. Elle cherche à apporter de nouvelles fonctionnalités avancées à
  \LaTeX{} : si vous souhaitez juste une interface plus accessible 
 que celle du \LaTeX{} classique sans changer la façon dont \LaTeX{} travaille, 
 vous pouvez recourir à \textsf{fancyhdr} de Piet van Oostrum, \textsf{sectsty} de 
@@ -147,8 +147,8 @@ au milieu d'un document.
 \end{itemize}
 \textsf{Titlesec} fonctionne avec les classes standards et de nombreuses autres, 
 telles celles de l'AMS, et interagit sans aucune difficulté avec 
-\textsf{hyperref}\footnote{Cependant, notez bien que les classes AMS implémentent à 
-nouveau les commandes internes d'origine. Ces changements seront perdus ici. La 
+\textsf{hyperref}\footnote{Cependant, notez bien que les classes AMS réimplémentent  
+les commandes internes d'origine. Ces changements seront perdus ici. La 
 compatibilité avec \textsf{hyperref} a été testée avec \textsf{dvips}, 
 \textsf{dvipdfm} et \textsf{pdftex} mais il s'agit d'une fonctionnalité non 
 suivie. Pensez à vérifier que votre version d'\textsf{hyperref} est compatible 
@@ -221,21 +221,22 @@ et au-dessous des titres.
 |uppercase|
 \end{desc}
 
-\fbox{2.9} Mise en majuscules des titres. Selon la classe, cela peut ne marcher avec 
-\verb|\chapter| et \verb|\part|.
+\fbox{2.9} Cette option met en majuscules des titres. Selon la classe, cela peut
+ne pas marcher avec \verb|\chapter| et \verb|\part|.
 
 \subsection{Outils}
 
 \begin{desc}
 |\titlelabel{<format-de-numérotation>}|
 \end{desc}
-Changement du format de la numérotation des sections, sous-sections, etc. Une 
-commande |\thetitle| est fournie et correspond respectivement à |\thesection|, 
-|\thesubsection|, etc. La valeur par défaut des classes standards est 
+Cette option change le format de la numérotation des sections, sous-sections, etc. 
+Une commande générique |\thetitle| est fournie et correspond respectivement à 
+|\thesection|, |\thesubsection|, etc. La valeur par défaut des classes standards 
+est :
 \begin{verbatim}
 \titlelabel{\thetitle\quad}
 \end{verbatim}
-et vous pouvez simplement ajouter un point après le compteur avec
+Vous pouvez ajouter un point après la numérotation avec :
 \begin{verbatim}
 \titlelabel{\thetitle.\quad}
 \end{verbatim}
@@ -249,6 +250,7 @@ Cette commande permet de changer le |<format>| d'une commande de sectionnement, 
 par exemple :
 \begin{verbatim}
 \titleformat*{\section}{\itshape}
+\titleformat*{\subsection}{\raggedleft\bfseries}
 \end{verbatim}
 
 \section{Interface avancée}
@@ -258,42 +260,42 @@ Deux commandes sont mises à disposition pour changer le format des titres. La p
 est utilisée pour le format \og interne \fg{}, autrement dit la forme, la fonte, 
 la numérotation, etc. La seconde définit le format \og externe \fg{}, autrement dit 
 l'espacement avant et après, l'indentation, etc. Ce principe est pensé pour simplifier 
-les définitions car, dans la plus plupart des cas, vous souhaiterez modifier soit 
+les définitions car, dans la plupart des cas, vous souhaiterez modifier soit 
 l'espacement, soit le format\footnote{L'information est \og extraite \fg{} des 
 commandes de sectionnement de la classe, excepté pour les chapitres et parties. Les
 définitions sont supposées utiliser |\cs{@startsection}| --- si les sections ont été
 définies sans cette commande, des valeurs arbitraires de format sont proposées et 
 peuvent être modifiées par la suite. Malheureusement, il n'y a pas de manière de
 récupérer les formats des chapitres ou parties ; un format similaire à celui des 
-classes standards est alors utilisé.}. Ceci redéfinit les commandes de sectionnement
-existantes mais n'en crée par de \emph{nouvelles}. De nouveaux niveaux de 
-sectionnement peuvent être ajoutés avec |\titleclass|, comme décrit ci-après, et
-leur format peut être fixé par les commandes décrites ici.
+classes standards est alors utilisé.}. Tout ceci redéfinit les commandes de 
+sectionnement existantes mais n'en crée par de \emph{nouvelles}. De nouveaux niveaux
+de sectionnement peuvent être ajoutés avec |\titleclass|, comme décrit en 
+\ref{classes}, et leur format peut être fixé par les commandes décrites ici.
 
 \subsection{Format}
 
-Un ensemble de formes contrôlant la distribution basique des éléments d'un titre
-est proposé. Les formes disponibles sont :
+Des formes contrôlant la distribution basique des éléments d'un titre
+sont proposées. En voici la liste :
 \begin{description}
 \item[hang] est la valeur par défaut, avec une numérotation en retrait (comme avec 
-|\section| des classes standards).
+|\section| dans les classes standards).
 
 \item[block] compose le titre complet en un bloc (un paragraphe) sans mise en forme
-additionnelle. Utile pour les titres centrés\footnote{La numérotation sera 
-légèrement déplacé vers la gauche si le titre fait plus d'une ligne de long et que 
-la forme \texttt{hang} est utilisée, exception faite des cas avec des |\string\\| 
+additionnelle. Utile pour les titres centrés\footnote{Si le titre fait plus d'une 
+ligne de long en utilisant la forme |hang|, la numérotation sera légèrement 
+déplacée vers la gauche exception faite des cas avec des |\string\\| 
 explicites.} et les mises en forme spéciales (incluant des outils graphiques 
 comme |picture|, |pspicture|, etc.).
 
 \item[display] place la numérotation dans un paragraphe séparé (comme avec 
 |\chapter| dans les classes standards).
 
-\item[runin] Un titre suivi directement du texte sur la même ligne (comme avec 
-|\paragraph| dans les classes standards).
+\item[runin] restitue un titre suivi directement du texte sur la même ligne (comme
+avec |\paragraph| dans les classes standards).
 
 \item[leftmargin] place le titre dans la marge de gauche. Les titres en bas de page
 sont déplacés sur la page suivante et ne restent pas isolés dans la marge du bas, ce 
-qui signifie que de longs titres peuvent mener à des pages trop peu 
+qui signifie que de longs titres peuvent conduire à des pages trop peu 
 remplies\footnote{Cependant, les flottants placés une ou deux lignes après le 
 titre interfèrent avec la découpe de page utilisée ici et le titre peut parfois 
 rester placé en bas de page}. Dans ce cas, vous pouvez augmenter l'étirabilité 
@@ -305,13 +307,13 @@ superposer. Un synonyme obsolète à cette forme est |margin|.
 \item[rightmargin] est similaire à |leftmargin| mais pour la marge de droite.
 
 \item[drop] dispose le texte autour du titre, uniquement si le premier paragraphe
-est plus que le titre (sinon, ils se superposent). Les commentaires associés à
-|leftmargin| s'appliquent également ici. 
+est plus long que le titre (sinon, ils se superposent). Les commentaires associés
+à |leftmargin| s'appliquent également ici. 
 
 \item[wrap] est assez proche de |drop|.  La seule différence est que, tandis que
 l'espace réservé dans |drop| pour le titre est fixé, il est automatiquement 
-ajusté avec |wrap| à la ligne la plus longue. Les limitations expliquées 
-ci-après pour |calcwidth| s'appliquent également ici.
+ajusté avec |wrap| à la ligne la plus longue. Les limitations de |calcwidth| 
+expliquées en \ref{rules} s'appliquent également ici.
 
 \item[frame] Similaire à |display|, mais le titre sera encadré.
 \end{description}
@@ -339,7 +341,7 @@ certaines formes) qui sont composés juste après l'espace au-dessus du titre.
 \item La numérotation est définie dans |<num>|.  Vous pouvez le laisser vide s'il 
 n'y a pas de numérotation de sectionnement à ce niveau, mais cela n'est pas 
 recommandé car le nombre n'est pas supprimé dans la table des matières et dans 
-les en-têtes (ou titres courants).
+les en-têtes de page.
  
 \item |<sep>| est la séparation horizontale entre la numérotation et le corps du
 titre et doit être une longueur (qui ne doit pas être vide). Cet espace est 
@@ -354,7 +356,7 @@ que la taille de la fonte peut être changée de façon sécurisée uniquement e
 les paragraphes et que les changements dans le texte doivent être faits localement
 avec un groupe; Sinon le \trad{leading} pourrait être faux --- trop grand ou trop 
 petit.}. Toutefois, avec l'option d'extension \texttt{explicit}, le titre doit
-être donné explicitement avec |#1| (voir ci-dessous).
+être donné explicitement avec |#1| (voir \ref{others}).
 
 \item |<code-après>| est le code suivant le corps du titre. Le matériel alors 
 composé est en mode vertical avec |hang|, |block| et |display| tandis qu'il est 
@@ -367,7 +369,7 @@ début du paragraphe). Sinon, le code est ignoré.
 \end{desc}
 
 Elle renvoie par défaut à |\chaptername| sauf dans le cas des annexes où elle
-renvoi vers |\appendixname|. Utilisez-là en lieu et place de |\chaptername| 
+renvoie vers |\appendixname|. Utilisez-là en lieu et place de |\chaptername| 
 lorsque vous définissez un chapitre.
 
 \subsection{Espacement}
@@ -389,42 +391,41 @@ valeur négative, le titre \trad{overhangs} \footnote{Ce paramètre n'est pas
 correctement. Avec une valeur négative dans ce dernier et si |<indent>| est
 plus grand que la largeur de la numérotation, la première ligne du titre 
 commencera dans la marge extérieure, comme attendu, mais les lignes suivantes 
-ne le feront pas; pire, les lignes seront raccourcis du côté de la marge 
+ne le feront pas; pire, les lignes seront raccourcies du côté de la marge 
 droite.}.
 
-\item |<sep-avant>| est l'espace vertical avant le titre.
+\item |<avant-sep>| est l'espace vertical avant le titre.
 
-\item |<sep-après>| est la séparation entre le titre et le texte --- verticale 
+\item |<après-sep>| est la séparation entre le titre et le texte --- verticale 
 avec |hang|, |block|, et |display|, horizontale avec |runin|, |drop|, |wrap| 
 and |...margin|. En retenant une valeur négative, vous pouvez définir un
-espace réel plus petit que que |\parskip|\footnote{Voir  
+espace réel plus petit que |\parskip|\footnote{Voir 
 Goossens, Mittelbach and Samarin: \textit{\LaTeX{} Companion}, 
 Reading, Addison Wesley, 1993, p.~25.}.
 
 \item Les formes |hang|, |block| et |display| disposent de la possibilité 
-d'augmenter la marge |<sep-droit>| avec cet argument optionnel.
+d'augmenter la marge |<droite-sep>| avec cet argument optionnel.
 \end{itemize}
 
 Si vous n'aimez pas saisir les valeurs complètes des espaces, incluant les
-paramètres |plus| et |moins|, une abréviation |*|$n$ est disponible. Dans 
-l'argument |<sep-avant>| c'est équivalent à $n$ |ex| avec une certaine 
-\trad{extensibilité} et une infime \trad{compressabilité}. Dans le |<sep-après>|, une 
-certaine \trad{extensibilité} (plus petite) et aucune \trad{compressabilité}\footnote{Ils
-correspondent à $n$ fois |1ex plus .3ex minus .06ex| et |1ex plus .1ex|
-respectivement.}. Ainsi vous pouvez écrire :
+paramètres |plus| et |minus|, une abréviation |*|$n$ est disponible. Dans 
+l'argument |<avant-sep>| cette notation équivaut à une espace de $n$ |ex| 
+avec une certaine extensibilité et une infime compressibilité. Dans  
+|<après-sep>|, l'extensibilité est réduite et il n'y a plus de 
+compressibilité\footnote{Ils correspondent à $n$ fois |1ex plus .3ex minus 
+.06ex| et |1ex plus .1ex| respectivement.}. Ainsi vous pouvez écrire :
 \begin{verbatim}
 \titlespacing{\section}{0pt}{*4}{*1.5}
 \end{verbatim}
 Les longueurs |\beforetitleunit| et |\aftertitleunit| sont utilisées 
-comme unités dans les paramètres |*| et vous pouvez les changer si vous
-n'aimez pas les valeurs prédéfinies (ou pour de légers changements dans 
-la composition, par exemple).
+comme unités dans les paramètres |*| et vous pouvez les modifier (pour de 
+légers changements dans la composition, par exemple).
 
 \textbf{Notes.} |\titlespacing| ne fonctionne pas avec |\chapter| et 
 |\part| à moins que vous ne changiez leur format de titre aussi bien par
 l'utilisation de |\titleformat|, les paramétrages simples ou |\titleclass|. 
 Les arguments de |\titlespacing| doivent être des dimensions;  |\stretch| 
-inclut une commande et ainsi génère une erreur.
+inclut une commande et génère ainsi une erreur.
 
 \subsection{Outils liés à l'espacement}
 
@@ -512,7 +513,7 @@ une raison étrange, vous souhaitez autoriser ces sauts de page dans les titres,
 utilisez l'option \verb|pageatnewline|, qui est fournie pour des questions 
 de rétrocompatibilité.
 
-\subsection{Filets}
+\subsection{Filets} \label{rules}
 
 L'extension inclut des outils pour aider à l'ajout de filets et autres éléments 
 au-dessus et au-dessous du titre. Les marges des titres pouvant être modifiées, 
@@ -690,7 +691,7 @@ elle ne fonctionnera pas avec les chapitres standards sauf si vous changez
 leur classe (d'un autre côté, |\...tolists| peut être utilisé dans tout
 titre dans la classe est |top|).
 
-\subsection{Autres options de l'extension}
+\subsection{Autres options de l'extension} \label{others}
 
 \begin{desc}
 |explicit| \quad (option d'extension)
