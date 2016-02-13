@@ -168,7 +168,7 @@ reste inchangée par les paramétrages prédéfinis et doit être modifiée avec
 de l'\og Interface avancée \fg{}.
 
 
-\section{Interface simplifiée}
+\section{Interface simplifiée} \label{quick}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 La façon la plus simple de changer le format se fait avec un ensemble d'options 
@@ -328,7 +328,7 @@ Notez bien, cependant, que certaines formes n'ont aucun sens dans le cas des
 chapitres et des parties.
 
 \begin{desc}
-|\titleformat{<commande>}[<forme>]{<format>}{<num>}{<sep>}{<code-avant>}[<code-après>]|
+|\titleformat{<commande>}[<forme>]{<format>}{<num>}{<sép>}{<code-avant>}[<code-après>]|
 \end{desc}
 
 Ici,
@@ -349,10 +349,10 @@ n'y a pas de numérotation de sectionnement à ce niveau, mais cela n'est pas
 recommandé car le nombre n'est pas supprimé dans la table des matières et dans 
 les en-têtes de page.
  
-\item |<sep>| est la séparation horizontale entre la numérotation et le corps du
+\item |<sép>| est la séparation horizontale entre la numérotation et le corps du
 titre et doit être une longueur (qui ne doit pas être vide). Cet espace est 
 vertical dans la forme |display| ; dans |frame|, il s'agit de la distance entre 
-le texte et l'encadrement. |<num>| et |<sep>| sont tous deux ignorés dans les 
+le texte et l'encadrement. |<num>| et |<sép>| sont tous deux ignorés dans les 
 versions étoilées des commandes de sectionnement. Si vous utilisez |picture| et 
 ses semblables, mettez ce paramètre à 0 pt.
 
@@ -382,7 +382,7 @@ lorsque vous définissez un chapitre.
 %~~~~~~~~~~~~~~~~~~~~~~
 
 \begin{desc}
-|\titlespacing*{<commande>}{<gauche>}{<avant-sep>}{<après-sep>}[<droite-sep>]|
+|\titlespacing*{<commande>}{<gauche-sép>}{<avant-sép>}{<après-sép>}[<droite-sép>]|
 \end{desc}
 
 La version étoilée supprime l'indentation du paragraphe suivant le titre, sauf
@@ -390,10 +390,11 @@ avec |drop|, |wrap| et |runin| pour lesquels cette possibilité n'a pas de
 sens. 
 
 \begin{itemize}
-\item |<gauche>| augmente la marge de gauche, sauf pour les formes |...margin| 
-et |drop| où ce paramètre fixe la largeur du titre, pour |wrap|, la largeur 
-maximale, et dans |runin| l'indentation juste avant le titre. Avec une 
-valeur négative, le titre \trad{overhangs} \footnote{Ce paramètre n'est pas 
+\item |<gauche-sép>| augmente la marge de gauche, sauf pour les formes |...margin| 
+et |drop| où ce paramètre fixe la largeur du titre, pour |wrap| où il
+donne la largeur maximale et pour |runin| où il indique l'indentation juste 
+avant le titre. Avec une valeur négative, le titre se décale dans la marge de 
+gauche\footnote{Ce paramètre n'est pas 
 équivalent à |<indent>| de |\cs{@startsection}|, qui ne fonctionne pas 
 correctement. Avec une valeur négative dans ce dernier et si |<indent>| est
 plus grand que la largeur de la numérotation, la première ligne du titre 
@@ -401,9 +402,9 @@ commencera dans la marge extérieure, comme attendu, mais les lignes suivantes
 ne le feront pas; pire, les lignes seront raccourcies du côté de la marge 
 droite.}.
 
-\item |<avant-sep>| est l'espace vertical avant le titre.
+\item |<avant-sép>| est l'espace vertical avant le titre.
 
-\item |<après-sep>| est la séparation entre le titre et le texte --- verticale 
+\item |<après-sép>| est la séparation entre le titre et le texte --- verticale 
 avec |hang|, |block|, et |display|, horizontale avec |runin|, |drop|, |wrap| 
 and |...margin|. En retenant une valeur négative, vous pouvez définir un
 espace réel plus petit que |\parskip|\footnote{Voir 
@@ -411,14 +412,14 @@ Goossens, Mittelbach and Samarin: \textit{\LaTeX{} Companion},
 Reading, Addison Wesley, 1993, p.~25.}.
 
 \item Les formes |hang|, |block| et |display| disposent de la possibilité 
-d'augmenter la marge |<droite-sep>| avec cet argument optionnel.
+d'augmenter la marge |<droite-sép>| avec cet argument optionnel.
 \end{itemize}
 
 Si vous n'aimez pas saisir les valeurs complètes des espaces, incluant les
 paramètres |plus| et |minus|, une abréviation |*|$n$ est disponible. Dans 
-l'argument |<avant-sep>| cette notation équivaut à un espace de $n$ |ex| 
+l'argument |<avant-sép>| cette notation équivaut à un espace de $n$ |ex| 
 avec une certaine extensibilité et une infime compressibilité. Dans  
-|<après-sep>|, l'extensibilité est réduite et il n'y a plus de 
+|<après-sép>|, l'extensibilité est réduite et il n'y a plus de 
 compressibilité\footnote{Ils correspondent à $n$ fois |1ex plus .3ex minus 
 .06ex| et |1ex plus .1ex| respectivement.}. Ainsi vous pouvez écrire :
 \begin{verbatim}
@@ -476,11 +477,11 @@ les commandes de sectionnement\footnote{Anciennement nommées |indentfirst| et
 \end{desc}
 
 Avec |rigidchapters|, l'espacement pour les titres des chapitres est toujours
-le même et |<sep-après>| dans |\titlespacing| ne représente pas l'espace entre 
+le même et |<sép-après>| dans |\titlespacing| ne représente pas l'espace entre 
 le bas du texte du titre et le corps du texte comme décrit plus haut mais 
-depuis le haut du texte du titre, autrement dit |<sep-avant>| $+$ |<sep-après>| 
+depuis le haut du texte du titre, autrement dit |<sép-avant>| $+$ |<sép-après>| 
 est maintenant une distance fixe entre le haut du \trad{corps de page} et le 
-texte principal. La valeur par défaut est |rubberchapters| où |<sep-après>| 
+texte principal. La valeur par défaut est |rubberchapters| où |<sép-après>| 
 désigne la séparation entre le titre et le texte, comme à l'accoutumée. Notez 
 que le nom est trompeur : ces options ne s'appliquent pas qu'aux chapitres mais 
 à tout titre de classe |top| (les classes sont développées en \ref{classes}).
@@ -507,10 +508,10 @@ devriez utiliser la version étoilée.
 |aftersep largestsep|  \quad (options d'extension)
 \end{desc}
 
-Par défaut, lorsqu'il y a deux titres consécutifs, l'espace |<sep-après>| du 
+Par défaut, lorsqu'il y a deux titres consécutifs, l'espace |<sép-après>| du 
 premier titre est utilisé entre les deux titres. Parfois, ce comportement n'est
-pas souhaité, en particulier quand l'espace |<sep-avant>| est plus grand que 
-|<sep-après>| (sinon le comportement par défaut semble préférable). Avec 
+pas souhaité, en particulier quand l'espace |<sép-avant>| est plus grand que 
+|<sép-après>| (sinon le comportement par défaut semble préférable). Avec 
 |largestsep|, le plus grand espace est utilisé. La valeur par défaut est |aftersep|.
 
 \begin{desc}
@@ -614,7 +615,7 @@ du titre. Mais, si vous vous en tenez à du texte, |\\| et |\\[...]| (et il y a 
 chances que vous puissiez avoir besoin d'autre chose), vous ne devriez pas rencontrer
 de problèmes.
 
-Un autre point important est que les paramètres |<code-avant>|, |<num>|, |<sep>|, et 
+Un autre point important est que les paramètres |<code-avant>|, |<num>|, |<sép>|, et 
 |<titre>| (mais pas |<code-après>|) sont évalués deux fois au niveau local; si vous
 augmentez un compteur  \emph{globalement}, vous l'augmenterez alors deux fois. Dans
 la plupart des cas, placer une \trad{assignation conflictuelle} dans le |<code-après>| 
@@ -665,7 +666,7 @@ Par exemple, pour supprimer le numéro de page avec les chapitres :
 |\paragraphbreak  \subparagraphbreak   \<section>break|
 \end{desc}
 
-En définissant ces commandes avec |\newcommand|, différents saut de page peuvent
+En définissant ces commandes avec |\newcommand|, différents sauts de page peuvent
 être appliqués à différents niveaux hiérarchiques. Dans celles non définies, une
 pénalité avec une valeur interne fournie par la classe est retenue (typiquement
 $-300$). Par exemple,
@@ -674,7 +675,7 @@ $-300$). Par exemple,
 \end{verbatim}
 fait que les sections commencent sur une nouvelle page. Dans certaines mises en 
 page, l'espace au-dessus du titre est préservé même si la section commence sur
-une nouvelle page; ceci est accompli avec:
+une nouvelle page; ceci s'obtient avec :
 \begin{verbatim}
 \newcommand{\sectionbreak}{%
   \addpenalty{-300}%
@@ -715,7 +716,7 @@ titre dans la classe est |top|).
 \end{desc}
 
 \fbox{2.7} Avec cette option, le titre n'est pas implicite à la fin de |<code-avant>| 
-mais doit être indiqué explicitement avec |#1| comme dans, par exemple :
+mais doit être indiqué explicitement avec |#1| comme dans l'exemple suivant :
 \begin{verbatim} 
 \titleformat{\section}
  {..}
@@ -727,65 +728,69 @@ mais doit être indiqué explicitement avec |#1| comme dans, par exemple :
 |newparttoc oldparttoc| \quad (options d'extension)
 \end{desc}
 
-Les parties standards écrivent leur numéro en table des matières de façon non
-standard. Vous pouvez changer cela avec |newparttoc| de façon à ce que  
+Les parties des classes standards écrivent leur numéro en table des matières de 
+façon non standard. Vous pouvez changer cela avec |newparttoc| de façon à ce que  
 \textsf{titletoc} ou une extension similaire puisse manipuler cette entrée (ceci 
-fonctionne dans le cas où |\part| a été redéfini).
+fonctionne seulement dans le cas où |\part| a été redéfini).
 
 \begin{desc}
 |clearempty| \quad (option d'extension)
 \end{desc}
 
-Modifie le comportement de |\cleardoublepage| de sorte que le style de page 
-|empty| soit utilisé dans les pages vides.
+Cette option modifie le comportement de |\cleardoublepage| de sorte que le 
+style de page |empty| soit utilisé dans les pages vides.
 
 \begin{desc}
 |toctitles| \quad (option d'extension)
 \end{desc}
 
-\fbox{2.6} Change le comportement de l'argument optionnel dans les 
-commandes de sectionnement de telle manière qu'elles fixent uniquement le
-titre en en-tête et non l'entrée en table des matières qui sera donc basée sur le titre complet.
+\fbox{2.6} Cette option change le comportement de l'argument optionnel dans 
+les commandes de sectionnement de sorte qu'elles déterminent uniquement le
+titre en en-tête et non l'entrée en table des matières qui sera donc basée sur
+le titre complet.
 
 \begin{desc}
 |newlinetospace| \quad (option d'extension)
 \end{desc}
 
-\fbox{2.6} Remplace chaque occurrence de \verb|\\| ou \verb|\\*| dans les
-titres par une espace dans les en-têtes et les entrées en table des 
-matières. De cette façon, vous n'avez pas à répéter le titre juste pour
-retrancher une commande de mise en forme. 
+\fbox{2.6} Cette option remplace chaque occurrence de \verb|\\| ou 
+\verb|\\*| dans les titres par une espace dans les en-têtes et les entrées 
+en table des matières. De cette façon, vous n'avez pas à répéter le titre juste
+pour retrancher une commande de mise en forme. 
 
 \subsection{Paramétrages étendus} \label{extended}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Le premier argument de |\titleformat| et de |\titlespacing| 
-dispose d'une syntaxe étendue qui permet de paramétrer différentes mises en forme
-dépendant du contexte\footnote{L'extension \textsf{keyval} est requise pour pouvoir 
-utiliser cette syntaxe.}. Cet argument peut être une liste de paires clé/valeur de 
-la forme :
+dispose d'une syntaxe étendue qui permet de paramétrer différentes mises en 
+forme en fonction du contexte\footnote{L'extension \textsf{keyval} est requise
+pour utiliser cette syntaxe.}. Cet argument peut prendre la forme d'une
+liste de paires clé/valeur :
 \begin{desc}
 |<clé>=<valeur>, <clé>=<valeur>, <clé>, <clé>,...|
 \end{desc}
 
-Actuellement, seules les pages et les versions non numérotées sont prises en charge, 
-\trad{besides} le nom de la commande de sectionnement. Ainsi, les clés disponibles sont :
+Actuellement, en plus du nom de la commande de sectionnement, seules la parité
+des pages et la présence ou pas de numérotation sont prises en charge pour
+définir le contexte. Ainsi, les clés disponibles sont :
 \begin{itemize}
 \item |name|. Les valeurs possibles sont |\chapter|, |\section|, etc.
-\item |page|. Les valeurs possibles sont |odd| ou |even|.
-\item |numberless|. Une clé sans valeur. Elle ne sert que si vous souhaitez disposer de 
-variantes numérotées (sans cette clé) et non numérotées (avec |numberless|).
+\item |page|. Les valeurs possibles sont |odd| (impaire) ou |even| (paire).
+\item |numberless|. Une clé sans valeur. Elle ne sert que si vous souhaitez
+disposer de variantes numérotées (sans cette clé) et non numérotées (avec 
+|numberless|).
 \end{itemize}
-La forme basique décrite ci-dessus avec le nom de la commande de sectionnement, par exemple
+De fait, la forme basique décrite plus haut avec le nom de la commande de
+sectionnement. Par exemple :
 \begin{verbatim}
 \titleformat{\section} ...
 \end{verbatim}
-est en fait une abréviation pour
+est en fait une abréviation pour :
 \begin{verbatim}
 \titleformat{name=\section} ...
 \end{verbatim}
-Supposons que nous souhaitons une mise en page avec des titres dans la marge extérieure. 
-Nous pourrions définir quelque chose comme 
+Supposons que nous souhaitons une mise en page avec des titres dans la marge
+extérieure. Nous pourrions définir quelque chose comme :
 \begin{verbatim}
 \titleformat{name=\section,page=even}[leftmargin]
   {\filleft\scshape}{\thesection}{.5em}{}
@@ -793,54 +798,62 @@ Nous pourrions définir quelque chose comme
 \titleformat{name=\section,page=odd}[rightmargin]
   {\filright\scshape}{\thesection}{.5em}{}
 \end{verbatim}
-Dans la mesure où l'information de page est écrite dans le fichier |aux|, il faut deux 
-compilations au minimum pour obtenir le résultat souhaité.
+Dans la mesure où l'information de page est écrite dans le fichier |aux|, il
+faut deux compilations au minimum pour obtenir le résultat souhaité.
 
-
-La version numérotée est généralement une base convenable pour parvenir à générer la 
-version non numérotée car la suppression de la numérotation est le seul changement 
-requis dans la plupart des cas. Mais, si vous avez besoin de mises en forme spéciales, 
-la clé |numberless| existe et définit une version alternative des sections sans numéros 
-(autrement dit celles avec un niveau sous |secnumdepth|, dans les parties préliminaires et 
-annexes du document\footnote{respectivement obtenue avec |\cs{frontmatter}| et |\cs{backmatter}|.}
-et, bien entendu, la version étoilée). Par exemple
+La version numérotée constitue généralement une bonne base pour parvenir à
+générer la version non numérotée car la suppression de la numérotation est
+le seul changement requis dans la plupart des cas. Si vous avez besoin de mises
+en forme spéciales, la clé |numberless| définit une version alternative des
+sections sans numéros (autrement dit celles avec un niveau inférieur à
+|secnumdepth|, dans les parties préliminaires et annexes du 
+document\footnote{Souvent traitées avec les commandes |\cs{frontmatter}| et 
+|\cs{backmatter}|.} et, bien entendu, les versions étoilées). Par exemple :
 \begin{verbatim}
 \titleformat{name=\section}{...% La définition normale suit
-\titleformat{name=\section,numberless}{...% La définition 
-% non numérotée suit
+\titleformat{name=\section,numberless}{...% La définition non numérotée suit
 \end{verbatim}
-|<label>| et |<sep>| ne sont pas ignorés dans les variantes avec |numberless|.
+|<num>| et |<sép>| ne sont pas ignorés dans les variantes avec |numberless|.
 
 Ces clés sont disponibles à la fois pour |\titleformat| et |\titlespacing|. 
-En utilisant |page| dans l'une d'elles (ou les deux), les pages paires et impaires
-seront mises en forme différemment. En effet, \og paire \fg{} et \og impaire \fg{}
-sont des termes bien établis avec \LaTeX{} mais souvent source de confusion. Dans une 
-impression en recto uniquement, les pages \og impaires \fg{} sont également des
-pages \og paires \fg{} (cf.\@ |\oddsidemargin|).
+En utilisant |page| dans l'une d'elles (ou les deux), les pages paires et
+impaires seront mises en forme différemment. Accessoirement, \og paire \fg{} et 
+\og impaire \fg{} sont des termes bien établis avec \LaTeX{} mais parfois
+source de confusion. Dans une impression en recto uniquement, les pages 
+\og impaires \fg{} sont également des pages \og paires \fg{} 
+(cf.\@ |\oddsidemargin|).
 
-Si vous souhaitez créer différentes versions pour les pages paires/impaires \emph{et}
-avec ou sans numérotation, il est recommandé de définir quatre variantes.
+Si vous souhaitez créer différentes mises en forme pour les pages 
+paires/impaires qu'elles soient avec ou sans numérotation, il est recommandé
+de définir quatre variantes.
 
-Si vous retirez la clé |page| d'une commande de sectionnement, vous devez supprimer le
+Si vous retirez la clé |page| d'une définition, vous devez supprimer le
 fichier |.aux|.
 
 \subsection{Création de nouveaux niveaux et changement de classe} \label{classes}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Quand les formes et autres modifient le comportement des titres en lien avec le texte
-voisin, les classes de titre autorisent le changement de leur comportement générique.
-Avec l'aide des classes, vous pouvez insérer, par exemple, un nouveau niveau |subchapter| 
-entre |chapter| et |section|, ou créer un nouveau plan de votre cru \emph{Faire un plan
-cohérent et définir tous les éléments liés comme les compteurs, les commandes, les 
-formats, l'espacement et, s'il y a une table des matières, le format de cette table est
-laissé à la responsabilité de l'utilisateur.}. Il existe trois classes : |page| est comme
-|\part| (issue de la classe book) sur une page séparée, |top| est comme |chapter| en 
-commençant sur une nouvelle page et en plaçant le titre en haut de page, |straight| est
-pensé pour les titres en milieu de texte\footnote{Il existe une autre classe nommée
-|part| qui sert à émuler le |\cs{part}| de la classe article mais vous ne devriez pas 
-l'utiliser du tout. Utiliser la classe |straight| à la place. Rappelez vous que certaines
-fonctionnalités reposent sur ces classes et que ne change pas \textsf{titlesec} par défaut 
-les définitions de \texttt{\string\part} et \texttt{\string\chapter}.}. 
+Alors que les formes et autres modifient le comportement des titres en lien
+avec le texte environnant, les classes de titre autorisent le changement de
+leur comportement générique.
+Avec l'aide des classes, vous pouvez insérer, par exemple, un nouveau niveau
+|subchapter| entre |chapter| et |section|, ou créer un nouveau plan de votre
+cru. \emph{Faire un plan cohérent et définir tous les éléments liés comme les
+compteurs, les commandes, les formats, l'espacement et le format de 
+l'éventuelle table des matières, le format de cette table est laissé à la
+responsabilité de l'utilisateur.} Il existe trois classes : 
+\begin{itemize}
+\item |page| travaille sur une page séparée, comme |\part| (de la classe 
+|book|) ;
+\item |top| commence sur une nouvelle page en plaçant le titre en haut de page,
+comme |\chapter| ;
+\item |straight| est pensé pour les titres en milieu de texte\footnote{Il
+existe une autre classe nommée |part| qui sert à émuler le |\cs{part}| de la
+classe |article| mais vous ne devriez pas l'utiliser du tout. Utilisez la classe
+|straight| à la place. Rappelez-vous que certaines fonctionnalités reposent sur
+ces classes et que \textsf{titlesec} ne change pas par défaut les définitions
+de \texttt{\string\part} et \texttt{\string\chapter}.}. 
+\end{itemize}
 
 \begin{desc}
 |\titleclass{<nom>}{<classe>}|\\
@@ -848,34 +861,34 @@ les définitions de \texttt{\string\part} et \texttt{\string\chapter}.}.
 \end{desc}
 
 Si vous n'utilisez pas l'argument optionnel, vous changez juste la |<classe>| de
-|<nom>|. Par exemple:
+|<nom>|. Par exemple :
 \begin{verbatim}
 \titleclass{\part}{straight}
 \end{verbatim}
 attribue la classe |straight| à |part|.
 
-Quand la seconde forme est utilisée, le numéro du niveau est directement sous celui du
-|<commande-du-niveau-supérieur>|. Par exemple:
+Quand la seconde forme est utilisée, le numéro du niveau suit directement celui
+de la |<commande-du-niveau-supérieur>|. Par exemple :
 \begin{verbatim}
 \titleclass{\subchapter}{straight}[\chapter]
 \newcounter{subchapter}
 \renewcommand{\thesubchapter}{\Alph{subchapter}}
 \end{verbatim}
-crée un niveau sous celui du chapitre (du code additionnel est montré ici 
+crée un niveau sous celui du chapitre (du code additionnel est proposé ici 
 mais vous devez lui ajouter les paramétrages |\titleformat| et |\titlespacing| 
-correspondant)\footnote{En ce qui concerne les compteurs, l'extension 
+souhaités)\footnote{En ce qui concerne les compteurs, l'extension 
 \textsf{remreset} peut être utile.}. 
-Si le niveau du chapitre est zéro alors celui du sous-chapitre est 1; les
-niveaux en dessous sont incrémenté de 1 (la section devient 2, la sous-section 3
+Si le niveau du chapitre est 0 alors celui du sous-chapitre est 1 et les
+niveaux en-dessous sont incrémentés de 1 (la section devient 2, la sous-section 3
 et ainsi de suite).
 
 Il existe deux commandes de sectionnement qui exécutent quelques actions 
-supplémentaires selon leur nom et ignorant la classe :
+supplémentaires selon leur nom en ignorant la classe :
 \begin{itemize}
-\item |\chapter| enregistre la chaîne définie dans |\chaptertitlename| et la prend
- en compte.
-\item |\part| n'encapsule pas la numérotation de l'entrée en table des 
-matières sauf si vous utilisez l'option |newparttoc|.
+\item |\chapter| récupère la chaîne définie dans |\chaptertitlename| et la prend
+ en compte ;
+\item |\part| ne place pas la numérotation de l'entrée en table des matières
+sauf si vous utilisez l'option |newparttoc|.
 \end{itemize}
 
 \begin{desc}
@@ -883,23 +896,22 @@ matières sauf si vous utilisez l'option |newparttoc|.
 \end{desc}
 
 Supposons que vous voulez créer vos commandes de sectionnement à partir 
-de rien. Cette option d'extension ignore tous les définitions antérieures, si elles
-existent, et retire ainsi la possibilité d'utiliser les options décrites dans
-\og Interface simple \fg{}. Alors, vous pouvez utiliser les outils de 
-\textsf{titlesec} et construire les compteurs et numérotations correspondantes.
+de rien. Cette option d'extension ignore toutes les définitions antérieures, si
+elles existent, et retire ainsi la possibilité d'utiliser les options décrites
+dans la section \ref{quick}. Vous pouvez alors utiliser les outils de 
+\textsf{titlesec} et construire les compteurs et numérotations associées.
 
 \begin{desc}
 |\titleclass{<nom>}[<numéro-de-niveau-initial>]{<classe>}|
 \end{desc}
 
 Ici, le titre |<nom>| est considéré comme le plus haut niveau, avec un
-numéro |<numéro-de-niveau-initial>| (typiquement 0 ou $-$1). Cette commande devrait
-être maniée uniquement lors de la création de commande de sectionnement à partir de
-rien avec l'aide de |loadonly| et il doit y avoir une unique déclaration de ce type.
-Après celle-ci, le reste des niveaux est ajouté comme défini ci-dessus.
+numéro |<numéro-de-niveau-initial>| (typiquement 0 ou $-$1). Cette commande
+devrait être retenue uniquement lors de la création de commandes de 
+sectionnement à partir de rien avec l'aide de |loadonly| et il devrait y avoir une unique déclaration de ce type. Après ceci, le reste des niveaux est ajouté comme indiqué ci-dessus.
 
-\section{Notes additionnelles}
-%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\section{Notes complémentaires}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Cette partie décrit brièvement quelques commandes \LaTeX{}, utiles lors de la définition
 de commandes de sectionnement.

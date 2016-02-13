@@ -24,7 +24,7 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *ti
   - [x] Autres options de l'extension
   - [x] Paramétrages étendus
   - [x] Création de nouveaux niveaux et changement de classe
-- [x] Notes additionnelles (2 pages)
+- [x] Notes complémentaires (2 pages)
   - [x] Numérotations à largeur fixée
   - [x] Versions étoilées
   - [x] Variantes
