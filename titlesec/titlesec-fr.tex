@@ -913,42 +913,43 @@ sectionnement à partir de rien avec l'aide de |loadonly| et il devrait y avoir 
 \section{Notes complémentaires}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Cette partie décrit brièvement quelques commandes \LaTeX{}, utiles lors de la définition
-de commandes de sectionnement.
+Cette partie décrit brièvement quelques commandes \LaTeX{}, utiles lors de la
+définition de commandes de sectionnement.
 
-\subsection{Numérotations à largeur fixée}
-%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Numérotation à largeur fixe}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-La commande |\makebox|  permet d'utiliser une numérotation à largeur fixée, ce qui
-fait reposer la marge gauche du titre actuel (pas la numérotation) au même endroit.
-Par exemple (seul le code important est indiqué) :
+La commande |\makebox| permet de gérer une numérotation à largeur fixe, en
+plaçant la marge gauche du titre actuel (pas la numérotation) toujours au même
+endroit. Par exemple, en se limitant au seul le code important :
 \begin{verbatim}
 \titleformat{\section}
   {..}
   {\makebox[2em]{\thesection}}{..}{..}
 \end{verbatim}
 
-Voir votre manuel \LaTeX{} pour plus d'information sur les commandes portant sur les boîtes.
+N'hésitez pas à consulter votre documentation de \LaTeX{} pour plus
+d'informations sur les commandes portant sur les boîtes.
 
-\subsection{Versions étoilées} \label{s:starred}
-%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Version étoilée} \label{s:starred}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-Recourir à la version étoilée dans les commandes de sectionnement est fortement
-découragé. En lieu et place, vous pouvez utiliser un ensemble de commandes \trad{markup
-oriented} qui sont facile à définir et modifier si nécessaire. Ainsi, vous pouvez tester
-différentes mises en page avant de choisir l'une d'entre elles.
+Recourir à la version étoilée dans les commandes de sectionnement est très 
+peu recommandé. En lieu et place, vous pouvez utiliser des commandes plus
+explicites, simples à définir et à modifier si nécessaire. Ainsi, vous pouvez
+tester différentes mises en page avant de choisir l'une d'entre elles.
 
 Tout d'abord, rappelez-vous que si vous écrivez
 \begin{verbatim}
 \setcounter{secnumdepth}{0}
 \end{verbatim}
-les sections ne seront pas numérotées mais seront inclues dans la table des matières
-et les en-têtes.
+les sections ne seront pas numérotées mais seront insérées dans la table des
+matières et les en-têtes.
 
-Maintenant, supposons que vous voulez des sections avec un contenu spécial; par exemple,
-une section (ou plus) avec des exercices. Nous utiliserons un environnement nommé
-|exercices| tel que : 
+Maintenant, supposons que vous voulez des sections avec un contenu spécial; par
+exemple, une section (ou plus) avec des exercices. Nous utiliserons un
+environnement nommé |exercices| tel que : 
 \begin{verbatim}
 \section{A section}
 Texte d'une section normale.
@@ -962,8 +963,8 @@ Des exercices
 \end{exercices}
 \end{verbatim}
 
-La définition suivante supprime les nombres mais pas les entrées en table des 
-matières et pas les impacts sur l'en-tête.
+La définition suivante supprime les numérotations mais pas les entrées en
+table des matières et pas les impacts sur l'en-tête.
 \begin{verbatim}
 \newenvironment{exercices}
   {\setcounter{secnumdepth}{0}}
@@ -986,36 +987,35 @@ La suivante met à jour l'en-tête mais ne crée pas d'entrée en table des mati
  {\setcounter{secnumdepth}{2}%
   \addtocontents{toc}{\protect\setcounter{tocdepth}{2}\ignorespaces}}
 \end{verbatim}
-(Je trouve ce dernier cas un peu étrange dans notre exemple; le premier et le deuxième 
-cas ont bien plus de sens. Par ailleurs, les |\ignorespaces| ne sont pas très importants et 
-ils ne sont nécessaires que si vous avez des espaces non souhaités dans la table des 
-matières.) 
+(Ce dernier cas reste sans doute un peu étrange dans notre exemple; le premier
+et le deuxième cas ont bien plus de sens. Par ailleurs, les |\ignorespaces| ne
+sont pas très importants, ne devenant nécessaires que si vous avez des espaces
+non souhaités dans la table des matières.) 
 
-Ceci fonctionne avec les classes standards mais, si vous utilisez \textsf{fancyhdr} ou
-\textsf{titlesec} pour définir les en-têtes, il faudra avoir recours à des mécaniques 
-plus avancées pour supprimer les numéros de section. Dans \textsf{titlesec}, ceci 
-s'obtient avec |\ifthesection| (voir ci-dessous).
+Ceci fonctionne avec les classes standards mais, si vous utilisez 
+\textsf{fancyhdr} ou \textsf{titlesec} pour définir les en-têtes, il faudra
+avoir recours à des mécaniques plus avancées pour supprimer les numéros de
+section. Dans \textsf{titlesec}, ceci s'obtient avec |\ifthesection| (voir 
+ci-dessous).
 
-Comme vous pouvez le voir, il n'y a pas de |\addcontentsline|, de |\markboth| ou de 
-|\section*|, juste de la structure logique. Bien entendu, vous pouvez changer ce point
-à merci; par exemple, si vous décidez que ces sections doivent être composées en
-petits caractères (avec |\small|) et que vous réalisez que vous n'aimez pas cela, 
-retirez-le.
+Comme vous pouvez le voir, il n'y a pas de |\addcontentsline|, de |\markboth|
+ou de |\section*|, juste de la structure logique. Bien entendu, vous pouvez
+changer tout ceci à merci; par exemple, si vous décidez que ces sections
+doivent être composées en petits caractères, ajoutez un |\small|, et si vous réalisez que vous n'aimez pas cela, retirez-le.
 
-Tandis que les commandes d'un \LaTeX{} standard sont plus faciles et directes 
-pour les cas simples, je pense que la méthode proposée ci-dessus est de loin préférable
-pour les longs documents.
+Tandis que les commandes standard de \LaTeX{} sont plus faciles et directes 
+pour les cas simples, je pense que la méthode proposée ci-dessus est de loin préférable pour les longs documents.
 
 
 \subsection{Variantes}
 %~~~~~~~~~~~~~~~~~~~~~
 
-Supposons que vous souhaitez marquer des sections comme \og sujet avancé \fg{}
-par une astérisque après la numérotation. 
-Le code suivant effectue cette mise en forme :
+Supposons que vous souhaitez marquer des sections comme \og sujet avancé
+\fg{} par un astérisque après la numérotation. Le code suivant effectue
+cette mise en forme :
 \begin{verbatim}
 \newcommand{\secmark}{}
-\newenvironment{avance}
+\newenvironment{difficile}
   {\renewcommand{\secmark}{*}}
   {}
 \titleformat{\section}
@@ -1025,31 +1025,31 @@ Le code suivant effectue cette mise en forme :
 
 Pour marquer une section, écrivez :
 \begin{verbatim}
-\begin{avance}
+\begin{difficile}
 \section{...}
 ...
-\end{avance}
+\end{difficile}
 \end{verbatim}
 
-Ceci marque les sections mais pas les sous-sections. Si vous souhaitez un peu de
-redondance en marquant les sous-sections également, vous devez les définir de
-façon similaire.
+Ceci marque les sections mais pas les sous-sections. Si vous souhaitez un peu
+de redondance en marquant les sous-sections également, vous devez les définir
+de façon similaire.
 
 \subsection{Placement d'un point après un titre de section} \label{sec:dotafter}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-De nos jours, ce style n'est plus en usage mais il était relativement courant
-auparavant. 
-La technique de base a été décrite ci-dessus mais en voici un rappel :
+De nos jours, ce style n'est plus en usage mais il a été relativement courant
+auparavant. La technique de base a été décrite ci-dessus mais en voici un
+rappel :
 \begin{verbatim}
-\newcommand{\periodafter}[1]{#1.}
+\newcommand{\pointapres}[1]{#1.}
 \titleformat{\section}
  {..}
- {\thesection}{..}{..\periodafter}
+ {\thesection}{..}{..\pointapres}
 \end{verbatim}
 
-Si vous avez à combiner ce point avec une commande (tel un soulignement), vous pouvez
-saisir :
+Si vous avez à combiner ce point avec une commande (tel un soulignement), vous
+pouvez saisir :
 \begin{verbatim}
 \newcommand{\periodafter}[2]{#1{#2.}}
 \titleformat{\section}
@@ -1057,7 +1057,8 @@ saisir :
  {\thesection}{..}{..\periodafter{\ul}} % \ul de l'extension soul
 \end{verbatim}
 
-Cependant, vous pourriez préférer ici l'option d'extension \texttt{explicit}.
+Bien entendu, vous pourriez aussi travailler avec l'option d'extension 
+\texttt{explicit}.
 
 \section{L'extension \textsf{titleps} et le style de page}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1228,9 +1229,9 @@ Maintenant, nous allons voir trois commandes basiques :
 
 Ici:
 \begin{itemize}
-\item |<section>| est le nom de la \trad{section} sans l'antislash : |part|,
-  |chapter|, |section|, etc. |figure| et |table| sont autorisés également
-  (l'antislash est omis car nous nous occupons du concept et non des
+\item |<section>| est le nom de la commande de sectionnement sans l'antislash 
+  : |part|, |chapter|, |section|, etc. |figure| et |table| sont autorisés
+  également (l'antislash est omis car nous nous occupons du concept et non des
   commandes de sectionnement elles-mêmes. Par ailleurs, |figure| et |table| 
   sont des environnements).
 

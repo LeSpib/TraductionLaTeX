@@ -25,8 +25,8 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *ti
   - [x] Paramétrages étendus
   - [x] Création de nouveaux niveaux et changement de classe
 - [x] Notes complémentaires (2 pages)
-  - [x] Numérotations à largeur fixée
-  - [x] Versions étoilées
+  - [x] Numérotation à largeur fixe
+  - [x] Version étoilée
   - [x] Variantes
   - [x] Placement d'un point après un titre de section
 - [x] L'extension titleps et les styles de page (1 page)
