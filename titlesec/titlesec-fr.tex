@@ -117,16 +117,16 @@ dotlessi, babeltools}.}}
 \section{Introduction}
 %~~~~~~~~~~~~~~~~~~~~~
 
-Cette extension est pour l'essentiel un remplacement --- partiel ou total --- des 
-commandes \LaTeX{} liées au sectionnement, traitant ainsi les titres, en-têtes et 
-tables des matières. Elle cherche à apporter de nouvelles fonctionnalités avancées à
- \LaTeX{} : si vous souhaitez juste une interface plus accessible 
-que celle du \LaTeX{} classique sans changer la façon dont \LaTeX{} travaille, 
-vous pouvez recourir à \textsf{fancyhdr} de Piet van Oostrum, \textsf{sectsty} de 
-Rowland McDonnell et \textsf{tocloft} de Peter Wilson, avec lesquels vous pouvez 
-faire de belles choses\footnote{Dans la mesure où les commandes de sectionnement 
-sont réécrites, leur comportement peut être quelque peu différent dans certains 
-cas.}.
+Cette extension est pour l'essentiel un remplacement --- partiel ou total ---
+des commandes \LaTeX{} liées au sectionnement, traitant ainsi les titres, 
+en-têtes et tables des matières. Elle cherche à apporter de nouvelles
+fonctionnalités avancées à \LaTeX{} : si vous souhaitez juste une interface
+plus accessible que celle du \LaTeX{} classique sans changer la façon dont
+\LaTeX{} travaille, vous pouvez recourir à \textsf{fancyhdr} de Piet van 
+Oostrum, \textsf{sectsty} de Rowland McDonnell et \textsf{tocloft} de Peter
+Wilson, avec lesquels vous pouvez faire de belles choses\footnote{Dans la
+mesure où les commandes de sectionnement sont réécrites, leur comportement peut
+être quelque peu différent dans certains cas.}.
 
 Entre autres nouvelles fonctionnalités se trouvent :
 \begin{itemize}
@@ -561,7 +561,7 @@ placer au tout début des arguments |<code-avant>| et |<num>|. Mais vous pouvez
 tester cette commande à d'autres endroits : il y a de grandes chances qu'elle 
 y fonctionne.
 
-La commande |\titlerule|, qui est incluse automatiquement dans |\titleline| si 
+La commande |\titlerule|, qui est incluse automatiquement dans |\titleline| si
 nécessaire, peut être utilisée pour construire des filets et des motifs de 
 remplissage. La version non étoilée trace des filets épais de 0.4 pt ou de 
 |<hauteur>| si ce dernier est présent. Par exemple,
@@ -625,20 +625,20 @@ passera mais vous pouvez également utiliser la commande suivante.
 |\iftitlemeasuring{<vrai>}{<faux>}|
 \end{desc}
 
-\fbox{2.9} Quand le titre est mesuré (première lecture), l'argument |<vrai>| est
-traité tandis que, quand le titre est réellement composé (seconde lecture), 
-l'argument |<faux>| est traité.
+\fbox{2.9} Quand le titre est mesuré (première lecture), l'argument |<vrai>|
+est traité tandis que, quand le titre est réellement composé (seconde
+lecture), l'argument |<faux>| est traité.
 
 \begin{desc}
 |\titleline*[<alignement>]{<matériel horizontal>}|
 \end{desc}
 
-Une variante de |\titleline| à utiliser uniquement avec |calcwidth|. Le texte sera
-d'abord placé dans une boîte de largeur |\titlewidth|; cette boîte sera à son tour
-placée dans la boîte principale avec l'alignement indiqué. Il n'y a pas 
-d'équivalent à |\titlerule| et ceci explique pourquoi vous devez le placer 
-explicitement dans un |\titleline*| si vous voulez que |\titlewidth| soit pris en 
-compte :
+Une variante de |\titleline| à utiliser uniquement avec |calcwidth|. Le texte
+sera d'abord placé dans une boîte de largeur |\titlewidth|; cette boîte sera à
+son tour placée dans la boîte principale avec l'alignement indiqué. Il n'y a
+pas d'équivalent à |\titlerule| et ceci explique pourquoi vous devez le placer 
+explicitement dans un |\titleline*| si vous voulez que |\titlewidth| soit pris
+en compte :
 \begin{verbatim}
 \titleline*[c]{\titlerule[.8pc]}
 \end{verbatim}
@@ -646,10 +646,10 @@ compte :
 \subsection{Styles de page}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\fbox{2.8} Vous pouvez assigner un style de page à des niveaux ayant la classe |top| 
-ou |page| (voir \ref{classes}, page \pageref{classes}), aussi bien qu'au chapitre de 
-base avec la commande suivante\footnote{Nommée dans l'éphémère version 2.7 
-\texttt{\string\titlepagestyle}.} :
+\fbox{2.8} Vous pouvez assigner un style de page à des niveaux ayant la classe
+|top| ou |page| (voir \ref{classes}, page \pageref{classes}), aussi bien qu'au
+chapitre de base avec la commande suivante\footnote{Nommée dans l'éphémère
+version 2.7 \texttt{\string\titlepagestyle}.} :
 \begin{desc}
 |\assignpagestyle{<commande>}{<style de page>}|
 \end{desc}
@@ -666,14 +666,14 @@ Par exemple, pour supprimer le numéro de page avec les chapitres :
 |\paragraphbreak  \subparagraphbreak   \<section>break|
 \end{desc}
 
-En définissant ces commandes avec |\newcommand|, différents sauts de page peuvent
-être appliqués à différents niveaux hiérarchiques. Dans celles non définies, une
-pénalité avec une valeur interne fournie par la classe est retenue (typiquement
-$-300$). Par exemple,
+En définissant ces commandes avec |\newcommand|, différents sauts de page
+peuvent être appliqués à différents niveaux hiérarchiques. Dans celles non
+définies, une pénalité avec une valeur interne fournie par la classe est
+retenue (typiquement $-300$). Par exemple,
 \begin{verbatim}
 \newcommand{\sectionbreak}{\clearpage}
 \end{verbatim}
-fait que les sections commencent sur une nouvelle page. Dans certaines mises en 
+fait que les sections commencent sur une nouvelle page. Dans certaines mises en
 page, l'espace au-dessus du titre est préservé même si la section commence sur
 une nouvelle page; ceci s'obtient avec :
 \begin{verbatim}
@@ -685,16 +685,16 @@ une nouvelle page; ceci s'obtient avec :
 \fbox{2.6} \verb|\<section>break| est également disponible avec la classe 
 \verb|top|. Les valeurs admises sont \verb|\cleardoublepage| (valeur par 
 défaut avec \verb|openright|) et \verb|\clearpage| (valeur par défaut avec 
-\verb|openany|). Ainsi, vous pouvez annuler l'effet de \verb|openright| en définissant 
-\verb|\chapterbreak| comme \verb|\clearpage|, du moment que sa 
-classe a été changée en \verb|top| (dans cet exemple, les parties conserveront 
+\verb|openany|). Ainsi, vous pouvez annuler l'effet de \verb|openright| en
+définissant \verb|\chapterbreak| comme \verb|\clearpage|, du moment que sa 
+classe a été changée en \verb|top| (dans cet exemple, les parties conserveront
 le paramétrage \verb|openright|).
 
 \begin{desc}
 |\chaptertolists|
 \end{desc}
 
-\fbox{2.6} Si cette commande est définie, \trad{l'espace blanc écrit d'habitude 
+\fbox{2.6} Si cette commande est définie, \trad{l'espace blanc écrit d'habitude
 dans les listes} (que sont la liste des figures et la liste des tables)
 est remplacé par le code de cette commande. Si vous ne voulez pas de l'espace
 quand un chapitre commence, définissez-le comme vide, autrement dit,
@@ -715,8 +715,9 @@ titre dans la classe est |top|).
 |explicit| \quad (option d'extension)
 \end{desc}
 
-\fbox{2.7} Avec cette option, le titre n'est pas implicite à la fin de |<code-avant>| 
-mais doit être indiqué explicitement avec |#1| comme dans l'exemple suivant :
+\fbox{2.7} Avec cette option, le titre n'est pas implicite à la fin de
+|<code-avant>| mais doit être indiqué explicitement avec |#1| comme dans
+l'exemple suivant :
 \begin{verbatim} 
 \titleformat{\section}
  {..}
@@ -849,10 +850,10 @@ responsabilité de l'utilisateur.} Il existe trois classes :
 comme |\chapter| ;
 \item |straight| est pensé pour les titres en milieu de texte\footnote{Il
 existe une autre classe nommée |part| qui sert à émuler le |\cs{part}| de la
-classe |article| mais vous ne devriez pas l'utiliser du tout. Utilisez la classe
-|straight| à la place. Rappelez-vous que certaines fonctionnalités reposent sur
-ces classes et que \textsf{titlesec} ne change pas par défaut les définitions
-de \texttt{\string\part} et \texttt{\string\chapter}.}. 
+classe |article| mais vous ne devriez pas l'utiliser du tout. Utilisez la 
+classe |straight| à la place. Rappelez-vous que certaines fonctionnalités
+reposent sur ces classes et que \textsf{titlesec} ne change pas par défaut les
+définitions de \texttt{\string\part} et \texttt{\string\chapter}.}. 
 \end{itemize}
 
 \begin{desc}
@@ -860,8 +861,8 @@ de \texttt{\string\part} et \texttt{\string\chapter}.}.
 |\titleclass{<nom>}{<classe>}[<commande-du-niveau-supérieur>]|
 \end{desc}
 
-Si vous n'utilisez pas l'argument optionnel, vous changez juste la |<classe>| de
-|<nom>|. Par exemple :
+Si vous n'utilisez pas l'argument optionnel, vous changez juste la |<classe>|
+de |<nom>|. Par exemple :
 \begin{verbatim}
 \titleclass{\part}{straight}
 \end{verbatim}
@@ -879,14 +880,14 @@ mais vous devez lui ajouter les paramétrages |\titleformat| et |\titlespacing|
 souhaités)\footnote{En ce qui concerne les compteurs, l'extension 
 \textsf{remreset} peut être utile.}. 
 Si le niveau du chapitre est 0 alors celui du sous-chapitre est 1 et les
-niveaux en-dessous sont incrémentés de 1 (la section devient 2, la sous-section 3
-et ainsi de suite).
+niveaux en-dessous sont incrémentés de 1 (la section devient 2, la sous-section
+3 et ainsi de suite).
 
 Il existe deux commandes de sectionnement qui exécutent quelques actions 
 supplémentaires selon leur nom en ignorant la classe :
 \begin{itemize}
-\item |\chapter| récupère la chaîne définie dans |\chaptertitlename| et la prend
- en compte ;
+\item |\chapter| récupère la chaîne définie dans |\chaptertitlename| et la 
+ prend en compte ;
 \item |\part| ne place pas la numérotation de l'entrée en table des matières
 sauf si vous utilisez l'option |newparttoc|.
 \end{itemize}
@@ -908,7 +909,9 @@ dans la section \ref{quick}. Vous pouvez alors utiliser les outils de
 Ici, le titre |<nom>| est considéré comme le plus haut niveau, avec un
 numéro |<numéro-de-niveau-initial>| (typiquement 0 ou $-$1). Cette commande
 devrait être retenue uniquement lors de la création de commandes de 
-sectionnement à partir de rien avec l'aide de |loadonly| et il devrait y avoir une unique déclaration de ce type. Après ceci, le reste des niveaux est ajouté comme indiqué ci-dessus.
+sectionnement à partir de rien avec l'aide de |loadonly| et il devrait y avoir
+une unique déclaration de ce type. Après ceci, le reste des niveaux est ajouté
+comme indiqué ci-dessus.
 
 \section{Notes complémentaires}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -971,7 +974,8 @@ table des matières et pas les impacts sur l'en-tête.
   {\setcounter{secnumdepth}{2}}
 \end{verbatim}
 
-La suivante ajoute une entrée en table des matières mais ne modifie pas l'en-tête.
+La suivante ajoute une entrée en table des matières mais ne modifie pas
+l'en-tête.
 \begin{verbatim}
 \newenvironment{exercices}
  {\setcounter{secnumdepth}{0}%
@@ -979,7 +983,8 @@ La suivante ajoute une entrée en table des matières mais ne modifie pas l'en-t
  {\setcounter{secnumdepth}{2}}
 \end{verbatim}
 
-La suivante met à jour l'en-tête mais ne crée pas d'entrée en table des matières.
+La suivante met à jour l'en-tête mais ne crée pas d'entrée en table des
+matières.
 \begin{verbatim}
 \newenvironment{exercices}
  {\setcounter{secnumdepth}{0}%
@@ -1001,10 +1006,12 @@ ci-dessous).
 Comme vous pouvez le voir, il n'y a pas de |\addcontentsline|, de |\markboth|
 ou de |\section*|, juste de la structure logique. Bien entendu, vous pouvez
 changer tout ceci à merci; par exemple, si vous décidez que ces sections
-doivent être composées en petits caractères, ajoutez un |\small|, et si vous réalisez que vous n'aimez pas cela, retirez-le.
+doivent être composées en petits caractères, ajoutez un |\small|, et si vous
+réalisez que vous n'aimez pas cela, retirez-le.
 
 Tandis que les commandes standard de \LaTeX{} sont plus faciles et directes 
-pour les cas simples, je pense que la méthode proposée ci-dessus est de loin préférable pour les longs documents.
+pour les cas simples, je pense que la méthode proposée ci-dessus est de loin
+préférable pour les longs documents.
 
 
 \subsection{Variantes}
@@ -1063,14 +1070,14 @@ Bien entendu, vous pourriez aussi travailler avec l'option d'extension
 \section{L'extension \textsf{titleps} et le style de page}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-L'extension \textsf{titleps} fournit des outils pour configurer en une 
-étape les styles de pages (en-têtes et pieds de page). Une interface de plus haut
-niveau est ici utilisée : la mécanique des marques est cachée et il n'y a
-pas besoin de gérer les commandes |\leftmark| et |\rightmark|. Il suffit d'utiliser
-une commande ou une variable déclarée comme une \og marque \fg{} pour que la valeur
-voulue soit restituée, autrement dit, celles utilisées lors la marque est émise (soit 
-par une commande de sectionnement soit explicitement par |\chaptermark|, 
-|\sectionmark|, etc). Un simple exemple, dont le sens devrait être évident, est ainsi :
+L'extension \textsf{titleps} fournit des outils pour configurer en une étape
+le style de page (en-tête et pied de page). Une interface de haut niveau est
+ici utilisée : la mécanique des marques est cachée et il n'y a pas besoin de
+gérer les commandes |\leftmark| et |\rightmark|. Il suffit d'utiliser une
+commande ou une variable déclarée comme une \og marque \fg{} pour que la valeur
+voulue soit restituée, autrement dit, celles utilisées lors la marque est émise
+(soit par une commande de sectionnement soit explicitement par |\chaptermark|, 
+|\sectionmark|, etc). Un simple exemple, dont le sens devrait être évident :
 \begin{verbatim}
 \newpagestyle{main}{
   \sethead[\thepage][\chaptertitle][(\thesection] % paire
@@ -1080,23 +1087,26 @@ par une commande de sectionnement soit explicitement par |\chaptermark|,
 
 Les autres fonctionnalités sont :
 \begin{itemize}
-\item des marques de début de page (\emph{top mark}) compatibles avec les flottants 
-(contrairement au |\topmark| standard, qui ne fonctionne pas correctement dans \LaTeX{}) ;
-\item l'accès aux marques de début de page ou de fin de page (\emph{bottom mark}) ainsi 
-qu'à la première marque (\emph{first mark}) dans un unique en-tête ou pied de page (par 
-exemple les numéros des premières et dernières sections) ;
+\item des marques de début de page (\emph{top mark}) compatibles avec les
+flottants (contrairement au |\topmark| standard, qui ne fonctionne pas
+correctement dans \LaTeX{}) ;
+\item l'accès aux marques de début de page ou de fin de page (\emph{bottom 
+mark}) ainsi qu'à la première marque (\emph{first mark}) dans un unique en-tête
+ou pied de page (par exemple les numéros des premières et dernières sections) ;
 \item des marques pour plus de deux niveaux de sectionnement ;
 \item des filets d'en-tête et de pied de page simples (ou bien moins simples) ;
-\item des lignes d'en-tête et de pied de page pour les pages avec des flottants ;
-\item des lignes d'en-tête et de pied de page des flottants spécifiques (une sorte 
-de |\thispagestyle| pour flottants) ;
-\item de multiples ensembles de marques (désignés sous les termes \emph{lots de marques
-} et \textit{marques supplémentaires}).
+\item des lignes d'en-tête et de pied de page pour les pages avec des flottants
+ ;
+\item des lignes d'en-tête et de pied de page des flottants spécifiques (une
+sorte de |\thispagestyle| pour flottants) ;
+\item de multiples ensembles de marques (désignés sous les termes \emph{lots 
+de marques} et \textit{marques supplémentaires}).
 \end{itemize}
 
-L'extension peut être utilisée sans \textsf{titlesec} mais vous en tirerez le meilleur
-en usage combiné. Pour la charger seule, saisissez le traditionnel 
-\verb|\usepackage{titleps}|. Pour la charger avec \textsf{titlesec}, passez par :
+L'extension peut être utilisée sans \textsf{titlesec} mais vous en tirerez le
+meilleur en usage combiné. Pour la charger seule, saisissez le traditionnel 
+\verb|\usepackage{titleps}|. Pour la charger avec \textsf{titlesec}, passez 
+par :
 \begin{verbatim}
 \usepackage[pagestyles]{titlesec}
 \end{verbatim}
@@ -1107,38 +1117,38 @@ complémentaire.
 \section{L'extension \textsf{titletoc} et la table des matières}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Cette extension accompagne l'extension \textsf{titlesec} et gère les entrées en
-table des matières. Cependant elle constitue une extension indépendante et peut
-être utilisée seule. Sa philosophie est similaire à celle de \textsf{titlesec}---
-au lieu de manipuler les commandes définies par la version standard et ses classes,
-elle propose de nouvelles commandes avec lesquelles vous pouvez établir le format
-des entrées de table de façon générique. Ceci implique que vous avez juste à 
-apprendre deux nouvelles commandes basiques et deux outils, ni plus ni moins, et
-vous avez alors accès à de nouvelles fonctionnalités. La mise en forme des
-paragraphes et les fontes associées sont traitées avec des commandes comme
-|\\|, |\makebox|, |\large|, |\itshape| et ainsi de suite. Les entrées en elles-mêmes
-ne sont pas mises en forme de quelque manière que ce soit car elles sont souvent
-de forme libre.
+Cette extension accompagne \textsf{titlesec} et gère les entrées en table des
+matières. Cependant elle constitue une extension indépendante et peut être
+utilisée seule. Sa philosophie est similaire à celle de \textsf{titlesec} ---
+au lieu de manipuler les commandes définies par la version standard et ses
+classes, elle propose de nouvelles commandes avec lesquelles vous pouvez
+établir le format des entrées de table de façon générique. Ceci implique que
+vous avez juste à apprendre deux nouvelles commandes basiques et deux outils,
+ni plus ni moins, pour accéder à de nouvelles fonctionnalités. La mise en forme
+des paragraphes et des fontes associées sont traitées avec des commandes comme
+|\\|, |\makebox|, |\large|, |\itshape| et ainsi de suite. Les entrées en 
+elles-mêmes ne sont pas mises en forme de quelque manière que ce soit car elles
+sont souvent de forme libre.
 
-Le comportement des entrées définies avec \textsf{titletoc} est différent à
-certains points de celui de celles créées avec les commandes standards. En 
+Le comportement des entrées définies avec \textsf{titletoc} diffère sur
+certains points de celui des entrées définies avec les commandes standards. En
 particulier :
 \begin{itemize}
-\item les pages ne sont jamais coupées entre entrées si la première est d'un rang 
-plus élevé sur la seconde, par exemple entre une section et une sous-section. Si
-les deux entrées sont de même niveau, la coupure est autorisée. Enfin, si la 
-première entrée est d'un niveau inférieur à la seconde, la possible coupure est 
-alors considérée comme pertinente ;
+\item la découpe des pages ne se fait jamais entre deux entrées si la première
+est d'un rang plus élevé sur la seconde, par exemple entre une section et une
+sous-section. Si les deux entrées sont de même niveau, la découpe est
+autorisée. Enfin, si la première entrée est d'un niveau inférieur à la seconde,
+la découpe potentielle est alors considérée comme pertinente ;
 \item Les symboles remplaçant les points dans des points de conduite ne sont pas 
 centrés mais alignés à droite. Ceci est généralement plus pratique. 
 \end{itemize}
 
 Je souhaite ici souligner qu'aucun essai pour manipuler les tables des matières
-ne peut être complet car les commandes standards de \LaTeX{} écrivent directement
-des commandes de mises en forme qui ne peuvent être retranchées. C'est tout 
-particulièrement le cas pour les listes de figures et de tables et pour la
-commande |\part|\footnote{Mais certains de ces problèmes sont résolus par 
-\textsf{titlesec}.}
+ne peut être complet car les commandes standards de \LaTeX{} écrivent 
+directement des commandes de mises en forme qui ne peuvent être retranchées. 
+C'est tout particulièrement le cas pour les listes de figures et de tables et
+pour la commande |\part|\footnote{Mais certains de ces problèmes sont résolus
+par \textsf{titlesec}.}.
 
 \subsection{Visite guidée de \textsf{titletoc} en 10 minutes}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1161,10 +1171,9 @@ telle zone (les lignes ne seront pas ici affichées) :
 \end{center}
 
 L'espace entre la marge gauche de la page et le bord gauche de notre zone
-sera nommé |<gauche>|; de manière similaire se définit |<droite>|. Vous êtes
-autorisé à modifier le début de la première ligne et la fin de la dernière
-ligne. Par exemple, en augmentant leur taille avec |\hspace*{0.5cm}|, cette 
-zone devient :
+sera nommé |<gauche>|; de manière similaire se définit |<droite>|. Vous pouvez 
+modifier le début de la première ligne et la fin de la dernière ligne. Par
+exemple, en augmentant leur taille avec |\hspace*{0.5cm}|, cette zone devient :
 \begin{center}
 \begin{picture}(8,2.2)
 \put(1,1){\line(1,0){5.5}}
@@ -1201,8 +1210,7 @@ la zone ressemble alors à ceci :
 \end{center}
 
 Si vous avez déjà vu des tables de matières, ce qui suit devrait vous être
-familier --- la numérotation en tout début et le numéro de page tout à la
-fin :
+familier --- la numérotation en tout début et le numéro de page en toute fin :
 \begin{verbatim}
     3.2  Ceci est un exemple montant une entrée de table des matières
          respectant ce principe . . . . . . . . . . . . . . . . . . .   4
@@ -1214,7 +1222,7 @@ simplement une boîte de 0,5 cm de large contenant la numérotation ou le numér
 de page pour que cet espace soit récupéré ; cette présentation est si 
 courante que deux commandes sont données pour la générer pour vous : 
 \begin{itemize}
-\item |\contentslabel{<longueur>}| crée l'espace au début et y place la
+\item |\contentslabel{<longueur>}| crée un espace au début et y place la
 numérotation ;
 \item |\contentspage| crée l'espace à la fin de largeur  |<droite>| et y 
 écrit le numéro de page aligné à droite.
@@ -1223,20 +1231,20 @@ numérotation ;
 Maintenant, nous allons voir trois commandes basiques :
 
 \begin{desc}
-|\dottedcontents{<section>}[<gauche>]{<code-dessus>}|\\
+|\dottedcontents{<nom>}[<gauche>]{<code-dessus>}|\\
 |                {<largeur-num>}{<largeur-motif>}|
 \end{desc}
 
 Ici:
 \begin{itemize}
-\item |<section>| est le nom de la commande de sectionnement sans l'antislash 
+\item |<nom>| est le nom de la commande de sectionnement sans l'antislash 
   : |part|, |chapter|, |section|, etc. |figure| et |table| sont autorisés
   également (l'antislash est omis car nous nous occupons du concept et non des
   commandes de sectionnement elles-mêmes. Par ailleurs, |figure| et |table| 
   sont des environnements).
 
 \item |<code-dessus>| est le code mettant en forme globalement l'entrée.
-  Des éléments verticaux sont autorisés. À ce niveau, la valeur de 
+  Les matériels verticaux sont autorisés. À ce niveau, la valeur de 
   |\thecontentslabel| (voir ci-dessous) est connue, ce qui permet de prendre
   des décisions basées sur sa valeur (avec l'aide de l'extension 
   \textsf{ifthen}). Vous pouvez utiliser les commandes de \textsf{titlesec}
@@ -1261,50 +1269,52 @@ Les définitions des entrées pour les sections et sous-sections dans la classe
 \end{verbatim}
 
 \begin{desc}
-|\titlecontents{<section>}[<gauche>]{<code-dessus>}|\\
+|\titlecontents{<nom>}[<gauche>]{<code-dessus>}|\\
 |              {<format-entrée-numérotée>}{<format-entrée-non-numérotée>}|\\
 |              {<format-remplissage-page>}[<code-dessous>]|
 \end{desc}
 
-Ici |<section>|, |<gauche>| and |<code-dessus>| fonctionnent comme ci-dessus et
+Ici |<nom>|, |<gauche>| and |<code-dessus>| fonctionnent comme ci-dessus. 
+Puis :
 \begin{itemize}
 \item |<format-entrée-numérotée>| est en mode horizontal et va être utilisée
   juste avant le titre de l'entrée. Comme dans |\titleformat|, la dernière 
   commande ici peut prendre comme argument le titre ;
 
-\item |<format-entrée-non-numérotée>| est comme le précédent argument... en 
+\item |<format-entrée-non-numérotée>| est comme le précédent argument en 
   l'absence de numérotation ;
 
-\item|<format-remplissage-page>| se comprend d'elle-même. Les éléments de remplissage
-  sont créés avec la commande |\titlerule| qui est partagée entre cette extension et
-  \textsf{titlesec}. Cependant, utilisée dans ce contexte, son comportement change 
-  quelque peu pour convenir aux besoins des points de conduite de la table des 
-  matières\footnote{Pour les \TeX{}niciens, |\cs{xleaders}| devient ici 
-  |\cs{leaders}|.}. Vous pourriez préférer un |\hspace| à la place.
+\item|<format-remplissage-page>| se comprend d'elle-même. Les éléments de
+  remplissage sont créés avec la commande |\titlerule| qui est partagée entre
+  cette extension et \textsf{titlesec}. Cependant, utilisée dans ce contexte,
+  son comportement change quelque peu pour convenir aux besoins des points de
+  conduite de la table des matières\footnote{Pour les \TeX{}niciens, 
+  |\cs{xleaders}| devient ici |\cs{leaders}|.}. Vous pourriez préférer un 
+  |\hspace| à la place.
 
-\item et, enfin, |<code-dessous>| est le code suivant l'entrée pour, par exemple,
-  un espace vertical.
+\item et, enfin, |<code-dessous>| est le code suivant l'entrée pour, par 
+  exemple, un espace vertical.
 \end{itemize}
 
-Lors de la définition des entrées, utilisez |\addvspace| si vous voulez ajouter un
-espace vertical et |\\*| au lieu de  |\\| pour des retours à la ligne.
+Lors de la définition des entrées, utilisez |\addvspace| si vous voulez ajouter
+un espace vertical et |\\*| au lieu de  |\\| pour des retours à la ligne.
 
-Cette commande peut être utilisée en cours de document pour changer le format des
-entrées des tables des matières, listes des tables et des listes à n'importe quel
-moment. Le nouveau format est écrit dans le fichier toc et nécessite donc deux 
-compilations pour être observable.
+Cette commande peut être utilisée en cours de document pour changer le format 
+des entrées des tables des matières, des listes des tables et des listes des
+figures à n'importe quel moment. Le nouveau format est écrit dans le fichier 
+toc et nécessite donc deux compilations pour être observable.
 
 \begin{desc}
 |\contentsmargin{<droite>}|
 \end{desc}
 
-La valeur fixée est utilisée dans toutes les sections. Si vous vous demandez
-pourquoi, la réponse est plutôt simple : dans la plupart des cas, la marge
-|<droite>| sera constante. Cependant, vous avez le droit de la changer localement
-dans les arguments |<code-avant>|. Notez d'ailleurs que l'espace par défaut des
-classes standards ne laisse pas de place pour afficher des numéros de page 
-dépassant 100 en gras et vous pourriez avoir besoin de fixer une largeur de marge
-plus importante avec cette commande.
+La valeur fixée est utilisée dans tous les sectionnements. Si vous vous 
+demandez pourquoi, la réponse est plutôt simple : dans la plupart des cas, la 
+marge |<droite>| sera constante. Cependant, vous avez le droit de la changer
+localement dans les arguments |<code-avant>|. Notez d'ailleurs que l'espace par
+défaut des classes standards ne laisse pas de place pour afficher des numéros 
+de page dépassant 100 en gras et vous pourriez avoir besoin de fixer une 
+largeur de marge plus importante avec cette commande.
 
 La mise en forme des entrées de section de la classe \textsf{book} est similaire
 (mais pas égale) à :
@@ -1316,8 +1326,8 @@ La mise en forme des entrées de section de la classe \textsf{book} est similair
               {\hspace*{-2.3em}}
               {\titlerule*[1pc]{.}\contentspage}
 \end{verbatim}
-Comparez cette définition avec celle donnée plus haut et vous comprendrez
-comment |\dottedcontents| est défini.
+La comparaison de cette définition avec celle donnée plus haut permet de 
+comprendre comment |\dottedcontents| est défini.
 
 Bien les classes standards se servent d'unités dépendant de la taille des 
 caractères (principalement l'em), il est recommandé de se servir d'unités
@@ -1328,8 +1338,8 @@ absolues (cm, pt, etc.) pour garantir le bon alignement des entrées.
 
 Des règles typographiques strictes indiquent que les lignes de texte pleines
 ne peuvent aller plus loin que le dernier point d'un ensemble de points de 
-conduite ; idéalement, elles devraient être alignées avec ce point. De façon
-assez étonnante, \TeX{} ne dispose pas d'un outil pour faire ceci 
+conduite ; idéalement, elles devraient être alignées avec ce point. 
+\'{E}tonnament, \TeX{} ne dispose pas d'un outil pour faire ceci 
 automatiquement --- lorsque vous remplissez une boîte de points de conduite,
 ils peuvent être centrés dans la boîte avec |\cleaders|, justifiés avec 
 |\xleaders| ou alignés avec le bord extérieur de la boîte qui les contient 
@@ -1338,19 +1348,20 @@ avec |\leaders| mais il n'y a pas de façon de les aligner avec la marge
 
 Aussi, la seule façon d'obtenir un bon rendu est de le faire à la main. 
 Pour cela, vous pouvez utiliser l'argument optionnel dans la commande
-|\contentsmargin| dans la syntaxe complète est la suivante :
+|\contentsmargin| dont la syntaxe complète est la suivante :
 \begin{desc}
 |\contentsmargin[<correction>]{<droite>}|
 \end{desc}
 
-La longueur de |<correction>| est ajoutée à celle de |<right>| dans toutes les
-lignes sauf la dernière, où les points de conduite sont placés. Par exemple, si 
-les lignes de texte font 6 pt de plus que celles du dernier point, vous devriez
-la commande |\contentsmargin| pour y ajouter une |<correction>| de 6 
-pt\footnote{Pour vous aider, de nombreux \trad{prévisualisateurs} de dvi permettent 
-d'obtenir les coordonnées de la localisation pointée.}. Contrairement aux 
-outils \LaTeX{} standards, la commande |\titlerule*| a été développée pour
-que la |<correction>| ait la valeur la plus petite possible.
+La longueur de |<correction>| est ajoutée à celle de |<droite>| dans toutes les
+lignes sauf la dernière, là où les points de conduite sont placés. Par exemple,
+si les lignes de texte font 6 pt de plus que celles du dernier point, vous
+devriez utiliser la commande |\contentsmargin| pour y ajouter une 
+|<correction>| de 6 pt\footnote{Pour vous aider, de nombreux 
+\trad{prévisualisateurs} de dvi permettent d'obtenir les coordonnées de la
+localisation pointée.}. Contrairement aux outils \LaTeX{} standards, la 
+commande |\titlerule*| a été développée pour que la |<correction>| ait la plus
+petite valeur possible.
 
 \begin{desc}
 |\thecontentslabel  \thecontentspage|
@@ -1364,8 +1375,9 @@ mise en forme que celle générée par la classe.
 |\contentspage[<format>]|
 \end{desc}
 
-Comme décrit plus haut, mais avec différents types de |<format>|. Les valeurs par
-défaut sont juste |\thecontentslabel| et |\thecontentspage|, respectivement.
+Ces commandes reprennent le principe de celles décrites ci-dessus, mais avec 
+un |<format>| différent. Les valeurs par défaut sont juste 
+|\thecontentslabel| et |\thecontentspage|, respectivement.
 
 \begin{desc}
 |\contentspush{<texte>}|
@@ -1383,9 +1395,9 @@ est similaire à la forme |hang| de \textsf{titlesec}.
 \end{desc}
 
 Cette version étoilée regroupe les entrées dans un unique paragraphe. 
-L'argument |<séparateur>| est le séparateur entre les entrées et il y
-a un argument optionnel pour une ponctuation finale. Par exemple, ce
-document demande :
+L'argument |<séparateur>| est le séparateur entre les entrées et il y a un
+argument optionnel pour une ponctuation finale. Par exemple, ce document
+utilise :
 \begin{verbatim}
 \titlecontents*{subsection}[1.5em]
   {\small}
@@ -1394,33 +1406,34 @@ document demande :
   {, \thecontentspage}
   [.---][.]
 \end{verbatim}
-dont le résultat est affiché dans la table des matières en tout début de ce document. 
-Notez que la mise en forme du paragraphe doit être écrite dans l'argument 
-|<code-dessus>|.
+dont le résultat est affiché dans la table des matières en tout début de ce
+document. Notez que la mise en forme du paragraphe doit être écrite dans
+l'argument |<code-dessus>|.
 
-Expliquons comment fonctionnent les arguments optionnels. Notez d'une part que leur 
-nombre détermine leur sens --- comme il doit y avoir un séparateur entre les entrées,
-celui est toujours présent; d'autre part, |<début>| est rarement utilisé et est
-défavorisé en n'apparaissant que dans la version ayant le plus d'argument. Le cas 
-le plus simple est celui où les titres ont le même niveau; dans ce cas, les
-paramètres |<séparateur>| et |<fin>| (dont les valeurs par défaut sont des vides) 
-sont respectivement insérés entre des entrées consécutives et à la fin du bloc. 
-|<code-avant>| est exécuté une seule fois au tout début du bloc et ses déclarations
-sont locales à l'ensemble des entrées.
+Expliquons comment fonctionnent les arguments optionnels. Notez d'une part 
+que leur nombre détermine leur sens --- comme il doit y avoir un séparateur
+entre les entrées, celui est toujours présent; d'autre part, |<début>| est
+rarement utilisé et est défavorisé en n'apparaissant que dans la version ayant
+le plus d'argument. Le cas le plus simple est celui où les titres ont le même
+niveau; dans ce cas, les paramètres |<séparateur>| et |<fin>| (dont les valeurs
+par défaut sont des vides) sont respectivement insérés entre des entrées
+consécutives et à la fin du bloc. |<code-avant>| est exécuté une seule fois au
+tout début du bloc et ses déclarations sont locales à l'ensemble des entrées.
 
 Maintenant supposons que nous souhaitons grouper les entrées de deux niveaux ;
 dans ce cas un principe d'imbrication s'applique. Pour détailler ce point, nous
-illustrerons avec une section et une sous-section. Quand une entrée de sous-section
-commence après une section, |<code-avant>| est exécuté et |<début>| (de
-sous-section) est inséré, qui contient de la mise en forme de texte uniquement. Les
-sous-sections sont ajoutées en insérant des séparateurs comme expliqué ci-dessus.
-Quand une section arrive, la ponctuation finale de la sous-section et le séparateur
-de la section sont ajoutés (à moins que le bloc ne s'achève par une sous-section, 
-auquel cas seule la fin de la section est ajoutée). Nous avons \og après une 
-section \fg{} car une sous-section ne commence jamais un bloc\footnote{Dans de 
-rares cas, cela pourrait être nécessaire, cependant.}. Les entrées de sous-section
-sont regroupées au sein de chaque entrée de section et les déclarations sont 
-à nouveau locales.
+illustrerons avec une section et une sous-section. Quand une entrée de 
+sous-section commence après une section, |<code-avant>| est exécuté et 
+|<début>| (de sous-section), qui contient de la mise en forme de texte
+uniquement, est inséré. Les sous-sections sont ajoutées en insérant des 
+séparateurs comme expliqué ci-dessus. Quand une section arrive, la 
+ponctuation finale de la sous-section et le séparateur de la section sont
+ajoutés (à moins que le bloc ne s'achève par une sous-section, auquel cas
+seule la fin de la section est ajoutée). Nous avons dit qu'\og une sous-section
+commence après une section \fg{} car une sous-section ne commence jamais un
+bloc\footnote{Dans de rares cas, cela pourrait être nécessaire, cependant.}.
+Les entrées de sous-section sont regroupées au sein de chaque entrée de section
+et les déclarations sont à nouveau locales.
 
 Un exemple va illustrer ceci :
 \begin{verbatim}
@@ -1467,12 +1480,12 @@ L'extension exécute
 \end{desc}
 
 Ces options d'extension définissent l'alignement des numérotations dans
-|\contentslabel|.
-La valeur par défaut est |rightlabels|. Avec |leftlabels| le |<format>| par
-défaut pour |\contentslabel| devient |\thecontenstlabel\enspace|.
+|\contentslabel|. La valeur par défaut est |rightlabels|. Avec |leftlabels| le 
+|<format>| par défaut pour |\contentslabel| devient
+|\thecontenstlabel\enspace|.
 
 \begin{desc}
-|dotinlabels| \quad (options d'extension)
+|dotinlabels| \quad (option d'extension)
 \end{desc}
 
 Avec cette option d'extension, un point est ajouté après la numérotation
@@ -1485,16 +1498,17 @@ dans |\contentslabel|.
 |\startcontents[<nom>]|
 \end{desc}
 
-\trad{Bien relire}\`{A} l'endroit où cette commande est utilisée, une table des matières partielle
-(notez que le document ne nécessite pas la présence d'un |\tableofcontents| pour
-que les tables de matières partielles fonctionnent). L'argument |<nom>| autorise
-différents ensembles de table de matières et sa valeur par défaut est |default|.
-Ces ensembles peuvent être mélangés mais sont d'habitude séparés. Par exemple,
-vous pouvez souhaiter deux types de tables de matières partielles : par partie
-et par chapitre (en plus de la table générale complète, bien entendu). Quand 
-une partie commence, écrivez |\startcontents[parts]| et, quand un chapitre
-commence, |\startcontents[chapters]|. De cette manière, une nouvelle table est
-entamée pour chaque partie et chapitre\footnote{\emph{Toutes} les tables partielles
+\`{A} l'endroit où cette commande est utilisée, une table des matières 
+partielle commence (notez que le document ne nécessite pas la présence
+d'un |\tableofcontents| pour que les tables de matières partielles
+fonctionnent). L'argument |<nom>| autorise différents ensembles de tables de
+matières et sa valeur par défaut est |default|. Ces ensembles peuvent être
+mélangés mais sont d'habitude séparés. Par exemple, vous pouvez souhaiter deux
+types de tables de matières partielles : par partie et par chapitre (en plus de
+la table générale complète, bien entendu). Quand une partie commence, écrivez
+|\startcontents[parts]| et, quand un chapitre commence, 
+|\startcontents[chapters]|. De cette manière, une nouvelle table est entamée
+pour chaque partie et chapitre\footnote{\emph{Toutes} les tables partielles
 sont stockées dans un unique fichier d'extension |.ptc|.}.
 
 \begin{desc}
@@ -1502,24 +1516,26 @@ sont stockées dans un unique fichier d'extension |.ptc|.}.
 |\resumecontents[<nom>]|
 \end{desc}
 
-La première commande arrête la table partielle de type |<nom>| , qui peut être ensuite
-poursuivi avec la seconde. Comme les tables partielles peuvent être interrompues
-avec |\startcontents| si nécessaire, ces commandes ne seront pas souvent utilisées.
+La première commande arrête la table partielle de type |<nom>|, la seconde 
+permet de la prolonger à nouveau. Comme les tables partielles peuvent être
+interrompues avec |\startcontents| si nécessaire, ces commandes ne seront pas
+souvent utilisées.
 
 \begin{desc}
 |\printcontents[<nom>]{<préfixe>}{<niveau-début>}{<code-table>}|
 \end{desc}
 
-Cette commande affiche la table des matière actuelle de type |<nom>|. Le format 
-des entrées de la table principale est utilisé, sauf si il y a un |<préfixe>|.
-Dans ce cas, le format de |<préfixe><niveau>| est utilisé s'il existe. Par
-exemple, si le préfixe est |l| et que le format |lsection| est défini, alors la
-définition sera utilisée; sinon le format est celui de |section|. L'argument
-|<niveau-début>| fixe le niveau le plus haut des tables de matières --- pour une
-table de matières d'une partie ce devrait être |0| (chapitre), pour une table de
-matières d'un chapitre |1| (section) et ainsi de suite. Enfin, |<code-table>| 
-est un code local pour la table locale ; il peut être utilisé pour changer la
-valeur de |tocdepth| ou |\contentsmargin|, par exemple.
+Cette commande affiche la table des matières actuelle de type |<nom>|. Le
+format des entrées de la table principale est utilisé, sauf si il y a un 
+|<préfixe>|. Dans ce cas, le format de |<préfixe><niveau>| est utilisé s'il
+existe. Par exemple, si le préfixe est |l| et que le format |lsection| est
+défini, alors la définition sera utilisée; sinon le format est celui de 
+|section|. L'argument |<niveau-début>| fixe le niveau le plus haut des tables
+de matières --- pour une table de matières d'une partie ce devrait être |0|
+(chapitre), pour une table de matières d'un chapitre |1| (section) et ainsi de
+suite. Enfin, |<code-table>| est un code local pour la table locale ; il peut
+être utilisé pour changer la valeur de |tocdepth| ou |\contentsmargin|, par
+exemple.
 
 Une utilisation simple pourrait ressembler à ce qui suit (en supposant que vous
 utilisez aussi \textsf{titlesec}):
@@ -1551,7 +1567,7 @@ peut être appliqué également ici. Les commandes sont :
 
 Ici, la |<liste>| est soit |lof| pour les figures, soit |lot| pour les tables.
 Notez également que |\printlist| n'a pas d'argument |<début-niveau>| parce que
-les tables de figures et de tables n'ont pas de niveau. Actuellement, seules
+les tables de figures et de tables n'ont pas de niveau. Actuellement, seuls
 ces deux types de tables sont gérés mais dans une prochaine version le support
 d'autres tables sera ajouté. Malheureusement, de nombreuses classes placent
 des commandes de mise en forme dans ces listes (plus exactement, 
@@ -1606,8 +1622,8 @@ La commande |\addtocontents| est toujours disponible et vous pouvez l'utiliser
 pour exécuter des opérations particulières, comme insérer une figure juste
 avant ou après une entrée. Hélas, les arguments fragiles ne sont pas autorisés
 et écrire un code complexe peut devenir un enfer. L'astuce est de définir 
-une commande qui effectue les opérations souhaitées et en la faisant précéder
-de la commande |\protect|.
+une commande qui effectue les opérations souhaitées et de l'utiliser en la
+faisant précéder de la commande |\protect|.
 
 Supposons que nous voulons insérer une figure avant une entrée.
 \begin{verbatim}
@@ -1616,8 +1632,7 @@ Supposons que nous voulons insérer une figure avant une entrée.
     \includegraphics{#1}%
   \end{figure}}
 \end{verbatim}
-contribue à rendre le travail peu satisfaisant. En lieu et place, préférez
-la syntaxe suivante :
+fait le travail de fond. Là où est insérée la figure, indiquez alors :
 \begin{verbatim}
 \addtocontents{\protect\figureintoc{myfig}}
 \end{verbatim}
@@ -1626,10 +1641,10 @@ la syntaxe suivante :
 \subsection{Repérage d'entrées avec des astérisques}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Retrouvons maintenant un problème expliqué en relation avec \textsf{titlesec} : 
-placer une astérisque sur les sections abordant un \og sujet complexe \fg{} auquel
-nous ajoutons le besoin de faire figurer l'astérisque dans la table des matières. 
-Voici le code :
+Retrouvons maintenant un problème expliqué en relation avec \textsf{titlesec} :
+placer un astérisque sur les sections abordant un \og sujet complexe \fg{}
+auquel nous ajoutons le besoin de faire figurer l'astérisque dans la table des
+matières. Voici le code :
 \begin{verbatim}
 \newcommand{\secmark}{}
 \newcommand{\marktotoc}[1]{\renewcommand{\secmark}{#1}}
@@ -1648,11 +1663,12 @@ Voici le code :
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Une fois que vous avez lu cette documentation, il devrait être clair que cette
-extension n'est pas destinée à l'utilisateur occasionnel qui aime la présentation
-classique et souhaite juste y apporter quelques modifications simples. Il s'agit ici
-d'un outil pour le typographe sérieux qui a une idée claire de la présentation 
-souhaitée et qui n'avait auparavant pas les moyens pour l'obtenir. Rien n'est fait non
-plus pour améliorer votre goût en matière de mise en forme des sectionnements.
+extension n'est pas destinée à l'utilisateur occasionnel aimant la
+présentation classique et souhaitant juste y apporter quelques modifications
+simples. Il s'agit ici d'un outil pour le typographe sérieux qui a une idée
+claire de la présentation souhaitée et qui n'avait auparavant pas les moyens
+pour l'obtenir. Rien n'est d'ailleurs fait ici pour améliorer votre goût en
+matière de mise en forme des sectionnements.
 
 
 \section{Annexes}
@@ -1830,18 +1846,18 @@ et cette partie est le corps du texte associé\ldots
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Suivi d'un peu de texte pour montrer le résultat. Suivi d'un peu de texte pour 
-montrer le résultat. Suivi d'un peu de texte pour montrer le résultat. Suivi d'un 
-peu de texte pour montrer le résultat. Suivi d'un peu de texte pour montrer le
-résultat. Suivi d'un peu de texte pour montrer le résultat. Suivi d'un peu de 
-texte pour montrer le résultat.
+montrer le résultat. Suivi d'un peu de texte pour montrer le résultat. Suivi
+d'un peu de texte pour montrer le résultat. Suivi d'un peu de texte pour
+montrer le résultat. Suivi d'un peu de texte pour montrer le résultat. Suivi
+d'un peu de texte pour montrer le résultat.
 
 \section[Annexes]{Et un autre}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Notez comment le texte enveloppe (en anglais, \og wrap \fg{}) le titre et que
-l'espace qui lui est réservé est automatiquement réajustée. Et il est suivi par un 
-peu de texte pour illustrer le propos. Et il est suivi par un peu de texte pour
-illustrer le propos.
+l'espace qui lui est réservé est automatiquement réajustée. Et il est suivi par
+un peu de texte pour illustrer le propos. Et il est suivi par un peu de texte
+pour illustrer le propos.
 
 \begin{verbatim}
 \titleformat{\section}[wrap]
@@ -1862,9 +1878,9 @@ illustrer le propos.
 \section[Annexes]{Un titre attaché à l'ancienne}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Bien sûr, vous pourriez préférer juste un point après le titre. Dans ce cas, l'argument
-optionnel devrait être |[.]| et l'espace attenante devrait avoir une valeur 
-assez forte (1em, par exemple).
+Bien sûr, vous pourriez préférer juste un point après le titre. Dans ce cas,
+l'argument optionnel devrait être |[.]| et l'espace attenante devrait avoir une
+valeur assez forte (1em, par exemple).
 
 \begin{verbatim}
 \titleformat{\section}[runin]
@@ -1888,11 +1904,12 @@ assez forte (1em, par exemple).
 \section*{Exemple de section marginale}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Suivi d'un peu de texte pour montrer le résultat. Mais ne vous arrêtez pas de lire car
-l'exemple qui suit illustre comment tirer parti d'autres extensions. La dernière 
-commande dans le dernier argument peut prendre un argument, à savoir le titre sans 
-autre commande additionnelle incluse. Nous donnons ici juste le code mais vous pouvez
-l'essayer. Donc, avec l'extension \textsf{soul}, vous pourriez écrire
+Suivi d'un peu de texte pour montrer le résultat. Mais ne vous arrêtez pas de
+lire car l'exemple qui suit illustre comment tirer parti d'autres extensions. 
+La dernière commande dans le dernier argument peut prendre un argument, à
+savoir le titre sans autre commande additionnelle incluse. Nous donnons ici
+juste le code mais vous pouvez l'essayer. Donc, avec l'extension \textsf{soul},
+vous pourriez écrire
 \begin{verbatim}
 \newcommand{\secformat}[1]{\MakeLowercase{\so{#1}}}
    % \so écarte les lettres
@@ -1917,9 +1934,9 @@ Le titre marginal ci-dessus a été défini avec le code suivant :
 
 \examplesep
 
-Les exemples suivants sont pensés pour des chapitres. Cependant, cette documentation 
-ne dispose par de la commande |\chapter| et illustre ce point en utilisant |\section|
-avec quelques rares changements.  
+Les exemples suivants sont pensés pour des chapitres. Cependant, cette
+documentation ne dispose pas de la commande |\chapter| et illustre ce point en
+utilisant |\section| avec quelques rares changements.  
 
 \titlespacing{\section}{0pt}{*4}{*4}
 \titleformat{\section}[display]
@@ -1928,7 +1945,7 @@ avec quelques rares changements.
    \vspace{1pt}%
    \titlerule
    \vspace{1pc}%
-   \LARGE\MakeUppercase{chapter} \thesection}
+   \LARGE\MakeUppercase{chapitre} \thesection}
   {1pc}
   {\titlerule
    \vspace{1pc}%
@@ -1956,7 +1973,7 @@ avec quelques rares changements.
 \def\thesection{\Roman{section}}
 \titleformat{\section}[display]
   {\bfseries\Large}
-  {\filleft\MakeUppercase{chapter} \Huge\thesection}
+  {\filleft\MakeUppercase{chapitre} \Huge\thesection}
   {4ex}
   {\titlerule
    \vspace{2ex}%
@@ -2045,8 +2062,8 @@ Voici maintenant un exemple complet d'une structure de titres.
 \subsection{Classes standards}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Voici, pour votre information, comment peuvent être définies les commandes des classes
-standards.
+Voici, pour votre information, comment peuvent être définies les commandes des
+classes standards.
 \begin{verbatim}
 \titleformat{\chapter}[display]
   {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
@@ -2073,11 +2090,11 @@ standards.
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Un dernier exemple montre comment tirer parti de l'environnement |picture| pour
-des formats de sectionnement moins courants. Même avec les outils simples fournis
-par la version standard de \LaTeX{}, vous pouvez créer des titres marquants. Mais
-vous pouvez en faire d'encore plus élaborés avec, par exemple, |pspicture| 
-(de l'extension \textsf{PSTricks}) ou en incorporant des graphiques créés avec
-l'aide de programmes externes.
+des formats de sectionnement moins courants. Même avec les outils simples
+fournis par la version standard de \LaTeX{}, vous pouvez créer des titres
+marquants. Mais vous pouvez en faire d'encore plus élaborés avec, par exemple, 
+|pspicture| (de l'extension \textsf{PSTricks}) ou en incorporant des graphiques
+créés avec l'aide de programmes externes.
 
 \begin{verbatim}
 \usepackage[dvips]{color}
