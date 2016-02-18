@@ -130,60 +130,61 @@ mesure où les commandes de sectionnement sont réécrites, leur comportement pe
 
 Entre autres nouvelles fonctionnalités se trouvent :
 \begin{itemize}
-\item différentes classes et \og formes\fg{} de titres, avec des outils autorisant une 
-grande variété de formats. Vous pouvez définir des formats différents pour les pages 
-de gauche et de droite, des titres numérotés ou pas. Vous pouvez aussi mesurer la largeur 
-d'un titre, ajouter de nouveaux niveaux de sectionnement, utiliser des graphiques et bien 
-plus encore. L'Annexe montre un bon nombre d'exemples : allez-y tout de suite !
+\item différentes classes et \og formes\fg{} de titres, avec des outils
+autorisant une grande variété de formats. Vous pouvez définir des formats
+différents pour les pages de gauche et de droite, des titres numérotés ou pas.
+Vous pouvez aussi mesurer la largeur d'un titre, ajouter de nouveaux niveaux
+de sectionnement, utiliser des graphiques et bien plus encore. L'Annexe montre
+un bon nombre d'exemples : allez-y tout de suite !
 
-\item des en-têtes et pieds de pages définis sans utilisation des commandes de marque
-(type |\...mark|), contenant au besoin des marques de haut de page, de première valeur 
-\emph{et} de bas de page. Des marques de haut de page correctement synchronisées avec les 
-titres, sans incompatibilité avec la mécanique des flottants. Des éléments 
-décoratifs ajoutés aisément, incluant des environnements d'image.
+\item des en-têtes et pieds de pages définis sans utilisation des commandes de
+marque (type |\...mark|), contenant au besoin des marques de haut de page, de
+première valeur \emph{et} de bas de page. Des marques de haut de page
+correctement synchronisées avec les titres, sans incompatibilité avec la
+mécanique des flottants. Des éléments décoratifs ajoutés aisément, incluant des
+environnements d'image.
 
-\item de jolies tables des matières de forme libre, avec la possibilité de grouper les 
-entrées de différents niveaux en un paragraphe ou de changer les formats des entrées 
-au milieu d'un document. 
+\item de jolies tables des matières de forme libre, avec la possibilité de
+grouper les entrées de différents niveaux en un paragraphe ou de changer les
+formats des entrées au milieu d'un document. 
 \end{itemize}
-\textsf{Titlesec} fonctionne avec les classes standards et de nombreuses autres, 
-telles celles de l'AMS, et interagit sans aucune difficulté avec 
-\textsf{hyperref}\footnote{Cependant, notez bien que les classes AMS réimplémentent  
-les commandes internes d'origine. Ces changements seront perdus ici. La 
-compatibilité avec \textsf{hyperref} a été testée avec \textsf{dvips}, 
+\textsf{Titlesec} fonctionne avec les classes standards et de nombreuses
+autres, telles celles de l'AMS, et interagit sans aucune difficulté avec 
+\textsf{hyperref}\footnote{Cependant, notez bien que les classes AMS
+réimplémentent les commandes internes d'origine. Ces changements seront perdus
+ici. La compatibilité avec \textsf{hyperref} a été testée avec \textsf{dvips}, 
 \textsf{dvipdfm} et \textsf{pdftex} mais il s'agit d'une fonctionnalité non 
 suivie. Pensez à vérifier que votre version d'\textsf{hyperref} est compatible 
 avec \textsf{titlesec}.}. Malheureusement, elle n'est pas compatible avec 
-\textsf{memoir}, ce dernier proposant ses propres outils avec un sous-ensemble limité 
-des fonctionnalités disponibles dans \textsf{titlesec}.
+\textsf{memoir}, ce dernier proposant ses propres outils avec un sous-ensemble limité des fonctionnalités disponibles dans \textsf{titlesec}.
 
 Comme d'habitude, chargez l'extension de façon classique avec |\usepackage|. 
-Redéfinissez alors les commandes de sectionnement soit avec les paramétrages simples 
-prédéfinis (voir section \og Interface simplifiée \fg{}), soit avec les commandes 
-mises à disposition si vous souhaitez des formats plus élaborés (voir section 
-\og Interface avancée \fg{}). Dans ce dernier cas, vous avez uniquement besoin de 
-redéfinir les commandes que vous utiliserez. Les deux méthodes sont disponibles 
-au même moment mais, |\part| étant souvent implémentée de façon non standard, elle 
-reste inchangée par les paramétrages prédéfinis et doit être modifiée avec l'aide 
-de l'\og Interface avancée \fg{}.
+Redéfinissez alors les commandes de sectionnement soit avec les paramétrages
+simples prédéfinis (voir section \og Interface simplifiée \fg{}), soit avec
+les commandes mises à disposition si vous souhaitez des formats plus élaborés
+(voir section \og Interface avancée \fg{}). Dans ce dernier cas, vous avez
+uniquement besoin de redéfinir les commandes que vous utiliserez. Les deux
+méthodes sont disponibles au même moment mais, |\part| étant souvent
+implémentée de façon non standard, elle reste inchangée par les paramétrages
+prédéfinis et doit être modifiée avec l'aide de l'\og Interface avancée \fg{}.
 
 
 \section{Interface simplifiée} \label{quick}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 La façon la plus simple de changer le format se fait avec un ensemble d'options 
-d'extension et par deux commandes. Si les fonctionnalités apportées par cet ensemble 
-d'outils vous donne satisfaction, vous n'avez pas besoin d'aller plus loin dans ce 
-manuel. Lisez uniquement cette section et ignorez les suivantes. 
+d'extension et par deux commandes. Si les fonctionnalités apportées par cet
+ensemble d'outils vous donne satisfaction, vous n'avez pas besoin d'aller plus
+loin dans ce manuel. Lisez uniquement cette section et ignorez les suivantes. 
 
 \subsection{Format}
 %~~~~~~~~~~~~~~~~~~
 
 Il y a trois groupes d'options contrôlant les fontes, tailles et alignements. 
-Vous n'avez pas besoin de définir tous ces groupes puisque des valeurs par défaut 
-sont disponibles pour chacun; cependant, vous devez au moins utiliser une option 
-parmi celles possibles si vous souhaitez utiliser ce \og paramétrage simplifié 
-\fg{}.
+Vous n'avez pas besoin de définir tous ces groupes puisque des valeurs par
+défaut sont disponibles pour chacun; cependant, vous devez au moins utiliser
+une option parmi celles possibles si vous souhaitez utiliser ce \og paramétrage
+simplifié \fg{}.
 
 \begin{desc}
 |rm sf tt md bf up it sl sc|
@@ -194,11 +195,11 @@ défaut est |bf|.
 \begin{desc}
 |big medium small tiny|
 \end{desc}
-Cette option sélectionne la taille des titres. Elle est fixée par défaut à |big|, 
-ce qui donne la taille retenue dans les classes standards. Avec |tiny|, les 
-niveaux de sectionnements (chapitres exceptés) sont composées à la même taille 
-que le texte. |medium| et |small| sont des présentations intermédiaires entre 
-les deux premières.
+Cette option sélectionne la taille des titres. Elle est fixée par défaut à 
+|big|, ce qui donne la taille retenue dans les classes standards. Avec |tiny|,
+les niveaux de sectionnements (chapitres exceptés) sont composées à la même
+taille que le texte. |medium| et |small| sont des présentations intermédiaires
+entre les deux premières.
 
 \begin{desc}
 |raggedleft center raggedright|
@@ -215,8 +216,8 @@ typographique français \og drapeau gauche \fg{}.}, le centrage et l'alignement
 \begin{desc}
 |compact|
 \end{desc}
-Cette option est indépendante de celles vues ci-dessus et réduit l'espace au-dessus 
-et au-dessous des titres. 
+Cette option est indépendante de celles vues ci-dessus et réduit l'espace 
+au-dessus et au-dessous des titres. 
 
 \subsection{Majuscules}
 %~~~~~~~~~~~~~~~~~~~~~~
@@ -225,8 +226,8 @@ et au-dessous des titres.
 |uppercase|
 \end{desc}
 
-\fbox{2.9} Cette option met en majuscules des titres. Selon la classe, cela peut
-ne pas marcher avec \verb|\chapter| et \verb|\part|.
+\fbox{2.9} Cette option met en majuscules des titres. Selon la classe, cela
+peut ne pas marcher avec \verb|\chapter| et \verb|\part|.
 
 \subsection{Outils}
 %~~~~~~~~~~~~~~~~~~
@@ -234,10 +235,10 @@ ne pas marcher avec \verb|\chapter| et \verb|\part|.
 \begin{desc}
 |\titlelabel{<format-de-numérotation>}|
 \end{desc}
-Cette option change le format de la numérotation des sections, sous-sections, etc. 
-Une commande générique |\thetitle| est fournie et correspond respectivement à 
-|\thesection|, |\thesubsection|, etc. La valeur par défaut des classes standards 
-est :
+Cette option change le format de la numérotation des sections, sous-sections,
+etc. Une commande générique |\thetitle| est fournie et correspond
+respectivement à |\thesection|, |\thesubsection|, etc. La valeur par défaut
+des classes standards est :
 \begin{verbatim}
 \titlelabel{\thetitle\quad}
 \end{verbatim}
@@ -251,8 +252,8 @@ Ceci a été fait dans ce document.
 |\titleformat*{<commande>}{<format>}|
 \end{desc}
 
-Cette commande permet de changer le |<format>| d'une commande de sectionnement, comme
-par exemple :
+Cette commande permet de changer le |<format>| d'une commande de sectionnement,
+comme par exemple :
 \begin{verbatim}
 \titleformat*{\section}{\itshape}
 \titleformat*{\subsection}{\raggedleft\bfseries}
@@ -261,21 +262,22 @@ par exemple :
 \section{Interface avancée}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Deux commandes sont mises à disposition pour changer le format des titres. La première
-est utilisée pour le format \og interne \fg{}, autrement dit la forme, la fonte, 
-la numérotation, etc. La seconde définit le format \og externe \fg{}, autrement dit 
-l'espacement avant et après, l'indentation, etc. Ce principe est pensé pour simplifier 
-les définitions car, dans la plupart des cas, vous souhaiterez modifier soit 
-l'espacement, soit le format\footnote{L'information est \og extraite \fg{} des 
-commandes de sectionnement de la classe, excepté pour les chapitres et parties. Les
-définitions sont supposées utiliser |\cs{@startsection}| --- si les sections ont été
-définies sans cette commande, des valeurs arbitraires de format sont proposées et 
-peuvent être modifiées par la suite. Malheureusement, il n'y a pas de manière de
-récupérer les formats des chapitres ou parties ; un format similaire à celui des 
-classes standards est alors utilisé.}. Tout ceci redéfinit les commandes de 
-sectionnement existantes mais n'en crée par de \emph{nouvelles}. De nouveaux niveaux
-de sectionnement peuvent être ajoutés avec |\titleclass|, comme décrit en 
-\ref{classes}, et leur format peut être fixé par les commandes décrites ici.
+Deux commandes sont mises à disposition pour changer le format des titres. La
+première est utilisée pour le format \og interne \fg{}, autrement dit la forme,
+la fonte, la numérotation, etc. La seconde définit le format \og externe \fg{},
+autrement dit l'espacement avant et après, l'indentation, etc. Ce principe est
+pensé pour simplifier les définitions car, dans la plupart des cas, vous
+souhaiterez modifier soit l'espacement, soit le format\footnote{L'information
+est \og extraite \fg{} des commandes de sectionnement de la classe, excepté
+pour les chapitres et parties. Les définitions sont supposées utiliser 
+|\cs{@startsection}| --- si les sections ont été définies sans cette commande,
+des valeurs arbitraires de format sont proposées et peuvent être modifiées par
+la suite. Malheureusement, il n'y a pas de manière de récupérer les formats des
+chapitres ou parties ; un format similaire à celui des classes standards est
+alors utilisé.}. Tout ceci redéfinit les commandes de sectionnement existantes
+mais n'en crée par de \emph{nouvelles}. De nouveaux niveaux de sectionnement
+peuvent être ajoutés avec |\titleclass|, comme décrit en \ref{classes}, et leur
+format peut être fixé par les commandes décrites ici.
 
 \subsection{Format}
 %~~~~~~~~~~~~~~~~~~
@@ -283,41 +285,40 @@ de sectionnement peuvent être ajoutés avec |\titleclass|, comme décrit en
 Des formes contrôlant la distribution basique des éléments d'un titre
 sont proposées. En voici la liste :
 \begin{description}
-\item[hang] est la valeur par défaut, avec une numérotation en retrait (comme avec 
-|\section| dans les classes standards).
-
-\item[block] compose le titre complet en un bloc (un paragraphe) sans mise en forme
-additionnelle. Utile pour les titres centrés\footnote{Si le titre fait plus d'une 
-ligne de long en utilisant la forme |hang|, la numérotation sera légèrement 
-déplacée vers la gauche exception faite des cas avec des |\string\\| 
-explicites.} et les mises en forme spéciales (incluant des outils graphiques 
+\item[hang] est la valeur par défaut, avec une numérotation en retrait (comme
+avec |\section| dans les classes standards).
+\item[block] compose le titre complet en un bloc (un paragraphe) sans mise en
+forme additionnelle. Utile pour les titres centrés\footnote{Si le titre fait
+plus d'une ligne de long en utilisant la forme |hang|, la numérotation sera
+légèrement déplacée vers la gauche exception faite des cas avec des |\string\\|
+explicites.} et les mises en forme spéciales (incluant des outils graphiques
 comme |picture|, |pspicture|, etc.).
 
 \item[display] place la numérotation dans un paragraphe séparé (comme avec 
 |\chapter| dans les classes standards).
 
-\item[runin] restitue un titre suivi directement du texte sur la même ligne (comme
-avec |\paragraph| dans les classes standards).
+\item[runin] restitue un titre suivi directement du texte sur la même ligne
+(comme avec |\paragraph| dans les classes standards).
 
-\item[leftmargin] place le titre dans la marge de gauche. Les titres en bas de page
-sont déplacés sur la page suivante et ne restent pas isolés dans la marge du bas, ce 
-qui signifie que de longs titres peuvent générer des pages trop peu 
+\item[leftmargin] place le titre dans la marge de gauche. Les titres en bas de
+page sont déplacés sur la page suivante et ne restent pas isolés dans la marge
+du bas, ce qui signifie que de longs titres peuvent générer des pages trop peu
 remplies\footnote{Cependant, les flottants placés une ou deux lignes après le 
 titre interfèrent avec la découpe de page utilisée ici et le titre peut parfois 
 rester placé en bas de page}. Dans ce cas, vous pouvez augmenter l'étirabilité 
-des éléments de la page, utiliser |\raggedbottom| ou utiliser l'option d'extension 
-|nobottomtitles| décrite ci-après. Dans la mesure où le mécanisme retenu est 
-indépendant de celui des paragraphes placés dans les marges, ils peuvent se
-superposer. Un synonyme obsolète à cette forme est |margin|.
+des éléments de la page, utiliser |\raggedbottom| ou utiliser l'option
+d'extension |nobottomtitles| décrite ci-après. Dans la mesure où le mécanisme
+retenu est indépendant de celui des paragraphes placés dans les marges, ils
+peuvent se superposer. Un synonyme obsolète à cette forme est |margin|.
 
 \item[rightmargin] est similaire à |leftmargin| mais pour la marge de droite.
 
-\item[drop] dispose le texte autour du titre, uniquement si le premier paragraphe
-est plus long que le titre (sinon, ils se superposent). Les commentaires associés
-à |leftmargin| s'appliquent également ici. 
+\item[drop] dispose le texte autour du titre, uniquement si le premier
+paragraphe est plus long que le titre (sinon, ils se superposent). Les
+commentaires associés à |leftmargin| s'appliquent également ici. 
 
-\item[wrap] est assez proche de |drop|.  La seule différence est que, tandis que
-l'espace réservé dans |drop| pour le titre est fixé, il est automatiquement 
+\item[wrap] est assez proche de |drop|.  La seule différence est que, tandis
+que l'espace réservé dans |drop| pour le titre est fixé, il est automatiquement 
 ajusté avec |wrap| à la ligne la plus longue. Les limitations de |calcwidth| 
 expliquées en \ref{rules} s'appliquent également ici.
 
@@ -1009,7 +1010,7 @@ changer tout ceci à merci; par exemple, si vous décidez que ces sections
 doivent être composées en petits caractères, ajoutez un |\small|, et si vous
 réalisez que vous n'aimez pas cela, retirez-le.
 
-Tandis que les commandes standard de \LaTeX{} sont plus faciles et directes 
+Tandis que les commandes standards de \LaTeX{} sont plus faciles et directes 
 pour les cas simples, je pense que la méthode proposée ci-dessus est de loin
 préférable pour les longs documents.
 
@@ -1261,7 +1262,7 @@ Ici:
 \end{itemize}
 
 Les définitions des entrées pour les sections et sous-sections dans la classe 
-\textsf{book} sont à peu près équivalentes à :
+|book| sont à peu près équivalentes à :
 \begin{verbatim}
 \contentsmargin{2.55em}
 \dottedcontents{section}[3.8em]{}{2.3em}{1pc}
@@ -1316,7 +1317,7 @@ défaut des classes standards ne laisse pas de place pour afficher des numéros
 de page dépassant 100 en gras et vous pourriez avoir besoin de fixer une 
 largeur de marge plus importante avec cette commande.
 
-La mise en forme des entrées de section de la classe \textsf{book} est similaire
+La mise en forme des entrées de section de la classe |book| est similaire
 (mais pas égale) à :
 \begin{verbatim}
 \titlecontents{section}
@@ -1357,11 +1358,10 @@ La longueur de |<correction>| est ajoutée à celle de |<droite>| dans toutes le
 lignes sauf la dernière, là où les points de conduite sont placés. Par exemple,
 si les lignes de texte font 6 pt de plus que celles du dernier point, vous
 devriez utiliser la commande |\contentsmargin| pour y ajouter une 
-|<correction>| de 6 pt\footnote{Pour vous aider, de nombreux 
-\trad{prévisualisateurs} de dvi permettent d'obtenir les coordonnées de la
-localisation pointée.}. Contrairement aux outils \LaTeX{} standards, la 
-commande |\titlerule*| a été développée pour que la |<correction>| ait la plus
-petite valeur possible.
+|<correction>| de 6 pt\footnote{Pour vous aider, de nombreux prévisualisateurs
+de dvi permettent d'obtenir les coordonnées de la localisation pointée.}.
+Contrairement aux outils \LaTeX{} standards, la commande |\titlerule*| a été
+développée pour que la |<correction>| ait la plus petite valeur possible.
 
 \begin{desc}
 |\thecontentslabel  \thecontentspage|
@@ -1594,26 +1594,28 @@ En attendant, une astuce revient à retirer ces espaces en redéfinissant
               [\addvspace{.5pc}]
 \end{verbatim}
 
-\trad{Vérifier} Le numéro de chapitre est placé au bord de la marge de la
-page, dans une fonte plus grande que celle du titre. Si le chapitre n'a
-pas de numérotation (parce qu'il s'agit, par exemple, d'une préface ou
-d'une bibliographie), il n'est pas mis en gras.  Le numéro de page suit
-le titre sans motif de remplissage mais avec un espace d'un em.
+Le numéro de chapitre est placé dans la marge de gauche (à proximité du titre),
+dans une fonte plus grande que celle du titre. Si le chapitre n'a pas de
+numérotation (parce qu'il s'agit, par exemple, d'une préface ou d'une
+bibliographie), il n'est pas mis en gras.  Le numéro de page suit le titre sans
+motif de remplissage mais avec un espace d'un em. Toute l'entrée est en
+italique.
 
 \begin{verbatim}
 \titlecontents{chapter}
               [3pc]
               {\addvspace{1.5pc}%
                \filcenter}
-              {CHAPTER \thecontentslabel\\*[.2pc]%
+              {CHAPITRE \thecontentslabel\\*[.2pc]%
                \huge}
               {\huge}
               {}  % Autrement dit, sans numéro de page.
               [\addvspace{.5pc}]
 \end{verbatim}
               
-Le titre du chapitre est centré avec la numérotation de chapitre 
-\trad{au-dessus}. Il n'y a pas de numéro de page.
+Le titre du chapitre est centré avec le mot \og CHAPITRE \fg{} et la
+numérotation associée placés juste au dessus. Il n'y a pas de numéro de
+page.
 
 \subsection{Insertion d'une figure en table des matières}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
