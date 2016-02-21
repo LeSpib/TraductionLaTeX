@@ -54,4 +54,5 @@ De nombreux termes se retrouvent dans les différentes documents traduits. Cette
 - *filler* : motif (de remplissage) ;
 - *header* : en-tête ;
 - *leaders* : points de conduite ;
+- *leading* : interlignage ;
 - *package* : extension.

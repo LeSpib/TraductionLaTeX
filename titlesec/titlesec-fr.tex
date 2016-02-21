@@ -55,17 +55,17 @@
 
 \title{Les extensions \textsf{titlesec}, \textsf{titleps} et \textsf{titletoc} 
 \footnote{L'extension \textsf{titlesec} est actuellement en version 2.10.0.  
-\copyright{} 1998--2011 Javier Bezos. L'extension \textsf{titletoc} est actuellement 
-en version 1.6. L'extension \textsf{titleps} est actuellement en version 1.1.0  
-\copyright{} 1999--2011 Javier Bezos. Tous droits réservés.}}
+\copyright{} 1998--2011 Javier Bezos. L'extension \textsf{titletoc} est
+actuellement en version 1.6. L'extension \textsf{titleps} est actuellement en
+version 1.1.0 \copyright{} 1999--2011 Javier Bezos. Tous droits réservés.}}
 
 \author{Javier Bezos\footnote{Pour des rapports d'erreur, commentaires et 
 suggestions, allez à \href{http://www.tex-tipografia.com/contact.html}%
-{\texttt{http://www.tex-tipografia.com/contact.html}}.  L'anglais n'étant pas mon 
-point fort, contactez-moi lorsque vous trouvez des erreurs dans ce manuel.  
-D'autres extensions du même auteur : \textsf{gloss} (avec
-Jos\'e Luis D\'{\i}az), \textsf{enumitem, accents, tensind, esindex,
-dotlessi, babeltools}.}}
+{\texttt{http://www.tex-tipografia.com/contact.html}}.  L'anglais n'étant pas
+mon point fort, contactez-moi lorsque vous trouvez des erreurs dans ce manuel.  
+D'autres extensions du même auteur : \textsf{gloss} (avec Jos\'e Luis 
+D\'{\i}az), \textsf{enumitem, accents, tensind, esindex, dotlessi, 
+babeltools}.}}
 
 \date{\docdate}
 
@@ -156,7 +156,8 @@ ici. La compatibilité avec \textsf{hyperref} a été testée avec \textsf{dvips
 \textsf{dvipdfm} et \textsf{pdftex} mais il s'agit d'une fonctionnalité non 
 suivie. Pensez à vérifier que votre version d'\textsf{hyperref} est compatible 
 avec \textsf{titlesec}.}. Malheureusement, elle n'est pas compatible avec 
-\textsf{memoir}, ce dernier proposant ses propres outils avec un sous-ensemble limité des fonctionnalités disponibles dans \textsf{titlesec}.
+\textsf{memoir}, ce dernier proposant ses propres outils avec un sous-ensemble
+limité des fonctionnalités disponibles dans \textsf{titlesec}.
 
 Comme d'habitude, chargez l'extension de façon classique avec |\usepackage|. 
 Redéfinissez alors les commandes de sectionnement soit avec les paramétrages
@@ -205,9 +206,9 @@ entre les deux premières.
 |raggedleft center raggedright|
 \end{desc}
 
-Cette option contrôle l'alignement, chaque valeur permettant respectivement 
-alignement à droite\footnote{Le terme anglais est à rapprocher du terme 
-typographique français \og drapeau gauche \fg{}.}, le centrage et l'alignement 
+Cette option contrôle l'alignement, chaque valeur permettant respectivement
+l'alignement à droite\footnote{Le terme anglais est à rapprocher du terme 
+typographique français \og drapeau gauche \fg{}.}, le centrage et l'alignement
 à gauche.
 
 \subsection{Espacement}
@@ -338,20 +339,21 @@ Ici,
 |\part|, |\chapter|, |\section|, |\subsection|, |\subsubsection|, |\paragraph| 
 ou |\subparagraph|.
 
-\item La forme du paragraphe est fixée par |<forme>|, dont les valeurs possibles sont
-celles décrites ci-dessus.
+\item La forme du paragraphe est fixée par |<forme>|, dont les valeurs
+possibles sont celles décrites ci-dessus.
 
-\item |<format>| est le format appliqué à l'ensemble du titre --- numérotation et 
-texte. Cet argument peut contenir des éléments verticaux (et horizontaux avec 
-certaines formes) qui sont composés juste après l'espace au-dessus du titre.
+\item |<format>| est le format appliqué à l'ensemble du titre --- numérotation
+et texte. Cet argument peut contenir des éléments verticaux (et horizontaux
+avec certaines formes) qui sont composés juste après l'espace au-dessus du
+titre.
 
-\item La numérotation est définie dans |<num>|.  Vous pouvez le laisser vide s'il 
-n'y a pas de numérotation de sectionnement à ce niveau, mais cela n'est pas 
-recommandé car le nombre n'est pas supprimé dans la table des matières et dans 
-les en-têtes de page.
+\item La numérotation est définie dans |<num>|.  Vous pouvez le laisser vide
+s'il n'y a pas de numérotation de sectionnement à ce niveau, mais cela n'est
+pas recommandé car le nombre n'est pas supprimé dans la table des matières et
+dans les en-têtes de page.
  
-\item |<sép>| est la séparation horizontale entre la numérotation et le corps du
-titre et doit être une longueur (qui ne doit pas être vide). Cet espace est 
+\item |<sép>| est la séparation horizontale entre la numérotation et le corps
+du titre et doit être une longueur (qui ne doit pas être vide). Cet espace est 
 vertical dans la forme |display| ; dans |frame|, il s'agit de la distance entre 
 le texte et l'encadrement. |<num>| et |<sép>| sont tous deux ignorés dans les 
 versions étoilées des commandes de sectionnement. Si vous utilisez |picture| et 
@@ -360,10 +362,10 @@ ses semblables, mettez ce paramètre à 0 pt.
 \item |<code-avant>| est un code précédent le corps du titre. La toute dernière 
 commande peut prendre un argument, le texte du titre\footnote{Rappelez-vous 
 que la taille de la fonte peut être changée de façon sécurisée uniquement entre 
-les paragraphes et que les changements dans le texte doivent être faits localement
-avec un groupe; Sinon le \trad{leading} pourrait être faux --- trop grand ou trop 
-petit.}. Toutefois, avec l'option d'extension \texttt{explicit}, le titre doit
-être donné explicitement avec |#1| (voir \ref{others}).
+les paragraphes et que les changements dans le texte doivent être faits
+localement avec un groupe; sinon l'interlignage pourrait être faux --- trop
+grand ou trop petit.}. Toutefois, avec l'option d'extension \texttt{explicit},
+le titre doit être donné explicitement avec |#1| (voir \ref{others}).
 
 \item |<code-après>| est le code suivant le corps du titre. Le matériel alors 
 composé est en mode vertical avec |hang|, |block| et |display| tandis qu'il est 
@@ -391,17 +393,16 @@ avec |drop|, |wrap| et |runin| pour lesquels cette possibilité n'a pas de
 sens. 
 
 \begin{itemize}
-\item |<gauche-sép>| augmente la marge de gauche, sauf pour les formes |...margin| 
-et |drop| où ce paramètre fixe la largeur du titre, pour |wrap| où il
-donne la largeur maximale et pour |runin| où il indique l'indentation juste 
+\item |<gauche-sép>| augmente la marge de gauche, sauf pour les formes
+|...margin| et |drop| où ce paramètre fixe la largeur du titre, pour |wrap| où
+il donne la largeur maximale et pour |runin| où il indique l'indentation juste 
 avant le titre. Avec une valeur négative, le titre se décale dans la marge de 
-gauche\footnote{Ce paramètre n'est pas 
-équivalent à |<indent>| de |\cs{@startsection}|, qui ne fonctionne pas 
-correctement. Avec une valeur négative dans ce dernier et si |<indent>| est
-plus grand que la largeur de la numérotation, la première ligne du titre 
-commencera dans la marge extérieure, comme attendu, mais les lignes suivantes 
-ne le feront pas; pire, les lignes seront raccourcies du côté de la marge 
-droite.}.
+gauche\footnote{Ce paramètre n'est pas équivalent à |<indent>| de 
+|\cs{@startsection}|, qui ne fonctionne pas correctement. Avec une valeur
+négative dans ce dernier et si |<indent>| est plus grand que la largeur de la
+numérotation, la première ligne du titre commencera dans la marge extérieure,
+comme attendu, mais les lignes suivantes ne le feront pas; pire, les lignes
+seront raccourcies du côté de la marge droite.}.
 
 \item |<avant-sép>| est l'espace vertical avant le titre.
 
@@ -439,25 +440,26 @@ inclut une commande et génère ainsi une erreur.
 \subsection{Outils liés à l'espacement}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Ces commandes sont fournies comme outils pour |\titleformat| et |\titlespacing|.
+Ces commandes sont fournies comme outils pour |\titleformat| et
+|\titlespacing|.
 
 \begin{desc}
 |\filright  \filcenter  \filleft  \fillast  \filinner  \filouter|
 \end{desc}
 
 Elles consistent en des variantes des commandes |\ragged...|. En particulier,
-les commandes |\ragged...| suppriment les espaces à droite et à gauche disposés par
-|\titlespacing|\footnote{Rappelez-vous que l'extension \textsf{ragged2e} définit 
-quelques commandes additionnelles pour l'alignement comme 
-\texttt{\string\justifying}.}. |\fillast| justifie le paragraphe, à l'exception 
-de sa dernière ligne qui est centrée. Ces commandes fonctionnent également pour 
+les commandes |\ragged...| suppriment les espaces à droite et à gauche disposés
+par |\titlespacing|\footnote{Rappelez-vous que l'extension \textsf{ragged2e}
+définit quelques commandes additionnelles pour l'alignement comme 
+\texttt{\string\justifying}.}. |\fillast| justifie le paragraphe, à l'exception
+de sa dernière ligne qui est centrée. Ces commandes fonctionnent également pour
 la numérotation associée à la forme |frame|.
 
-|\filinner| et |\filouter| correspondent à |\filleft| ou |\filright| selon la page
-où elles se trouvent. Du fait du découpage asynchrone des pages par \TeX{}, ces
-commandes peuvent être utilisées uniquement dans |\chapter|. Si vous souhaitez un
-outil général pour définir différents formats dépendant de la page, voyez 
-\ref{extended}.
+|\filinner| et |\filouter| correspondent à |\filleft| ou |\filright| selon la
+page où elles se trouvent. Du fait du découpage asynchrone des pages par
+\TeX{}, ces commandes peuvent être utilisées uniquement dans |\chapter|. Si
+vous souhaitez un outil général pour définir différents formats dépendant de
+la page, voyez \ref{extended}.
 
 \begin{desc}
 |\wordsep|
@@ -471,39 +473,44 @@ Cette commande donne l'espace inter-mot pour la fonte courante.
 
 Ces options contournent le réglage du retrait du premier paragraphe pour toutes 
 les commandes de sectionnement\footnote{Anciennement nommées |indentfirst| et 
-|nonindentfirst|, maintenant obsolètes.}.
+|nonindentfirst|, maintenant obsolètes.}\footnote{L'option |french| de
+l'extension \textsf{babel} dans son réglage de base rend ces options
+inefficaces en imposant l'indentation.}.
 
 \begin{desc}
 |rigidchapters rubberchapters| \quad (options d'extension)
 \end{desc}
 
 Avec |rigidchapters|, l'espacement pour les titres des chapitres est toujours
-le même et |<sép-après>| dans |\titlespacing| ne représente pas l'espace entre 
-le bas du texte du titre et le corps du texte comme décrit plus haut mais 
-depuis le haut du texte du titre, autrement dit |<sép-avant>| $+$ |<sép-après>| 
-est maintenant une distance fixe entre le haut du \trad{corps de page} et le 
-texte principal. La valeur par défaut est |rubberchapters| où |<sép-après>| 
-désigne la séparation entre le titre et le texte, comme à l'accoutumée. Notez 
-que le nom est trompeur : ces options ne s'appliquent pas qu'aux chapitres mais 
-à tout titre de classe |top| (les classes sont développées en \ref{classes}).
+le même et |<sép-après>| dans |\titlespacing| ne représente plus l'espace entre 
+le bas du texte du titre et le texte principal comme décrit plus haut mais 
+depuis le \emph{haut} du texte du titre, autrement dit |<sép-avant>| $+$ 
+|<sép-après>| est maintenant une distance fixe entre le haut du corps de la 
+page et le texte principal. La valeur par défaut est |rubberchapters| où 
+|<sép-après>| désigne la séparation entre le titre et le texte, comme à
+l'accoutumée. Notez que le nom est trompeur : ces options ne s'appliquent pas
+qu'aux chapitres mais à tout titre de classe |top| (les classes sont
+développées en \ref{classes}).
 
 \begin{desc}
 |bottomtitles nobottomtitles nobottomtitles*|  \quad (options d'extension)
 \end{desc}
 
 Si |nobottomtitles| est sélectionné, les titres proches de la marge du bas sont
-renvoyés en page suivante et la marge sera \trad{ragged}. L'espace minimal requis 
-pour que cet effet soit ignoré est fixé (approximativement) par
+renvoyés en page suivante, agrandissant localement la taille de la marge de bas
+de page. L'espace minimal requis pour que cet effet soit ignoré est fixé
+(approximativement) par
 \begin{verbatim}
-\renewcommand{\bottomtitlespace}{<length>}
+\renewcommand{\bottomtitlespace}{<longueur>}
 \end{verbatim}
-dont la valeur par défaut est |.2\textheight|. Une simple marge \trad{ragged} sur 
-la page précédente est obtenue en mettant une valeur de 0 pt. |bottomtitles| est
-l'option par défaut, qui donne à |\bottomtitlespace| une valeur négative.
+dont la valeur par défaut est |.2\textheight|. Une marge du bas agrandie (et 
+donc irrégulière de page en page) sur la page précédente est obtenue en mettant
+une valeur de 0 pt. |bottomtitles| est l'option par défaut, qui donne à 
+|\bottomtitlespace| une valeur négative.
 
 L'option |nobottomtitles*| propose des calculs plus précis mais les titres de 
-forme |margin|, |wrap| ou |drop| peuvent être mal disposés. En temps normal, vous
-devriez utiliser la version étoilée.
+forme |margin|, |wrap| ou |drop| peuvent être mal disposés. En temps normal,
+vous devriez utiliser la version étoilée.
 
 \begin{desc}
 |aftersep largestsep|  \quad (options d'extension)
@@ -513,19 +520,20 @@ Par défaut, lorsqu'il y a deux titres consécutifs, l'espace |<sép-après>| du
 premier titre est utilisé entre les deux titres. Parfois, ce comportement n'est
 pas souhaité, en particulier quand l'espace |<sép-avant>| est plus grand que 
 |<sép-après>| (sinon le comportement par défaut semble préférable). Avec 
-|largestsep|, le plus grand espace est utilisé. La valeur par défaut est |aftersep|.
+|largestsep|, le plus grand espace est utilisé. La valeur par défaut est 
+|aftersep|.
 
 \begin{desc}
 |\\  \\*|\\
 |pageatnewline|  \quad (option d'extension)
 \end{desc}
 
-\fbox{2.6} Dans les versions 2.6 et suivantes, \verb|\\| ne permet pas de saut de
-page et devient un équivalent de \verb|\\*|. Comme personne, \emph{a priori}, ne 
-veut un saut de page dans un titre, il s'agit du comportement par défaut. Si, pour
-une raison étrange, vous souhaitez autoriser ces sauts de page dans les titres, 
-utilisez l'option \verb|pageatnewline|, fournie pour des questions 
-de rétrocompatibilité.
+\fbox{2.6} Dans les versions 2.6 et suivantes, \verb|\\| ne permet pas de saut
+de page et devient un équivalent de \verb|\\*|. Comme personne, 
+\emph{a priori}, ne veut un saut de page dans un titre, il s'agit du
+comportement par défaut. Si, pour une raison étrange, vous souhaitez autoriser
+ces sauts de page dans les titres, utilisez l'option \verb|pageatnewline|,
+fournie pour des questions de rétrocompatibilité.
 
 \subsection{Filets} \label{rules}
 %~~~~~~~~~~~~~~~~~~
@@ -542,25 +550,24 @@ les titres marginaux.
 |\titlerule*[<largeur>]{<texte>}|
 \end{desc}
 
-La commande |\titleline| permet l'insertion d'une ligne, qui peut contenir
-du texte et d'autres matériels horizontaux. Elle est pensée 
-principalement pour des filets et des points de conduite\footnote{Suite de 
-points régulièrement espacés qui se trouvent généralement dans les tables de 
-matières.} mais elle peut servir également
-pour d'autres besoins. La ligne a une largeur fixée et doit être remplie, 
-autrement dit |\titleline{CHAPITRE}| produit une boîte trop peu remplie et donc
-mal espacée. Ici le paramètre optionnel |<alignement>| (|l|, |r| ou |c|) peut 
-aider en vous permettant de saisir 
+La commande |\titleline| permet l'insertion d'une ligne, qui peut contenir du
+texte et d'autres matériels horizontaux. Elle est pensée principalement pour
+des filets et des points de conduite\footnote{Suite de points régulièrement
+espacés qui se trouvent généralement dans les tables de matières.} mais elle
+peut servir également pour d'autres besoins. La ligne a une largeur fixée et
+doit être remplie, autrement dit |\titleline{CHAPITRE}| produit une boîte trop
+peu remplie et donc mal espacée. Ici le paramètre optionnel |<alignement>| 
+(|l|, |r| ou |c|) peut aider en vous permettant de saisir 
 |\titleline[c]{CHAPITRE}|\footnote{La valeur par défaut est le paramètre 
 \texttt{s} de la commande \texttt{\cs{makebox}}.}.
 
 L'utilisation de |\titleline| à des endroits où un matériel vertical n'est pas
-attendu peut conduire à des anomalies. En d'autres termes, vous pouvez l'utiliser
-dans les arguments |<format>| (toujours) et |<code-après>|, que ce soit dans les 
-formes |hang|, |display| et |block|. Pour la forme |display|, vous pouvez la 
-placer au tout début des arguments |<code-avant>| et |<num>|. Mais vous pouvez 
-tester cette commande à d'autres endroits : il y a de grandes chances qu'elle 
-y fonctionne.
+attendu peut conduire à des anomalies. En d'autres termes, vous pouvez 
+l'utiliser dans les arguments |<format>| (toujours) et |<code-après>|, que ce
+soit dans les formes |hang|, |display| et |block|. Pour la forme |display|,
+vous pouvez la placer au tout début des arguments |<code-avant>| et |<num>|. 
+Mais vous pouvez tester cette commande à d'autres endroits : il y a de grandes
+chances qu'elle y fonctionne.
 
 La commande |\titlerule|, qui est incluse automatiquement dans |\titleline| si
 nécessaire, peut être utilisée pour construire des filets et des motifs de 
@@ -576,7 +583,7 @@ trace deux filets de différentes épaisseurs avec une séparation de 1 pt.
 La version étoilée fait une variante des points de conduite en remplaçant les
 points par le motif répété du |<texte>| placé dans une boîte de sa largeur 
 naturelle. Cette largeur de boîte peut être modifiée avec |<largeur>| mais la 
-largeur de la première boîte reste inchangée pour que le |<texte>| soit aligné 
+première boîte conserve sa largeur naturelle afin que le |<texte>| soit aligné
 avec les bords gauche et droit de l'espace à remplir.
   
 Par exemple, avec
@@ -587,40 +594,42 @@ Par exemple, avec
    \bfseries}
   {... définitions à la suite
 \end{verbatim}
-des points de conduite s'étendant au-dessus du texte principal et du titre précèdent 
-la section.
+des points de conduite s'étendent au-dessus du titre de la section et du texte.
 
 \begin{desc}
 |calcwidth| \quad (option d'extension)
 \end{desc}
 
-La forme |wrap| a la capacité de mesurer les lignes du titre pour mettre en forme le
-paragraphe. Cette capacité peut être étendue à trois autres formes --- |display|, 
-|block| et |hang| --- avec cette option d'extension. La longueur de la plus longue 
-ligne est restituée dans |\titlewidth|\footnote{Il existe deux paramètres plus fins 
-|\string\titlewidthfirst| and |\string\titlewidthlast| qui restituent la longueur 
-de la première et de la dernière ligne respectivement. Il n'y a pas de fonctions 
-dédiées pour s'en servir mais vous pouvez assigner leurs valeurs à 
-|\string\titlewidth| et utiliser alors |\string\titleline*|.}.
+La forme |wrap| a la capacité de mesurer les lignes du titre pour mettre en
+forme le paragraphe. Cette capacité peut être étendue à trois autres formes
+--- |display|, |block| et |hang| --- avec cette option d'extension. La 
+longueur de la plus longue ligne est restituée dans |\titlewidth|\footnote{Il
+existe deux paramètres plus fins |\string\titlewidthfirst| and 
+|\string\titlewidthlast| qui restituent la longueur de la première et de la
+dernière ligne respectivement. Il n'y a pas de fonctions dédiées pour s'en
+servir mais vous pouvez assigner leurs valeurs à |\string\titlewidth| et
+utiliser alors |\string\titleline*|.}.
 
-Du point de vue de \TeX{}, toute boîte est considérée comme du matériel composable.
-Si une boîte a été élargie avec de l'espace ou, inversement, si une boîte avec du
-texte a été réduite, la valeur de |\titlewidth| peut être fausse (du point de vue
-d'un humain). La forme |hang|, par exemple, recourt en interne à de telles boîtes mais, 
-dans ce cas, ce comportement est souhaité quand le titre est aligné à droite ; sinon
-la forme |block| produit de meilleurs résultats. En d'autres termes, l'utilisation de
-boîtes dont la largeur a été manipulée peut être source d'erreurs\footnote{Ce qui
-inclut les lignes justifiées dont l'espace inter-mot a été augmenté.}. Pour
-être complet, certaines commandes peuvent embrouiller \TeX{} et interrompre l'analyse
-du titre. Mais, si vous vous en tenez à du texte, |\\| et |\\[...]| (et il y a peu de 
-chances que vous puissiez avoir besoin d'autre chose), vous ne devriez pas rencontrer
-de problèmes.
+Du point de vue de \TeX{}, toute boîte est considérée comme du matériel
+composable. Si une boîte a été élargie avec de l'espace ou, inversement, si une
+boîte avec du texte a été réduite, la valeur de |\titlewidth| peut être fausse
+(du point de vue d'un humain). La forme |hang|, par exemple, recourt en interne
+à de telles boîtes mais, dans ce cas, ce comportement est souhaité quand le
+titre est aligné à droite ; sinon la forme |block| produit de meilleurs
+résultats. En d'autres termes, l'utilisation de boîtes dont la largeur a été
+manipulée peut être source d'erreurs\footnote{Ce qui inclut les lignes
+justifiées dont l'espace inter-mot a été augmenté.}. Pour être complet,
+certaines commandes peuvent embrouiller \TeX{} et interrompre l'analyse
+du titre. Mais, si vous vous en tenez à du texte, |\\| et |\\[...]| (et il y a
+peu de chances que vous puissiez avoir besoin d'autre chose), vous ne devriez
+pas rencontrer de problèmes.
 
-Un autre point important est que les paramètres |<code-avant>|, |<num>|, |<sép>|, et 
-|<titre>| (mais pas |<code-après>|) sont évalués deux fois au niveau local; si vous
-augmentez un compteur  \emph{globalement}, vous l'augmenterez alors deux fois. Dans
-la plupart des cas, placer une \trad{assignation conflictuelle} dans le |<code-après>| 
-passera mais vous pouvez également utiliser la commande suivante.
+Un autre point important est que les paramètres |<code-avant>|, |<num>|, 
+|<sép>|, et |<titre>| (mais pas |<code-après>|) sont évalués deux fois au 
+niveau local; si vous augmentez un compteur \emph{globalement}, vous
+l'augmenterez alors deux fois. Dans la plupart des cas, placer cette
+augmentation dans le |<code-après>| passera mais vous pouvez également 
+utiliser la commande suivante.
 
 \begin{desc}
 |\iftitlemeasuring{<vrai>}{<faux>}|
@@ -695,10 +704,11 @@ le paramétrage \verb|openright|).
 |\chaptertolists|
 \end{desc}
 
-\fbox{2.6} Si cette commande est définie, \trad{l'espace blanc écrit d'habitude
-dans les listes} (que sont la liste des figures et la liste des tables)
-est remplacé par le code de cette commande. Si vous ne voulez pas de l'espace
-quand un chapitre commence, définissez-le comme vide, autrement dit,
+\fbox{2.6} Si cette commande est définie, l'espace blanc écrit d'habitude
+dans les listes (que sont la liste des figures et la liste des tables) pour
+isoler les éléments d'un même chapitre est remplacé par le code de cette
+commande. Si vous ne voulez pas de l'espace quand un chapitre commence,
+définissez-le comme vide, autrement dit,
 \begin{verbatim}
 \newcommand{\chaptertolists}{}
 \end{verbatim}
@@ -730,10 +740,10 @@ l'exemple suivant :
 |newparttoc oldparttoc| \quad (options d'extension)
 \end{desc}
 
-Les parties des classes standards écrivent leur numéro en table des matières de 
-façon non standard. Vous pouvez changer cela avec |newparttoc| de façon à ce que  
-\textsf{titletoc} ou une extension similaire puisse manipuler cette entrée (ceci 
-fonctionne seulement dans le cas où |\part| a été redéfini).
+Les parties des classes standards écrivent leur numéro en table des matières de
+façon non standard. Vous pouvez changer cela avec |newparttoc| de façon à ce
+que  \textsf{titletoc} ou une extension similaire puisse manipuler cette entrée
+(ceci fonctionne seulement dans le cas où |\part| a été redéfini).
 
 \begin{desc}
 |clearempty| \quad (option d'extension)
@@ -1018,12 +1028,12 @@ préférable pour les longs documents.
 \subsection{Variantes}
 %~~~~~~~~~~~~~~~~~~~~~
 
-Supposons que vous souhaitez marquer des sections comme \og sujet avancé
+Supposons que vous souhaitez marquer des sections comme \og sujet complexe
 \fg{} par un astérisque après la numérotation. Le code suivant effectue
 cette mise en forme :
 \begin{verbatim}
 \newcommand{\secmark}{}
-\newenvironment{difficile}
+\newenvironment{complexe}
   {\renewcommand{\secmark}{*}}
   {}
 \titleformat{\section}
@@ -1033,10 +1043,10 @@ cette mise en forme :
 
 Pour marquer une section, écrivez :
 \begin{verbatim}
-\begin{difficile}
+\begin{complexe}
 \section{...}
 ...
-\end{difficile}
+\end{complexe}
 \end{verbatim}
 
 Ceci marque les sections mais pas les sous-sections. Si vous souhaitez un peu
@@ -1646,11 +1656,11 @@ fait le travail de fond. Là où est insérée la figure, indiquez alors :
 Retrouvons maintenant un problème expliqué en relation avec \textsf{titlesec} :
 placer un astérisque sur les sections abordant un \og sujet complexe \fg{}
 auquel nous ajoutons le besoin de faire figurer l'astérisque dans la table des
-matières. Voici le code :
+matières.
 \begin{verbatim}
 \newcommand{\secmark}{}
 \newcommand{\marktotoc}[1]{\renewcommand{\secmark}{#1}}
-\newenvironment{advanced}
+\newenvironment{complexe}
   {\renewcommand{\secmark}{*}%
    \addtocontents{toc}{\protect\marktotoc{*}}}
   {\addtocontents{toc}{\protect\marktotoc{}}}
@@ -1676,8 +1686,8 @@ matière de mise en forme des sectionnements.
 \section{Annexes}
 %~~~~~~~~~~~~~~~~
 
-Les exemples suivants servent d'illustrations. Dans cette partie, |\parskip| est
-fixé à 0 pt.
+Les exemples suivants servent d'illustrations. Dans cette partie, |\parskip|
+est fixé à 0 pt.
 
 \begingroup
 
@@ -1689,10 +1699,10 @@ fixé à 0 pt.
 \titleformat{\section}[block]
   {\normalfont\bfseries\filcenter}{\fbox{\itshape\thesection}}{1em}{}
 
-\section[Annexes]{Ceci est un exemple de la commande de section définie ci-dessous 
-et, je dirais même plus, ceci est un exemple de la commande de section définie 
-ci-dessous}
-%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\section[Annexes]{Ceci est un exemple de la commande de section définie 
+ci-dessous et, je dirais même plus, ceci est un exemple de la commande de
+section définie ci-dessous}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \begin{verbatim}
 \titleformat{\section}[block]
@@ -1799,12 +1809,12 @@ ci-dessous}
 \titlespacing{\section}
   {3pc}{*3}{*2}[3pc]
 
-\section[Annexes]{Ceci est un exemple de la commande de section définie ci-dessous 
-et, je dirais même plus, ceci est un exemple de la commande de section définie 
-ci-dessous. Répétons-le : ceci est un exemple de la commande de section définie 
-ci-dessous et, je dirais même plus, ceci est un exemple de la commande de section 
-définie ci-dessous}
-%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\section[Annexes]{Ceci est un exemple de la commande de section définie 
+ci-dessous et, je dirais même plus, ceci est un exemple de la commande de
+section définie ci-dessous. Répétons-le : ceci est un exemple de la commande de
+section définie ci-dessous et, je dirais même plus, ceci est un exemple de la
+commande de section définie ci-dessous}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \begin{verbatim}
 \titleformat{\section}[display]
