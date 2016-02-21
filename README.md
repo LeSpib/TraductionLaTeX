@@ -20,7 +20,7 @@ En quelques mots: ne modifiez pas un document si vous trouvez une faute, indique
 ### Liste des paquets en cours de traitement
 - [ ] *fontspec* ;
 - [ ] *geometry* ;
-- [ ] *titlesec* ;
+- [x] *titlesec* - En relecture finale ;
 - [ ] *xcolor*.
 
 ### Liste des paquets envisagés par la suite

@@ -10,7 +10,7 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *ti
 - *width* : largeur (d'une page, d'une boîte) et non longueur.
 
 ### Avancement de la traduction, en vision table de matières
-- [ ] En-tête du document tex (définitions, métadonnées)
+- [x] En-tête du document tex (définitions, métadonnées)
 - [x] Pages d'avant-propos (1 page)
 - [x] Introduction (1 page)
 - [x] Interface simplifiée (1 page)
@@ -29,8 +29,8 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *ti
   - [x] Version étoilée
   - [x] Variantes
   - [x] Placement d'un point après un titre de section
-- [x] L'extension titleps et les styles de page (1 page)
-- [x] La table des matières : l'extension titletoc (6 pages)
+- [x] L'extension titleps et le style de page (1 page)
+- [x] L'extension titletoc et la table des matières (6 pages)
   - [x] Visite guidée de titletoc en 10 minutes
   - [x] Et bien plus
   - [x] Table des matières partielle
@@ -40,3 +40,6 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *ti
   - [x] Repérage d'entrées avec des astérisques
 - [x] La philosophie de titlesec (1 page)
 - [x] Annexes (4 pages)
+  - [x] Un exemple complet
+  - [x] Classes standards
+  - [x] Exemple de chapitre
