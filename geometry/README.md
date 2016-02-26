@@ -10,9 +10,19 @@ L'objectif est de traduire la documentation de l'extension *geometry* utilisable
 - [x] Page d'avant-propos
 - [x] Préface à la version 5 (1 page)
 - [x] Introduction (1 page)
-- [ ] Anatomie d'une page (2 pages)
-- [ ] User interface (1 page)
-- [ ] Option details (6 pages)
+- [x] L'anatomie d'une page (2 pages)
+- [x] L'interface utilisateur (1 page)
+  - [x] Les commandes
+  - [x] L'argument optionnel
+  - [x] Les types d'option
+- [ ] Le détail des options (6 pages)
+  - [ ] La taille du papier 
+  - [ ] Layout size
+  - [ ] Body size
+  - [ ] Margin size
+  - [ ] Native dimensions
+  - [ ] Drivers
+  - [ ] Other options
 - [ ] Processing options (3 pages)
 - [ ] Changing layout mid-document (1 page)
 - [ ] Examples (2 pages)

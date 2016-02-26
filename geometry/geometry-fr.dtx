@@ -311,34 +311,36 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %
 % \section{Anatomie d'une page}
 %
-% \tradini
-% Figure~\ref{fig:layout} shows the page layout dimensions defined
-% in the \Gm\ package.
-% The page layout contains a \gpart{total body} (printable area) and \gpart{margins}. 
-% The \gpart{total body} consists of a \gpart{body} (text area) with an
-% optional \gpart{header}, \gpart{footer} and marginal notes (marginpar).
-% There are four margins: \gpart{left}, \gpart{right}, \gpart{top} and
-% \gpart{bottom}. For twosided documents, horizontal
-% margins should be called \gpart{inner} and \gpart{outer}.
+% La Figure~\ref{fig:layout} montre les dimensions associées à la mise en page
+% telle que définies par l'extension \Gm. 
+% Le \trad{layout} contient un \gpart{corps total} (zone imprimable) et des \gpart{marges}.
+% Le \gpart{total body} se compose d'un \gpart{corps} (zone de texte) et 
+% d'éléments optionnels : un \gpart{en-tête}, un \gpart{pied de page} et une 
+% note marginale (marginpar). Il y a quatre marges : \gpart{gauche}, 
+% \gpart{droite}, \gpart{haute} and \gpart{basse}. Pour les documents en
+% recto-verso, les marges horizontales devraient être appelées 
+% \gpart{intérieure} et \gpart{extérieure}.
+
 % \begin{quote}
 %  \begin{tabular}{rcl}
-%   \gpart{paper}&:&\gpart{total body} and
-%   \gpart{margins}\\
-%   \gpart{total body}&:&\gpart{body} (text area)\quad
-%             (optional \gpart{head}, \gpart{foot} and \gpart{marginpar})\\
-%   \gpart{margins}&:&\gpart{left} (\gpart{inner}), 
-%      \gpart{right} (\gpart{outer}), \gpart{top} and \gpart{bottom}
+%   \gpart{papier}&:&\gpart{corps total} and
+%   \gpart{marges}\\
+%   \gpart{corps total}&:&\gpart{corps} (zone de texte)\quad
+%             (optional \gpart{en-tête}, \gpart{pied de page} and \gpart{note marginale})\\
+%   \gpart{marges}&:&\gpart{gauche} (\gpart{intérieure}), 
+%      \gpart{droite} (\gpart{extérieure}), \gpart{haute} and \gpart{basse}
 %   \end{tabular}
 % \end{quote}
-% Each margin is measured from the corresponding edge of a paper. 
-% For example, left margin (inner margin) means a horizontal distance
-% between the left (inner) edge of the paper and that of the total body.
-% Therefore the left and top margins defined in \Gm\ are different
-% from the native dimensions \cs{leftmargin} and \cs{topmargin}.
-% The size of a body (text area) can be modified by \cs{textwidth} and
+% Chaque marge est mesurée à partir du bord du papier associé.
+% Par exemple, la marge gauche (marge intérieure) correspond à distance 
+% horizontale entre le bord gauche (intérieur) du papier et celui du corps
+% total. C'est pourquoi les marges gauche et haute définies dans \Gm\ diffèrent
+% des dimensions usuelles \cs{leftmargin} et \cs{topmargin}.
+% La taille du corps (zone de texte) peut être modifiée avec \cs{textwidth} et
 % \cs{textheight}. 
-% The dimensions for paper, total body and margins have the following
-% relations.
+
+% Les dimensions du papier, du corps total et des marges ont les relations
+% suivantes.
 % \begin{eqnarray}
 %  \label{eq:paperwidth}
 %  |paperwidth| &=& |left|+|width|+|right| \\
@@ -351,10 +353,10 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  {\unitlength=.65pt
 %  \begin{picture}(450,250)(0,-10)
 %  \put(20,0){\framebox(170,230){}}
-%  \put(20,235){\makebox(170,230)[br]{\gpart{paper}}}
+%  \put(20,235){\makebox(170,230)[br]{\gpart{papier}}}
 %  \begingroup\thicklines
 %  \put(40,30){\framebox(120,170){}}\endgroup
-%  \put(40,30){\makebox(120,165)[tr]{\gpart{total body}~}}
+%  \put(40,30){\makebox(120,165)[tr]{\gpart{corps total}~}}
 %  \put(45,30){\makebox(0,170)[l]{|height|}}
 %  \put(40,35){\makebox(120,0)[bc]{|width|}}
 %  \put(50,-20){\makebox(120,0)[bc]{|paperwidth|}}
@@ -376,7 +378,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \put(283,133){\makebox(0,12)[l]{|textheight|}}
 %  \put(295,130){\vector(0,-1){100}}\put(295,150){\vector(0,1){50}}
 %  \multiput(280,220)(5,0){24}{\line(1,0){3}}
-%  \put(280,208){\makebox(120,20)[bc]{\gpart{head}}}
+%  \put(280,208){\makebox(120,20)[bc]{\gpart{en-tête}}}
 %  \multiput(280,207)(5,0){24}{\line(1,0){3}}
 %  \put(420,225){\makebox(0,0)[l]{|headheight|}}
 %  \put(418,225){\line(-2,-1){20}}
@@ -384,56 +386,55 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \put(418,213){\line(-2,-1){20}}
 %  \put(420,12){\makebox(0,0)[l]{|footskip|}}
 %  \put(418,12){\line(-2,1){20}}
-%  \put(280,40){\makebox(120,140)[c]{\gpart{body}}}
+%  \put(280,40){\makebox(120,140)[c]{\gpart{corps}}}
 %  \put(305,45){\vector(-1,0){25}}\put(375,45){\vector(1,0){25}}
 %  \put(80,230){\vector(0,-1){30}}\put(80,30){\vector(0,-1){30}}
 %  \put(280,48){\makebox(120,0)[c]{|textwidth|}}
-%  \put(280,15){\makebox(120,10)[c]{\gpart{foot}}}
+%  \put(280,15){\makebox(120,10)[c]{\gpart{pied de page}}}
 %  \multiput(280,14)(5,0){24}{\line(1,0){2}}
 %  \put(410,30){\dashbox{3}(30,170){}}
-%  \put(415,30){\makebox(30,170)[l]{\gpart{marginal note}}}
+%  \put(412,30){\makebox(30,170)[l]{\gpart{note marginale}}}
 %  \put(425,45){\vector(-1,0){15}}\put(425,45){\vector(1,0){15}}
 %  \put(450,70){\makebox(0,0)[l]{|marginparsep|}}
 %  \put(448,70){\line(-3,-1){43}}
 %  \put(450,45){\makebox(0,0)[l]{|marginparwidth|}}
 %  \end{picture}}
-%  \caption[Dimension names for \Gm]{%
+%  \caption[Nom s des dimensions avec \Gm]{%
 %  \begin{minipage}[t]{.8\textwidth}\raggedright\small
-%  Dimension names used in the \Gm\ package.
-%  |width| $=$ |textwidth| and |height| $=$ |textheight| by default.
-%  |left|, |right|, |top| and |bottom| are margins. 
-%  If margins on verso pages are swapped by |twoside| option,
-%  margins specified by |left| and |right| options
-%  are used for the inside and outside margins respectively.
-%  |inner| and |outer| are aliases of |left| and |right|
-%  respectively.
+%  Noms des dimensions utilisées dans l'extension \Gm\.
+%  |width| $=$ |textwidth| et |height| $=$ |textheight| par défaut.
+%  |left|, |right|, |top| and |bottom| sont des marges. 
+%  Si les marges des pages au verso sont interverties par l'option |twoside|,
+%  les marges spécifiées par les options |left| et |right| sont utilisées
+%  pour les marges intérieures et extérieures respectivement.
+%  |inner| and |outer| sont des alias pour |left| et |right| respectivement.
 %  \end{minipage}}
 %  \label{fig:layout}
 % \end{figure}
 %
-% The total body |width| and |height| would be defined:
+% La largeur |width| et la hauteur |height| du corps total sont définies par :
 % \begin{eqnarray}
 %  \label{eq:width}
 %  |width| &:=& |textwidth| \quad( +\>  |marginparsep| + |marginparwidth| )\\
 %  |height| &:=& |textheight| \quad(+\> |headheight| + |headsep| + |footskip| )
 %  \label{eq:height}
 % \end{eqnarray}
-% In Equation (\ref{eq:width}) |width:=textwidth| by default, 
-% while |marginparsep| and |marginparwidth| are included in |width|
-% if |includemp| option is set |true|. 
-% In Equation (\ref{eq:height}), |height:=textheight| by default. 
-% If |includehead| is set to |true|, |headheight| and |headsep| are
-% considered as a part of |height|.
-% In the same way, |includefoot| takes |footskip| into |height|. 
-% Figure~\ref{fig:includes} shows how these options
-% work in the vertical direction.
+% Dans l'\'{E}quation (\ref{eq:width}), |width| égale |textwidth| par
+% défaut, tandis que |marginparsep| et |marginparwidth| sont inclus dans 
+% |width| si l'option |includemp| est fixée à |true|. 
+% Dans l'\'{E}quation (\ref{eq:height}), |height| égale |textheight| par
+% défaut. Si |includehead| est fixée à |true|, |headheight| et |headsep| sont 
+% considérées comme des parties de |height|.
+% De la même manière, |includefoot| place |footskip| dans |height|. 
+% La Figure~\ref{fig:includes} montre comment ces options fonctionnent 
+% verticalement.
 % \begin{figure}
 %  \centering\small
 %  {\unitlength=.65pt
 %  \begin{picture}(490,280)(0,-10)
-%  \put(60,250){\makebox(120,0)[bl]{\textbf{(a)}~\textit{default}}}%
+%  \put(60,250){\makebox(120,0)[bl]{\textbf{(a)}~\textit{par défaut}}}%
 %  \put(20,0){\framebox(170,230){}}
-%  \put(20,230){\makebox(170,15)[r]{\gpart{paper}}}
+%  \put(20,230){\makebox(170,15)[r]{\gpart{papier}}}
 %  \begingroup\thicklines
 %  \put(40,30){\framebox(120,165){}}\endgroup
 %  \put(70,165){\vector(0,1){30}}
@@ -442,9 +443,9 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \multiput(40,203)(5,0){24}{\line(1,0){3}}
 %  \multiput(40,213)(5,0){24}{\line(1,0){3}}
 %  \multiput(40,10)(5,0){24}{\line(1,0){3}}
-%  \put(40,203){\makebox(120,20)[bc]{\gpart{head}}}
-%  \put(40,40){\makebox(120,140)[c]{\gpart{body}}}
-%  \put(40,11){\makebox(120,10)[c]{\gpart{foot}}}
+%  \put(40,203){\makebox(120,20)[bc]{\gpart{en-tête}}}
+%  \put(40,40){\makebox(120,140)[c]{\gpart{corps}}}
+%  \put(40,11){\makebox(120,10)[c]{\gpart{pied de page}}}
 %  \put(150,230){\vector(0,-1){35}}\put(150,30){\vector(0,-1){30}}
 %  \put(150,195){\vector(0,1){35}}\put(150,0){\vector(0,1){30}}
 %  \put(160,197){\makebox(0,30)[lc]{|top|}}
@@ -452,9 +453,9 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \multiput(160,30)(5,0){24}{\line(1,0){2}}
 %  \multiput(160,195)(5,0){24}{\line(1,0){2}}
 %  \put(255,250){\makebox(120,0)[bl]
-%      {\textbf{(b)}~|includehead| and |includefoot|}}%
+%      {\textbf{(b)}~|includehead| et |includefoot|}}%
 %  \put(260,0){\framebox(170,230){}}
-%  \put(260,230){\makebox(170,15)[r]{\gpart{paper}}}
+%  \put(260,230){\makebox(170,15)[r]{\gpart{papier}}}
 %  \begingroup\thicklines
 %  \put(280,30){\framebox(120,165){}}\endgroup
 %  \put(310,152){\vector(0,1){25}}
@@ -463,44 +464,46 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \multiput(280,184)(5,0){24}{\line(1,0){3}}
 %  \multiput(280,177)(5,0){24}{\line(1,0){3}}
 %  \multiput(280,50)(5,0){24}{\line(1,0){3}}
-%  \put(280,184){\makebox(120,10)[c]{\gpart{head}}}
-%  \put(280,40){\makebox(120,140)[c]{\gpart{body}}}
+%  \put(280,184){\makebox(120,10)[c]{\gpart{en-tête}}}
+%  \put(280,40){\makebox(120,140)[c]{\gpart{corps}}}
 %  \put(400,140){\line(1,1){45}}
-%  \put(437,187){\makebox(50,10)[l]{\gpart{total body}}}
-%  \put(280,31){\makebox(120,10)[c]{\gpart{foot}}}
+%  \put(437,187){\makebox(50,10)[l]{\gpart{corps total}}}
+%  \put(280,31){\makebox(120,10)[c]{\gpart{pied de page}}}
 %  \put(370,230){\vector(0,-1){35}}\put(370,30){\vector(0,-1){30}}
 %  \put(370,195){\vector(0,1){35}}\put(370,0){\vector(0,1){30}}
 %  \put(380,197){\makebox(0,30)[lc]{|top|}}
 %  \put(380,0){\makebox(0,30)[lc]{|bottom|}}
 %  \end{picture}}
-%  \caption[An effect of \texttt{includehead} and \texttt{includefoot}.]{%
+%  \caption[Effet de \texttt{includehead} et \texttt{includefoot}.]{%
 %  \begin{minipage}[t]{.8\textwidth}\raggedright\small
-%    |includehead| and |includefoot| include the head and foot respectively
-%    into \gpart{total body}. \textbf{(a)} |height| $=$ |textheight| (default).
+%    |includehead| et |includefoot| incluent respectivement l'en-tête et le 
+%    pied de page dans \gpart{corps total}. \textbf{(a)} |height| $=$ 
+%    |textheight| (par défaut).
 %    \textbf{(b)} |height| $=$ |textheight| $+$ |headheight| $+$ |headsep| $+$ 
-%    |footskip| if |includehead| and |includefoot|. If the top and bottom
-%    margins are specified, |includehead| and |includefoot| result in
-%    shorter |textheight|.
+%    |footskip| si |includehead| et |includefoot| valent |true|. Si les marges
+%    haute et basse sont spécifiées, |includehead| et |includefoot| conduisent 
+%    à un |textheight| plus court.
 %  \end{minipage}}
 %  \label{fig:includes}
 % \end{figure}
 %
-% Thus, the page layout consists of three parts (lengths) in each
-% direction: one body and two margins. If the two of them are explicitly
-% specified, the other length is obvious and no need to be specified.
-% Figure~\ref{fig:Labc} shows a simple model of page dimensions. 
-% When a length |L| is given and is partitioned into the body |b|, the
-% margins |a| and |c|, it's obvious that
+% Ainsi, le \trad{page layout} se décompose en trois parties (longueurs) dans
+% chaque direction: un corps et deux marges. Si deux d'entre elles sont 
+% explicitement spécifiées, l'autre longueur est alors évidente et n'a pas
+% besoin d'être spécifiée. La Figure~\ref{fig:Labc} montre un modèle simple
+% de dimensions d'une page. Quand une longueur |L| est donnée et est décomposée
+% entre le corps |b|, les marges |a| et |c|, il est évident que
 % \begin{equation}
 %   |L|=|a|+|b|+|c|  \label{eq:Labc}
 % \end{equation}
-% The specification with two of the three (|a|,|b| and |c|) fixed
-% explicitly is solvable. If two or more are left unspecified
-% or `underspecified', Equation~(\ref{eq:Labc}) cannot be solved
-% without any other relation between them. If all of them are
-% specified, then it needs to check whether or not they
-% satisfy Equation~(\ref{eq:Labc}), that is too much specification or
-% `overspecified'.
+%
+% La spécification avec deux des trois longueurs (|a|,|b| et |c|) fixées 
+% explicitement est \trad{solvable}. Si deux longueurs ou plus sont laissées
+% non spécifiées ou \og sous-spécifiées \fg{}, l'\'{E}quation~(\ref{eq:Labc})
+% ne peut être résolue sans une autre relation entre elles. Si elles sont 
+% toutes spécifiées autrement dit trop spécifiées ou \og sur-spécifiées \fg{},
+% alors nous devons vérifier si elles satisfont ou pas 
+% l'\'{E}quation~(\ref{eq:Labc}).
 % \begin{figure}
 %  \centering
 %  {\unitlength=0.8pt
@@ -521,173 +524,180 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \put(150,35){\vector(1,0){150}}
 %  \put(300,0){\line(0,1){50}}
 %  \end{picture}}
-%  \caption{A simple model of page dimensions.}
+%  \caption{Un modèle simple des dimensions de la page.}
 %  \label{fig:Labc}
 % \end{figure}
 %
-% The \Gm\ package has auto-completion mechanism that saves the
-% trouble of specifying the page layout dimensions. For example,
-% you can set
+% L'extension \Gm\ dispose d'un mécanisme d'auto-complétion qui évite les
+% problèmes liés à la spécification des dimensions de la mise en page. Par
+% exemple, vous pouvez retenir
 % \begin{quote}
 %  |\usepackage[width=14cm, left=3cm]{geometry}|
 % \end{quote}
-% on A4 paper. In this case you don't have to set the right margin
-% The details of auto-completion will be described in
+% sur papier A4. Dans ce cas, nous n'avez pas à définir la marge droite. Les
+% détails de cette auto-complétion sont décrits dans la 
 % Section~\ref{sec:rules}.
 %
-% \section{User interface}
+% \section{L'interface utilisateur}
 %
-% \subsection{Commands}
+% \subsection{Les commandes}
 %
-% The \Gm\ package provides the following commands:
+% L'extension \Gm\ propose les commandes suivantes :
 % \begin{itemize}\setlength{\itemsep}{-.5\parsep}
 %  \item |\geometry{|\meta{options}|}|
-%  \item |\newgeometry{|\meta{options}|}| and |\restoregeometry|
-%  \item |\savegeometry{|\meta{name}|}| and |\loadgeometry{|\meta{name}|}|
+%  \item |\newgeometry{|\meta{options}|}| et |\restoregeometry|
+%  \item |\savegeometry{|\meta{nom}|}| et |\loadgeometry{|\meta{nom}|}|
 % \end{itemize}
 %
 % |\geometry{|\meta{options}|}|
-% changes the page layout according to the options specified in the
-% argument. This command, if any, should be placed only in the
-% preamble (before |\begin{document}|).
+% change la mise en page selon les options spécifiées en argument. Cette 
+% commande, plus que toute autre, devrait être placée uniquement dans le
+% préambule (avant |\begin{document}|).
 % 
-% The \Gm\ package may be used as part of a class or another package
-% you use in your document. The command \cs{geometry} can overwrite
-% some of the settings in the preamble. Multiple use of \cs{geometry}
-% is allowed and then processed with the options concatenated.
-% If \Gm\ is not yet loaded, you can use only
-% |\usepackage[|\meta{options}|]{geometry}| instead of \cs{geometry}.
+% L'extenion \Gm\ peut être utilisée comme une partie d'une classe ou d'une
+% autre extension que vous utilisez dans votre document. La commande
+% \cs{geometry} peut écraser certains réglages dans l'en-tête. L'utilisation
+% de plusieurs \cs{geometry} est autorisée et conduit à un traitement de 
+% l'ensemble des options concaténées. Si \Gm\ n'est pas encore chargé, vous
+% pouvez seulement utiliser 
+% |\usepackage[|\meta{options}|]{geometry}| au lieu de \cs{geometry}.
 %
 % \medskip
 % |\newgeometry{|\meta{options}|}|
-% changes the page layout mid-document. \cs{newgeometry} is almost
-% similar to \cs{geometry} except that \cs{newgeometry} disables all
-% the options specified by \cs{usepackage} and \cs{geometry} in
-% the preamble and skips papersize-related options. 
+% change la mise en page en cours de document. \cs{newgeometry} est
+% similaire à \cs{geometry} à ceci près que \cs{newgeometry} annule toutes
+% les options spécifiées par \cs{usepackage} et \cs{geometry} en préambule
+% et ne tient pas compte des options liées à la taille du papier. 
 % \cs{restoregeometry}
-% restores the page layout specified in the preamble. This command
-% has no arguments. See Section~\ref{sec:midchange} for details.
+% restaure la mise en page spécifiée dans le préambule. Cette commande n'a pas
+% d'argument. Voir la Section~\ref{sec:midchange} pour plus d'informations.
 %
 % \medskip
-% |\savegeometry{|\meta{name}|}|
-% saves the page dimensions as \meta{name} where you put
-% this command.
-% |\loadgeometry{|\meta{name}|}|
-% loads the page dimensions saved as \meta{name}. See
-% Section~\ref{sec:midchange} for details.
+% |\savegeometry{|\meta{nom}|}|
+% sauvegarde sous le nom \meta{nom} les dimensions de la page à l'endroit où la
+% commande est placée.
+% |\loadgeometry{|\meta{nom}|}|
+% charge les dimensions de la page sauvegardées sous le nom \meta{nom}. Voir
+% la Section~\ref{sec:midchange} pour plus d'informations.
 %
-% \subsection{Optional argument}
+% \subsection{L'argument optionnel}
 %
-% The \Gm\ package adopts \textsf{keyval} interface
-% `\meta{key}=\meta{value}' for the optional argument to
-% \cs{usepackage}, \cs{geometry} and \cs{newgeometry}.
+% L'extension \Gm\ aodpte l'interface \textsf{keyval} 
+% \og \meta{clé}=\meta{valeur} \fg{} pour l'argument optionnel de 
+% \cs{usepackage}, \cs{geometry} et \cs{newgeometry}.
 % 
-% The argument includes a list of comma-separated \textsf{keyval}
-% options and has basic rules as follows:
+% L'argument inclut une liste d'options \textsf{keyval} séparées par des
+% virgules et a les règles de base suivantes :
 % \begin{itemize}\setlength{\itemsep}{-.5\parsep}
-% \item Multiple lines are allowed, while blank lines are not.
-% \item Any spaces between words are ignored.
-% \item Options are basically order-independent.
-% (There are some exceptions. See Section~\ref{sec:optionorder} for details.)
+% \item des lignes multiples sont autorisées mais pas les lignes vides ;
+% \item les espaces entre lesmots sont ignorés ;
+% \item les options sont traitées indépendamment de leur ordre de saisie.
+% (Il y a ici quelques exceptions. Voir la Section~\ref{sec:optionorder} pour
+% plus d'informations.)
 % \end{itemize}
-%  For example,
+%  Par exemple,
 % \begin{quote}
 % |\usepackage[ a5paper ,  hmargin = { 3cm,|\\
 % |                .8in } , height|\\
 % |         =  10in ]{geometry}|
 % \end{quote}
-% is equivalent to 
+% est équivalent à 
 % \begin{quote}
 %   |\usepackage[height=10in,a5paper,hmargin={3cm,0.8in}]{geometry}|
 % \end{quote}
-% Some options are allowed to have sub-list, e.g. |{3cm,0.8in}|.
-% Note that the order of values in the sub-list is significant.
-% The above setting is also equivalent to the followings:
+% Certaines options sont autorisées à présenter une sous-liste, par exemple
+% |{3cm,0.8in}|. Notez que l'ordre des valeurs dans la sous-liste est 
+% significatif. Le réglage ci-dessus est équivalent aux suivants :
 % \begin{quote}
 %   |\usepackage{geometry}|\\
 %   |\geometry{height=10in,a5paper,hmargin={3cm,0.8in}}|
 % \end{quote}
-% or 
+% ou 
 % \begin{quote}
 %   |\usepackage[a5paper]{geometry}|\\
 %   |\geometry{hmargin={3cm,0.8in},height=8in}|\\
 %   |\geometry{height=10in}|.
 % \end{quote}
-% Thus, multiple use of \cs{geometry} just appends options.
+% Ainsi, l'utilisation de plusieurs \cs{geometry} cumule juste les options.
 %
-% \Gm\ supports package 
+% \Gm\ supporte l'extension 
 % \textsl{calc}\footnote{CTAN:~\texttt{macros/latex/required/tools}}.
-% For example,
+% Par exemple,
 % \begin{quote}
 %   |\usepackage{calc}|\\
 %   |\usepackage[textheight=20\baselineskip+10pt]{geometry}|
 % \end{quote}
 %
-% \subsection{Option types}
-% \Gm\ options are categorized into four types:
+% \subsection{Les types d'option}
+% Les options de \Gm\ sont réparties en quatre types :
 %
 % \begin{enumerate}\itemsep=0pt
-% \item \textbf{Boolean type}
+% \item \textbf{Type booléen}
 %
-%    takes a boolean value (|true| or |false|). If no value,
-%    |true| is set by default.
+%    prend une valeur booléenne (vrai |true| ou faux |false|). En l'absence de
+%    valeur, |true| est sélectionné par défaut.
 %    \begin{quote}
 %       \meta{key}|=true|\OR|false|.\\
-%       \meta{key} with no value is equivalent to 
+%       \meta{key} sans valeur est équivalent à 
 %       \meta{key}|=true|.
 %    \end{quote}
-%    \textit{Examples:}~ |verbose=true|, |includehead|, 
+%    \textit{Exemples:}~ |verbose=true|, |includehead|, 
 %    |twoside=false|.\\
-%    Paper name is the exception. The preferred paper name should be set
-%    with no values. Whatever value is given, it is ignored. For
-%    instance, |a4paper=XXX| is equivalent to |a4paper|.
+%    Le format (ou nom) du papier est ici l'exception. Le format du papier 
+%    désiré devrait être mis dans valeur. Quelle que soit la valeur donnée, 
+%    elle est ignorée. Par exemple, |a4paper=XXX| est équivalent à |a4paper|.
 %
-% \item \textbf{Single-valued type}
+% \item \textbf{Type à valeur unique}
 %
-%    takes a mandatory value.
+%    prend une valeur obligatoire.
 %    \begin{quote}
-%    \meta{key}|=|\meta{value}.
+%    \meta{clé}|=|\meta{valeur}.
 %    \end{quote}
-%    \textit{Examples:}~ |width=7in|, |left=1.25in|,
+%    \textit{Exemples:}~ |width=7in|, |left=1.25in|,
 %    |footskip=1cm|, |height=.86\paperheight|.
 %
-% \item \textbf{Double-valued type}
+% \item \textbf{Type à valeur double}
 %
-%    takes a pair of comma-separated values in braces. The two values can
-%    be shortened to one value if they are identical.
+%    prend une paire de valeurs obligatoires séparées par une virgule et
+%    regroupées entre accolades. Les deux valeurs peuvent être réduites à 
+%    une valeur unique si elles sont identiques.
 %    \begin{quote}
-%    \meta{key}|=|\argii{value1}{value2}.\\
-%    \meta{key}|=|\meta{value} is equivalent to 
-%              \meta{key}|=|\argii{value}{value}.
+%    \meta{clé}|=|\argii{valeur1}{valeur2}.\\
+%    \meta{clé}|=|\meta{valeur} est équivalent à 
+%              \meta{clé}|=|\argii{valeur}{valeur}.
 %    \end{quote}
-%    \textit{Examples:}~ |hmargin={1.5in,1in}|, |scale=0.8|,
+%    \textit{Exemples:}~ |hmargin={1.5in,1in}|, |scale=0.8|,
 %    |body={7in,10in}|.
 %
-% \item \textbf{Triple-valued type}
+% \item \textbf{Type à triple valeur}
 %
-%    takes three mandatory, comma-separated values in braces.
+%    prend trois valeurs obligatoires séparées par une virgule et
+%    regroupées entre accolades.
 %    \begin{quote}
-%    \meta{key}|=|\argiii{value1}{value2}{value3}
+%    \meta{clé}|=|\argiii{valeur1}{valeur2}{valeur3}
 %    \end{quote}
-%    Each value must be a dimension or null. When you give an empty value
-%    or `|*|', it means null and leaves the appropriate value 
-%    to the auto-completion mechanism. You need to specify at least one
-%    dimension, typically two dimensions. You can set nulls for all the 
-%    values, but it makes no sense.
-%    \textit{Examples:}\\
+%    Chaque valeur doit être une dimension ou être nulle. Quand vous indiquez
+%    une valeur vide ou \og|*|\fg{}, cela correspond à un nul et laisse la 
+%    valeur souhaitée aux bons soins du mécanisme d'auto-complétion. Vous 
+%    devez spécifier au moins une dimension, typiquement deux dimensions. Vous
+%    pouvez indiquer des nuls pour toutes les valeurs mais cela n'a pas de
+%    sens.
+% \textit{Exemples:}\\
 %    \hspace*{2em} |hdivide={2cm,*,1cm}|, |vdivide={3cm,19cm, }|,
 %                   |divide={1in,*,1in}|.
 % \end{enumerate}
 %
-% \section{Option details}
+% \section{Le détail des options}
 %
-% This section describes all options available in \Gm.
-% Options with a dagger $^\dagger$ are not available 
-% as arguments of \cs{newgeometry} (See Section~\ref{sec:midchange}).
+% Cette section décrit toutes les options disponibles dans \Gm. Les options
+% avec une dague $^\dagger$ ne sont pas disponibles comme argument de 
+% \cs{newgeometry} (voir la Section~\ref{sec:midchange}).
 %
-% \subsection{Paper size}\label{sec:paper}
+% \subsection{La taille du papier}\label{sec:paper}
 % 
-% The options below set paper/media size and orientation.
+% Les options ci-dessous définissent la taille du papier/médium et son
+% orientation.
+% \tradini
 % \begin{Options}
 % \item[\onlypre paper\OR papername] ~\\ 
 %  specifies the paper size by name. |paper=|\meta{paper-name}.
