@@ -3,22 +3,24 @@
 L'objectif est de traduire la documentation de l'extension *geometry* utilisable avec LaTeX.
 
 ### Quelques termes récurrents dans la traduction de ce document
-- *paper size* : format (de papier)
+- *layout* : gabarit (source Wikipédia) ;
+- *page layout* : mise en page ;
+- *paper size* : format (de papier).
 
 ### Avancement de la traduction, en vision table de matières
 - [ ] En-tête du document tex (définitions, métadonnées)
 - [x] Page d'avant-propos
 - [x] Préface à la version 5 (1 page)
 - [x] Introduction (1 page)
-- [x] L'anatomie d'une page (2 pages)
-- [x] L'interface utilisateur (1 page)
-  - [x] Les commandes
-  - [x] L'argument optionnel
-  - [x] Les types d'option
-- [ ] Le détail des options (6 pages)
-  - [ ] La taille du papier 
-  - [ ] Layout size
-  - [ ] Body size
+- [x] Anatomie d'une page (2 pages)
+- [x] Interface utilisateur (1 page)
+  - [x] Commandes
+  - [x] Argument optionnel
+  - [x] Types d'option
+- [ ] Détail des options (6 pages)
+  - [x] Taille du papier 
+  - [x] Taille du gabarit
+  - [ ] Taille du corps
   - [ ] Margin size
   - [ ] Native dimensions
   - [ ] Drivers

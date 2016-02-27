@@ -128,7 +128,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %</driver>
 % \fi
 %
-% \CheckSum{2680}
+% \CheckSum{2681}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -206,67 +206,72 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %
 % \begin{itemize}
 %  \item \textbf{Changement de la mise en page en cours de document.}\par
-%   Les nouvelles commandes \cs{newgeometry\{$\cdots$\}} et \cs{restoregeometry}
-%   permettent à l'utilisateur de changer les dimensions de la page en cours
-%   de document. \cs{newgeometry} est assez similaire à \cs{geometry}, à ceci
-%   près que \cs{newgeometry} désactive toutes les options indiquées dans le
-%   préambule mais conserve les options liées à la taille du papier :  
-%   |landscape|, |portrait| et les options de format (telles que |papersize|, 
-%   |paper=a4paper| et ainsi de suite).
-%  \item \textbf{Un nouvel ensemble d'options pour spécifier la zone de mise en page.}\par
-%   Les options spécifiant la zone dans laquelle sont calculées les dimensions de la page 
-%   sont ajoutées : \textsf{layout}, \textsf{layoutsize}, 
+%   Les nouvelles commandes \cs{newgeometry\{$\cdots$\}} et 
+%   \cs{restoregeometry} permettent à l'utilisateur de changer les dimensions
+%   de la page en cours de document. \cs{newgeometry} est assez similaire à 
+%   \cs{geometry}, à ceci près que \cs{newgeometry} désactive toutes les
+%   options indiquées dans le préambule mais conserve les options liées à la
+%   taille du papier : |landscape|, |portrait| et les options de format
+%   (telles que |papersize|, |paper=a4paper| et ainsi de suite).
+%  \item \textbf{Un nouvel ensemble d'options pour spécifier la zone de mise en
+%   page.}\par
+%   Les options spécifiant la zone dans laquelle sont calculées les dimensions
+%   de la page sont ajoutées : \textsf{layout}, \textsf{layoutsize}, 
 %   \textsf{layoutwidth}, \textsf{layoutheight} et ainsi de suite.
-%   Ces options aident à imprimer la mise en forme pour une autre taille de papier.
-%   Par exemple, avec |a4paper| et |layout=a5paper|, l'extension \Gm\ utilise la mise 
-%   en forme A5 pour calculer les marges avec un format de papier A4.
+%   Ces options aident à imprimer la mise en forme pour une autre taille de
+%   papier. Par exemple, avec |a4paper| et |layout=a5paper|, l'extension \Gm\ 
+%   utilise la mise en forme A5 pour calculer les marges avec un format de
+%   papier A4.
 %  \item \textbf{Une nouvelle option de pilote |xetex|.}\par
-%   Une nouvelle option de pilote, |xetex|, est ajoutée. La routine d'auto-détection des 
-%   pilotes a été revue pour éviter une erreur avec les commandes non 
-%   définies. Notez que \og geometry.cfg \fg{} (dans \TeX{} Live), qui désactive la routine 
-%   d'auto-détection et sélectionne |pdftex|, n'est plus nécessaire et ne crée plus de 
-%   problème quand bien même il existe toujours. Sélectionner |xetex| est fortement 
-%   recommandé avec \XeLaTeX{}.
+%   Une nouvelle option de pilote, |xetex|, est ajoutée. La routine 
+%   d'auto-détection des pilotes a été revue pour éviter une erreur avec les
+%   commandes non définies. Notez que \og geometry.cfg \fg{} (dans 
+%   \TeX{} Live), qui désactive la routine d'auto-détection et sélectionne 
+%   |pdftex|, n'est plus nécessaire et ne crée plus de problème quand bien même
+%   il existe toujours. Sélectionner |xetex| est fortement recommandé avec
+%   \XeLaTeX{}.
 %  \item \textbf{Nouveux formats de papier prédéfinis pour les formats JIS B 
 %  et les formats ISO C}\par
 %   Les formats de papier prédéfinis |b0j| à |b6j| pour les formats JIS 
-%   (Japanese Industrial Standards) B et |c0paper| à |c6paper| pour les formats ISO C
-%   (v5.4$\sim$) sont ajoutés.
-%  \item \textbf{Changement des valeurs par défaut pour les marges sous-définies.}\par
-%   Dans les versions précédentes, si une marge seulement était spécifiée, |bottom=1cm|
-%   par exemple, alors \Gm\ fixait l'autre marge avec le ratio de marge (1\string:1 par défaut
-%   pour les dimensions verticales) et obtenait |top=1cm| dans ce cas.
-%   La version 5 fixe la taille du corps du texte avec la valeur par défaut |scale|
-%   ($=0.7$) et détermine la marge non spécifiée. (Voir Section~\ref{sec:rules}) 
+%   (Japanese Industrial Standards) B et |c0paper| à |c6paper| pour les formats
+%   ISO C (v5.4$\sim$) sont ajoutés.
+%  \item \textbf{Changement des valeurs par défaut pour les marges 
+%  sous-définies.}\par
+%   Dans les versions précédentes, si une marge seulement était spécifiée, 
+%   |bottom=1cm| par exemple, alors \Gm\ fixait l'autre marge avec le ratio de
+%   marge (1\string:1 par défaut pour les dimensions verticales) et obtenait
+%   |top=1cm| dans ce cas. La version 5 fixe la taille du corps du texte avec
+%   la valeur par défaut |scale| ($=0.7$) et détermine la marge non spécifiée.
+%   (Voir Section~\ref{sec:rules}) 
 %  \item \textbf{Les options |showframe| et |showcrop| fonctionnent sur chaque 
 %   page.}\par
-%   Avec l'option |showframe|, le cadre de la page est affiché sur 
-%   chaque page. En complément, une nouvelle option |showcrop| affiche les traits
-%   de coupe à chaque coin de la zone de mise en page sur chaque page.
-%   Notez que les marques seront invisibles sans spécification d'une taille de mise
-%   en page plus petite que la taille du papier. 
-%   La version 5.4 introduit un nouveau processus de débordement |\shipout| utilisant
-%   l'extension \textsf{atbegshi} impliquant le chargement de cette extension quand
-%   les options |showframe| ou |showcrop| sont sélectionnées.
-%  \item \textbf{Le chargement de geometry.cfg précède le traitement des options de 
-%  classe.}\par
+%   Avec l'option |showframe|, le cadre de la page est affiché sur chaque page.
+%   En complément, une nouvelle option |showcrop| affiche les traits de coupe
+%   à chaque coin de la zone de mise en page sur chaque page. Notez que les
+%   marques seront invisibles sans spécification d'une taille de mise en page
+%   plus petite que la taille du papier. La version 5.4 introduit un nouveau 
+%   processus de débordement |\shipout| utilisant l'extension \textsf{atbegshi}
+%   impliquant le chargement de cette extension quand les options |showframe|
+%   ou |showcrop| sont sélectionnées.
+%  \item \textbf{Le chargement de geometry.cfg précède le traitement des
+%  options de classe.}\par
 %    La version antérieure chargeait \textsf{geometry.cfg} après avoir traité
-%    les options de classe du document. Maintenant que le fichier de configuration
-%    est chargé avant, vous pouvez changer le comportement indiqué dans  
-%    \textsf{geometry.cfg} en ajoutant des options dans |\documentclass| aussi bien
-%    que dans |\usepackage| et |\geometry|.
+%    les options de classe du document. Maintenant que le fichier de
+%    configuration est chargé avant, vous pouvez changer le comportement
+%    indiqué dans \textsf{geometry.cfg} en ajoutant des options dans 
+%    |\documentclass| aussi bien que dans |\usepackage| et |\geometry|.
 %  \item \textbf{Options supprimées: |compat2| et |twosideshift|.}
-%    La version 5 n'est plus compatible avec ces options |compat2| et |twosideshift| 
-%    pour des raisons de simplification. 
+%    La version 5 n'est plus compatible avec ces options |compat2| et 
+%    |twosideshift| pour des raisons de simplification. 
 % \end{itemize}
 %
 % \section{Introduction}
 %
-% Fixer des dimensions pour une mise en page sou \LaTeX\ n'est pas immédiat.
+% Fixer des dimensions pour une mise en page sous \LaTeX\ n'est pas immédiat.
 % Vous devez ajuster plusieurs dimensions inhérentes à \LaTeX{} pour placer
 % une zone de texte où vous le souhaitez.
-% Si vous voulez centrer la zone de texte dans un papier que vous utilisez, par exemple,
-% vous devez spécifier les dimensions fondamentales suivantes :
+% Si vous voulez centrer la zone de texte dans un papier que vous utilisez,
+% par exemple, vous devez spécifier les dimensions fondamentales suivantes :
 % \begin{quote}
 %    |\usepackage{calc}|\\
 %    |\setlength\textwidth{7in}|\\
@@ -281,21 +286,22 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % \begin{quote}
 %    |\usepackage[text={7in,10in},centering]{geometry}|. 
 % \end{quote}
-% En plus du centrage, le réglage des marges par rapport à chaque bord de la feuille
-% est également problématique. Mais \Gm\ simplifie aussi ce point.
+% En plus du centrage, le réglage des marges par rapport à chaque bord de la
+% feuille est également problématique. Mais \Gm\ simplifie aussi ce point.
 % Si vous souhaitez fixer chaque marge à $1,8$ cm, vous pouvez saisir
 % \begin{quote}
 %    |\usepackage[margin=3.8cm]{geometry}| 
 % \end{quote}
-% De fait, l'extension \Gm\ dispose d'un mécanisme d'auto-complétion dans lequel
-% les dimensions manquantes sont automatiquement déterminées.
-% L'extension \Gm\ sera également utile lorsque vous avez à traiter la mise en page
-% en suivant des instructions strictes. Par exemple,
+% De fait, l'extension \Gm\ dispose d'un mécanisme d'auto-complétion dans
+% lequel les dimensions manquantes sont automatiquement déterminées.
+% L'extension \Gm\ sera également utile lorsque vous avez à traiter la mise en
+% page en suivant des instructions strictes. Par exemple,
 % \begin{quote}\slshape
-%   La largeur maximale de la zone de texte est de $16,5$cm de large par $22,25$ cm
-%   de haut. La marge de tête sur chaque page doit être de $3$ cm depuis le bord 
-%   haut de la feuille. La marge gauche doit être de $2.3$ cm depuis le bord gauche. 
-%   Le pied de page avec le numéro de la page doit être en bas de la zone de texte.
+%   La largeur maximale de la zone de texte est de $16,5$ cm de large par 
+%   $22,25$ cm de haut. La marge de tête sur chaque page doit être de $3$ cm
+%   depuis le bord haut de la feuille. La marge gauche doit être de $2,3$ cm
+%   depuis le bord gauche. Le pied de page avec le numéro de la page doit être
+%   en bas de la zone de texte.
  % \end{quote}
 % Dans ce cas, avec \Gm\ vous saisissez
 % \begin{quote}
@@ -303,18 +309,19 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % |            top=3cm, left=2.3cm, includefoot]{geometry}|.
 % \end{quote}
 %
-% Définir une zone de texte sur papier dans un système de préparation de document
-% présente certaines analogies avec le placement d'une fenêtre dans un système 
-% d'environnement de bureau. 
-% Le nom \og geometry \fg{} provient de l'option |-geometry| utilisée pour spécifier
-% la taille et la localisation d'une fenêtre dans l'environnement de bureau X Window.
+% Définir une zone de texte sur papier dans un système de préparation de
+% document présente certaines analogies avec le placement d'une fenêtre dans un
+% système d'environnement de bureau. 
+% Le nom \og geometry \fg{} provient de l'option |-geometry| utilisée pour
+% spécifier la taille et la localisation d'une fenêtre dans l'environnement 
+% de bureau X Window.
 %
 % \section{Anatomie d'une page}
 %
 % La Figure~\ref{fig:layout} montre les dimensions associées à la mise en page
-% telle que définies par l'extension \Gm. 
-% Le \trad{layout} contient un \gpart{corps total} (zone imprimable) et des \gpart{marges}.
-% Le \gpart{total body} se compose d'un \gpart{corps} (zone de texte) et 
+% telle que définies par l'extension \Gm. Le gabarit contient un 
+% \gpart{corps intégral} (zone imprimable) et des \gpart{marges}.
+% Le \gpart{corps intégral} se compose d'un \gpart{corps} (zone de texte) et 
 % d'éléments optionnels : un \gpart{en-tête}, un \gpart{pied de page} et une 
 % note marginale (marginpar). Il y a quatre marges : \gpart{gauche}, 
 % \gpart{droite}, \gpart{haute} and \gpart{basse}. Pour les documents en
@@ -323,12 +330,12 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 
 % \begin{quote}
 %  \begin{tabular}{rcl}
-%   \gpart{papier}&:&\gpart{corps total} and
-%   \gpart{marges}\\
-%   \gpart{corps total}&:&\gpart{corps} (zone de texte)\quad
-%             (optional \gpart{en-tête}, \gpart{pied de page} and \gpart{note marginale})\\
+%   \gpart{papier}&:&\gpart{corps intégral} et \gpart{marges}\\
+%   \gpart{corps intégral}&:&\gpart{corps} (zone de texte)\quad
+%             (\gpart{en-tête}, \gpart{pied de page} et 
+%              \gpart{note marginale} optionnels)\\
 %   \gpart{marges}&:&\gpart{gauche} (\gpart{intérieure}), 
-%      \gpart{droite} (\gpart{extérieure}), \gpart{haute} and \gpart{basse}
+%      \gpart{droite} (\gpart{extérieure}), \gpart{haute} et \gpart{basse}
 %   \end{tabular}
 % \end{quote}
 % Chaque marge est mesurée à partir du bord du papier associé.
@@ -339,7 +346,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % La taille du corps (zone de texte) peut être modifiée avec \cs{textwidth} et
 % \cs{textheight}. 
 
-% Les dimensions du papier, du corps total et des marges ont les relations
+% Les dimensions du papier, du corps intégral et des marges ont les relations
 % suivantes.
 % \begin{eqnarray}
 %  \label{eq:paperwidth}
@@ -356,7 +363,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \put(20,235){\makebox(170,230)[br]{\gpart{papier}}}
 %  \begingroup\thicklines
 %  \put(40,30){\framebox(120,170){}}\endgroup
-%  \put(40,30){\makebox(120,165)[tr]{\gpart{corps total}~}}
+%  \put(40,30){\makebox(120,165)[tr]{\gpart{corps intégral}~}}
 %  \put(45,30){\makebox(0,170)[l]{|height|}}
 %  \put(40,35){\makebox(120,0)[bc]{|width|}}
 %  \put(50,-20){\makebox(120,0)[bc]{|paperwidth|}}
@@ -399,20 +406,20 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \put(448,70){\line(-3,-1){43}}
 %  \put(450,45){\makebox(0,0)[l]{|marginparwidth|}}
 %  \end{picture}}
-%  \caption[Nom s des dimensions avec \Gm]{%
+%  \caption[Noms des dimensions avec \Gm]{%
 %  \begin{minipage}[t]{.8\textwidth}\raggedright\small
-%  Noms des dimensions utilisées dans l'extension \Gm\.
+%  Noms des dimensions utilisées dans l'extension \Gm.
 %  |width| $=$ |textwidth| et |height| $=$ |textheight| par défaut.
-%  |left|, |right|, |top| and |bottom| sont des marges. 
+%  |left|, |right|, |top| et |bottom| sont des marges. 
 %  Si les marges des pages au verso sont interverties par l'option |twoside|,
 %  les marges spécifiées par les options |left| et |right| sont utilisées
 %  pour les marges intérieures et extérieures respectivement.
-%  |inner| and |outer| sont des alias pour |left| et |right| respectivement.
+%  |inner| et |outer| sont des alias pour |left| et |right| respectivement.
 %  \end{minipage}}
 %  \label{fig:layout}
 % \end{figure}
 %
-% La largeur |width| et la hauteur |height| du corps total sont définies par :
+% La largeur |width| et la hauteur |height| du corps intégral sont définies par :
 % \begin{eqnarray}
 %  \label{eq:width}
 %  |width| &:=& |textwidth| \quad( +\>  |marginparsep| + |marginparwidth| )\\
@@ -467,7 +474,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \put(280,184){\makebox(120,10)[c]{\gpart{en-tête}}}
 %  \put(280,40){\makebox(120,140)[c]{\gpart{corps}}}
 %  \put(400,140){\line(1,1){45}}
-%  \put(437,187){\makebox(50,10)[l]{\gpart{corps total}}}
+%  \put(437,187){\makebox(50,10)[l]{\gpart{corps intégral}}}
 %  \put(280,31){\makebox(120,10)[c]{\gpart{pied de page}}}
 %  \put(370,230){\vector(0,-1){35}}\put(370,30){\vector(0,-1){30}}
 %  \put(370,195){\vector(0,1){35}}\put(370,0){\vector(0,1){30}}
@@ -477,7 +484,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \caption[Effet de \texttt{includehead} et \texttt{includefoot}.]{%
 %  \begin{minipage}[t]{.8\textwidth}\raggedright\small
 %    |includehead| et |includefoot| incluent respectivement l'en-tête et le 
-%    pied de page dans \gpart{corps total}. \textbf{(a)} |height| $=$ 
+%    pied de page dans le \gpart{corps intégral}. \textbf{(a)} |height| $=$ 
 %    |textheight| (par défaut).
 %    \textbf{(b)} |height| $=$ |textheight| $+$ |headheight| $+$ |headsep| $+$ 
 %    |footskip| si |includehead| et |includefoot| valent |true|. Si les marges
@@ -487,7 +494,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \label{fig:includes}
 % \end{figure}
 %
-% Ainsi, le \trad{page layout} se décompose en trois parties (longueurs) dans
+% Ainsi, le gabarit se décompose en trois parties (longueurs) dans
 % chaque direction: un corps et deux marges. Si deux d'entre elles sont 
 % explicitement spécifiées, l'autre longueur est alors évidente et n'a pas
 % besoin d'être spécifiée. La Figure~\ref{fig:Labc} montre un modèle simple
@@ -497,8 +504,8 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %   |L|=|a|+|b|+|c|  \label{eq:Labc}
 % \end{equation}
 %
-% La spécification avec deux des trois longueurs (|a|,|b| et |c|) fixées 
-% explicitement est \trad{solvable}. Si deux longueurs ou plus sont laissées
+% Une spécification avec deux des trois longueurs (|a|,|b| et |c|) fixées 
+% explicitement est résolvable. Si deux longueurs ou plus sont laissées
 % non spécifiées ou \og sous-spécifiées \fg{}, l'\'{E}quation~(\ref{eq:Labc})
 % ne peut être résolue sans une autre relation entre elles. Si elles sont 
 % toutes spécifiées autrement dit trop spécifiées ou \og sur-spécifiées \fg{},
@@ -538,9 +545,9 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % détails de cette auto-complétion sont décrits dans la 
 % Section~\ref{sec:rules}.
 %
-% \section{L'interface utilisateur}
+% \section{Interface utilisateur}
 %
-% \subsection{Les commandes}
+% \subsection{Commandes}
 %
 % L'extension \Gm\ propose les commandes suivantes :
 % \begin{itemize}\setlength{\itemsep}{-.5\parsep}
@@ -580,7 +587,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % charge les dimensions de la page sauvegardées sous le nom \meta{nom}. Voir
 % la Section~\ref{sec:midchange} pour plus d'informations.
 %
-% \subsection{L'argument optionnel}
+% \subsection{Argument optionnel}
 %
 % L'extension \Gm\ aodpte l'interface \textsf{keyval} 
 % \og \meta{clé}=\meta{valeur} \fg{} pour l'argument optionnel de 
@@ -628,7 +635,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %   |\usepackage[textheight=20\baselineskip+10pt]{geometry}|
 % \end{quote}
 %
-% \subsection{Les types d'option}
+% \subsection{Types d'option}
 % Les options de \Gm\ sont réparties en quatre types :
 %
 % \begin{enumerate}\itemsep=0pt
@@ -687,110 +694,113 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %                   |divide={1in,*,1in}|.
 % \end{enumerate}
 %
-% \section{Le détail des options}
+% \section{Détail des options}
 %
 % Cette section décrit toutes les options disponibles dans \Gm. Les options
 % avec une dague $^\dagger$ ne sont pas disponibles comme argument de 
 % \cs{newgeometry} (voir la Section~\ref{sec:midchange}).
 %
-% \subsection{La taille du papier}\label{sec:paper}
+% \subsection{Taille du papier}\label{sec:paper}
 % 
 % Les options ci-dessous définissent la taille du papier/médium et son
 % orientation.
-% \tradini
 % \begin{Options}
 % \item[\onlypre paper\OR papername] ~\\ 
-%  specifies the paper size by name. |paper=|\meta{paper-name}.
-%  For convenience, you can specify the paper name without |paper=|.
-%  For example, |a4paper| is equivalent to |paper=a4paper|.
+%  spécifie la taille du papier par son format. |paper=|\meta{format}.
+%  Par simplification, vous pouvez spécifier cette taille sans |paper=|.
+%  Par exemple, |a4paper| est équivalent à |paper=a4paper|.
 % \item[\onlypre \vtop{
 %  \hbox{a0paper, a1paper, a2paper, a3paper, a4paper, a5paper, a6paper,}
 %  \hbox{b0paper, b1paper, b2paper, b3paper, b4paper, b5paper, b6paper,}
 %  \hbox{c0paper, c1paper, c2paper, c3paper, c4paper, c5paper, c6paper,}
-%  \hbox{b0j, b1j, b2j, b3j, b4j, b5j, b6j,}
+%  \hbox{b0j, b1j, b2j, b3j, b4j, b5j, b6j,} 
 %  \hbox{ansiapaper, ansibpaper, ansicpaper, ansidpaper, ansiepaper,}
 %  \hbox{letterpaper, executivepaper, legalpaper}}]~\\[1ex] 
-%    specifies paper name.  The value part is ignored even if any.
-%    For example, the followings have the same effect:
-%    |a5paper|, |a5paper=true|, |a5paper=false| and so forth.
-%   |a[0-6]paper|, |b[0-6]paper| and |c[0-6]paper| are ISO A, B and C
-%   series of paper sizes respectively.
-%   The JIS (Japanese Industrial Standards) A-series is identical to the
-%   ISO A-series, but the JIS B-series is different from the ISO B-series.
-%   |b[0-6]j| should be used for the JIS B-series. 
-% \item[\onlypre screen] a special paper size with (W,H) = (225mm,180mm).
-%    For presentation with PC and video projector, ``|screen,centering|''
-%    with `slide' documentclass would be useful.
-% \item[\onlypre paperwidth] width of the paper. |paperwidth=|\meta{length}.
-% \item[\onlypre paperheight] height of the paper. |paperheight=|\meta{length}.
-% \item[\onlypre papersize] width and height of the paper. 
-%    |papersize=|\argii{width}{height} or |papersize=|\meta{length}.
-% \item[\onlypre landscape] switches the paper orientation to landscape mode.
-% \item[\onlypre portrait] switches the paper orientation to portrait mode.
-%    This is equivalent to |landscape=false|.
+%    spécifie le format du papier.  La valeur assignée à cette option est 
+%    toujours ignorée. Par exemple, les cas suivants ont le même effet :
+%    |a5paper|, |a5paper=true|, |a5paper=false| et ainsi de suite.
+%   |a[0-6]paper|, |b[0-6]paper| et |c[0-6]paper| sont les formats ISO A, 
+%   B et C respectivement.
+%   Les formats JIS (Japanese Industrial Standards) A sont identiques aux 
+%   formats ISO A mais les formats JIS B sont différents des formats ISO B.
+%   |b[0-6]j| devrait être utilisé pour les formats JIS B. 
+% \item[\onlypre screen] un format spécial avec (L,H) = (225mm,180mm).
+%    Pour les présentations sur ordinateur ou pour projecteur, 
+%    \og |screen,centering| \fg{} avec la classe de document \og slide \fg{}
+%    devrait être utile.
+% \item[\onlypre paperwidth] largeur du papier. |paperwidth=|\meta{longueur}.
+% \item[\onlypre paperheight] hauteur du papier. |paperheight=|\meta{longueur}.
+% \item[\onlypre papersize] largeur et hauteur du papier. 
+%    |papersize=|\argii{largeur}{hauteur} ou |papersize=|\meta{longueur}.
+% \item[\onlypre landscape] bascule l'orientation du papier en mode paysage.
+% \item[\onlypre portrait] bascule l'orientation du papier en mode portrait.
+%    Ceci est équivalent à |landscape=false|.
 % \end{Options}
 %
-% The options for paper names (e.g., |a4paper|) and orientation
-% (|portrait| and |landscape|) can be set as document class options. 
-% For example, you can set |\documentclass[a4paper,landscape]{article}|, 
-% then |a4paper| and |landscape| are processed in \Gm\ as well.
-% This is also the case for |twoside| and |twocolumn|
-% (see also Section~\ref{sec:dimension}).
+% Les options de format de papier (telle |a4paper|) et d'orientation
+% (|portrait| et |landscape|) peuvent être déclarée dans les options de la
+% classe du document. Par exemple, si vous utilisez 
+%    \begin{quote}
+%    |\documentclass[a4paper,landscape]{article}|
+%    \end{quote}
+% alors |a4paper| et |landscape| seront traités dans \Gm\ également.
+% C'est également le cas pour |twoside| et |twocolumn|
+% (voir également la Section~\ref{sec:dimension}).
 %
-% \subsection{Layout size}
+% \subsection{Taille du gabarit}
 %
-%  You can specify the layout area with options described in this
-%  section regardless of the paper size.
-%  The options would help to print the specified layout to a different
-%  sized paper.  For example, with |a4paper| and |layout=a5paper|, the
-%  package uses `A5' layout to calculate margins on 'A4' paper.
-%  The layout size defaults to the same as the paper.
-%  The options for the layout size are available in \cs{newgeometry},
-%  so that you can change the layout size in the middle of the document.
-%  The paper size itself can't be changed though.
-%  Figure~\ref{fig:layoutandpaper} shows what the difference between
-%  |layout| and |paper| is.
+%  Vous pouvez spécifier le gabarit (ou zone de mise en page) avec les options
+%  décrites dans cette section indépendamment de la taille du papier.
+%  Ces options aident à imprimer un gabarit spécifique sur un papier de taille
+%  différente. Par exemple, avec |a4paper| et |layout=a5paper|, l'extension
+%  utilise le gabarit \og A5 \fg{} pour calculer les marges sur un papier 
+%  \og A4 \fg{}. La taille du gabarit est par défaut celle du papier. Les
+% options pour la taille du gabarit sont disponibles dans \cs{newgeometry},
+%  de telle manière à ce que vous puissiez changer la taille du gabarit en
+%  cours de document. La taille du papier ne peut cependant être modifiée.
+%  La Figure~\ref{fig:layoutandpaper} montre la différence entre |layout| et
+%  |paper|.
 % \begin{Options}
-% \item[layout] specifies the layout size by paper
-% name. |layout=|\meta{paper-name}. All the paper names defined in \Gm\
-% are available. See Section~\ref{sec:paper} for details.
-% \item[layoutwidth] width of the layout. |layoutwidth=|\meta{length}.
-% \item[layoutheight] height of the layout. |layoutheight=|\meta{length}.
-% \item[layoutsize] width and height of the layout.
-%    |layoutsize=|\argii{width}{height} or |layoutsize=|\meta{length}.
-% \item[layouthoffset] specifies the horizontal offset from the left edge of
-% the paper. |layouthoffset=|\meta{length}.
-% \item[layoutvoffset] specifies the vertical offset from the top edge of
-% the paper. |layoutvoffset=|\meta{length}.
-% \item[layoutoffset] specifies both horizontal and vertical offsets. 
-%  |layoutoffset=|\argii{hoffset}{voffset} or |layoutsize=|\meta{length}.
+% \item[layout] spécifie la taille du gabarit par nom de format. 
+%  |layout=|\meta{format}. Tous les formats de papier définis dans \Gm\ sont
+%  disponibles. Voir la Section~\ref{sec:paper} pour plus d'informations.
+% \item[layoutwidth] largeur du gabarit. |layoutwidth=|\meta{longueur}.
+% \item[layoutheight] hauteur du gabarit. |layoutheight=|\meta{longueur}.
+% \item[layoutsize] largeur et hauteur du gabarit.
+%    |layoutsize=|\argii{largeur}{hauteur} ou |layoutsize=|\meta{longueur}.
+% \item[layouthoffset] spécifie le décalage horizontal par rapport au bord 
+% gauche du papier. |layouthoffset=|\meta{longueur}.
+% \item[layoutvoffset] spécifie le décalage vertical par rapport au bord 
+% haut du papier. |layoutvoffset=|\meta{longueur}.
+% \item[layoutoffset] spécifie le décalage horizontal et le décalage vertical. 
+%  |layoutoffset=|\argii{hoffset}{voffset} ou |layoutsize=|\meta{longueur}.
 % \end{Options}
 % \begin{figure}
 %  \centering\small
 %  {\unitlength=.6pt
 %  \begin{picture}(450,250)(0,-10)
-%  \put(20,0){\makebox(168,12)[r]{\gpart{paper}}}
+%  \put(20,0){\makebox(168,12)[r]{\gpart{papier}}}
 %  \put(20,0){\framebox(170,230){}}
 %  \put(21,40){\dashbox{3}(140,189){}}
-%  \put(21,28){\makebox(140,12)[r]{\gpart{layout}}}
-%  \put(40,50){\makebox(100,10){\gpart{foot}}}
+%  \put(21,28){\makebox(140,12)[r]{\gpart{gabarit}}}
+%  \put(40,50){\makebox(100,10){\gpart{pied de page}}}
 %  \put(40,50){\line(1,0){100}}
-%  \put(40,65){\framebox(100,125){\gpart{body}}}
-%  \put(40,200){\framebox(100,10){\gpart{head}}}
+%  \put(40,65){\framebox(100,125){\gpart{corps}}}
+%  \put(40,200){\framebox(100,10){\gpart{en-tête}}}
 %  \put(20,230){\makebox(140,20){|layoutwidth|}}
 %  \put(40,240){\vector(-1,0){20}}
 %  \put(140,240){\vector(1,0){20}}
 %  \put(10,145){\vector(0,1){85}}
 %  \put(15,125){\makebox(0,20)[r]{|layoutheight|}}
 %  \put(10,125){\vector(0,-1){85}}
-%  \put(280,0){\makebox(168,12)[r]{\gpart{paper}}}
+%  \put(280,0){\makebox(168,12)[r]{\gpart{papier}}}
 %  \put(280,0){\framebox(170,230){}}
 %  \put(293,35){\dashbox{3}(140,189){}}
-%  \put(293,23){\makebox(140,12)[r]{\gpart{layout}}}
-%  \put(312,45){\makebox(100,10){\gpart{foot}}}
+%  \put(293,23){\makebox(140,12)[r]{\gpart{gabarit}}}
+%  \put(312,45){\makebox(100,10){\gpart{pied de page}}}
 %  \put(312,45){\line(1,0){100}}
-%  \put(312,60){\framebox(100,125){\gpart{body}}}
-%  \put(312,195){\framebox(100,10){\gpart{head}}}
+%  \put(312,60){\framebox(100,125){\gpart{corps}}}
+%  \put(312,195){\framebox(100,10){\gpart{en-tête}}}
 %  \put(235,230){\makebox(80,20)[l]{|layouthoffset|}}
 %  \put(260,210){\vector(1,0){20}}
 %  \put(308,210){\vector(-1,0){15}}
@@ -799,62 +809,64 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \put(350,250){\vector(0,-1){20}}
 %  \put(350,209){\vector(0,1){15}}
 %  \end{picture}}
-%  \caption[layout and paper]{%
+%  \caption[gabarit et papier]{%
 %  \begin{minipage}[t]{.7\textwidth}\raggedright\small
-%  The dimensions related to the layout size. Note that the layout size
-%  defaults to the same size as the paper, so you don't have to specify
-%  layout-related options explicitly in most cases.
+%  Les dimensions liées à la taille du gabarit. Notez que la taille du gabarit
+%  est par défaut celle du papier, ce qui fait que vous n'avez pas à spécifier
+%  explicitement les options liées au gabarit la plupart du temps.
 %  \end{minipage}}
 %  \label{fig:layoutandpaper}
 % \end{figure}
 % 
-% \subsection{Body size}\label{sec:body}
+% \subsection{Taille du corps}\label{sec:body}
 %
-% The options specifying the size of \gpart{total body} are described in this
-% section.
+% Les options spécifiant la taille du \gpart{corps intégral} sont décrites
+% dans cette section.
 %
+
 % \begin{Options}
 % \item[hscale]
-%    ratio of width of \gpart{total body} to \cs{paperwidth}. 
-%    |hscale=|\meta{h-scale}, e.g., |hscale=0.8| is equivalent to
-%    |width=0.8|\cs{paperwidth}. (|0.7| by default)
+%    rapport de largeur entre le \gpart{corps intégral} et \cs{paperwidth} 
+%    noté |hscale=|\meta{rapport-h}. Par exemple, |hscale=0.8| est équivalent à 
+%    |width=0.8|\cs{paperwidth}. (|0.7| par défaut)
 % \item[vscale]
-%    ratio of height of \gpart{total body} to \cs{paperheight}, e.g.,
-%    |vscale=|\meta{v-scale}. (|0.7| by default) |vscale=0.9| is equivalent
-%    to |height=0.9|\cs{paperheight}.
-% \item[scale] ratio of \gpart{total body} to the paper.
+%    rapport de hauteur entre le \gpart{corps intégral} et \cs{paperheight}
+%    noté |vscale=|\meta{rapport-v}. Par exemple, |vscale=0.9| est équivalent à
+%    |height=0.9|\cs{paperheight}. (|0.7| par défaut)
+% \item[scale] rapport de taille entre \gpart{total body} et le papier.
+% \tradini
 %    |scale=|\argii{h-scale}{v-scale} or |scale=|\meta{scale}.
 %    (|0.7| by default)
 % \item[width\OR totalwidth] ~\\
-%    width of \gpart{total body}. |width=|\meta{length} or
+%    width of \gpart{corps intégral}. |width=|\meta{length} or
 %    |totalwidth=|\meta{length}. This dimension defaults to |textwidth|,
 %    but if |includemp| is set to |true|, |width| $\ge$ |textwidth| 
 %    because |width| includes the width of the marginal notes.
 %    If |textwidth| and |width| are specified at the same time, 
 %    |textwidth| takes priority over |width|.
 % \item[height\OR totalheight] ~\\
-%    height of \gpart{total body}, excluding header and footer by default.
+%    height of \gpart{corps intégral}, excluding header and footer by default.
 %    If |includehead| or |includefoot| is set, |height| includes
 %    the head or foot of the page as well as |textheight|.
 %    |height=|\meta{length} or |totalheight=|\meta{length}. If both
 %    |textheight| and |height| are specified, |height| will be ignored.
-% \item[total] width and height of \gpart{total body}.\\
+% \item[total] width and height of \gpart{corps intégral}.\\
 %    |total=|\argii{width}{height} or |total=|\meta{length}.
-% \item[textwidth] specifies \cs{textwidth}, the width of \gpart{body} 
+% \item[textwidth] specifies \cs{textwidth}, the width of \gpart{corps} 
 %    (the text area). |textwidth=|\meta{length}.
 % \item[textheight] specifies \cs{textheight}, the height of
-%    \gpart{body} (the text area). |textheight=|\meta{length}.
+%    \gpart{corps} (the text area). |textheight=|\meta{length}.
 % \item[text\OR body] specifies both \cs{textwidth} and \cs{textheight}
 %    of the body of page. |body=|\argii{width}{height} or
 %    |text=|\meta{length}.
 % \item[lines] enables users to specify \cs{textheight} by the number
 %    of lines. |lines|=\meta{integer}.
 % \item[includehead] includes the head of the page, \cs{headheight}
-%    and \cs{headsep}, into \gpart{total body}. It is set to |false| by
+%    and \cs{headsep}, into \gpart{corps intégral}. It is set to |false| by
 %    default. It is opposite to |ignorehead|. See
 %    Figure~\ref{fig:includes} and Figure~\ref{fig:modes}.
 % \item[includefoot] includes the foot of the page, \cs{footskip},
-%    into \gpart{total body}. It is opposite to |ignorefoot|.
+%    into \gpart{corps intégral}. It is opposite to |ignorefoot|.
 %    It is |false| by default. See Figure~\ref{fig:includes} and
 %    Figure~\ref{fig:modes}.
 % \item[includeheadfoot]~\\ 
@@ -862,7 +874,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    to |ignoreheadfoot|. See Figure~\ref{fig:includes} and
 %    Figure~\ref{fig:modes}.
 % \item[includemp] includes the margin notes,  \cs{marginparwidth}
-%    and \cs{marginparsep}, into \gpart{body} when calculating horizontal
+%    and \cs{marginparsep}, into \gpart{corps} when calculating horizontal
 %    calculation.
 % \item[includeall] sets both |includeheadfoot| and |includemp| to
 %    |true|. See Figure~\ref{fig:modes}.
@@ -895,6 +907,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    by default.
 % \end{Options}
 %
+% \tradini
 % Figure~\ref{fig:modes} illustrates various layouts with different layout
 % modes. The dimensions for a header and a footer can be controlled by
 % |nohead| or |nofoot| mode, which sets each length to 0pt directly.
@@ -909,15 +922,15 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  {\textbf{(a)}~|includeheadfoot|}}
 %  \put( 20,460){\line(1,0){120}}\put( 20,450){\line(1,0){120}}
 %  \put( 20,330){\line(1,0){120}}
-%  \put( 20,485){\makebox(120,0)[br]{\gpart{total body}}}
+%  \put( 20,485){\makebox(120,0)[br]{\gpart{corps intégral}}}
 %  \put( 20,335){\makebox(120,0)[bc]{|textwidth|}}
 %  \put(150,470){\makebox(0,0)[l]{|headheight|}}
 %  \put(150,450){\makebox(0,0)[l]{|headsep|}}
 %  \put(150,390){\makebox(0,0)[l]{|textheight|}}
 %  \put(150,320){\makebox(0,0)[l]{|footskip|}}
-%  \put( 10,460){\makebox(120,20)[bc]{\gpart{head}}}
-%  \put( 10,320){\makebox(120,140)[c]{\gpart{body}}}
-%  \put( 10,310){\makebox(120,10)[c]{\gpart{foot}}}
+%  \put( 10,460){\makebox(120,20)[bc]{\gpart{en-tête}}}
+%  \put( 10,320){\makebox(120,140)[c]{\gpart{corps}}}
+%  \put( 10,310){\makebox(120,10)[c]{\gpart{pied de page}}}
 %  \put(250,310){\framebox(120,170){}}
 %  \put(250,507){\makebox(120,0)[bl]%
 %  {\textbf{(b)}~|includeall|}}
@@ -925,12 +938,12 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \put(250,330){\line(1,0){95}}\put(345,330){\line(0,1){120}}
 %  \put(350,330){\line(0,1){120}}\put(350,450){\line(1,0){20}}
 %  \put(350,330){\line(1,0){20}}
-%  \put(250,485){\makebox(120,0)[br]{\gpart{total body}}}
-%  \put(250,460){\makebox(95,20)[bc]{\gpart{head}}}
-%  \put(250,320){\makebox(95,140)[c]{\gpart{body}}}
+%  \put(250,485){\makebox(120,0)[br]{\gpart{corps intégral}}}
+%  \put(250,460){\makebox(95,20)[bc]{\gpart{en-tête}}}
+%  \put(250,320){\makebox(95,140)[c]{\gpart{corps}}}
 %  \put(385,390){\makebox(95,0)[cl]%
-%  {\gpart{\shortstack[l]{marginal\\note}}}}
-%  \put(250,310){\makebox(95,10)[c]{\gpart{foot}}}
+%  {\gpart{\shortstack[l]{note\\marginale}}}}
+%  \put(250,310){\makebox(95,10)[c]{\gpart{pied de page}}}
 %  \put(250,335){\makebox(95,0)[bc]{|textwidth|}}
 %  \multiput(360, 390)(4,0){6}{\line(1,0){2}}
 %  \multiput(348,333)(0,-4){12}{\line(0,1){2}}
@@ -941,21 +954,21 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \put( 20,237){\makebox(120,0)[bl]%
 %  {\textbf{(c)}~|includefoot|}}
 %  \put( 20, 60){\line(1,0){120}}
-%  \put( 20,215){\makebox(120,0)[br]{\gpart{total body}}}
+%  \put( 20,215){\makebox(120,0)[br]{\gpart{corps intégral}}}
 %  \put(150,130){\makebox(0,0)[l]{|textheight|}}
 %  \put(150, 50){\makebox(0,0)[l]{|footskip|}}
-%  \put( 20, 50){\makebox(120,160)[c]{\gpart{body}}}
-%  \put( 20, 40){\makebox(120,10)[c]{\gpart{foot}}}
+%  \put( 20, 50){\makebox(120,160)[c]{\gpart{corps}}}
+%  \put( 20, 40){\makebox(120,10)[c]{\gpart{pied de page}}}
 %  \put( 20, 65){\makebox(120,10)[c]{|textwidth|}}
 %  \put(250, 40){\framebox(120,170){}}
 %  \put(250,237){\makebox(120,0)[bl]%
 %  {\textbf{(d)}~|includefoot,includemp|}}
 %  \put(250, 60){\line(1,0){95}}\put(350, 60){\line(1,0){20}}
-%  \put(250,215){\makebox(120,0)[br]{\gpart{total body}}}
-%  \put(250, 50){\makebox(95,160)[c]{\gpart{body}}}
+%  \put(250,215){\makebox(120,0)[br]{\gpart{corps intégral}}}
+%  \put(250, 50){\makebox(95,160)[c]{\gpart{corps}}}
 %  \put(385,130){\makebox(95,0)[cl]%
-%  {\gpart{\shortstack[l]{marginal\\note}}}}
-%  \put(250, 40){\makebox(95,10)[c]{\gpart{foot}}}
+%  {\gpart{\shortstack[l]{note\\marginale}}}}
+%  \put(250, 40){\makebox(95,10)[c]{\gpart{pied de page}}}
 %  \put(250, 65){\makebox(95,0)[bc]{|textwidth|}}
 %  \put(345, 60){\line(0,1){150}}\put(350, 60){\line(0,1){150}}
 %  \multiput(360, 130)(4,0){6}{\line(1,0){2}}
@@ -964,10 +977,10 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \put(355,22){\makebox(0,0)[bl]{|marginparwidth|}}
 %  \put(345, 5){\makebox(0,0)[bl]{|marginparsep|}}
 %  \end{picture}}
-%  \caption[Sample layouts for \gpart{total body} with different 
+%  \caption[Sample layouts for \gpart{corps intégral} with different 
 %     layout modes]{%
 %  \begin{minipage}[t]{.8\textwidth}\small
-%    Sample layouts for \gpart{total body} with different switches.
+%    Sample layouts for \gpart{corps intégral} with different switches.
 %    (a) |includeheadfoot|, (b) |includeall|, (c) |includefoot|
 %     and (d) |includefoot,includemp|. 
 %    If |reversemp| is set to |true|, the location of the
@@ -1003,11 +1016,11 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % \begin{Options}
 % \item[left\OR lmargin\OR inner]~\\
 %    left margin (for oneside) or inner margin (for twoside) of 
-%    \gpart{total body}. In other words, the distance between the left (inner)
-%    edge of the paper and that of \gpart{total body}. |left=|\meta{length}.
+%    \gpart{corps intégral}. In other words, the distance between the left (inner)
+%    edge of the paper and that of \gpart{corps intégral}. |left=|\meta{length}.
 %    |inner| has no special meaning, just an alias of |left| and |lmargin|.
 % \item[right\OR rmargin\OR outer]~\\ 
-%    right or outer margin of \gpart{total body}. |right=|\meta{length}.
+%    right or outer margin of \gpart{corps intégral}. |right=|\meta{length}.
 % \item[top\OR tmargin] top margin of the page. |top=|\meta{length}.
 %    Note this option has nothing to do with the native dimension
 %    \cs{topmargin}.
@@ -1065,8 +1078,8 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \put(20,0){\framebox(170,230){}}
 %  \put(20,255){\makebox(80,20)[l]{\textbf{a)}~every page for oneside or}}
 %  \put(20,240){\makebox(80,20)[l]{\hspace{3ex}odd pages for twoside}}
-%  \put(110,225){\makebox(80,20)[r]{\gpart{paper}}}
-%  \put(55,37){\framebox(110,170)[tc]{\gpart{total body}}}
+%  \put(110,225){\makebox(80,20)[r]{\gpart{papier}}}
+%  \put(55,37){\framebox(110,170)[tc]{\gpart{corps intégral}}}
 %  \multiput(38,0)(0,7){33}{\line(0,1){4}}
 %  \put(38,100){\vector(1,0){17}}\put(55,100){\vector(-1,0){17}}
 %  \put(60,95){\makebox(80,10)[l]{|left|}}
@@ -1078,8 +1091,8 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \put(45,10){\makebox(80,10)[bl]{|bindingoffset|}}
 %  \put(280,255){\makebox(80,20)[l]{\textbf{b)}~even (back) pages for twoside}}
 %  \put(280,0){\framebox(170,230){}}
-%  \put(370,225){\makebox(80,20)[r]{\gpart{paper}}}
-%  \put(305,37){\framebox(110,170)[tc]{\gpart{total body}}}
+%  \put(370,225){\makebox(80,20)[r]{\gpart{papier}}}
+%  \put(305,37){\framebox(110,170)[tc]{\gpart{corps intégral}}}
 %  \multiput(432,0)(0,7){33}{\line(0,1){4}}
 %  \put(280,100){\vector(1,0){25}}\put(305,100){\vector(-1,0){25}}
 %  \put(310,95){\makebox(80,10)[l]{|outer|}}
@@ -1306,10 +1319,10 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %
 % \subsection{Priority}\label{sec:priority}
 %  
-% There are several ways to set dimensions of the \gpart{body}:
+% There are several ways to set dimensions of the \gpart{corps}:
 % |scale|, |total|, |text| and |lines|. The \Gm\ package gives higher
 % priority to the more concrete specification. Here is the priority
-% rule for \gpart{body}.
+% rule for \gpart{corps}.
 % \[\begin{array}{c}
 % \textrm{priority:}\qquad\textrm{low}\quad
 %    \longrightarrow\quad\textrm{high}\\[1em]
@@ -1332,8 +1345,8 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %
 % \subsection{Defaults}\label{sec:defaults}
 %
-%　This section sums up the default settings for the auto-completion
-%　described later.
+% This section sums up the default settings for the auto-completion
+% described later.
 % 
 % The default vertical margin ratio is $2/3$, namely,
 % \begin{equation}
@@ -1353,10 +1366,10 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % The \Gm\ package has the following default setting for
 % \textit{onesided} documents:
 % \begin{itemize}\setlength{\itemsep}{-.5\parsep}
-%   \item |scale=0.7| (\gpart{body} is $0.7 \times \gpart{paper}$)
+%   \item |scale=0.7| (\gpart{corps} is $0.7 \times \gpart{papier}$)
 %   \item |marginratio={1:1, 2:3}| (1:1 for horizontal and 2:3 for vertical margins)
 %   \item |ignoreall| (the header, footer, marginal notes are excluded
-%   when calculating the size of \gpart{body}.)
+%   when calculating the size of \gpart{corps}.)
 % \end{itemize}
 % For \textit{twosided} document with |twoside| option, the default
 % setting is the same as \textit{onesided} except that the horizontal
@@ -1370,7 +1383,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % patterns exist and how to solve the ambiguity of the
 % specifications. Each axis shows the numbers of lengths
 % explicitly specified for body and margins. \Ss($m$,$b$) presents the
-% specification with a set of numbers $(\gpart{margin},\gpart{body})=(m,b)$.
+% specification with a set of numbers $(\gpart{marge},\gpart{corps})=(m,b)$.
 %
 % For example, the specification |width=14cm, left=3cm| is categorized
 % into \Ss(1,1), which is an adequate specification. If you add
@@ -1387,7 +1400,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  {\unitlength=1pt
 %  \begin{picture}(400,150)(40,0)
 %  \put(1,49){\makebox(90,49)[r]{\large 0}}
-%  \put(1,1){\makebox(70,99)[r]{\large \gpart{body}}}
+%  \put(1,1){\makebox(70,99)[r]{\large \gpart{corps}}}
 %  \put(1,1){\makebox(90,49)[r]{\large 1}}
 %  \put(100,100){\makebox(99,20){\large 0}}
 %  \put(100,50){\framebox(99,49){}}
@@ -1400,7 +1413,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \put(100,0){\framebox(99,49){}}
 %  \put(100,2){\makebox(99,15){\Ss(0,1)}}
 %  \put(100,0){\makebox(99,49){use |marginratio|}}
-%  \put(200,120){\makebox(99,12){\large \gpart{margin}}}
+%  \put(200,120){\makebox(99,12){\large \gpart{marge}}}
 %  \put(200,100){\makebox(99,20){\large 1}}
 %  \put(200,50){\framebox(99,49){use |scale|}}
 %  \put(200,55){\makebox(89,10)[r]{\scriptsize\shortstack[l]{if |ratio|\\specified}}}
@@ -1434,14 +1447,14 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  Specifications \Ss(0,0) to \Ss(2,1) and the completion rules
 %  (arrows). Column and row numbers denote the number of explicitly
 %  specified lengths for margin and body respectively. \Ss($m$,$b$) denote a
-%  specification with a set of the numbers $(\gpart{margin},\gpart{body})=(m,b)$. 
+%  specification with a set of the numbers $(\gpart{marge},\gpart{corps})=(m,b)$. 
 %  \end{minipage}}
 %  \label{fig:specrule}
 % \end{figure}
 %
 % \begin{Spec}
 % \item[\Ss(0,0)]
-% Nothing is specified. The \Gm\ package sets \gpart{body} with the
+% Nothing is specified. The \Gm\ package sets \gpart{corps} with the
 % default |scale| ($=0.7$). \\ For example, |width| is set to be
 % $|0.7|\times|layoutwidth|$. Note that by default |layoutwidth| 
 % and |layoutheight| will be equal to |\paperwidth| and |\paperheight|
@@ -1450,7 +1463,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % \bigskip
 %
 % \item[\Ss(0,1)]
-% Only \gpart{body} is specified, such as |width=7in|, |lines=20|,
+% Only \gpart{corps} is specified, such as |width=7in|, |lines=20|,
 % |body={20cm,24cm}|, |scale=0.9| and so forth.
 % Then \Gm\ sets margins with the margin ratio.
 % If the margin ratio is not specified, the default is used.
@@ -1486,7 +1499,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %
 % \begin{itemize}
 % \item \textbf{If the margin ratio is \textit{not} specified}, \Gm\ sets
-% \gpart{body} with the default |scale| ($=0.7$). 
+% \gpart{corps} with the default |scale| ($=0.7$). 
 % For example, if |top=2.4cm| is specified, \Gm\ sets
 % \begin{center}
 %     $|height|= |0.7|\times|layoutheight|$ 
@@ -1516,11 +1529,11 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % \bigskip
 %
 % \item[\Ss(2,1)]
-% The \gpart{body} and two \gpart{margins} are all specified, such as
+% The \gpart{corps} and two \gpart{marges} are all specified, such as
 %  |vdivide={1in,8in,1.5in}|, ``|left=3cm,width=13cm,right=4cm|'' and
-%  so forth. Since \Gm\ basically gives priority to \gpart{margins}
+%  so forth. Since \Gm\ basically gives priority to \gpart{marges}
 %  if dimensions are overspecified, \Gm\ forgets and resets
-%  \gpart{body}. For example, if you specify
+%  \gpart{corps}. For example, if you specify
 % \begin{center}
 %    |\usepackage[a4paper,left=3cm,width=13cm,right=4cm]{geometry}|,
 % \end{center}
@@ -1578,9 +1591,9 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  {\unitlength=.8pt
 %  \begin{picture}(450,180)(0,0)
 %  \put(0,165){\makebox(95,12){(saved)}}
-%  \put(15,135){\framebox(65,10){\gpart{head}}}
-%  \put(15,60){\framebox(65,70){\gpart{body}}}
-%  \put(15,45){\makebox(65,12){\gpart{foot}}}
+%  \put(15,135){\framebox(65,10){\gpart{en-tête}}}
+%  \put(15,60){\framebox(65,70){\gpart{corps}}}
+%  \put(15,45){\makebox(65,12){\gpart{pied de page}}}
 %  \put(15,45){\line(1,0){65}}
 %  \put(0,20){\framebox(95,140){}}
 %  \put(0,0){\makebox(95,20){L1}}
@@ -1588,18 +1601,18 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \put(110,90){\circle*{4}}
 %  \put(116,90){\circle*{4}}
 %  \put(125,165){\makebox(95,12){\cs{newgeometry}}}
-%  \put(140,135){\framebox(71,10){\gpart{head}}}
-%  \put(140,33){\framebox(71,97){\gpart{body}}}
-%  \put(140,21){\makebox(71,12){\gpart{foot}}}
+%  \put(140,135){\framebox(71,10){\gpart{en-tête}}}
+%  \put(140,33){\framebox(71,97){\gpart{corps}}}
+%  \put(140,21){\makebox(71,12){\gpart{pied de page}}}
 %  \put(125,20){\framebox(95,140){}}
 %  \put(125,0){\makebox(95,20){L2 (new)}}
 %  \put(229,90){\circle*{4}}
 %  \put(235,90){\circle*{4}}
 %  \put(241,90){\circle*{4}}
 %  \put(250,165){\makebox(95,12){\cs{restoregeometry}}}
-%  \put(265,135){\framebox(65,10){\gpart{head}}}
-%  \put(265,60){\framebox(65,70){\gpart{body}}}
-%  \put(265,45){\makebox(65,12){\gpart{foot}}}
+%  \put(265,135){\framebox(65,10){\gpart{en-tête}}}
+%  \put(265,60){\framebox(65,70){\gpart{corps}}}
+%  \put(265,45){\makebox(65,12){\gpart{pied de page}}}
 %  \put(265,45){\line(1,0){65}}
 %  \put(250,20){\framebox(95,140){}}
 %  \put(250,0){\makebox(95,20){L1 (restored)}}
@@ -1607,8 +1620,8 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \put(360,90){\circle*{4}}
 %  \put(366,90){\circle*{4}}
 %  \put(375,165){\makebox(95,12){\cs{newgeometry}}}
-%  \put(383,41){\framebox(80,111){\gpart{body}}}
-%  \put(383,29){\makebox(80,12){\gpart{foot}}}
+%  \put(383,41){\framebox(80,111){\gpart{corps}}}
+%  \put(383,29){\makebox(80,12){\gpart{pied de page}}}
 %  \put(383,29){\line(1,0){80}}
 %  \put(375,20){\framebox(95,140){}}
 %  \put(375,0){\makebox(95,20){L3 (new)}}
@@ -1655,19 +1668,19 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % \end{itemize}
 % In this case, |textwidth| is shorter than that of the default twosided
 % document by $0.7\times|1cm|$ ($=|0.7cm|$) because the default width of
-% \gpart{body} is set with |scale=0.7|, which means 
+% \gpart{corps} is set with |scale=0.7|, which means 
 % $|width|=|0.7|\times|layoutwidth|$ ($=|0.7\paperwidth|$ by default).
 %
 % \item A layout with the left, right, and top margin |3cm|, |2cm| and
 % |2.5in| respectively, with textheight of 40 lines, and with the head and
-% foot of the page included in \gpart{total body}.
+% foot of the page included in \gpart{corps intégral}.
 % The two examples below have the same result.
 % \begin{itemize}
 %   \item |left=3cm, right=2cm, lines=40, top=2.5in, includeheadfoot|
 %   \item |hmargin={3cm,2cm}, tmargin=2.5in, lines=40, includeheadfoot|
 % \end{itemize}
 %
-% \item A layout with the height of \gpart{total body} |10in|, the bottom
+% \item A layout with the height of \gpart{corps intégral} |10in|, the bottom
 %  margin |2cm|, and the default width. The top margin will be calculated
 %  automatically. Each solution below results in the same page layout.
 % \begin{itemize}
@@ -1675,8 +1688,8 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %     \item |bmargin=2cm, height=10in|
 %     \item |bottom=2cm, textheight=10in| 
 % \end{itemize}
-% Note that dimensions for \gpart{head} and \gpart{foot} are excluded from
-% |height| of \gpart{total body}. An additional |includefoot| makes
+% Note that dimensions for \gpart{en-tête} and \gpart{pied de page} are excluded from
+% |height| of \gpart{corps intégral}. An additional |includefoot| makes
 % \cs{footskip} included in |totalheight|. Therefore, in the two cases below,
 % |textheight| in the former layout is shorter than the latter
 % (with 10in exactly) by \cs{footskip}. In other words, 
@@ -1687,7 +1700,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % \end{itemize}
 %
 % \item A layout with \glen{textwidth} and \glen{textheight} 90\% of the
-% paper and with \gpart{body} centered.
+% paper and with \gpart{corps} centered.
 % Each solution below results in the same page layout as long as
 % |layoutwidth| and |layoutheight| are not modified from the default.
 % \begin{itemize}
@@ -1705,13 +1718,13 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % See Section~\ref{sec:body} for the detailed description about |heightrounded|.
 %
 % \item A layout with the width of marginal notes set to |3cm| and included
-% in the width of \gpart{total body}. The following examples are the same.
+% in the width of \gpart{corps intégral}. The following examples are the same.
 % \begin{itemize}
 %   \item |marginparwidth=3cm, includemp|
 %   \item |marginpar=3cm, ignoremp=false|
 % \end{itemize}
 %
-% \item A layout where \gpart{body} occupies the whole paper with A5 paper in
+% \item A layout where \gpart{corps} occupies the whole paper with A5 paper in
 % landscape. The following examples are the same.
 % \begin{itemize}
 %   \item |a5paper, landscape, scale=1.0|
@@ -2601,7 +2614,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \begin{key}{Gm}{hscale}
 %  \begin{key}{Gm}{vscale}
 %  \begin{key}{Gm}{scale}
-%    These options can determine the length(s) of \gpart{total body}
+%    These options can determine the length(s) of \gpart{corps intégral}
 %    giving \textit{scale(s)} against the paper size.
 %    \begin{macrocode}
 \define@key{Gm}{hscale}{\Gm@hbodytrue\edef\Gm@hscale{#1}}%
@@ -2614,7 +2627,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \begin{key}{Gm}{total}
 %  \begin{key}{Gm}{totalwidth}
 %  \begin{key}{Gm}{totalheight}
-%    These options give concrete dimension(s) of \gpart{total body}.
+%    These options give concrete dimension(s) of \gpart{corps intégral}.
 %    |totalwidth| and |totalheight| are aliases of |width| and |height|
 %    respectively.
 %    \begin{macrocode}
@@ -2650,7 +2663,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \begin{key}{Gm}{includemp}
 %  \begin{key}{Gm}{includeall}
 %    The options take the corresponding dimensions as part of
-%    \gpart{body}.
+%    \gpart{corps}.
 %    \begin{macrocode}
 \define@key{Gm}{includehead}[true]{\Gm@setbool{includehead}{#1}}%
 \define@key{Gm}{includefoot}[true]{\Gm@setbool{includefoot}{#1}}%
@@ -2668,8 +2681,8 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \begin{key}{Gm}{ignoreheadfoot}
 %  \begin{key}{Gm}{ignoremp}
 %  \begin{key}{Gm}{ignoreall}
-%  These options exclude \gpart{head}, \gpart{foot}
-%  and \gpart{marginpars} when determining \gpart{body}.
+%  These options exclude \gpart{en-tête}, \gpart{pied de page}
+%  and \gpart{notes marginales} when determining \gpart{corps}.
 %    \begin{macrocode}
 \define@key{Gm}{ignorehead}[true]{%
   \Gm@setboolrev[ignorehead]{includehead}{#1}}%
@@ -2717,7 +2730,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \begin{key}{Gm}{outermargin}
 %  \begin{key}{Gm}{top}
 %  \begin{key}{Gm}{bottom}
-%    These options set \gpart{margins}.
+%    These options set \gpart{marges}.
 %    |left|, |inner|, |innermargin| are aliases of |lmargin|.
 %    |right|, |outer|, |outermargin| are aliases of |rmargin|.
 %    |top| and |bottom| are aliases of |tmargin| and |bmargin| respectively.
@@ -2741,7 +2754,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \begin{key}{Gm}{hmargin}
 %  \begin{key}{Gm}{vmargin}
 %  \begin{key}{Gm}{margin}
-%  These options are shorthands for setting \gpart{margins}.
+%  These options are shorthands for setting \gpart{marges}.
 %    \begin{macrocode}
 \define@key{Gm}{hmargin}{\Gm@branch{#1}{lmargin}{rmargin}}%
 \define@key{Gm}{vmargin}{\Gm@branch{#1}{tmargin}{bmargin}}%
@@ -2769,7 +2782,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \begin{key}{Gm}{hcentering}
 %  \begin{key}{Gm}{vcentering}
 %  \begin{key}{Gm}{centering}
-%    Useful shorthands to place \gpart{body} centered.
+%    Useful shorthands to place \gpart{corps} centered.
 %    \begin{macrocode}
 \define@key{Gm}{hcentering}[true]{\Gm@doifelse{hcentering}{#1}%
   {\def\Gm@hmarginratio{1:1}}{}}%
@@ -2805,7 +2818,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \begin{key}{Gm}{footskip}
 %  \begin{key}{Gm}{head}
 %  \begin{key}{Gm}{foot}
-%    The direct settings of \gpart{head} and/or \gpart{foot} dimensions.
+%    The direct settings of \gpart{en-tête} and/or \gpart{pied de page} dimensions.
 %    \begin{macrocode}
 \define@key{Gm}{headheight}{\Gm@setlength\headheight{#1}}%
 \define@key{Gm}{headsep}{\Gm@setlength\headsep{#1}}%
@@ -2817,7 +2830,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \begin{key}{Gm}{nohead}
 %  \begin{key}{Gm}{nofoot}
 %  \begin{key}{Gm}{noheadfoot}
-%    They are only shorthands to set \gpart{head} and/or \gpart{foot}
+%    They are only shorthands to set \gpart{en-tête} and/or \gpart{pied de page}
 %    to be |0pt|.
 %    \begin{macrocode}
 \define@key{Gm}{nohead}[true]{\Gm@doifelse{nohead}{#1}%
@@ -3107,7 +3120,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macrocode}
 %    \end{macro}
 %    \begin{macro}{\Gm@adjustbody}
-%    If the horizontal dimension of \gpart{body} is specified by user,
+%    If the horizontal dimension of \gpart{corps} is specified by user,
 %    \cs{Gm@width} is set properly here.
 %    \begin{macrocode}
 \def\Gm@adjustbody{
@@ -3128,7 +3141,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
     \fi
   \fi
 %    \end{macrocode}
-%    If the vertical dimension of \gpart{body} is specified by user,
+%    If the vertical dimension of \gpart{corps} is specified by user,
 %    \cs{Gm@height} is set properly here.
 %    \begin{macrocode}
   \ifGm@vbody
@@ -3235,7 +3248,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
   \advance\oddsidemargin\Gm@bindingoffset
   \addtolength\topmargin{-1\Gm@truedimen in}%
 %    \end{macrocode}
-%    If the head of the page is included in \gpart{total body}, 
+%    If the head of the page is included in \gpart{corps intégral}, 
 %    \cs{headheight} and \cs{headsep} are removed from \cs{textheight},
 %    otherwise from \cs{topmargin}.
 %    \begin{macrocode}
@@ -3247,7 +3260,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
     \addtolength\topmargin{-\headsep}%
   \fi
 %    \end{macrocode}
-%    If the foot of the page is included in \gpart{total body},
+%    If the foot of the page is included in \gpart{corps intégral},
 %    \cs{footskip} is removed from \cs{textheight}.
 %    \begin{macrocode}
   \ifGm@includefoot
