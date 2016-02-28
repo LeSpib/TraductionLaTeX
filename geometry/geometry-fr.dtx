@@ -319,8 +319,14 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % \section{Anatomie d'une page}
 %
 % La Figure~\ref{fig:layout} montre les dimensions associées à la mise en page
-% telle que définies par l'extension \Gm. Le gabarit contient un 
-% \gpart{corps intégral} (zone imprimable) et des \gpart{marges}.
+% telle que définies par l'extension \Gm. Le gabarit\footnote{Les noms des
+% fonctions présentées ci-après reprenant parfois les appelations anglaises, le
+% terme gabarit se traduit par \emph{layout}, celui de corps intégral se
+% traduit par \emph{total body}, celui d'en-tête par \emph{head} (ou 
+% \emph{header}), celui de pied de page par \emph{foot} (ou \emph{footer}),
+% celui de marge par \emph{margin}, celui de note marginale par \emph{marginal 
+% note}.}  contient un % \gpart{corps intégral} (zone imprimable) et des 
+% \gpart{marges}.
 % Le \gpart{corps intégral} se compose d'un \gpart{corps} (zone de texte) et 
 % d'éléments optionnels : un \gpart{en-tête}, un \gpart{pied de page} et une 
 % note marginale (marginpar). Il y a quatre marges : \gpart{gauche}, 
@@ -834,85 +840,88 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    noté |vscale=|\meta{rapport-v}. Par exemple, |vscale=0.9| est équivalent à
 %    |height=0.9|\cs{paperheight}. (|0.7| par défaut)
 % \item[scale] rapport de taille entre \gpart{total body} et le papier.
-% \tradini
-%    |scale=|\argii{h-scale}{v-scale} or |scale=|\meta{scale}.
-%    (|0.7| by default)
+%    |scale=|\argii{rapport-h}{rapport-v} ou |scale=|\meta{rapport}.
+%    (|0.7| par défaut)
 % \item[width\OR totalwidth] ~\\
-%    width of \gpart{corps intégral}. |width=|\meta{length} or
-%    |totalwidth=|\meta{length}. This dimension defaults to |textwidth|,
-%    but if |includemp| is set to |true|, |width| $\ge$ |textwidth| 
-%    because |width| includes the width of the marginal notes.
-%    If |textwidth| and |width| are specified at the same time, 
-%    |textwidth| takes priority over |width|.
+%    largeur du \gpart{corps intégral}. |width=|\meta{longueur} ou
+%    |totalwidth=|\meta{longueur}. Cette dimension vaut par défaut 
+%    |textwidth|, mais si |includemp| vaut |true|, |width| $\ge$ |textwidth| 
+%    car |width| inclut la largeur de la note marginale.
+%    Si |textwidth| et |width| sont spécifiés en même temps, 
+%    |textwidth| est prioritaire par rapport à |width|.
 % \item[height\OR totalheight] ~\\
-%    height of \gpart{corps intégral}, excluding header and footer by default.
-%    If |includehead| or |includefoot| is set, |height| includes
-%    the head or foot of the page as well as |textheight|.
-%    |height=|\meta{length} or |totalheight=|\meta{length}. If both
-%    |textheight| and |height| are specified, |height| will be ignored.
-% \item[total] width and height of \gpart{corps intégral}.\\
-%    |total=|\argii{width}{height} or |total=|\meta{length}.
-% \item[textwidth] specifies \cs{textwidth}, the width of \gpart{corps} 
-%    (the text area). |textwidth=|\meta{length}.
-% \item[textheight] specifies \cs{textheight}, the height of
-%    \gpart{corps} (the text area). |textheight=|\meta{length}.
-% \item[text\OR body] specifies both \cs{textwidth} and \cs{textheight}
-%    of the body of page. |body=|\argii{width}{height} or
-%    |text=|\meta{length}.
-% \item[lines] enables users to specify \cs{textheight} by the number
-%    of lines. |lines|=\meta{integer}.
-% \item[includehead] includes the head of the page, \cs{headheight}
-%    and \cs{headsep}, into \gpart{corps intégral}. It is set to |false| by
-%    default. It is opposite to |ignorehead|. See
-%    Figure~\ref{fig:includes} and Figure~\ref{fig:modes}.
-% \item[includefoot] includes the foot of the page, \cs{footskip},
-%    into \gpart{corps intégral}. It is opposite to |ignorefoot|.
-%    It is |false| by default. See Figure~\ref{fig:includes} and
-%    Figure~\ref{fig:modes}.
+%    hauteur du \gpart{corps intégral}, excluant l'en-tête et le pied de page
+%    par défaut. Si |includehead| ou |includefoot| est sélectionné, |height|
+%    includes l'en-tête ou le pied de page tout comme il contient |textheight|.
+%    |height=|\meta{longueur} ou |totalheight=|\meta{longueur}. Si 
+%    |textheight| et |height| sont spécifiés en même temps, |height| sera
+%    ignoré.
+% \item[total] largeur et hauteur du \gpart{corps intégral}.\\
+%    |total=|\argii{largeur}{hauteur} ou |total=|\meta{longueur}.
+% \item[textwidth] spécifie \cs{textwidth}, la largeur du \gpart{corps} 
+%    (la zone de texte). |textwidth=|\meta{longueur}.
+% \item[textheight] spécifie \cs{textheight}, la hauteur du \gpart{corps} 
+%    (la zone de texte). |textheight=|\meta{longueur}.
+% \item[text\OR body] spécifie à la fois \cs{textwidth} et \cs{textheight}
+%    du corps de la page. |body=|\argii{largeur}{hauteur} ou
+%    |text=|\meta{longueur}.
+% \item[lines] permet à l'utilisateur de spécifier \cs{textheight} par un
+%    nombre de lignes. |lines|=\meta{nombre-entier}.
+% \item[includehead] inclut l'en-tête de la page, \cs{headheight}
+%    et \cs{headsep}, dans le \gpart{corps intégral}. Cette option est mise
+%    à |false| par défaut. Elle s'oppose à |ignorehead|. Voir la
+%    Figure~\ref{fig:includes} et la Figure~\ref{fig:modes}.
+% \item[includefoot] inclut le pied de page, \cs{footskip},
+%    dans le \gpart{corps intégral}. Cette option est mise à |false| par
+%    défaut. Elle s'oppose à |ignorefoot|. Voir la Figure~\ref{fig:includes}
+%    et la Figure~\ref{fig:modes}.
 % \item[includeheadfoot]~\\ 
-%    sets both |includehead| and |includefoot| to |true|, which is opposite
-%    to |ignoreheadfoot|. See Figure~\ref{fig:includes} and
+%    fixe |includehead| et |includefoot| à |true|, ce qui est l'opposé de 
+%    |ignoreheadfoot|. Voir la Figure~\ref{fig:includes} et la 
 %    Figure~\ref{fig:modes}.
-% \item[includemp] includes the margin notes,  \cs{marginparwidth}
-%    and \cs{marginparsep}, into \gpart{corps} when calculating horizontal
-%    calculation.
-% \item[includeall] sets both |includeheadfoot| and |includemp| to
-%    |true|. See Figure~\ref{fig:modes}.
-% \item[ignorehead] disregards the head of the page,
-%    |headheight| and |headsep|, in determining vertical layout, but does not
-%    change those lengths. It is equivalent to |includehead=false|. It is set
-%    to |true| by default. See also |includehead|.
-% \item[ignorefoot] disregards the foot of page, |footskip|,
-%    in determining vertical layout, but does not change that length.
-%    This option defaults to |true|. See also |includefoot|.
-% \item[ignoreheadfoot]~\\ sets both |ignorehead| and |ignorefoot|
-%    to |true|. See also |includeheadfoot|.
-% \item[ignoremp] disregards the marginal notes in determining the
-%    horizontal margins (defaults to |true|). If marginal notes overrun
-%    the page, the warning message will be displayed when |verbose=true|.
-%    See also |includemp| and Figure~\ref{fig:modes}.
-% \item[ignoreall] sets both |ignoreheadfoot| and |ignoremp| to |true|. 
-%    See also |includeall|.
+% \item[includemp] inclut la note marginale,  \cs{marginparwidth}
+%    and \cs{marginparsep}, dans le \gpart{corps} lors de calculs 
+%    d'éléments horizontaux.
+% \item[includeall] fixe |includeheadfoot| et |includemp| à |true|. Voir la
+%    Figure~\ref{fig:modes}.
+% \item[ignorehead] ne tient pas compte de l'en-tête, |headheight| et 
+%    |headsep|, dans la détermination de la mise en page verticale, mais ne
+%    change pas ces longueurs. Cette option est équivalente à 
+%    |includehead=false|. Elle est mise à |true| par défaut. Voir aussi
+%    |includehead|.
+% \item[ignorefoot] ne tient pas compte du pied de page, |footskip|,
+%    dans la détermination de la mise en page verticale, mais ne change
+%    pas cette longueur. Cette option est mise à |true| par défaut.
+%    Voir aussi |includefoot|.
+% \item[ignoreheadfoot]~\\ fixe |ignorehead| et |ignorefoot| à |true|. Voir
+%    aussi |includeheadfoot|.
+% \item[ignoremp] ne tient pas compte de la note marginale dans la
+%    détermination des marges horizontales (la valeur par défaut étant |true|).
+%    Si la note marginale dépasse de la page, un message d'alerte sera 
+%    affiché si |verbose=true|. Voir aussi |includemp| et la 
+%    Figure~\ref{fig:modes}.
+% \item[ignoreall] fixe |ignoreheadfoot| et |ignoremp| à |true|. 
+%    Voir aussi |includeall|.
 % \item[heightrounded]~\\
-%    This option rounds \cs{textheight} to \textit{n}-times (\textit{n}:
-%    an integer) of \cs{baselineskip} plus \cs{topskip} to avoid 
-%    ``underfull vbox'' in some cases. For example, if \cs{textheight} is
-%    486pt with \cs{baselineskip} 12pt and \cs{topskip} 10pt, then
+%    Cette option arrondit \cs{textheight} à \textit{n}-times (\textit{n}:
+%    un entier) de \cs{baselineskip} plus \cs{topskip} pour éviter l'erreur
+%    \og \emph{underfull vbox} \fg{} dans certains cas. Par exemple, si 
+%    \cs{textheight} vaut 486pt avec \cs{baselineskip} 12pt et \cs{topskip} 
+%    10pt, alors 
 %    \begin{quote}
 %      $(39\times12\textrm{pt}+10\textrm{pt}=)\: 478\textrm{pt}
 %       < 486\textrm{pt} < 
 %      490\textrm{pt} \:(=40\times12\textrm{pt}+10\textrm{pt})$,
 %    \end{quote}
-%    as a result \cs{textheight} is rounded to 490pt. |heightrounded=false|
-%    by default.
+%    Ici, \cs{textheight} est au final arrondi à 490pt. |heightrounded=false|
+%    par défaut.
 % \end{Options}
 %
-% \tradini
-% Figure~\ref{fig:modes} illustrates various layouts with different layout
-% modes. The dimensions for a header and a footer can be controlled by
-% |nohead| or |nofoot| mode, which sets each length to 0pt directly.
-% On the other hand, options with the prefix |ignore| do \textit{not}
-% change the corresponding native dimensions.
+% La Figure~\ref{fig:modes} illustre différents modes de mise en page du corps
+% intégral. Les dimensions pour l'en-tête et le pied de page peuvent être 
+% contrôlées par les modes |nohead| or |nofoot| mode, qui fixe chaque longueur
+% à 0pt directement. Par ailleurs, les options avec le préfixe |ignore| 
+% \emph{ne changent pas} les dimensions de base correspondantes.
 % \begin{figure}
 %  \centering\small
 %  {\unitlength=.65pt
@@ -977,59 +986,61 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \put(355,22){\makebox(0,0)[bl]{|marginparwidth|}}
 %  \put(345, 5){\makebox(0,0)[bl]{|marginparsep|}}
 %  \end{picture}}
-%  \caption[Sample layouts for \gpart{corps intégral} with different 
-%     layout modes]{%
+%  \caption[Exemples de mise en page avec différents modes de présentation
+%    du \gpart{corps intégral}]{%
 %  \begin{minipage}[t]{.8\textwidth}\small
-%    Sample layouts for \gpart{corps intégral} with different switches.
+%    Exemples de mise en page avec différents modes de présentation du \gpart{corps intégral}
 %    (a) |includeheadfoot|, (b) |includeall|, (c) |includefoot|
-%     and (d) |includefoot,includemp|. 
-%    If |reversemp| is set to |true|, the location of the
-%    marginal notes are swapped on every page.
-%    Option |twoside| swaps both margins and marginal notes on verso pages.
-%    Note that the marginal note, if any, is printed despite
-%    |ignoremp| or |includemp=false| and overrun the page in some cases.
+%     et (d) |includefoot,includemp|. 
+%    Si |reversemp| est mis à |true|, l'emplacement de la note marginale 
+%    est interverti sur chaque page. L'option |twoside| intervertit à la fois
+%    les marges et les notes marginales sur les pages au verso. Notez que la 
+%    note marginale, si elle existe, est composée malgré |ignoremp| ou
+%    |includemp=false| et dépasse de la page dans certains cas.
 %  \end{minipage}}
 %  \label{fig:modes}
 % \end{figure}
 %
-% The following options can specify body and margins simultaneously with
-% three comma-separated values in braces.
+% Les options suivantes peuvent spécifier le corps et les marges
+% simultanément avec, entre accolages, trois valeurs séparées par des virgules.
 %
 % \begin{Options}
-% \item[hdivide] horizontal partitions (left,width,right).
-%   |hdivide=|\argiii{left margin}{width}{right margin}. 
-%   Note that you should not specify all of the three parameters.
-%   The best way of using this option is to specify two of three and 
-%   leave the rest with null(nothing) or `|*|'. For example, when you set
-%   |hdivide={2cm,15cm, }|, the margin from the right-side edge of page
-%   will be determined calculating |paperwidth-2cm-15cm|.
-% \item[vdivide] vertical partitions (top,height,bottom).
-%   |vdivide=|\argiii{top margin}{height}{bottom margin}.
-% \item[divide] |divide=|\vargiii{$A$}{$B$}{$C$} is interpreted  as 
-%   |hdivide=|\vargiii{$A$}{$B$}{$C$} and |vdivide=|\vargiii{$A$}{$B$}{$C$}.
+% \item[hdivide] partition horizontale (marge gauche, largeur, marge droite).
+%   |hdivide=|\argiii{marge-gauche}{largeur}{marge-droite}.
+%   Notez que vous n'avez pas besoin de spécifier l'ensemble des trois 
+%   paramètres. La meilleure façon d'utiliser cette option est de spécifier
+%   deux paramètres seulement en laissant le dernier vide ou renseigné à 
+%   \og |*| \fg{}. Par exemple, quand vous saisissez |hdivide={2cm,15cm, }|,
+%   la marge partant du bord droit de la page sera déterminée par le calcul
+%   de |paperwidth-2cm-15cm|.
+% \item[vdivide] partition verticale (marge haute, hauteur, marge basse).
+%   |vdivide=|\argiii{marge-haute}{hauteur}{marge-basse}.
+% \item[divide] |divide=|\vargiii{$A$}{$B$}{$C$} est interprêté comme 
+%   |hdivide=|\vargiii{$A$}{$B$}{$C$} et |vdivide=|\vargiii{$A$}{$B$}{$C$}.
 % \end{Options}
 %
-% \subsection{Margin size}\label{sec:margin}
+% \subsection{Taille des marges}\label{sec:margin}
 %
-% The options specifying the size of the margins are listed below.
+% Les options spécifiant la taille des marges sont listées ci-dessous.
 %
+% \tradini
 % \begin{Options}
 % \item[left\OR lmargin\OR inner]~\\
 %    left margin (for oneside) or inner margin (for twoside) of 
 %    \gpart{corps intégral}. In other words, the distance between the left (inner)
-%    edge of the paper and that of \gpart{corps intégral}. |left=|\meta{length}.
+%    edge of the paper and that of \gpart{corps intégral}. |left=|\meta{longueur}.
 %    |inner| has no special meaning, just an alias of |left| and |lmargin|.
 % \item[right\OR rmargin\OR outer]~\\ 
-%    right or outer margin of \gpart{corps intégral}. |right=|\meta{length}.
-% \item[top\OR tmargin] top margin of the page. |top=|\meta{length}.
+%    right or outer margin of \gpart{corps intégral}. |right=|\meta{longueur}.
+% \item[top\OR tmargin] top margin of the page. |top=|\meta{longueur}.
 %    Note this option has nothing to do with the native dimension
 %    \cs{topmargin}.
 % \item[bottom\OR bmargin]~\\ 
-%    bottom margin of the page. |bottom=|\meta{length}.
+%    bottom margin of the page. |bottom=|\meta{longueur}.
 % \item[hmargin] left and right margin.
-%   |hmargin=|\argii{left margin}{right margin} or |hmargin=|\meta{length}.
+%   |hmargin=|\argii{left margin}{right margin} or |hmargin=|\meta{longueur}.
 % \item[vmargin] top and bottom margin.
-%   |vmargin=|\argii{top margin}{bottom margin} or |vmargin=|\meta{length}.
+%   |vmargin=|\argii{top margin}{bottom margin} or |vmargin=|\meta{longueur}.
 % \item[margin] |margin=|\vargii{$A$}{$B$} is equivalent to 
 %   |hmargin=|\vargii{$A$}{$B$} and |vmargin=|\vargii{$A$}{$B$}.
 %   |margin=|$A$ is automatically expanded to |hmargin=|$A$ and |vmargin=|$A$.
@@ -1064,7 +1075,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %   to the twoside option. See also |twoside|.
 % \item[bindingoffset]~\\ removes a specified space 
 %   from the lefthand-side of the page for oneside or the inner-side for
-%   twoside. |bindingoffset=|\meta{length}. This is useful if pages 
+%   twoside. |bindingoffset=|\meta{longueur}. This is useful if pages 
 %   are bound by a press binding (glued, stitched, stapled \ldots).
 %   See Figure~\ref{fig:bindingoffset}.
 % \item[hdivide] See description in Section~\ref{sec:body}.
@@ -1122,12 +1133,12 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % \begin{Options}
 % \item[headheight\OR head]~\\
 %    modifies \cs{headheight}, height of header.
-%    |headheight=|\meta{length} or |head=|\meta{length}.
+%    |headheight=|\meta{longueur} or |head=|\meta{longueur}.
 % \item[headsep] modifies \cs{headsep}, separation between header and text
-%    (body). |headsep=|\meta{length}.
+%    (body). |headsep=|\meta{longueur}.
 % \item[footskip\OR foot]~\\ modifies \cs{footskip}, distance separation
 %    between baseline of last line of text and baseline of footer.
-%    |footskip=|\meta{length} or |foot=|\meta{length}.
+%    |footskip=|\meta{longueur} or |foot=|\meta{longueur}.
 % \item[nohead] eliminates spaces for the head of the page, which is
 %    equivalent to both \cs{headheight}|=0pt| and \cs{headsep}|=0pt|.
 % \item[nofoot] eliminates spaces for the foot of the page, which is
@@ -1138,17 +1149,17 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    between the bottom of text body and the top of footnote text.
 % \item[marginparwidth\OR marginpar]~\\ 
 %    modifies \cs{marginparwidth}, width of the marginal notes.
-%    |marginparwidth=|\meta{length}.
+%    |marginparwidth=|\meta{longueur}.
 % \item[marginparsep] modifies \cs{marginparsep}, separation between
-%    body and marginal notes. |marginparsep=|\meta{length}.
+%    body and marginal notes. |marginparsep=|\meta{longueur}.
 % \item[nomarginpar] shrinks spaces for marginal notes to 0pt, which
 %    is equivalent to \cs{marginparwidth}|=0pt| and \cs{marginparsep}|=0pt|.
 % \item[columnsep] modifies \cs{columnsep}, the separation between two
 %    columns in |twocolumn| mode.
-% \item[hoffset]  modifies \cs{hoffset}. |hoffset=|\meta{length}.
-% \item[voffset]  modifies \cs{voffset}. |voffset=|\meta{length}.
+% \item[hoffset]  modifies \cs{hoffset}. |hoffset=|\meta{longueur}.
+% \item[voffset]  modifies \cs{voffset}. |voffset=|\meta{longueur}.
 % \item[offset] horizontal and vertical offset.\\
-%    |offset=|\argii{hoffset}{voffset} or |offset=|\meta{length}.
+%    |offset=|\argii{hoffset}{voffset} or |offset=|\meta{longueur}.
 % \item[twocolumn] sets |twocolumn| mode with \cs{@twocolumntrue}.
 %   |twocolumn=false| denotes onecolumn mode with\cs{@twocolumnfalse}.
 %   Instead of |twocolumn=false|, you can specify |onecolumn| (which

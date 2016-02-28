@@ -20,8 +20,8 @@ L'objectif est de traduire la documentation de l'extension *geometry* utilisable
 - [ ] Détail des options (6 pages)
   - [x] Taille du papier 
   - [x] Taille du gabarit
-  - [ ] Taille du corps
-  - [ ] Margin size
+  - [x] Taille du corps
+  - [ ] Taille des marges
   - [ ] Native dimensions
   - [ ] Drivers
   - [ ] Other options
