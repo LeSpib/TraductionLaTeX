@@ -230,14 +230,14 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %   |pdftex|, n'est plus nécessaire et ne crée plus de problème quand bien même
 %   il existe toujours. Sélectionner |xetex| est fortement recommandé avec
 %   \XeLaTeX{}.
-%  \item \textbf{Nouveux formats de papier prédéfinis pour les formats JIS B 
+%  \item \textbf{Nouveaux formats de papier prédéfinis pour les formats JIS B 
 %  et les formats ISO C}\par
 %   Les formats de papier prédéfinis |b0j| à |b6j| pour les formats JIS 
 %   (Japanese Industrial Standards) B et |c0paper| à |c6paper| pour les formats
 %   ISO C (v5.4$\sim$) sont ajoutés.
 %  \item \textbf{Changement des valeurs par défaut pour les marges 
 %  sous-définies.}\par
-%   Dans les versions précédentes, si une marge seulement était spécifiée, 
+%   Dans les versions précédentes, si une seule marge était spécifiée, 
 %   |bottom=1cm| par exemple, alors \Gm\ fixait l'autre marge avec le ratio de
 %   marge (1\string:1 par défaut pour les dimensions verticales) et obtenait
 %   |top=1cm| dans ce cas. La version 5 fixe la taille du corps du texte avec
@@ -269,9 +269,9 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %
 % Fixer des dimensions pour une mise en page sous \LaTeX\ n'est pas immédiat.
 % Vous devez ajuster plusieurs dimensions inhérentes à \LaTeX{} pour placer
-% une zone de texte où vous le souhaitez.
-% Si vous voulez centrer la zone de texte dans un papier que vous utilisez,
-% par exemple, vous devez spécifier les dimensions fondamentales suivantes :
+% une zone de texte là où vous le souhaitez. Si vous voulez centrer la zone de
+% texte dans un format de papier que vous utilisez, vous devez par exemple
+% spécifier les dimensions fondamentales suivantes :
 % \begin{quote}
 %    |\usepackage{calc}|\\
 %    |\setlength\textwidth{7in}|\\
@@ -282,7 +282,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % \end{quote}
 % Sans l'extension \textsl{calc}, l'exemple ci-dessus demanderait des réglages
 % plus fastidieux. L'extension \Gm\ présente une façon simple de fixer des
-% paramètres de mise en page. Dans ce cas, ce que vous avez à faire est juste  
+% paramètres de mise en page. Dans l'exemple, ce que vous avez à faire est juste  
 % \begin{quote}
 %    |\usepackage[text={7in,10in},centering]{geometry}|. 
 % \end{quote}
@@ -298,7 +298,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % page en suivant des instructions strictes. Par exemple,
 % \begin{quote}\slshape
 %   La largeur maximale de la zone de texte est de $16,5$ cm de large par 
-%   $22,25$ cm de haut. La marge de tête sur chaque page doit être de $3$ cm
+%   $22,25$ cm de haut. La marge haute sur chaque page doit être de $3$ cm
 %   depuis le bord haut de la feuille. La marge gauche doit être de $2,3$ cm
 %   depuis le bord gauche. Le pied de page avec le numéro de la page doit être
 %   en bas de la zone de texte.
@@ -567,7 +567,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % commande, plus que toute autre, devrait être placée uniquement dans le
 % préambule (avant |\begin{document}|).
 % 
-% L'extenion \Gm\ peut être utilisée comme une partie d'une classe ou d'une
+% L'extension \Gm\ peut être utilisée comme une partie d'une classe ou d'une
 % autre extension que vous utilisez dans votre document. La commande
 % \cs{geometry} peut écraser certains réglages dans l'en-tête. L'utilisation
 % de plusieurs \cs{geometry} est autorisée et conduit à un traitement de 
@@ -595,7 +595,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %
 % \subsection{Argument optionnel}
 %
-% L'extension \Gm\ aodpte l'interface \textsf{keyval} 
+% L'extension \Gm\ adopte l'interface \textsf{keyval} 
 % \og \meta{clé}=\meta{valeur} \fg{} pour l'argument optionnel de 
 % \cs{usepackage}, \cs{geometry} et \cs{newgeometry}.
 % 
@@ -603,7 +603,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % virgules et a les règles de base suivantes :
 % \begin{itemize}\setlength{\itemsep}{-.5\parsep}
 % \item des lignes multiples sont autorisées mais pas les lignes vides ;
-% \item les espaces entre lesmots sont ignorés ;
+% \item les espaces entre les mots sont ignorés ;
 % \item les options sont traitées indépendamment de leur ordre de saisie.
 % (Il y a ici quelques exceptions. Voir la Section~\ref{sec:optionorder} pour
 % plus d'informations.)
@@ -650,9 +650,8 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    prend une valeur booléenne (vrai |true| ou faux |false|). En l'absence de
 %    valeur, |true| est sélectionné par défaut.
 %    \begin{quote}
-%       \meta{key}|=true|\OR|false|.\\
-%       \meta{key} sans valeur est équivalent à 
-%       \meta{key}|=true|.
+%       \meta{clé}|=true|\OR|false|.\\
+%       \meta{clé} sans valeur est équivalent à \meta{clé}|=true|.
 %    \end{quote}
 %    \textit{Exemples:}~ |verbose=true|, |includehead|, 
 %    |twoside=false|.\\
@@ -839,7 +838,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    rapport de hauteur entre le \gpart{corps intégral} et \cs{paperheight}
 %    noté |vscale=|\meta{rapport-v}. Par exemple, |vscale=0.9| est équivalent à
 %    |height=0.9|\cs{paperheight}. (|0.7| par défaut)
-% \item[scale] rapport de taille entre \gpart{total body} et le papier.
+% \item[scale] rapport de taille entre le \gpart{corps intégral} et le papier.
 %    |scale=|\argii{rapport-h}{rapport-v} ou |scale=|\meta{rapport}.
 %    (|0.7| par défaut)
 % \item[width\OR totalwidth] ~\\
@@ -1023,72 +1022,81 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %
 % Les options spécifiant la taille des marges sont listées ci-dessous.
 %
-% \tradini
 % \begin{Options}
 % \item[left\OR lmargin\OR inner]~\\
-%    left margin (for oneside) or inner margin (for twoside) of 
-%    \gpart{corps intégral}. In other words, the distance between the left (inner)
-%    edge of the paper and that of \gpart{corps intégral}. |left=|\meta{longueur}.
-%    |inner| has no special meaning, just an alias of |left| and |lmargin|.
+%    marge gauche (pour du recto uniquement en mode \emph{oneside}) ou
+%    marge intérieure (pour du recto-verso en mode \emph{twoside}) du 
+%    \gpart{corps intégral}. En d'autres termes, la distance entre le
+%    bord gauche (intérieur) du papier et celui du \gpart{corps intégral}. 
+%    |left=|\meta{longueur}.
+%    |inner| n'a pas de sens particulier, n'étant qu'un alias de |left| et
+%    |lmargin|.
 % \item[right\OR rmargin\OR outer]~\\ 
-%    right or outer margin of \gpart{corps intégral}. |right=|\meta{longueur}.
-% \item[top\OR tmargin] top margin of the page. |top=|\meta{longueur}.
-%    Note this option has nothing to do with the native dimension
+%    marge droite ou extérieure du \gpart{corps intégral}. 
+%   |right=|\meta{longueur}.
+% \item[top\OR tmargin] marge haute de la page. |top=|\meta{longueur}.
+%    Notez que cette option n'a rien à voir avec la dimensions de base 
 %    \cs{topmargin}.
 % \item[bottom\OR bmargin]~\\ 
-%    bottom margin of the page. |bottom=|\meta{longueur}.
-% \item[hmargin] left and right margin.
-%   |hmargin=|\argii{left margin}{right margin} or |hmargin=|\meta{longueur}.
-% \item[vmargin] top and bottom margin.
-%   |vmargin=|\argii{top margin}{bottom margin} or |vmargin=|\meta{longueur}.
-% \item[margin] |margin=|\vargii{$A$}{$B$} is equivalent to 
-%   |hmargin=|\vargii{$A$}{$B$} and |vmargin=|\vargii{$A$}{$B$}.
-%   |margin=|$A$ is automatically expanded to |hmargin=|$A$ and |vmargin=|$A$.
+%    marge basse de la page. |bottom=|\meta{longueur}.
+% \item[hmargin] marges gauche et droite.
+%   |hmargin=|\argii{marge gauche}{marge droite} ou |hmargin=|\meta{longueur}.
+% \item[vmargin] marges haute et basse.
+%   |vmargin=|\argii{marge haute}{marge basse} ou |vmargin=|\meta{longueur}.
+% \item[margin] |margin=|\vargii{$A$}{$B$} est équivalent à 
+%   |hmargin=|\vargii{$A$}{$B$} et |vmargin=|\vargii{$A$}{$B$}.
+%   |margin=|$A$ est automatiquement développé en |hmargin=|$A$ et 
+%   |vmargin=|$A$.
 % \item[hmarginratio]
-%   horizontal margin ratio of |left| (inner) to |right| (outer). 
-%   The value of \meta{ratio} should be specified with colon-separated 
-%   two values. Each value should be a positive integer less than 100
-%   to prevent arithmetic overflow, e.g., |2:3| instead of |1:1.5|.
-%   The default ratio is |1:1| for oneside, |2:3| for twoside.
+%   rapport entre la marge horizontale de gauche (intérieure) et celle de
+%   droite (extérieure). La valeur du \meta{rapport} devrait être spécifiée
+%   par deux valeurs séparées par deux points. Chaque valeur devrait être un
+%   entier positif inférieur à 100 pour éviter les dépassements de calculs
+%   arithmétiques, par exemple |2:3| au lieu de |1:1.5|. Le rapport par 
+%   défaut est |1:1| pour du recto uniquemnt, |2:3| pour du recto-verso.
 % \item[vmarginratio]
-%    vertical margin ratio of |top| to |bottom|. The default ratio is |2:3|.
+%   rapport entre les marges verticales |top| et |bottom|. La rapport par
+%   défaut est |2:3|.
 % \item[marginratio\OR ratio]~\\
-%    horizontal and vertical margin ratios.
-%   |marginratio=|\argii{horizontal ratio}{vertical ratio} or
-%   |marginratio=|\meta{ratio}.
-% \item[hcentering] sets auto-centering horizontally and is
-%   equivalent to |hmarginratio=1:1|. It is set to |true| by default for
-%   oneside. See also |hmarginratio|.
-% \item[vcentering] sets auto-centering vertically and is
-%   equivalent to |vmarginratio=1:1|. The default is |false|.
-%   See also |vmarginratio|.
-% \item[centering] sets auto-centering and is equivalent to
-%   |marginratio=1:1|. See also |marginratio|. The default is |false|.
-%   See also |marginratio|.
-% \item[twoside] switches on twoside mode with left and right margins swapped
-%   on verso pages. The option sets \cs{@twoside} and \cs{@mparswitch} 
-%   switches. See also |asymmetric|.
-% \item[asymmetric] implements a twosided layout in which margins are
-%   not swapped on alternate pages (by setting \cs{oddsidemargin} to 
-%   \cs{evensidemargin} |+| |bindingoffset|) and in which the marginal notes
-%   stay always on the same side. This option can be used as an alternative
-%   to the twoside option. See also |twoside|.
-% \item[bindingoffset]~\\ removes a specified space 
-%   from the lefthand-side of the page for oneside or the inner-side for
-%   twoside. |bindingoffset=|\meta{longueur}. This is useful if pages 
-%   are bound by a press binding (glued, stitched, stapled \ldots).
-%   See Figure~\ref{fig:bindingoffset}.
-% \item[hdivide] See description in Section~\ref{sec:body}.
-% \item[vdivide] See description in Section~\ref{sec:body}.
-% \item[divide] See description in Section~\ref{sec:body}.
+%   rapport pour les marges horizontales et verticales.
+%   |marginratio=|\argii{rapport horizontal}{rapport vertical} ou
+%   |marginratio=|\meta{rapport}.
+% \item[hcentering] fixe un centrage horizontal automatique et est équivalent
+%   à |hmarginratio=1:1|. Cette option est mise à |true| par défaut pour
+%   du recto uniquement (oneside). Voir aussi |hmarginratio|.
+% \item[vcentering] fixe un centrage vertical automatique et est équivalent
+%   à |vmarginratio=1:1|. La valeur par défaut est |false|.
+%   Voir aussi |vmarginratio|.
+% \item[centering] applique un centrage automatique horizontalement et
+%   verticalement et est équivalent à |marginratio=1:1|. Voir aussi 
+%   |marginratio|. La valeur par défaut est |false|.
+%   Voir aussi |marginratio|.
+% \item[twoside] bascule en mode recto-verso avec les marges gauche et droite
+%   interverties sur les pages au verso. L'option active les bascules 
+%   \cs{@twoside} et \cs{@mparswitch}. Voir aussi |asymmetric|.
+% \item[asymmetric] implémente une mise en page recto-verso dans laquelle les
+%   marges ne sont pas interverties pour chaque verso (en définissant 
+%   \cs{oddsidemargin} comme \cs{evensidemargin} |+| |bindingoffset|) et
+%   dans laquelle les notes marginales restent toujours du même côté. Cette
+%   peut être utilisée comme une alternative à l'option |twoside|. Voir aussi
+%   |twoside|.
+% \item[bindingoffset]~\\ retranche un espace défini du côté gauche de la page
+%   en recto uniquement ou du côté intérieur en recto-verso.
+%   |bindingoffset=|\meta{longueur}. Ceci est utile si les pages sont traitées 
+%   avec une méthode de reliure (qu'elles soient collées, cousues, agrafées
+%   \ldots) en permettant de définir la zone perdue du fait de la reliure.
+%   Voir Figure~\ref{fig:bindingoffset}.
+% \item[hdivide] Voir la description en Section~\ref{sec:body}.
+% \item[vdivide] Voir la description en Section~\ref{sec:body}.
+% \item[divide] Voir la description en Section~\ref{sec:body}.
 % \end{Options}
 % \begin{figure}
 %  \centering\small
 %  {\unitlength=.65pt
 %  \begin{picture}(500,270)(0,0)
 %  \put(20,0){\framebox(170,230){}}
-%  \put(20,255){\makebox(80,20)[l]{\textbf{a)}~every page for oneside or}}
-%  \put(20,240){\makebox(80,20)[l]{\hspace{3ex}odd pages for twoside}}
+%  \put(20,255){\makebox(80,20)[l]{\textbf{a)}~pages en recto uniquement,}}
+%  \put(20,240){\makebox(80,20)[l]{\hspace{3.3ex}pages impaires en recto-verso}}
 %  \put(110,225){\makebox(80,20)[r]{\gpart{papier}}}
 %  \put(55,37){\framebox(110,170)[tc]{\gpart{corps intégral}}}
 %  \multiput(38,0)(0,7){33}{\line(0,1){4}}
@@ -1100,7 +1108,8 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \put(195,80){\makebox(80,10)[l]{(|outer|)}}
 %  \put(20,16){\vector(1,0){18}}
 %  \put(45,10){\makebox(80,10)[bl]{|bindingoffset|}}
-%  \put(280,255){\makebox(80,20)[l]{\textbf{b)}~even (back) pages for twoside}}
+%  \put(280,255){\makebox(80,20)[l]{\textbf{b)}~pages paires (ou revers)}}
+%  \put(280,240){\makebox(80,20)[l]{\hspace{3.7ex}en recto-verso}}
 %  \put(280,0){\framebox(170,230){}}
 %  \put(370,225){\makebox(80,20)[r]{\gpart{papier}}}
 %  \put(305,37){\framebox(110,170)[tc]{\gpart{corps intégral}}}
@@ -1114,70 +1123,77 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \put(450,16){\vector(-1,0){18}}
 %  \put(330,10){\makebox(80,10)[bl]{|bindingoffset|}}
 %  \end{picture}}
-%  \caption[\texttt{bindingoffset} option]{%
+%  \caption[L'option \texttt{bindingoffset}]{%
 %   \begin{minipage}[t]{.8\textwidth}\raggedright\small
-%   The option |bindingoffset| adds the specified length to the inner margin.
-%   Note that |twoside| option swaps the horizontal margins and the
-%   marginal notes together with |bindingoffset| on even pages (see
-%   \textbf{b)}), but |asymmetric| option suppresses the swap of the
-%   margins and marginal notes (but |bindingoffset| is still swapped).
+%   L'option |bindingoffset| ajoute un espace de largeur spécifiée à la marge
+%   intérieure. Notez que l'option |twoside| intervertit les marges 
+%   horizontales et les notes marginales avec l'effet de |bindingoffset| sur
+%   les pages paires (voir \textbf{b)}), mais l'option |asymmetric| supprime
+%   cette interversion des marges et des notes marginales (mais 
+%   |bindingoffset| reste toujours interverti puisqu'il est lié à une question
+%   de reliure des pages).
 %   \end{minipage}}
 %  \label{fig:bindingoffset}
 % \end{figure}
 %
-% \subsection{Native dimensions}\label{sec:dimension}
+% \subsection{Dimensions fondamentales}\label{sec:dimension}
 %
-% The options below overwrite \LaTeX\ native dimensions and switches for page
-% layout (See the right-hand side in Figure~\ref{fig:layout}).
+% Les options ci-dessous écrasent les dimensions fondamentales de \LaTeX\ et
+% autres bascules associées à la mise en page (Voir le côté droit de la 
+% Figure~\ref{fig:layout}).
 %
 % \begin{Options}
 % \item[headheight\OR head]~\\
-%    modifies \cs{headheight}, height of header.
-%    |headheight=|\meta{longueur} or |head=|\meta{longueur}.
-% \item[headsep] modifies \cs{headsep}, separation between header and text
-%    (body). |headsep=|\meta{longueur}.
-% \item[footskip\OR foot]~\\ modifies \cs{footskip}, distance separation
-%    between baseline of last line of text and baseline of footer.
-%    |footskip=|\meta{longueur} or |foot=|\meta{longueur}.
-% \item[nohead] eliminates spaces for the head of the page, which is
-%    equivalent to both \cs{headheight}|=0pt| and \cs{headsep}|=0pt|.
-% \item[nofoot] eliminates spaces for the foot of the page, which is
-%    equivalent to \cs{footskip}|=0pt|.
-% \item[noheadfoot] equivalent to |nohead| and |nofoot|, which means that
-%    \cs{headheight}, \cs{headsep} and \cs{footskip} are all set to |0pt|.
-% \item[footnotesep] changes the dimension \cs{skip}\cs{footins}, separation
-%    between the bottom of text body and the top of footnote text.
+%    modifie \cs{headheight}, hauteur de l'en-tête.
+%    |headheight=|\meta{longueur} ou |head=|\meta{longueur}.
+% \item[headsep] modifie \cs{headsep}, espace séparant l'en-tête et le texte
+%    (corps). |headsep=|\meta{longueur}.
+% \item[footskip\OR foot]~\\ modifie \cs{footskip}, distance separant la ligne
+%    de base de la dernière ligne de texte et la ligne de base du pied de page.
+%    |footskip=|\meta{longueur} ou |foot=|\meta{longueur}.
+% \item[nohead] supprime l'espace pour l'en-tête, ce qui est équivalent à la
+%    fois à \cs{headheight}|=0pt| et \cs{headsep}|=0pt|.
+% \item[nofoot] supprime l'espace pour le pied de page, ce qui est équivalent 
+%    à \cs{footskip}|=0pt|.
+% \item[noheadfoot] équivalent à |nohead| et |nofoot|, ce qui signifie que 
+%    \cs{headheight}, \cs{headsep} et \cs{footskip} sont tous fixés à |0pt|.
+% \item[footnotesep] change la dimension \cs{skip}\cs{footins}, espace séparant
+%    entre le bas du corps du texte et le haut du texte des notes de bas de
+%    page.
 % \item[marginparwidth\OR marginpar]~\\ 
-%    modifies \cs{marginparwidth}, width of the marginal notes.
+%    modifie \cs{marginparwidth}, largeur des notes marginales.
 %    |marginparwidth=|\meta{longueur}.
-% \item[marginparsep] modifies \cs{marginparsep}, separation between
-%    body and marginal notes. |marginparsep=|\meta{longueur}.
-% \item[nomarginpar] shrinks spaces for marginal notes to 0pt, which
-%    is equivalent to \cs{marginparwidth}|=0pt| and \cs{marginparsep}|=0pt|.
-% \item[columnsep] modifies \cs{columnsep}, the separation between two
-%    columns in |twocolumn| mode.
-% \item[hoffset]  modifies \cs{hoffset}. |hoffset=|\meta{longueur}.
-% \item[voffset]  modifies \cs{voffset}. |voffset=|\meta{longueur}.
-% \item[offset] horizontal and vertical offset.\\
-%    |offset=|\argii{hoffset}{voffset} or |offset=|\meta{longueur}.
-% \item[twocolumn] sets |twocolumn| mode with \cs{@twocolumntrue}.
-%   |twocolumn=false| denotes onecolumn mode with\cs{@twocolumnfalse}.
-%   Instead of |twocolumn=false|, you can specify |onecolumn| (which
-%   defaults to |true|)
-% \item[onecolumn] works as |twocolumn=false|. On the other hand,
-%   |onecolumn=false| is equivalent to |twocolumn|. 
-% \item[twoside] sets both \cs{@twosidetrue} and \cs{@mparswitchtrue}.
-%   See Section~\ref{sec:margin}.
-% \item[textwidth] sets \cs{textwidth} directly. See Section~\ref{sec:body}.
-% \item[textheight] sets \cs{textheight} directly. See Section~\ref{sec:body}.
+% \item[marginparsep] modifie \cs{marginparsep}, espace séparant le corps et
+%    les notes marginales. |marginparsep=|\meta{longueur}.
+% \item[nomarginpar] réduit l'espace des notes marginales à 0pt, ce qui 
+%    équivalent à \cs{marginparwidth}|=0pt| et \cs{marginparsep}|=0pt|.
+% \item[columnsep] modifie \cs{columnsep}, espace séparant les deux colonnes
+%    du mode |twocolumn|.
+% \item[hoffset]  modifie \cs{décalage-h}. |hoffset=|\meta{longueur}.
+% \item[voffset]  modifie \cs{décalage-v}. |voffset=|\meta{longueur}.
+% \item[offset] décalage horizontal et vertical.\\
+%    |offset=|\argii{décalage-h}{décalage-v} ou |offset=|\meta{longueur}.
+% \item[twocolumn] fait passer en mode |twocolumn| avec \cs{@twocolumntrue}.
+%   |twocolumn=false| revient à un mode à une colonne avec\cs{@twocolumnfalse}.
+%   Au lieu de |twocolumn=false|, vous pouvez spécifier |onecolumn| (ce qui
+%   vaut par défaut |true|).
+% \item[onecolumn] fonctionne comme |twocolumn=false|. |onecolumn=false| est
+%   équivalent à |twocolumn|. 
+% \item[twoside] fixe à la fois \cs{@twosidetrue} et \cs{@mparswitchtrue}.
+%   Voir Section~\ref{sec:margin}.
+% \item[textwidth] définit \cs{textwidth} directement. Voir 
+%   Section~\ref{sec:body}.
+% \item[textheight] définit \cs{textheight} directement. Voir 
+%   Section~\ref{sec:body}.
 % \item[reversemp\OR reversemarginpar]~\\
-%   makes the marginal notes appear in the left (inner) margin with
-%   \cs{@reversemargintrue}. The option doesn't change |includemp| mode.
-%   It's set |false| by default.
+%   place les notes marginales dans la marge gauche (intérieure) avec
+%   \cs{@reversemargintrue}. L'option ne change pas le mode |includemp|.
+%   Elle vaut |false| par défaut.
 % \end{Options}
 %
-% \subsection{Drivers}\label{sec:drivers}
+% \subsection{Pilotes}\label{sec:drivers}
 % 
+% \tradini
 % The package supports drivers |dvips|, |dvipdfm|, |pdftex|, |xetex| and
 % |vtex|. You can also set |dvipdfm| for \textsf{dvipdfmx} and
 % \textsf{xdvipdfmx}. |pdftex| for \textsf{pdflatex}, and |vtex| for
