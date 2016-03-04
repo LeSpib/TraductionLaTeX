@@ -21,11 +21,16 @@ L'objectif est de traduire la documentation de l'extension *geometry* utilisable
   - [x] Taille du papier 
   - [x] Taille du gabarit
   - [x] Taille du corps
-  - [ ] Taille des marges
-  - [ ] Native dimensions
-  - [ ] Drivers
-  - [ ] Other options
-- [ ] Processing options (3 pages)
+  - [x] Taille des marges
+  - [x] Dimensions fondamentales
+  - [x] Pilotes
+  - [x] Autres options
+- [ ] Traitement des options (3 pages)
+  - [ ] Ordre de chargement
+  - [ ] Ordre des options
+  - [ ] Priorité
+  - [ ] Valeurs par défaut
+  - [ ] Autocomplétion
 - [ ] Changing layout mid-document (1 page)
 - [ ] Examples (2 pages)
 - [ ] Known problems 

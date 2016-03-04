@@ -1193,104 +1193,111 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %
 % \subsection{Pilotes}\label{sec:drivers}
 % 
-% \tradini
-% The package supports drivers |dvips|, |dvipdfm|, |pdftex|, |xetex| and
-% |vtex|. You can also set |dvipdfm| for \textsf{dvipdfmx} and
-% \textsf{xdvipdfmx}. |pdftex| for \textsf{pdflatex}, and |vtex| for
-% V\TeX{} environment.
-% The driver options are exclusive. The driver can be set by either
-% |driver=|\meta{driver name} or any of the drivers directly like |pdftex|.
-% By default, \Gm\ guesses the driver appropriate to the system
-% in use. Therefore, you don't have to set a driver in most cases.
-% However, if you want to use |dvipdfm|, you should specify it explicitly.
+% L'extension gère les pilotes |dvips|, |dvipdfm|, |pdftex|, |xetex| et
+% |vtex|. Vous pouvez également utiliser |dvipdfm| pour \textsf{dvipdfmx} et
+% \textsf{xdvipdfmx}. |pdftex| sert pour \textsf{pdflatex} et |vtex| pour
+% l'environnement V\TeX{}.
+% Les options associées aux pilotes sont exclusives. Le pilote peut être
+% sélectionné soit par |driver=|\meta{nom-du-pilote} soit directement par le 
+% nom du pilote tel |pdftex|. Par défaut, \Gm\ devine le pilote approprié au
+% système utilisé. C'est pourquoi vous n'avez pas à sélectionner le pilote dans
+% la plupart des cas. Cependant, si vous souhaitez utiliser |dvipdfm|, vous
+% devriez spécifier explicitement ce pilote.
 %
 % \begin{Options}
-% \item[\onlypre driver] specifies the driver with |driver=|\meta{driver name}. 
-% |dvips|, |dvipdfm|, |pdftex|, |vtex|, |xetex|, |auto| and |none| are
-% available as a driver name. The names except for |auto| and |none| can
-% be specified directly with the name without |driver=|.
-% |driver=auto| makes the auto-detection work whatever the previous setting is. 
-% |driver=none| disables the auto-detection and sets no driver, which
-% may be useful when you want to let other package work out the driver
-% setting. For example, if you want to use \textsf{crop} package with \Gm,
-% you should call |\usepackage[driver=none]{geometry}| before
-% the \textsf{crop} package.
-% \item[\onlypre dvips] writes the paper size in dvi output with the \cs{special}
-%     macro. If you use \textsl{dvips} as a DVI-to-PS driver,
-%     for example, to print a document with |\geometry{a3paper,landscape}|
-%     on A3 paper in landscape orientation, you don't need options
-%     ``|-t a3 -t landscape|'' to \textsl{dvips}. 
-% \item[\onlypre dvipdfm] works like |dvips| except for landscape correction.
-%      You can set this option when using \textsf{dvipdfmx} and
-%      \textsf{xdvipdfmx} to process the dvi output.
-% \item[\onlypre pdftex] sets \cs{pdfpagewidth} and \cs{pdfpageheight}
-%      internally.
-% \item[\onlypre xetex] is the same as |pdftex| except for ignoring
-%     |\pdf{h,v}origin| undefined in \XeLaTeX{}. This option is introduced in
-%     the version 5. Note that `geometry.cfg' in \TeX{} Live, which disables the
-%     auto-detection routine and sets |pdftex|, is no longer necessary,
-%     but has no problem even though it's left undeleted.
-%     Instead of |xetex|, you can specify |dvipdfm| with \XeLaTeX{}
-%     if you want to use specials of dvipdfm \XeTeX{} supports.
-% \item[\onlypre vtex] sets dimensions \cs{mediawidth} and \cs{mediaheight}
-%     for V\TeX. When this driver is selected (explicitly or
-%     automatically), \Gm\ will auto-detect which output mode
-%     (DVI, PDF or PS) is selected in V\TeX, and do proper
-%     settings for it.
+% \item[\onlypre driver] spécifie le pilote avec |driver=|\meta{nom-du-pilote}. 
+% |dvips|, |dvipdfm|, |pdftex|, |vtex|, |xetex|, |auto| et |none| sont 
+% disponibles comme nom de pilote. Les noms, exceptions faites de |auto| et 
+% |none| peuvent être spécifiés directement avec le nom sans |driver=|.
+% |driver=auto| impose l'auto-détection quelle que soit le réglage précédent.
+% |driver=none| empêche l'auto-détection et ne sélectionne aucun pilote, ce 
+% qui peut être utile lorsque vous voulez qu'une autre extension détermine 
+% le paramétrage du pilote. Par exemple, si vous souhaitez utiliser l'extension
+% \textsf{crop} avec \Gm, vous devriez saisir 
+% |\usepackage[driver=none]{geometry}| avant l'appel de l'extension 
+% \textsf{crop} package.
+% \item[\onlypre dvips] inclut la dimension du papier dans la sortie dvi avec
+%     la commande \cs{special}. Si vous utilisez \textsl{dvips} comme un pilote
+%     DVI-vers-PS, par exemple, imprimer un document avec 
+%     |\geometry{a3paper,landscape}| sur du papier A3 en orientation paysage,
+%     vous n'avez alors pas besoin des options \og |-t a3 -t landscape| \fg{}
+%     avec \textsl{dvips}. 
+% \item[\onlypre dvipdfm] fonctionne comme |dvips| sauf pour l'orientation
+%      paysage. Vous pouvez sélectionner cette option en utilisant 
+%      \textsf{dvipdfmx} et \textsf{xdvipdfmx} pour obtenir la sortie dvi.
+% \item[\onlypre pdftex] fixe \cs{pdfpagewidth} et \cs{pdfpageheight}
+%      en interne.
+% \item[\onlypre xetex] est équivalent à |pdftex| à ceci près qu'il ignore
+%     |\pdf{h,v}origin| non défini avec \XeLaTeX{}. Cette option est introduite
+%     dans la version 5. Notez que \og geometry.cfg \fg{} dans \TeX{} Live, 
+%     qui désactive la routine d'auto-détection et sélectionne |pdftex|, n'est
+%     plus nécessaire mais ne crée pas de problème quand bien même il n'est pas
+%     supprimé. Au lieu de |xetex|, vous pouvez spécifier |dvipdfm| avec 
+%     \XeLaTeX{} si vous souhaitez utiliser les éléments spécifiques de dvipdfm
+%     que \XeTeX{} supporte.
+% \item[\onlypre vtex] fixe les dimensions \cs{mediawidth} et \cs{mediaheight}
+%     pour V\TeX. Quand ce pilote est sélectionné (explicitement ou 
+%     automatiquement), \Gm\ détectera automatiquement quel mode de 
+%     restitution (DVI, PDF ou PS) est choisi avec V\TeX et fera les réglages
+%     associés.
 % \end{Options}
-% If explicit driver setting is mismatched with the typesetting program
-% in use, the default driver |dvips| would be selected.
+% Si le pilote explicitement sélectionné n'est pas associable avec le 
+% logiciel utilisé, le pilote par défaut |dvips| sera sélectionné.
 %
-% \subsection{Other options}
+% \subsection{Autres options}
 %
-%  The other useful options are described here.
+%  Les autres options utiles sont décrites ici.
 %
 % \begin{Options}
-% \item[\onlypre verbose] displays the parameter results on the terminal.
-%   |verbose=false| (default) still puts them into the log file.
-% \item[\onlypre reset] sets back the layout dimensions and switches to the
-%   settings before \Gm\ is loaded. Options given in 
-%   |geometry.cfg| are also cleared.
-%   Note that this cannot reset |pass| and |mag| with |truedimen|.
-%   |reset=false| has no effect and cannot cancel the previous
-%   |reset|(|=true|) if any. For example, when you go
+% \item[\onlypre verbose] affiche les résultats du paramétrage sur le terminal.
+%   |verbose=false| (défaut) les places uniquement dans le fichier journal.
+% \item[\onlypre reset] remet les dimensions de la mise en page et autres 
+%   bascules dans l'état où elles étaient avant le chargement de \Gm. Les 
+%   options données dans |geometry.cfg| sont également ignorées. Notez que cela
+%   ne peut traiter |pass| et |mage| avec |truedimen|.
+%   |reset=false| n'a pas d'effet et n'annule pas les éventuels 
+%   |reset|(|=true|) précédents. Par exemple, quand vous saisissez
 %   \begin{quote}
 %     |\documentclass[landscape]{article}|\\
 %     |\usepackage[twoside,reset,left=2cm]{geometry}|
 %   \end{quote}
-%   with |\ExecuteOptions{scale=0.9}| in |geometry.cfg|,
-%   then as a result, |landscape| and |left=2cm| remain effective,
-%   and |scale=0.9| and |twoside| are ineffective.
-% \item[\onlypre mag] sets magnification value (\cs{mag}) and automatically modifies 
-%   \cs{hoffset} and \cs{voffset} according to the magnification.
-%   |mag=|\meta{value}. Note that \meta{value} should be an integer value
-%   with 1000 as a normal size. For example, |mag=1414| with |a4paper|
-%   provides an enlarged print fitting in |a3paper|, which is $1.414$
-%   (=$\sqrt{2}$) times larger than |a4paper|. Font enlargement needs extra
-%   disk space. \textbf{Note that setting |mag| should precede any other
-%   settings with `true' dimensions, such as  |1.5truein|, |2truecm|
-%   and so on.} See also |truedimen| option.
-% \item[\onlypre truedimen] changes all internal explicit dimension values into 
-%   \textit{true} dimensions, e.g., |1in| is changed to |1truein|.
-%   Typically this option will be used together with |mag| option. Note that
-%   this is ineffective against externally specified dimensions. For example,
-%   when you set ``\texttt{mag=1440, margin=10pt, truedimen}'', margins are
-%   not `true' but magnified. If you want to set exact margins, you should
-%   set like ``\texttt{mag=1440, margin=10truept, truedimen}'' instead.
-% \item[\onlypre pass] disables all of the geometry options and calculations
-%   except |verbose| and |showframe|. It is order-independent and can be
-%   used for checking out the page layout of the documentclass, other
-%   packages and manual settings without \Gm.
-% \item[\onlypre showframe] shows visible frames for the text area and page,
-%   and the lines for the head and foot on the first page.
-% \item[\onlypre showcrop] prints crop marks at each corner of user-specified
-% layout area.
+%   avec |\ExecuteOptions{scale=0.9}| dans |geometry.cfg|, alors, au final,
+%   |landscape| et |left=2cm| restent actifs et |scale=0.9| comme |twoside| 
+%   sont ignorés.
+% \item[\onlypre mag] fixe la valeur de l'agrandissement (\cs{mag}) et modifie
+%   \cs{hoffset} et \cs{voffset} en fonction de cet agrandissement.
+%   |mag=|\meta{valeur}. Notez que \meta{valeur} devrait être une valeur
+%   entière, avec 1000 désignant la taille normale. Par exemple, |mag=1414| 
+%   avec |a4paper| conduit à un imprimé agrandi tenant sur un format |a3paper|,
+%   qui est $1.414$ (=$\sqrt{2}$) fois plus grand que |a4paper|. 
+%   L'agrandissement des polices de caractère demande de l'espace disque
+%   supplémentaire. \textbf{Notez que l'option |mag| doit précéder toute autre
+%   options avec les dimensions \og réelles \fg{} telles que |1.5truein| ou 
+%   |2truecm| et ainsi de suite.} Voir aussi l'option |truedimen|.
+% \item[\onlypre truedimen] change toute dimension interne explicite en
+%   dimensions \textit{vraies}, par exemple |1cm| est changé en |1truecm|.
+%   Cette option s'utilise typiquement avec l'option |mag|. Notez que ceci
+%   n'a pas d'effet pour les dimensions spécifiées extérieurement. Par exemple,
+%   quand vous indiquez \og \texttt{mag=1440, margin=10pt, truedimen} \fg{}, 
+%   les marges ne sont pas \og vraies \fg{} mais agrandies. Si vous souhaitez
+%   définir des marges exactes, vous devriez utiliser quelque chose comme
+%   \og \texttt{mag=1440, margin=10truept, truedimen} \fg{} à la place.
+% \item[\onlypre pass] annule toutes les options et calculs de géométrie à 
+%   l'exception de |verbose| et |showframe|. Cette option est insensible à
+%   l'ordre et peut être utilisée pour vérifier la mise en page donnée par la
+%   classe, d'autres extensions ou des réglages manuels sans \Gm.
+% \item[\onlypre showframe] affiche des cadres pour la zone de texte et la page
+%   ainsi que les lignes pour l'en-tête et le pied de page sur la première
+%   page.
+% \item[\onlypre showcrop] affiche les traits de coupe à chaque coin de la 
+%   \trad{zone de mise en page} spécifiée par l'utilisateur.
 % \end{Options}
 %
-% \section{Processing options}\label{sec:process}
+% \section{Traitement des options}\label{sec:process}
 % 
-% \subsection{Order of loading}\label{sec:loadorder}
+% \subsection{Ordre de chargement}\label{sec:loadorder}
 %
+% \tradini
 % If there's |geometry.cfg| somewhere \TeX{} can find it, \Gm\ loads
 % it first. For example, in |geometry.cfg| you may write
 % |\ExecuteOptions{a4paper}|, which specifies A4 paper as the default
@@ -1308,7 +1315,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  |\geometry|.)
 % \end{enumerate}
 %
-% \subsection{Order of options}\label{sec:optionorder}
+% \subsection{Ordre des options}\label{sec:optionorder}
 %
 % The specification of \Gm\ options is order-independent,
 % and overwrites the previous one for the same setting.
@@ -1344,7 +1351,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % `true' length, such as |left=1.5truecm|, |width=5truein| and so on.
 % The |\mag| primitive can be set before this package is called.
 %
-% \subsection{Priority}\label{sec:priority}
+% \subsection{Priorité}\label{sec:priority}
 %  
 % There are several ways to set dimensions of the \gpart{corps}:
 % |scale|, |total|, |text| and |lines|. The \Gm\ package gives higher
@@ -1370,7 +1377,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % \end{quote}
 % results in \texttt{[lines=30, textwidth=7in]}.
 %
-% \subsection{Defaults}\label{sec:defaults}
+% \subsection{Valeurs par défaut}\label{sec:defaults}
 %
 % This section sums up the default settings for the auto-completion
 % described later.
@@ -1404,7 +1411,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %
 % Additional options overwrite the previous specified dimensions. 
 %
-% \subsection{Auto-completion} \label{sec:rules}
+% \subsection{Autocomplétion} \label{sec:rules}
 %
 % Figure~\ref{fig:specrule} shows schematically how many specification
 % patterns exist and how to solve the ambiguity of the
