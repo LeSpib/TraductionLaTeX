@@ -292,7 +292,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % \begin{quote}
 %    |\usepackage[margin=3.8cm]{geometry}| 
 % \end{quote}
-% De fait, l'extension \Gm\ dispose d'un mécanisme d'auto-complétion dans
+% De fait, l'extension \Gm\ dispose d'un mécanisme d'autocomplétion dans
 % lequel les dimensions manquantes sont automatiquement déterminées.
 % L'extension \Gm\ sera également utile lorsque vous avez à traiter la mise en
 % page en suivant des instructions strictes. Par exemple,
@@ -541,14 +541,14 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \label{fig:Labc}
 % \end{figure}
 %
-% L'extension \Gm\ dispose d'un mécanisme d'auto-complétion qui évite les
+% L'extension \Gm\ dispose d'un mécanisme d'autocomplétion qui évite les
 % problèmes liés à la spécification des dimensions de la mise en page. Par
 % exemple, vous pouvez retenir
 % \begin{quote}
 %  |\usepackage[width=14cm, left=3cm]{geometry}|
 % \end{quote}
 % sur papier A4. Dans ce cas, nous n'avez pas à définir la marge droite. Les
-% détails de cette auto-complétion sont décrits dans la 
+% détails de cette autocomplétion sont décrits dans la
 % Section~\ref{sec:rules}.
 %
 % \section{Interface utilisateur}
@@ -690,7 +690,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{quote}
 %    Chaque valeur doit être une dimension ou être nulle. Quand vous indiquez
 %    une valeur vide ou \og|*|\fg{}, cela correspond à un nul et laisse la 
-%    valeur souhaitée aux bons soins du mécanisme d'auto-complétion. Vous 
+%    valeur souhaitée aux bons soins du mécanisme d'autocomplétion. Vous 
 %    devez spécifier au moins une dimension, typiquement deux dimensions. Vous
 %    pouvez indiquer des nuls pour toutes les valeurs mais cela n'a pas de
 %    sens.
@@ -1297,69 +1297,66 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % 
 % \subsection{Ordre de chargement}\label{sec:loadorder}
 %
-% \tradini
-% If there's |geometry.cfg| somewhere \TeX{} can find it, \Gm\ loads
-% it first. For example, in |geometry.cfg| you may write
-% |\ExecuteOptions{a4paper}|, which specifies A4 paper as the default
-% paper. Basically you can use all the options defined in \Gm\ with
-% |\ExecuteOptions{}|.
+% S'il existe un fichier |geometry.cfg| quelque part où \TeX{} peut le trouver, \Gm\ le charge en premier. Par exemple, dans |geometry.cfg| vous pouvez écrire 
+% |\ExecuteOptions{a4paper}|, ce qui spécifie le format A4 comme format par
+% défaut. De fait, vous pouvez utiliser toutes les options définies dans \Gm\ 
+% avec with |\ExecuteOptions{}|.
 % 
-% The order of loading in the preamble of your document is as follows:
+% L'ordre de chargement dans le préambule de votre document est le suivant :
 % \begin{enumerate}
-%  \item |geometry.cfg| if it exists.
-%  \item Options specified with |\documentclass[|\meta{options}|]{...}|.
-%  \item Options specified with |\usepackage[|\meta{options}|]{geometry}|
-%  \item Options specified with |\geometry{|\meta{options}|}|, which
-%  can be called multiple times. (|reset| option will cancel the
-%  specified options ever given in  |\usepackage{geometry}| or
-%  |\geometry|.)
+%  \item |geometry.cfg| s'il existe.
+%  \item Options spécifiées avec |\documentclass[|\meta{options}|]{...}|.
+%  \item Options spécifiées avec |\usepackage[|\meta{options}|]{geometry}|
+%  \item Options spécifiées avec |\geometry{|\meta{options}|}|, qui peut être
+%  appelé à plusieurs reprises. (L'option |reset| va annuler les options
+%  spécifiées dans |\usepackage{geometry}| ou |\geometry|.)
 % \end{enumerate}
 %
 % \subsection{Ordre des options}\label{sec:optionorder}
 %
-% The specification of \Gm\ options is order-independent,
-% and overwrites the previous one for the same setting.
-% For example, 
+% La spécification des options \Gm\ est indifférente à l'ordre et écrase
+% la précédente pour une même option. Par exemple, 
 % \begin{center}
-% |[left=2cm, right=3cm]| is equivalent to 
+% |[left=2cm, right=3cm]| est équivalent à 
 % |[right=3cm, left=2cm]|.
 % \end{center}
-% The options called multiple times overwrite the previous
-% settings. For example, 
+% Les options appelées de nombreuses fois écrasent les appels précédents
+% de la même option. Par exemple, 
 % \begin{center}
-%  |[verbose=true, verbose=false]| results in |verbose=false|. 
+%  |[verbose=true, verbose=false]| se résume à |verbose=false|. 
 % \end{center}
-% |[hmargin={3cm,2cm}, left=1cm]| is the same as |hmargin={1cm,2cm}|, 
-% where the left (or inner) margin is overwritten by |left=1cm|. 
+% |[hmargin={3cm,2cm}, left=1cm]| est équivalent à |hmargin={1cm,2cm}| 
+% où la marge de gauche (ou intérieure) est écrasée par |left=1cm|. 
 %
-% |reset| and |mag| are exceptions.
-% The |reset| option removes all the geometry options (except |pass|)
-% before it. If you set
+% |reset| et |mag| sont des exceptions.
+% L'option |reset| annule toutes les options de géométrie (exceptée |pass|)
+% indiquées avant cette option. Si vous indiquez
 % \begin{quote}
 % |\documentclass[landscape]{article}|\\
 % |\usepackage[margin=1cm,twoside]{geometry}|\\
 % |\geometry{a5paper, reset, left=2cm}|
 % \end{quote}
-% then |margin=1cm|, |twoside| and |a5paper| are removed, and 
-% is eventually equivalent to
+% alors |margin=1cm|, |twoside| et |a5paper| sont retranchés, ce qui 
+% ramène ce cas alors à 
 % \begin{quote}
 % |\documentclass[landscape]{article}|\\
 % |\usepackage[left=2cm]{geometry}|
 % \end{quote}
 %
-% The |mag| option should be set in advance of any other settings with
-% `true' length, such as |left=1.5truecm|, |width=5truein| and so on.
-% The |\mag| primitive can be set before this package is called.
+% L'option |mag| devrait être indiquée avant les autres options avec une 
+% longueur \og vraie \fg{} telles que |left=1.5truecm|, |width=5truein| et
+% ainsi de suite. La primitive |\mag| peut être indiquée avant que cette
+% extension ne soit appelée.
 %
 % \subsection{Priorité}\label{sec:priority}
 %  
-% There are several ways to set dimensions of the \gpart{corps}:
-% |scale|, |total|, |text| and |lines|. The \Gm\ package gives higher
-% priority to the more concrete specification. Here is the priority
-% rule for \gpart{corps}.
+% Il existe plusieurs manières de fixer les dimensions du \gpart{corps}:
+% |scale|, |total|, |text| et |lines|. L'extension \Gm\ donne une plus haute
+% priorité aux spécifications les plus concrêtes. Voici la règle de priorité
+% pour le \gpart{corps}.
 % \[\begin{array}{c}
-% \textrm{priority:}\qquad\textrm{low}\quad
-%    \longrightarrow\quad\textrm{high}\\[1em]
+% \textrm{priorité:}\qquad\textrm{basse}\quad
+%    \longrightarrow\quad\textrm{élevée}\\[1em]
 % \left\{\begin{array}{l}|hscale|\\|vscale|\\|scale|
 %        \end{array}\right\} <
 % \left\{\begin{array}{l}|width|\\|height|\\|total|
@@ -1367,68 +1364,70 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % \left\{\begin{array}{l}|textwidth|\\|textheight|
 %         \\|text|\end{array}\right\} < |lines|.
 % \end{array}\]
-% For example, 
+% Par exemple, 
 % \begin{quote}
 %  |\usepackage[hscale=0.8, textwidth=7in, width=18cm]{geometry}|
 % \end{quote}
-% is the same as |\usepackage[textwidth=7in]{geometry}|. Another example:
+% est équivalent à |\usepackage[textwidth=7in]{geometry}|. Autre exemple:
 % \begin{quote}
 %  |\usepackage[lines=30, scale=0.8, text=7in]{geometry}|
 % \end{quote}
-% results in \texttt{[lines=30, textwidth=7in]}.
+% revient à saisir \texttt{[lines=30, textwidth=7in]}.
 %
 % \subsection{Valeurs par défaut}\label{sec:defaults}
 %
-% This section sums up the default settings for the auto-completion
-% described later.
+% Cette section résume le paramétrage par défaut pour l'autocomplétion
+% décrite par la suite.
 % 
-% The default vertical margin ratio is $2/3$, namely,
+% Le rapport des marges verticales est par défaut $2/3$, autrement dit,
 % \begin{equation}
-%  |top| : |bottom| = 2 : 3 \qquad\textit{default}.
+%  |top| : |bottom| = 2 : 3 \qquad\textit{par défaut}.
 % \end{equation}
-% As for the horizontal margin ratio, the default value depends on
-% whether the document is onesided or twosided,
+% Pour ce qui est du rapport des marges horizontales, la valeur par défaut
+% est liée au fait que le document est en recto uniquement ou recto-verso,
 % \begin{equation}
 %  |left|\;(|inner|) : |right|\;(|outer|) 
 %       = \left\{ \begin{array}{ll}
-%              1 : 1 \qquad\textit{default for oneside},\\
-%              2 : 3 \qquad\textit{default for twoside}.
+%              1 : 1 \qquad\textit{par défaut pour recto uniquement},\\
+%              2 : 3 \qquad\textit{par défaut pour recto-verso}.
 %         \end{array}\right.
 % \end{equation}
-% Obviously the default horizontal margin ratio for oneside is `centering'.
+% \`{A} l'évidence, le rapport pour les marges horizontales en recto uniquement
+% correspond à un centrage.
 %
-% The \Gm\ package has the following default setting for
-% \textit{onesided} documents:
+% L'extension \Gm\ a le paramétrage par défaut suivant pour les documents en
+% recto uniquement :
 % \begin{itemize}\setlength{\itemsep}{-.5\parsep}
-%   \item |scale=0.7| (\gpart{corps} is $0.7 \times \gpart{papier}$)
-%   \item |marginratio={1:1, 2:3}| (1:1 for horizontal and 2:3 for vertical margins)
-%   \item |ignoreall| (the header, footer, marginal notes are excluded
-%   when calculating the size of \gpart{corps}.)
+%   \item |scale=0.7| (le \gpart{corps} vaut $0,7 \times\textrm{le }
+%   \gpart{papier}$) ;
+%   \item |marginratio={1:1, 2:3}| (1\string:1 pour les marges horizontales 
+%   et 2\string:3 pour les marges verticales) ;
+%   \item |ignoreall| (l'en-tête, le pied de page, les notes marginales sont
+%   exclus lors du calcul de la taille du \gpart{corps}).
 % \end{itemize}
-% For \textit{twosided} document with |twoside| option, the default
-% setting is the same as \textit{onesided} except that the horizontal
-% margin ratio is set to |2:3| as well.
+% Pour un document recto-verso avec l'option |twoside|, le paramétrage par 
+% défaut est le même que celui du recto uniquement à ceci près que le rapport
+% des marges horizontales est fixé à |2:3| également.
 %
-% Additional options overwrite the previous specified dimensions. 
+% Les options additionnelles écrasent les dimensions spécifiées auparavant.
 %
 % \subsection{Autocomplétion} \label{sec:rules}
 %
-% Figure~\ref{fig:specrule} shows schematically how many specification
-% patterns exist and how to solve the ambiguity of the
-% specifications. Each axis shows the numbers of lengths
-% explicitly specified for body and margins. \Ss($m$,$b$) presents the
-% specification with a set of numbers $(\gpart{marge},\gpart{corps})=(m,b)$.
+% La Figure~\ref{fig:specrule} montre schématiquement comment des motifs de
+% spécification existent et comment résoudre l'ambiguité des spécifications.
+% Chaque axe montre le nombre de longueurs explicitement spécifiées pour le
+% corps et les marges. \Ss($m$,$b$) représente la spécification avec une paire
+% de nombres $(\gpart{marge},\gpart{corps})=(m,b)$.
 %
-% For example, the specification |width=14cm, left=3cm| is categorized
-% into \Ss(1,1), which is an adequate specification. If you add
-% |right=4cm|, it would be in \Ss(2,1) and overspecified. 
-% If only |width=14cm| is given, it's in \Ss(0,1), underspecified. 
+% Par exemple, la spécification |width=14cm, left=3cm| est catégorisée en 
+% \Ss(1,1), ce qui est une spécification adéquate. Si vous ajoutez |right=4cm|,
+% elle deviendrait \Ss(2,1), surspécifiée. Si seule |width=14cm| est donnée,
+% elle passe à \Ss(0,1), sous-spécifiée.
 %
-% The \Gm\ package has the auto-completion mechanism, in which
-% if the layout parameters are underspecified or overspecified,
-% \Gm\ works out the ambiguity using the defaults and other
-% relations. Here are the specifications and the completion rules.
-%
+% L'extension \Gm\ dispose d'un mécanisme d'autocomplétion, dans lequel si les
+% paramètres de mise en forme sont sous-spécifiés ou surspécifiés, \Gm\ résoud
+% l'ambiguité en utilisant des valeurs par défaut ou d'autres relations. Voici
+% les spécifications et les règles de complétion.
 % \begin{figure}
 %  \centering
 %  {\unitlength=1pt
@@ -1439,33 +1438,33 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \put(100,100){\makebox(99,20){\large 0}}
 %  \put(100,50){\framebox(99,49){}}
 %  \put(100,80){\makebox(99,15){\Ss(0,0)}}
-%  \put(100,50){\makebox(99,49){use |scale|}}
+%  \put(100,50){\makebox(99,49){utilise |scale|}}
 %  {\linethickness{1pt}%
 %  \put(150,35){\line(0,1){30}}
 %  \put(150,35){\line(-1,3){4}}
 %  \put(150,35){\line(1,3){4}}}
 %  \put(100,0){\framebox(99,49){}}
 %  \put(100,2){\makebox(99,15){\Ss(0,1)}}
-%  \put(100,0){\makebox(99,49){use |marginratio|}}
+%  \put(100,0){\makebox(99,49){utilise |marginratio|}}
 %  \put(200,120){\makebox(99,12){\large \gpart{marge}}}
 %  \put(200,100){\makebox(99,20){\large 1}}
-%  \put(200,50){\framebox(99,49){use |scale|}}
-%  \put(200,55){\makebox(89,10)[r]{\scriptsize\shortstack[l]{if |ratio|\\specified}}}
+%  \put(200,50){\framebox(99,49){utilise |scale|}}
+%  \put(200,55){\makebox(89,10)[r]{\scriptsize\shortstack[l]{si |ratio|\\spécifié}}}
 %  \put(200,2){\makebox(99,15){\Ss(1,1)}}
 %  {\linethickness{1pt}%
 %  \put(250,35){\line(0,1){30}}
 %  \put(250,35){\line(-1,3){4}}
 %  \put(250,35){\line(1,3){4}}}
 %  {\linethickness{1pt}%
-%  \put(225,25){\line(-1,0){35}}
+%  \put(225,25){\line(-1,0){30}}
 %  \put(225,25){\line(-3,-1){12}}
 %  \put(225,25){\line(-3,1){12}}}
 %  \put(200,80){\makebox(99,15){\Ss(1,0)}}
-%  \put(200,0){\framebox(99,49){\textcolor{red}{\textit{solvable}}}}
+%  \put(200,0){\framebox(99,49){\textcolor{red}{\textit{résolvable}}}}
 %  \put(300,100){\makebox(99,20){\large 2}}
 %  \put(300,80){\makebox(99,15){\Ss(2,0)}}
-%  \put(300,50){\framebox(99,49){\textcolor{red}{\textit{solvable}}}}
-%  \put(300,0){\framebox(99,49){forget |body|}}
+%  \put(300,50){\framebox(99,49){\textcolor{red}{\textit{résolvable}}}}
+%  \put(300,0){\framebox(99,49){néglige |body|}}
 %  \put(300,2){\makebox(99,15){\Ss(2,1)}}
 %  {\linethickness{1pt}%
 %  \multiput(290,65)(5,0){6}{\line(1,0){3}}
@@ -1476,107 +1475,109 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \put(350,65){\line(-1,-3){4}}
 %  \put(350,65){\line(1,-3){4}}}
 %  \end{picture}}
-%  \caption[Specifications and completion rules]{%
+%  \caption[Spécifications et règle de complétion]{%
 %  \begin{minipage}[t]{.7\textwidth}\raggedright\small
-%  Specifications \Ss(0,0) to \Ss(2,1) and the completion rules
-%  (arrows). Column and row numbers denote the number of explicitly
-%  specified lengths for margin and body respectively. \Ss($m$,$b$) denote a
-%  specification with a set of the numbers $(\gpart{marge},\gpart{corps})=(m,b)$. 
+%  Spécifications \Ss(0,0) à \Ss(2,1) et les règles de complétion (flêches).
+%  Les nombres des colonnes et des lignes indiquent le nombre de longueurs 
+%  explicitement spécifiées pour les marges et le corps respectivement. 
+%  \Ss($m$,$b$) résume une spécification avec une paire de nombre 
+%  $(\gpart{marge},\gpart{corps})=(m,c)$. 
 %  \end{minipage}}
 %  \label{fig:specrule}
 % \end{figure}
 %
 % \begin{Spec}
 % \item[\Ss(0,0)]
-% Nothing is specified. The \Gm\ package sets \gpart{corps} with the
-% default |scale| ($=0.7$). \\ For example, |width| is set to be
-% $|0.7|\times|layoutwidth|$. Note that by default |layoutwidth| 
-% and |layoutheight| will be equal to |\paperwidth| and |\paperheight|
-% respectively.
-% Thus \Ss(0,0) goes to \Ss(0,1). See \Ss(0,1).
+% Rien n'est spécifié. L'extension \Gm\ précise le \gpart{corps} avec la valeur
+% par défaut de |scale| ($=0,7$). \\ Par exemple, |width| est fixée à 
+% $0,7\times|layoutwidth|$. Notez que par défaut |layoutwidth| et
+% |layoutheight| seront égaux à |\paperwidth| et |\paperheight|
+% respectivement.
+% Ainsi \Ss(0,0) passe à \Ss(0,1). Voir \Ss(0,1).
 % \bigskip
 %
 % \item[\Ss(0,1)]
-% Only \gpart{corps} is specified, such as |width=7in|, |lines=20|,
-% |body={20cm,24cm}|, |scale=0.9| and so forth.
-% Then \Gm\ sets margins with the margin ratio.
-% If the margin ratio is not specified, the default is used.
-% The default vertical margin ratio is defined as
+% Seul le \gpart{corps} est spécifié, comme dans |width=7in|, |lines=20|,
+% |body={20cm,24cm}|, |scale=0.9| et ainsi de suite. Alors \Gm\ détermine les
+% marges avec le rapport de marge. Si le rapport de marge n'est pas spécifié,
+% la valeur par défaut est utilisée. Le rapport de marge vertical par défaut 
+% est défini comme 
 % \begin{equation}
-%  |top| : |bottom| = 2 : 3 \qquad\textit{default}.
+%  |top| : |bottom| = 2 : 3 \qquad\textit{par défaut}.
 % \end{equation}
-% As for the horizontal margin ratio, the default value depends on
-% whether the document is onesided or twosided,
+% Tandis qu'avec le rapport de marge horizontal, la valeur par défaut change
+% selon que le document soit en recto uniquement ou recto-verso,
 % \begin{equation}
 %  |left|\;(|inner|) : |right|\;(|outer|) 
 %       = \left\{ \begin{array}{ll}
-%              1 : 1 \qquad\textit{default for oneside},\\
-%              2 : 3 \qquad\textit{default for twoside}.
+%              1 : 1 \qquad\textit{par défaut en recto uniquement},\\
+%              2 : 3 \qquad\textit{par defaut en recto-verso}.
 %         \end{array}\right.
 % \end{equation}
-% For example, if |height=22cm| is specified on A4 paper, 
-% \Gm\ calculates |top| margin as follows:
+% Par exemple, si |height=22cm| est spécifié pour du papier A4, \Gm\ calcule
+% la marge |top| comme suit :
 % \begin{equation}
 %   \begin{array}{ll}
 %   |top| &= ( |layoutheight| - |height| ) \times 2/5 \\
-%         &= (29.7-22)\times2/5 = 3.08\textrm{(cm)}
+%         &= (29,7-22)\times2/5 = 3,08\textrm{(cm)}
 %   \end{array}
 % \end{equation}
-% Thus |top| margin and body |height| have been determined, the
-% specification for the vertical goes to \Ss(1,1) and
-% all the parameters can be solved.
+% La marge |top| et la hauteur |height| du corps ayant été déterminées, la
+% spécification verticale passe à \Ss(1,1) et tous les paramètres peuvent 
+% être déterminés.
 % \bigskip
 %
 % \item[\Ss(1,0)]
-% Only one margin is specified, such as |bottom=2cm|, |left=1in|,
-% |top=3cm|, and so forth.
+% Seule une marge est spécifiée, comme dans |bottom=2cm|, |left=1in|,
+% |top=3cm| et ainsi de suite.
 %
+
 % \begin{itemize}
-% \item \textbf{If the margin ratio is \textit{not} specified}, \Gm\ sets
-% \gpart{corps} with the default |scale| ($=0.7$). 
-% For example, if |top=2.4cm| is specified, \Gm\ sets
-% \begin{center}
-%     $|height|= |0.7|\times|layoutheight|$ 
-%            ~~($=|0.7\paperheight|$ by default),
-% \end{center}
-% then \Ss(1,0) goes to \Ss(1,1), in which |bottom| is calculated
-% with $|layoutheight|-(|height|+|top|)$ and results in 6.51cm on A4
-% paper if the layout size is equal to the paper size.
+% \item \textbf{Si le rapport de marge \textit{n'est pas} spécifié}, \Gm\ 
+% détermine le \gpart{corps} avec la valeur par défaut de |scale| ($=0,7$). 
+% Par exemple, si |top=2.4cm| est spécifié, \Gm\ choisit
+% \begin{equation}
+%     |height|= 0,7\times|layoutheight| 
+%            ~~(=0,7\times|\paperheight| \textrm{ par défaut})
+% \end{equation}
+% et alors \Ss(1,0) passe à \Ss(1,1), avec lequel |bottom| est calculé avec
+% $|layoutheight|-(|height|+|top|)$ soit 6,51cm sur format A4
+% si la taille du gabarit est celle du papier.
 % \medskip
-% \item \textbf{If the margin ratio is specified}, such as
-% |hmarginratio={1:2}|, |vratio={3:4}| and so forth,
-% \Gm\ sets the other% margin with the specified margin ratio.
-% For example, if a set of options ``|top=2.4cm,vratio={3:4}|'' is
-% specified, \Gm\ sets |bottom| to be |3.2cm| calculating
-% \begin{center}
-%     $|bottom|= |top|/3\times4 = 3.2\textrm{cm}$
-% \end{center}
-% Thus \Ss(1,0) goes to \Ss(2,0).
+% \item \textbf{Si le rapport de marge est spécifié}, comme dans
+% |hmarginratio={1:2}|, |vratio={3:4}| et ainsi de suite, \Gm\ détermine
+% l'autre marge avec le rapport de marge spécifié. Par exemple, si un ensemble
+% d'options \og |top=2.4cm,vratio={3:4}| \fg{} est spécifié, \Gm\ fixe |bottom|
+% à 3,2cm par le calcul suivant :
+% \begin{equation}
+%     |bottom|= |top|/3\times4 = 3,2\textrm{cm}
+% \end{equation}
+% Ainsi \Ss(1,0) passe à \Ss(2,0).
 % \end{itemize}
 %
-% Note that the version 4 or earlier used to set the other margin
-% with the margin ratio. In the version 5, therefore, with the
-% same specification, the result will be different from the one in the
-% version 4. For example, if only |top=2.4cm| is specified, 
-% you got |bottom=2.4cm| in the version 4 or earlier, but you will get
-% |bottom=6.51cm| in the version 5.
+% Notez que les versions 4 et précédentes utilisaient le rapport de marge pour
+% déterminer l'autre marge. C'est pourquoi, dans la version 5, avec la même 
+% spécification, la mise en page changera par rapport à la version 4. Par
+% exemple, si seule |top=2.4cm| est spécifiée, vous obtenez |bottom=2.4cm| 
+% dans les versions 4 et antérieures mais vous obtiendrez |bottom=6.51cm| dans 
+% la version 5.
 % \bigskip
 %
 % \item[\Ss(2,1)]
-% The \gpart{corps} and two \gpart{marges} are all specified, such as
-%  |vdivide={1in,8in,1.5in}|, ``|left=3cm,width=13cm,right=4cm|'' and
-%  so forth. Since \Gm\ basically gives priority to \gpart{marges}
-%  if dimensions are overspecified, \Gm\ forgets and resets
-%  \gpart{corps}. For example, if you specify
+% Le \gpart{corps} et les deux \gpart{marges} sont spécifiés, comme dans
+%  |vdivide={1in,8in,1.5in}|, |left=3cm,width=13cm,right=4cm| et ainsi de
+%  suite. Comme \Gm\ donne la priorité aux \gpart{marges} si les dimensions
+%  sont surspécifiées, \Gm\ redéfinit le \gpart{corps}. Par exemple, si vous 
+% spécifiez
 % \begin{center}
 %    |\usepackage[a4paper,left=3cm,width=13cm,right=4cm]{geometry}|,
 % \end{center}
-% |width| is reset to be 14cm because the width of a A4 paper is 21cm
-% long.
+% |width| est redéfini à 14cm car la largeur d'un format A4 est de 21cm.
 % \end{Spec}
 %
-% \section{Changing layout mid-document}\label{sec:midchange}
+% \section{Changement de mise en forme en cours de document}\label{sec:midchange}
 %
+% \tradini
 % The version 5 provides the new commands \cs{newgeometry\{$\cdots$\}}
 % and \cs{restoregeometry}, which allow you to change page dimensions
 % in the middle of the document. Unlike \cs{geometry} in the preamble,
@@ -1701,9 +1702,9 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %   \item |twoside, bindingoffset=1cm|
 % \end{itemize}
 % In this case, |textwidth| is shorter than that of the default twosided
-% document by $0.7\times|1cm|$ ($=|0.7cm|$) because the default width of
+% document by $0,7\times|1cm|$ ($=|0,7cm|$) because the default width of
 % \gpart{corps} is set with |scale=0.7|, which means 
-% $|width|=|0.7|\times|layoutwidth|$ ($=|0.7\paperwidth|$ by default).
+% $|width|=|0,7|\times|layoutwidth|$ ($=|0,7\paperwidth|$ by default).
 %
 % \item A layout with the left, right, and top margin |3cm|, |2cm| and
 % |2.5in| respectively, with textheight of 40 lines, and with the head and

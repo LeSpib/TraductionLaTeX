@@ -25,13 +25,13 @@ L'objectif est de traduire la documentation de l'extension *geometry* utilisable
   - [x] Dimensions fondamentales
   - [x] Pilotes
   - [x] Autres options
-- [ ] Traitement des options (3 pages)
-  - [ ] Ordre de chargement
-  - [ ] Ordre des options
-  - [ ] Priorité
-  - [ ] Valeurs par défaut
-  - [ ] Autocomplétion
-- [ ] Changing layout mid-document (1 page)
+- [x] Traitement des options (3 pages)
+  - [x] Ordre de chargement
+  - [x] Ordre des options
+  - [x] Priorité
+  - [x] Valeurs par défaut
+  - [x] Autocomplétion
+- [ ] Changement de mise en forme en cours de document (1 page)
 - [ ] Examples (2 pages)
 - [ ] Known problems 
 - [ ] Acknoledgments (1 page)
