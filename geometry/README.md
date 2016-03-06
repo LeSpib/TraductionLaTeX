@@ -32,8 +32,8 @@ L'objectif est de traduire la documentation de l'extension *geometry* utilisable
   - [x] Valeurs par défaut
   - [x] Autocomplétion
 - [x] Changement de mise en page en cours de document (1 page)
-- [ ] Examples (2 pages)
-- [ ] Known problems 
+- [x] Exemples (2 pages)
+- [ ] Problèmes connus 
 - [ ] Acknoledgments (1 page)
 - [ ] Implementation (22 pages)
 - [ ] Config file (1 page)

@@ -1658,7 +1658,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \put(383,29){\makebox(80,12){\gpart{pied de page}}}
 %  \put(383,29){\line(1,0){80}}
 %  \put(375,20){\framebox(95,140){}}
-%  \put(375,0){\makebox(95,20){L3 (nouvelle)}}
+%  \put(375,0){\makebox(95,20){M3 (nouvelle)}}
 %  \end{picture}}
 % \end{center}
 %
@@ -1686,88 +1686,95 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %
 % \section{Exemples}
 %
-% \tradini
 % \begin{enumerate}
-% \item A onesided page layout with the text area centered in the paper.
-% The examples below have the same result because the horizontal margin ratio
-% is set |1:1| for oneside by default.
+% \item Une mise en page en recto uniquement avec le texte centré sur le
+% papier. Les exemples ci-dessous ont le même résultat car le rapport de marge
+% horizontale est fixé à |1:1| par défaut en recto uniquement. 
 % \begin{itemize}
 %   \item |centering|
 %   \item |marginratio=1:1|
 %   \item |vcentering|
 % \end{itemize}
 %
-% \item A twosided page layout with the inside offset for binding set to |1cm|.
+% \item Une mise en page recto-verso avec un décalage intérieur pour la
+% reliure fixé à 1cm.
 % \begin{itemize}
 %   \item |twoside, bindingoffset=1cm|
 % \end{itemize}
-% In this case, |textwidth| is shorter than that of the default twosided
-% document by $0,7\times|1cm|$ ($=|0,7cm|$) because the default width of
-% \gpart{corps} is set with |scale=0.7|, which means 
-% $|width|=|0,7|\times|layoutwidth|$ ($=|0,7\paperwidth|$ by default).
+% Dans ce cas, le |textwidth| est plus petit que celui d'un document 
+% recto-verso par défaut de $0,7\times|1cm|$ ($=|0,7cm|$) car la largeur du
+% \gpart{corps} est fixée avec |scale=0.7|, ce qui signifie que  
+% $|width|=|0,7|\times|layoutwidth|$ ($=|0,7\paperwidth|$ par défaut).
 %
-% \item A layout with the left, right, and top margin |3cm|, |2cm| and
-% |2.5in| respectively, with textheight of 40 lines, and with the head and
-% foot of the page included in \gpart{corps intégral}.
-% The two examples below have the same result.
+% \item Une mise en page avec les marges gauche, droite et haute fixées 
+% respectivement à 3cm, 2cm et 2.5in,avec une hauteur de texte mise à 40
+% lignes et avec une en-tête et un pied de page inclus dans le
+% \gpart{corps intégral}.
+% Les deux exemples ci-dessous ont le même effet.
 % \begin{itemize}
 %   \item |left=3cm, right=2cm, lines=40, top=2.5in, includeheadfoot|
 %   \item |hmargin={3cm,2cm}, tmargin=2.5in, lines=40, includeheadfoot|
 % \end{itemize}
 %
-% \item A layout with the height of \gpart{corps intégral} |10in|, the bottom
-%  margin |2cm|, and the default width. The top margin will be calculated
-%  automatically. Each solution below results in the same page layout.
+% \item Une mise en page avec une hauteur du \gpart{corps intégral} à 10in, 
+% la marge basse à |2cm| et une largeur par défaut. La marge haute sera
+% calculée automatiquement. Chaque solution ci-dessous conduit à la même
+% mise en page.
 % \begin{itemize}
 %     \item |vdivide={*, 10in, 2cm}|
 %     \item |bmargin=2cm, height=10in|
 %     \item |bottom=2cm, textheight=10in| 
 % \end{itemize}
-% Note that dimensions for \gpart{en-tête} and \gpart{pied de page} are excluded from
-% |height| of \gpart{corps intégral}. An additional |includefoot| makes
-% \cs{footskip} included in |totalheight|. Therefore, in the two cases below,
-% |textheight| in the former layout is shorter than the latter
-% (with 10in exactly) by \cs{footskip}. In other words, 
-% |height| = |textheight| + |footskip| when |includefoot=true| in this case.
+% Notez que les dimensions de l'\gpart{en-tête} et du \gpart{pied de page}
+% sont exclues de la hauteur |height| du \gpart{corps intégral}. Un 
+% |includefoot| additionnel inclut \cs{footskip} dans |totalheight|. 
+% C'est pourquoi, dans les deux cas de mise en page ci-dessous, |textheight|
+% dans le premier cas est plus petit que dans le second (avec 10in exactement)
+% avec un écart de \cs{footskip}. En d'autres termes, |height| = |textheight| 
+% + |footskip| quand |includefoot=true|.
 % \begin{itemize}
 %     \item |bmargin=2cm, height=10in, includefoot|
 %     \item |bottom=2cm, textheight=10in, includefoot|
 % \end{itemize}
 %
-% \item A layout with \glen{textwidth} and \glen{textheight} 90\% of the
-% paper and with \gpart{corps} centered.
-% Each solution below results in the same page layout as long as
-% |layoutwidth| and |layoutheight| are not modified from the default.
+% \item Une mise en page avec |textwidth| et |textheight| à 90\% de la taille
+% du papier et avec le \gpart{corps} centré. Chaque solution ci-dessous aboutit
+% au même résultat tant que |layoutwidth| et |layoutheight| ne sont pas 
+% changé par rapport aux valeurs par défaut.
 % \begin{itemize}
 %   \item |scale=0.9, centering|
 %   \item |text={.9\paperwidth,.9\paperheight}, ratio=1:1|
 %   \item |width=.9\paperwidth, vmargin=.05\paperheight, marginratio=1:1|
 %   \item |hdivide={*,0.9\paperwidth,*}, vdivide={*,0.9\paperheight,*}|
-%   (as for onesided documents)
+%   (pour les documents en recto uniquement)
 %   \item |margin={0.05\paperwidth,0.05\paperheight}|
 % \end{itemize}
-% You can add |heightrounded| to avoid an ``underfull vbox warning'' like
+% Vous pouvez ajouter |heightrounded| pour éviter un message de \og 
+% \emph{sous-remplissage vertical} \fg{} comme
 % \begin{quote}\small
 %  |Underfull \vbox (badness 10000) has occurred while \output is active|.
 % \end{quote}
-% See Section~\ref{sec:body} for the detailed description about |heightrounded|.
+% Voir la Section~\ref{sec:body} pour la description détaillée de 
+% |heightrounded|.
 %
-% \item A layout with the width of marginal notes set to |3cm| and included
-% in the width of \gpart{corps intégral}. The following examples are the same.
+% \item Une mise en page avec la largeur de la note marginale fixée à 3cm et
+% incluse dans la largeur du \gpart{corps intégral}. Les exemples suivants
+% donnent le même résultat.
 % \begin{itemize}
 %   \item |marginparwidth=3cm, includemp|
 %   \item |marginpar=3cm, ignoremp=false|
 % \end{itemize}
 %
-% \item A layout where \gpart{corps} occupies the whole paper with A5 paper in
-% landscape. The following examples are the same.
+% \item Une mise en page où le \gpart{corps} occupe tout l'espace du papier
+% en format A5 et en orientation paysage. Les exemples suivants conduisent
+% à la même mise en page.
 % \begin{itemize}
 %   \item |a5paper, landscape, scale=1.0|
 %   \item |landscape=TRUE, paper=a5paper, margin=0pt|
 % \end{itemize}
 %
-% \item  A screen size layout appropriate for presentation with PC and video
-%        projector.
+% \item Une mise en page en format écran appropriée pour les présentations
+% sur ordinateurs et vidéoprojecteurs.
 % \begin{verbatim}
 %   \documentclass{slide}
 %   \usepackage[screen,margin=0.8in]{geometry}
@@ -1775,44 +1782,46 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %   \begin{slide}
 %      ...
 %   \end{slide}\end{verbatim}
-% \item A layout with fonts and spaces both enlarged from A4 to A3.
-%  In the case below, the resulting paper size is A3.
+% \item Une mise en page avec les fontes et les espaces tous redimensionnés
+% du format A4 au A3. Sur le cas ci-dessous, le résultat tient sur un papier
+% A3.
 % \begin{itemize}
 %     \item |a4paper, mag=1414|.
 % \end{itemize}
-% If you want to have a layout with two times bigger fonts, but without
-% changing paper size, you can type
+% Si vous voulez avoir une mise en page avec des fontes deux foix plus grandes
+% mais pas de changement de la taille du papier, vous pouvez saisir
 % \begin{itemize}
 %   \item |letterpaper, mag=2000, truedimen|.
 % \end{itemize}
-%  You can add |dvips| option, that is useful to preview it with proper
-%  paper size by |dviout| or |xdvi|.
+%  Vous pouvez ajouter l'option |dvips|, ce qui est pratique pour 
+%  prévisualiser, avec la taille de papier associée, dans |dviout| ou |xdvi|.
 %
-% \item  Changing the layout of the first page and leaving the others
-%  as default before loading \Gm. Use |pass| option, |\newgeometry|
-%  and |\restoregeometry|.
+% \item Une mise en page avec une première page spécifique et les pages 
+% suivantes ramenées à la présentation par défaut existant avant le chargement
+% de \Gm. Utilisez l'option |pass|, |\newgeometry| et |\restoregeometry|.
 % \begin{verbatim}
 %   \documentclass{book}
 %   \usepackage[pass]{geometry}
-%      % 'pass' disregards the package layout,
-%      %  so the original 'book' layout is memorized here.
+%      % 'pass' annule la mise en page de l'extension
+%      %  de façon à ce que la mise en page de 'book' soit mémorisée ici.
 %   \begin{document}
-%   \newgeometry{margin=1cm}% changes the first page dimensions.
+%   \newgeometry{margin=1cm}% change les dimensions de la première page.
 %      Page 1
-%   \restoregeometry % restores the original 'book' layout.
-%      Page 2 and more
+%   \restoregeometry % restaure la mise en page initiale de 'book'.
+%      Page 2 et suivantes
 %   \end{document}\end{verbatim}
 %
-% \item A complex page layout.
+% \item Une mise en page complexe.
 % \begin{verbatim}
 %  \usepackage[a5paper, landscape, twocolumn, twoside,
 %      left=2cm, hmarginratio=2:1, includemp, marginparwidth=43pt, 
 %      bottom=1cm, foot=.7cm, includefoot, textheight=11cm, heightrounded,
 %      columnsep=1cm, dvips,  verbose]{geometry}\end{verbatim}
-% Try typesetting it and checking out the result yourself. |:-)|
+% Essayez de la tester pour voir par vous-même le résultat. |:-)|
 % \end{enumerate}
 %
-% \section{Known problems}
+% \section{Problèmes connus}
+% \tradini
 % \begin{itemize}
 %  \item With |mag| $\neq 1000$ and |truedimen|,
 %  |paperwidth| and |paperheight| shown in verbose mode are different
