@@ -1821,22 +1821,23 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % \end{enumerate}
 %
 % \section{Problèmes connus}
-% \tradini
 % \begin{itemize}
-%  \item With |mag| $\neq 1000$ and |truedimen|,
-%  |paperwidth| and |paperheight| shown in verbose mode are different
-%  from the real size of the resulted PDF. The PDF itself is correct anyway.
+%  \item Avec |mag| $\neq 1000$ et |truedimen|,
+%  |paperwidth| et |paperheight| indiqué en mode |verbose| sont différents
+%  de la véritable taille du PDF final. Le PDF en lui-même est correct
+%  cependant.
 %
-%  \item With |mag| $\neq 1000$, \textit{no} |truedimen|
-%  and \textsf{hyperref}, \textsf{hyperref} should be loaded before \Gm. 
-%  Otherwise the resulted PDF size will become wrong.
+%  \item Avec |mag| $\neq 1000$, \textit{aucun} |truedimen|
+%  et \textsf{hyperref}, \textsf{hyperref} devrait être chargé avant \Gm. 
+%  Sans cela, la taille du PDF final sera incorrecte.
 %
-%  \item With \textsf{crop} package and |mag| $\neq 1000$,
-%  |center| option of \textsf{crop} doesn't work well.
+%  \item Avec l'extension \textsf{crop} et |mag| $\neq 1000$, l'option 
+%  |center| de \textsf{crop} ne fonctionne pas bien.
 %
 % \end{itemize}
 %
-% \section{Acknowledgments}
+% \section{Remerciements}
+% \tradini
 %  The author appreciates helpful suggestions and comments from many
 %  people including (in alphabetical order of family name):
 %  Jean-Bernard Addor, 
