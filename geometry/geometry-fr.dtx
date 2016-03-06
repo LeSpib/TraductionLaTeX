@@ -1575,48 +1575,47 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % |width| est redéfini à 14cm car la largeur d'un format A4 est de 21cm.
 % \end{Spec}
 %
-% \section{Changement de mise en forme en cours de document}\label{sec:midchange}
+% \section{Changement de mise en page en cours de document}\label{sec:midchange}
 %
-% \tradini
-% The version 5 provides the new commands \cs{newgeometry\{$\cdots$\}}
-% and \cs{restoregeometry}, which allow you to change page dimensions
-% in the middle of the document. Unlike \cs{geometry} in the preamble,
-% \cs{newgeometry} is available only after |\begin{document}|,
-% resets all the options ever specified except for the
-% papersize-related options: |landscape|, |portrait|, and paper size
-% options (such as |papersize|, |paper=a4paper| and so forth), which
-% can't be changed with \cs{newgeometry}. 
+% La version 5 apporte les nouvelles commandes \cs{newgeometry\{$\cdots$\}}
+% et \cs{restoregeometry} qui vous permettent de changer la mise en page en
+% cours de document. Contrairement à \cs{geometry} dans le préambule,
+% \cs{newgeometry} est disponible uniquement après |\begin{document}|. Elle
+% réinitialise toutes les options spécifiées à l'exception des options liées à
+% l'orientation du papier (|landscape|, |portrait|) et les options liées à la
+% taille du papier (telles que |papersize|, |paper=a4paper| et ainsi de suite),
+% qui ne peuvent être changées avec \cs{newgeometry}. 
 %
-% The command \cs{restoregeometry} restores the page layout specified
-% in the preamble (before |\begin{document}|) with the options to
-% |\usepackage{geometry}| and \cs{geometry}.
+% La commande \cs{restoregeometry} restaure la mise en page spécifiée dans le
+% préambule (avant |\begin{document}|) avec les options de 
+% |\usepackage{geometry}| et \cs{geometry}.
 %
-% Note that both \cs{newgeometry} and \cs{restoregeometry} insert
-% |\clearpage| where they are called.
+% Notez que \cs{newgeometry} et \cs{restoregeometry} insèrent toutes deux
+% un |\clearpage| là où elles sont appelées.
 %
-% Below is an example of changing layout mid-document. The layout L1
-% specified with |hmargin=3cm| (|left| and |right| margins are |3cm|
-% long) is changed to L2 with |left=3cm|, |right=1cm| and
-% |bottom=0.1cm|. The layout L1 is restored with
+% Ci-dessous est présenté un exemple de changement de mise en page en cours
+% de document. La mise en forme M1 indiquant |hmargin=3cm| (les marges |left|
+% et |right| mesurent 3cm) est changée pour la mise en page M2 avec |left=3cm|,
+% |right=1cm| et |bottom=0.1cm|. La mise en page M1 est restaurée avec
 % \cs{restoregeometry}. 
 % \begin{center}
 % \begin{minipage}{.8\textwidth}
 % |\usepackage[hmargin=3cm]{geometry}|\\
 % |\begin{document}|\\
 %  \medskip
-%  \hspace{1cm}\fbox{Layout L1}\\
+%  \hspace{1cm}\fbox{Mise en page M1}\\
 % \medskip
 % |\newgeometry{left=3cm,right=1cm,bottom=0.1cm}|\\
 % \medskip
-%  \hspace{1cm}\fbox{Layout L2 (new)}\\
+%  \hspace{1cm}\fbox{Mise en page M2 (nouvelle)}\\
 % \medskip
 % |\restoregeometry|\\
 % \medskip
-%  \hspace{1cm}\fbox{Layout L1 (restored)}\\
+%  \hspace{1cm}\fbox{Mise en page M1 (restaurée)}\\
 % \medskip
 % |\newgeometry{margin=1cm,includefoot}|\\
 % \medskip
-%  \hspace{1cm}\fbox{Layout L3 (new)}\\
+%  \hspace{1cm}\fbox{Mise en page M3 (nouvelle)}\\
 % \medskip
 % |\end{document}|
 % \end{minipage}%
@@ -1625,13 +1624,13 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \centering\small
 %  {\unitlength=.8pt
 %  \begin{picture}(450,180)(0,0)
-%  \put(0,165){\makebox(95,12){(saved)}}
+%  \put(0,165){\makebox(95,12){(sauvegardée)}}
 %  \put(15,135){\framebox(65,10){\gpart{en-tête}}}
 %  \put(15,60){\framebox(65,70){\gpart{corps}}}
 %  \put(15,45){\makebox(65,12){\gpart{pied de page}}}
 %  \put(15,45){\line(1,0){65}}
 %  \put(0,20){\framebox(95,140){}}
-%  \put(0,0){\makebox(95,20){L1}}
+%  \put(0,0){\makebox(95,20){M1}}
 %  \put(104,90){\circle*{4}}
 %  \put(110,90){\circle*{4}}
 %  \put(116,90){\circle*{4}}
@@ -1640,7 +1639,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \put(140,33){\framebox(71,97){\gpart{corps}}}
 %  \put(140,21){\makebox(71,12){\gpart{pied de page}}}
 %  \put(125,20){\framebox(95,140){}}
-%  \put(125,0){\makebox(95,20){L2 (new)}}
+%  \put(125,0){\makebox(95,20){M2 (nouvelle)}}
 %  \put(229,90){\circle*{4}}
 %  \put(235,90){\circle*{4}}
 %  \put(241,90){\circle*{4}}
@@ -1650,7 +1649,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \put(265,45){\makebox(65,12){\gpart{pied de page}}}
 %  \put(265,45){\line(1,0){65}}
 %  \put(250,20){\framebox(95,140){}}
-%  \put(250,0){\makebox(95,20){L1 (restored)}}
+%  \put(250,0){\makebox(95,20){M1 (restaurée)}}
 %  \put(354,90){\circle*{4}}
 %  \put(360,90){\circle*{4}}
 %  \put(366,90){\circle*{4}}
@@ -1659,34 +1658,35 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \put(383,29){\makebox(80,12){\gpart{pied de page}}}
 %  \put(383,29){\line(1,0){80}}
 %  \put(375,20){\framebox(95,140){}}
-%  \put(375,0){\makebox(95,20){L3 (new)}}
+%  \put(375,0){\makebox(95,20){L3 (nouvelle)}}
 %  \end{picture}}
 % \end{center}
 %
-% A set of commands |\savegeometry{|\meta{name}|}| and
-% |\loadgeometry{|\meta{name}|}| is handy if you want to
-% reuse more different layouts in your document.
-% For example, 
+% Un ensemble de commandes |\savegeometry{|\meta{nom}|}| et
+% |\loadgeometry{|\meta{nom}|}| est pratique si vous souhaitez réutiliser à
+% plusieurs reprises différentes mises en page dans votre document. Par
+% exemple, 
 % \begin{center}
 % \begin{verbatim}
 %     \usepackage[hmargin=3cm]{geometry}
 %     \begin{document}
-%           L1
+%           M1
 %     \newgeometry{left=3cm,right=1cm,bottom=0.1cm}
-%     \savegeometry{L2}
-%           L2 (new, saved)
+%     \savegeometry{M2}
+%           M2 (nouvelle, sauvée)
 %     \restoregeometry
-%           L1 (restored)
+%           M1 (restaurée)
 %     \newgeometry{margin=1cm,includefoot}
-%           L3 (new)
-%     \loadgeometry{L2}
-%           L2 (loaded)
+%           M3 (nouvelle)
+%     \loadgeometry{M2}
+%           M2 (chargée)
 %     \end{document}
 % \end{verbatim}
 % \end{center}
 %
-% \section{Examples}
+% \section{Exemples}
 %
+% \tradini
 % \begin{enumerate}
 % \item A onesided page layout with the text area centered in the paper.
 % The examples below have the same result because the horizontal margin ratio

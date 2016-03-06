@@ -17,7 +17,7 @@ L'objectif est de traduire la documentation de l'extension *geometry* utilisable
   - [x] Commandes
   - [x] Argument optionnel
   - [x] Types d'option
-- [ ] Détail des options (6 pages)
+- [x] Détail des options (6 pages)
   - [x] Taille du papier 
   - [x] Taille du gabarit
   - [x] Taille du corps
@@ -31,7 +31,7 @@ L'objectif est de traduire la documentation de l'extension *geometry* utilisable
   - [x] Priorité
   - [x] Valeurs par défaut
   - [x] Autocomplétion
-- [ ] Changement de mise en forme en cours de document (1 page)
+- [x] Changement de mise en page en cours de document (1 page)
 - [ ] Examples (2 pages)
 - [ ] Known problems 
 - [ ] Acknoledgments (1 page)
