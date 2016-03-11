@@ -1876,12 +1876,12 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 % \newgeometry{hmargin={4.2cm,1.5cm},vmargin={1cm,1cm},
 %              includeheadfoot, marginpar=3.8cm}
 % \section{Implémentation}
-% \tradini
+
 %    \begin{macrocode}
 %<*package>
 %    \end{macrocode}
-%    This package requires the following packages:
-%    \textsf{keyval}, \textsf{ifpdf}, \textsf{ifvtex} and \textsf{ifxetex}.
+%    Cette extension requiert les extensions suivantes :
+%    \textsf{keyval}, \textsf{ifpdf}, \textsf{ifvtex} et \textsf{ifxetex}.
 %    \begin{macrocode}
 \RequirePackage{keyval}%
 \RequirePackage{ifpdf}%
@@ -1889,7 +1889,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 \RequirePackage{ifxetex}%
 %    \end{macrocode}
 % 
-%    Internal switches are declared here.
+%    Les bascules internes sont déclarées ici.
 %    \begin{macrocode}
 \newif\ifGm@verbose
 \newif\ifGm@landscape
@@ -1909,20 +1909,20 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macrocode}
 %    \begin{macro}{\Gm@cnth}
 %    \begin{macro}{\Gm@cntv}
-%    The counters for horizontal and vertical partitioning patterns.
+%    Les compteurs pour les motifs de partitionnement horizontal et vertical 
 %    \begin{macrocode}
 \newcount\Gm@cnth
 \newcount\Gm@cntv
 %    \end{macrocode}
 %    \end{macro}\end{macro}
 %    \begin{macro}{\c@Gm@tempcnt}
-%    The counter is used to set number with \textsf{calc}.
+%    Le compteur est utilisé pour fixer des nombres avec \textsf{calc}.
 %    \begin{macrocode}
 \newcount\c@Gm@tempcnt
 %    \end{macrocode}
 %    \end{macro}
 %    \begin{macro}{\Gm@bindingoffset}
-%    The binding offset for the inner margin.
+%    Le décalage pour la reluire dans la marge intérieure.
 %    \begin{macrocode}
 \newdimen\Gm@bindingoffset
 %    \end{macrocode}
@@ -1930,8 +1930,8 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \begin{macro}{\Gm@wd@mp}
 %    \begin{macro}{\Gm@odd@mp}
 %    \begin{macro}{\Gm@even@mp}
-%    Correction lengths for \cs{textwidth}, \cs{oddsidemargin} and 
-%    \cs{evensidemargin} in |includemp| mode.
+%    Les longueurs de correction pour \cs{textwidth}, \cs{oddsidemargin} et 
+%    \cs{evensidemargin} en mode |includemp|.
 %    \begin{macrocode}
 \newdimen\Gm@wd@mp
 \newdimen\Gm@odd@mp
@@ -1942,7 +1942,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \begin{macro}{\Gm@layoutheight}
 %    \begin{macro}{\Gm@layouthoffset}
 %    \begin{macro}{\Gm@layoutvoffset}
-%    The dimensions for the layout area.
+%    Les dimensions du \trad{gabarit}.
 %    \begin{macrocode}
 \newdimen\Gm@layoutwidth
 \newdimen\Gm@layoutheight
@@ -1951,23 +1951,23 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macrocode}
 %    \end{macro}\end{macro}\end{macro}\end{macro}
 %    \begin{macro}{\Gm@dimlist}
-%    The token in which \LaTeX{} native dimensions can be stored.
+%    Le token dans lequel peuvent être stockées les dimensions de base de
+%    \LaTeX.
 %    \begin{macrocode}
 \newtoks\Gm@dimlist
 %    \end{macrocode}
 %    \end{macro}
 %    \begin{macro}{\Gm@warning}
-%    The macro to print warning messages.
+%    La commande affichant les messages d'alerte.
 %    \begin{macrocode}
 \def\Gm@warning#1{\PackageWarningNoLine{geometry}{#1}}%
 %    \end{macrocode}
 %    \end{macro}
 %    \begin{macro}{\ifGm@preamble}
-%    The macro executes the option given as an argument
-%    only if it's specified in the preamble, as the options of
-%    |\usepackage| and/or the argument of |\geometry|. Otherwise,
-%    the macro would print the warning message and ignores 
-%    the option setting.
+%    La commande exécute les options données en argument uniquement si
+%    elles sont spécifiées dans le préambule, en tant qu'options de 
+%    |\usepackage| et/ou qu'options de |\geometry|. Sinon, la commande
+%    affiche un message d'avertissement et ignore les options indiquées.
 %    \begin{macrocode}
 \def\ifGm@preamble#1{%
   \ifGm@newgm
@@ -1980,21 +1980,22 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \begin{macro}{\Gm@Dhratio}
 %    \begin{macro}{\Gm@Dhratiotwo}
 %    \begin{macro}{\Gm@Dvratio}
-%    The default values for the horizontal and vertical 
-%    \textsl{marginalratio} are defined. \cs{Gm@Dhratiotwo} denotes the
-%    default value of horizontal \textsl{marginratio} for twoside
-%    page layout with left and right margins swapped on verso pages,
-%    which is set by |twoside|.
+%    Les valeurs par défaut du rapport de marge horizontal et du rapport
+%    de marge vertical sont définis. \cs{Gm@Dhratiotwo} représente le
+%    rapport de marge horizontal dans une mise en page recto-verso avec
+%    les marges gauche et droite interverties sur les pages au verso,
+%    ce qui est fixé par |twoside|.
 %    \begin{macrocode}
-\def\Gm@Dhratio{1:1}% = left:right default for oneside
-\def\Gm@Dhratiotwo{2:3}% = inner:outer default for twoside.
-\def\Gm@Dvratio{2:3}% = top:bottom default
+\def\Gm@Dhratio{1:1}% = gauche:droite par défaut en recto uniquement
+\def\Gm@Dhratiotwo{2:3}% = intérieure:extérieur par défaut en recto-verso.
+\def\Gm@Dvratio{2:3}% = haute:basse par défaut
 %    \end{macrocode}
 %    \end{macro}\end{macro}\end{macro}
 %    \begin{macro}{\Gm@Dhscale}
 %    \begin{macro}{\Gm@Dvscale}
-%    The default values for the horizontal and vertical \textsl{scale}
-%    are defined with $0.7$.
+%    Les valeurs par défaut pour les rapports entre la taille du 
+%    \gpart{corps intégral} et du \gpart{papier} sur l'axe horizontal et l'axe
+%    vertical sont mises à $0.7$.
 %    \begin{macrocode}
 \def\Gm@Dhscale{0.7}%
 \def\Gm@Dvscale{0.7}%
@@ -2005,7 +2006,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \begin{macro}{\Gm@pdftex}%
 %    \begin{macro}{\Gm@xetex}%
 %    \begin{macro}{\Gm@vtex}%
-%    The driver names.
+%    Les noms des pilotes.
 %    \begin{macrocode}
 \def\Gm@dvips{dvips}%
 \def\Gm@dvipdfm{dvipdfm}%
@@ -2016,7 +2017,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macro}\end{macro}\end{macro}\end{macro}\end{macro}
 %    \begin{macro}{\Gm@true}%
 %    \begin{macro}{\Gm@false}%
-%    The macros for |true| and |false|.
+%    Les commandes pour |true| et |false|.
 %    \begin{macrocode}
 \def\Gm@true{true}%
 \def\Gm@false{false}%
@@ -2024,14 +2025,14 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macro}\end{macro}
 %    \begin{macro}{\Gm@orgpw}
 %    \begin{macro}{\Gm@orgph}
-%    These macros keep original paper (media) size intact.
+%    Ces commandes gardent intact la taille du papier (medium) original.
 %    \begin{macrocode}
 \edef\Gm@orgpw{\the\paperwidth}%
 \edef\Gm@orgph{\the\paperheight}%
 %    \end{macrocode}
 %    \end{macro}\end{macro}
 %    \begin{macro}{\Gm@savelength}
-%    The macro saves the specified length to |\Gm@restore|.
+%    Ces commandes sauvegardent la longueur spécifiée dans |\Gm@restore|.
 %    \begin{macrocode}
 \def\Gm@savelength#1{%
   \g@addto@macro\Gm@restore{\expandafter\noexpand\expandafter\csname
@@ -2039,7 +2040,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macrocode}
 %    \end{macro}
 %    \begin{macro}{\Gm@saveboolean}
-%    The macro saves the specified boolean to |\Gm@restore|.
+%    Ces commandes sauvegardent les booléens spécifiés dans |\Gm@restore|.
 %    \begin{macrocode}
 \def\Gm@saveboolean#1{%
   \csname if#1\endcsname
@@ -2050,14 +2051,14 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macrocode}
 %    \end{macro}
 %    \begin{macro}{\Gm@restore}
-%    The initialization for |\Gm@restore|.
+%    L'initialisation de |\Gm@restore|.
 %    \begin{macrocode}
 \def\Gm@restore{}%
 %    \end{macrocode}
 %    \end{macro}
 %    \begin{macro}{\Gm@save}
-%    The definition of the macro saving the real lengths
-%    \LaTeX\ options.
+%    La définition de la commande sauvegardant les longueurs réelles des
+%    options de \LaTeX.
 %    \begin{macrocode}
 \def\Gm@save{%
   \Gm@savelength{paperwidth}%
@@ -2088,8 +2089,8 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macrocode}
 %    \end{macro}
 %    \begin{macro}{\Gm@initnewgm}
-%    The macro initializes the parameters for layout
-%    in |\newgeometry|.
+%    Cette commande initialise les paramètres de mise en page dans 
+%    |\newgeometry|.
 %    \begin{macrocode}
 \def\Gm@initnewgm{%
   \Gm@passfalse
@@ -2121,8 +2122,8 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macrocode}
 %    \end{macro}
 %    \begin{macro}{\Gm@initall}
-%    This initialization is called as soon as the package is load
-%    It's also called as soon as |reset| option is specified.
+%    Cette initialisation est appelée dès que l'extention est chargée. Elle est
+%    également appelée dès que l'option |reset| est spécifiée.
 %    \begin{macrocode}
 \def\Gm@initall{%
   \let\Gm@driver\@empty
@@ -2138,14 +2139,15 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macrocode}
 %    \end{macro}
 %    \begin{macro}{\Gm@setdriver}
-%    The macro sets the specified driver.
+%    Cette commande définit le pilote spécifié.
 %    \begin{macrocode}
 \def\Gm@setdriver#1{%
   \expandafter\let\expandafter\Gm@driver\csname Gm@#1\endcsname}%
 %    \end{macrocode}
 %    \end{macro}
 %    \begin{macro}{\Gm@unsetdriver}
-%    The macro unsets the specified driver if it has been set.
+%    Cette commande annule la prise en charge du pilote spécifié si il
+%    a été déjà sélectionné.
 %    \begin{macrocode}
 \def\Gm@unsetdriver#1{%
   \expandafter\ifx\csname Gm@#1\endcsname\Gm@driver\let\Gm@driver\@empty\fi}%
@@ -2153,7 +2155,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macro}
 %    \begin{macro}{\Gm@setbool}
 %    \begin{macro}{\Gm@setboolrev}
-%    The macros for boolean option processing.
+%    Les commandes pour le traitement des options booléennes.
 %    \begin{macrocode}
 \def\Gm@setbool{\@dblarg\Gm@@setbool}%
 \def\Gm@setboolrev{\@dblarg\Gm@@setboolrev}%
@@ -2164,10 +2166,10 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macro}\end{macro}
 %    \begin{macro}{\Gm@doif}
 %    \begin{macro}{\Gm@doifelse}
-%    \cs{Gm@doif} excutes the third argument |#3| using a boolean value
-%    |#2| of a option |#1|. \cs{Gm@doifelse} executes the third
-%    argument |#3| if a boolean option |#1| with its value |#2| |true|,
-%    and executes the fourth argument |#4| if |false|.
+%    \cs{Gm@doif} exécute le troisième argument |#3| en utilisant la valeur
+%    booléenne |#2| de l'option |#1|. \cs{Gm@doifelse} exécute le troisième
+%    argument |#3| si l'option booléenne |#1| a sa valeur |#2| valant 
+%    |true| et exécute le quatrième argument |#4| si cette valeur |false|.
 %    \begin{macrocode}
 \def\Gm@doif#1#2#3{%
   \lowercase{\def\Gm@bool{#2}}%
@@ -2191,7 +2193,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macrocode}
 %    \end{macro}\end{macro}
 %    \begin{macro}{\Gm@reverse}
-%    The macro reverses a bool value.
+%    Cette commande fait une valeur booléenne à la valeur opposée.
 %    \begin{macrocode}
 \def\Gm@reverse#1{%
   \csname ifGm@#1\endcsname
@@ -2200,9 +2202,9 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macro}
 %    \begin{macro}{\Gm@defbylen}
 %    \begin{macro}{\Gm@defbycnt}
-%    Macros \cs{Gm@defbylen} and \cs{Gm@defbycnt} can be used to define
-%    \cs{Gm@xxxx} variables by length and counter respectively
-%    with \textsf{calc} package.
+%    Les commandes \cs{Gm@defbylen} et \cs{Gm@defbycnt} peuvent être utilisées
+%    pour définir des variables \cs{Gm@xxxx} respectivement avec une longueur
+%    ou avec un compteur, ceci avec l'extension \textsf{calc}.
 %    \begin{macrocode}
 \def\Gm@defbylen#1#2{%
   \begingroup\setlength\@tempdima{#2}%
@@ -2213,20 +2215,20 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macrocode}
 %    \end{macro}\end{macro}
 %    \begin{macro}{\Gm@set@ratio}
-%    The macro parses the value of options specifying marginal ratios,
-%    which is used in \cs{Gm@setbyratio} macro.
+%    Cette commande analyse la valeur des options spécifiant les rapports de
+%    marge, ce qui est utilisé dans la commande \cs{Gm@setbyratio}.
 %    \begin{macrocode}
 \def\Gm@sep@ratio#1:#2{\@tempcnta=#1\@tempcntb=#2}%
 %    \end{macrocode}
 %    \end{macro}
 %    \begin{macro}{\Gm@setbyratio}
-%    The macro determines the dimension specified by |#4| calculating
-%    |#3|$\times a / b$, where $a$ and $b$ are given by \cs{Gm@mratio}
-%    with $a:b$ value. If |#1| in brackets is |b|, $a$ and $b$ are swapped.
-%    The second argument with |h| or |v| denoting horizontal or vertical
-%    is not used in this macro.
+%    Cette commande détermine la dimension spécifiée par |#4| en calculant 
+%    |#3|$\times a / b$, où $a$ et $b$ sont donnés par \cs{Gm@mratio}
+%    avec une valeur $a:b$. Si |#1| entre crochet vaut |b|, $a$ et $b$ sont
+%    intervertis. Le deuxième argument avec |h| ou |v| précisant l'aspect 
+%    horizontal ou vertical n'est pas utilisé dans cette commande.
 %    \begin{macrocode}
-\def\Gm@setbyratio[#1]#2#3#4{% determine #4 by ratio
+\def\Gm@setbyratio[#1]#2#3#4{% détermine #4 avec un rapport
   \expandafter\Gm@sep@ratio\Gm@mratio\relax
   \if#1b
     \edef\@@tempa{\the\@tempcnta}%
@@ -2243,9 +2245,9 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macrocode}
 %    \end{macro}
 %    \begin{macro}{\Gm@detiv}
-%    This macro determines the fourth length(|#4|) from |#1|(\glen{layoutwidth}
-%    or \glen{layoutheight}), |#2| and |#3|. It is used in
-%    \cs{Gm@detall} macro.
+%    Cette commande détermine la quatrième longueur (|#4|) à partir de 
+%    |#1|(\glen{layoutwidth} ou \glen{layoutheight}), |#2| et |#3|. Elle
+%    est utilisée dans la commande \cs{Gm@detall}.
 %    \begin{macrocode}
 \def\Gm@detiv#1#2#3#4{% determine #4.
   \expandafter\setlength\expandafter\@tempdima\expandafter
@@ -2264,11 +2266,12 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macrocode}
 %    \end{macro}
 %    \begin{macro}{\Gm@detiiandiii}
-%    This macro determines |#2| and |#3| from |#1| with the first argument
-%    (|#1|) can be |width| or |height|, which is expanded into dimensions
-%    of paper and total body. It is used in \cs{Gm@detall} macro.
+%    Cette commande détermine |#2| et |#3| à partir de |#1|, l'argument 
+%    |#1| pouvant être |width| ou |height|. Cet argument est développé alors 
+%    en dimensions du papier et du corps total. Elle est utilisée dans la
+%    commande \cs{Gm@detall}.
 %    \begin{macrocode}
-\def\Gm@detiiandiii#1#2#3{% determine #2 and #3.
+\def\Gm@detiiandiii#1#2#3{% détermine #2 et #3.
   \expandafter\setlength\expandafter\@tempdima\expandafter
     {\csname Gm@layout#1\endcsname}%
   \expandafter\setlength\expandafter\@tempdimb\expandafter
@@ -2298,10 +2301,9 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macro}
 %
 %    \begin{macro}{\Gm@detall} 
-%    This macro determines partition of each direction.
-%    The first argument (|#1|) should be |h| or |v|, the second (|#2|)
-%    |width| or |height|, the third (|#3|) |lmargin| or |top|, and 
-%    the last (|#4|) |rmargin| or |bottom|.
+%    Cette commande détermine la partition de chaque direction. L'argument |#1|
+%    vaut |h| or |v|, |#2| vaut |width| ou |height|, |#3| vaut |lmargin| ou 
+%    |top|, et |#4| vaut |rmargin| or |bottom|.
 %    \begin{macrocode}
 \def\Gm@detall#1#2#3#4{%
   \@tempcnta\z@
@@ -2313,9 +2315,9 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
     \edef\Gm@Dmratio{\Gm@Dvratio}%
   \fi
 %    \end{macrocode}
-%    \cs{@tempcnta} is treated as a three-digit binary value with
-%    top, middle and bottom denoted |left|(|top|), |width|(|height|)
-%    and |right|(|bottom|) margins user specified respectively.
+%    \cs{@tempcnta} est traité comme un nombre binaire à trois chiffres 
+%    associés respectivement aux marges |left|(|top|), |width|(|height|)
+%    et |right|(|bottom|) spécifiées par l'utilisateur.
 %    \begin{macrocode}
   \if#1h
     \ifx\Gm@lmargin\@undefined\else\advance\@tempcnta4\relax\fi
@@ -2329,7 +2331,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
     \Gm@cntv\@tempcnta
   \fi
 %    \end{macrocode}
-%    Case the value is |000| (=0) with nothing fixed (default):
+%    Cas où le nombre est |000| (=0) lorsque rien n'est fixé (cas par défaut) :
 %    \begin{macrocode}
   \ifcase\@tempcnta
     \if#1h
@@ -2339,7 +2341,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
     \fi
     \Gm@detiiandiii{#2}{#3}{#4}%
 %    \end{macrocode}
-%    Case |001| (=1) with |right|(|bottom|) fixed:
+%    Cas |001| (=1) avec la marge |right|(|bottom|) fixée:
 %    \begin{macrocode}
   \or
     \ifx\Gm@mratio\@undefined
@@ -2357,15 +2359,16 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
     \fi
     \Gm@detiv{#2}{#3}{#4}{#2}%
 %    \end{macrocode}
-%    Case |010| (=2) with |width|(|height|) fixed:
+%    Cas |010| (=2) avec la dimension centrale |width|(|height|) fixée :
 %    \begin{macrocode}
   \or\Gm@detiiandiii{#2}{#3}{#4}%
 %    \end{macrocode}
-%    Case |011| (=3) with both |width|(|height|) and |right|(|bottom|) fixed:
+%    Cas |011| (=3) avec la dimension centrale |width|(|height|) et la marge 
+%    |right|(|bottom|) fixées :
 %    \begin{macrocode}
   \or\Gm@detiv{#2}{#2}{#4}{#3}%
 %    \end{macrocode}
-%    Case |100| (=4) with |left|(|top|) fixed:
+%    Cas |100| (=4) avec la marge |left|(|top|) fixée :
 %    \begin{macrocode}
   \or
     \ifx\Gm@mratio\@undefined
@@ -2383,15 +2386,17 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
     \fi
     \Gm@detiv{#2}{#3}{#4}{#2}%
 %    \end{macrocode}
-%    Case |101| (=5) with both |left|(|top|) and |right|(|bottom|) fixed:
+%    Cas |101| (=5) avec les marges |left|(|top|) et |right|(|bottom|) fixées :
 %    \begin{macrocode}
   \or\Gm@detiv{#2}{#3}{#4}{#2}%
 %    \end{macrocode}
-%    Case |110| (=6) with both |left|(|top|) and |width|(|height|) fixed:
+%    Cas |110| (=6) avec la marge |left|(|top|) et la dimension centrale
+%    |width|(|height|) fixées :
 %    \begin{macrocode}
   \or\Gm@detiv{#2}{#2}{#3}{#4}%
 %    \end{macrocode}
-%    Case |111| (=7) with all fixed though it is over-specified:
+%    Cas |111| (=7) avec les deux marges et la dimension centrale fixée, cas
+%    sur-spécifié :
 %    \begin{macrocode}
   \or\Gm@warning{Over-specification in `#1'-direction.%
                   ^^J\@spaces `#2' (\@nameuse{Gm@#2}) is ignored}%
@@ -2401,8 +2406,8 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macro}
 %
 %    \begin{macro}{\Gm@clean}
-%    The macro for setting unspecified dimensions to be \cs{@undefined}.
-%    This is used by \cs{geometry} macro.
+%    Cette commande sert à donner à des dimensions non spécifiées la valeur 
+%    \cs{@undefined}. Elle sert dans la commande \cs{geometry}.
 %    \begin{macrocode}
 \def\Gm@clean{%
   \ifnum\Gm@cnth<4\let\Gm@lmargin\@undefined\fi
@@ -2424,7 +2429,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macro}
 %
 %    \begin{macro}{\Gm@parse@divide}
-%    The macro parses (|h|,|v|)|divide| options.
+%    Cette commande analyse les options (|h|,|v|)|divide|.
 %    \begin{macrocode}
 \def\Gm@parse@divide#1#2#3#4{%
   \def\Gm@star{*}%
@@ -2447,7 +2452,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macro}
 %
 %    \begin{macro}{\Gm@branch}
-%    The macro splits a value into the same two values.
+%    Cette valeur scinde une valeur en deux valeurs identiques.
 %    \begin{macrocode}
 \def\Gm@branch#1#2#3{%
   \@tempcnta\z@
@@ -2467,7 +2472,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macro}
 %
 %    \begin{macro}{\Gm@magtooffset}
-%    This macro is used to adjust offsets by \cs{mag}.
+%    Cette commande est utilisée pour ajuster les décalages par \cs{mag}.
 %    \begin{macrocode}
 \def\Gm@magtooffset{%
   \@tempdima=\mag\Gm@truedimen sp%
@@ -2482,8 +2487,8 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macro}
 %
 %    \begin{macro}{\Gm@setlength}
-%    This macro stores \LaTeX{} native dimensions, which are stored and 
-%    set afterwards.
+%    Cette commande stocke les dimensions de base de \LaTeX{}, lesquelles sont
+%    stockées et fixées par la suite.
 %    \begin{macrocode}
 \def\Gm@setlength#1#2{%
   \let\Gm@len=\relax\let\Gm@td=\relax
@@ -2492,7 +2497,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macrocode}
 %    \end{macro}
 %    \begin{macro}{\Gm@expandlengths}
-%    This macro processes \cs{Gm@dimlist}.
+%    Cette commande traite \cs{Gm@dimlist}.
 %    \begin{macrocode}
 \def\Gm@expandlengths{%
   \def\Gm@td{\Gm@truedimen}%
@@ -2502,8 +2507,8 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macro}
 %
 %    \begin{macro}{\Gm@setsize}
-%    The macro sets |paperwidth| and |paperheight| dimensions
-%    using \cs{Gm@setlength} macro.
+%    Cette commande définit les dimensions |paperwidth| et |paperheight|
+%    en utilisant la commande \cs{Gm@setlength}.
 %    \begin{macrocode}
 \def\Gm@setsize#1(#2,#3)#4{%
   \let\Gm@td\relax
@@ -2513,13 +2518,13 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macrocode}
 %    \end{macro}
 %    \begin{macro}{\Gm@setpaper@ifpre}
-%    The macro changes the paper size.
+%    Cette commande change le format du papier.
 %    \begin{macrocode}
 \def\Gm@setpaper@ifpre#1{%
   \ifGm@preamble{#1}{\def\Gm@paper{#1}\@nameuse{Gm@#1}{paper}}}%
 %    \end{macrocode}
 %    \end{macro}
-%    Various paper size are defined here.
+%    Différents formats de papier sont définis ici.
 %    \begin{macrocode}
 \@namedef{Gm@a0paper}#1{\Gm@setsize{#1}(841,1189){mm}}% ISO A0
 \@namedef{Gm@a1paper}#1{\Gm@setsize{#1}(594,841){mm}}% ISO A1
@@ -2561,7 +2566,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macrocode}
 %
 %  \begin{key}{Gm}{paper}
-%    |paper| takes a paper name as its value.
+%    |paper| prend le nom du format de papier comme sa valeur.
 %    \begin{macrocode}
 \define@key{Gm}{paper}{\setkeys{Gm}{#1}}%
 \let\KV@Gm@papername\KV@Gm@paper
@@ -2575,7 +2580,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \begin{key}{Gm}{legalpaper}
 %  \begin{key}{Gm}{executivepaper}
 %  \begin{key}{Gm}{screen}
-%    The following paper names are available.
+%    Les noms de format de papier disponibles sont les suivants.
 %    \begin{macrocode}
 \define@key{Gm}{a0paper}[true]{\Gm@setpaper@ifpre{a0paper}}%
 \define@key{Gm}{a1paper}[true]{\Gm@setpaper@ifpre{a1paper}}%
@@ -2620,7 +2625,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \begin{key}{Gm}{paperwidth}
 %  \begin{key}{Gm}{paperheight}
 %  \begin{key}{Gm}{papersize}
-%    Direct specification for paper size is also possible.
+%    La spécification directe du format est aussi possible.
 %    \begin{macrocode}
 \define@key{Gm}{paperwidth}{\ifGm@preamble{paperwidth}{%
   \def\Gm@paper{custom}\Gm@setlength\paperwidth{#1}}}%
@@ -2634,7 +2639,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \begin{key}{Gm}{layoutwidth}
 %  \begin{key}{Gm}{layoutheight}
 %  \begin{key}{Gm}{layoutsize}
-%    Direct specification for layout size is also possible.
+%    La spécification du gabarit est aussi possible.
 %    \begin{macrocode}
 \define@key{Gm}{layout}{\Gm@layouttrue\@nameuse{Gm@#1}{Gm@layout}}%
 \let\KV@Gm@layoutname\KV@Gm@layout
@@ -2645,7 +2650,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \end{key}\end{key}\end{key}\end{key}
 %  \begin{key}{Gm}{landscape}
 %  \begin{key}{Gm}{portrait}
-%    Paper orientation setting.
+%    Définition de l'orientation du papier.
 %    \begin{macrocode}
 \define@key{Gm}{landscape}[true]{\ifGm@preamble{landscape}{%
   \Gm@doifelse{landscape}{#1}%
@@ -2660,8 +2665,9 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \begin{key}{Gm}{hscale}
 %  \begin{key}{Gm}{vscale}
 %  \begin{key}{Gm}{scale}
-%    These options can determine the length(s) of \gpart{corps intégral}
-%    giving \textit{scale(s)} against the paper size.
+%    Ces options peuvent déterminer la ou les longueurs associées au
+%    \gpart{corps intégral} en se basant sur des rapports (\textit{scales})
+%    entre ces dimensions et le format du papier.
 %    \begin{macrocode}
 \define@key{Gm}{hscale}{\Gm@hbodytrue\edef\Gm@hscale{#1}}%
 \define@key{Gm}{vscale}{\Gm@vbodytrue\edef\Gm@vscale{#1}}%
@@ -2673,9 +2679,9 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \begin{key}{Gm}{total}
 %  \begin{key}{Gm}{totalwidth}
 %  \begin{key}{Gm}{totalheight}
-%    These options give concrete dimension(s) of \gpart{corps intégral}.
-%    |totalwidth| and |totalheight| are aliases of |width| and |height|
-%    respectively.
+%    Ces options donnent des dimensions fixées au \gpart{corps intégral}.
+%    |totalwidth| et |totalheight| sont des alias de |width| et |height|
+%    respectivement.
 %    \begin{macrocode}
 \define@key{Gm}{width}{\Gm@hbodytrue\Gm@defbylen{width}{#1}}%
 \define@key{Gm}{height}{\Gm@vbodytrue\Gm@defbylen{height}{#1}}%
@@ -2688,8 +2694,8 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \begin{key}{Gm}{textheight}
 %  \begin{key}{Gm}{text}
 %  \begin{key}{Gm}{body}
-%    These options directly sets the dimensions \cs{textwidth} and
-%    \cs{textheight}. |body| is an alias of |text|.
+%    Ces options fixent directement les dimensions \cs{textwidth} et
+%    \cs{textheight}. |body| est un alias de |text|.
 %    \begin{macrocode}
 \define@key{Gm}{textwidth}{\Gm@hbodytrue\Gm@defbylen{textwidth}{#1}}%
 \define@key{Gm}{textheight}{\Gm@vbodytrue\Gm@defbylen{textheight}{#1}}%
@@ -2698,7 +2704,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macrocode}
 %  \end{key}\end{key}\end{key}\end{key}
 %  \begin{key}{Gm}{lines}
-%    The option sets \cs{textheight} with the number of lines.
+%    Cette option fixe \cs{textheight} avec un nombre de lignes.
 %    \begin{macrocode}
 \define@key{Gm}{lines}{\Gm@vbodytrue\Gm@defbycnt{lines}{#1}}%
 %    \end{macrocode}
@@ -2708,8 +2714,8 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \begin{key}{Gm}{includeheadfoot}
 %  \begin{key}{Gm}{includemp}
 %  \begin{key}{Gm}{includeall}
-%    The options take the corresponding dimensions as part of
-%    \gpart{corps}.
+%    Ces options impliquent que les dimensions associées sont \trad{parties
+%    prenantes du \gpart{corps}}.
 %    \begin{macrocode}
 \define@key{Gm}{includehead}[true]{\Gm@setbool{includehead}{#1}}%
 \define@key{Gm}{includefoot}[true]{\Gm@setbool{includefoot}{#1}}%
@@ -2727,8 +2733,8 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \begin{key}{Gm}{ignoreheadfoot}
 %  \begin{key}{Gm}{ignoremp}
 %  \begin{key}{Gm}{ignoreall}
-%  These options exclude \gpart{en-tête}, \gpart{pied de page}
-%  and \gpart{notes marginales} when determining \gpart{corps}.
+%  Ces options excluent l'\gpart{en-tête}, le \gpart{pied de page}
+%  et les \gpart{notes marginales} lors de la détermination du \gpart{corps}.
 %    \begin{macrocode}
 \define@key{Gm}{ignorehead}[true]{%
   \Gm@setboolrev[ignorehead]{includehead}{#1}}%
@@ -2745,7 +2751,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macrocode}
 %  \end{key}\end{key}\end{key}\end{key}\end{key}
 %  \begin{key}{Gm}{heightrounded}
-%    The option rounds \cs{textheight} to n-times of \cs{baselineskip}
+%    Cette option arrondit \cs{textheight} à $n$ fois \cs{baselineskip}
 %    plus \cs{topskip}.
 %    \begin{macrocode}
 \define@key{Gm}{heightrounded}[true]{\Gm@setbool{heightrounded}{#1}}%
@@ -2754,8 +2760,8 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \begin{key}{Gm}{hdivide}
 %  \begin{key}{Gm}{vdivide}
 %  \begin{key}{Gm}{divide}
-%    The options are useful to specify partitioning
-%    in each direction of the paper.
+%    Cette option sont utiles pour spécifier la décomposition du papier
+%    dans chaque direction.
 %    \begin{macrocode}
 \define@key{Gm}{hdivide}{\Gm@parse@divide{#1}{lmargin}{width}{rmargin}}%
 \define@key{Gm}{vdivide}{\Gm@parse@divide{#1}{tmargin}{height}{bmargin}}%
@@ -2776,10 +2782,10 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \begin{key}{Gm}{outermargin}
 %  \begin{key}{Gm}{top}
 %  \begin{key}{Gm}{bottom}
-%    These options set \gpart{marges}.
-%    |left|, |inner|, |innermargin| are aliases of |lmargin|.
-%    |right|, |outer|, |outermargin| are aliases of |rmargin|.
-%    |top| and |bottom| are aliases of |tmargin| and |bmargin| respectively.
+%    Ces options fixent les \gpart{marges}.
+%    |left|, |inner| et |innermargin| sont des alias de |lmargin|.
+%    |right|, |outer| et |outermargin| sont des alias de |rmargin|.
+%    |top| et |bottom| sont des alias de |tmargin| et |bmargin| respectivement.
 %    \begin{macrocode}
 \define@key{Gm}{lmargin}{\Gm@defbylen{lmargin}{#1}}%
 \define@key{Gm}{rmargin}{\Gm@defbylen{rmargin}{#1}}%
@@ -2800,7 +2806,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \begin{key}{Gm}{hmargin}
 %  \begin{key}{Gm}{vmargin}
 %  \begin{key}{Gm}{margin}
-%  These options are shorthands for setting \gpart{marges}.
+%  Ces options sont des raccourcis pour définir les \gpart{marges}.
 %    \begin{macrocode}
 \define@key{Gm}{hmargin}{\Gm@branch{#1}{lmargin}{rmargin}}%
 \define@key{Gm}{vmargin}{\Gm@branch{#1}{tmargin}{bmargin}}%
@@ -2814,7 +2820,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \begin{key}{Gm}{hratio}
 %  \begin{key}{Gm}{vratio}
 %  \begin{key}{Gm}{ratio}
-%  Options specifying the margin ratios.
+%  Ces options spécifient les rapports entre marges.
 %    \begin{macrocode}
 \define@key{Gm}{hmarginratio}{\edef\Gm@hmarginratio{#1}}%
 \define@key{Gm}{vmarginratio}{\edef\Gm@vmarginratio{#1}}%
@@ -2828,7 +2834,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \begin{key}{Gm}{hcentering}
 %  \begin{key}{Gm}{vcentering}
 %  \begin{key}{Gm}{centering}
-%    Useful shorthands to place \gpart{corps} centered.
+%    Quelques raccourcis utiles pour centrer le \gpart{corps}.
 %    \begin{macrocode}
 \define@key{Gm}{hcentering}[true]{\Gm@doifelse{hcentering}{#1}%
   {\def\Gm@hmarginratio{1:1}}{}}%
@@ -2838,6 +2844,7 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
   {\def\Gm@hmarginratio{1:1}\def\Gm@vmarginratio{1:1}}{}}%
 %    \end{macrocode}
 %  \end{key}\end{key}\end{key}
+% \tradini
 %  \begin{key}{Gm}{twoside}
 %    If |twoside=true|, \cs{@twoside} and \cs{@mparswitch} is set to |true|.
 %    \begin{macrocode}
@@ -3849,22 +3856,26 @@ the derived files: geometry.{sty,ins,drv}, geometry-samples.tex.
 %</package>
 %    \end{macrocode}
 %    \end{macro}
+%\tradfin
 %
-% \section{Config file}
-%    In the configuration file |geometry.cfg|, one can use
-%    \cs{ExecuteOptions} to set the site or user default settings.
+% \section{Fichier de configuration}
+%    Dans le fichier de configuration |geometry.cfg|, il est possible
+%    d'utiliser \cs{ExecuteOptions} pour définir les options par défaut
+%    du site ou de l'utilisateur.
 %    \begin{macrocode}
 %<*config>
 %<<SAVE_INTACT
 
-%  Uncomment and edit the line below to set default options.
+%  Retirer le symbole de commentaire (%) de la ligne suivante et éditez-la
+%  pour fixer les options par défaut.
 %\ExecuteOptions{a4paper}
 
 %SAVE_INTACT
 %</config>
 %    \end{macrocode}
 %
-% \section{Sample file}
+% \section{Fichier d'exemple}
+%\tradini
 %    Here is a sample document for the \Gm\ package.
 %    \begin{macrocode}
 %<*samples>

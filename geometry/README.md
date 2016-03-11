@@ -36,5 +36,5 @@ L'objectif est de traduire la documentation de l'extension *geometry* utilisable
 - [x] Problèmes connus 
 - [x] Remerciements (1 page)
 - [ ] Implémentation (22 pages)
-- [ ] Config file (1 page)
-- [ ] Sample file (1 page)
+- [x] Fichier de configuration (1 page)
+- [ ] Fichier d'exemple (1 page)
