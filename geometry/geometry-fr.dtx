@@ -6,9 +6,9 @@
 % --------------------------
 %
 % Ce travail peut être distribué et/ou modifié sous les conditions de la
-% License Publique du Projet LaTeX, soit en version 1.3c de cette license 
+% Licence Publique du Projet LaTeX, soit en version 1.3c de cette licence 
 % ou (à votre convenance) en version ultérieure. La dernière version de 
-% cette license est précisée à l'adresse suivante :
+% cette licence est précisée à l'adresse suivante :
 %    http://www.latex-project.org/lppl.txt
 % et les versions 1.3c ou suivantes font partie de toutes les distributions
 % de LaTeX depuis la version 01/12/2005.
@@ -55,9 +55,9 @@ Copyright (C) 1996-2010
 de Hideo Umeki <latexgeometry@gmail.com>
 
 Ce travail peut être distribué et/ou modifié sous les conditions de la
-License Publique du Projet LaTeX, soit en version 1.3c de cette license 
+Licence Publique du Projet LaTeX, soit en version 1.3c de cette licence 
 ou (à votre convenance) en version ultérieure. La dernière version de 
-cette license est précisée à l'adresse suivante :
+cette licence est précisée à l'adresse suivante :
    http://www.latex-project.org/lppl.txt
 et les versions 1.3c ou suivantes font partie de toutes les distributions
 de LaTeX depuis la version 01/12/2005.
@@ -319,7 +319,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 %
 % La Figure~\ref{fig:layout} montre les dimensions associées à la mise en page
 % telle que définies par l'extension \Gm. Le gabarit\footnote{Les noms des
-% fonctions présentées ci-après reprenant parfois les appelations anglaises, le
+% fonctions présentées ci-après reprenant parfois les appellations anglaises, le
 % terme gabarit se traduit par \emph{layout}, celui de corps intégral se
 % traduit par \emph{total body}, celui d'en-tête par \emph{head} (ou 
 % \emph{header}), celui de pied de page par \emph{foot} (ou \emph{footer}),
@@ -510,7 +510,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 % \end{equation}
 %
 % Une spécification avec deux des trois longueurs (|a|,|b| et |c|) fixées 
-% explicitement est résolvable. Si deux longueurs ou plus sont laissées
+% explicitement peut être résolue. Si deux longueurs ou plus sont laissées
 % non spécifiées ou \og sous-spécifiées \fg{}, l'\'{E}quation~(\ref{eq:Labc})
 % ne peut être résolue sans une autre relation entre elles. Si elles sont 
 % toutes spécifiées autrement dit trop spécifiées ou \og sur-spécifiées \fg{},
@@ -1013,7 +1013,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 %   de |paperwidth-2cm-15cm|.
 % \item[vdivide] partition verticale (marge haute, hauteur, marge basse).
 %   |vdivide=|\argiii{marge-haute}{hauteur}{marge-basse}.
-% \item[divide] |divide=|\vargiii{$A$}{$B$}{$C$} est interprêté comme 
+% \item[divide] |divide=|\vargiii{$A$}{$B$}{$C$} est interprété comme 
 %   |hdivide=|\vargiii{$A$}{$B$}{$C$} et |vdivide=|\vargiii{$A$}{$B$}{$C$}.
 % \end{Options}
 %
@@ -1052,7 +1052,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 %   par deux valeurs séparées par deux points. Chaque valeur devrait être un
 %   entier positif inférieur à 100 pour éviter les dépassements de calculs
 %   arithmétiques, par exemple |2:3| au lieu de |1:1.5|. Le rapport par 
-%   défaut est |1:1| pour du recto uniquemnt, |2:3| pour du recto-verso.
+%   défaut est |1:1| pour du recto uniquement, |2:3| pour du recto-verso.
 % \item[vmarginratio]
 %   rapport entre les marges verticales |top| et |bottom|. La rapport par
 %   défaut est |2:3|.
@@ -1147,7 +1147,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 %    |headheight=|\meta{longueur} ou |head=|\meta{longueur}.
 % \item[headsep] modifie \cs{headsep}, espace séparant l'en-tête et le texte
 %    (corps). |headsep=|\meta{longueur}.
-% \item[footskip\OR foot]~\\ modifie \cs{footskip}, distance separant la ligne
+% \item[footskip\OR foot]~\\ modifie \cs{footskip}, distance séparant la ligne
 %    de base de la dernière ligne de texte et la ligne de base du pied de page.
 %    |footskip=|\meta{longueur} ou |foot=|\meta{longueur}.
 % \item[nohead] supprime l'espace pour l'en-tête, ce qui est équivalent à la
@@ -1253,7 +1253,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 % \item[\onlypre reset] remet les dimensions de la mise en page et autres 
 %   bascules dans l'état où elles étaient avant le chargement de \Gm. Les 
 %   options données dans |geometry.cfg| sont également ignorées. Notez que cela
-%   ne peut traiter |pass| et |mage| avec |truedimen|.
+%   ne peut traiter |pass| et |mag| avec |truedimen|.
 %   |reset=false| n'a pas d'effet et n'annule pas les éventuels 
 %   |reset|(|=true|) précédents. Par exemple, quand vous saisissez
 %   \begin{quote}
@@ -1296,10 +1296,11 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 % 
 % \subsection{Ordre de chargement}\label{sec:loadorder}
 %
-% S'il existe un fichier |geometry.cfg| quelque part où \TeX{} peut le trouver, \Gm\ le charge en premier. Par exemple, dans |geometry.cfg| vous pouvez écrire 
-% |\ExecuteOptions{a4paper}|, ce qui spécifie le format A4 comme format par
-% défaut. De fait, vous pouvez utiliser toutes les options définies dans \Gm\ 
-% avec with |\ExecuteOptions{}|.
+% S'il existe un fichier |geometry.cfg| quelque part où \TeX{} peut le trouver,
+% \Gm\ le charge en premier. Par exemple, dans |geometry.cfg| vous pouvez 
+% écrire |\ExecuteOptions{a4paper}|, ce qui spécifie le format A4 comme format
+% par défaut. De fait, vous pouvez utiliser toutes les options définies dans 
+% \Gm\ avec |\ExecuteOptions{}|.
 % 
 % L'ordre de chargement dans le préambule de votre document est le suivant :
 % \begin{enumerate}
@@ -1351,7 +1352,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 %  
 % Il existe plusieurs manières de fixer les dimensions du \gpart{corps}:
 % |scale|, |total|, |text| et |lines|. L'extension \Gm\ donne une plus haute
-% priorité aux spécifications les plus concrêtes. Voici la règle de priorité
+% priorité aux spécifications les plus concrètes. Voici la règle de priorité
 % pour le \gpart{corps}.
 % \[\begin{array}{c}
 % \textrm{priorité:}\qquad\textrm{basse}\quad
@@ -1413,19 +1414,19 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 % \subsection{Autocomplétion} \label{sec:rules}
 %
 % La Figure~\ref{fig:specrule} montre schématiquement comment des motifs de
-% spécification existent et comment résoudre l'ambiguité des spécifications.
+% spécification existent et comment résoudre l'ambiguïté des spécifications.
 % Chaque axe montre le nombre de longueurs explicitement spécifiées pour le
 % corps et les marges. \Ss($m$,$b$) représente la spécification avec une paire
 % de nombres $(\gpart{marge},\gpart{corps})=(m,b)$.
 %
 % Par exemple, la spécification |width=14cm, left=3cm| est catégorisée en 
 % \Ss(1,1), ce qui est une spécification adéquate. Si vous ajoutez |right=4cm|,
-% elle deviendrait \Ss(2,1), surspécifiée. Si seule |width=14cm| est donnée,
+% elle deviendra \Ss(2,1), sur-spécifiée. Si seule |width=14cm| est donnée,
 % elle passe à \Ss(0,1), sous-spécifiée.
 %
 % L'extension \Gm\ dispose d'un mécanisme d'autocomplétion, dans lequel si les
-% paramètres de mise en forme sont sous-spécifiés ou surspécifiés, \Gm\ résoud
-% l'ambiguité en utilisant des valeurs par défaut ou d'autres relations. Voici
+% paramètres de mise en forme sont sous-spécifiés ou sur-spécifiés, \Gm\ traite
+% l'ambiguïté en utilisant des valeurs par défaut ou d'autres relations. Voici
 % les spécifications et les règles de complétion.
 % \begin{figure}
 %  \centering
@@ -1459,10 +1460,10 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \put(225,25){\line(-3,-1){12}}
 %  \put(225,25){\line(-3,1){12}}}
 %  \put(200,80){\makebox(99,15){\Ss(1,0)}}
-%  \put(200,0){\framebox(99,49){\textcolor{red}{\textit{résolvable}}}}
+%  \put(200,0){\framebox(99,49){\textcolor{red}{\textit{a une solution}}}}
 %  \put(300,100){\makebox(99,20){\large 2}}
 %  \put(300,80){\makebox(99,15){\Ss(2,0)}}
-%  \put(300,50){\framebox(99,49){\textcolor{red}{\textit{résolvable}}}}
+%  \put(300,50){\framebox(99,49){\textcolor{red}{\textit{a une solution}}}}
 %  \put(300,0){\framebox(99,49){néglige |body|}}
 %  \put(300,2){\makebox(99,15){\Ss(2,1)}}
 %  {\linethickness{1pt}%
@@ -1476,7 +1477,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 %  \end{picture}}
 %  \caption[Spécifications et règle de complétion]{%
 %  \begin{minipage}[t]{.7\textwidth}\raggedright\small
-%  Spécifications \Ss(0,0) à \Ss(2,1) et les règles de complétion (flêches).
+%  Spécifications \Ss(0,0) à \Ss(2,1) et les règles de complétion (flèches).
 %  Les nombres des colonnes et des lignes indiquent le nombre de longueurs 
 %  explicitement spécifiées pour les marges et le corps respectivement. 
 %  \Ss($m$,$b$) résume une spécification avec une paire de nombre 
@@ -1566,7 +1567,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 % Le \gpart{corps} et les deux \gpart{marges} sont spécifiés, comme dans
 %  |vdivide={1in,8in,1.5in}|, |left=3cm,width=13cm,right=4cm| et ainsi de
 %  suite. Comme \Gm\ donne la priorité aux \gpart{marges} si les dimensions
-%  sont surspécifiées, \Gm\ redéfinit le \gpart{corps}. Par exemple, si vous 
+%  sont sur-spécifiées, \Gm\ redéfinit le \gpart{corps}. Par exemple, si vous 
 % spécifiez
 % \begin{center}
 %    |\usepackage[a4paper,left=3cm,width=13cm,right=4cm]{geometry}|,
@@ -1769,7 +1770,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 % à la même mise en page.
 % \begin{itemize}
 %   \item |a5paper, landscape, scale=1.0|
-%   \item |landscape=TRUE, paper=a5paper, margin=0pt|
+%   \item |landscape=true, paper=a5paper, margin=0pt|
 % \end{itemize}
 %
 % \item Une mise en page en format écran appropriée pour les présentations
@@ -1787,7 +1788,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 % \begin{itemize}
 %     \item |a4paper, mag=1414|.
 % \end{itemize}
-% Si vous voulez avoir une mise en page avec des fontes deux foix plus grandes
+% Si vous voulez avoir une mise en page avec des fontes deux fois plus grandes
 % mais pas de changement de la taille du papier, vous pouvez saisir
 % \begin{itemize}
 %   \item |letterpaper, mag=2000, truedimen|.
@@ -2121,7 +2122,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macrocode}
 %    \end{macro}
 %    \begin{macro}{\Gm@initall}
-%    Cette initialisation est appelée dès que l'extention est chargée. Elle est
+%    Cette initialisation est appelée dès que l'extension est chargée. Elle est
 %    également appelée dès que l'option |reset| est spécifiée.
 %    \begin{macrocode}
 \def\Gm@initall{%
@@ -2768,7 +2769,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
   \Gm@parse@divide{#1}{tmargin}{height}{bmargin}}%
 %    \end{macrocode}
 %  \end{key}\end{key}\end{key}
-%
+%\newpage
 %  \begin{key}{Gm}{lmargin}
 %  \begin{key}{Gm}{rmargin}
 %  \begin{key}{Gm}{tmargin}
@@ -3025,7 +3026,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macrocode}
 %  \end{key}
 %  \begin{key}{Gm}{resetpaper}
-%    Si |resetpaper| est mis à |true|, le format du papier rédéfini dans 
+%    Si |resetpaper| est mis à |true|, le format du papier redéfini dans 
 %    l'extension n'est pas conservé et le format original est restauré. 
 %    Cette option peut être utile pour imprimer de documents de format
 %    non usuel avec des imprimantes et papiers ordinaires.
@@ -3313,7 +3314,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
   \advance\oddsidemargin\Gm@bindingoffset
   \addtolength\topmargin{-1\Gm@truedimen in}%
 %    \end{macrocode}
-%    Si l'en-tête de page est inclu dans le \gpart{corps intégral}, 
+%    Si l'en-tête de page est \trad{inclu} dans le \gpart{corps intégral}, 
 %    \cs{headheight} et \cs{headsep} sont retirés de \cs{textheight},
 %    sinon de \cs{topmargin}.
 %    \begin{macrocode}
@@ -3325,7 +3326,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
     \addtolength\topmargin{-\headsep}%
   \fi
 %    \end{macrocode}
-%    Si le pied de page est inclu dans le \gpart{corps intégral},
+%    Si le pied de page est \trad{inclu} dans le \gpart{corps intégral},
 %    \cs{footskip} est retiré de \cs{textheight}.
 %    \begin{macrocode}
   \ifGm@includefoot
@@ -3641,7 +3642,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 %   |\Gm@restore@org| est redéfinie ici avec le format du papier spécifié 
 %   dans le préambule pour que |\newgeometry| l'utilise. Ceci devrait être
 %   fait avant l'agrandissement du format du papier avec |\mag| car le
-%   calcul de la mise en page \trad{serait sinon} affecté par le changement de
+%   calcul de la mise en page sera sinon affecté par le changement de
 %   taille du papier.
 %    \begin{macrocode}
 \AtBeginDocument{%
@@ -3677,7 +3678,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
   \Gm@detectdriver
 %    \end{macrocode}
 %    Si |xetex| et |\pdfpagewidth| sont définis, |\pdfpagewidth| et 
-%    |\pdfpageheight| seront sélectionnés.
+%    |\pdfpageheight| sont sélectionnés.
 %    \begin{macrocode}
   \ifx\Gm@driver\Gm@xetex
     \@ifundefined{pdfpagewidth}{}{%
@@ -3728,7 +3729,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 %    Si |dvips| ou |dvipdfm| sont spécifiées, le format du papier est 
 %    inclus dans le fichier dvi avec \cs{special}. Pour dvips, une correction
 %    du \trad{mode} paysage est ajoutée car un document en format paysage 
-%    converti par dvips est mis \trad{tête bêche} dans les visualisateurs
+%    converti par dvips est mis \trad{tête bêche} dans les lecteurs
 %    PostScript.
 %    \begin{macrocode}
   \ifx\Gm@driver\Gm@dvips
@@ -3781,7 +3782,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \begin{macrocode}
   \ifGm@verbose\ifGm@pass\else\Gm@checkmp\fi\fi
 %    \end{macrocode}
-%   |\Gm@showparams| intègre les paramétres obtenus ainsi que les dimensions
+%   |\Gm@showparams| intègre les paramètres obtenus ainsi que les dimensions
 %   dans le fichier log. Avec |verbose|, ces éléments sont également affichés
 %   sur le terminal.
 %    \begin{macrocode}
@@ -3857,7 +3858,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macro}
 %    \begin{macro}{\savegeometry}
 %    Cette commande sauvegarde la mise en page avec le \meta{nom} indiqué en
-%    argument. La mise en page ainsi sauvagardée peut être chargée avec 
+%    argument. La mise en page ainsi sauvegardée peut être chargée avec 
 %    |\loadgeometry{|\meta{nom}|}|.
 %    \begin{macrocode}mate{
 \newcommand*{\savegeometry}[1]{%
@@ -3899,7 +3900,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macrocode}
 %
 % \section{Fichier d'exemple}
-%    Voici un fichier d'exemple pour l'extention \Gm.
+%    Voici un fichier d'exemple pour l'extension \Gm.
 %    \begin{macrocode}
 %<*samples>
 %<<SAVE_INTACT
