@@ -192,12 +192,12 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 % \maketitle
 %
 % \begin{abstract}
-% Cette extension met à disposition une interface flexible et simple pour traiter
-% les dimensions des pages. Vous pouvez ainsi changer la mise en page avec des
-% paramètres intuitifs. Par exemple, si vous voulez fixer une marge de 2 cm pour
-% chaque bord de la feuille, vous pouvez juste taper 
-% |\usepackage[margin=2cm]{geometry}|. L'aspect de la page peut être changé en 
-% cours de document avec la commande |\newgeometry|.
+% Cette extension met à disposition une interface flexible et simple pour
+% définir les dimensions associées aux pages. Vous pouvez ainsi changer la mise
+% en page avec des paramètres intuitifs. Par exemple, si vous voulez fixer une
+% marge de 2 cm à chaque bord de la feuille, vous avez juste à saisir 
+% |\usepackage[margin=2cm]{geometry}|. L'aspect de la page peut également être
+% changé en cours de document avec la commande |\newgeometry|.
 % \end{abstract}
 %
 % \section{Préface à la version 5}
@@ -212,15 +212,14 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 %   options indiquées dans le préambule mais conserve les options liées à la
 %   taille du papier : |landscape|, |portrait| et les options de format
 %   (telles que |papersize|, |paper=a4paper| et ainsi de suite).
-%  \item \textbf{Un nouvel ensemble d'options pour spécifier la zone de mise en
-%   page.}\par
-%   Les options spécifiant la zone dans laquelle sont calculées les dimensions
-%   de la page sont ajoutées : \textsf{layout}, \textsf{layoutsize}, 
+%  \item \textbf{Un nouvel ensemble d'options pour spécifier le gabarit.}\par
+%   Les options spécifiant le gabarit dans lequel sont calculées des dimensions
+%   sont ajoutées : \textsf{layout}, \textsf{layoutsize}, 
 %   \textsf{layoutwidth}, \textsf{layoutheight} et ainsi de suite.
-%   Ces options aident à imprimer la mise en forme pour une autre taille de
-%   papier. Par exemple, avec |a4paper| et |layout=a5paper|, l'extension \Gm\ 
-%   utilise la mise en forme A5 pour calculer les marges avec un format de
-%   papier A4.
+%   Ces options aident à imprimer un gabarit (une mise en page) dans une autre
+%   taille de papier. Par exemple, avec |a4paper| et |layout=a5paper|,
+%   l'extension \Gm\ utilise une mise en page format A5 et calcule les marges
+%   avec un papier format A4.
 %  \item \textbf{Une nouvelle option de pilote |xetex|.}\par
 %   Une nouvelle option de pilote, |xetex|, est ajoutée. La routine 
 %   d'auto-détection des pilotes a été revue pour éviter une erreur avec les
@@ -230,7 +229,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 %   il existe toujours. Sélectionner |xetex| est fortement recommandé avec
 %   \XeLaTeX{}.
 %  \item \textbf{Nouveaux formats de papier prédéfinis pour les formats JIS B 
-%  et les formats ISO C}\par
+%  et les formats ISO C.}\par
 %   Les formats de papier prédéfinis |b0j| à |b6j| pour les formats JIS 
 %   (Japanese Industrial Standards) B et |c0paper| à |c6paper| pour les formats
 %   ISO C (v5.4$\sim$) sont ajoutés.
@@ -240,14 +239,14 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 %   |bottom=1cm| par exemple, alors \Gm\ fixait l'autre marge avec le ratio de
 %   marge (1\string:1 par défaut pour les dimensions verticales) et obtenait
 %   |top=1cm| dans ce cas. La version 5 fixe la taille du corps du texte avec
-%   la valeur par défaut |scale| ($=0.7$) et détermine la marge non spécifiée.
+%   la valeur par défaut |scale| ($=0.7$) puis détermine la marge non spécifiée.
 %   (Voir Section~\ref{sec:rules}) 
 %  \item \textbf{Les options |showframe| et |showcrop| fonctionnent sur chaque 
 %   page.}\par
 %   Avec l'option |showframe|, le cadre de la page est affiché sur chaque page.
 %   En complément, une nouvelle option |showcrop| affiche les traits de coupe
-%   à chaque coin de la zone de mise en page sur chaque page. Notez que les
-%   marques seront invisibles sans spécification d'une taille de mise en page
+%   à chaque coin du gabarit sur chaque page. Notez que les
+%   marques seront invisibles sans spécification d'une taille de gabarit
 %   plus petite que la taille du papier. La version 5.4 introduit un nouveau 
 %   processus de débordement |\shipout| utilisant l'extension \textsf{atbegshi}
 %   impliquant le chargement de cette extension quand les options |showframe|
@@ -259,8 +258,8 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 %    configuration est chargé avant, vous pouvez changer le comportement
 %    indiqué dans \textsf{geometry.cfg} en ajoutant des options dans 
 %    |\documentclass| aussi bien que dans |\usepackage| et |\geometry|.
-%  \item \textbf{Options supprimées: |compat2| et |twosideshift|.}
-%    La version 5 n'est plus compatible avec ces options |compat2| et 
+%  \item \textbf{Options supprimées: |compat2| et |twosideshift|.}\par
+%    La version 5 n'est plus compatible avec les options |compat2| et 
 %    |twosideshift| pour des raisons de simplification. 
 % \end{itemize}
 %
@@ -1288,8 +1287,8 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 % \item[\onlypre showframe] affiche des cadres pour la zone de texte et la page
 %   ainsi que les lignes pour l'en-tête et le pied de page sur la première
 %   page.
-% \item[\onlypre showcrop] affiche les traits de coupe à chaque coin de la 
-%   \trad{zone de mise en page} spécifiée par l'utilisateur.
+% \item[\onlypre showcrop] affiche les traits de coupe à chaque coin du gabarit
+%   spécifié par l'utilisateur.
 % \end{Options}
 %
 % \section{Traitement des options}\label{sec:process}
@@ -1942,7 +1941,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \begin{macro}{\Gm@layoutheight}
 %    \begin{macro}{\Gm@layouthoffset}
 %    \begin{macro}{\Gm@layoutvoffset}
-%    Les dimensions du \trad{gabarit}.
+%    Les dimensions du gabarit.
 %    \begin{macrocode}
 \newdimen\Gm@layoutwidth
 \newdimen\Gm@layoutheight
@@ -3067,15 +3066,14 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macrocode}
 %  \end{key}
 %  \begin{key}{Gm}{showcrop}
-%    L'option |showcrop| imprime des traits de coupe à chaque coin de la
-%    zone de mise en page.
+%    L'option |showcrop| imprime des traits de coupe à chaque coin du gabarit..
 %    \begin{macrocode}
 \define@key{Gm}{showcrop}[true]{\Gm@setbool{showcrop}{#1}}%
 %    \end{macrocode}
 %  \end{key}
 %    \begin{macro}{\Gm@setdefaultpaper}
 %    Cette commande stocke les dimensions du papier.
-%    Elle devrait être utilisée après |\ProcessOptionsKV[c]{Gm}|.
+%    Elle s'utilise après |\ProcessOptionsKV[c]{Gm}|.
 %    Si l'option |landscape| de |\documentclass| est spécifiée, la classe
 %    intervertit les dimensions du papier.
 %    \begin{macrocode}
@@ -3296,7 +3294,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \end{macrocode}
 %    Détermination de \cs{evensidemargin}.
 %    En mode recto-verso, la valeur de la marge droite \cs{Gm@rmargin} est
-%    utilisée. La largeur de la note marginale est \trad{incluse},
+%    utilisée. La largeur de la note marginale est incluse,
 %    \cs{evensidemargin} doit être corrigé de \cs{Gm@even@mp}.
 %    \begin{macrocode}
   \if@mparswitch
@@ -3314,7 +3312,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
   \advance\oddsidemargin\Gm@bindingoffset
   \addtolength\topmargin{-1\Gm@truedimen in}%
 %    \end{macrocode}
-%    Si l'en-tête de page est \trad{inclu} dans le \gpart{corps intégral}, 
+%    Si l'en-tête de page est inclus dans le \gpart{corps intégral}, 
 %    \cs{headheight} et \cs{headsep} sont retirés de \cs{textheight},
 %    sinon de \cs{topmargin}.
 %    \begin{macrocode}
@@ -3326,7 +3324,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
     \addtolength\topmargin{-\headsep}%
   \fi
 %    \end{macrocode}
-%    Si le pied de page est \trad{inclu} dans le \gpart{corps intégral},
+%    Si le pied de page est inclus dans le \gpart{corps intégral},
 %    \cs{footskip} est retiré de \cs{textheight}.
 %    \begin{macrocode}
   \ifGm@includefoot
@@ -3370,8 +3368,8 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 %    \begin{macrocode}
 \def\Gm@detectdriver{%
 %    \end{macrocode} 
-%    Si l'option de pilote n'est pas spécifiée, alors l'\trad{autodétection} de
-%    pilote se déclenche.
+%    Si l'option de pilote n'est pas spécifiée, alors la détection automatique
+%    de pilote se déclenche.
 %    \begin{macrocode} 
   \ifx\Gm@driver\@empty
     \typeout{*geometry* driver: auto-detecting}%
@@ -3638,7 +3636,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 %
 %    \begin{macro}{\AtBeginDocument}
 %   Les traitements de |verbose|, |showframe| et des pilotes sont ajoutés à
-%   |\AtBeginDocument|.
+%   |\AtBeginDocument|. La commande 
 %   |\Gm@restore@org| est redéfinie ici avec le format du papier spécifié 
 %   dans le préambule pour que |\newgeometry| l'utilise. Ceci devrait être
 %   fait avant l'agrandissement du format du papier avec |\mag| car le
@@ -3798,7 +3796,7 @@ dérivés : geometry.{sty,ins,drv}, geometry-samples.tex.
 %
 %    \begin{macro}{\geometry}
 %    La commande \cs{geometry} peut être appelée à plusieurs reprises
-%    dans le préambule (avant |\begin{document}|).
+%    dans le préambule (autrement dit avant |\begin{document}|).
 %    \begin{macrocode}
 \newcommand{\geometry}[1]{%
   \Gm@clean
