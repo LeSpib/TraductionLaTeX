@@ -17,13 +17,18 @@ En quelques mots: ne modifiez pas un document si vous trouvez une faute, indique
 
 *In short words: do not modify a document if you find a mistake, just contact the right person (the author of the package, the person who translated it, the translation team, etc).*
 
-### Liste des paquets en cours de traitement
-- [ ] *fontspec* ;
+### Liste des extensions traduites 
+
+Ces extensions sont considérées comme traduites. Elles peuvent encore contenir des coquilles. Les retours sur ces traductions sont les bienvenus !
+
 - [ ] *geometry* ;
-- [x] *titlesec* - En relecture finale ;
+- [ ] *titlesec*.
+
+### Liste des extensions en cours de traitement
+- [ ] *fontspec* ;
 - [ ] *xcolor*.
 
-### Liste des paquets envisagés par la suite
+### Liste des extensions envisagées par la suite
 - [ ] *adjustbox* ;
 - [ ] *booktabs* ;
 - [ ] *cleveref* ;

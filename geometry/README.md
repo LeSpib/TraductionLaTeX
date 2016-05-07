@@ -8,7 +8,7 @@ L'objectif est de traduire la documentation de l'extension *geometry* utilisable
 - *paper size* : format (de papier).
 
 ### Avancement de la traduction, en vision table de matières
-- [ ] En-tête du document tex (définitions, métadonnées)
+- [x] En-tête du document tex (définitions, métadonnées)
 - [x] Page d'avant-propos
 - [x] Préface à la version 5 (1 page)
 - [x] Introduction (1 page)
