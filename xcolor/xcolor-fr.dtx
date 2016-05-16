@@ -593,50 +593,53 @@
 %
 % \DescribeMacro\substitutecolormodel
 %   \marg{modèle source}\marg{liste de modèles cibles}\\
-% Substitue le \Meta{modèle source} par le premier modèle disponible apparaissant dans 
-% la \Meta{liste de modèles cibles}.
+% Substitue le \Meta{modèle source} par le premier modèle disponible
+% apparaissant dans la \Meta{liste de modèles cibles}.
 % Seuls les modèles de type \Meta{modèle numérique} sont possibles; tous les 
-% changements sont locaux au groupe courant, mais un |\xglobal| préfixé est respecté.
+% changements sont locaux au groupe courant, mais un |\xglobal| préfixé est
+% respecté.
 %
 % Exemple : supposons que le pilote actuel a une implémentation incorrecte de
 % \Model{hsb} tandis que \Model{rgb} paraît correct.
-% Alors |\substitutecolormodel{hsb}{rgb}| pourrait être un bon choix puisqu'il convertit
-% --- à partir de ce point --- toutes les définitions des couleurs \Model{hsb} en 
-% spécifications du modèle \Model{rgb} par le biais des algorithmes de \XC, sans toucher 
-% aux autres modèles.
+% Alors |\substitutecolormodel{hsb}{rgb}| pourrait être un bon choix puisqu'il
+% convertit --- à partir de ce point --- toutes les définitions des couleurs
+% \Model{hsb} en spécifications du modèle \Model{rgb} par le biais des
+% algorithmes de \XC, sans toucher aux autres modèles.
 %
 %
 % \subsubsection{Changement du modèle colorimétrique cible dans un document}\label{sec.tgt}
 %
 % \DescribeMacro\selectcolormodel
 %   \marg{num model}\\
-% Définit le modèle cible au \Meta{modèle numérique}, où ce dernier est un des noms de 
-% modèles autorisés comme option de l'extension (autrement dit, \Option{natural}, 
-% \Option{rgb}, \Option{cmy}, \Option{cmyk}, \Option{hsb}, \Option{gray}, \Option{RGB}, 
-% \Option{HTML}, \Option{HSB}, \Option{Gray}), voir figure \vref{fig.tgt} pour un 
-% exemple.
+% Définit le modèle cible au \Meta{modèle numérique}, où ce dernier est un des
+% noms de modèles autorisés comme option de l'extension (autrement dit, 
+% \Option{natural}, \Option{rgb}, \Option{cmy}, \Option{cmyk}, \Option{hsb},
+% \Option{gray}, \Option{RGB}, \Option{HTML}, \Option{HSB}, \Option{Gray}),
+% voir figure \vref{fig.tgt} pour un exemple.
 % Il y a deux possibilités pour rendre possible la conversion au modèle cible :
 % \begin{itemize}
 % \item \DescribeMacro\ifconvertcolorsD au moment de la \emph{définition} des 
-% couleurs\footnote{Ceci signifie que toute couleur \emph{nouvellement} définie sera
-% d'abord convertie dans le modèle cible, puis sauvegardée.} (autrement dit dans 
-% |\definecolor| et ses assimilées); ceci est contrôlé par la bascule
-% |\ifconvertcolorsD|;
-% \item \DescribeMacro\ifconvertcolorsU au moment de l'\emph{utilisation} des couleurs
-% (immédiatement avant que la couleur soit affichée, ce qui traite qui ont été définies
-% dans d'autres modèles ou qui ont été définies directement comme avec 
-% |\color[rgb]{.1,.2,.3}|) ; ceci est contrôlé par la bascule |\ifconvertcolorsU|.
+% couleurs\footnote{Ceci signifie que toute couleur \emph{nouvellement} 
+% définie sera d'abord convertie dans le modèle cible, puis sauvegardée.}
+% (autrement dit dans |\definecolor| et ses assimilées); ceci est contrôlé 
+% par la bascule |\ifconvertcolorsD|;
+% \item \DescribeMacro\ifconvertcolorsU au moment de l'\emph{utilisation} des
+% couleurs (immédiatement avant que la couleur soit affichée, ce qui traite 
+% qui ont été définies dans d'autres modèles ou qui ont été définies
+% directement comme avec |\color[rgb]{.1,.2,.3}|) ; ceci est contrôlé par la
+% bascule |\ifconvertcolorsU|.
 % \end{itemize}
-% Les deux bascules valent \og vrai \fg{} en sélectionnant n'importe quel modèle, à 
-% l'exception de \Option{natural} qui leur donne la valeur \og faux \fg{}.
-% Ceci \trad{s'applique} à une sélection par le biais d'une option d'extension comme par le
-% biais de |\selectcolormodel|.
-% Pourquoi ne convertissons-nous pas toutes les couleurs au moment de l'utilisation ? 
-% Si de nombreuses couleurs sont impliquées, cela peut économiser du temps de traitement
-% lorsque les conversions sont déjà faites au moment des définitions. 
-% De meilleures performances peuvent être obtenues par 
-% |\usepackage[rgb,...]{xcolor}\convertcolorsUfalse|, ce qui est en fait la façon dont
-% \XC{} fonctionnait jusqu'à la version 1.07.
+% Les deux bascules valent \og vrai \fg{} en sélectionnant n'importe quel
+% modèle, à l'exception de \Option{natural} qui leur donne la valeur \og faux
+% \fg{}.
+% Ceci \trad{s'applique} à une sélection par le biais d'une option d'extension
+% comme par le biais de |\selectcolormodel|.
+% Pourquoi ne convertissons-nous pas toutes les couleurs au moment de
+% l'utilisation ? Si de nombreuses couleurs sont impliquées, cela peut
+% économiser du temps de traitement lorsque les conversions sont déjà faites 
+% au moment des définitions. De meilleures performances peuvent être obtenues
+% par |\usepackage[rgb,...]{xcolor}\convertcolorsUfalse|, ce qui est en fait 
+% la façon dont \XC{} fonctionnait jusqu'à la version 1.07.
 %
 %
 % \begin{table}[p]\caption{Arguments et terminologie}\label{tab.term}
@@ -703,11 +706,12 @@
 %                     \RS \Meta{ext expr}\\
 % \hline\hline
 % \rowcolor{white}
-% Remarques:& chaque \RS indique une chaîne de remplacement possible pour un élément 
-% de la colonne de gauche ; cependant, des restrictions avancées dépendantes du 
-% contexte peuvent s'appliquer. Voir le texte principal pour plus de détails.
-% La chaîne `toto' doit toujours être comprise sans les apostrophes. $i,j,k,l,m,n$ 
-% indiquent des entiers positifs, $k,l,m,n>0$, $m\le8$.\\
+% Remarques:& chaque \RS indique une chaîne de remplacement possible pour un
+% élément de la colonne de gauche ; cependant, des restrictions avancées
+% dépendantes du contexte peuvent s'appliquer. Voir le texte principal pour
+% plus de détails.
+% La chaîne `toto' doit toujours être comprise sans les apostrophes.
+% $i,j,k,l,m,n$ indiquent des entiers positifs, $k,l,m,n>0$, $m\le8$.\\
 % \hline
 % \end{tabularx}
 % \end{adjustwidth}
@@ -725,8 +729,7 @@
 %
 % \subsubsection{Remarques additionnelles et restrictions sur les arguments}
 %
-% \tradini
-% \paragraph{Basic strings and numbers}
+% \paragraph{Chaînes basiques et nombres}
 % \DescribeArg{empty}
 % \DescribeArg{minus}
 % \DescribeArg{plus}
@@ -735,23 +738,37 @@
 % \DescribeArg{dec}
 % \DescribeArg{pct}
 % \DescribeArg{div}
-% These arguments do not need much explanation.
-% However, as far as numerical values are concerned, it is noteworthy that real numbers in (La)\TeX{} are --- as long as they are to be used in the context of lengths, dimensions, or skips --- are restricted to a maximum absolute value $<16384$.
-% Certainly, in a chain of numerical calculations, this constraint has also to be obeyed for every single interim result, which usually implies further range restrictions.
-% Since \XC{} makes extensive use of \TeX's internal dimension registers for most types of calculations, this should be kept in mind whenever \Meta{ext expr} expressions are to be used.
+% Ces arguments ne nécessitent pas beaucoup d'explications. Cependant, dans la
+% mesure où nous traitons ici des valeurs numériques, il est important de noter
+% que les nombres réels dans (La)\TeX{} --- tant qu'ils sont utilisés
+% pour des longueurs, dimensions ou espaces --- sont limités à une valeur 
+% maximale inférieure strictement à $16384$.
+% Cette contrainte, dans l'enchainement des calculs numériques, doit aussi 
+% être respectée par tous les résultats intermédiaires, ce qui implique
+% généralement des restrictions plus larges. Comme \XC{} utilise énormément
+% les registres internes de dimension de \TeX\ pour la plupart des calculs, 
+% ce point doit être gardé à l'esprit à chaque fois que des \trad{expressions
+% \Meta{ext expr}} doivent être utilisées.
 %
-%
-% \paragraph{Color names}
+% \paragraph{Noms de couleur}
 % \DescribeArg{name}
-% A \Meta{name} denotes the declared name (or the name to be declared) of a \emph{color} or a \emph{color series};
-% it may be declared \emph{explicitly} by one of the following commands: |\definecolor|, |\providecolor|, |\colorlet|, |\definecolorset|, |\providecolorset|, |\definecolorseries|, |\definecolors|, |\providecolors|.
-% On the other hand, the reserved color name `|.|' is declared \emph{implicitly} and denotes the \emph{current color}.
-% Actually, besides letters and digits, certain other characters do also work for \Meta{name} declarations, but the given restriction avoids misunderstandings and ensures compatibility with future extensions of \XC.
+% Un \Meta{nom} indique le nom déclaré (ou le nom qui va être déclaré) d'une 
+% \emph{couleur} ou d'une \trad{\emph{série de couleur}} ;
+% il peut être déclaré \emph{explicitement} par l'une des commandes suivantes :
+% |\definecolor|, |\providecolor|, |\colorlet|, |\definecolorset|, 
+% |\providecolorset|, |\definecolorseries|, |\definecolors|, |\providecolors|.
+% Par ailleurs, le nom de couleur réservé `|.|' est déclaré 
+% \emph{implicitement} et indique la \emph{couleur actuelle}.
+% En fait, au-delà des chiffres et lettres, certains autres caractères 
+% peuvent également être utilisés pour les déclarations de \Meta{nom} mais les
+% restrictions données évitent les incompréhensions et garantissent la
+% compatibilité avec les futures évolutions de \XC.
 %
-% Examples: `|red|', `|MySpecialGreen1980|', `|.|'.
+% Exemples: `|red|', `|MonVertSpecial1980|', `|.|'.
 %
 %
-% \paragraph{Color models}
+% \paragraph{Modèles colorimétriques}
+% \tradini
 % \DescribeArg{core model}
 % \DescribeArg{num model}
 % \DescribeArg{model}
