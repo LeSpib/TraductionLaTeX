@@ -2,6 +2,8 @@
 
 L'objectif est de traduire la documentation de l'extension *geometry* utilisable avec LaTeX.
 
+Merci à Patrick Bideault pour sa relecture.
+
 ### Quelques termes récurrents dans la traduction de ce document
 - *layout* : gabarit (source Wikipédia) ;
 - *page layout* : mise en page ;
