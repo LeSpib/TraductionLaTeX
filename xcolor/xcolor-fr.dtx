@@ -190,17 +190,17 @@
 %
 % \def\Index#1{#1\index{#1\string|usage}}
 % \def\Package#1{\textsf{#1}\index{packages\levelchar\textsf{#1}\string|usage}}
-% \def\Program#1{\textsf{\itshape#1}\index{programs\levelchar\textsf{\itshape#1}\string|usage}}
-% \def\Model#1{\textsf{\bfseries#1}\index{color models\levelchar\textsf{\bfseries#1}\string|usage}}
-% \def\nModel#1{`#1'\index{color models\levelchar`#1'\string|usage}}
+% \def\Program#1{\textsf{\itshape#1}\index{programmes\levelchar\textsf{\itshape#1}\string|usage}}
+% \def\Model#1{\textsf{\bfseries#1}\index{modèles colorimétriques\levelchar\textsf{\bfseries#1}\string|usage}}
+% \def\nModel#1{`#1'\index{modèles colorimétriques\levelchar`#1'\string|usage}}
 % \def\pModel#1{\textbf{\itshape #1}}
-% \def\People#1#2{#1 #2\index{people\levelchar#2, #1\string|usage}}
-% \newcommand*\Color[2][+]{\textsl{#2}\ifx#1+\index{color names\levelchar\textsl{#2}\string|usage}\fi}
-% \def\Option#1{\texttt{#1}\index{package options\levelchar\texttt{#1}\string|usage}}
-% \def\oOption#1{\texttt{#1}\index{package options (obsolete)\levelchar\texttt{#1}\string|usage}}
-% \def\Key#1{\textit{#1}\index{keys\levelchar\textit{#1}\string|usage}}
-% \def\File#1{\texttt{#1}\index{files\levelchar\texttt{#1}\string|usage}}
-% \def\Function#1{\textit{#1}\index{color functions\levelchar\textit{#1}\string|usage}}
+% \def\People#1#2{#1 #2\index{personnes\levelchar#2, #1\string|usage}}
+% \newcommand*\Color[2][+]{\textsl{#2}\ifx#1+\index{noms de couleur\levelchar\textsl{#2}\string|usage}\fi}
+% \def\Option#1{\texttt{#1}\index{options d'extension\levelchar\texttt{#1}\string|usage}}
+% \def\oOption#1{\texttt{#1}\index{options d'extension (obsolètes)\levelchar\texttt{#1}\string|usage}}
+% \def\Key#1{\textit{#1}\index{clés\levelchar\textit{#1}\string|usage}}
+% \def\File#1{\texttt{#1}\index{fichiers\levelchar\texttt{#1}\string|usage}}
+% \def\Function#1{\textit{#1}\index{fonctions de couleur\levelchar\textit{#1}\string|usage}}
 % \def\Op#1#2{#1\nolimits_{\,\Model{#2}}}
 % \def\med{\mathop{\textrm{med}}}
 % \def\mix{\mathop{\textrm{mélange}}}
@@ -1148,34 +1148,62 @@
 
 % \subsubsection{Signification des expressions de couleur standards}\label{sec.expr-meaning}
 %
-% \tradini
-% We explain now how an expression
+% Est expliquée maintenant comme l'expression
 % \begin{gather*}
-% \Meta{préfixe}\Meta{name}|!|\Meta[1]{pct}|!|\Meta[1]{name}|!|\Meta[2]{pct}|!|\dots|!|\Meta[n]{pct}|!|\Meta[n]{name}\Meta{postfix}
+% \Meta{préfixe}\Meta{name}|!|\Meta[1]{pct}|!|\Meta[1]{name}|!|\Meta[2]{pct}|!|\dots|!|\Meta[n]{pct}|!|\Meta[n]{name}\Meta{suffixe}
 % \end{gather*}
-% is being interpreted and processed:
+% est interprêtée et traitée :
 % \begin{enumerate}
-% \item First of all, the model and color parameters of \Meta{name} are extracted to define a temporary color \Meta{temp}.
-% If \Meta{postfix} has the form `|!![|\Meta{num}|]|', then \Meta{temp} will be the corresponding (direct-accessed) color \Meta{num} from the series \Meta{name}.
-% \item Then a color mix, consisting of \Meta[1]{pct}\% of color \Meta{temp} and $(100-\Meta[1]{pct})$\% of color \Meta[1]{name} is computed; this is the new temporary color \Meta{temp}.
-% \item The previous step is being repeated for all remaining parameter pairs (\Meta[2]{pct},\Meta[2]{name}), \dots, (\Meta[n]{pct},\Meta[n]{name}).
-% \item If \Meta{préfixe} consists of an odd number of minus signs `-', then \Meta{temp} will be changed into its complementary color.
-% \item If \Meta{postfix} has the form `|!!+|', `|!!++|', `|!!+++|', etc., a number of step commands (=~number of `|+|' signs) are performed on the underlying color series \Meta{name}.
-% This has no consequences for the color \Meta{temp}.
-% \item Now the color \Meta{temp} is being displayed or serves as an input for other operations, depending on the invoking command.
+% \item Tout d'abord, le modèle et les paramètres de couleur de \Meta{nom} 
+% sont extraits pour définir une couleur temporaire \Meta{temp}.
+% Si \Meta{suffixe} est de la forme `|!![|\Meta{num}|]|', alors \Meta{temp}
+% sera la couleur correspondante \Meta{num} (en accès direct) de la série
+% de couleur \Meta{nom}.
+% \item Alors un mélange de couleur, consistant en \Meta[1]{pct}\% de la
+% couleur \Meta{temp} et $(100-\Meta[1]{pct})$\% de la couleur \Meta[1]{nom} 
+% est calculé ; ce dernier devient la nouvelle couleur temporaire \Meta{temp}. 
+% \item  L'étape précédente est répétée pour toutes les paires de paramètres
+% restantes. (\Meta[2]{pct},\Meta[2]{nom}), \dots, 
+% (\Meta[n]{pct},\Meta[n]{nom}).
+% \item Si \Meta{préfixe} contient un nombre impair de signes négactifs `-',
+% alors \Meta{temp} sera changée en sa couleur complémentaire.
+% \item Si \Meta{suffixe} est de la forme `|!!+|', `|!!++|', `|!!+++|', etc. 
+% un nombre de \trad{step commands} (=~nombre de signes `|+|') sont effectuées
+% sur la série de couleur sous-jacente \Meta{nom}.
+% Ceci est sans conséquence pour la couleur \Meta{temp}.
+% \item La couleur \Meta{temp} est enfin affichée ou sert comme donnée en
+% entrée pour d'autres opérations, selon la commande utilisée. 
 % \end{enumerate}
-% Note that in a typical step 2 expression \Meta{temp}|!|\Meta[\nu]{pct}|!|\Meta[\nu]{name}, if \Meta[\nu]{pct}=100 resp.{} \Meta[\nu]{pct}=0, the color \Meta{temp} resp.{} \Meta[\nu]{name} is used without further transformations.
-% In the true mix case, $0<$\Meta[\nu]{pct}$<100$, the two involved colors may have been defined in different color models, e.g., |\definecolor{foo}{rgb}{...}| and |\definecolor{bar}{cmyk}{...}|.
-% In general, the second color, \Meta[\nu]{name}, is transformed into the model of the first color, \Meta{temp}, then the mix is calculated within that model.\,\footnote{Exception: in order to avoid strange results, this rule is being reversed if \Meta{temp} origins from the \Model{gray} model; in this case it is converted into the underlying model of \Meta[\nu]{name}.}
-% Thus, \Meta{temp}|!|\Meta[\nu]{pct}|!|\Meta[\nu]{name} and \Meta[\nu]{name}|!|\Meta[\nu]{$100-$pct}|!|\Meta{temp}, which should be equivalent theoretically, will not necessarily yield identical visual results.
+% Notez que, dans une expression 
+% \Meta{temp}|!|\Meta[\nu]{pct}|!|\Meta[\nu]{nom} typique de l'étape 2, si
+% \Meta[\nu]{pct}=100, la couleur \Meta{temp} est directement utilisée sans
+% plus de transformation. Si \Meta[\nu]{pct}=0,, c'est alors la
+% couleur \Meta[\nu]{name} qui est utilisée.
+% Dans les cas de véritables mélanges ($0<$\Meta[\nu]{pct}$<100$), les deux
+% couleurs impliquées peuvent être définies dans des modèles colorimétriques
+% différents, par exemple |\definecolor{foo}{rgb}{...}| et 
+% |\definecolor{bar}{cmyk}{...}|. 
+% En général, la seconde couleur, \Meta[\nu]{name}, est convertie dans le
+% modèle de la première couleur, \Meta{temp}, puis le mélange est calculé dans
+% le modèle\footnote{Exception : afin d'éviter des résultats inattendus, cette
+% règle est inversée si \Meta{temp} est issue du modèle \Model{gray}; dans ce
+% cas, elle est convertie dans le modèle associé à \Meta[\nu]{nom}.} 
+% Ainsi, \Meta{temp}|!|\Meta[\nu]{pct}|!|\Meta[\nu]{nom} et 
+% \Meta[\nu]{nom}|!|\Meta[\nu]{$100-$pct}|!|\Meta{temp} qui devraient être
+% théoriquement équivalents, peuvent ne pas avoir des résultats visuels
+% identiques.
 %
-% Figures \vrefrange{fig.expr}{fig.ex} show some first applications of colors and expressions.
-% More examples are given in figure \vref{fig.progress}.
-% Over and above that, a large set of color examples can be found in \cite{chroma}.
+% Les figures~\vrefrange{fig.expr}{fig.ex} montrent de premières applications
+% des couleurs et expressions.
+% D'autres exemples sont donnés en figure~\vref{fig.progress}.
+% Par ailleurs, un grand nombre d'exemples peuvent être trouvé dans 
+% \cite{chroma}.
 %
 %
-% \subsubsection{Meaning of extended color expressions}\label{sec.extexpr-meaning}
+% \subsubsection{Signification des expressions de couleur étendues}
+% \label{sec.extexpr-meaning}
 %
+% \tradini
 % An \emph{extended color expression}
 % \begin{gather*}
 % \Meta{core model}|:|\Meta[1]{expr}|,|\Meta[1]{dec}|;|\Meta[2]{expr}|,|\Meta[2]{dec}|;...;|\Meta[k]{expr}|,|\Meta[k]{dec}
@@ -3378,6 +3406,7 @@
 % However, we could not detect significant visible difference between the cases $\gamma=0.8$ and $\gamma=1$.
 % Thus, for the time being, \XC's implementation uses the latter value which implies a pure linear approach.
 % In the \Package{pstricks} examples file \href{xcolor2.pdf}{\File{xcolor2.tex}}, there is a demonstration of different $\gamma$ values.
+% \tradfin
 %
 % \clearpage
 %
@@ -3386,76 +3415,92 @@
 % \begin{adjustwidth}{-2.5cm}{}
 % \begingroup\raggedright
 % \begin{thebibliography}{00}
-% \addcontentsline{toc}{section}{References}
+% \addcontentsline{toc}{section}{Références}
 %
 % \bibitem{plrm}%
-%  {Adobe Systems Incorporated: ``PostScript Language Reference Manual''. Addison-Wesley, third edition, 1999.
+%  {Adobe Systems Incorporated: \og PostScript Language Reference Manual 
+%  \fg{}. Addison-Wesley, troisième édition, 1999.
 %   \URL{http://www.adobe.com/products/postscript/pdfs/PLRM.pdf}}
 %
 % \bibitem{fbox}%
-%  {\People{Donald}{Arseneau}: ``Patch so \cmd\fbox{} draws frame on top of text''. \LaTeX{} bug report, latex/3655, 2004/03/18.
+%  {\People{Donald}{Arseneau}: \og Patch so \cmd\fbox{} draws frame on top 
+%  of text \fg{}. \LaTeX{} bug report, latex/3655, 18/03/2004.
 %   \URL{http://www.latex-project.org/cgi-bin/ltxbugs2html?pr=latex/3655}}
 %
 % \bibitem{url}%
-%  {\People{Donald}{Arseneau}: \Package{url} package, ``2005/06/27  ver 3.2  Verb mode for urls, etc.''.
+%  {\People{Donald}{Arseneau}: extension \Package{url}, \og 2005/06/27  ver 3.2
+%  Verb mode for urls, etc. \fg{}.
 %   \CTAN{macros/latex/contrib/misc/}{url.sty}}
 %
 % \bibitem{Bruton}%
-%  {\People{Dan}{Bruton}: ``Approximate RGB values for Visible Wavelengths'', 1996.
+%  {\People{Dan}{Bruton}: \og Approximate RGB values for Visible Wavelengths
+%  \fg{}, 1996.
 %   \URL{http://www.physics.sfasu.edu/astro/color/spectra.html}}
 %
 % \bibitem{dpc}%
-%  {\People{David P.}{Carlisle}: ``Packages in the `graphics' bundle'', 2005.
+%  {\People{David P.}{Carlisle}: \og Packages in the `graphics' bundle \fg{},
+%  2005.
 %   \CTAN{macros/latex/required/graphics/}{grfguide.*}}
 %
 % \bibitem{color}%
-%  {\People{David P.}{Carlisle}: \LCP, ``2005/11/14 v1.0j Standard \LaTeX{} Color''.
+%  {\People{David P.}{Carlisle}: \LCP, \og 2005/11/14 v1.0j Standard \LaTeX{}
+%  Color \fg{}.
 %   \CTAN{macros/latex/required/graphics/}{color.dtx}}
 %
 % \bibitem{colortbl}%
-%  {\People{David P.}{Carlisle}: \Package{colortbl} package, ``2001/02/13 v0.1j Color table columns''.
+%  {\People{David P.}{Carlisle}: extension \Package{colortbl}, 
+%  \og 2001/02/13 v0.1j Color table columns \fg{}.
 %   \CTAN{macros/latex/contrib/colortbl/}{}}
 %
 % \bibitem{pstcol}%
-%  {\People{David P.}{Carlisle}, \People{Herbert}{Vo\ss}, \People{Rolf}{Niepraschk}: \Package{pstcol} package, ``2005/11/16 v1.2 LaTeX wrapper for `PSTricks'{}''.
+%  {\People{David P.}{Carlisle}, \People{Herbert}{Vo\ss}, 
+%  \People{Rolf}{Niepraschk}: extension \Package{pstcol}, 
+%  \og 2005/11/16 v1.2 LaTeX wrapper for `PSTricks'{} \fg{}.
 %   \CTAN{macros/graphics/pstricks/latex/}{pstcol.sty}}
 %
 % \bibitem{chroma}%
-%  {\People{Uwe}{Kern}: ``Chroma: a reference book of \LaTeX{} colors''.
-%   \CTAN{info/colour/chroma/}{} and
+%  {\People{Uwe}{Kern}: \og Chroma: a reference book of \LaTeX{} colors \fg{}.
+%   \CTAN{info/colour/chroma/}{} et
 %   \URL{http://www.ukern.de/tex/chroma.html}}
 %
 % \bibitem{xcolor}%
-%  {\People{Uwe}{Kern}: \Package{xcolor} package, ``\LaTeX{} color extensions''.
-%   \CTAN{macros/latex/contrib/xcolor/}{} and
+%  {\People{Uwe}{Kern}: extension \Package{xcolor}, 
+%   \og \LaTeX{} color extensions \fg{}.
+%   \CTAN{macros/latex/contrib/xcolor/}{} et
 %   \URL{http://www.ukern.de/tex/xcolor.html}}
 %
-% \bibitem{mik}%
-%  {MiK\TeX{} Project:
-%   \URL{http://www.miktex.org/}}
-%
 % \bibitem{colorinfo}%
-%  {\People{Rolf}{Niepraschk}: \Package{colorinfo} package, ``2003/05/04 v0.3c Info from defined colors''.
+%  {\People{Rolf}{Niepraschk}: extension \Package{colorinfo}, 
+%   \og 2003/05/04 v0.3c Info from defined colors \fg{}.
 %   \CTAN{macros/latex/contrib/colorinfo/}{}}
 %
 % \bibitem{pdfcolmk}%
-%  {\People{Heiko}{Oberdiek}: \Package{pdfcolmk} package, ``2006/02/20 v0.8 PDFtex COLor MarK''.
+%  {\People{Heiko}{Oberdiek}: extension \Package{pdfcolmk}, 
+%   \og 2006/02/20 v0.8 PDFtex COLor MarK \fg{}.
 %   \CTAN{macros/latex/contrib/oberdiek/}{pdfcolmk.*}}
 %
+% \bibitem{mik}%
+%  Projet {MiK\TeX{} :
+%   \URL{http://www.miktex.org/}}
+%
 % \bibitem{hyperref}%
-%  {\People{Sebastian}{Rahtz}, \People{Heiko}{Oberdiek}: \Package{hyperref} package, ``2006/09/06 v6.75e Hypertext links for \LaTeX''.
+%  {\People{Sebastian}{Rahtz}, \People{Heiko}{Oberdiek}: 
+%   extension \Package{hyperref},
+%   \og 2006/09/06 v6.75e Hypertext links for \LaTeX \fg{}.
 %   \CTAN{macros/latex/contrib/hyperref/}{}}
 %
 % \bibitem{smith}%
-%  {\People{Alvy Ray}{Smith}: ``Color Gamut Transform Pairs''. \emph{Computer Graphics} (ACM SIGGRAPH), Volume 12, Number 3, August 1978.
+%  {\People{Alvy Ray}{Smith}: \og Color Gamut Transform Pairs \fg{}. 
+%   \emph{Computer Graphics} (ACM SIGGRAPH), Volume 12, Numéro 3, Août 1978.
 %   \URL{http://alvyray.com/Papers/PapersCG.htm}}
 %
 % \bibitem{HTML4}%
-%  {World Wide Web Consortium: ``HTML4 color keywords''.
+%  {World Wide Web Consortium: \og HTML4 color keywords \fg{}.
 %   \URL{http://www.w3.org/TR/css3-color/\#html4}}
 %
 % \bibitem{svg}%
-%  {World Wide Web Consortium: ``Scalable Vector Graphics (\Index{SVG}) 1.1 Specification --- Basic Data Types and Interfaces''.
+%  {World Wide Web Consortium: \og Scalable Vector Graphics (\Index{SVG}) 1.1
+%   Specification --- Basic Data Types and Interfaces \fg{}.
 %   \URL{http://www.w3.org/TR/SVG11/types.html\#ColorKeywords}}
 %
 % \end{thebibliography}
@@ -3463,15 +3508,21 @@
 % \clearpage
 %
 % \columnsep2.25em
-% \begin{multicols}{2}[\section*{Appendix}%
-% \addcontentsline{toc}{section}{Appendix}]
+% \begin{multicols}{2}[\section*{Annexes}%
+% \addcontentsline{toc}{section}{Annexes}]
 %
-% \subsection*{Acknowledgement}
+% \subsection*{Remerciements}
 % \addcontentsline{toc}{subsection}{Acknowledgement}
-% This package is based on and contains code copied from \cite{color} (Copyright (C) 1994--1999 \People{David P.}{Carlisle}), which is part of the Standard \LaTeX{} `Graphics Bundle'.
-% Although many commands and features have been added and most of the original \LC{} commands have been rewritten or adapted within \XC, the latter package would not exist without \LC.
-% Thus, the author is grateful to \People{David P.}{Carlisle} for having created \LC{} and its accompanying files.
+% Cette extension se base sur \cite{color} (Copyright (C) 1994--1999 
+% \People{David P.}{Carlisle}) et contient du code de cette extension, cette
+% dernière faisant partie du \trad{`Graphics Bundle'} du Standard \LaTeX{}.
+% Bien que de nombreuses commandes et fonctionnalités ont été ajoutées et que 
+% la plupart des commandes originales de \LC{} ont été réécrites ou adaptées
+% dans \XC, cette dernière n'existerait pas sans \LC. 
+% Aussi, l'auteur est reconnaissant à \People{David P.}{Carlisle} d'avoir
+% créé \LC{} et ses fichiers associés.
 %
+% \tradini
 % \subsection*{Trademarks}
 % \addcontentsline{toc}{subsection}{Trademarks}
 % Trademarks appear throughout this documentation without any trademark symbol; they are the property of their respective trademark owner.
@@ -3482,10 +3533,10 @@
 % \leftmarginii1em
 % \leftmarginiii1em
 %
-% \subsection*{Known Issues}
-% \addcontentsline{toc}{subsection}{Known Issues}
+% \subsection*{Problèmes connus}
+% \addcontentsline{toc}{subsection}{Problèmes connus}
 % \begin{itemize}
-% \item |\rowcolors[\hline]...| does not work with \Package{longtable}.
+% \item |\rowcolors[\hline]...| ne fonctionne pas avec \Package{longtable}.
 % \end{itemize}
 %
 % \subsection*{History}
