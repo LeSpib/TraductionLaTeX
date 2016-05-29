@@ -247,8 +247,15 @@
 %
 % \begin{abstract}
 % \noindent
-% \XC{} met à disposition, simplement et indépendamment des pilotes graphiques, à de multiples types de couleurs, teintes, nuances, tons et mélanges de couleurs arbitraires par le biais d'expressions dédiées comme |\color{red!50!green!20!blue}|.
-% Il permet de sélectionner un modèle de couleur à l'échelle du document et offre des outils d'assortiment de couleurs automatiques, de conversion des couleurs entre douze modèles colorimétriques, d'utilisation de couleurs alternées pour des lignes de tableau, de mélange et de masque de couleur, de séparation de couleur et de calculs de cercle chromatique.
+% \XC{} met à disposition, simplement et indépendamment des pilotes
+% graphiques, à de multiples types de couleurs, teintes, nuances, tons et
+% mélanges de couleurs arbitraires par le biais d'expressions dédiées comme 
+% |\color{red!50!green!20!blue}|.
+% Il permet de sélectionner un modèle de couleur à l'échelle du document et
+% offre des outils d'assortiment de couleurs automatiques, de conversion des
+% couleurs entre douze modèles colorimétriques, d'utilisation de couleurs
+% alternées pour des lignes de tableau, de mélange et de masque de couleur, de
+% séparation de couleur et de calculs de cercle chromatique.
 % \end{abstract}
 %
 % \phantomsection\pdfbookmark[1]{\contentsname}{toc}
@@ -262,32 +269,61 @@
 %
 % \subsection{Objectif de cette extension}
 %
-% L'\LCP{} met à disposition un outil puissant et stable pour manipuler les couleurs dans (pdf)\LaTeX{} de façon cohérente, indépendamment des pilotes graphiques, tout en supportant différents modèles colorimétriques (de manière un peu moins indépendante des pilotes).
+% L'\LCP{} met à disposition un outil puissant et stable pour manipuler les
+% couleurs dans (pdf)\LaTeX{} de façon cohérente, indépendamment des pilotes
+% graphiques, tout en supportant différents modèles colorimétriques (de
+% manière un peu moins indépendante des pilotes).
 %
-% Néanmoins, il est parfois un peu laborieux de l'utiliser, particulièrement dans les cas où de légères variations de couleur, des mélanges de couleur ou des conversions de couleur sont en jeu :
-% ceci implique d'habitude l'utisation d'un autre programme qui calcule les paramètres souhaités, paramètres alors copiés dans une commande |\definecolor| dans \LaTeX.
-% Assez fréquemment, une calculatrice de poche est également retenue dans le traitement de problèmes comme ceux indiqués ci-après :
+% Néanmoins, il est parfois un peu laborieux de l'utiliser, particulièrement
+% dans les cas où de légères variations de couleur, des mélanges de couleur ou
+% des conversions de couleur sont en jeu :
+% ceci implique d'habitude l'utisation d'un autre programme qui calcule les
+% paramètres souhaités, paramètres alors copiés dans une commande 
+% |\definecolor| dans \LaTeX.
+% Assez fréquemment, une calculatrice de poche est également retenue dans le
+% traitement de problèmes comme ceux indiqués ci-après :
 % \begin{itemize}
-% \item Ma société a défini une couleur d'entreprise et le service des impressions m'a dit combien il est coûteux d'utiliser plus de deux couleurs dans notre nouveau brochure, alors même que toutes les teintes de notre couleur (par exemple, une version à 75\%) peuvent être utilisées sans aucun surcoût.
+% \item Ma société a défini une couleur d'entreprise et le service des
+% impressions m'a dit combien il est coûteux d'utiliser plus de deux couleurs
+% dans notre nouveau brochure, alors même que toutes les teintes de notre
+% couleur (par exemple, une version à 75\%) peuvent être utilisées sans aucun
+% surcoût.
 % Comment accéder à ces variations de couleur avec \LaTeX?\\
 % (Réponse: |\color{CouleurEntreprise!75}| etc.)
-% \item Mon ami utilise une belle couleur que je souhaiterais appliquer à mes propres documents; malheureusement, elle est définie avec le modèle \Model{hsb} qui n'est pas accepté par mon application pdf\LaTeX\ favorite.
+% \item Mon ami utilise une belle couleur que je souhaiterais appliquer à mes
+% propres documents; malheureusement, elle est définie avec le modèle 
+% \Model{hsb} qui n'est pas accepté par mon application pdf\LaTeX\ favorite.
 % Que faire alors ?\\
-% (Réponse : utiliser tout simplement les définitions \Model{hsb}, \XC{} fera les calculs nécessaires.)
-% \item Qu'affiche le mélange de 40\% de \Color{green} et de 60\% de \Color{yellow} ?\\
-% (Réponse : 40\% \testclr{green} $+$ 60\% \testclr{yellow} $=$ \testclr{green!40!yellow}, soit |\color{green!40!yellow}|)
+% (Réponse : utiliser tout simplement les définitions \Model{hsb}, \XC{} fera
+% les calculs nécessaires.)
+% \item Qu'affiche le mélange de 40\% de \Color{green} et de 60\% de 
+% \Color{yellow} ?\\
+% (Réponse : 40\% \testclr{green} $+$ 60\% \testclr{yellow} $=$ 
+% \testclr{green!40!yellow}, soit |\color{green!40!yellow}|)
 % \item Et quelle est l'aspect de sa couleur complémentaire ?\\
-% (Réponse: \testclr{-green!40!yellow}, accessible via |\color{-green!40!yellow}|)
-% \item Maintenant, je souhaite mélanger trois mesures de la dernière couleur avec deux mesures de sa complémentaire et une mesure de \Color{rouge}.
+% (Réponse: \testclr{-green!40!yellow}, accessible via 
+% |\color{-green!40!yellow}|)
+% \item Maintenant, je souhaite mélanger trois mesures de la dernière couleur
+% avec deux mesures de sa complémentaire et une mesure de \Color{rouge}.
 % Qu'est-ce que cela donne ?\\
-% (Réponse: $3\times$ \testclr{-green!40!yellow} $+ 2\times$ \testclr{green!40!yellow} $+ 1\times$ \testclr{red} $=$ \testclr{rgb:-green!40!yellow,3;green!40!yellow,2;red,1}, cette couleur étant accessible via |\color{rgb:-green!40!yellow,3;green!40!yellow,2;red,1}|)
-% \item Je sais qu'un rayonnement de longueur d'onde de 485nm appartient au spectre visible. Mais quelle couleur a-t-il ?\\
+% (Réponse: $3\times$ \testclr{-green!40!yellow} $+ 2\times$ 
+% \testclr{green!40!yellow} $+ 1\times$ \testclr{red} $=$ 
+% \testclr{rgb:-green!40!yellow,3;green!40!yellow,2;red,1}, cette couleur
+% étant accessible via 
+% |\color{rgb:-green!40!yellow,3;green!40!yellow,2;red,1}|)
+% \item Je sais qu'un rayonnement de longueur d'onde de 485nm appartient au
+% spectre visible. Mais quelle couleur a-t-il ?\\
 % (Réponse : approximativement \testclr[wave]{485}, via |\color[wave]{485}|)
-% \item Mon service des impressions souhaite que toutes les définitions de couleur dans mon document soit basculées en modèle \Model{cmyk} (CMJN en français).
+% \item Mon service des impressions souhaite que toutes les définitions de
+% couleur dans mon document soit basculées en modèle \Model{cmyk} (CMJN en
+% français).
 % Comment puis-je faire ces calculs efficacement ?\\
 % (Réponse : |\usepackage[cmyk]{xcolor}| ou |\selectcolormodel{cmyk}|)
 % \item J'ai un tableau de 50 lignes.
-% Comment puis-je obtenir des lignes de tableau avec deux couleurs alternées (A pour les lignes paires et B pour les lignes impaires) sans recours à la copie de 50 commandes |\rowcolor| ? Ce motif alterné devrait d'ailleurs commencer à partir de la troisième ligne.\\
+% Comment puis-je obtenir des lignes de tableau avec deux couleurs alternées
+% (A pour les lignes paires et B pour les lignes impaires) sans recours à la
+% copie de 50 commandes |\rowcolor| ? Ce motif alterné devrait d'ailleurs
+% commencer à partir de la troisième ligne.\\
 % (Réponse: \emph{grosso modo} |\rowcolors{3}{CouleurA}{CouleurB}|)
 % \end{itemize}
 % Ceci répresente quelques uns des problème résolus par l'\XCP.
@@ -299,67 +335,119 @@
 %
 % Sur la base de \cite{smith} nous définissons les termes suivants :
 % \begin{itemize}
-% \item \textbf{\Index{teinte}}: une couleur à laquelle est ajoutée du \Color{blanc} (white) ;
-% \item \textbf{\Index{nuance}}: une couleur à laquelle est ajoutée du \Color{noir} (black) ;
-% \item \textbf{\Index{ton}}: une couleur à laquelle est ajoutée du \Color{gris} (gray).
+% \item \textbf{\Index{teinte}}: une couleur à laquelle est ajoutée du 
+% \Color{blanc} (white) ;
+% \item \textbf{\Index{nuance}}: une couleur à laquelle est ajoutée du 
+% \Color{noir} (black) ;
+% \item \textbf{\Index{ton}}: une couleur à laquelle est ajoutée du 
+% \Color{gris} (gray).
 % \end{itemize}
 % Ce sont des cas spéciaux d'une fonction plus générale
-% $\mix(C,C',p)$ qui construit une nouvelle couleur, composée de $p$ mesures de la couleur $C$ et de $1-p$ mesures de la couleur $C'$, où $0\le p\le1$.
+% $\mix(C,C',p)$ qui construit une nouvelle couleur, composée de $p$ mesures
+% de la couleur $C$ et de $1-p$ mesures de la couleur $C'$, où $0\le p\le1$.
 % Aussi, nous posons 
 % \begin{align}
 % \tint(C,p) &:= \mix(C,|white|,p)\\
 % \shade(C,p) &:= \mix(C,|black|,p)\\
 % \tone(C,p) &:= \mix(C,|gray|,p)
 % \end{align}
-% où |white|, |black|, and |gray| sont des constantes dépendantes des modèles, comme présentées en table \vref{tab.const}.
+% où |white|, |black|, and |gray| sont des constantes dépendantes des modèles,
+% comme présentées en table \vref{tab.const}.
 % Par la suite, nous définissons le terme :
 % \begin{itemize}
-% \item \textbf{complémentaire}: une couleur $C^*$ qui génère du \Color{blanc} si elle est mélangée avec la couleur d'origine $C$,
+% \item \textbf{complémentaire}: une couleur $C^*$ qui génère du \Color{blanc}
+% si elle est mélangée avec la couleur d'origine $C$,
 % \end{itemize}
-% sachant qu'il existe également différents concepts de complémentarité (par exemple des couleurs opposées sur les \emph{cercles chromatiques}).
-% Voir la section \vref{sec.cnv} pour le détail des calculs et la section \vref{sec.harmony} pour certaines remarques sur les cercles chromatiques.
+% sachant qu'il existe également différents concepts de complémentarité (par
+% exemple des couleurs opposées sur les \emph{cercles chromatiques}).
+% Voir la section \vref{sec.cnv} pour le détail des calculs et la section 
+% \vref{sec.harmony} pour certaines remarques sur les cercles chromatiques.
 %
 %
 %
 % \subsection{Modèles colorimétriques}
 %
-% Un modèle colorimétrique est un outil décrivant ou représentant un certain ensemble de couleurs d'une manière compatible avec l'appareil cible souhaité, par exemple un écran ou une imprimante.
-% Il existe des modèles propriétaires (comme \Index{Pantone} ou \Index{HKS}) qui fournissent des ensembles finis de couleurs (chaque couleur étant appelés \emph{\Index{ton direct}}), dans lequel l'utilisateur doit piocher sans se soucier des paramétrages; à l'inverse, se trouvent des modèles paramétriques comme \Model{gray}, \Model{rgb}, et \Model{cmyk}, dont le but est de représenter de larges ensembles finis ou même infinis (théoriquement) de couleurs, construits sur de très petits sous-ensembles de couleurs de base et de règles permettant de construire d'autres couleurs à partir des couleurs de base. 
-% Par exemple, un large ensemble de couleurs peut être construit par combinaison linéaire des couleurs de base \Color{rouge}, \Color{vert} et \Color{bleu}.
-% En contrepartie, un \Index{ton direct} ne peut souvent être qu'\emph{approximé} par des valeurs de paramètres dans les modèles comme \Model{cmyk} ou \Model{rgb}; les couleurs originales se mélangent physiquement et dépendent aussi du type de papier retenu. 
-% Enfin, il existe certaines couleurs comme l'\Color{or} ou l'\Color{argent} qui sont difficilement reproductibles par des modèles paramétriques avec des encres standard ou des imprimantes laser.
+% Un modèle colorimétrique est un outil décrivant ou représentant un certain
+% ensemble de couleurs d'une manière compatible avec l'appareil cible
+% souhaité, par exemple un écran ou une imprimante.
+% Il existe des modèles propriétaires (comme \Index{Pantone} ou \Index{HKS})
+% qui fournissent des ensembles finis de couleurs (chaque couleur étant
+% appelés \emph{\Index{ton direct}}), dans lequel l'utilisateur doit piocher
+% sans se soucier des paramétrages; à l'inverse, se trouvent des modèles
+% paramétriques comme \Model{gray}, \Model{rgb}, et \Model{cmyk}, dont le but
+% est de représenter de larges ensembles finis ou même infinis (théoriquement)
+% de couleurs, construits sur de très petits sous-ensembles de couleurs de
+% base et de règles permettant de construire d'autres couleurs à partir des
+% couleurs de base. 
+% Par exemple, un large ensemble de couleurs peut être construit par
+% combinaison linéaire des couleurs de base \Color{rouge}, \Color{vert} et
+% \Color{bleu}.
+% En contrepartie, un \Index{ton direct} ne peut souvent être 
+% qu'\emph{approximé} par des valeurs de paramètres dans les modèles comme
+% \Model{cmyk} ou \Model{rgb}; les couleurs originales se mélangent
+% physiquement et dépendent aussi du type de papier retenu. 
+% Enfin, il existe certaines couleurs comme l'\Color{or} ou l'\Color{argent}
+% qui sont difficilement reproductibles par des modèles paramétriques avec 
+% des encres standard ou des imprimantes laser.
 %
 %
 %
 % \subsection{Cercles chromatiques et accords de couleurs}\label{sec.harmony}
 %
-% Il s'est développé une longue histoire du placement de couleurs (\trad{teintes}) sur des cercles pour discuter de problèmes théoriques ou pratiques sur les couleurs (par exemple \People{Isaac}{Newton}, \People{Johann Wolfgang von}{Goethe}).
-% Une explication de ceci pourrait être que le cercle lui-même est un outil tout naturel pour illustrer des relations communes aussi bien que des propriétés opposées.
+% Il s'est développé une longue histoire du placement de couleurs 
+% (\trad{teintes}) sur des cercles pour discuter de problèmes théoriques ou
+% pratiques sur les couleurs (par exemple \People{Isaac}{Newton}, 
+% \People{Johann Wolfgang von}{Goethe}).
+% Une explication de ceci pourrait être que le cercle lui-même est un outil
+% tout naturel pour illustrer des relations communes aussi bien que des
+% propriétés opposées.
 %
-% De nos jours, une certaine confusion portant sur les notions associées aux couleurs existe, dans la mesure où deux grands domaines qui y sont liés --- l'art et le design graphique d'une part, la théorie scientifique de couleur de l'autre --- tendent à utiliser les même mots pour décrire les propriétés de la couleur bien qu'en décrivant parfois des faits très différents !
-% Ainsi, l'apparence des cercles chromatiques diffère autant que la signification de concepts comme couleurs `primaires' ou `complémentaires'. 
+% De nos jours, une certaine confusion portant sur les notions associées aux
+% couleurs existe, dans la mesure où deux grands domaines qui y sont liés ---
+% l'art et le design graphique d'une part, la théorie scientifique de couleur
+% de l'autre --- tendent à utiliser les même mots pour décrire les propriétés
+% de la couleur bien qu'en décrivant parfois des faits très différents !
+% Ainsi, l'apparence des cercles chromatiques diffère autant que la
+% signification de concepts comme couleurs `primaires' ou `complémentaires'. 
 %
 %
 % \paragraph{Construction d'un cercle chromatique typique}
-% Tout d'abord, trois \emph{couleurs primaires} sont placées sur le cercle à 0\Circ, 120\Circ, 240\Circ (les artistes choisissent souvent le triplet \Color{rouge}, \Color{jaune}, \Color{bleu}, tandis que les scientifiques spécialistes de la couleur préféreront le triplet \Color{rouge}, \Color{vert}, \Color{bleu}).
-% Ensuite, les trois \emph{coulerus secondaires} sont placées à 60\Circ, 180\Circ, 300\Circ.
-% Puis, six \emph{couleurs tertiaires} pourront être placées au milieu de chaque arc (30\Circ, 90\Circ, \dots).
-% C'est pourquoi les cercles chromatiques sont fréquemment décrits par douze couleurs équidistantes bien que l'algorithme puisse être prolongé à merci.
+% Tout d'abord, trois \emph{couleurs primaires} sont placées sur le cercle à 
+% 0\Circ, 120\Circ, 240\Circ (les artistes choisissent souvent le triplet
+% \Color{rouge}, \Color{jaune}, \Color{bleu}, tandis que les scientifiques
+% spécialistes de la couleur préféreront le triplet \Color{rouge}, 
+% \Color{vert}, \Color{bleu}).
+% Ensuite, les trois \emph{coulerus secondaires} sont placées à 60\Circ, 
+% 180\Circ, 300\Circ.
+% Puis, six \emph{couleurs tertiaires} pourront être placées au milieu de
+% chaque arc (30\Circ, 90\Circ, \dots).
+% C'est pourquoi les cercles chromatiques sont fréquemment décrits par douze
+% couleurs équidistantes bien que l'algorithme puisse être prolongé à merci.
 %
 %
 % \paragraph{Harmonies de couleur issues du cercle}
 % Nous commençons avec un cercle chromatique quelconque :
 % \begin{itemize}
-% \item les \textbf{couleurs complémentaires} sont situées à une distance de 180\Circ{} sur le cercle ;
-% \item les \trad{\textbf{}} correspondent à trois couleurs séparées par 120\Circ ;
-% \item les \trad{\textbf{}} correspondent à quatre couleurs séparées par 90\Circ.
+% \item les \textbf{couleurs complémentaires} sont situées à une distance 
+% de 180\Circ{} sur le cercle ;
+% \item les \trad{\textbf{}} correspondent à trois couleurs séparées par 
+% 120\Circ ;
+% \item les \trad{\textbf{}} correspondent à quatre couleurs séparées par 
+% 90\Circ.
 % \end{itemize}
-% Nous supposons maintenant que le cercle est décomposé en $2n$ secteurs de taille égale :
+% Nous supposons maintenant que le cercle est décomposé en $2n$ secteurs de
+% taille égale :
 % \begin{itemize}
-% \item les \textbf{couleurs complémentaires adjacentes} d'une couleur donnée sont les deux voisines immédiates de la couleur complémentaire, caractérisées par les positions $\frac{n\pm1}{2n}\cdot360^\circ$,
-% \item les \textbf{couleurs analogues} d'une couleur donnée sont les deux ou quatre voisines, caractérisées par les positions  $\pm\frac{1}{2n}\cdot360^\circ$ and $\pm\frac{2}{2n}\cdot360^\circ$.
+% \item les \textbf{couleurs complémentaires adjacentes} d'une couleur donnée
+% sont les deux voisines immédiates de la couleur complémentaire,
+% caractérisées par les positions $\frac{n\pm1}{2n}\cdot360^\circ$,
+% \item les \textbf{couleurs analogues} d'une couleur donnée sont les deux ou
+% quatre voisines, caractérisées par les positions  
+% $\pm\frac{1}{2n}\cdot360^\circ$ and $\pm\frac{2}{2n}\cdot360^\circ$.
 % \end{itemize}
-% Vu les méthodes utilisées pour générer des accords de couleur, nous concluons que les résultats dépendent fortement de la manière dont nous construisons le cercle.
+% Vu les méthodes utilisées pour générer des accords de couleur, nous 
+% concluons que les résultats dépendent fortement de la manière dont nous
+% construisons le cercle.
 % Qui plus est, le choix de $n$ affectera également le résultat visuel.
 % Des exemples sont donnés en figure \vref{fig.harmony}.
 %
@@ -372,40 +460,81 @@
 %
 % \subsubsection{Installation de l'extension}
 %
-% Il faut tout d'abord placer \File{xcolor.sty} et tous les fichiers dans un répertoire où (pdf)\LaTeX{} les trouvera.
-% Un emplacement classique selon le \trad{\emph{\TeX\ Directory Structure} (TDS)} serait le répertoire |texmf/tex/latex/xcolor|, où |texmf| est à remplacer par le répertoire principal de votre installation de \TeX\.
-% De plus, il faut placer \File{xcolor.pro} à un endroit où \Program{dvips} le trouvera, typiquement |texmf/dvips/xcolor|.
-% Normalement, vous devez lancer une mise à jour de votre base de noms de fichiers afin que ces fichiers soient connus et facilement retrouvables dans l'arborescence \TeX.
-% Par la suite, il suffit simplement d'utiliser \XC{} (au lieu de \LC) dans votre document.
-% Pour cela, la commande générale d'appel est |\usepackage|\oarg{options}|{xcolor}| dans le préambule du document.
-% La table \vref{tab.package} montre dans quel ordre certaines extensions doivent être alors chargées.
+% Il faut tout d'abord placer \File{xcolor.sty} et tous les fichiers dans un
+% répertoire où (pdf)\LaTeX{} les trouvera.
+% Un emplacement classique selon le \trad{\emph{\TeX\ Directory Structure}
+% (TDS)} serait le répertoire |texmf/tex/latex/xcolor|, où |texmf| est à
+% remplacer par le répertoire principal de votre installation de \TeX\.
+% De plus, il faut placer \File{xcolor.pro} à un endroit où \Program{dvips} 
+% le trouvera, typiquement |texmf/dvips/xcolor|.
+% Normalement, vous devez lancer une mise à jour de votre base de noms de
+% fichiers afin que ces fichiers soient connus et facilement retrouvables dans
+% l'arborescence \TeX.
+% Par la suite, il suffit simplement d'utiliser \XC{} (au lieu de \LC) dans
+% votre document.
+% Pour cela, la commande générale d'appel est 
+% |\usepackage|\oarg{options}|{xcolor}| dans le préambule du document.
+% La table \vref{tab.package} montre dans quel ordre certaines extensions
+% doivent être alors chargées.
 %
 % \subsubsection{Options de l'extension}
 %
 % En général, plusieurs types d'options existent :
 % \begin{itemize}
-% \item les options qui déterminent le pilote graphique comme expliqué dans \cite{dpc} et \cite{color}, soit actuellement : \Option{dvips}, \Option{xdvi}, \Option{dvipdf}, \Option{dvipdfm}, \Option{dvipdfmx}, \Option{pdftex}, \Option{dvipsone}, \Option{dviwindo}, \Option{emtex}, \Option{dviwin}, \Option{oztex}, \Option{textures}, \Option{pctexps}, \Option{pctexwin}, \Option{pctexhp}, \Option{pctex32}, \Option{truetex}, \Option{tcidvi}, \Option{vtex}, \Option{xetex} ;
-% \item les options qui déterminent le modèle colorimétrique cible \footnote{La section \vref{sec.tgt} explique comment ce paramétrage peut être annulé n'importe où dans un document.} (\Option{natural}, \Option{rgb}, \Option{cmy}, \Option{cmyk}, \Option{hsb}, \Option{gray}, \Option{RGB}, \Option{HTML}, \Option{HSB}, \Option{Gray}) ou une sortie avec des couleurs désactivées (\Option{monochrome}) ;
-% \item les options qui contrôlent si certains ensembles de couleurs prédéfinies sont chargés et comment : \Option{dvipsnames}, \Option{dvipsnames*}, \Option{svgnames}, \Option{svgnames*}, \Option{x11names}, \Option{x11names*} ;
-% \item les options qui déterminent quelles autres extensions doivent être chargées ou supportées : \Option{table}, \Option{fixpdftex},
+% \item les options qui déterminent le pilote graphique comme expliqué dans
+% \cite{dpc} et \cite{color}, soit actuellement : \Option{dvips}, 
+% \Option{xdvi}, \Option{dvipdf}, \Option{dvipdfm}, \Option{dvipdfmx}, 
+% \Option{pdftex}, \Option{dvipsone}, \Option{dviwindo}, \Option{emtex},
+% \Option{dviwin}, \Option{oztex}, \Option{textures}, \Option{pctexps}, 
+% \Option{pctexwin}, \Option{pctexhp}, \Option{pctex32}, \Option{truetex},
+% \Option{tcidvi}, \Option{vtex}, \Option{xetex} ;
+% \item les options qui déterminent le modèle colorimétrique cible 
+% \footnote{La section \vref{sec.tgt} explique comment ce paramétrage peut
+% être annulé n'importe où dans un document.} (\Option{natural}, \Option{rgb},
+% \Option{cmy}, \Option{cmyk}, \Option{hsb}, \Option{gray}, \Option{RGB},
+% \Option{HTML}, \Option{HSB}, \Option{Gray}) ou une sortie avec des couleurs
+% désactivées (\Option{monochrome}) ;
+% \item les options qui contrôlent si certains ensembles de couleurs
+% prédéfinies sont chargés et comment : \Option{dvipsnames}, 
+% \Option{dvipsnames*}, \Option{svgnames}, \Option{svgnames*}, 
+% \Option{x11names}, \Option{x11names*} ;
+% \item les options qui déterminent quelles autres extensions doivent être
+% chargées ou supportées : \Option{table}, \Option{fixpdftex},
 % \Option{hyperref} ;
-% \item les options qui influencent le comportement d'autres commandes : \Option{prologue}, \Option{kernelfbox}, \Option{xcdraw}, \Option{noxcdraw}, \Option{fixinclude}, \Option{showerrors}, \Option{hideerrors} ;
+% \item les options qui influencent le comportement d'autres commandes :
+% \Option{prologue}, \Option{kernelfbox}, \Option{xcdraw}, \Option{noxcdraw},
+% \Option{fixinclude}, \Option{showerrors}, \Option{hideerrors} ;
 % \item les options obsolètes :
 % \oOption{pst},
 % \oOption{override}, \oOption{usenames}, \oOption{nodvipsnames}.
 % \end{itemize}
-% Toutes les options de l'extension (hors les sélections des pilotes et les options obsolètes) sont listées en table \vref{tab.opt}.
+% Toutes les options de l'extension (hors les sélections des pilotes et les
+% options obsolètes) sont listées en table \vref{tab.opt}.
 % \DescribeMacro\GetGinDriver
 % \DescribeMacro\GinDriver
-% Afin de faciliter la coopération avec l'extension \Package{hyperref}, il existe une commande |\GetGinDriver|\footnote{Cette commande est exécutée automatiquement si l'option d'extension \Option{hyperref} est sélectionnée.} qui récupère le nom du pilote effectivement utilisé et qui le place dans la commande |\GinDriver|.
+% Afin de faciliter la coopération avec l'extension \Package{hyperref}, il
+% existe une commande |\GetGinDriver|\footnote{Cette commande est exécutée
+% automatiquement si l'option d'extension \Option{hyperref} est sélectionnée.}
+% qui récupère le nom du pilote effectivement utilisé et qui le place dans la
+% commande |\GinDriver|.
 
-% Ce dernier peut alors être utilisé au sein de l'extension \Package{hyperref} (ou toute autre extension), voir l'exemple de code en page \pageref{ex.range}. 
-% S'il n'y a pas d'option \Package{hyperref} correspondante, l'option \Option{hypertex} sera prise par défaut.
+% Ce dernier peut alors être utilisé au sein de l'extension \Package{hyperref}
+% (ou toute autre extension), voir l'exemple de code en page 
+% \pageref{ex.range}. 
+% S'il n'y a pas d'option \Package{hyperref} correspondante, l'option 
+% \Option{hypertex} sera prise par défaut.
 %
-% Attention : il y a une différence substantielle entre \XC{} et \LC{} dans la façon de manier l'option \Option{dvips}.
-% L'\LCP{} appelle implicitement l'option \Option{dvipsnames} dès qu'un des pilotes |dvips|, |oztex| ou |xdvi| est sélectionné.
-% Ceci rend les documents moins portables dans la mesure où, à chaque fois qu'une des couleurs est utilisée sans l'appel explicite de l'option \Option{dvipsnames}, les autres pilotes comme |pdftex| renvoient un message d'erreur pour cause de couleur inconnue.
-% C'est pourquoi \XC{} nécessite toujours explicitement l'option \Option{dvipsnames} pour utiliser ces noms --- qui fonctionnent alors pour tous les pilotes. 
+% Attention : il y a une différence substantielle entre \XC{} et \LC{} dans la
+% façon de manier l'option \Option{dvips}.
+% L'\LCP{} appelle implicitement l'option \Option{dvipsnames} dès qu'un des
+% pilotes |dvips|, |oztex| ou |xdvi| est sélectionné.
+% Ceci rend les documents moins portables dans la mesure où, à chaque fois
+% qu'une des couleurs est utilisée sans l'appel explicite de l'option 
+% \Option{dvipsnames}, les autres pilotes comme |pdftex| renvoient un message
+% d'erreur pour cause de couleur inconnue.
+% C'est pourquoi \XC{} nécessite toujours explicitement l'option 
+% \Option{dvipsnames} pour utiliser ces noms --- qui fonctionnent alors pour
+% tous les pilotes. 
 %
 %
 % \begin{table}[p]\caption{Options de l'extension}\label{tab.opt}
@@ -417,43 +546,71 @@
 % \hline
 % \rowcolor{tableheadcolor}
 % \em Option & \em Description\\
-% \Option{natural}& (valeur par défaut.) Garde toutes les couleurs dans leur modèle, à l'expcetion de \Model{RGB} (converti en \Model{rgb}), \Model{HSB} (converti en \Model{hsb}), et \Model{Gray} (converti en \Model{gray}).\\
+% \Option{natural}& (valeur par défaut.) Garde toutes les couleurs dans leur
+% modèle, à l'expcetion de \Model{RGB} (converti en \Model{rgb}), 
+% \Model{HSB} (converti en \Model{hsb}), et \Model{Gray} (converti en 
+% \Model{gray}).\\
 % \Option{rgb}& Convertit toutes les couleurs en modèle \Model{rgb}.\\
 % \Option{cmy}& Convertit toutes les couleurs en modèle \Model{cmy}.\\
 % \Option{cmyk}& Convertit toutes les couleurs en modèle \Model{cmyk}.\\
 % \Option{hsb}& Convertit toutes les couleurs en modèle \Model{hsb}.\\
-% \Option{gray}&  Convertit toutes les couleurs en modèle \Model{gray}. Particulièrement utile pour simuler un rendu en noir et blanc d'une imprimante monochrome.\\
-% \Option{RGB}& Convertit toutes les couleurs en modèle \Model{RGB} (et ensuite en \Model{rgb}).\\
-% \Option{HTML}& Convertit toutes les couleurs en modèle \Model{HTML} (et ensuite en \Model{rgb}).\\
-% \Option{HSB}& Convertit toutes les couleurs en modèle \Model{HSB} (et ensuite en \Model{hsb}).\\
-% \Option{Gray}& Convertit toutes les couleurs en modèle \Model{Gray} (et ensuite en \Model{gray}).\\
+% \Option{gray}&  Convertit toutes les couleurs en modèle \Model{gray}.
+% Particulièrement utile pour simuler un rendu en noir et blanc d'une
+% imprimante monochrome.\\
+% \Option{RGB}& Convertit toutes les couleurs en modèle \Model{RGB} (et
+% ensuite en \Model{rgb}).\\
+% \Option{HTML}& Convertit toutes les couleurs en modèle \Model{HTML} (et 
+% ensuite en \Model{rgb}).\\
+% \Option{HSB}& Convertit toutes les couleurs en modèle \Model{HSB} (et 
+% ensuite en \Model{hsb}).\\
+% \Option{Gray}& Convertit toutes les couleurs en modèle \Model{Gray} (et 
+% ensuite en \Model{gray}).\\
 % \hline
-% \Option{dvipsnames}, \Option{dvipsnames*}& Charge un ensemble de couleurs prédéfinies.\footnotemark[1]\\
-% \Option{svgnames}, \Option{svgnames*}& Charge un ensemble de couleurs prédéfinies selon la norme \Index{SVG} 1.1.\footnotemark[1]\\
-% \Option{x11names}, \Option{x11names*}& Charge un ensemble de couleurs prédéfinies selon la norme \Index{Unix}/\Index{X11}.\footnotemark[1]\\
+% \Option{dvipsnames}, \Option{dvipsnames*}& Charge un ensemble de couleurs
+% prédéfinies.\footnotemark[1]\\
+% \Option{svgnames}, \Option{svgnames*}& Charge un ensemble de couleurs
+% prédéfinies selon la norme \Index{SVG} 1.1.\footnotemark[1]\\
+% \Option{x11names}, \Option{x11names*}& Charge un ensemble de couleurs
+% prédéfinies selon la norme \Index{Unix}/\Index{X11}.\footnotemark[1]\\
 % \hline
-% \Option{table}& Charge l'extension \Package{colortbl} contenant les outils de colorisation des lignes, colonnes et cellules dans des tables.\\
-% \Option{fixpdftex}& Charge l'extension \Package{pdfcolmk} permettant d'améliorer la gestion des couleurs dee |pdftex| (voir section \vref{sec.fixpdftex}).\\
-% \Option{hyperref}& Permet de prendre en charge l'extension \Package{hyperref} pour les \trad{expressions de couleur} en définissant des \trad{clés} additionnelles (voir section \vref{sec.hyperref}).\\
+% \Option{table}& Charge l'extension \Package{colortbl} contenant les outils
+% de colorisation des lignes, colonnes et cellules dans des tables.\\
+% \Option{fixpdftex}& Charge l'extension \Package{pdfcolmk} permettant
+% d'améliorer la gestion des couleurs dee |pdftex| (voir section 
+% \vref{sec.fixpdftex}).\\
+% \Option{hyperref}& Permet de prendre en charge l'extension 
+% \Package{hyperref} pour les \trad{expressions de couleur} en définissant 
+% des \trad{clés} additionnelles (voir section \vref{sec.hyperref}).\\
 % \hline
-% \Option{prologue}& \'{E}crit des informations en début de fichier \File{.xcp} pour chaque définition de couleur (comme décrit en section \vref{sec.prologue}).\\
+% \Option{prologue}& \'{E}crit des informations en début de fichier 
+% \File{.xcp} pour chaque définition de couleur (comme décrit en section 
+% \vref{sec.prologue}).\\
 % \hline
-% \Option{kernelfbox}& Utilise la méthode du noyau \LaTeX{} pour dessiner des boîtes \texttt{\string\f(rame)box}\footnotemark[2].\\
-% \Option{xcdraw}& Use driver-specific commands to draw frames and color boxes.\footnotemark[2]\\
-% \Option{noxcdraw}& (Valeur par défaut.) Utilise un code générique pour dessiner les encadrements et boîets de couleur.\footnotemark[2]\\
-% \Option{fixinclude}& Empêche la réinitialisation de couleur de |dvips| avant l'inclusion de fichier \File{.eps} (voir section \vref{sec.fixinclude}).\\
+% \Option{kernelfbox}& Utilise la méthode du noyau \LaTeX{} pour dessiner des
+% boîtes \texttt{\string\f(rame)box}\footnotemark[2].\\
+% \Option{xcdraw}& Use driver-specific commands to draw frames and color 
+% boxes.\footnotemark[2]\\
+% \Option{noxcdraw}& (Valeur par défaut.) Utilise un code générique pour
+% dessiner les encadrements et boîets de couleur.\footnotemark[2]\\
+% \Option{fixinclude}& Empêche la réinitialisation de couleur de |dvips| avant
+% l'inclusion de fichier \File{.eps} (voir section \vref{sec.fixinclude}).\\
 % \hline
-% \Option{showerrors}& (Valeur par défaut.) Affiche un message d'erreur si une couleur non définie est utilisée (comportement similaire à celui de l'\LCP\ originale).\\
-% \Option{hideerrors}& Affiche seulement une alerte en cas d'utilisation d'une couleur non définie et remplace cette couleur par du \Color{noir}.\\
+% \Option{showerrors}& (Valeur par défaut.) Affiche un message d'erreur si une 
+% couleur non définie est utilisée (comportement similaire à celui de 
+% l'\LCP\ originale).\\
+% \Option{hideerrors}& Affiche seulement une alerte en cas d'utilisation d'une
+% couleur non définie et remplace cette couleur par du \Color{noir}.\\
 % \hline\hline
-% \multicolumn2{c}{\footnotemark[1]\,Voir section \vref{sec.additionalcolors}.\quad \footnotemark[2]\,Voir section \vref{sec.fbox}.}\\
+% \multicolumn2{c}{\footnotemark[1]\,Voir section \vref{sec.additionalcolors}.
+% \quad \footnotemark[2]\,Voir section \vref{sec.fbox}.}\\
 % \hline
 % \end{tabularx}
 % \end{adjustwidth}
 % \end{table}
 %
 %
-% \begin{table}[htbp]\caption{Ordre de chargement des extensions}\label{tab.package}
+% \begin{table}[htbp]\caption{Ordre de chargement des 
+% extensions}\label{tab.package}
 % \begin{adjustwidth}{-2.5cm}{}
 % \raggedleft
 % \extrarowheight2pt
@@ -461,12 +618,16 @@
 % \begin{tabular}{l*{6}{c}}
 % \hline
 % \rowcolor{tableheadcolor}
-% \em Chargement/Extension    & \Package{colortbl}& \Package{pdfcolmk}& \Package{hyperref}& \Package{pstricks}& \LC& \Package{pstcol}\\
-% Avant \XC       & non & non & permis & permis\rlap{\footnotemark[1]} & non & non  \\
-% Avec l'option \XC{}& \Option{table} & \Option{fixpdftex} & --- & --- & --- & --- \\
+% \em Chargement/Extension    & \Package{colortbl}& \Package{pdfcolmk}&
+% \Package{hyperref}& \Package{pstricks}& \LC& \Package{pstcol}\\
+% Avant \XC       & non & non & permis & permis\rlap{\footnotemark[1]} & non &
+% non  \\
+% Avec l'option \XC{}& \Option{table} & \Option{fixpdftex} & --- & --- & --- &
+% --- \\
 % Après \XC        & non & permis & permis & permis & non & non \\
 % \hline\hline
-% \multicolumn6{c}{\footnotemark[1]\,Les versions récentes de \Package{pstricks} chargent \XC\ par défaut.}\\
+% \multicolumn6{c}{\footnotemark[1]\,Les versions récentes de 
+% \Package{pstricks} chargent \XC\ par défaut.}\\
 % \hline
 % \end{tabular}
 % \end{adjustwidth}
@@ -480,21 +641,27 @@
 % \begin{tabular}{l>{\em}l>{$}l<{$}rl}
 % \hline
 % \rowcolor{tableheadcolor}
-% \emph{Nom}  & Couleurs de base/notions & \emph{Intervalle de valeur}& \multicolumn2{>{\columncolor{tableheadcolor}}l}{\emph{Par défaut}}\\
+% \emph{Nom}  & Couleurs de base/notions & \emph{Intervalle de valeur}&
+% \multicolumn2{>{\columncolor{tableheadcolor}}l}{\emph{Par défaut}}\\
 % \Model{rgb} & rouge, vert, bleu & \left[0,1\right]^3&& \\
 % \Model{cmy} & cyan, magenta, jaune & \left[0,1\right]^3&& \\
 % \Model{cmyk} & cyan, magenta, jaune, noir & \left[0,1\right]^4&& \\
 % \Model{hsb} & teinte, saturation, luminosité & \left[0,1\right]^3&& \\
-% \Model{Hsb} & teinte\Circ\!, saturation, luminosité & \left[0,H\right]\times\left[0,1\right]^2&$H=$& $\mkern-15mu\rangeHsb$\\
-% \Model{tHsb} & teinte\Circ\!, saturation, luminosité & \left[0,H\right]\times\left[0,1\right]^2&$H=$& $\mkern-15mu\rangeHsb$\\
+% \Model{Hsb} & teinte\Circ\!, saturation, luminosité & \left[0,H\right]\times 
+% \left[0,1\right]^2&$H=$& $\mkern-15mu\rangeHsb$\\
+% \Model{tHsb} & teinte\Circ\!, saturation, luminosité & \left[0,H\right] 
+% \times\left[0,1\right]^2&$H=$& $\mkern-15mu\rangeHsb$\\
 % \Model{gray} & gris & \left[0,1\right]&& \\
-% \Model{RGB} & Rouge, Vert, Bleu & \{0,1,\dots,L\}^3& $L\,=$& $\mkern-15mu\rangeRGB$\\
+% \Model{RGB} & Rouge, Vert, Bleu & \{0,1,\dots,L\}^3& $L\,=$& 
+% $\mkern-15mu\rangeRGB$\\
 % \Model{HTML} & RRGGBB & \{\texttt{000000},\dots,\texttt{FFFFFF}\}&& \\
-% \Model{HSB} & Teinte, Saturation, Luminosité & \{0,1,\dots,M\}^3& $M=$& $\mkern-15mu\rangeHSB$\\
+% \Model{HSB} & Teinte, Saturation, Luminosité & \{0,1,\dots,M\}^3& $M=$& 
+% $\mkern-15mu\rangeHSB$\\
 % \Model{Gray} & Gris & \{0,1,\dots,N\}& $N\,=$& $\mkern-15mu\rangeGray$\\
 % \Model{wave} & lambda \emph{(nm)}& \left[363,814\right]&& \\
 % \hline\hline
-% \multicolumn5{c}{$L,M,N$ sont des nombres entiers positifs; $H$ est un entier réel positif}\\
+% \multicolumn5{c}{$L,M,N$ sont des nombres entiers positifs; $H$ est un
+% entier réel positif}\\
 % \hline
 % \end{tabular}
 % \end{table}
@@ -503,32 +670,43 @@
 % \subsubsection{\'{E}xecution de commandes additionnelles à l'initialisation}
 %
 % \DescribeMacro\xcolorcmd
-% Voici un interface simple pour passer des commandes devant être exécutées à la fin de l'extension \XCP{} (immédiatement avant que l'initialisation de |\color{black}| ne soit traitée).
+% Voici un interface simple pour passer des commandes devant être exécutées à
+% la fin de l'extension \XCP{} (immédiatement avant que l'initialisation de
+% |\color{black}| ne soit traitée).
 % Indiquez juste |\def\xcolorcmd|\marg{commandes} avant le chargement de \XC{}.
 %
-% Exemple: en supposant que |a.tex| soit un document \LaTeX{} complet, une commande comme 
+% Exemple: en supposant que |a.tex| soit un document \LaTeX{} complet, une
+% commande comme 
 % \og|latex \def\xcolorcmd{\colorlet{black}{red}}\input{a}|\fg{}
-% saisie en invite de commande génère un fichier |a.dvi| avec toutes les occurences de \Color{noir} remplacées par du \Color{rouge}, sans besoin de modifier le fichier source lui-même.
-% (La ligne de commande peut varier selon les systèmes d'exploitation et les distributions de \TeX{}).
+% saisie en invite de commande génère un fichier |a.dvi| avec toutes les
+% occurences de \Color{noir} remplacées par du \Color{rouge}, sans besoin de
+% modifier le fichier source lui-même.
+% (La ligne de commande peut varier selon les systèmes d'exploitation et les
+% distributions de \TeX{}).
 %
 %
 %
 % \subsection{Modèles colorimétriques}
 %
 % \subsubsection{Modèles colorimétriques supportés}
-% La liste des modèles colorimétriques et les plages de valeur de leurs paramètres
-% sont données en table \vref{tab.mod}.
+% La liste des modèles colorimétriques et les plages de valeur de leurs
+% paramètres sont données en table \vref{tab.mod}.
 % Notez bien que le support de ces couleurs est indépendant du pilote graphique
 % choisi.
 %
-% Ce support permet d'ailleurs de spécifier des couleurs directement avec leurs paramètres, par exemple avec |\textcolor[cmy]{0.7,0.5,0.3}{toto}| (\textcolor[cmy]{0.7,0.5,0.3}{toto}) ou |\textcolor[HTML]{AFFE90}{toto}| (\textcolor[HTML]{AFFE90}{toto}).
+% Ce support permet d'ailleurs de spécifier des couleurs directement avec
+% leurs paramètres, par exemple avec 
+% |\textcolor[cmy]{0.7,0.5,0.3}{toto}| (\textcolor[cmy]{0.7,0.5,0.3}{toto}) ou
+% |\textcolor[HTML]{AFFE90}{toto}| (\textcolor[HTML]{AFFE90}{toto}).
 %
 % \paragraph{\Model{rgb}, \Model{cmyk}, \Model{hsb}, \Model{gray}}
 % Ce sont les modèles supportés directement par \Index{PostScript}.
-% C'est pourquoi \trad{nous nous référons} à \cite{plrm} pour une description de leurs propriétés et relations.
-% Il existe une commande spécifique
-% \DescribeMacro\adjustUCRBG
-% pour régler finement les mécanismes de \trad{\emph{undercolor-removal}} and \trad{\emph{black-generation]}} durant la conversion vers le modèle \Model{cmyk}, voir section \vref{sec.cmy2cmyk} pour plus de détails.
+% C'est pourquoi \trad{nous nous référons} à \cite{plrm} pour une description
+% de leurs propriétés et relations.
+% Il existe une commande spécifique \DescribeMacro\adjustUCRBG
+% pour régler finement les mécanismes de \trad{\emph{undercolor-removal}} 
+% et \trad{\emph{black-generation]}} durant la conversion vers le modèle 
+% \Model{cmyk}, voir section \vref{sec.cmy2cmyk} pour plus de détails.
 %
 % \paragraph{\Model{cmy}}
 % Il s'agit principalement d'un modèle pour les étapes de calcul intermédiaire.
@@ -536,43 +714,76 @@
 % En terme d'affichage, \Model{cmy} est traité comme \Model{cmyk} avec $k=0$.
 %
 % \paragraph{\Model{HTML}}
-% Ce modèle est dérivé de \Model{rgb} afin de permettre l'entrée de paramètres de couleurs pour les pages web ou les fichiers CSS.
-% Aussi, ce n'est pas un modèle colorimétrique en tant que tel mais plutôt une interface utilisateur commode.
-% Il est important de mentionner que \Model{HTML} accepte toutes les combinaisons de caractères |0|--|9|, |A|--|F|, |a|--|f|, tant que la chaîne de caractères a une longueur de 6 caractères exactement.
-% Cependant, les résultats de conversion en \Model{HTML} consisteront en des nombres et des lettres \emph{majuscules}.
+% Ce modèle est dérivé de \Model{rgb} afin de permettre l'entrée de paramètres
+% de couleurs pour les pages web ou les fichiers CSS.
+% Aussi, ce n'est pas un modèle colorimétrique en tant que tel mais plutôt une
+% interface utilisateur commode.
+% Il est important de mentionner que \Model{HTML} accepte toutes les
+% combinaisons de caractères |0|--|9|, |A|--|F|, |a|--|f|, tant que la chaîne
+% de caractères a une longueur de 6 caractères exactement.
+% Cependant, les résultats de conversion en \Model{HTML} consisteront en des
+% nombres et des lettres \emph{majuscules}.
 %
 % \paragraph{\Model{Hsb}, \Model{tHsb}}
-% Premièrement, \Model{Hsb} est un modèle \og interface utilisateur \fg{} transformant $\emph{teinte}\in[0,1]$ en $\emph{teinte\Circ}\in[0,H]$, où $H$ est donné par |\def\rangeHsb|\marg{H}.
+% Premièrement, \Model{Hsb} est un modèle \og interface utilisateur \fg{}
+% transformant $\emph{teinte}\in[0,1]$ en $\emph{teinte\Circ}\in[0,H]$, où $H$
+% est donné par |\def\rangeHsb|\marg{H}.
 % \DescribeMacro\rangeHsb
-% Aussi, si $H=360$, nous pouvons penser à un cercle ou une roue pour \trad{décrire} le paramètre \emph{teinte\Circ}.
+% Aussi, si $H=360$, nous pouvons penser à un cercle ou une roue pour 
+% \trad{décrire} le paramètre \emph{teinte\Circ}.
 % 
-% Deuxièmement, \Model{Hsb} est la base du \Model{tHsb}, également nommé \Model{Hsb} \pModel{réglé},qui permet à l'utilisateur d'appliquer une transformation linéaire \trad{piecewise} sur \emph{teinte\Circ} en déplaçant la \emph{teinte\Circ} sélectionnée en avant ou en arrière sur le cercle.
+% Deuxièmement, \Model{Hsb} est la base du \Model{tHsb}, également nommé 
+% \Model{Hsb} \pModel{réglé},qui permet à l'utilisateur d'appliquer une
+% transformation linéaire \trad{piecewise} sur \emph{teinte\Circ} en déplaçant
+% la \emph{teinte\Circ} sélectionnée en avant ou en arrière sur le cercle.
 % La transformation est définie par |\def\rangetHsb{|$x_1,y_1;x_2,y_2;\dots$|}|
 % \DescribeMacro\rangetHsb
-% qui indique que $\emph{hue\Circ}=x_1$ dans \Model{tHsb} signifie $\emph{hue\Circ}=y_1$ dans \Model{Hsb}, etc.
-% Par exemple, le \Color{jaune} est placé à 60\Circ{} dans le cercle \Model{Hsb} (le \Color{rouge} étant à 0\Circ); cependant dans la plus plupart des cercles chromatiques servant aux artistes, le \Color{jaune} est à 120\Circ.
-% Ainsi, une entrée \og |120,60| \fg{} ferait sens si nous avions décidé de répliquer un cercle chromatique d'artiste par le biais de \Model{tHsb}.
-% Voir la section \vref{sec.tHsb2Hsb} pour la formule exacte de la transformation et les restrictions avancées, et la section \vref{sec.harmony} pour les cercles chromatiques et les accords de couleur.
+% qui indique que $\emph{hue\Circ}=x_1$ dans \Model{tHsb} signifie 
+% $\emph{hue\Circ}=y_1$ dans \Model{Hsb}, etc.
+% Par exemple, le \Color{jaune} est placé à 60\Circ{} dans le cercle 
+% \Model{Hsb} (le \Color{rouge} étant à 0\Circ); cependant dans la plus
+% plupart des cercles chromatiques servant aux artistes, le \Color{jaune} est
+% à 120\Circ.
+% Ainsi, une entrée \og |120,60| \fg{} ferait sens si nous avions décidé de
+% répliquer un cercle chromatique d'artiste par le biais de \Model{tHsb}.
+% Voir la section \vref{sec.tHsb2Hsb} pour la formule exacte de la
+% transformation et les restrictions avancées, et la section 
+% \vref{sec.harmony} pour les cercles chromatiques et les accords de couleur.
 % La figure \vref{fig.tHsb} peut servir pour effectuer des comparaisons.
 %
-% Exemple: `|\def\rangetHsb{|\texttt{\rangetHsb}|}|' correspond en fait au paramétrage par défaut de \XC.
+% Exemple: `|\def\rangetHsb{|\texttt{\rangetHsb}|}|' correspond en fait au
+% paramétrage par défaut de \XC.
 %
 % \paragraph{\Model{wave}}
-% Avec ce modèle nous essayons de transformer les longueurs d'onde en un modèle de colorimétrique standard afin de réaliser une approximation de l'apparence visuelle des ondes lumineuses.
-% Tandis que le spectre visible couvre un intervalle de valeur de 400 à 750 nm, l'implémentation dans \XC{} permet de traiter toutes les longueurs d'onde qui ont une valeur absolue inférieur à \csname strip@pt\endcsname\maxdimen{} (le plus grand nombre que \TeX{} puisse considérer comme une dimension).
-% Toutefois, la probabilité d'obtenir une couleur différente du noir hors de plage de valeur $[363,814]$ est très précisément nulle.
-% Aussi, la figure \vref{fig.spectrum} illustre seulement l'intervalle de valeur mention ci-dessus.
-% Notez qu'il n'est pas possible de convertir fidèlement les autres modèles en \Model{wave} puisque ce dernier ne couvre qu'un ensemble limité de couleurs. 
+% Avec ce modèle nous essayons de transformer les longueurs d'onde en un
+% modèle de colorimétrique standard afin de réaliser une approximation de
+% l'apparence visuelle des ondes lumineuses.
+% Tandis que le spectre visible couvre un intervalle de valeur de 400 à 
+% 750 nm, l'implémentation dans \XC{} permet de traiter toutes les longueurs
+% d'onde qui ont une valeur absolue inférieur à \csname 
+% strip@pt\endcsname\maxdimen{} (le plus grand nombre que \TeX{} puisse
+% considérer comme une dimension).
+% Toutefois, la probabilité d'obtenir une couleur différente du noir hors de
+% plage de valeur $[363,814]$ est très précisément nulle.
+% Aussi, la figure \vref{fig.spectrum} illustre seulement l'intervalle de
+% valeur mention ci-dessus.
+% Notez qu'il n'est pas possible de convertir fidèlement les autres modèles en
+% \Model{wave} puisque ce dernier ne couvre qu'un ensemble limité de couleurs. 
 %
 % \paragraph{\Model{RGB}, \Model{HSB}, \Model{Gray}}
-% Ce sont des modèles dérivés, transformant la plage de valeurs continue $[0,1]$ des paramètres de \Model{rgb}, \Model{hsb} et \Model{gray} en un ensemble de valeurs finies ; ce qui nous nous fait les désigner par le terme de \emph{modèles entiers}.
-% Les constantes $L, M, N$ de la table \ref{tab.mod} sont définies par les commandes |\def\rangeRGB|\marg{L},
+% Ce sont des modèles dérivés, transformant la plage de valeurs continue 
+% $[0,1]$ des paramètres de \Model{rgb}, \Model{hsb} et \Model{gray} en un
+% ensemble de valeurs finies ; ce qui nous nous fait les désigner par le terme
+% de \emph{modèles entiers}.
+% Les constantes $L, M, N$ de la table \ref{tab.mod} sont définies par les
+% commandes |\def\rangeRGB|\marg{L},
 % \DescribeMacro\rangeRGB
 % |\def\rangeHSB|\marg{M},
 % \DescribeMacro\rangeHSB
 % and |\def\rangeGray|\marg{N}.
 % \DescribeMacro\rangeGray
-% La modification de ces constantes peut être fait \emph{avant} ou \emph{après} que l'\XCP{} ait été chargée, par exemple :
+% La modification de ces constantes peut être fait \emph{avant} ou 
+% \emph{après} que l'\XCP{} ait été chargée, par exemple :
 % \label{ex.range}\begin{verbatim}
 % \documentclass{article}
 % ...
@@ -589,7 +800,8 @@
 % \end{verbatim}
 %
 %
-% \subsubsection{Substitution de modéles colorimétriques individuels}\label{sec.subst}
+% \subsubsection{Substitution de modéles colorimétriques individuels}
+% \label{sec.subst}
 %
 % \DescribeMacro\substitutecolormodel
 %   \marg{modèle source}\marg{liste de modèles cibles}\\
@@ -607,7 +819,8 @@
 % algorithmes de \XC, sans toucher aux autres modèles.
 %
 %
-% \subsubsection{Changement du modèle colorimétrique cible dans un document}\label{sec.tgt}
+% \subsubsection{Changement du modèle colorimétrique cible dans un document}
+% \label{sec.tgt}
 %
 % \DescribeMacro\selectcolormodel
 %   \marg{num model}\\
@@ -662,48 +875,79 @@
 % \Meta*{num}& \RS nombre entier positif\hfill(\emph{nombre})\\
 % \Meta*{déc}& \RS nombre réel\hfill(\emph{décimal})\\
 % \Meta*{div}& \RS nombre réel non nul\hfill(\emph{diviseur})\\
-% \Meta*{pct}& \RS nombre réel dans l'intervalle $[0,100]$\hfill(\emph{pourcentage})\\
+% \Meta*{pct}& \RS nombre réel dans l'intervalle 
+% $[0,100]$\hfill(\emph{pourcentage})\\
 % \hline
-% \Meta*{id}& \RS chaîne non vide contenant des lettres et des chiffres\hfill(\emph{identifiant})\\
-% \Meta*{ext id}& \RS \Meta{id}\newline
+% \Meta*{id}& \RS chaîne non vide contenant des lettres et des 
+% chiffres\hfill(\emph{identifiant})\\
+% \Meta*{id étendu}& \RS \Meta{id}\newline
 %                 \RS \Meta[1]{id}|=|\Meta[2]{id}\\
-% \Meta*{id-liste}& \RS \Meta[1]{ext id}|,|\Meta[2]{ext id}|,...,|\Meta[l]{ext id}\\
+% \Meta*{liste-id}& \RS 
+% \Meta[1]{id étendu}|,|\Meta[2]{id étendu}|,...,|\Meta[l]{id étendu}\\
 % \Meta*{nom}& \RS \Meta{id}\hfill(\emph{nom explicite})\newline
 %               \RS `|.|'\hfill(\emph{nom implicite})\\
-% \Meta*{modèle central}& \RS `|rgb|', `|cmy|', `|cmyk|', `|hsb|', `|gray|'\hfill(\emph{modèles centraux})\\
+% \Meta*{modèle central}& \RS `|rgb|', `|cmy|', `|cmyk|', `|hsb|', 
+% `|gray|'\hfill(\emph{modèles centraux})\\
 % \Meta*{modèle numérique}& \RS \Meta{modèle central}\newline
-%                    \RS `|RGB|', `|HTML|', `|HSB|', `|Gray|'\hfill(\emph{modèles entiers})\newline
-%                    \RS `|Hsb|', `|tHsb|', `|wave|'\hfill(\emph{modèles décimaux})\\
-% \Meta*{modèle}& \RS \Meta{modèle numérique}\hfill(\emph{modèles numériques})\newline
+%                    \RS `|RGB|', `|HTML|', `|HSB|', 
+% `|Gray|'\hfill(\emph{modèles entiers})\newline
+%                    \RS `|Hsb|', `|tHsb|', `|wave|'\hfill(\emph{modèles
+% décimaux})\\
+% \Meta*{modèle}& \RS \Meta{modèle num}\hfill(\emph{modèles 
+% numériques})\newline
 %                \RS `|named|'\hfill(\emph{pseudo-modèle})\\
-% \Meta*{modèle-liste}& \RS \Meta[1]{modèle}|/|\Meta[2]{modèle}|/.../|\Meta[m]{modèle} \hfill(\emph{modèles multiples})\newline
-%                     \RS \Meta{modèle central}|:|\Meta[1]{modèle}|/|\Meta[2]{modèle}|/.../|\Meta[m]{modèle}\\
-% \Meta*{spec}& \RS liste de valeurs numériques séparées par des virgules\hfill(\emph{spécification explicite})\newline
-%               \RS liste de valeurs numériques séparées par des virgules\hfill(\emph{spécification explicite})\newline
-%               \RS nom d'une couleur \og nommée \fg{}\hfill(\emph{spécification implicite})\\
-% \Meta*{spec-liste}& \RS \Meta[1]{spec}|/|\Meta[2]{spec}|/.../|\Meta[m]{spec} \hfill(\emph{spécifications multiples})\\
+% \Meta*{liste-modèle}& \RS 
+% \Meta[1]{modèle}|/|\Meta[2]{modèle}|/.../|\Meta[m]{modèle} 
+% \hfill(\emph{modèles multiples})\newline
+%                     \RS \Meta{modèle 
+% central}|:|\Meta[1]{modèle}|/|\Meta[2]{modèle}|/.../|\Meta[m]{modèle}\\
+% \Meta*{spéc}& \RS liste de valeurs numériques séparées par des 
+% virgules\hfill(\emph{spécification explicite})\newline
+%               \RS liste de valeurs numériques séparées par des 
+% virgules\hfill(\emph{spécification explicite})\newline
+%               \RS nom d'une couleur \og nommée 
+% \fg{}\hfill(\emph{spécification implicite})\\
+% \Meta*{liste-spéc}& \RS 
+% \Meta[1]{spéc}|/|\Meta[2]{spéc}|/.../|\Meta[m]{spéc} 
+% \hfill(\emph{spécifications multiples})\\
 % \Meta*{type}& \RS \Meta{vide}\newline
 %               \RS `|named|', `|ps|'\\
 % \hline
-% \Meta*{expr}& \RS \Meta{préfixe}\Meta{nom}\Meta{expr mélangée}\Meta{suffixe}\hfill(\emph{expression de couleur standard})\\
-% \Meta*{prefix}& \RS \Meta{vide}\newline
+% \Meta*{expr}& \RS \Meta{préfixe}\Meta{nom}\Meta{expr de  
+% mélange}\Meta{suffixe}\hfill(\emph{expression de couleur standard})\\
+% \Meta*{préfixe}& \RS \Meta{vide}\newline
 %                 \RS \Meta{moins}\hfill(\emph{indicateur complémentaire})\\
-% \Meta*{mix expr}& \RS |!|\Meta[1]{pct}|!|\Meta[1]{nom}|!|\Meta[2]{pct}|!|\Meta[2]{nom}|!...!|\Meta[n]{pct}|!|\Meta[n]{nom} \hfill(\emph{expression de mélange complète})\newline
-%                   \RS |!|\Meta[1]{pct}|!|\Meta[1]{nom}|!|\Meta[2]{pct}|!|\Meta[2]{nom}|!...!|\Meta[n]{pct} \hfill(\emph{expression de mélange incomplète})\\
+% \Meta*{expr de mélange}& \RS 
+% |!|\Meta[1]{pct}|!|\Meta[1]{nom}|!
+% |\Meta[2]{pct}|!|\Meta[2]{nom}|!...!|\Meta[n]{pct}|!|\Meta[n]{nom} 
+% \hfill(\emph{expression de mélange complète})\newline
+%                   \RS 
+% |!|\Meta[1]{pct}|!|\Meta[1]{nom}|!
+% |\Meta[2]{pct}|!|\Meta[2]{nom}|!...!|\Meta[n]{pct}
+% \hfill(\emph{expression de mélange incomplète})\\
 % \Meta*{suffixe}& \RS \Meta{vide}\newline
 %                  \RS |!!|\Meta{plus}\hfill(\trad{\emph{series step}})\newline
 %                  \RS |!![|\Meta{num}|]|\hfill(\trad{\emph{series access}})\\
 % \hline
-% \Meta*{ext expr}& \RS \Meta{modèle central}|,|\Meta{div}|:|\Meta[1]{expr}|,|\Meta[1]{déc}|;|\Meta[2]{expr}|,|\Meta[2]{déc}|;...;|\Meta[k]{expr}|,|\Meta[k]{déc}\newline
-%                   \RS \Meta{modèle central}|:|\Meta[1]{expr}|,|\Meta[1]{déc}|;|\Meta[2]{expr}|,|\Meta[2]{déc}|;...;|\Meta[k]{expr}|,|\Meta[k]{déc}\\
+% \Meta*{expr étendue}& \RS 
+% \Meta{modèle central}|,|\Meta{div}|:|\Meta[1]{expr}|,
+% |\Meta[1]{déc}|;|\Meta[2]{expr}|,|\Meta[2]{déc}|;...;|\Meta[k]{expr}|,
+% |\Meta[k]{déc}\newline
+%                   \RS \Meta{modèle central}|:|\Meta[1]{expr}|,
+% |\Meta[1]{déc}|;|\Meta[2]{expr}|,|\Meta[2]{déc}|;...;|\Meta[k]{expr}|,
+% |\Meta[k]{déc}\\
 % \hline
-% \Meta*{fonct expr}& \RS |>|\Meta{fonction}|,|\Meta[1]{arg}|,|\Meta[2]{arg}|,...,|\Meta[j]{arg}\hfill(\emph{expression de fonction de couleur})\\
-% \Meta*{fonction}& \RS `|wheel|', `|twheel|'\hfill(\emph{fonctions de couleur})\\
+% \Meta*{expr fonctionnellle}& \RS |>|\Meta{fonction}|,|\Meta[1]{arg}|,
+% |\Meta[2]{arg}|,...,|\Meta[j]{arg}\hfill(\emph{expression fonctionnelle de
+%  couleur})\\
+% \Meta*{fonction}& \RS `|wheel|', `|twheel|'\hfill(\emph{fonctions de 
+% couleur})\\
 % \hline
-% \Meta*{couleur}& \RS \Meta{couleur expr}\Meta[1]{fonction expr}\Meta[2]{fonction expr}|...|\Meta[i]{fonction expr}\\
-% \Meta*{couleur expr}& \RS \Meta{nom}\newline
+% \Meta*{couleur}& \RS \Meta{expr de couleur}\Meta[1]{expr 
+% fonctionnelle}\Meta[2]{expr fonctionnelle}|...|\Meta[i]{expr fonctionnelle}\\
+% \Meta*{expr de couleur}& \RS \Meta{nom}\newline
 %                     \RS \Meta{expr}\newline
-%                     \RS \Meta{ext expr}\\
+%                     \RS \Meta{expr étendue}\\
 % \hline\hline
 % \rowcolor{white}
 % Remarques:& chaque \RS indique une chaîne de remplacement possible pour un
@@ -730,12 +974,12 @@
 % \subsubsection{Remarques additionnelles et restrictions sur les arguments}
 %
 % \paragraph{Chaînes basiques et nombres}
-% \DescribeArg{empty}
-% \DescribeArg{minus}
+% \DescribeArg{vide}
+% \DescribeArg{moins}
 % \DescribeArg{plus}
-% \DescribeArg{int}
+% \DescribeArg{ent}
 % \DescribeArg{num}
-% \DescribeArg{dec}
+% \DescribeArg{déc}
 % \DescribeArg{pct}
 % \DescribeArg{div}
 % Ces arguments ne nécessitent pas beaucoup d'explications. Cependant, dans la
@@ -747,11 +991,11 @@
 % être respectée par tous les résultats intermédiaires, ce qui implique
 % généralement des restrictions plus larges. Comme \XC{} utilise énormément
 % les registres internes de dimension de \TeX\ pour la plupart des calculs, 
-% ce point doit être gardé à l'esprit à chaque fois que des \trad{expressions
-% \Meta{ext expr}} doivent être utilisées.
+% ce point doit être gardé à l'esprit à chaque fois que des expressions
+% \Meta{expr étendue} doivent être utilisées.
 %
 % \paragraph{Noms de couleur}
-% \DescribeArg{name}
+% \DescribeArg{nom}
 % Un \Meta{nom} indique le nom déclaré (ou le nom qui va être déclaré) d'une 
 % \emph{couleur} ou d'une \trad{\emph{série de couleur}} ;
 % il peut être déclaré \emph{explicitement} par l'une des commandes suivantes :
@@ -768,95 +1012,146 @@
 %
 %
 % \paragraph{Modèles colorimétriques}
-% \tradini
-% \DescribeArg{core model}
-% \DescribeArg{num model}
-% \DescribeArg{model}
-% The differentiation between \emph{core models} (\Model{rgb}, \Model{cmy}, \Model{cmyk}, \Model{hsb}, \Model{gray}), \emph{integer models} (\Model{RGB}, \Model{HTML}, \Model{HSB}, \Model{Gray}), \emph{decimal models} (\Model{Hsb}, \Model{tHsb}, \Model{wave}) and \emph{pseudo models} (currently \nModel{named}, \nModel{ps}) has a simple reason: core models with their parameter ranges based on the unit interval $[0,1]$ are best suited for all kinds of calculations, whereas the purpose of the integer models is mainly to facilitate the input of parameters, followed by some transformation into one of the core models.
-% Finally, the decimal models \Model{Hsb} and \Model{tHsb} are special-purpose versions of \Model{hsb}, whereas \Model{wave} and the pseudo model \nModel{named} have a special status, since they are `calculation-averse': it is usually only possible to convert such a color into one of the other models, but not the other way round.
-% Even worse for the pseudo model \nModel{ps}: since such colors contain \Index{PostScript} code, they are absolutely intransparent for \TeX.
+% \DescribeArg{modèle central}
+% \DescribeArg{modèle numérique}
+% \DescribeArg{modèle}
+%
+% La différence faite entre les \emph{modèles centraux} (\Model{rgb}, 
+% \Model{cmy}, \Model{cmyk}, \Model{hsb}, \Model{gray}), les \emph{modèles
+% entiers} (\Model{RGB}, \Model{HTML}, \Model{HSB}, \Model{Gray}), 
+% les \emph{modèles décimaux} (\Model{Hsb}, \Model{tHsb}, \Model{wave}) et
+% les \emph{pseudo-modèles} (actuellement \nModel{named}, \nModel{ps}) 
+% s'explique simplement : les modèles centraux avec leurs paramètres basés
+% sur l'intervalle unité $[0,1]$ permettent de faire plus aisément tout type
+% de calculs, tandis que le but des modèles entiers est principalement de 
+% faciliter la saisie des paramètres en entrée (transformés ensuite en ceux
+% d'un des modèles centraux).
+% Enfin, les modèles décimaux \Model{Hsb} et \Model{tHsb} sont des versions de
+% \Model{hsb} pensés pour des buts spécifiques, tandis que \Model{wave} et
+% le pseudo-modèle \nModel{named} ont un statut spécial dans la mesure où ils
+% ne sont pas pensés pour des calculs : s'il est normalement possible de
+% convertir une couleur de ces modèles en une d'un autre modèle, l'inverse
+% ne l'est pas.
+% La situation est bien pire pour le pseudo-modèle \nModel{ps} : ces couleurs
+% contenant du code \Index{PostScript} \trad{ne sont pas transparentes}
+% pour \TeX.  
 %
 %
-% \paragraph{Color specifications}
-% \DescribeArg{spec}
-% The \Meta{spec} argument --- which specifies the parameters of a color --- obviously depends on the underlying color model.
-% We differentiate between \emph{explicit} and \emph{implicit} specification, the former referring to numerical parameters as explained in table \vref{tab.mod}, the latter --- ideally --- referring to driver-provided names.
+% \paragraph{Spécifications de couleur}
+% \DescribeArg{spéc}
+% L'argument \Meta{spéc} --- qui spécifie les paramètres d'une couleur ---
+% dépend évidemment du modèle colorimétrique sous-jacent.
+% Une différence est faite entre les spécifications \emph{explicite} et
+% \emph{implicite}, la première faisant référence à des paramètres numériques
+% comme expliqué en table \vref{tab.mod}, la seconde --- idéalement --- 
+% faisant référence à des noms définis par le pilote graphique.
 %
-% Examples: `|.1,.2,.3|', `|.1 .2 .3|', `|0.56789|', `|89ABCD|', `|ForestGreen|'.
+% Exemples: `|.1,.2,.3|', `|.1 .2 .3|', `|0.56789|', `|89ABCD|', `|ForestGreen|'.
 %
 %
-% \paragraph{Multiple models and specifications}
-% \DescribeArg{model-list}
-% \DescribeArg{spec-list}
-% These arguments always appear in (explicit or implicit) pairs within the following color definition commands:
+% \paragraph{Modèles et spécifications multiples}
+% \DescribeArg{liste-modèle}
+% \DescribeArg{liste-spéc}
+% Ces arguments apparaissent toujours par paires (explicites ou
+% implicites) dans les commandes de définition de couleur suivantes :
 % |\definecolor|, |\providecolor|, |\definecolorset|, |\providecolorset|.
-% First, \Meta{model-spec} is being reconciled with the current target model (as set by a package option or the |\selectcolormodel| command); in case there is no exact match, the first model of the list is chosen.
-% Then, the corresponding color specification will be selected from \Meta{spec-list}, such that we arrive at a proper $(\Meta{model}, \Meta{spec})$ pair.
-% Therefore, in the actual executed color definition there is no ambiguity anymore.
-% The extended form \Meta{core model}|:|\Meta[1]{model}|/|\Meta[2]{model}|/.../|\Meta[m]{model} causes an immediate conversion of the relevant \Meta{spec} to \Meta{core model}; an unknown target model will be silently ignored here.
+% Tout d'abord, \Meta{modèle-spéc} est réconcilié avec le modèle cible 
+% courant (fixé par exemple avec une option de l'extension ou la commande
+% |\selectcolormodel| ; dans le cas où il n'existe de modèle correspondant,
+% le premier modèle de la liste est choisi.
+% Ensuite, la spécification de couleur correspondante sera sélectionnée dans
+% \Meta{liste-spéc}, de telle façon à ce que le traitement aboutisse à une 
+% paire $(\Meta{modèle}, \Meta{spéc})$ cohérente. Ceci explique pourquoi il
+% n'y a plus d'ambiguité possible dans la définition de couleur réellement
+% suivie.
+% La forme étendue \Meta{modèle 
+% central}|:|\Meta[1]{modèle}|/|\Meta[2]{modèle}|/.../|\Meta[m]{modèle} 
+% provoque la conversion immédiate de la \Meta{spéc} adéquate au \Meta{modèle
+% central}; un modèle inconnu sera tout simplment ignoré ici, sans aucun commentaire.
 %
-% Examples: `|rgb/cmyk/named/gray|', `|0,0,0/0,0,0,1/Black/0|', `|rgb:cmy/hsb|'.
+% Exemples: `|rgb/cmyk/named/gray|', `|0,0,0/0,0,0,1/Black/0|', `|rgb:cmy/hsb|'.
 %
 %
-% \paragraph{The type argument}
+% \paragraph{L'argument de type}
 % \DescribeArg{type}
-% This is used only in the context of color defining commands, see the description of |\definecolor| and friends.
+% Ceci est utilisé uniquement dans le contexte de commandes de définition
+% de couleur, voir la description de |\definecolor| et assimilées.
 %
 %
-% \paragraph{Standard color expressions}
+% \paragraph{Expressions standards de couleur}
 % \DescribeArg{expr}
-% \DescribeArg{prefix}
-% \DescribeArg{mix expr}
-% \DescribeArg{postfix}
-% These expressions serve as a tool to easily specify a certain form of cascaded color mixing which is described in detail in section~\ref{sec.expr-meaning}.
-% The \Meta{prefix} argument controls whether the color following thereafter or its complement will be relevant:
-% an odd number of minus signs indicates that the color resulting from the remaining expression has to be converted into its complementary color.
-% An \emph{incomplete mix expression} is just an abbreviation for a \emph{complete mix expression} with $\Meta[n]{name} = |white|$, in order to save some keystrokes in the case of tints.
-% The \Meta{postfix} string is usually empty, but it offers some additional functionality in the case of a \emph{color series}:
-% the non-empty cases require that
+% \DescribeArg{préfixe}
+% \DescribeArg{expr de mélange}
+% \DescribeArg{suffixe}
+% Ces expressions servent d'outils pour spécifier facilement une certaine
+% forme de mélange de couleur en cascade, par ailleurs décrit en détail en 
+% section~\ref{sec.expr-meaning}.
+% L'argument \Meta{préfixe} détermine si la couleur à retenir est celle qui
+% suit ou sa complémentaire :
+% un nombre impair de signes négatifs indique que la couleur résultant de 
+% l'expression préfixée doit être convertie en sa couleur complémentaire.
+% Une \emph{expression de mélange incomplète} est une juste une abbréviation
+% d'une \emph{expression de mélange complère} aveec  $\Meta[n]{nom} = |white|$,
+% afin d'éviter quelques saisies dans le cas des teintes.
+% La chaîne \Meta{suffixe} est généralement vide mais elle offre quelques
+% fonctionnalités additionnelles dans le cas de \trad{\emph{color series}} :
+% les cas où la chaîne n'est pas vide demandent à ce que 
 % \begin{itemize}
-% \item \Meta{name} denotes the name of a \emph{color series},
-% \item \Meta{mix expr} is a \emph{complete} mix expression.
+% \item le \Meta{nom} indique le nom d'une \trad{\emph{color series}} ;
+% \item l'\Meta{expr de mélange} est \emph{complète}.
 % \end{itemize}
-% Examples: `|red|', `|-red|', `|--red!50!green!12.345|', `|red!50!green!20!blue|', `|foo!!+|', `|foo!![7]|', `|foo!25!red!!+++|', `|foo!25!red!70!green!![7]|'.
+% Exemples: `|red|', `|-red|', `|--red!50!green!12.345|', 
+% `|red!50!green!20!blue|', `|truc!!+|', `|truc!![7]|', `|truc!25!red!!+++|', 
+% `|truc!25!red!70!green!![7]|'.
 %
 %
-% \paragraph{Extended color expressions}
-% \DescribeArg{ext expr}
-% These expressions provide another method of color mixing, see section \vref{sec.extexpr-meaning} for details.
-% The shorter form
+% \paragraph{Expressions de couleur étendues}
+% \DescribeArg{expr étendue}
+% Ces expressions fournissent une autre méthode pour mélanger des couleurs,
+% voir section~\vref{sec.extexpr-meaning} pour plus d'informations.
+% La forme raccourcie 
 % \begin{align*}
-% \Meta{core model}&|:|\Meta[1]{expr}|,|\Meta[1]{dec}|;|\Meta[2]{expr}|,|\Meta[2]{dec}|;...;|\Meta[k]{expr}|!|\Meta[k]{dec}\\
-% \intertext{is an abbreviation for the special (and probably most used) case}
-% \Meta{core model}|,|\Meta{div}&|:|\Meta[1]{expr}|,|\Meta[1]{dec}|;|\Meta[2]{expr}|,|\Meta[2]{dec}|;...;|\Meta[k]{expr}|!|\Meta[k]{dec}\\
-% \intertext{with the following definition (requiring a non-zero sum of all \Meta[\kappa]{dec} coefficients):}
-% \Meta{div} &:= \Meta[1]{dec} + \Meta[2]{dec} + \dots + \Meta[k]{dec} \neq0.
+% \Meta{modèle central}&|:|\Meta[1]{expr}|,|\Meta[1]{déc}|;|\Meta[2]{expr}|,
+% |\Meta[2]{déc}|;...;|\Meta[k]{expr}|!|\Meta[k]{déc}\\
+% \intertext{est une abbréviation pour le cas spécial (et probablement plus
+% courant)}
+% \Meta{modèle central}|,|\Meta{div}&|:|\Meta[1]{expr}|,|\Meta[1]{déc}|;|\Meta[2]{expr}|,|\Meta[2]{déc}|;...;|\Meta[k]{expr}|!|\Meta[k]{déc}\\
+% \intertext{avec la définition suivante (impliquant une somme non nulle 
+% de tous les coefficients \Meta[\kappa]{déc}):}
+% \Meta{div} &:= \Meta[1]{déc} + \Meta[2]{déc} + \dots + \Meta[k]{déc} \neq0.
 % \end{align*}
-% Examples: `|rgb:red,1|', `|cmyk:red,1;-green!25!blue!60,11.25;blue,-2|'.
+% Exemples: `|rgb:red,1|', `|cmyk:red,1;-green!25!blue!60,11.25;blue,-2|'.
 %
 %
-% \paragraph{Function expressions}
-% \DescribeArg{func expression}
-% \DescribeArg{function}
-% These expressions extend the functionality of \emph{standard} or \emph{extended} expressions by taking the result of such an expression to perform additional calculations.
-% The number of arguments may vary between different functions, see section \vref{sec.functions} for details.
+% \paragraph{Expressions fonctionnelles}
+% \DescribeArg{expr fonctionnelle}
+% \DescribeArg{fonction}
+% Ces expressions étendent les fonctionnalités des expressions \emph{standards}
+% ou \emph{étendues} en récupérant le résultat de ces expressions pour
+% effectuer des calculs complémentaires.
+% Le nombre d'arguments peut varier entre les différentes fonctions, voir
+% section \vref{sec.functions} pour plus d'informations.
 %
-% Examples: `|>wheel,30|', `|>wheel,30,|', `|>twheel,1,12|', `|>twheel,-11,12|'.
-%
-%
-%
-% \paragraph{Colors}
-% \DescribeArg{color}
-% \DescribeArg{color expr}
-% Finally, \Meta{color} is the `umbrella' argument, covering the different concepts of specifying colors.
-% This means, whenever there is a \Meta{color} argument, the full range of names and expressions, as explained above, may be used.
+% Exemples: `|>wheel,30|', `|>wheel,30,|', `|>twheel,1,12|', `|>twheel,-11,12|'.
 %
 %
-% \subsubsection{Meaning of standard color expressions}\label{sec.expr-meaning}
 %
+% \paragraph{Couleurs}
+% \DescribeArg{couleur}
+% \DescribeArg{expr de couleur}
+% Au final, \Meta{couleur} est un argument générique recouvrant les 
+% différents concepts de spécification des couleurs. 
+% Ceci signifie qu'à chaque fois qu'un argument \Meta{couleur} est utilisable,
+% la totalité des noms et expressions vues ci-dessus peuvent être utilisées. 
+%
+%
+
+% \subsubsection{Signification des expressions de couleur standards}\label{sec.expr-meaning}
+%
+% \tradini
 % We explain now how an expression
 % \begin{gather*}
-% \Meta{prefix}\Meta{name}|!|\Meta[1]{pct}|!|\Meta[1]{name}|!|\Meta[2]{pct}|!|\dots|!|\Meta[n]{pct}|!|\Meta[n]{name}\Meta{postfix}
+% \Meta{préfixe}\Meta{name}|!|\Meta[1]{pct}|!|\Meta[1]{name}|!|\Meta[2]{pct}|!|\dots|!|\Meta[n]{pct}|!|\Meta[n]{name}\Meta{postfix}
 % \end{gather*}
 % is being interpreted and processed:
 % \begin{enumerate}
@@ -864,7 +1159,7 @@
 % If \Meta{postfix} has the form `|!![|\Meta{num}|]|', then \Meta{temp} will be the corresponding (direct-accessed) color \Meta{num} from the series \Meta{name}.
 % \item Then a color mix, consisting of \Meta[1]{pct}\% of color \Meta{temp} and $(100-\Meta[1]{pct})$\% of color \Meta[1]{name} is computed; this is the new temporary color \Meta{temp}.
 % \item The previous step is being repeated for all remaining parameter pairs (\Meta[2]{pct},\Meta[2]{name}), \dots, (\Meta[n]{pct},\Meta[n]{name}).
-% \item If \Meta{prefix} consists of an odd number of minus signs `-', then \Meta{temp} will be changed into its complementary color.
+% \item If \Meta{préfixe} consists of an odd number of minus signs `-', then \Meta{temp} will be changed into its complementary color.
 % \item If \Meta{postfix} has the form `|!!+|', `|!!++|', `|!!+++|', etc., a number of step commands (=~number of `|+|' signs) are performed on the underlying color series \Meta{name}.
 % This has no consequences for the color \Meta{temp}.
 % \item Now the color \Meta{temp} is being displayed or serves as an input for other operations, depending on the invoking command.
@@ -886,7 +1181,7 @@
 % \Meta{core model}|:|\Meta[1]{expr}|,|\Meta[1]{dec}|;|\Meta[2]{expr}|,|\Meta[2]{dec}|;...;|\Meta[k]{expr}|,|\Meta[k]{dec}
 % \end{gather*}
 % mimes color mixing as painters do it: specify a list of colors, each with a \Meta{dec} factor attached to.
-% For such an \Meta{ext expr}, each standard color expression \Meta[\kappa]{expr} will be converted to \Meta{core model}, then the resulting vector is multiplied by $\Meta[\kappa]{dec}/\Meta{div}$, where
+% For such an \Meta{expr étendue}, each standard color expression \Meta[\kappa]{expr} will be converted to \Meta{core model}, then the resulting vector is multiplied by $\Meta[\kappa]{dec}/\Meta{div}$, where
 % \begin{gather*}
 % \Meta{div} := \Meta[1]{dec} + \Meta[2]{dec} + \dots + \Meta[k]{dec}.
 % \end{gather*}
@@ -4858,7 +5153,7 @@
 %   \oarg{type}\marg{name}\oarg{prefix}\marg{model-list}\marg{spec-list}\\
 % Extends the facilities of \LC's |\definecolor|.
 % The optional argument \Meta{type} has currently to be either empty (= normal color definition) or `named' or `ps'.
-% \Meta{prefix} is an argument used for the internal driver-dependent representation.
+% \Meta{préfixe} is an argument used for the internal driver-dependent representation.
 % |\definecolor| creates a new command |\\color@|\Meta{name} that contains the \emph{internal representation}
 % |\xcolor@|\marg{type-spec}\marg{driver-spec}\marg{n-model}\marg{n-color-spec} of the color, where
 % \begin{itemize}
