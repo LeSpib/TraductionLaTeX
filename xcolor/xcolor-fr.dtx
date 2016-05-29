@@ -18,7 +18,7 @@
 %</package>
 %<*extract|driver|test1|test2|test3|test4>
 \def\XCfileversion{v2.11}%
-\def\XCfiledate{2007/01/21}%
+\def\XCfiledate{21/01/2007}%
 %</extract|driver|test1|test2|test3|test4>
 %
 % This file may be distributed and/or modified under the
@@ -1203,53 +1203,80 @@
 % \subsubsection{Signification des expressions de couleur étendues}
 % \label{sec.extexpr-meaning}
 %
-% \tradini
-% An \emph{extended color expression}
+% Une \emph{expression de couleur étendue} 
 % \begin{gather*}
 % \Meta{core model}|:|\Meta[1]{expr}|,|\Meta[1]{dec}|;|\Meta[2]{expr}|,|\Meta[2]{dec}|;...;|\Meta[k]{expr}|,|\Meta[k]{dec}
 % \end{gather*}
-% mimes color mixing as painters do it: specify a list of colors, each with a \Meta{dec} factor attached to.
-% For such an \Meta{expr étendue}, each standard color expression \Meta[\kappa]{expr} will be converted to \Meta{core model}, then the resulting vector is multiplied by $\Meta[\kappa]{dec}/\Meta{div}$, where
+% imite la manière dont les peintres mélangent les couleurs : en indiquant une
+% liste de couleurs, chaque couleur étant associée à un facteur \Meta{déc}.
+% Dans une telle \Meta{expr étendue}, chaque expression standard de couleur
+% \Meta[\kappa]{expr} sera convertie dans le \Meta{modèle central} et le 
+% vecteur résultant est multiplié par $\Meta[\kappa]{déc}/\Meta{div}$, où
 % \begin{gather*}
-% \Meta{div} := \Meta[1]{dec} + \Meta[2]{dec} + \dots + \Meta[k]{dec}.
+% \Meta{div} := \Meta[1]{déc} + \Meta[2]{déc} + \dots + \Meta[k]{déc}.
 % \end{gather*}
-% Afterwards the sum of all of these vectors is calculated.
+% Ensuite, la somme de tous ces vecteurs est calculée.
 %
-% Example: mixing 4~parts of \testclr{red} \Color{red}, 2~parts of \testclr{green} \Color{green}, and 1~part of \testclr{yellow} \Color{yellow}, we get \testclr{rgb:red,4;green,2;yellow,1} via |\color{rgb:red,4;green,2;yellow,1}|.
-% Trying the same with $-1$ parts of \Color{yellow} instead, we get \testclr{rgb:red,4;green,2;yellow,-1}.
-% Note that this mechanism can also be used to display an individual color (expression) in a certain color model: |\color{rgb:yellow,1}| results in such a conversion.
-% The general form
+% Exemple: mélanger 4 parts de \testclr{red} \Color{red}, 2~parts de 
+% \testclr{green} \Color{green}, et une part de \testclr{yellow} 
+% \Color{yellow} permet d'obtenir \testclr{rgb:red,4;green,2;yellow,1} par le
+% biais de |\color{rgb:red,4;green,2;yellow,1}|.
+% Essayer le même mélange en mettant $-1$ part de \Color{yellow} au lieu d'une
+% fait obtenir \testclr{rgb:red,4;green,2;yellow,-1}.
+% Notez que ce mécanisme peut être aussi utilisé pour afficher une (expression
+% de) couleur individuelle dans un certain modèle colorimétrique: |\color{rgb:yellow,1}| permet une telle conversion.
+% La forme générale
 % \begin{gather*}
-% \Meta{core model}|,|\Meta{div}|:|\Meta[1]{expr}|,|\Meta[1]{dec}|;|\Meta[2]{expr}|,|\Meta[2]{dec}|;...;|\Meta[k]{expr}|,|\Meta[k]{dec}
+% \Meta{modèle central}|,|\Meta{div}|:|\Meta[1]{expr}|,|\Meta[1]{déc}|;|\Meta[2]{expr}|,|\Meta[2]{déc}|;...;|\Meta[k]{expr}|,|\Meta[k]{déc}
 % \end{gather*}
-% does the same operation with the only difference that the divisor \Meta{div} is being specified instead of calculated.
-% In the above example, we get a shaded version \testclr{rgb,9:red,4;green,2;yellow,1} via |\color{rgb,9:red,4;green,2;yellow,1}|.
-% Note that it is not forbidden to specify a \Meta{div} argument which is smaller than the sum of all \Meta[\kappa]{dec}, such that one or more of the final color specification parameters could be outside the interval $[0,1]$.
-% However, the mapping of equation (\ref{eq.U}) takes care of such cases.
+% exécute la même opération avec pour seule différence que le diviseur
+% \Meta{div} est spécifié au lieu d'être calculé. 
+% Dans l'exemple ci-dessus, nous obtenons une version plus sombre 
+% \testclr{rgb,9:red,4;green,2;yellow,1} par le biais de 
+% |\color{rgb,9:red,4;green,2;yellow,1}|. 
+% Notez qu'il n'est pas interdit de spécifier un argument \Meta{div} qui soit
+% plus petit que la somme de tous les \Meta[\kappa]{dec}, de telle façon à ce
+% que certains des paramètres de spécification des couleurs puissent être hors
+% de l'intervalle $[0,1]$. Le traitement de l'équation \ref{eq.U}
+% gère ce type de cas.
 %
 %
-% \subsubsection{Color functions}\label{sec.functions}
+% \subsubsection{Fonctions de couleur}\label{sec.functions}
 %
-% Color functions take a comma-separated list of arguments, and they serve to transform the \emph{given color} (i.e., the result of all calculations prior to the function call) into a new color.
+% Les fonctions de couleur utilisent une liste d'arguments séparés
+% par des virgules et elles servent à transformer la \emph{couleur donnée} 
+% (autrement dit le résultat des calculs précédant l'appel de la fonction) en 
+% une nouvelle couleur.
 %
-% \paragraph{Color wheel calculations}
+% \paragraph{Calculs associés aux cercles chromatiques}
 % \DescribeFunc{wheel}
 % \DescribeFunc{twheel}
-% Arguments: \Meta{angle} or \Meta{angle}|,|\Meta{full circle}, the former being an abbreviataion of \Meta{angle}|,\rangeHsb|.
-% These functions allow to calculate related colors by harmonic relations based on color wheels (cf.~section \vref{sec.harmony}).
-% The second argument \Meta{full circle} declares how many units a full circle consists of, the first argument states by how many units the given color has to be rotated.
-% To this end, the given color is first converted to \Model{Hsb} (in case of \Function{wheel}), yielding \emph{hue\Circ}, \emph{saturation}, and \emph{brightness}, respectively.
-% Then
+% Ces fonctions permettent de déterminer des couleurs liées par des relations 
+% harmoniques basées sur les cercles chromatiques (voir section~\vref{sec.harmony}).
+% Les arguments sont ici \Meta{angle} ou \Meta{angle}|,|\Meta{cercle complet}, le premier servant d'abbréviation à \Meta{angle}|,\rangeHsb|.
+% Le second argument \Meta{cercle complet} indique de combien d'unités un 
+% cercle complet est constitué tandis que le premier argument indique de
+% combien d'unités doit être faite la rotation à appliquer à la couleur
+% donnée. 
+% Pour cela, la couleur donnée est tout d'abord convertie en \Model{Hsb} 
+% (dans le cas de \Function{wheel}), ce qui génère les paramètres \emph{teinte\Circ}, \emph{saturation}, et \emph{luminosité}.
+% Ensuite,
 % \begin{gather}
-% \displaystyle\emph{hue\Circ} := \emph{hue\Circ} + \frac{\Meta{angle}}{\Meta{full circle}}\cdot H, \qquad \emph{hue} := u\Bigl( \frac{\emph{hue\Circ}}{H} \Bigr)
+% \displaystyle\emph{teinte\Circ} := \emph{teinte\Circ} + 
+% \frac{\Meta{angle}}{\Meta{cercle complet}}\cdot H, \qquad \emph{teinte} := 
+% u\Bigl( \frac{\emph{teinte\Circ}}{H} \Bigr)
 % \end{gather}
-% where $u$ is the range-reduction function of equation~(\ref{eq.U}) and $H = \texttt{\string\rangeHsb}$.
-% With \emph{saturation} and \emph{brightness} left untouched, the final model is \Model{hsb}.
-% The \Function{twheel} function works similarly, but its arguments refer to \Model{tHsb} instead of \Model{Hsb}.
-% Examples are shown in figure \vref{fig.harmony}.
+% où $u$ est la fonction de réduction d'intervalle de l'équation~\ref{eq.U}
+% et $H = \texttt{\string\rangeHsb}$.
+% La \emph{saturation} et la \emph{luminosité} étant laissées inchangées, le
+% modèle final est \Model{hsb}.
+% La fonction \Function{twheel} fonctionne de façon similaire, mais ces
+% arguments se basent sur \Model{tHsb} au lieu de \Model{Hsb}.
+% Des exemples sont présentés en figure~\vref{fig.harmony}.
 %
 %
-% \subsection{Predefined colors}
+% \subsection{Couleurs prédéfinies}
+% \tradini
 %
 % \subsubsection{Colors that are always available}
 %
@@ -3515,18 +3542,21 @@
 % \addcontentsline{toc}{subsection}{Acknowledgement}
 % Cette extension se base sur \cite{color} (Copyright (C) 1994--1999 
 % \People{David P.}{Carlisle}) et contient du code de cette extension, cette
-% dernière faisant partie du \trad{`Graphics Bundle'} du Standard \LaTeX{}.
+% dernière faisant partie de l'\og ensemble graphique\fg{} du standard  
+% \LaTeX{}.
 % Bien que de nombreuses commandes et fonctionnalités ont été ajoutées et que 
 % la plupart des commandes originales de \LC{} ont été réécrites ou adaptées
 % dans \XC, cette dernière n'existerait pas sans \LC. 
 % Aussi, l'auteur est reconnaissant à \People{David P.}{Carlisle} d'avoir
 % créé \LC{} et ses fichiers associés.
 %
-% \tradini
-% \subsection*{Trademarks}
-% \addcontentsline{toc}{subsection}{Trademarks}
-% Trademarks appear throughout this documentation without any trademark symbol; they are the property of their respective trademark owner.
-% There is no intention of infringement; the usage is to the benefit of the trademark owner.
+% \subsection*{Marques déposées}
+% \addcontentsline{toc}{subsection}{Marques déposées}
+% Des Marques déposées apparaissent tout au long de cette documentation sans
+% aucun symbole les dénotant; elles sont la propriété de leur dépositaire 
+% respectif.
+% Il n'y a ici aucune intention d'infraction ; l'utilisation est
+% au bénéfice du dépositaire de la marque.
 %
 % \raggedright
 % \leftmargini1em
@@ -3539,265 +3569,382 @@
 % \item |\rowcolors[\hline]...| ne fonctionne pas avec \Package{longtable}.
 % \end{itemize}
 %
-% \subsection*{History}
-% \addcontentsline{toc}{subsection}{History}
+% \subsection*{Historique}
+% \addcontentsline{toc}{subsection}{Historique}
 %
-% \subsubsection*{2007/01/21 v2.11}
+% \subsubsection*{21/01/2007 v2.11}
 % \begin{itemize}
-% \item New features:
+% \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item color names \Color{lime} and \Color{teal} added to the set of predefined colors.
+%   \item les noms de couleur \Color{lime} et \Color{teal} sont ajoutés à
+%   l'ensemble des couleurs prédéfinies.
 %   \end{itemize}
-% \item Bugfix:
+% \item Correction d'erreur :
 %   \begin{itemize}
-%   \item incorrect |\XC@strip@comma| call within \Package{hyperref}-related options.
+%   \item appel incorrect de |\XC@strip@comma| dans les options liées à 
+%   \Package{hyperref}.
 %   \end{itemize}
 % \end{itemize}
 %
-% \subsubsection*{2006/11/28 v2.10}
+% \subsubsection*{28/11/2006 v2.10}
+% \tradini
 % \begin{itemize}
-% \item New features:
+% \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item \Option{fixinclude} option prevents \Program{dvips} from explicitly resetting current color to \Color{black} before actually inserting an \File{.eps} file via |\color{red}\includegraphics{foo}|.
+%   \item \Option{fixinclude} option prevents \Program{dvips} from explicitly
+%    resetting current color to \Color{black} before actually inserting an 
+%    \File{.eps} file via |\color{red}\includegraphics{foo}|.
 %   \end{itemize}
-% \item Changes:
+% \item Changements :
 %   \begin{itemize}
 %   \item |\colorbox| and |\fcolorbox| made robust;
 %   \item obsolete package option \oOption{pst} removed;
 %   \item several changes to internal macros.
 %   \end{itemize}
-% \item Bugfixes:
+% \item Corrections d'erreur :
 %   \begin{itemize}
 %   \item incorrect processing of \Model{cmyk}-type current color `.'.
 %   \end{itemize}
 % \end{itemize}
 %
-% \subsubsection*{2005/12/21 v2.09}
+% \tradfin
+% \subsubsection*{21/12/2005 v2.09}
+% \tradini
 % \begin{itemize}
-% \item New features:
+% \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item |\definecolor| and |\color| now accept space-separated color specifications, e.g., |\color| |[rgb]{1 .5 0}|;
-%   \item experimental \Option{xcdraw} option extended to \Option{pdftex} and \Option{dvipdfm} drivers.
+%   \item |\definecolor| and |\color| now accept space-separated color
+%    specifications, e.g., |\color| |[rgb]{1 .5 0}|;
+%   \item experimental \Option{xcdraw} option extended to \Option{pdftex} 
+%    and \Option{dvipdfm} drivers.
 %   \end{itemize}
-% \item Changes:
+% \item Changements :
 %   \begin{itemize}
-%   \item test file \File{xcolor2.tex} made compatible with recent changes in \Package{pstricks};
+%   \item test file \File{xcolor2.tex} made compatible with recent changes 
+%    in \Package{pstricks};
 %   \item test file \File{xcolor3.tex} extended;
-%   \item driver test file \File{xcolor4.tex} extended to demonstrate the different frame drawing approaches;
+%   \item driver test file \File{xcolor4.tex} extended to demonstrate the
+%    different frame drawing approaches;
 %   \item more efficient implementation of driver-specific code.
 %   \end{itemize}
 % \end{itemize}
 %
-% \subsubsection*{2005/11/25 v2.08}
+% \tradfin
+% \subsubsection*{25/11/2005 v2.08}
+% \tradini
 % \begin{itemize}
-% \item New features:
+% \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item more flexibility for |\fcolorbox| arguments, e.g., |\fcolorbox| |[gray]{0.5}[wave]{580}{test}|;
+%   \item more flexibility for |\fcolorbox| arguments, e.g., |\fcolorbox| 
+%    |[gray]{0.5}[wave]{580}{test}|;
 %   \item |\boxframe| returns a frame of given dimensions;
-%   \item new implementation of |\f(rame)box| and |\fcolorbox| as an extension of bug report latex/3655 to reduce pixel positioning errors in output devices;
-%   \item \Option{kernelfbox} option for those who prefer the previous |\f(rame)box| approach;
-%   \item experimental \Option{xcdraw} option uses \Index{PostScript} commands to draw frames and color boxes in case of \Option{dvips}.
+%   \item new implementation of |\f(rame)box| and |\fcolorbox| as an extension
+%    of bug report latex/3655 to reduce pixel positioning errors in output
+%    devices;
+%   \item \Option{kernelfbox} option for those who prefer the previous 
+%    |\f(rame)box| approach;
+%   \item experimental \Option{xcdraw} option uses \Index{PostScript} commands
+%    to draw frames and color boxes in case of \Option{dvips}.
 %   \end{itemize}
-% \item Bugfixes:
+% \item Corrections d'erreur :
 %   \begin{itemize}
 %   \item insufficient expression type detection within |\colorlet|;
-%   \item wrong calculation in the unit interval reduction for negative integers (affecting color series and extended color expressions).
+%   \item wrong calculation in the unit interval reduction for negative
+%    integers (affecting color series and extended color expressions).
 %   \end{itemize}
 % \end{itemize}
 %
-% \subsubsection*{2005/11/12 v2.07}
+% \tradfin
+% \subsubsection*{12/11/2005 v2.07}
+% \tradini
 % \begin{itemize}
-% \item New features:
+% \item Nouvelles fonctionnalités :
 %   \begin{itemize}
 %   \item color model \Model{Hsb} allows to specify \emph{hue} in degrees;
-%   \item color model \Model{tHsb} (\pModel{tuned} \Model{Hsb}) for user-defined \emph{hue} configuration on color wheels;
-%   \item easy generation of color harmonies derived from \Model{Hsb} or \Model{tHsb} color wheels, e.g., |\color{red>wheel,1,12}| yields an `analogous' color to \Color{red} on a 12-spoke wheel;
-%   \item additional 317 predefined color names according to \File{rgb.txt}, which is part of \Index{Unix}/\Index{X11} distributions;
-%   \item \Option{svgnames} option extended by~4~colors taken from \File{rgb.txt};
-%   \item enhanced syntax for immediate conversion, e.g., |\definecolor| |{foo}{rgb:gray}{0.3}| or |\color| |[rgb:wave]{478}|;
+%   \item color model \Model{tHsb} (\pModel{tuned} \Model{Hsb}) for 
+%    user-defined \emph{hue} configuration on color wheels;
+%   \item easy generation of color harmonies derived from \Model{Hsb} or 
+%    \Model{tHsb} color wheels, e.g., |\color{red>wheel,1,12}| yields an
+%    `analogous' color to \Color{red} on a 12-spoke wheel;
+%   \item additional 317 predefined color names according to \File{rgb.txt},
+%    which is part of \Index{Unix}/\Index{X11} distributions;
+%   \item \Option{svgnames} option extended by~4~colors taken from 
+%    \File{rgb.txt};
+%   \item enhanced syntax for immediate conversion, e.g., |\definecolor| 
+%    |{foo}{rgb:gray}{0.3}| or |\color| |[rgb:wave]{478}|;
 %   \item |\@ifundefinedcolor| and |\@ifundefinedmodel| commands;
 %   \end{itemize}
-% \item Changes:
+% \item Changements :
 %   \begin{itemize}
 %   \item enhanced documentation;
 %   \item several changes to internal macros.
 %   \end{itemize}
-% \item Bugfixes:
+% \item Corrections d'erreur :
 %   \begin{itemize}
-%   \item wrong calculation of color series components in some cases of negative step parameters.
+%   \item wrong calculation of color series components in some cases of
+%    negative step parameters.
 %   \end{itemize}
 % \end{itemize}
 %
-% \subsubsection*{2005/10/15 v2.06}
+% \tradfin
+% \subsubsection*{15/10/2005 v2.06}
+% \tradini
 % \begin{itemize}
-% \item New features:
+% \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item color model \Model{wave} for (approximate) visualisation of light wavelengths, still somewhat experimental;
-%   \item pseudo-model \nModel{ps} for colors defined by literal \Index{PostScript} code in conjunction with \Package{pstricks} and \Option{dvips}; an illustrative example for a $\gamma$-correction approach is given in \href{xcolor2.pdf}{\File{xcolor2.tex}};
-%   \item |\substitutecolormodel| command for replacement of missing or faulty driver-specific color models;
+%   \item color model \Model{wave} for (approximate) visualisation of light
+%    wavelengths, still somewhat experimental;
+%   \item pseudo-model \nModel{ps} for colors defined by literal 
+%    \Index{PostScript} code in conjunction with \Package{pstricks} and 
+%    \Option{dvips}; an illustrative example for a $\gamma$-correction
+%    approach is given in \href{xcolor2.pdf}{\File{xcolor2.tex}};
+%   \item |\substitutecolormodel| command for replacement of missing or 
+%    faulty driver-specific color models;
 %   \item improved detection and handling of driver-specific color models;
-%   \item \Option{dvipdfmx} and \Option{xetex} options to support these drivers;
+%   \item \Option{dvipdfmx} and \Option{xetex} options to support these 
+%    drivers;
 %   \item generic driver test file \File{xcolor4.tex}.
 %   \end{itemize}
-% \item Changes:
+% \item Changements :
 %   \begin{itemize}
-%   \item |\XC@strip@comma| doesn't generate a trailing space anymore, which improves also the output of the |testcolors| environment.
+%   \item |\XC@strip@comma| doesn't generate a trailing space anymore, which
+%    improves also the output of the |testcolors| environment.
 %   \end{itemize}
 % \end{itemize}
 %
-% \subsubsection*{2005/09/30 v2.05}
+% \tradfin
+% \subsubsection*{30/09/2005 v2.05}
+% \tradini
 % \begin{itemize}
-% \item New features:
+% \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item |testcolors| environment helps to test colors in different models, showing both the visual result and the model-specific parameters;
-%   \item |\extractcolorspecs| puts model/color specification into two separate commands, as opposed to |\extractcolorspec|;
-%   \item color names \Color{pink} and \Color{olive} added to the set of predefined colors.
+%   \item |testcolors| environment helps to test colors in different models,
+%    showing both the visual result and the model-specific parameters;
+%   \item |\extractcolorspecs| puts model/color specification into two
+%    separate commands, as opposed to |\extractcolorspec|;
+%   \item color names \Color{pink} and \Color{olive} added to the set of
+%    predefined colors.
 %   \end{itemize}
-% \item Bugfixes:
+% \item Corrections d'erreur :
 %   \begin{itemize}
 %   \item |\definecolor{foo}{named}{bar}| did not work in v2.04.
 %   \end{itemize}
 % \end{itemize}
 %
-% \subsubsection*{2005/09/23 v2.04}
+% \tradfin
+% \subsubsection*{23/09/2005 v2.04}
+% \tradini
 % \begin{itemize}
-% \item New features:
+% \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item preparation for usage of additional -- driver-provided -- color models;
-%   \item \Package{pstricks} users may now specify explicit color parameters within |\psset| and related commands, e.g., |\psset{linecolor=[rgb]{1,0,0}}|; an illustrative example is given in \href{xcolor2.pdf}{\File{xcolor2.tex}}.
+%   \item preparation for usage of additional -- driver-provided -- color
+%    models;
+%   \item \Package{pstricks} users may now specify explicit color parameters
+%    within |\psset| and related commands, e.g., 
+%    |\psset{linecolor=[rgb]{1,0,0}}|; an illustrative example is given in
+%    \href{xcolor2.pdf}{\File{xcolor2.tex}}.
 %   \end{itemize}
-% \item Changes:
+% \item Changements :
 %   \begin{itemize}
-%   \item color model names sanitized (i.e., turned to catcode~12) throughout the package;
-%   \item |\@namelet| command deprecated because of name clash with \Package{memoir} --- please use |\XC@let@cc| instead (more |\XC@let@..| commands are available as well);
-%   \item simplified color conversion code by using the new |\XC@ifxcase| command;
+%   \item color model names sanitized (i.e., turned to catcode~12) throughout
+%    the package;
+%   \item |\@namelet| command deprecated because of name clash with 
+%    \Package{memoir} --- please use |\XC@let@cc| instead (more |\XC@let@..|
+%    commands are available as well);
+%   \item simplified color conversion code by using the new |\XC@ifxcase|
+%    command;
 %   \item some minor changes to internal macros.
 %   \end{itemize}
 % \end{itemize}
 %
-% \subsubsection*{2005/06/06 v2.03}
+% \tradfin
+% \subsubsection*{06/06/2005 v2.03}
+% \tradini
 % \begin{itemize}
-% \item New features:
+% \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item \Option{fixpdftex} option loads \Package{pdfcolmk} package in order to improve pdf\TeX's color behaviour during page breaks.
+%   \item \Option{fixpdftex} option loads \Package{pdfcolmk} package in order
+%    to improve pdf\TeX's color behaviour during page breaks.
 %   \end{itemize}
-% \item Changes:
+% \item Changements :
 %   \begin{itemize}
 %   \item some minor changes to internal macros.
 %   \end{itemize}
-% \item Bugfixes:
+% \item Corrections d'erreur :
 %   \begin{itemize}
-%   \item due to an incorrect |\if| statement within |\XC@info|, |\colorlet| caused trouble whenever its second argument started with two identical letters, e.g., |\colorlet{rab}{oof}|;
-%   \item argument processing of |\XC@getcolor| caused incompatibility with \Package{msc} package;
-%   \item \Option{prologue} option caused incompatibility with \Package{preview} package.
+%   \item due to an incorrect |\if| statement within |\XC@info|, |\colorlet|
+%    caused trouble whenever its second argument started with two identical
+%    letters, e.g., |\colorlet{rab}{oof}|;
+%   \item argument processing of |\XC@getcolor| caused incompatibility with
+%    \Package{msc} package;
+%   \item \Option{prologue} option caused incompatibility with 
+%    \Package{preview} package.
 %   \end{itemize}
 % \end{itemize}
 %
-% \subsubsection*{2005/03/24 v2.02}
+% \tradfin
+% \subsubsection*{24/03/2005 v2.02}
+% \tradini
 % \begin{itemize}
-% \item New features:
+% \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item |\aftergroupedef| command to reproduce |\aftergroupdef|'s behaviour prior to v2.01;
-%   \item \XC's homepage \XCW{} now provides also a ready-to-run TDS-compliant archive containing all required files.
+%   \item |\aftergroupedef| command to reproduce |\aftergroupdef|'s behaviour
+%    prior to v2.01;
+%   \item \XC's homepage \XCW{} now provides also a ready-to-run TDS-compliant
+%    archive containing all required files.
 %   \end{itemize}
-% \item Changes:
+% \item Changements :
 %   \begin{itemize}
-%   \item |\rowcolors| and friends are solely enabled by the \Option{table} option;
+%   \item |\rowcolors| and friends are solely enabled by the \Option{table}
+%    option;
 %   \item |\@ifxempty| changed back to more robust variant of v2.00.
 %   \end{itemize}
-% \item Bugfixes:
+% \item Corrections d'erreur :
 %   \begin{itemize}
-%   \item |\psset{linecolor=\ifcase\foo| |red\or green\or blue\fi}| did not work with \Package{pstricks} (error introduced in v2.01).
+%   \item |\psset{linecolor=\ifcase\foo| |red\or green\or blue\fi}| did not
+%    work with \Package{pstricks} (error introduced in v2.01).
 %   \end{itemize}
 % \end{itemize}
 %
-% \subsubsection*{2005/03/15 v2.01}
+% \tradfin
+% \subsubsection*{15/03/2005 v2.01}
+% \tradini
 % \begin{itemize}
-% \item New features:
+% \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item \Option{prologue} option for comprehensive `named' color support in conjunction with \Option{dvips}: on-the-fly generation of \Index{PostScript} prologue files with all color definitions, ready for \Program{dvips} inclusion and/or post-processing with device-specific parameters (e.g., spot colors);
-%   \item \Program{dvips} prologue file \File{xcolor.pro} to support additional `named' colors;
-%   \item |\colorlet| may now also be used to create named colors from arbitrary color expressions;
-%   \item enhanced color definition syntax to allow for target-model specific color parameters, e.g., |\definecolor| |{red}{rgb/cmyk}{1,0,0/0,1,1,0}|, facilitating the usage of tailor-made colors both for displays and printers;
-%   \item `deferred definition' of colors: |\preparecolor| and |\definecolors| enable decoupling of color specification and control sequence generation, especially useful (= memory saving) for large lists of colors, of which only a few names are actually used;
-%   \item \Option{dvipsnames*} and \Option{svgnames*} options to support deferred definition.
+%   \item \Option{prologue} option for comprehensive `named' color support in
+%    conjunction with \Option{dvips}: on-the-fly generation of 
+%    \Index{PostScript} prologue files with all color definitions, ready for
+%    \Program{dvips} inclusion and/or post-processing with device-specific
+%    parameters (e.g., spot colors);
+%   \item \Program{dvips} prologue file \File{xcolor.pro} to support
+%    additional `named' colors;
+%   \item |\colorlet| may now also be used to create named colors from
+%    arbitrary color expressions;
+%   \item enhanced color definition syntax to allow for target-model specific
+%    color parameters, e.g., |\definecolor| |{red}{rgb/cmyk}{1,0,0/0,1,1,0}|,
+%    facilitating the usage of tailor-made colors both for displays and
+%    printers;
+%   \item `deferred definition' of colors: |\preparecolor| and |\definecolors|
+%    enable decoupling of color specification and control sequence generation,
+%    especially useful (= memory saving) for large lists of colors, of which
+%    only a few names are actually used;
+%   \item \Option{dvipsnames*} and \Option{svgnames*} options to support
+%    deferred definition.
 %   \end{itemize}
-% \item Changes:
+% \item Changements :
 %   \begin{itemize}
-%   \item higher accuracy: most complement calculations are now exact for all 5-digit decimals;
-%   \item |\rangeRGB| and similar variables may now be changed at any point in a document;
-%   \item |\aftergroupdef| now performs only a first-level expansion of its code argument;
-%   \item |\XCfileversion| and similar internal constants removed from \File{.sty} and \File{.def} files;
-%   \item improved memory management (reduced generation of `multiletter control sequences' by |\@ifundefined| tests);
+%   \item higher accuracy: most complement calculations are now exact for all
+%    5-digit decimals;
+%   \item |\rangeRGB| and similar variables may now be changed at any point 
+%    in a document;
+%   \item |\aftergroupdef| now performs only a first-level expansion of its
+%    code argument;
+%   \item |\XCfileversion| and similar internal constants removed from 
+%    \File{.sty} and \File{.def} files;
+%   \item improved memory management (reduced generation of `multiletter
+%    control sequences' by |\@ifundefined| tests);
 %   \item several internal macros improved and/or renamed.
 %   \end{itemize}
-% \item Bugfixes:
+% \item Corrections d'erreur :
 %   \begin{itemize}
-%   \item |\XC@getcolor| could cause unwanted spaces when |\psset| was used inside |pspicture| environments (\Package{pstricks});
-%   \item arithmetic overflow could happen when too many decimal digits were used within color parameters, e.g., as a result of \Package{fp} calculations.
+%   \item |\XC@getcolor| could cause unwanted spaces when |\psset| was used
+%    inside |pspicture| environments (\Package{pstricks});
+%   \item arithmetic overflow could happen when too many decimal digits were
+%    used within color parameters, e.g., as a result of \Package{fp}
+%    calculations.
 %   \end{itemize}
 % \end{itemize}
 %
-% \subsubsection*{2004/07/04 v2.00}
+% \tradfin
+% \subsubsection*{04/07/2004 v2.00}
+% \tradini
 % \begin{itemize}
-% \item New features:
+% \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item extended functionality for color expressions: mix colors like a painter;
-%   \item support for color blending: specify color mix expressions that are being blended with every displayed color;
-%   \item |\xglobal| command for selective control of globality for color definitions, blends, and masks;
-%   \item multiple step operations (e.g., |\color{foo!!+++}|) and access to individual members (e.g., |\color{foo!![7]}|) in color series;
+%   \item extended functionality for color expressions: mix colors like a
+%    painter;
+%   \item support for color blending: specify color mix expressions that are
+%    being blended with every displayed color;
+%   \item |\xglobal| command for selective control of globality for color
+%    definitions, blends, and masks;
+%   \item multiple step operations (e.g., |\color{foo!!+++}|) and access to
+%    individual members (e.g., |\color{foo!![7]}|) in color series;
 %   \item |\providecolor| command to define only non-existent colors;
-%   \item |\definecolorset| and |\providecolorset| commands to facilitate the construction of color sets with common underlying color model;
-%   \item additional 147 predefined color names according to \Index{SVG}~1.1 specification;
-%   \item \Key{xpdfborder} key for setting the width of hyperlink borders in a more driver-independent way if \Program{dvips} is used.
+%   \item |\definecolorset| and |\providecolorset| commands to facilitate the
+%    construction of color sets with common underlying color model;
+%   \item additional 147 predefined color names according to \Index{SVG}~1.1
+%    specification;
+%   \item \Key{xpdfborder} key for setting the width of hyperlink borders in a
+%    more driver-independent way if \Program{dvips} is used.
 %   \end{itemize}
-% \item Changes:
+% \item Changements :
 %   \begin{itemize}
 %   \item \LCP{} now completely integrated within \XC;
-%   \item \oOption{override}, \oOption{usenames}, \oOption{nodvipsnames} options and |\xdefinecolor| command no longer needed;
-%   \item \Option{dvips} and \Option{dvipsnames} options now independent of each other;
-%   \item |\tracingcolors|'s behaviour changed to make it more versatile and reduce log file size in standard cases;
-%   \item |\rdivide|'s syntax made more flexible (divide by numbers and/or dimensions);
+%   \item \oOption{override}, \oOption{usenames}, \oOption{nodvipsnames}
+%    options and |\xdefinecolor| command no longer needed;
+%   \item \Option{dvips} and \Option{dvipsnames} options now independent of
+%    each other;
+%   \item |\tracingcolors|'s behaviour changed to make it more versatile and
+%    reduce log file size in standard cases;
+%   \item |\rdivide|'s syntax made more flexible (divide by numbers and/or
+%    dimensions);
 %   \item code restructured, some internal commands renamed;
 %   \item documentation rearranged and enhanced.
 %   \end{itemize}
-% \item Bugfixes:
+% \item Corrections d'erreur :
 %   \begin{itemize}
-%   \item |\definecolor{foo}{named}{bar}| did not work (error introduced in v1.11);
-%   \item more robust behaviour of conditionals within \Package{pstricks} key-values.
+%   \item |\definecolor{foo}{named}{bar}| did not work (error introduced in
+%    v1.11);
+%   \item more robust behaviour of conditionals within \Package{pstricks} 
+%    key-values.
 %   \end{itemize}
 % \end{itemize}
 %
-% \subsubsection*{2004/05/09 v1.11}
+% \tradfin
+% \subsubsection*{09/05/2004 v1.11}
+% \tradini
 % \begin{itemize}
-% \item New features:
+% \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item switch |\ifglobalcolors| to control whether color definitions are global or local;
-%   \item option \Option{hyperref} provides color expression support for the border colors of hyperlinks, e.g., |\hypersetup| |{xurlbordercolor=red!50!yellow}|;
-%   \item internal hooks |\XC@bcolor|, |\XC@mcolor|, and |\XC@ecolor| for additional code that has to be executed immediately before/after the current color is being displayed.
+%   \item switch |\ifglobalcolors| to control whether color definitions are
+%    global or local;
+%   \item option \Option{hyperref} provides color expression support for the
+%    border colors of hyperlinks, e.g., |\hypersetup| 
+%    |{xurlbordercolor=red!50!yellow}|;
+%   \item internal hooks |\XC@bcolor|, |\XC@mcolor|, and |\XC@ecolor| for
+%    additional code that has to be executed immediately before/after the
+%    current color is being displayed.
 %   \end{itemize}
-% \item Changes:
+% \item Changements :
 %   \begin{itemize}
-%   \item |\XC@logcolor| renamed to |\XC@display|, which is now the core color display command;
+%   \item |\XC@logcolor| renamed to |\XC@display|, which is now the core color
+%    display command;
 %   \item improved interface to \Package{pstricks}.
 %   \end{itemize}
 % \end{itemize}
 %
-% \subsubsection*{2004/03/27 v1.10}
+% \tradfin
+% \subsubsection*{27/03/2004 v1.10}
+% \tradini
 % \begin{itemize}
-% \item New features:
+% \item Nouvelles fonctionnalités :
 %   \begin{itemize}
 %   \item support for \nModel{named} model;
-%   \item support for \Program{dvips} colors (may now be used within color expressions);
-%   \item internal representation of `ordinary' and `named' colors merged into unified data structure;
+%   \item support for \Program{dvips} colors (may now be used within color
+%    expressions);
+%   \item internal representation of `ordinary' and `named' colors merged into
+%    unified data structure;
 %   \item allow multiple `-' signs at the beginning of color expressions.
 %   \end{itemize}
-% \item Bugfixes:
+% \item Corrections d'erreur :
 %   \begin{itemize}
-%   \item commands like |\color[named]{foo}| caused errors when color masking or target model conversion were active;
-%   \item incompatibility with \Package{soul} package: commands |\hl|, |\ul|, etc. could yield unexpected results.
+%   \item commands like |\color[named]{foo}| caused errors when color masking
+%    or target model conversion were active;
+%   \item incompatibility with \Package{soul} package: commands |\hl|, |\ul|,
+%    etc. could yield unexpected results.
 %   \end{itemize}
-% \item Documentation:
+% \item Documentation :
 %   \begin{itemize}
 %   \item added formula for general color expressions;
 %   \item enhanced text and index;
@@ -3805,111 +3952,150 @@
 %   \end{itemize}
 % \end{itemize}
 %
-% \subsubsection*{2004/02/16 v1.09}
+% \tradfin
+% \subsubsection*{16/02/2004 v1.09}
+% \tradini
 % \begin{itemize}
-% \item New features:
+% \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item color model \Model{HTML}, a 24-bit hexadecimal \Model{RGB} variant; allows to specify colors like |\color[HTML]{AFFE90}|;
-%   \item color names \Color{orange}, \Color{violet}, \Color{purple}, and \Color{brown} added to the set of predefined colors.
+%   \item color model \Model{HTML}, a 24-bit hexadecimal \Model{RGB} variant;
+%    allows to specify colors like |\color[HTML]{AFFE90}|;
+%   \item color names \Color{orange}, \Color{violet}, \Color{purple}, and
+%    \Color{brown} added to the set of predefined colors.
 %   \end{itemize}
-% \item New \XC{} homepage: \XCW
-% \item Bugfix: |\xdefinecolor| sometimes did not normalise its parameters.
-% \item Changes:
+% \item Nouvelle page web de \XC{} : \XCW
+% \item Correction d'erreur : |\xdefinecolor| sometimes did not normalise its
+%  parameters.
+% \item Changements :
 %   \begin{itemize}
 %   \item slight improvements of the documentation;
 %   \item example file |xcolor1.tex| reorganised and abridged.
 %   \end{itemize}
 % \end{itemize}
 %
-% \subsubsection*{2004/02/04 v1.08}
+% \tradfin
+% \subsubsection*{04/02/2004 v1.08}
+% \tradini
 % \begin{itemize}
 % \item New commands:
 %   \begin{itemize}
 %   \item |\selectcolormodel| to change the target model within a document;
-%   \item |\adjustUCRBG| to fine-tune undercolor-removal and black-generation during conversion to \Model{cmyk}.
+%   \item |\adjustUCRBG| to fine-tune undercolor-removal and black-generation
+%    during conversion to \Model{cmyk}.
 %   \end{itemize}
-% \item Bugfix: color expressions did not work correctly in connection with active `!' character, e.g., in case of |\usepackage[frenchb]babel}|.
+% \item Bugfix: color expressions did not work correctly in connection with
+%  active `!' character, e.g., in case of |\usepackage[frenchb]babel}|.
 % \item Code re-organisation:
 %   \begin{itemize}
-%   \item |\XC@xdefinecolor| merged into |\xdefinecolor|, making the first command obsolete;
+%   \item |\XC@xdefinecolor| merged into |\xdefinecolor|, making the first
+%    command obsolete;
 %   \item several internal commands improved/streamlined.
 %   \end{itemize}
 % \end{itemize}
 %
-% \subsubsection*{2004/01/20 v1.07}
+% \tradfin
+% \subsubsection*{20/01/2004 v1.07}
+% \tradini
 % \begin{itemize}
-% \item New feature: support for color masking and color separation.
-% \item New commands:
+% \item Nouvelle fonctionnalité : support for color masking and color
+%  separation.
+% \item Nouvelles commandes :
 %   \begin{itemize}
 %   \item |\rmultiply| to multiply a dimension register by a real number;
-%   \item |\xcolorcmd| to pass commands that are to be executed at the end of the package.
+%   \item |\xcolorcmd| to pass commands that are to be executed at the end of
+%    the package.
 %   \end{itemize}
-% \item Changes:
+% \item Changements :
 %   \begin{itemize}
 %   \item more consistent color handling: extended colors now always take precedence over standard colors;
 %   \item several commands improved by using code from the \LaTeX{} kernel.
 %   \end{itemize}
-% \item Documentation: some minor changes.
-% \item Example files: additional \Package{pstricks} examples (file \href{xcolor2.pdf}{\File{xcolor2.tex}}).
+% \item Documentation : some minor changes.
+% \item Fichiers d'exemples : additional \Package{pstricks} examples (file 
+%  \href{xcolor2.pdf}{\File{xcolor2.tex}}).
 % \end{itemize}
 %
-% \subsubsection*{2003/12/15 v1.06}
+% \tradfin
+% \subsubsection*{15/12/2003 v1.06}
+% \tradini
 % \begin{itemize}
-% \item New feature: extended color expressions, allowing for cascaded mix operations, e.g., |\color{red!30!green!40!blue}|.
+% \item New feature: extended color expressions, allowing for cascaded mix
+%  operations, e.g., |\color{red!30!green!40!blue}|.
 % \item Documentation: new section on color expressions.
-% \item Bugfix:~color series stepping did not work correctly within non-displaying commands like |\extractcolorspec{foo!!+}| (this bug was introduced in v1.05).
-% \item Renamed~commands:~|\ukfileversion| and similar internal constants renamed to |\XCfileversion| etc.
-% \item Removed~commands:~|\ifXCpst| and |\ifXCtable| made obsolete by a simple trick.
+% \item Bugfix:~color series stepping did not work correctly within 
+%  non-displaying commands like |\extractcolorspec{foo!!+}| (this bug was
+%  introduced in v1.05).
+% \item Renamed~commands:~|\ukfileversion| and similar internal constants
+%  renamed to |\XCfileversion| etc.
+% \item Removed~commands:~|\ifXCpst| and |\ifXCtable| made obsolete by a
+%  simple trick.
 % \end{itemize}
 %
-% \subsubsection*{2003/11/21 v1.05}
+% \tradfin
+% \subsubsection*{21/11/2003 v1.05}
+% \tradini
 % \begin{itemize}
-% \item Bugfixes:
+% \item Corrections d'erreur :
 %   \begin{itemize}
 %   \item package option \Option{hideerrors} should now work as expected;
-%   \item usage of `.' in the first color expression in a document caused an error due to incorrect initialisation.
+%   \item usage of `.' in the first color expression in a document caused an
+%    error due to incorrect initialisation.
 %   \end{itemize}
-% \item Code re-organisation: |\extractcolorspec| now uses |\XC@splitcolor|, making |\XC@extract| obsolete.
+% \item Réorganisation du code : |\extractcolorspec| now uses |\XC@splitcolor|,
+%  making |\XC@extract| obsolete.
 % \end{itemize}
 %
-% \subsubsection*{2003/11/09 v1.04}
+% \tradfin
+% \subsubsection*{09/11/2003 v1.04}
+% \tradini
 % \begin{itemize}
-% \item New feature: easy access to current color within color expressions.
-% \item New option: \oOption{override} to replace |\definecolor| by |\xdefinecolor|.
-% \item New command: |\tracingcolors| for logging color-specific information.
+% \item Nouvelle fonctionnalité : easy access to current color within color
+%  expressions.
+% \item Nouvelle option : \oOption{override} to replace |\definecolor| by 
+%  |\xdefinecolor|.
+% \item Nouvelle commande : |\tracingcolors| for logging color-specific
+%  information.
 % \end{itemize}
 %
-% \subsubsection*{2003/09/21 v1.03}
+% \tradfin
+% \subsubsection*{21/09/2003 v1.03}
+% \tradini
 % \begin{itemize}
-% \item Change: bypass strange behaviour of some drivers.
-% \item New feature: driver-sharing with \Package{hyperref}.
+% \item Changement : bypass strange behaviour of some drivers.
+% \item Nouvelle fonctionnalité : driver-sharing with \Package{hyperref}.
 % \end{itemize}
 %
-% \subsubsection*{2003/09/19 v1.02}
+% \tradfin
+% \subsubsection*{19/09/2003 v1.02}
+% \tradini
 % \begin{itemize}
-% \item Change: |\extractcolorspec| and |\colorlet| now also accept color series as arguments.
+% \item Changement : |\extractcolorspec| and |\colorlet| now also accept color
+%  series as arguments.
 % \end{itemize}
 %
-% \subsubsection*{2003/09/15 v1.01}
+% \tradfin
+% \subsubsection*{15/09/2003 v1.01}
+% \tradini
 % \begin{itemize}
-% \item New feature: |\definecolorseries| and friends.
-% \item Documentation: removed some \Package{doc}-related side-effects.
-% \item Code re-organisation: all calculation-related tools put to one place.
-% \item Bugfixes:
+% \item Nouvelle fonctionnalité : |\definecolorseries| and friends.
+% \item Documentation : removed some \Package{doc}-related side-effects.
+% \item Réorganisation du code : all calculation-related tools put to one
+%  place.
+% \item Corrections d'erreur :
 %   \begin{itemize}
 %   \item |\@rdivide|: added |\relax| to fix problem with negative numerators;
 %   \item |\rowc@l@rs|: replaced |\@ifempty| by |\@ifxempty|.
 %   \end{itemize}
 % \end{itemize}
 %
-% \subsubsection*{2003/09/09 v1.00}
+% \tradfin
+% \subsubsection*{09/09/2003 v1.00}
 % \begin{itemize}
-% \item First published release.
+% \item Première version publiée.
 % \end{itemize}
 %
 % \end{multicols}
 % \end{adjustwidth}
-% \tradfin
 % \StopEventually{}
 % \clearpage
 %
