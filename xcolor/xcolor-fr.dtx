@@ -1276,19 +1276,24 @@
 %
 %
 % \subsection{Couleurs prédéfinies}
-% \tradini
 %
-% \subsubsection{Colors that are always available}
+% \subsubsection{Couleurs qui sont toujours disponibles}
 %
 % \def\test#1{\testclr{#1}~\Color{#1}}
-% Within \File{xcolor.sty}, the following color names are defined:
-% \test{red}, \test{green}, \test{blue}, \test{cyan}, \test{magenta}, \test{yellow}, \test{black}, \test{gray}, \test{white}, \test{darkgray}, \test{lightgray}, \test{brown}, \test{lime}, \test{olive}, \test{orange}, \test{pink}, \test{purple}, \test{teal}, \test{violet}.
+% Dans le fichier \File{xcolor.sty}, les noms de couleur suivants sont 
+% définis :
+% \test{red}, \test{green}, \test{blue}, \test{cyan}, \test{magenta}, 
+% \test{yellow}, \test{black}, \test{gray}, \test{white}, \test{darkgray},
+% \test{lightgray}, \test{brown}, \test{lime}, \test{olive}, \test{orange},
+% \test{pink}, \test{purple}, \test{teal}, \test{violet}.
 %
-% This base set of colors can be used without restrictions in all kinds of color expressions, as explained in section \vref{sec.term}.
+% Cet ensemble de base de couleurs peut être utilisé sans aucune restriction
+% dans tout type d'expression de couleur, comme expliqué en section~\vref{sec.term}.
 %
 %
-% \subsubsection{Additional sets of colors}\label{sec.additionalcolors}
+% \subsubsection{Ensembles additionnels de couleurs}\label{sec.additionalcolors}
 %
+% \tradini
 % There are also sets of color names that may be loaded by \XC{} via package options, available in two variants:
 % a `normal' version (e.g., \Option{dvipsnames}) and a `starred' version (e.g., \Option{dvipsnames*}).
 % The first variant simply defines all the colors \emph{immediately}, whereas the second applies the mechanism of \emph{deferred} definition.
@@ -4067,28 +4072,26 @@
 %
 % \tradfin
 % \subsubsection*{19/09/2003 v1.02}
-% \tradini
 % \begin{itemize}
-% \item Changement : |\extractcolorspec| and |\colorlet| now also accept color
-%  series as arguments.
+% \item Changement : |\extractcolorspec| et |\colorlet| acceptent maintenant
+%  aussi les séries de couleur comme arguments.
 % \end{itemize}
 %
-% \tradfin
 % \subsubsection*{15/09/2003 v1.01}
-% \tradini
 % \begin{itemize}
-% \item Nouvelle fonctionnalité : |\definecolorseries| and friends.
-% \item Documentation : removed some \Package{doc}-related side-effects.
-% \item Réorganisation du code : all calculation-related tools put to one
-%  place.
+% \item Nouvelle fonctionnalité : |\definecolorseries| et apparentés.
+% \item Documentation : retrait de certains effets indésirables liés à 
+%  \Package{doc}.
+% \item Réorganisation du code : tous les outils de calculs sont placés en un
+%  seul endroit.
 % \item Corrections d'erreur :
 %   \begin{itemize}
-%   \item |\@rdivide|: added |\relax| to fix problem with negative numerators;
-%   \item |\rowc@l@rs|: replaced |\@ifempty| by |\@ifxempty|.
+%   \item |\@rdivide|: ajout d'un |\relax| pour résouder le problème des
+%    numérateurs négatifs ;
+%   \item |\rowc@l@rs|: remplacement de |\@ifempty| par |\@ifxempty|.
 %   \end{itemize}
 % \end{itemize}
 %
-% \tradfin
 % \subsubsection*{09/09/2003 v1.00}
 % \begin{itemize}
 % \item Première version publiée.
