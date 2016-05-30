@@ -1,5 +1,5 @@
 % \iffalse meta-comment
-% apendix.dtx
+% appendix.dtx
 % Author: Peter Wilson, Herries Press
 % Maintainer: Will Robertson (will dot robertson at latex-project dot org)
 % Copyright 1998--2004 Peter R. Wilson
@@ -17,11 +17,23 @@
 % 
 %<*driver>
 \documentclass{ltxdoc}
+% Bloc pour traduction
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\IndexPrologue{\section*{Index}\markboth{Index}{Index} Les nombres en italique renvoient à la page où se trouve l'entrée correspondante; les numéros soulignés renvoient à la ligne de code de la définition; les numéros en caractères romains renvoient aux lignes de code où l'entrée est utilisée.}%
+\usepackage{color}
+\usepackage{pifont}
+\definecolor{orange5}{RGB}{255,153,0} 
+\newcommand{\trad}[1]{\textbf{\textcolor{orange5}{\noindent\ding{54} #1 \ding{54}}}}
+\newcommand{\tradini}{\color{orange5}\ding{54}}
+\newcommand{\tradfin}{\ding{54}\color{black}}
+% Fin du bloc qui doit être partiellement retiré une fois le travail achevé
 \EnableCrossrefs
 \CodelineIndex
 \setcounter{StandardModuleDepth}{1}
 \begin{document}
-  \DocInput{appendix.dtx}
+  \DocInput{appendix-fr.dtx}
 \end{document}
 %</driver>
 %
@@ -80,12 +92,12 @@
 % \changes{v1.2a}{2004/04/16}{Changed license and contact details}
 % \changes{v1.2b}{2009/09/02}{New maintainer (Will Robertson)}
 %
-% \def\dtxfile{appendix.dtx}
+% \def\dtxfile{appendix-fr.dtx}
 % \def\fileversion{v1.1}  \def\filedate{2000/02/29}
 % \def\fileversion{v1.1a} \def\filedate{2001/03/15}
 % \def\fileversion{v1.2}  \def\filedate{2002/08/06}
 % \def\fileversion{v1.2a} \def\filedate{2004/04/16}
-% \def\fileversion{v1.2b} \def\filedate{2009/09/02}
+% \def\fileversion{v1.2b} \def\filedate{02/09/2009}
 %
 % \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
@@ -94,27 +106,28 @@
 % \newcommand*{\pstyle}[1]{\textsl {#1}}          ^^A typeset a pagestyle
 % \newcommand*{\Lenv}[1]{\texttt {#1}}            ^^A typeset an environment
 %
-% \title{The \Lpack{appendix} package\thanks{This
-%        file (\texttt{\dtxfile}) has version number \fileversion, last revised
-%        \filedate.}}
+% \title{L'extension \Lpack{appendix}\thanks{Ce fichier
+%        (\texttt{\dtxfile}) a pour numéro de version \fileversion, 
+%        datant du \filedate. La première traduction en français de la 
+%        version V1.0 est due à Jean-Pierre \textsc{Drucbert}.}}
 %
 % \author{
-%   Author: Peter Wilson, Herries Press\\
-%   Maintainer: Will Robertson\\
-%   \texttt{will dot robertson at latex-project dot org}
+%   Auteur: Peter Wilson, Herries Press\\
+%   Mainteneur: Will Robertson\\
+%   \texttt{will point robertson arobase latex-project point org}
 % }
 % \date{\filedate}
 % \maketitle
 % \begin{abstract}
-%    The \Lpack{appendix} package provides some facilities for modifying the
-% typesetting of appendix titles. Further, |(sub)appendices| environments
-% are available that can be used, for example, for per chapter/section
-% appendices.
+%    L'extension \Lpack{appendix} fournit quelques éléments pour modifier 
+% la composition des titres des annexes. De plus, les environnements
+% |(sub)appendices| sont mis à disposition, par exemple, pour avoir des 
+% annexes par chapitre ou par section. 
 %
-% The package
-% is designed to work only with classes that have a |\chapter| and/or
-% |\section| command. It has not been tested with other packages
-% that change the definitions of the sectioning commands. 
+% L'extension est conçue pour fonctionner avec les classes qui disposent
+% des commandes |\chapter| et/ou |\section|. Elle n'a pas été testée avec
+% d'autres extensions qui modifient la définition des commandes de 
+% sectionnement.
 % \end{abstract}
 % \tableofcontents
 %
@@ -123,39 +136,44 @@
 %
 % \section{Introduction}
 %
-% In the standard classes the |\appendix| command does the following:
+% Dans les classes standards, la commande |\appendix| effectue les actions
+% suivantes :
 % \begin{itemize}
-% \item For classes with Chapters:
-%    \begin{itemize}
-%    \item Resets the chapter and section counters to zero
-%    \item Sets |\@chapapp| to |\appendixname|.
-%    \item Redefines |\thechapter| to produce alphabetic appendix numbers.
-%    \end{itemize}
-% \item For the other classes
-%    \begin{itemize}
-%    \item Resets the section and subsection counters to zero.
-%    \item Redefines |\thesection| to produce alphabetic appendix numbers.
-%    \end{itemize}
-%  \end{itemize}
+%  \item pour les classes avec chapitres :
+%     \begin{itemize}
+%     \item remet à zéro les compteurs \texttt{chapter} et \texttt{section},
+%     \item force |\@chapapp| à |\appendixname|,
+%     \item redéfinit |\thechapter| pour produire une numérotation
+%      alphabétique des annexes,
+%     \end{itemize}
+%  \item pour les autres classes :
+%     \begin{itemize}
+%     \item remet à zéro les compteurs de section et de sous-section,
+%     \item redéfinit |\thesection| pour produire une numérotation
+%      alphabétique des annexes.
+%     \end{itemize}
+% \end{itemize}
 %
-% The \Lpack{appendix} package provides additional appendixing capabilities.
-% It cooperates with the \Lpack{hyperref} 
-% package\footnote{With thanks to Hylke W. van Dijk 
-% (\texttt{hylke@ubicom.tudelft.nl}) who pointed out that version~1.1 did 
-% not and set me on the track for supporting the \Lpack{hyperref} package.}
-% but may be problematic when used with packages that change the definition
-% of the sectioning commands.
+% L'extension \Lpack{appendix} offre des possibilités supplémentaires pour
+% les annexes. Elle est compatible avec l'extension 
+% \Lpack{hyperref}\footnote{Mes remerciements à Hylke W. van Dijk 
+% (\texttt{hylke@ubicom.tudelft.nl}) que la version~1.1 ne l'était pas et m'a
+% mis sur la piste pour changer cette situation.} mais peut être source de
+% problèmes quand elle est utilisée avec des extensions qui modifient les
+% définitions des commandes de sectionnement. 
 %
-% Portions of the package were developed as part of a class
-% and package bundle for typesetting ISO standards~\cite{PRW96i}.
-% This manual is typeset according to the conventions of the
-% \LaTeX{} \textsc{docstrip} utility which enables the automatic
-% extraction of the \LaTeX{} macro source files~\cite{GOOSSENS94}.
+% Des portions de l'extension ont été développées en tant que partie d'une
+% classe et d'un ensemble d'extensions pour la composition de documents au
+% standard ISO~\cite{PRW96i}. Ce manuel est réalisé conformément aux
+% conventions de l'utilitaire \LaTeX\ \textsc{docstrip} qui permet
+% l'extraction automatique du fichier source contenant les macros
+% \LaTeX~\cite{GOOSSENS94}.
 %
-%    Section~\ref{sec:usc} describes the usage of the package.
-% Commented source code for the package is in Section~\ref{sec:code}.
+% La section~\ref{sec:usc} décrit l'utilisation de l'extension. Le code
+% source de l'extension est, quant à lui, détaillé dans la 
+% section~\ref{sec:code}.
 %
-% \section{The \Lpack{appendix} package} \label{sec:usc}
+% \section{L'extension \Lpack{appendix}} \label{sec:usc}
 %
 % The \Lpack{appendix} package provides some commands that can be
 % used in addition to the |\appendix| command. It also provides
@@ -326,7 +344,7 @@
 % |\renewcommand{\setthesection}{\Alph{section}}| or \\
 % |\renewcommand{\setthesubsection}{\Alph{subsection}}| as appropriate.
 %
-% \subsection{Known problems}
+% \subsection{Problèmes connus}
 %
 %    There is an unfortunate interaction between the \LaTeX{} kernel commands
 % |\include| and |\addcontentsline|. If these are used like this:
@@ -349,7 +367,7 @@
 %
 % \StopEventually{}
 %
-% \section{The package code} \label{sec:code}
+% \section{Le code de l'extension} \label{sec:code}
 %
 %    Announce the name and version of the package, which requires
 % \LaTeXe.
