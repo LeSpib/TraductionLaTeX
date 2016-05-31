@@ -26,8 +26,8 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *xc
   - [x] Préparation **À relire**
   - [x] Modèles colorimétriques **À relire**
   - [x] Arguments et terminologie **À relire**
-  - [ ] Couleurs prédéfinies
-  - [ ] *Color definition*
+  - [x] Couleurs prédéfinies **À relire**
+  - [ ] Définition de couleur
   - [ ] *Color application*
   - [ ] *Color blending*
   - [ ] *Color masks and separation*

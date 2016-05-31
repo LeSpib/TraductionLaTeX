@@ -1293,33 +1293,69 @@
 %
 % \subsubsection{Ensembles additionnels de couleurs}\label{sec.additionalcolors}
 %
+% Il existe également des ensembles de noms de couleur qui peuvent être chargés
+% par le biais des options d'extension, toujours disponibles en deux
+% variantes : une version \og normale \fg{} (par exemple, \Option{dvipsnames})
+% et une version \og étoilée \fg{} (par exemple, \Option{dvipsnames*}). La 
+% première variante définit simplement toutes les couleurs 
+% \emph{immédiatement}, tandis que la seconde applique le mécanisme de la
+% définition \emph{différée}.
+% Dans ce dernier cas, les noms de couleur individuels doivent être activés
+% par les commandes |\definecolors| ou |\providecolors|, comme décrit dans la
+% section \vref{sec.deferred}, avant de pouvoir être appliqués dans un
+% document.  
+% \begin{itemize}
+% \item \Option{dvipsnames}/\Option{dvipsnames*} charge un ensemble de 68 noms
+%  de couleur \Model{cmyk} telles que définies par le pilote |dvips|.
+%  Cependant, ces couleurs peuvent être utilisées avec tous les pilotes
+%  supportés.
+% \item \Option{svgnames}/\Option{svgnames*} charge un ensemble de 151 noms de
+%  couleur\footnote{En fait, les noms chargés représentent 141 couleurs
+%  différentes.} \Model{rgb} respectant la spécification \Index{SVG}~1.1 
+%  \cite{svg}\footnote{Plus exactement, la spécification indiquée liste
+%  uniquement les noms écrits en minuscules. De plus, les définitions
+%  originales sont données en paramètres \Model{RGB} et ont été converties en
+%  \Model{rgb} par l'auteur.}, augmenté de~4 noms tirés du fichier 
+%  \File{rgb.txt} appartenant aux distributions \Index{Unix}/\Index{X11}. 
+%  Notez que \Index{HTML4} accepte un sous-ensemble de 16~noms de couleur (en
+%  utilisant des spécifications identiques), voir \cite{HTML4} et la section
+%  \vref{sec.names}.  
+% \item \Option{x11names}/\Option{x11names*} charge un ensemble de 317 noms de %  couleur\footnote{Ces noms représentent 315 couleurs différentes.} 
+%  \Model{rgb} qui sont une simple variation sur un sous-ensemble de l'ensemble
+%  \Index{SVG} mentionné précédemment, respectant le fichier \File{rgb.txt}
+%  appartenant aux distributions \Index{Unix}/\Index{X11}\footnote{Une
+%  nouvelle fois, les définitions originales sont données en paramètres 
+%  \Model{RGB} et ont été converties en \Model{rgb} par l'auteur.}.
+% Pour obtenir les 752 noms de couleur de \File{rgb.txt} sans trop d'effort :
+% \begin{itemize}
+% \item chargez \Option{x11names} ainsi que \Option{svgnames} ;
+% \item mettez les initiales en majuscule et supprimez les espaces : \Color[-]{DarkSlateGray} au lieu de \Color[-]{dark slate gray} par exemple ;
+% \item les noms \Index{X11} sans les nombres sont identiques aux couleurs
+%  \Index{SVG} sauf dans 5~cas :
+%  utilisez \Color{Gray0}, \Color{Grey0}, \Color{Green0}, \Color{Maroon0},
+%  \Color{Purple0} au lieu de \Color[-]{Gray}, \Color[-]{Grey}, 
+%  \Color[-]{Green}, \Color[-]{Maroon}, \Color[-]{Purple} pour obtenir les
+%  couleurs \Index{X11} d'origine ;
+% \item pour $N=0,1,\dots,100$, utilisez `|[gray]{|$N/100$|}|' ou 
+% `|black!|$100-N$' au lieu de \Color[-]{grayN} ou \Color[-]{greyN}.
+% \end{itemize}
+% \end{itemize}
+%
+% Les noms des couleurs ainsi que leur visualisation sont présentés en 
+% section~\vref{sec.names}.
+% La section~\vref{sec.clash} décrit comment traiter les doublons de noms
+% lors de l'utilisation conjointe de \Option{svgnames} et \Option{dvipsnames}
+% dans un même document.
+% Voir également \cite{chroma} avec son ensemble systématique de couleurs
+% et des exemples de mélange.
+%
+%
+% \subsection{Définition de couleur}\label{sec.def}
+%
+
+% \subsubsection{Couleurs ordinaires et nommées}\label{sec.prologue}
+%
 % \tradini
-% There are also sets of color names that may be loaded by \XC{} via package options, available in two variants:
-% a `normal' version (e.g., \Option{dvipsnames}) and a `starred' version (e.g., \Option{dvipsnames*}).
-% The first variant simply defines all the colors \emph{immediately}, whereas the second applies the mechanism of \emph{deferred} definition.
-% In the latter case, individual color names have to be activated by |\definecolors| or |\providecolors| commands, as described in section \vref{sec.deferred}, before they can be applied in a document.
-% \begin{itemize}
-% \item \Option{dvipsnames}/\Option{dvipsnames*} loads a set of 68 \Model{cmyk} colors as defined in the |dvips| driver. However, these colors may be used in all supported drivers.
-% \item \Option{svgnames}/\Option{svgnames*} loads a set of 151 \Model{rgb} color names\footnote{In fact, these names represent 141 different colors.} according to the \Index{SVG}~1.1 specification \cite{svg}\footnote{Actually, the cited specification lists only lowercase names, and the original definitions are given in \Model{RGB} parameters, converted to \Model{rgb} by the author.}, enhanced by~4 names taken from the file \File{rgb.txt} which is part of \Index{Unix}/\Index{X11} distributions. Note that \Index{HTML4} accepts a subset of 16~color keywords (using identical specifications), see \cite{HTML4} and section \vref{sec.names}.
-% \item \Option{x11names}/\Option{x11names*} loads a set of 317 \Model{rgb} color names\footnote{These names represent 315 different colors.} that are basically variations of a subset of the \Index{SVG} set mentioned before, according to the file \File{rgb.txt} which is part of \Index{Unix}/\Index{X11} distributions\footnote{Again, the original definitions are given in \Model{RGB} parameters, converted to \Model{rgb} by the author.}.
-% We describe now how to access all 752 color names of \File{rgb.txt} without much effort:
-% \begin{itemize}
-% \item Load \Option{x11namees} as well as \Option{svgnames}.
-% \item Capitalise initials and skip blanks: \Color[-]{DarkSlateGray} instead of \Color[-]{dark slate gray}.
-% \item \Index{X11} names without numbers are identical to the corresponding \Index{SVG} colors, except in 5~cases:
-% use \Color{Gray0}, \Color{Grey0}, \Color{Green0}, \Color{Maroon0}, \Color{Purple0} instead of \Color[-]{Gray}, \Color[-]{Grey}, \Color[-]{Green}, \Color[-]{Maroon}, \Color[-]{Purple} to obtain the original \Index{X11} colors.
-% \item For $N=0,1,\dots,100$ use `|[gray]{|$N/100$|}|' or `|black!|$100-N$' instead of \Color[-]{grayN} or \Color[-]{greyN}.
-% \end{itemize}
-% \end{itemize}
-% The color names and corresponding displays are listed in section \vref{sec.names}.
-% Section \vref{sec.clash} describes how to deal with name clashs while using both \Option{svgnames} and \Option{dvipsnames} in the same document.
-% See also \cite{chroma} for a systematic set of color and mix examples.
-%
-%
-% \subsection{Color definition}\label{sec.def}
-%
-% \subsubsection{Ordinary and named colors}\label{sec.prologue}
-%
 % In the \LCP{} there is a distinction between `colors' (defined by the command |\definecolor|) and `named colors' (defined by |\DefineNamedColor|, which is allowed only in the preamble).
 % Whenever an ordinary color is being used in a document, it will be translated into a |\special| command that contains a --- driver-specific --- numerical description of the color which is written to the \File{.dvi} file.
 % On the other hand, named colors offer the opportunity to store numerical values at a central place whereas during usage, colors may be identified by their names, thus enabling post-processing if required by the output device.
@@ -4064,13 +4100,12 @@
 %
 % \tradfin
 % \subsubsection*{21/09/2003 v1.03}
-% \tradini
 % \begin{itemize}
-% \item Changement : bypass strange behaviour of some drivers.
-% \item Nouvelle fonctionnalité : driver-sharing with \Package{hyperref}.
+% \item Changement : contournement du comportement étrange de certains
+%  pilotes. 
+% \item Nouvelle fonctionnalité : partage de pilote avec \Package{hyperref}.
 % \end{itemize}
 %
-% \tradfin
 % \subsubsection*{19/09/2003 v1.02}
 % \begin{itemize}
 % \item Changement : |\extractcolorspec| et |\colorlet| acceptent maintenant
