@@ -101,6 +101,7 @@ This work consists of this file fontspec.dtx
 \usepackage[utf8x]{inputenc}
 %\usepackage[T1]{fontenc}
 \usepackage[french]{babel}
+\usepackage{lmodern}
 % Bloc pour traduction
 \usepackage{color}
 \usepackage{pifont}
@@ -204,64 +205,72 @@ This work consists of this file fontspec.dtx
 % (Les contributions sont tout particulièrement bienvenues.)
 %
 % \subsection{Remerciements}
-% \tradini 
 %
-% This package could not have been possible without the early and continued support
-% the author of \XeTeX, Jonathan Kew. When I started this package, he steered
-% me many times in the right direction.
+% Cette extension n'aurait pas été possible sans le soutien -- survenu tôt
+% dans le projet et continu depuis lors --- de l'auteur de \XeTeX, Jonathan 
+% Kew. Quand j'ai commencé cette extension, il m'a guidé dans la bonne
+% direction à de nombreuses reprises.
 %
-% I've had great
-% feedback over the years on feature requests, documentation queries, bug reports, font suggestions, and so on from lots of people all around the world.
-% Many thanks to you all.
+% J'ai eu de très bons retours année après année pour des demandes de 
+% fonctionnalités, des questions sur la documentation, des rapports d'erreurs, 
+% des suggestions de fontes, tout ceci de la part de nombreuses personnes de
+% par le monde. Merci beaucoup à vous tous.
 %
-% Thanks to David Perry and Markus B\"ohning for numerous documentation
-% improvements and David Perry again for contributing the text for one of the
-% sections of this manual.
+% Merci à David Perry et Markus B\"ohning pour les nombreuses améliorations 
+% apportées à la documentation et à David Perry une fois encore pour avoir 
+% contribué au texte de l'une des sections de ce manuel.
 %
-% Special thanks to Khaled Hosny, who had been the driving force behind the support for \LuaLaTeX, ultimately leading to version 2.0 of the package.
+% Je remercie tout particulièrement Khaled Hosny, qui a été la force motrice 
+% derrière le support de \LuaLaTeX, conduisant finalement à la version 2.0 de
+% cette extension.
 %
 % \section{Chargement de l'extension et options}
 %
-% For basic use, no package options are required:
+% Pour une utilisation simple, aucune option d'extension n'est requise :
 % \begin{Verbatim}
 %   \usepackage{fontspec}
 % \end{Verbatim}
-% Package options will be introduced below; some preliminary details are discussed first:
+% Les options d'extension seront présentées par la suite; quelques détails 
+% préliminaires sont ici examinés :
 %
 % \paragraph{\pkg{xunicode}}
-% Ross Moore's \pkg{xunicode} package is now automatically loaded for
-% users of both \XeLaTeX\ and \LuaLaTeX.
-% This package provides backwards compatibility with \LaTeX's methods for accessing extra
-% characters and accents (for example, |\%|, |\$|, |\textbullet|, |\"u|, and
-% so on), plus many more Unicode characters.
+% L'extension \pkg{xunicode} de Ross Moore est maintenant automatiquement 
+% chargée pour les utilisateurs de \XeLaTeX\ et \LuaLaTeX. Cette extension
+% apporte une rétro-compatibilité avec les méthodes de \LaTeX\ pour accéder
+% aux caractères spéciaux et accents (par exemple, |\%|, |\$|, |\textbullet|,
+% |\"u| et ainsi de suite) ainsi qu'à de nombreux autres caractères Unicode.
 %
-% \paragraph{\XeTeX\ users only}
-% The \pkg{xltxtra} package adds some minor extra features to \XeLaTeX, including, via the \pkg{metalogo} package, the
-% \cmd\XeTeX\ macro to typeset the \XeTeX\ logo. While this package was
-% previously recommended, it serves a much smaller r\^ole nowadays and generally
-% will not be required.
-% Please consult its documentation to assess whether its features are warranted before loading it.
+% \paragraph{Pour les utilisateurs de \XeTeX}
+% L'extension \pkg{xltxtra} ajoute quelques fonctionnalités mineures à
+% \XeLaTeX, incluant, par le biais de l'extension \pkg{metalogo}, la commande
+% \cmd\XeTeX\ composant le logo de \XeTeX. Alors que cette extension était
+% précédemment recommandée, elle présente bien moins d'intérêt de nos jours et
+% n'est généralement pas requise. Pensez à consulter sa documentation pour
+% vérifier si ses fonctionnalités sont nécessaires ou pas avant de la charger.
 %
-% \paragraph{\LuaTeX\ users only}
-% In order to load fonts by their name rather than by their filename (\eg,
-% `Latin Modern Roman' instead of `ec-lmr10'), you may need to run the script
-% \texttt{luaotfload-tool}, which is distributed with the \pkg{luaotfload}
-% package. Note that if you do not execute this script beforehand, the first
-% time you attempt to typeset the process will pause for (up to) several
-% minutes. (But only the first time.)
-% Please see the \pkg{luaotfload} documentation for more information.
+% \paragraph{Pour les utilisateurs de \LuaTeX}
+% Afin de faire aux fontes par leur nom plutôt que par leur nom de fichier 
+% (\eg, \og Latin Modern Roman \fg{} plutôt que \og ec-lmr10 \fg{}), vous
+% pourrez avoir besoin d'exécuter le script \texttt{luaotfload-tool} distribué
+% avec l'extension \pkg{luaotfload}. Notez que si vous n'exécutez pas ce
+% script au préalable, la première fois que vous essaierez de compiler un
+% document le traitement va rester figé jusqu'à plusieurs minutes (mais
+% uniquement la première fois). N'hésitez pas à consulter la documentation de
+% \pkg{luaotfload} pour plus d'informations.
 %
 % \paragraph{\pkg{babel}}
-% \emph{The \pkg{babel} package is not really supported!} Especially Vietnamese,
-% Greek, and Hebrew at least might not work correctly, as far as I can tell.
-% There's a better chance with Cyrillic and Latin-based languages,
-% however---\pkg{fontspec} ensures at least that fonts should load correctly.
-% The \pkg{polyglossia} package is recommended instead as a modern replacement
-% for \pkg{babel}.
+% \emph{L'extension \pkg{babel} n'est pas vraiment compatible !} En particulier
+% le vietnamien, le grec et l'hébreu \emph{a minima} ne fonctionnent pas
+% correctement, de ce que j'ai pu constater. Cependant, la situation devrait
+% être meilleure avec les langues cyrilliques et latines --- \pkg{fontspec} 
+% fait en sorte que ces fontes soient chargées correctement. L'extension
+% \pkg{polyglossia} est recommendée en tant que version de remplacement
+% moderne de \pkg{babel}.
 %
 %
 %
 % \subsection{Ajustements sur les fontes mathématiques}
+% \tradini 
 % By default, \pkg{fontspec} adjusts \LaTeX's
 % default maths setup in order to maintain the correct Computer Modern symbols
 % when the roman font changes. However, it will attempt to avoid doing this if

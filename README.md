@@ -25,6 +25,7 @@ Ces extensions sont considérées comme traduites. Elles peuvent encore contenir
 - [ ] *titlesec*.
 
 ### Liste des extensions en cours de traitement
+- [ ] *appendix* ;
 - [ ] *fontspec* ;
 - [ ] *xcolor*.
 

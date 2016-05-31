@@ -6,9 +6,9 @@ L'objectif est de traduire la documentation de l'extension *fontspec* utilisable
 
 ### Avancement de la traduction, en vision table de matières
 - [ ] En-tête du document tex (définitions, métadonnées)
-- [ ] Pages d'avant-propos (4 pages)
+- [ ] Pages d'avant-propos (4 pages) 
   - [x] Historique
-  - [ ] Introduction
+  - [x] Introduction
   - [ ] Chargement de l'extension et options
 - [ ] General font selection (17 pages)
 - [ ] OpenType (13 pages)
