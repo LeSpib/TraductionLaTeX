@@ -55,6 +55,7 @@ De nombreux termes se retrouvent dans les différentes documents traduits. Cette
 
 - *control sequence* : commande ;
 - *cropmarks* : traits de coupe (source Wiktionnaire) ;
+- *device* : périphérique, input/output d'entrée de sortie ;
 - *driver* : pilote (informatique, graphique...) ;
 - *error report* : rapports d'erreur ;
 - *filler* : motif (de remplissage) ;

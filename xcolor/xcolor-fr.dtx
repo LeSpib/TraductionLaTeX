@@ -1294,12 +1294,11 @@
 % \subsubsection{Ensembles additionnels de couleurs}\label{sec.additionalcolors}
 %
 % Il existe également des ensembles de noms de couleur qui peuvent être chargés
-% par le biais des options d'extension, toujours disponibles en deux
+% par le biais d'options d'extension, toujours disponibles en deux
 % variantes : une version \og normale \fg{} (par exemple, \Option{dvipsnames})
 % et une version \og étoilée \fg{} (par exemple, \Option{dvipsnames*}). La 
-% première variante définit simplement toutes les couleurs 
-% \emph{immédiatement}, tandis que la seconde applique le mécanisme de la
-% définition \emph{différée}.
+% première variante définit toutes les couleurs \emph{immédiatement}, tandis
+% que la seconde applique le mécanisme de la définition \emph{différée}.
 % Dans ce dernier cas, les noms de couleur individuels doivent être activés
 % par les commandes |\definecolors| ou |\providecolors|, comme décrit dans la
 % section \vref{sec.deferred}, avant de pouvoir être appliqués dans un
@@ -1355,42 +1354,96 @@
 
 % \subsubsection{Couleurs ordinaires et nommées}\label{sec.prologue}
 %
-% \tradini
-% In the \LCP{} there is a distinction between `colors' (defined by the command |\definecolor|) and `named colors' (defined by |\DefineNamedColor|, which is allowed only in the preamble).
-% Whenever an ordinary color is being used in a document, it will be translated into a |\special| command that contains a --- driver-specific --- numerical description of the color which is written to the \File{.dvi} file.
-% On the other hand, named colors offer the opportunity to store numerical values at a central place whereas during usage, colors may be identified by their names, thus enabling post-processing if required by the output device.
+% Dans l'\LCP{} il y a une distinction entre les \og couleurs \fg{} (définies
+% par la commande |\definecolor|) et les \og couleurs nommées \fg{} (définies
+% par |\DefineNamedColor|, ce qui est autorisé uniquement dans le préambule).
+% Chaque fois qu'une couleur ordinaire est utilisée dans un document, elle
+% est déposée dans une commande |\special| qui contient une description 
+% numérique de la couleur --- dépendante du pilote --- et qui est écrite dans
+% le fichier \File{.dvi}.
+% Les couleurs nommées, elles, présentent l'opportunité de stocker les valeurs
+% numériques à une place centrale tandis que, pendant leur utilisation, les 
+% couleurs peuvent être identifiées par leur nom, ce qui permet des traitements
+% ultérieurs si nécessaire par le périphérique de sortie.
 %
-% All drivers delivered with the standard \Package{graphics} package support the \emph{formalism} of defining and invoking `named colors'.
-% However, real support for the \emph{concept} behind that, i.e.~employing names instead of parameters, ranges from `none' to `complete'.
-% We demonstrate the current situation for three different drivers:
+% Tous les pilotes livrés avec l'extension standard \Package{graphics} 
+% supportent le \emph{formalisme} de la définition et de l'appel de \og
+% couleurs nommées \fg{}. 
+% Cependant, le support réel du \emph{concept} derrière cela, autrement dit
+% employer des noms au lieu des paramètres, va d'\og inexistant \fg{} à \og
+% total \fg{}.
+% Voici une illustration de la situation actuelle avec trois pilotes
+% différents.
 % \begin{itemize}
-% \item \Option{dvips} has very good support for the `named' concept; the \Index{PostScript} equivalents to the color names defined by \Option{dvipsnames} are being loaded -- unless switched off -- by \Program{dvips} automatically.
-% However, additional names have to be made known to the \Index{PostScript} interpreter by some kind of header file.
-% Since version 2.01, \XC{} offers an integrated solution for this task: by invoking the package option \Option{prologue}, a \Index{PostScript} header file \File{xcolor.pro} is loaded by \Program{dvips}.
-% Additionally, under this option every color definition command\footnote{This is not only true for the document preamble, but for the document body as well.} (|\definecolor|, |\colorlet|, etc.) will generate some \Index{PostScript} code that is written to an auxiliary file with the extension \File{.xcp} (shortcut for \textbf{xc}olor \textbf prologue).
-% This file is as well loaded by \Program{dvips} as a prologue, thus making all color names available to the \Index{PostScript} interpreter.
-% Of course, the \File{.xcp} file may be edited before \Program{dvips} is applied, making it easy to change device-specific color parameters at a central place.
-% Note that the \Index{PostScript} code is designed similar to \File{color.pro}: only \emph{new} names are defined.
-% This allows to preload other prologue files with color definitions that are not being destroyed by \XC.
-% On the other hand, it requires the user to take care about redefining color names.\\
-% Example: |\colorlet{foo}{red}\colorlet{foo}{blue}\color{foo}| will switch to \Color{blue} in the usual \XC{} logic, however the \File{.ps} file would display \Color{red} (unless \Color{foo} had been defined differently before).\\
-% It should be stressed that this mechanism is only employed by the \Option{prologue} option.
-% Without that, the predefined `named' colors activated by the \Option{dvipsnames} option (without employing any tints, shades, color expressions, etc.) may be used in this way, all other `named' colors are unknown to \Index{PostScript}.
-% \item \Option{dvipdfm} supports only the standard \Option{dvipsnames} colors since these are hard-coded in the \Program{dvipdfm} program itself; there seems to be no way to load any user-defined prologue files.
-% \item \Option{pdftex} does not offer conceptual support, all `named' colors are converted immediately to their numerical representation. It therefore allows unrestricted definition and usage of named colors (although offering no added value through this).
+% \item \Option{dvips} traite très bien le concept de \og couleur nommée 
+%  \fg{} ; les équivalents \Index{PostScript} des noms de couleur définis par
+%  \Option{dvipsnames} sont chargés --- à moins qu'ils ne soient désactivés ---
+%  automatiquement par \Program{dvips}. Cependant les noms additionnels doivent
+%  être défini à l'interpréteur \Index{PostScript} par une sorte de fichier de
+%  préambule.  
+%  Depuis la version 2.01, \XC{} propose une solution intégrée pour effectuer
+%  cette tâche : en utilisant l'option d'extension \Option{prologue}, un
+%  fichier de préambule \Index{PostScript} \File{xcolor.pro} est chargé par
+%  \Program{dvips}.  
+%  En complément, avec cette option, chaque commande de définition de 
+%  couleur\footnote{Ceci est vrai non seulement pour le préambule du document
+%  mais aussi pour tout le corps du document.} (|\definecolor|, |\colorlet|,
+%  etc.) génère un code \Index{PostScript} enregistré dans un fichier
+%  auxiliaire d'extension \File{.xcp} (abbréviation de \og \textbf{xc}olor
+%  \textbf prologue \fg{}). 
+%  Ce fichier est également chargé par \Program{dvips} comme préambule, 
+%  rendant ainsi disponibles tous les noms de couleur à l'interpréteur 
+%  \Index{PostScript}
+%  Bien entendu, le fichier \File{.xcp} peut être édité avant que 
+%  \Program{dvips} ne l'utilise, ce qui permet de changer les paramètres de
+%  couleur spécifiques au pilote à un endroit central.
+%  Notez que le code \Index{PostScript} est constitué de façon similaire à
+%  \File{color.pro} : seuls les \emph{nouveaux} noms sont définis. 
+%  Ceci permet de précharger d'autres fichiers de préambule avec des
+%  définitions de couleur qui ne sont pas détruites par \XC.
+%  En contrepartie, ceci impose à l'utilisateur de prendre soin de la 
+%  redéfinition des noms de couleur.\\
+%  Exemple: |\colorlet{foo}{red}\colorlet{foo}{blue}\color{foo}| va basculer
+%  la couleur à \Color{blue} dans la logique usuelle de \XC, bien que le 
+%  fichier \File{.ps} va afficher \Color{red} (à moins que \Color{foo} n'ait
+%  été défini différemment avant).\\
+%  Il faut souligner que ce mécanisme est employé uniquement avec l'option
+%  \Option{prologue}. 
+%  Sans cela, les couleurs \og nommées \fg{} prédéfinies activées par l'option
+%  \Option{dvipsnames} (sans employer aucune teinte, nuance, expression de 
+%  couleur, etc.) peuvent être utilisées de cette manière, toutes les
+%  autres couleurs \og nommées \fg{} sont inconnues de \Index{PostScript}.
+% \item \Option{dvipdfm} supporte seulement les couleurs \Option{dvipsnames}
+%  standard car elles sont décrites dans le programme \Program{dvipdfm} 
+%  lui-même ; il ne semble pas y avoir de façon de charger un fichier de 
+%  préambule défini par l'utilisateur. 
+% \item \Option{pdftex} ne permet pas le support conceptuel, toutes les
+%  couleurs \og nommées \fg{} étant converties immédiatement en leur 
+%  représentation numérique. En conséquence, ceci permet d'utiliser des
+%  définitions et un usage des couleurs nommées sans restriction (même si 
+%  cela n'offre aucune valeur ajoutée ici).
 % \end{itemize}
 %
-% Typically, a \File{.dvi} viewer will have difficulties to display user-defined `named' colors.
-% For example, \Index{MiK\TeX}'s viewer \Program{Yap} currently displays only `named' colors from the \Option{dvipsnames} set.
-% Thus, whenever the \Option{prologue} option is invoked together with \Option{dvips}, \emph{all} other colors will appear black.
-% However, after employing \Program{dvips}, a \Index{PostScript} viewer should display the correct colors.
+% Typiquement, un visualisateur \File{.dvi} aura des difficulés à afficher 
+% les couleurs \og nommées \fg{} définies par l'utilisateur.
+% Par exemple, le visualisateur de \Index{MiK\TeX}, \Program{Yap}, affiche
+% actuellement uniquement les couleurs \og nommées \fg{} de l'ensemble
+% \Option{dvipsnames}.
+% Aussi, à chaque fois que l'option \Option{prologue} est utilisée en lien
+% avec l'option \Option{dvips}, \emph{toutes} les autres couleurs sont 
+% restituées en noir. Cependant, après le traitement par \Program{dvips}, 
+% un visualisateur \Index{PostScript} affichera les bonnes couleurs.  
 %
 %
-% \subsubsection{Color definition in \XC}
+% \subsubsection{Définition de couleur dans \XC}
 %
 % \DescribeMacro\definecolor
-%   \oarg{type}\marg{name}\marg{model-list}\marg{spec-list}\footnote{Prior to version 2.00, this command was called \cs{xdefinecolor}, the latter name still being available for compatibility reasons.}\\
-% This is one of the commands that may be used to assign a \Meta{name} to a specific color.
+%   \oarg{type}\marg{nom}\marg{liste-modèle}\marg{liste-spéc}\footnote{Avant
+%   la version 2.00, cette commande était appelée \cs{xdefinecolor}, cette
+%   dernière restant disponible pour des raisons de compatibilité.}\\
+% Il s'agit d'une des commandes qui peut être utilisée pour assigner un 
+% \Meta{nom} à une couleur spécifique.
+% \tradini
 % Afterwards, this color is known to the system (in the current group) and may be used in \emph{\Index{color expression}s}, as explained in section \vref{sec.term}.
 % It replaces both \LC's |\DefineNamedColor| and |\definecolor|.
 % Note that an already existing color \Meta{name} will be overwritten.
@@ -4088,17 +4141,16 @@
 %
 % \tradfin
 % \subsubsection*{09/11/2003 v1.04}
-% \tradini
 % \begin{itemize}
-% \item Nouvelle fonctionnalité : easy access to current color within color
-%  expressions.
-% \item Nouvelle option : \oOption{override} to replace |\definecolor| by 
+% \item Nouvelle fonctionnalité : accès simplifié à la couleur courante dans
+%  les expressions de couleur.
+% \item Nouvelle option : \oOption{override} pour remplacer |\definecolor| par 
 %  |\xdefinecolor|.
-% \item Nouvelle commande : |\tracingcolors| for logging color-specific
+% \item Nouvelle commande : |\tracingcolors| pour afficher dans le fichier
+%  journal les informations spécifiques aux couleurs.
 %  information.
 % \end{itemize}
 %
-% \tradfin
 % \subsubsection*{21/09/2003 v1.03}
 % \begin{itemize}
 % \item Changement : contournement du comportement étrange de certains
