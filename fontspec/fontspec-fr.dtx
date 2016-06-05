@@ -270,49 +270,56 @@ This work consists of this file fontspec.dtx
 %
 %
 % \subsection{Ajustements sur les fontes mathématiques}
-% \tradini 
-% By default, \pkg{fontspec} adjusts \LaTeX's
-% default maths setup in order to maintain the correct Computer Modern symbols
-% when the roman font changes. However, it will attempt to avoid doing this if
-% another maths font package is loaded (such as \pkg{mathpazo} or the
-% \pkg{unicode-math} package).
-%
-% If you find that \pkg{fontspec} is incorrectly changing the maths font when it should be
-% leaving well enough alone, apply the |[no-math]| package option to manually
-% suppress its maths font.
+% Par défaut, \pkg{fontspec} ajuste la configuration des mathématiques
+% standards de \LaTeX\ afin de conserver les bons symboles de Computer Modern
+% quand la fonte romaine change. Cependant, ce comportement est évité si une
+% autre extension chargeant d'autres fontes mathématiques est utilisée (telle
+% que  \pkg{mathpazo} ou l'extension \pkg{unicode-math}).
+% Si vous observez que \pkg{fontspec} change de manière incorrecte les fontes
+% mathématiques alors qu'il n'aurait pas du intervenir, utilisez l'option
+% d'extension |[no-math]| pour supprimer manuellement ces fontes mathématiques.
+
 %
 % \subsection{Configuration}
 % \label{sec:config}
 %
-% If you wish to customise any part of the
-% \pkg{fontspec} interface, this should be done by creating your own
-% \texttt{fontspec.cfg} file,
-% which will be automatically loaded if it is found by \XeTeX\ or \LuaTeX.
-% A |fontspec.cfg| file is distributed with \pkg{fontspec} with a small number of defaults set up within it.
+% Si vous souhaitez personnaliser n'importe quelle partie de l'interface de
+% \pkg{fontspec}, vous pouvez le faire en créant votre propre fichier
+% \texttt{fontspec.cfg}, ce dernier étant automatiquement chargé s'il est
+% trouvé par \XeTeX\ ou \LuaTeX.
+% Un fichier |fontspec.cfg| intégrant un petit nombre de paramétrages par
+% défaut est distribué avec \pkg{fontspec}.
 %
-% To customise \pkg{fontspec} to your liking, use the standard |.cfg| file as a starting point or write your own from scratch, then either place it in the same folder as the main document for isolated cases, or in a location
-% that \XeTeX\ or \LuaTeX\ searches by default; \eg\ in Mac\TeX: \path{~/Library/texmf/tex/latex/}.
+% Pour paramétrer \pkg{fontspec} à votre convenance, utilisez ce fichier 
+% |.cfg| standard comme point de départ ou écrivez le vôtre en partant de rien.
+% Ensuite, placez-le dans le même répertoire que votre document principal
+% pour des cas ponctuels ou placez-le dans des répertoires dans lesquels
+% \XeTeX\ ou \LuaTeX\ cherchent par défaut sinon; par exemple avec Mac\TeX:
+% \path{~/Library/texmf/tex/latex/}.
 %
-% The package option |[no-config]| will suppress the loading of the |fontspec.cfg| file under all circumstances.
+% L'option d'extension |[no-config]| supprime le chargement du fichier 
+% |fontspec.cfg| en toutes circonstances.
 %
 % \subsection{Alertes}
 % \label{sec:quiet-warnings}
 %
-% This package can give many warnings that can be harmless if you know what
-% you're doing. Use the |[quiet]| package option to write these warnings to the
-% transcript (\texttt{.log}) file instead.
+% Cette extension peut générer de nombreuses alertes qui peuvent être sans 
+% risques si vous savez ce que vous faites. Utilisez l'option d'extension
+% |[quiet]| pour faire écrire ces avertissements dans le fichier journal
+% (\texttt{.log}) à la place.
 %
-% Use the |[silent]| package option to completely suppress these warnings if you
-% don't even want the |.log| file cluttered up.
-%
-%
-%
+% Utilisez l'option d'extension |[silent]| pour complétement supprimer ces
+% alertes si vous ne souhaitez pas encombrer le fichier |.log|.
 %
 %
-% \part{General font selection}
 %
-% This section concerns the variety of commands that can be used to select
-% fonts.
+%
+%
+% \part{Sélection générale de fontes}
+%
+% Cette section concerne les différentes commandes qui peuvent être utilisées
+% pour sélectionner des fontes.
+% \tradini 
 %
 % \cmdbox{%
 %   \CMD{\string\fontspec}\marg{font name}\oarg{font features}\\

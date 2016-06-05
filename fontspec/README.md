@@ -6,11 +6,15 @@ L'objectif est de traduire la documentation de l'extension *fontspec* utilisable
 
 ### Avancement de la traduction, en vision table de matières
 - [ ] En-tête du document tex (définitions, métadonnées)
-- [ ] Pages d'avant-propos (4 pages) 
+- [x] Pages d'avant-propos (4 pages) 
   - [x] Historique
   - [x] Introduction
-  - [ ] Chargement de l'extension et options
-- [ ] General font selection (17 pages)
+  - [x] Chargement de l'extension et options
+- [ ] Sélection générale de fontes (17 pages)
+  - [ ] Sélection de fontes
+  - [ ] Nouvelles commandes de sélection de familles de fontes
+  - [ ] Sélection de fonctionnalités de fontes
+  - [ ] Options indépendantes des fontes
 - [ ] OpenType (13 pages)
 - [ ] LuaTeX-only font features (3 pages)
 - [ ] Fonts and feature with XeTeX (6 pages)
