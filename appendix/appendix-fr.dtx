@@ -109,7 +109,7 @@
 % \title{L'extension \Lpack{appendix}\thanks{Ce fichier
 %        (\texttt{\dtxfile}) a pour numéro de version \fileversion, 
 %        datant du \filedate. La première traduction en français de la 
-%        version V1.0 est due à Jean-Pierre \textsc{Drucbert}.}}
+%        version v1.0 est due à Jean-Pierre \textsc{Drucbert}.}}
 %
 % \author{
 %   Auteur: Peter Wilson, Herries Press\\
@@ -175,202 +175,208 @@
 %
 % \section{L'extension \Lpack{appendix}} \label{sec:usc}
 %
-% The \Lpack{appendix} package provides some commands that can be
-% used in addition to the |\appendix| command. It also provides
-% a new environment that can be used instead of the |\appendix| command.
-% The environment provides some addtional actions with respect to
-% the simple |\appendix|. First the new commands will be described and
-% then the new environment will be discussed.
-%
+% L'extension \Lpack{appendix} offre quelques commandes qui peuvent être
+% utilisées en complément de la commande |\appendix|. Il fournit aussi un
+% environnement qui peut être utilisé à la place de la commande |\appendix|.
+% Cet environnement propose quelques possibilités supplémentaires par rapport
+% à la commande |\appendix|. Nous allons présenter d'abord les nouvelles 
+% commandes puis étudier le nouvel environnement.
+% 
 % \DescribeMacro{\appendixpage}
-%  The |\appendixpage| command will typeset a heading in the style of
-% a |\part| heading for the class. The wording of the heading is
-% given by the value of |\appendixpagename|.
+% La commande |\appendixpage| compose un en-tête reprenant le style d'un
+% en-tête pour le niveau |\part| dans la classe du document. Le texte de 
+% l'en-tête est celui de la variable |\appendixpagename|.
 %
 % \DescribeMacro{\addappheadtotoc}
-% This command will insert general heading into the Table of Contents (ToC).
-% The text is given by the value of |\appendixtocname|. If used, the command
-% must come before the first appendix, as it is meant to be used to introduce
-% the appendix titles in the ToC.
+% La commande |\addappheadtotoc| insère un en-tête général dans la
+% table des matières. Son texte est donné par la valeur de |\appendixtocname|.
+% Pour être utilisée, cette commande doit être placée avant la première annexe
+% car elle place les titres des différentes annexes dans la table des
+% matières.
 %
-% \changes{v1.1a}{2001/03/15}{Added NOTE about \cs{addappheadtotoc} page number}
-% The above commands can be used in conjunction with the traditional
-% |\appendix| command, which they should immediately follow. For example:
+% \changes{v1.1a}{15/03/2001}{Ajout d'une note sur le numéro de page de 
+% \cs{addappheadtotoc}}
+% Les commandes ci-dessus peuvent être utilisées en conjonction avec la
+% commande classique |\appendix|, qu'elles doivent suivre immédiatement. Par
+% exemple:
 % \begin{verbatim}
 % \appendix
-% \appendixpage
 % \addappheadtotoc
+% \appendixpage
 % \end{verbatim}
 %
 % \DescribeMacro{\noappendicestocpagenum}
 % \DescribeMacro{\appendicestocpagenum}
-% By default the |\addappheadtotoc| command puts a page number
-% in the ToC. This can be prevented by using |\noappendicestocpagenum|.
-% For symmetry, the |\appendicestocpagenum| command ensures that
-% a page number is put in the ToC.
+% Par défaut, la commande |\addappheadtotoc| place un numéro de page dans la
+% table des matières. Ceci peut être évité en utilisant la commande
+% |\noappendicestocpagenum|. 
+% Par symétrie, la commande |\appendicestocpagenum| garantit qu'un numéro de 
+% page sera bien mis en table des matières.
 %
-% \textbf{NOTE:} Unless |\noappendicestocpagenum| is used 
-% the |\addappheadtotoc| command uses the 
-% current page number
-% when it makes the entry in the ToC. The |\appendixpage| command puts
-% a heading in the document like a |\part| heading; in un-chaptered documents
-% the |\part| heading appears in the ordinary run of the text like a 
-% |\section| heading, but in chaptered documents it is on a page by itself.
-% That is, in chaptered documents |\appendixpage| does a |\clear[double]page|
-% typesets the heading, and then does another |\clear[double]page|. Therefore,
-% in a chaptered document the above sequence of 
-% commands will use the page number
-% \emph{after} the |\appendixpage| as the ToC 
-% entry\footnote{With thanks to Eduardo Jacob (\texttt{edu@kender.es})
-% for pointing this out.} and if the ordering
-% is reversed (i.e., |\addappheadtotoc| |\appendixname|) then the page number
-% \emph{before} |\appendixname| will be used as the ToC entry. For chaptered
-% documents it is probably best to do: \\
-% |    \clearpage % or \cleardoublepage| \\
+% \textbf{Note:} à moins que |\noappendicestocpagenum| ne soit utilisé, 
+% la commande |\addappheadtotoc| utilise le numéro de page courante lorsqu'il
+% crée l'entrée dans la table des matières. La commande |\appendixpage| place
+% un  command puts
+
+% La commande |\appendixpage| compose un en-tête reprenant le style d'un
+% en-tête pour le niveau |\part| dans la classe du document. Dans des
+% documents sans chapitre, cet en-tête apparaît dans le texte à la manière
+% d'un titre de |\section|; et dans des documents avec des chapitres, il
+% apparaît sur une page à part.
+% Autrement dit, dans le second cas, |\appendixpage| exécute une commande
+% |\clear[double]page|, compose l'en-tête, puis exécute une nouvelle fois
+% |\clear[double]page|. C'est pourquoi l'entrée en table des matières aura le numéro de page après la \trad{page d'annexe}\footnote{Merci à Eduardo Jacob
+% (\texttt{edu@kender.es}) d'avoir relevé ce point.}. Si l'ordre est inversé
+% (par exemple |\addappheadtotoc| |\appendixname|) alors le numéro de page
+% en table des matières sera celui de la page précédent \trad{page d'annexe}.
+% Pour les documents avec chapitre, il est préférable d'utiliser :
+% |    \clearpage % ou \cleardoublepage| \\
 % |    \addappheadtotoc| \\
 % |    \appendixpage| \\
-% which will use the page number of |\appendixpage| as the ToC entry.
+% qui permet d'avoir le numéro de la \trad{page d'annexe} en table des
+% matières.
 % 
 %
 % \DescribeMacro{\appendixname}
 % \DescribeMacro{\appendixtocname}
 % \DescribeMacro{\appendixpagename}
-% The |\appendixname| command is defined in those classes that provide
-% for chapters. It is provided in this package whether or not it has
-% been defined in the class. It's default value is `Appendix'.
-% The default value of both |\appendixtocname| and |\appendixpagename| is 
-% `Appendices'. These names can all be changed via |\renewcommand|.
-% For example,
+% La commande |\appendixname| est définie dans les classes qui disposent
+% de chapitres. Elle est fournie dans cette extension, que la classe l'ait
+% définie ou non. Sa valeur par défaut est \og Appendix \fg{}. La valeur par
+% défaut de |\appendixtocname| et |\appendixpagename| est \og Appendices 
+% \fg{}. Ces noms peuvent êtres changés par le biais de |\renewcommand|. 
+% Par exemple,
 % \begin{verbatim}
-% \renewcommand{\appendixtocname}{List of appendices}
+% \renewcommand{\appendixtocname}{Liste des annexes}
 % \end{verbatim}
 %
 % \DescribeEnv{appendices}
-% The |appendices| environment can be used instead of the |\appendix|
-% command. It provides more functionality than is possible from the 
-% combination of the |\appendix|, |\addappheadtotoc| and |\appendixpage|
-% commands.
-% The functions of the |appendices| environment are usually accessed through
-% the package options, but there are declarations that mey be used insted. 
-% The options are:
+% L'environnement \Lenv{appendices} peut être utilisé à la place de la commande
+% |\appendix|. Il offre plus de possibilités que celles des seules combinaisons
+% de commandes |\appendix|, |\addappheadtotoc| et |\appendixpage|.
+% Les fonctions de l'environnement |appendices| sont normalement accessibles
+% par des options de l'extension, mais des déclarations peuvent être utilisées
+% en lieu et place. Les options sont :
 % \begin{itemize}
-% \item \Lopt{toc} Put a header (e.g., `Appendices') into the Table
-%       of Contents (the ToC) before listing the appendices. (This
-%       is done by calling the |\addappheadtotoc| command.)
-% \item \Lopt{page} Puts a title (e.g., `Appendices') into the document
-%       at the point where the |appendices| environment is begun.
-%       (This is done by calling the |\appendixpage| command.)
-% \item \Lopt{title} Adds a name (e.g., `Appendix') before each appendix
-%       title in the body of the document. 
-%       The name is given by the value of |\appendixname|.
-%       Note that this is the default behaviour for classes that have
-%       chapters.
-% \item \Lopt{titletoc} Adds a name (e.g., `Appendix') before each
-%        appendix listed in the ToC.
-%       The name is given by the value of |\appendixname|.
-% \item \Lopt{header} Adds a name (e.g., `Appendix') before each appendix
-%        in page headers.
-%       The name is given by the value of |\appendixname|.
-%       Note that this is the default behaviour for classes that have
-%       chapters.
+% \item \Lopt{toc} qui place une entrée (par exemple \og Appendices \fg{})
+%   dans la table des matières avant de lister les annexes (ce qui s'obtient
+%   aussi avec la commande |\addappheadtotoc|).
+% \item \Lopt{page} qui place un titre (par exemple \og Appendices \fg{}) 
+%   dans le document au point où l'environnement |appendices| débute (ce qui
+%   s'obtient avec la commande |\appendixpage|).
+% \item \Lopt{title} qui ajoute un terme (par exemple \og Appendix \fg{})
+%   avant chaque titre d'annexe dans le corps du document. Ce terme est donné
+%   par la valeur de la variable |\appendixname|. Notez que ceci est le
+%   comportement par défaut des classes qui disposent de chapitres.
+% \item \Lopt{titletoc} qui ajoute un terme (par exemple \og Appendix \fg{})
+%   avant chaque titre d'annexe listé dans la table des matières. Ce terme est
+%   donné par la valeur de la variable |\appendixname|.
+% \item \Lopt{header} qui ajoute un terme (par exemple \og Appendix \fg{})
+%   avant chaque titre d'annexe apparaissant dans l'en-tête de page. Ce terme
+%   est donné par la valeur de la variable |\appendixname|. Notez que ceci est
+%   le comportement par défaut des classes qui disposent de chapitres.
 % \end{itemize}
 %
-%    Depending on the particular package options that are set and the
-% document class, the
-% |appendices| environment may change the definition of elements of
-% the sectioning commands (e.g., |\chapter| or |\section|).
-% This may be a problem if the environment
-% is used in conjunction with any other package that makes changes to
-% these commands. If this is the case, then you will have to examine the
-% code for the |appendices| environment and make any necessary changes
-% to one or the other of the packages (via your own package file).
-% The changes to the sectional heading commands are discarded at the
-% end of the |appendices| environment.
+% Selon les options d'extension et la classe de document choisies, 
+% l'environnement \Lenv{appendices} peut changer la définition d'éléments 
+% des commandes de sectionnement (par exemple |\chapter| ou
+% |\section|). Ceci peut être un problème si l'environnement est utilisé en
+% conjonction avec toute autre extension qui modifie ces commandes. Si c'est
+% le cas, il vous faut alors examiner le code de l'environnement 
+% \Lenv{appendices} et faire les modifications nécessaires à l'extension 
+% de votre choix (dans votre fichier de l'extension). Les modifications
+% effectuées sur les commandes de sectionnement sont supprimées à la fin de
+% l'environnement \Lenv{appendices}.
 %
 % \DescribeMacro{\appendixtocon}
 % \DescribeMacro{\appendixtocoff}
-% |\appendixtocon| is a declaration equivalent to the \Lopt{toc} option.
-% The |\appendixtocoff| declaration is equivalent to not using that option.
+% La déclaration |\appendixtocon| est équivalente à l'option \Lopt{toc}. 
+% Inversement, |\appendixtocoff| est équivalente à ne pas utiliser cette
+% option.
 %
 % \DescribeMacro{\appendixpageon}
 % \DescribeMacro{\appendixpageoff}
-% |\appendixpagecon| is a declaration equivalent to the \Lopt{page} option.
-% The |\appendixpageoff| declaration is equivalent to not using 
-% that option.
+% La déclaration |\appendixpageon| est équivalente à l'option \Lopt{page}. 
+% Inversement, |\appendixpageoff| est équivalente à ne pas utiliser cette
+% option.
 %
 % \DescribeMacro{\appendixtitleon}
 % \DescribeMacro{\appendixtitleoff}
-% |\appendixtitleon| is a declaration equivalent to the \Lopt{title} option.
-% The |\appendixtitleoff| declaration is equivalent to not using 
-% that option.
+% La déclaration |\appendixtitleon| est équivalente à l'option \Lopt{title}. 
+% Inversement, |\appendixtitleoff| est équivalente à ne pas utiliser cette
+% option.
 %
 % \DescribeMacro{\appendixtitletocon}
 % \DescribeMacro{\appendixtitletocoff}
-% |\appendixtitletocon| is a declaration equivalent to the \Lopt{titletoc} option.
-% The |\appendixtitletocoff| declaration is equivalent to not using 
-% that option.
+% La déclaration |\appendixtitletocon| est équivalente à l'option 
+% \Lopt{titletoc}. Inversement, |\appendixtitletocoff| est équivalente à ne
+% pas utiliser cette option.
 %
 % \DescribeMacro{\appendixheaderon}
 % \DescribeMacro{\appendixheaderoff}
-% |\appendixheaderon| is a declaration equivalent to the \Lopt{header} option.
-% The |\appendixheaderoff| declaration is equivalent to not using 
-% that option.
+% La déclaration |\appendixheaderon| est équivalente à l'option 
+% \Lopt{header}. Inversement, |\appendixheaderoff| est équivalente à ne
+% pas utiliser cette option.
 %
 % \DescribeMacro{\restoreapp}
-%     The |appendices| environment restores the prior value of the 
-% chapter/section counter at the end of the environment, so the
-% environment may be used between the main document divisions. By default,
-% the appendix counter value is saved and restored by the environment. That
-% means that appendices in a series of |appendices| environments will
-% be lettered sequentially. To make the lettering start from A each time,
-% put the following into the preamble: \\
+% Lorsqu'il finit, l'environnement |appendices| restitue aux compteurs de
+% chapitres et sections la valeur qu'ils avaient au moment où l'environnement  
+% débutait, ceci afin qu'il puisse être utilisé entre de grandes divisions du 
+% document. Par défaut, la valeur du compteur d'annexes est sauvegardée et 
+% restituée par l'environnement. Ceci signifie que les annexes dans une série 
+% d'environnements |appendices| seront numérotées par des lettres qui se
+% suivent. Pour pouvoir repartir de la lettre A pour chaque environnement, il faut utiliser en préambule de document la commande suivante : \\ 
 % |\renewcommand{\restoreapp}{}|
 %
 % \DescribeEnv{subappendices}
-% Within the |subappendices| environment, an appendix is introduced by a
-% |\section| command in chaptered documents, otherwise it is introduced
-% by a |\subsection| command. Effectively, this provides for appendices 
-% at the end of a main document division, as an integral
-% part of the division. The |subappendices| environment supports only
-% the \Lopt{title} and \Lopt{titletoc} options.
+% Dans l'environnement |subappendices|, une annexe est introduite par la
+% commande |\section| dans les documents avec chapitres, sinon elle est 
+% introduite par la commande |\subsection|. Ceci fournit un moyen efficace
+% d'avoir des annexes comme partie intégrante d'une division du document
+% principal, à la fin de cette division.
+% L'environnement |subappendices| autorise uniquement les options \Lopt{title}
+% et \Lopt{titletoc}.
 %
 % \DescribeMacro{\setthesection}
 % \DescribeMacro{\setthesubsection}
-% By default, the `subappendices' are numbered like normal (sub)sections,
-% except that the (sub)section number itself is typeset as an uppercase
-% letter. This behaviour can be changed by redefining these |\setthe...|
-% commands. For example, to just have a letter not prepended by the main
-% division number, do: \\
-% |\renewcommand{\setthesection}{\Alph{section}}| or \\
-% |\renewcommand{\setthesubsection}{\Alph{subsection}}| as appropriate.
+% Par défaut, les \og sous-annexes \fg{} sont numérotées comme des 
+% (sous-)sections normales, à ceci près que le numéro de la (sous-)section 
+% elle-même est composé par une lettre majuscule. Ce comportement peut être
+% modifié en redéfinissant les commandes |\setthe...|. Par exemple, pour
+% obtenir uniquement une lettre non précédée du numéro de la division 
+% principale, saisissez : \\
+% |\renewcommand{\setthesection}{\Alph{section}}| oU \\
+% |\renewcommand{\setthesubsection}{\Alph{subsection}}| selon le contexte.
 %
 % \subsection{Problèmes connus}
 %
-%    There is an unfortunate interaction between the \LaTeX{} kernel commands
-% |\include| and |\addcontentsline|. If these are used like this:
+% Il existe une interaction malencontreuse entre les commandes du noyau 
+% \LaTeX{} |\include| et |\addcontentsline|. Si elles sont utilisées comme
+% suit :
 % \begin{verbatim}
 % \addcontentsline{toc}{...}{addtotoc}
 % \include{import}
 % \end{verbatim}
-% then the text of the |\addcontentsline| command (`addtotoc' in the example)
-% is not written to the
-% appropriate (toc) file until \textit{after} the included file has written all
-% its entries out to the (toc) file. As far as I can tell, there is no way 
-% around this behaviour without rewriting parts of the \LaTeX{} kernel code.
+% alors le texte de la commande |\addcontentsline| (\og addtotoc \fg{} dans
+% l'exemple) n'est pas écrit dans le fichier approprié (d'extension \og toc 
+% \fg{}) tant que le fichier importé par |\include| n'a pas écrit toutes ses
+% entrées dans le fichier \og toc \fg{}. Pour autant que je puisse en juger,
+% il n'y a pas de méthode de contournement sans réécriture de partie du code du
+% noyau \LaTeX.
 % 
-%     It is thus up to the author to avoid putting an |\addcontentsline| command
-% (or a command that internally uses |\addcontentsline|, as does the
-% |\addappheadtotoc| command) before
-% an |\include|d file that writes out to the same file. Things work as
-% expected if the |\addcontentsline| command is placed within the |\include|d
-% file, or if the imported file is |\input|ed instead of |\include|d.
+% Il revient donc à l'auteur d'éviter d'utiliser la commande 
+% |\addcontentsline| (ou une commande qui utilise en interne la commande 
+% |\addcontentsline|, comme la commande |\addappheadtotoc|) avant qu'un 
+% fichier intégré par |\include| n'ait écrit ses entrées dans le fichier 
+% \og toc \fg{}. Par ailleurs, tout fonctionne normalement si les commandes 
+% |\addcontentsline| sont mises dans le fichier importé par |\include| ou si le
+% fichier est importé par |\input| plutôt que par |\include|.
 %
 % \StopEventually{}
 %
 % \section{Le code de l'extension} \label{sec:code}
 %
-%    Announce the name and version of the package, which requires
-% \LaTeXe.
+% Sont donnés le nom et la version de l'extension, qui nécessite \LaTeXe.
 %    \begin{macrocode}
 %<*usc>
 \NeedsTeXFormat{LaTeX2e}
@@ -378,6 +384,7 @@
 
 %    \end{macrocode}
 %
+% \tradini
 % In order to try and avoid name clashes with other packages, each internal
 % name will include the character string |@pp|.
 %
@@ -1044,6 +1051,7 @@
 %
 % \end{thebibliography}
 %
+% \tradfin
 % \PrintIndex
 % \Finale
 %
