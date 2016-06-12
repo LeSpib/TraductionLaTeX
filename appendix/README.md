@@ -12,8 +12,8 @@ Il s'agit ici donc de revoir cette traduction et de la compléter des évolution
 ### Avancement de la traduction, en vision table de matières
 - [ ] En-tête du document tex (définitions, métadonnées)
 - [x] Introduction (1 page) **À relire**
-- [x] L'extension *appendix* (3 pages)
-  - [x] Problèmes connus
-- [ ] Le code de l'extension (9 pages)
-- [ ] Références (1 page)
-- [ ] Index (1 page)
+- [x] L'extension *appendix* (3 pages) **À relire**
+  - [x] Problèmes connus **À relire**
+- [x] Le code de l'extension (9 pages) **À relire**
+- [x] Références (1 page) **À relire**
+- [x] Index (1 page) **À relire**
