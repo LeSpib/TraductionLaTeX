@@ -109,7 +109,7 @@
 % \title{L'extension \Lpack{appendix}\thanks{Ce fichier
 %        (\texttt{\dtxfile}) a pour numéro de version \fileversion, 
 %        datant du \filedate. La première traduction en français de la 
-%        version v1.0 est due à Jean-Pierre \textsc{Drucbert}.}}
+%        version v1.0 est due à Jean-Pierre Drucbert.}}
 %
 % \author{
 %   Auteur: Peter Wilson, Herries Press\\
@@ -121,12 +121,12 @@
 % \begin{abstract}
 %    L'extension \Lpack{appendix} fournit quelques éléments pour modifier 
 % la composition des titres des annexes. De plus, les environnements
-% |(sub)appendices| sont mis à disposition, par exemple, pour avoir des 
-% annexes par chapitre ou par section. 
+% |(sub)appendices| sont mis à disposition et permettent d'obtenir, par
+% exemple, des annexes par chapitre ou par section. 
 %
 % L'extension est conçue pour fonctionner avec les classes qui disposent
 % des commandes |\chapter| et/ou |\section|. Elle n'a pas été testée avec
-% d'autres extensions qui modifient la définition des commandes de 
+% des extensions qui modifient la définition des commandes de 
 % sectionnement.
 % \end{abstract}
 % \tableofcontents
@@ -157,41 +157,40 @@
 % L'extension \Lpack{appendix} offre des possibilités supplémentaires pour
 % les annexes. Elle est compatible avec l'extension 
 % \Lpack{hyperref}\footnote{Mes remerciements à Hylke W. van Dijk 
-% (\texttt{hylke@ubicom.tudelft.nl}) que la version~1.1 ne l'était pas et m'a
-% mis sur la piste pour changer cette situation.} mais peut être source de
-% problèmes quand elle est utilisée avec des extensions qui modifient les
-% définitions des commandes de sectionnement. 
+% (\texttt{hylke@ubicom.tudelft.nl}) qui m'a indiqué que la version~1.1 ne
+% l'était pas et m'a mis sur la piste pour changer cette situation.} mais peut
+% être source de problèmes quand elle est utilisée avec des extensions qui
+% modifient les définitions des commandes de sectionnement. 
 %
-% Des portions de l'extension ont été développées en tant que partie d'une
-% classe et d'un ensemble d'extensions pour la composition de documents au
-% standard ISO~\cite{PRW96i}. Ce manuel est réalisé conformément aux
+% Certaines parties de l'extension ont été développées en tant que part d'une
+% classe et d'un ensemble d'extensions traitant de la composition de documents
+% au standard ISO~\cite{PRW96i}. Ce manuel est réalisé conformément aux
 % conventions de l'utilitaire \LaTeX\ \textsc{docstrip} qui permet
 % l'extraction automatique du fichier source contenant les macros
-% \LaTeX~\cite{GOOSSENS94}.
+% \LaTeX~\cite{GOOSSENS05}.
 %
-% La section~\ref{sec:usc} décrit l'utilisation de l'extension. Le code
-% source de l'extension est, quant à lui, détaillé dans la 
-% section~\ref{sec:code}.
+% La section~\ref{sec:usc} décrit l'utilisation de l'extension. Son code
+% source est, quant à lui, détaillé dans la section~\ref{sec:code}.
 %
 % \section{L'extension \Lpack{appendix}} \label{sec:usc}
 %
-% L'extension \Lpack{appendix} offre quelques commandes qui peuvent être
-% utilisées en complément de la commande |\appendix|. Il fournit aussi un
+% L'extension \Lpack{appendix} propose quelques commandes qui peuvent être
+% utilisées en complément de la commande |\appendix|. Elle fournit aussi un
 % environnement qui peut être utilisé à la place de la commande |\appendix|.
-% Cet environnement propose quelques possibilités supplémentaires par rapport
+% Cet environnement offre quelques possibilités supplémentaires par rapport
 % à la commande |\appendix|. Nous allons présenter d'abord les nouvelles 
 % commandes puis étudier le nouvel environnement.
 % 
 % \DescribeMacro{\appendixpage}
-% La commande |\appendixpage| compose un en-tête reprenant le style d'un
-% en-tête pour le niveau |\part| dans la classe du document. Le texte de 
-% l'en-tête est celui de la variable |\appendixpagename|.
-%
+% La commande |\appendixpage| compose un titre intercalaire à la
+% manière de ce que fait la commande |\part| dans la classe du document. Le 
+% titre est ici celui de la variable |\appendixpagename|.
+
 % \DescribeMacro{\addappheadtotoc}
-% La commande |\addappheadtotoc| insère un en-tête général dans la
+% La commande |\addappheadtotoc| insère un titre dans la
 % table des matières. Son texte est donné par la valeur de |\appendixtocname|.
-% Pour être utilisée, cette commande doit être placée avant la première annexe
-% car elle place les titres des différentes annexes dans la table des
+% En cas d'utilisation, cette commande doit être placée avant la première
+% annexe car elle place les titres des différentes annexes dans la table des
 % matières.
 %
 % \changes{v1.1a}{15/03/2001}{Ajout d'une note sur le numéro de page de 
@@ -201,40 +200,40 @@
 % exemple:
 % \begin{verbatim}
 % \appendix
-% \addappheadtotoc
 % \appendixpage
+% \addappheadtotoc
 % \end{verbatim}
 %
 % \DescribeMacro{\noappendicestocpagenum}
 % \DescribeMacro{\appendicestocpagenum}
 % Par défaut, la commande |\addappheadtotoc| place un numéro de page dans la
-% table des matières. Ceci peut être évité en utilisant la commande
+% table des matières. Ceci peut être annulé en utilisant la commande
 % |\noappendicestocpagenum|. 
 % Par symétrie, la commande |\appendicestocpagenum| garantit qu'un numéro de 
 % page sera bien mis en table des matières.
 %
 % \textbf{Note:} à moins que |\noappendicestocpagenum| ne soit utilisé, 
 % la commande |\addappheadtotoc| utilise le numéro de page courante lorsqu'il
-% crée l'entrée dans la table des matières. La commande |\appendixpage| place
-% un  command puts
-
-% La commande |\appendixpage| compose un en-tête reprenant le style d'un
-% en-tête pour le niveau |\part| dans la classe du document. Dans des
-% documents sans chapitre, cet en-tête apparaît dans le texte à la manière
+% crée l'entrée dans la table des matières. 
+% La commande |\appendixpage| compose un titre en reprenant le style d'un
+% titre de niveau |\part| dans la classe du document. Dans des
+% documents sans chapitre, cet titre apparaît dans le texte à la manière
 % d'un titre de |\section|; et dans des documents avec des chapitres, il
 % apparaît sur une page à part.
 % Autrement dit, dans le second cas, |\appendixpage| exécute une commande
-% |\clear[double]page|, compose l'en-tête, puis exécute une nouvelle fois
-% |\clear[double]page|. C'est pourquoi l'entrée en table des matières aura le numéro de page après la \trad{page d'annexe}\footnote{Merci à Eduardo Jacob
-% (\texttt{edu@kender.es}) d'avoir relevé ce point.}. Si l'ordre est inversé
-% (par exemple |\addappheadtotoc| |\appendixname|) alors le numéro de page
-% en table des matières sera celui de la page précédent \trad{page d'annexe}.
-% Pour les documents avec chapitre, il est préférable d'utiliser :
+% |\clear[double]page|, compose le titre des annexes, puis exécute une
+% nouvelle fois |\clear[double]page|. C'est pourquoi l'entrée en table des
+% matières aura le numéro de la page suivant la page de ce 
+% titre\footnote{Merci à Eduardo Jacob (\texttt{edu@kender.es}) d'avoir 
+% relevé ce point.}. Si l'ordre est inversé (par exemple |\addappheadtotoc| 
+% |\appendixname|) alors le numéro de page en table des matières sera celui 
+% de la page précédant la page de ce titre.
+% Pour les documents avec chapitre, il est préférable d'utiliser : \\
 % |    \clearpage % ou \cleardoublepage| \\
 % |    \addappheadtotoc| \\
 % |    \appendixpage| \\
-% qui permet d'avoir le numéro de la \trad{page d'annexe} en table des
-% matières.
+% qui permet d'avoir le bon numéro de la page du titre des annexes en table
+% des matières.
 % 
 %
 % \DescribeMacro{\appendixname}
@@ -245,20 +244,21 @@
 % définie ou non. Sa valeur par défaut est \og Appendix \fg{}. La valeur par
 % défaut de |\appendixtocname| et |\appendixpagename| est \og Appendices 
 % \fg{}. Ces noms peuvent êtres changés par le biais de |\renewcommand|. 
-% Par exemple,
+% Par exemple, pour avoir les différents titres en français :
 % \begin{verbatim}
-% \renewcommand{\appendixtocname}{Liste des annexes}
+% \renewcommand{\appendixname}{Annexe}
+% \renewcommand{\appendixpagename}{Annexes}
+% \renewcommand{\appendixtocname}{Annexes}
 % \end{verbatim}
 %
 % \DescribeEnv{appendices}
 % L'environnement \Lenv{appendices} peut être utilisé à la place de la commande
-% |\appendix|. Il offre plus de possibilités que celles des seules combinaisons
+% |\appendix|. Il offre plus de possibilités que celles issues des combinaisons
 % de commandes |\appendix|, |\addappheadtotoc| et |\appendixpage|.
-% Les fonctions de l'environnement |appendices| sont normalement accessibles
-% par des options de l'extension, mais des déclarations peuvent être utilisées
-% en lieu et place. Les options sont :
+% L'accès aux fonctions de l'environnement |appendices| se fait normalement 
+% par des options de l'extension, mais des déclarations peuvent les remplacer. % Les options sont :
 % \begin{itemize}
-% \item \Lopt{toc} qui place une entrée (par exemple \og Appendices \fg{})
+% \item \Lopt{toc} qui place un titre (par exemple \og Appendices \fg{})
 %   dans la table des matières avant de lister les annexes (ce qui s'obtient
 %   aussi avec la commande |\addappheadtotoc|).
 % \item \Lopt{page} qui place un titre (par exemple \og Appendices \fg{}) 
@@ -266,7 +266,7 @@
 %   s'obtient avec la commande |\appendixpage|).
 % \item \Lopt{title} qui ajoute un terme (par exemple \og Appendix \fg{})
 %   avant chaque titre d'annexe dans le corps du document. Ce terme est donné
-%   par la valeur de la variable |\appendixname|. Notez que ceci est le
+%   par la valeur de la variable |\appendixname|. Notez qu'il s'agit du
 %   comportement par défaut des classes qui disposent de chapitres.
 % \item \Lopt{titletoc} qui ajoute un terme (par exemple \og Appendix \fg{})
 %   avant chaque titre d'annexe listé dans la table des matières. Ce terme est
@@ -279,9 +279,9 @@
 %
 % Selon les options d'extension et la classe de document choisies, 
 % l'environnement \Lenv{appendices} peut changer la définition d'éléments 
-% des commandes de sectionnement (par exemple |\chapter| ou
-% |\section|). Ceci peut être un problème si l'environnement est utilisé en
-% conjonction avec toute autre extension qui modifie ces commandes. Si c'est
+% des commandes de sectionnement (|\chapter| ou
+% |\section|). Ceci peut être problématique si l'environnement est utilisé en
+% conjonction avec une extension modifiant ces commandes. Si c'est
 % le cas, il vous faut alors examiner le code de l'environnement 
 % \Lenv{appendices} et faire les modifications nécessaires à l'extension 
 % de votre choix (dans votre fichier de l'extension). Les modifications
@@ -323,29 +323,29 @@
 % chapitres et sections la valeur qu'ils avaient au moment où l'environnement  
 % débutait, ceci afin qu'il puisse être utilisé entre de grandes divisions du 
 % document. Par défaut, la valeur du compteur d'annexes est sauvegardée et 
-% restituée par l'environnement. Ceci signifie que les annexes dans une série 
+% récupérée par l'environnement. Ceci signifie que les annexes dans une série 
 % d'environnements |appendices| seront numérotées par des lettres qui se
 % suivent. Pour pouvoir repartir de la lettre A pour chaque environnement, il faut utiliser en préambule de document la commande suivante : \\ 
 % |\renewcommand{\restoreapp}{}|
 %
 % \DescribeEnv{subappendices}
-% Dans l'environnement |subappendices|, une annexe est introduite par la
-% commande |\section| dans les documents avec chapitres, sinon elle est 
-% introduite par la commande |\subsection|. Ceci fournit un moyen efficace
-% d'avoir des annexes comme partie intégrante d'une division du document
-% principal, à la fin de cette division.
+% Dans l'environnement |subappendices|, une \og sous-annexe \fg{} est
+% introduite par la commande |\section| pour les documents avec chapitres et
+% par par la commande |\subsection| pour les autres documents. Ceci fournit un
+% moyen efficace d'avoir des annexes comme partie intégrante d'une division du
+% document principal, à la fin de cette division.
 % L'environnement |subappendices| autorise uniquement les options \Lopt{title}
 % et \Lopt{titletoc}.
 %
 % \DescribeMacro{\setthesection}
 % \DescribeMacro{\setthesubsection}
 % Par défaut, les \og sous-annexes \fg{} sont numérotées comme des 
-% (sous-)sections normales, à ceci près que le numéro de la (sous-)section 
-% elle-même est composé par une lettre majuscule. Ce comportement peut être
+% (sous-)sections normales, à ceci près que le numéro de la \og sous-annexe 
+% \fg{} est composé par une lettre majuscule. Ce comportement peut être
 % modifié en redéfinissant les commandes |\setthe...|. Par exemple, pour
 % obtenir uniquement une lettre non précédée du numéro de la division 
 % principale, saisissez : \\
-% |\renewcommand{\setthesection}{\Alph{section}}| oU \\
+% |\renewcommand{\setthesection}{\Alph{section}}| ou \\
 % |\renewcommand{\setthesubsection}{\Alph{subsection}}| selon le contexte.
 %
 % \subsection{Problèmes connus}
@@ -354,18 +354,18 @@
 % \LaTeX{} |\include| et |\addcontentsline|. Si elles sont utilisées comme
 % suit :
 % \begin{verbatim}
-% \addcontentsline{toc}{...}{addtotoc}
+% \addcontentsline{toc}{...}{Bel exemple}
 % \include{import}
 % \end{verbatim}
-% alors le texte de la commande |\addcontentsline| (\og addtotoc \fg{} dans
+% alors le texte de la commande |\addcontentsline| (\og Bel exemple \fg{} dans
 % l'exemple) n'est pas écrit dans le fichier approprié (d'extension \og toc 
 % \fg{}) tant que le fichier importé par |\include| n'a pas écrit toutes ses
 % entrées dans le fichier \og toc \fg{}. Pour autant que je puisse en juger,
-% il n'y a pas de méthode de contournement sans réécriture de partie du code du
-% noyau \LaTeX.
+% il n'y a pas de méthode de contournement sans réécriture de parties du code
+% du noyau \LaTeX.
 % 
 % Il revient donc à l'auteur d'éviter d'utiliser la commande 
-% |\addcontentsline| (ou une commande qui utilise en interne la commande 
+% |\addcontentsline| (ou toute commande qui utilise en interne la commande 
 % |\addcontentsline|, comme la commande |\addappheadtotoc|) avant qu'un 
 % fichier intégré par |\include| n'ait écrit ses entrées dans le fichier 
 % \og toc \fg{}. Par ailleurs, tout fonctionne normalement si les commandes 
