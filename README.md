@@ -27,6 +27,7 @@ Ces extensions sont considérées comme traduites. Elles peuvent encore contenir
 ### Liste des extensions en cours de traitement
 - [ ] *appendix* ;
 - [ ] *fontspec* ;
+- [ ] *lipsum* ;
 - [ ] *xcolor*.
 
 ### Liste des extensions envisagées par la suite
@@ -60,6 +61,7 @@ De nombreux termes se retrouvent dans les différentes documents traduits. Cette
 - *error report* : rapports d'erreur ;
 - *filler* : motif (de remplissage) ;
 - *header* : en-tête ;
+- *heading(s)* : titre ;
 - *leaders* : points de conduite ;
 - *leading* : interlignage ;
 - *package* : extension.
