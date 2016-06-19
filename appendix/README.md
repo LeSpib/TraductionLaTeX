@@ -13,7 +13,7 @@ Il s'agit ici donc de revoir cette traduction et de la compléter des évolution
     pdflatex appendix-fr.dtx
     pdflatex appendix-fr.dtx
 
-Le fichier gind-fr.ist se base sur le fichier gind.ist classique. Il intègre uniquement deux lignes supplémentaires pour bien traduire l'index en français (sans cela, les termes "Symboles" et "Nombres" en titre dans les colonnes de l'index serait toujours en anglais) :
+Le fichier gind-fr.ist se base sur le fichier gind.ist classique. Il intègre uniquement deux lignes supplémentaires pour bien traduire l'index en français (sans cela, les termes "Symboles" et "Nombres" en titre dans les colonnes de l'index seraient toujours en anglais) :
 
     symhead_positive  "Symboles"
     numhead_positive  "Nombres"
