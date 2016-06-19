@@ -21,11 +21,12 @@ En quelques mots: ne modifiez pas un document si vous trouvez une faute, indique
 
 Ces extensions sont considérées comme traduites. Elles peuvent encore contenir des coquilles. Les retours sur ces traductions sont les bienvenus !
 
+- [ ] *appendix* ;
 - [ ] *geometry* ;
 - [ ] *titlesec*.
 
 ### Liste des extensions en cours de traitement
-- [ ] *appendix* ;
+
 - [ ] *fontspec* ;
 - [ ] *lipsum* ;
 - [ ] *xcolor*.
