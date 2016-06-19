@@ -17,18 +17,31 @@
 % 
 %<*driver>
 \documentclass{ltxdoc}
-% Bloc pour traduction
+% Ajout pour la traduction
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[french]{babel}
+% Traduction du titre de l'Index
 \IndexPrologue{\section*{Index}\markboth{Index}{Index} Les nombres en italique renvoient à la page où se trouve l'entrée correspondante; les numéros soulignés renvoient à la ligne de code de la définition; les numéros en caractères romains renvoient aux lignes de code où l'entrée est utilisée.}%
-\usepackage{color}
-\usepackage{pifont}
-\definecolor{orange5}{RGB}{255,153,0} 
-\newcommand{\trad}[1]{\textbf{\textcolor{orange5}{\noindent\ding{54} #1 \ding{54}}}}
-\newcommand{\tradini}{\color{orange5}\ding{54}}
-\newcommand{\tradfin}{\ding{54}\color{black}}
-% Fin du bloc qui doit être partiellement retiré une fois le travail achevé
+% Traduction des entrées d'index concernant les environnements (code repris
+% de doc.dtx permettant de documenter des extensions, avec modifications.)
+\makeatletter
+\def\SpecialMainEnvIndex#1{\@bsphack\special@index{%
+                                      #1\actualchar
+                                      {\string\ttfamily\space#1}
+                                         (environnement)%
+                                      \encapchar main}%
+    \special@index{environnements:\levelchar#1\actualchar{%
+                   \string\ttfamily\space#1}\encapchar
+           main}\@esphack}
+\def\SpecialEnvIndex#1{\@bsphack
+    \index{#1\actualchar{\protect\ttfamily#1}
+           (environnement)\encapchar usage}%
+    \index{environnements:\levelchar#1\actualchar
+          {\protect\ttfamily#1}\encapchar usage}\@esphack}
+\makeatother
+\usepackage[colorlinks,linkcolor=blue,citecolor=cyan]{hyperref}
+% Fin d'ajout pour la traduction.
 \EnableCrossrefs
 \CodelineIndex
 \setcounter{StandardModuleDepth}{1}
@@ -124,9 +137,9 @@
 % |(sub)appendices| sont mis à disposition et permettent d'obtenir, par
 % exemple, des annexes par chapitre ou par section. 
 %
-% L'extension est conçue pour fonctionner avec les classes qui disposent
-% des commandes |\chapter| et/ou |\section|. Elle n'a pas été testée avec
-% des extensions qui modifient la définition des commandes de 
+% L'extension est conçue pour fonctionner avec les classes de document 
+% disposant des commandes |\chapter| et/ou |\section|. Elle n'a pas été testée
+% avec des extensions qui modifient la définition des commandes de 
 % sectionnement.
 % \end{abstract}
 % \tableofcontents
@@ -136,10 +149,12 @@
 %
 % \section{Introduction}
 %
-% Dans les classes standards, la commande |\appendix| effectue les actions
+% Dans les classes de document\footnote{Par la suite, le terme \og classe \fg{}
+% sera utilisé systématiquement pour désigner la \og classe de document 
+% \fg{}.} standards, la commande |\appendix| effectue les actions
 % suivantes :
 % \begin{itemize}
-%  \item pour les classes avec chapitres :
+%  \item pour les classes avec chapitre :
 %     \begin{itemize}
 %     \item remet à zéro les compteurs \texttt{chapter} et \texttt{section},
 %     \item force |\@chapapp| à |\appendixname|,
@@ -199,9 +214,9 @@
 % commande classique |\appendix|, qu'elles doivent suivre immédiatement. Par
 % exemple:
 % \begin{verbatim}
-% \appendix
-% \appendixpage
-% \addappheadtotoc
+%    \appendix
+%    \appendixpage
+%    \addappheadtotoc
 % \end{verbatim}
 %
 % \DescribeMacro{\noappendicestocpagenum}
@@ -216,10 +231,10 @@
 % la commande |\addappheadtotoc| utilise le numéro de page courante lorsqu'il
 % crée l'entrée dans la table des matières. 
 % La commande |\appendixpage| compose un titre en reprenant le style d'un
-% titre de niveau |\part| dans la classe du document. Dans des
-% documents sans chapitre, cet titre apparaît dans le texte à la manière
-% d'un titre de |\section|; et dans des documents avec des chapitres, il
-% apparaît sur une page à part.
+% titre de niveau |\part| dans la classe du document. Pour des classes
+% sans chapitre, cet titre apparaît dans le texte à la manière d'un titre de 
+% |\section|; et pour des classes avec chapitre, il apparaît sur une page 
+% à part.
 % Autrement dit, dans le second cas, |\appendixpage| exécute une commande
 % |\clear[double]page|, compose le titre des annexes, puis exécute une
 % nouvelle fois |\clear[double]page|. C'est pourquoi l'entrée en table des
@@ -228,10 +243,12 @@
 % relevé ce point.}. Si l'ordre est inversé (par exemple |\addappheadtotoc| 
 % |\appendixname|) alors le numéro de page en table des matières sera celui 
 % de la page précédant la page de ce titre.
-% Pour les documents avec chapitre, il est préférable d'utiliser : \\
-% |    \clearpage % ou \cleardoublepage| \\
-% |    \addappheadtotoc| \\
-% |    \appendixpage| \\
+% Pour les documents avec chapitre, il est préférable d'utiliser :
+% \begin{verbatim}
+%    \clearpage % ou \cleardoublepage
+%    \addappheadtotoc
+%    \appendixpage
+% \end{verbatim}
 % qui permet d'avoir le bon numéro de la page du titre des annexes en table
 % des matières.
 % 
@@ -239,16 +256,16 @@
 % \DescribeMacro{\appendixname}
 % \DescribeMacro{\appendixtocname}
 % \DescribeMacro{\appendixpagename}
-% La commande |\appendixname| est définie dans les classes qui disposent
-% de chapitres. Elle est fournie dans cette extension, que la classe l'ait
-% définie ou non. Sa valeur par défaut est \og Appendix \fg{}. La valeur par
-% défaut de |\appendixtocname| et |\appendixpagename| est \og Appendices 
-% \fg{}. Ces noms peuvent êtres changés par le biais de |\renewcommand|. 
+% La commande |\appendixname| est définie dans les classes avec chapitre
+% Elle est fournie dans cette extension, que la classe l'ait définie ou pas. 
+% Sa valeur par défaut est \og \emph{Appendix} \fg{}. La valeur par défaut de
+% |\appendixtocname| et |\appendixpagename| est \og \emph{Appendices} \fg{}.
+% Ces noms peuvent êtres changés par le biais de |\renewcommand|. 
 % Par exemple, pour avoir les différents titres en français :
 % \begin{verbatim}
-% \renewcommand{\appendixname}{Annexe}
-% \renewcommand{\appendixpagename}{Annexes}
-% \renewcommand{\appendixtocname}{Annexes}
+%    \renewcommand{\appendixname}{Annexe}
+%    \renewcommand{\appendixpagename}{Annexes}
+%    \renewcommand{\appendixtocname}{Annexes}
 % \end{verbatim}
 %
 % \DescribeEnv{appendices}
@@ -258,35 +275,35 @@
 % L'accès aux fonctions de l'environnement |appendices| se fait normalement 
 % par des options de l'extension, mais des déclarations peuvent les remplacer. % Les options sont :
 % \begin{itemize}
-% \item \Lopt{toc} qui place un titre (par exemple \og Appendices \fg{})
+% \item \Lopt{toc} qui place un titre (par défaut \og \emph{Appendices} \fg{})
 %   dans la table des matières avant de lister les annexes (ce qui s'obtient
 %   aussi avec la commande |\addappheadtotoc|).
-% \item \Lopt{page} qui place un titre (par exemple \og Appendices \fg{}) 
-%   dans le document au point où l'environnement |appendices| débute (ce qui
-%   s'obtient avec la commande |\appendixpage|).
-% \item \Lopt{title} qui ajoute un terme (par exemple \og Appendix \fg{})
+% \item \Lopt{page} qui place un titre (par défaut \og \emph{Appendices} 
+%   \fg{}) dans le document au point où l'environnement |appendices| débute (ce
+%   qui s'obtient avec la commande |\appendixpage|).
+% \item \Lopt{title} qui ajoute un terme (par défaut \og \emph{Appendix} \fg{})
 %   avant chaque titre d'annexe dans le corps du document. Ce terme est donné
 %   par la valeur de la variable |\appendixname|. Notez qu'il s'agit du
-%   comportement par défaut des classes qui disposent de chapitres.
-% \item \Lopt{titletoc} qui ajoute un terme (par exemple \og Appendix \fg{})
-%   avant chaque titre d'annexe listé dans la table des matières. Ce terme est
-%   donné par la valeur de la variable |\appendixname|.
-% \item \Lopt{header} qui ajoute un terme (par exemple \og Appendix \fg{})
-%   avant chaque titre d'annexe apparaissant dans l'en-tête de page. Ce terme
-%   est donné par la valeur de la variable |\appendixname|. Notez que ceci est
-%   le comportement par défaut des classes qui disposent de chapitres.
+%   comportement par défaut des classes avec chapitre.
+% \item \Lopt{titletoc} qui ajoute un terme (par défaut \og \emph{Appendix} 
+%   \fg{}) avant chaque titre d'annexe listé dans la table des matières. Ce
+%   terme est donné par la valeur de la variable |\appendixname|.
+% \item \Lopt{header} qui ajoute un terme (par défaut \og \emph{Appendix} 
+%   \fg{}) avant chaque titre d'annexe apparaissant dans l'en-tête de page. 
+%   Ce terme est donné par la valeur de la variable |\appendixname|. Notez que
+%   ceci est le comportement par défaut des classes avec chapitre.
 % \end{itemize}
 %
-% Selon les options d'extension et la classe de document choisies, 
+% Selon les options d'extension et la classe choisies, 
 % l'environnement \Lenv{appendices} peut changer la définition d'éléments 
-% des commandes de sectionnement (|\chapter| ou
-% |\section|). Ceci peut être problématique si l'environnement est utilisé en
-% conjonction avec une extension modifiant ces commandes. Si c'est
-% le cas, il vous faut alors examiner le code de l'environnement 
-% \Lenv{appendices} et faire les modifications nécessaires à l'extension 
-% de votre choix (dans votre fichier de l'extension). Les modifications
-% effectuées sur les commandes de sectionnement sont supprimées à la fin de
-% l'environnement \Lenv{appendices}.
+% des commandes de sectionnement (|\chapter| ou |\section|). Ceci peut être
+% problématique si l'environnement est utilisé en conjonction avec une
+% extension modifiant ces commandes. Si c'est le cas, il vous faut alors
+% examiner le code de l'environnement \Lenv{appendices} et faire les
+% modifications nécessaires à l'extension de votre choix (dans votre version
+% de fichier de l'extension). Les modifications effectuées sur les commandes
+% de sectionnement sont supprimées à la fin de l'environnement 
+% \Lenv{appendices}.
 %
 % \DescribeMacro{\appendixtocon}
 % \DescribeMacro{\appendixtocoff}
@@ -325,13 +342,15 @@
 % document. Par défaut, la valeur du compteur d'annexes est sauvegardée et 
 % récupérée par l'environnement. Ceci signifie que les annexes dans une série 
 % d'environnements |appendices| seront numérotées par des lettres qui se
-% suivent. Pour pouvoir repartir de la lettre A pour chaque environnement, il faut utiliser en préambule de document la commande suivante : \\ 
-% |\renewcommand{\restoreapp}{}|
+% suivent. Pour pouvoir repartir de la lettre A pour chaque environnement, il faut utiliser en préambule de document la commande suivante :
+% \begin{verbatim}
+%    \renewcommand{\restoreapp}{}
+% \end{verbatim}
 %
 % \DescribeEnv{subappendices}
 % Dans l'environnement |subappendices|, une \og sous-annexe \fg{} est
-% introduite par la commande |\section| pour les documents avec chapitres et
-% par par la commande |\subsection| pour les autres documents. Ceci fournit un
+% introduite par la commande |\section| pour les classes avec chapitre et
+% par la commande |\subsection| pour les autres classes. Ceci fournit un
 % moyen efficace d'avoir des annexes comme partie intégrante d'une division du
 % document principal, à la fin de cette division.
 % L'environnement |subappendices| autorise uniquement les options \Lopt{title}
@@ -342,11 +361,13 @@
 % Par défaut, les \og sous-annexes \fg{} sont numérotées comme des 
 % (sous-)sections normales, à ceci près que le numéro de la \og sous-annexe 
 % \fg{} est composé par une lettre majuscule. Ce comportement peut être
-% modifié en redéfinissant les commandes |\setthe...|. Par exemple, pour
+% modifié en redéfinissant les commandes |\setthe(...)|. Par exemple, pour
 % obtenir uniquement une lettre non précédée du numéro de la division 
-% principale, saisissez : \\
-% |\renewcommand{\setthesection}{\Alph{section}}| ou \\
-% |\renewcommand{\setthesubsection}{\Alph{subsection}}| selon le contexte.
+% principale, saisissez selon le contexte :
+% \begin{verbatim}
+%    \renewcommand{\setthesection}{\Alph{section}}| % ou
+%    \renewcommand{\setthesubsection}{\Alph{subsection}}
+% \end{verbatim}
 %
 % \subsection{Problèmes connus}
 %
@@ -354,15 +375,15 @@
 % \LaTeX{} |\include| et |\addcontentsline|. Si elles sont utilisées comme
 % suit :
 % \begin{verbatim}
-% \addcontentsline{toc}{...}{Bel exemple}
-% \include{import}
+%    \addcontentsline{toc}{...}{Entrée particulière}
+%    \include{import}
 % \end{verbatim}
-% alors le texte de la commande |\addcontentsline| (\og Bel exemple \fg{} dans
-% l'exemple) n'est pas écrit dans le fichier approprié (d'extension \og toc 
-% \fg{}) tant que le fichier importé par |\include| n'a pas écrit toutes ses
-% entrées dans le fichier \og toc \fg{}. Pour autant que je puisse en juger,
-% il n'y a pas de méthode de contournement sans réécriture de parties du code
-% du noyau \LaTeX.
+% alors le texte de la commande |\addcontentsline| (\og Entrée particulière 
+% \fg{} dans l'exemple) n'est pas écrit dans le fichier approprié (d'extension 
+% \og toc \fg{}) tant que le fichier importé par |\include| n'a pas écrit
+% toutes ses entrées dans le fichier \og toc \fg{}. Pour autant que je puisse
+% en juger, il n'y a pas de méthode de contournement sans réécriture de
+% parties du code du noyau \LaTeX.
 % 
 % Il revient donc à l'auteur d'éviter d'utiliser la commande 
 % |\addcontentsline| (ou toute commande qui utilise en interne la commande 
@@ -376,7 +397,7 @@
 %
 % \section{Le code de l'extension} \label{sec:code}
 %
-% Sont donnés le nom et la version de l'extension, qui nécessite \LaTeXe.
+% Sont donnés le nom et la version de l'extension (qui nécessite \LaTeXe).
 %    \begin{macrocode}
 %<*usc>
 \NeedsTeXFormat{LaTeX2e}
@@ -384,22 +405,22 @@
 
 %    \end{macrocode}
 %
-% Afin d'éviter les conflits de noms avec d'autres extensions, chaque
-% nom interne à l'extension inclut les caractères |@pp|.
+% Afin de tenter d'éviter les conflits de noms avec d'autres extensions, chaque
+% nom interne de l'extension inclut les caractères |@pp|.
 %
 %
 % \begin{macro}{\if@knownclass@pp}
 % \begin{macro}{\if@chapter@pp}
 %   Ces commandes sont utilisées pour déterminer quel style d'annexes est
-%   retenu dans le document. La classe est supposée être \Lpack{article} (ou 
-%   toute classe sans chapitre).
-% \changes{v1.1a}{15/03/2001}{Vérification faite sur les commandes de 
-% sectionnement, pas sur les classes.}
+%   retenu dans le document. La classe est supposée être par défaut 
+%   \Lpack{article} (ou toute classe sans chapitre).
+%   \changes{v1.1a}{15/03/2001}{Vérification faite sur les commandes de 
+%   sectionnement, pas sur les classes.}
 %    \begin{macrocode}
 \newif\if@chapter@pp\@chapter@ppfalse
 \newif\if@knownclass@pp\@knownclass@ppfalse
 %    \end{macrocode}
-%    Vérification des commandes de sectionnement.
+%    Vérification de la présence de commandes |\chapter| et |\section|.
 %    \begin{macrocode}
 \@ifundefined{chapter}{%
   \@ifundefined{section}{}{\@knownclass@pptrue}}{%
@@ -414,11 +435,11 @@
 %   La commande |\phantomsection| doit être fournie si l'extension 
 %   \Lpack{hyperref} n'est pas utilisée. De plus, que l'extension 
 %   \Lpack{hyperref} soit utilisée ou pas, un compteur doit être défini pour
-%   supporter d'éventuels hyperliens (utile pour lever toute ambiguité sur les
-%   (sous-)annexes).
-% |\if@pphyper| vaut |true| si l'extension \Lpack{hyperref} est chargée.
-% \changes{v1.2}{06/08/2002}{Ajout du compteur \texttt{@pps}.}
-% \changes{v1.2}{06/08/2002}{Ajout de \cs{if@pphyper}}
+%   supporter d'éventuels hyperliens (ce qui sert à lever toute ambiguité sur
+%   les (sous-)annexes).
+%   |\if@pphyper| vaut |true| si l'extension \Lpack{hyperref} est chargée.
+%   \changes{v1.2}{06/08/2002}{Ajout du compteur \texttt{@pps}.}
+%   \changes{v1.2}{06/08/2002}{Ajout de \cs{if@pphyper}}
 %    \begin{macrocode}
 \providecommand{\phantomsection}{}
 \newcounter{@pps}
@@ -462,13 +483,15 @@
 \DeclareOption{header}{\@dohead@pptrue}
 \DeclareOption{page}{\@dopage@pptrue}
 %    \end{macrocode}
-% Elles sont ensuite traitées.
+%   Elles sont ensuite traitées.
 %    \begin{macrocode}
 \ProcessOptions\relax
 %    \end{macrocode}
 %
-% \'{E}mission d'un avertissement si les commandes |\chapter| et |\section|
-% ne sont pas définies, puis sortie de l'extension.
+%   \'{E}mission d'un avertissement si les commandes |\chapter| et |\section|
+%   ne sont pas définies (\og Il n'y a pas de commande |\chapter| ou 
+%   |\section|. L'extension appendix ne sera pas utilisée. \fg{}), puis sortie
+%   de l'extension.
 %    \begin{macrocode}
 \newcommand{\@ppendinput}{}
 \if@knownclass@pp\else
@@ -483,8 +506,8 @@
 %
 % \begin{macro}{\appendixtocon}
 % \begin{macro}{\appendixtocoff}
-% Formes déclaratives de l'option \Lopt{toc}.
-% \changes{v1.2}{2002/08/06}{Added declarations for the options}
+%   Formes déclaratives de l'option \Lopt{toc}.
+%   \changes{v1.2}{2002/08/06}{Added declarations for the options}
 %    \begin{macrocode}
 \newcommand{\appendixtocon}{\@dotoc@pptrue}
 \newcommand{\appendixtocoff}{\@dotoc@ppfalse}
@@ -494,7 +517,7 @@
 %
 % \begin{macro}{\appendixpageon}
 % \begin{macro}{\appendixpageoff}
-% Formes déclaratives de l'option \Lopt{page}.
+%   Formes déclaratives de l'option \Lopt{page}.
 %    \begin{macrocode}
 \newcommand{\appendixpageon}{\@dopage@pptrue}
 \newcommand{\appendixpageoff}{\@dopage@ppfalse}
@@ -504,7 +527,7 @@
 %
 % \begin{macro}{\appendixtitleon}
 % \begin{macro}{\appendixtitleoff}
-% Formes déclaratives de l'option \Lopt{title}.
+%   Formes déclaratives de l'option \Lopt{title}.
 %    \begin{macrocode}
 \newcommand{\appendixtitleon}{\@dotitle@pptrue}
 \newcommand{\appendixtitleoff}{\@dotitle@ppfalse}
@@ -514,7 +537,7 @@
 %
 % \begin{macro}{\appendixtitletocon}
 % \begin{macro}{\appendixtitletocoff}
-% Formes déclaratives de l'option  \Lopt{titletoc}.
+%   Formes déclaratives de l'option  \Lopt{titletoc}.
 %    \begin{macrocode}
 \newcommand{\appendixtitletocon}{\@dotitletoc@pptrue}
 \newcommand{\appendixtitletocoff}{\@dotitletoc@ppfalse}
@@ -524,7 +547,7 @@
 %
 % \begin{macro}{\appendixheaderon}
 % \begin{macro}{\appendixheaderoff}
-% Formes déclaratives de l'option  \Lopt{header}.
+%   Formes déclaratives de l'option  \Lopt{header}.
 %    \begin{macrocode}
 \newcommand{\appendixheaderon}{\@dohead@pptrue}
 \newcommand{\appendixheaderoff}{\@dohead@ppfalse}
@@ -536,12 +559,12 @@
 % \begin{macro}{\@pprestoresec}
 % \begin{macro}{\@ppsaveapp}
 % \begin{macro}{\restoreapp}
-% Lors de l'utilisation de l'environnement |appendices| le numéro de
-% division du document principal et le numéro d'annexe doivent pouvoir être
-% sauvegardés et restaurés. La commande |\restoreapp| est à la main de 
-% l'utilisateur. 
-% \changes{v1.1}{29/02/2000}{Ajout des commandes pour sauvegarder et restaurer 
-% la numérotation de sectionnement.}
+%   Lors de l'utilisation de l'environnement |appendices| le numéro de
+%   division (le chapitre ou la section) du document principal et le numéro
+%   d'annexe doivent pouvoir être sauvegardés comme restaurés. La commande 
+%   |\restoreapp| est à la main de l'utilisateur. 
+%   \changes{v1.1}{29/02/2000}{Ajout des commandes pour sauvegarder et
+%   restaurer la numérotation de sectionnement.}
 %    \begin{macrocode}
 \newcounter{@ppsavesec}
 \newcounter{@ppsaveapp}
@@ -567,8 +590,9 @@
 % \begin{macro}{\appendixname}
 % \begin{macro}{\appendixtocname}
 % \begin{macro}{\appendixpagename}
-%   Ces commandes contiennent les noms à utiliser. |\appendixname| peut avoir
-%   déjà été défini par la classe. Les autres commandes sont nouvelles.
+%   Ces commandes contiennent les noms à utiliser. La commande |\appendixname|
+%   peut avoir déjà été définie par la classe. Les autres commandes sont
+%   nouvelles.
 %    \begin{macrocode}
 \providecommand{\appendixname}{Appendix}
 \newcommand{\appendixtocname}{Appendices}
@@ -579,9 +603,10 @@
 % \end{macro}
 %
 % \begin{macro}{\appendixpage}
-%   La commande pour composer une page annonçant le début des appendices. Elle
-%   est basée sur la définition de |\part| (soit sur la base de la classe
-%   \Lpack{book}, soit sur celle de la classe \Lpack{article}).  
+%   La commande compose un titre dans le corps du document annonçant le début
+%   des annexes. Elle est basée sur la définition de |\part|, soit sur la base
+%   de la classe \Lpack{book} (avec |\@chap@pppage|), soit sur celle de la
+%   classe \Lpack{article} (avec |\@sec@pppage|).  
 %    \begin{macrocode}
 \newcommand{\appendixpage}{%
   \if@chapter@pp \@chap@pppage \else \@sec@pppage \fi
@@ -590,13 +615,13 @@
 % \end{macro}
 %
 % \begin{macro}{\clear@ppage}
-%   Les classes sans chapitre ne définissent pas |\if@openright| mais cette
-%   dernière est ici nécessaire pour les documents avec chapitre pour gérer
-%   les sauts de page appropriés. 
-%   La commande |\clear@ppage| fait le travail souhaité mais ne peut être
+%   Les classes sans chapitre ne définissent pas la commande |\if@openright|
+%   mais cette dernière est ici nécessaire pour les classes avec chapitre
+%   pour générer les sauts de page appropriés. 
+%   La commande |\clear@ppage| effectue le travail souhaité mais ne peut être
 %   utilisée que dans un code gérant des chapitres sous peine d'obtenir 
-%   des messages d'erreur comme |extra \else| (|\else| en trop) ou |extra \fi|
-%   (|\fi| en trop).
+%   des messages d'erreur comme |extra \else| (\og |\else| en trop \fg{}) ou 
+%   |extra \fi| (\og |\fi| en trop \fg{}).
 %    \begin{macrocode}
 \newcommand{\clear@ppage}{%
   \if@openright\cleardoublepage\else\clearpage\fi}
@@ -605,8 +630,9 @@
 % \end{macro}
 %
 % \begin{macro}{\@chap@pppage}
-%   Commande produisant une page d'annexe à la manière d'un chapitre. Elle 
-%   copie le code de la commande |\part| de la classe \Lpack{book} mais utilise
+%   Cette commande produit une page d'annexe à la manière de ce qui est fait 
+%   pour une partie dans une classe avec chapitre. Elle copie du code de la
+%   commande |\part| de la classe \Lpack{book} mais utilise
 %   |\appendixpagename| comme titre.
 %    \begin{macrocode}
 \newcommand{\@chap@pppage}{%
@@ -620,17 +646,17 @@
    \normalfont
    \Huge \bfseries \appendixpagename\par}%
 %    \end{macrocode}
-% Ajout d'une entrée en table des matières si besoin est.
+%   Ajout d'une entrée en table des matières si besoin est.
 %    \begin{macrocode}
   \if@dotoc@pp
     \addappheadtotoc
   \fi
 %    \end{macrocode}
-% Dans la classe \Lpack{book}, la commande |\part| se termine par l'appel à
-% |\@endpart|. Cela pose deux problèmes dans cette extension : (1) |\@endpart|
-% n'est pas défini dans la classe \Lpack{article} et (2) cela insère une
-% page blanche qui n'est pas très esthétique si l'option \Lopt{openany} est
-% utilisée. Aussi, le code est décomposé ici :
+%   Dans la classe \Lpack{book}, la commande |\part| se termine par l'appel à
+%   |\@endpart|. Cela pose deux problèmes dans cette extension : (1) 
+%   |\@endpart| n'est pas défini dans la classe \Lpack{article} et (2) cela
+%   insère une page blanche qui n'est pas très esthétique si l'option 
+%   \Lopt{openany} est utilisée. Aussi, le code est décomposé ici :
 %    \begin{macrocode}
   \vfil\newpage
   \if@twoside
@@ -649,8 +675,10 @@
 % \end{macro}
 %
 % \begin{macro}{\@sec@pppage}
-% Cette commande copie du code de la commande |\part| de la classe 
-% \Lpack{article} mais utilise |\appendixpagename| comme titre.
+%   Cette commande produit un titre pour les annexes à la manière d'une section
+%   non numérotée dans une classe sans chapitre. 
+%   Elle copie du code de la commande |\part| de la classe \Lpack{article}
+%   mais utilise |\appendixpagename| comme titre.
 %    \begin{macrocode}
 \newcommand{\@sec@pppage}{%
   \par
@@ -662,7 +690,7 @@
    \huge \bfseries \appendixpagename%
    \markboth{}{}\par}%
 %    \end{macrocode}
-% Ajout d'une entrée en table des matières si besoin est.
+%   Ajout d'une entrée en table des matières si besoin est.
 %    \begin{macrocode}
   \if@dotoc@pp
     \addappheadtotoc
@@ -679,12 +707,14 @@
 % \begin{macro}{\noappendicestocpagenum}
 % \begin{macro}{\appendicestocpagenum}
 % \begin{macro}{\addappheadtotoc}
-%   La commande |\addappheadtotoc| ajoute une ligne \og appendice \fg{} à la
-%   table des matières. Le style retenu est le même que pour la \og \trad{List of
-%   figures} \fg{} dans l'extension \Lpack{tocbibind}, autrement dit comme
-%   un titre de chapitre ou de section. |\if@pptocpage| contrôle si le
-%   numéro de page est mis ou pas dans la table des matières.
-% \changes{v1.2}{06/08/2002}{Ajout de \cs{noappendicestocpagenum} et
+%   La commande |\addappheadtotoc| ajoute une ligne \og \emph{Appendices} 
+%   \fg{} à la table des matières. Le style retenu est le même que pour la \og 
+%   \emph{List of figures\footnote{La \og table des figures \fg{} avec
+%   l'option |frenchb| de l'extension \Lpack{babel}.}} \fg{} dans l'extension 
+%   \Lpack{tocbibind}, autrement dit comme un titre de chapitre ou de section
+%   selon la classe du document. |\if@pptocpage| contrôle si le  numéro de
+%   page est mis ou pas dans la table des matières.
+%   \changes{v1.2}{06/08/2002}{Ajout de \cs{noappendicestocpagenum} et
 %   changement de \cs{addappheadtotoc}.}
 %    \begin{macrocode}
 \newif\if@pptocpage
@@ -695,7 +725,7 @@
   \phantomsection
   \if@chapter@pp
 %    \end{macrocode}
-% Cas du document avec des chapitres.
+%   Cas d'une classe avec chapitre.
 %    \begin{macrocode}
     \if@pptocpage
       \addcontentsline{toc}{chapter}{\appendixtocname}%
@@ -710,7 +740,7 @@
     \fi      
   \else
 %    \end{macrocode}
-% Cas du document sans chapitres.
+%   Cas d'une classe sans chapitre.
 %    \begin{macrocode}
     \if@pptocpage
       \addcontentsline{toc}{section}{\appendixtocname}%
@@ -733,8 +763,8 @@
 % \end{macro}
 %
 % Pour référence interne, voici la version stardard de la commande 
-%|\appendix| mais modifiée à la fois pour les documents avec et sans
-% chapitres. 
+%|\appendix| mais modifiée à la fois pour les classes avec et sans
+% chapitre. 
 % \begin{verbatim}
 % \newcommand{\appendix}{\par
 %   \if@chapter@pp
@@ -768,13 +798,13 @@
 % \end{verbatim}
 %
 % \begin{macro}{\theH@pps}
-% La commande |\theH@pps| est utilisée pour lever l'ambiguïté sur le contenu
-% d'annexes pouvant partager les mêmes marques hypertextes. Cette commande
-% est définie avec |\providecommand| au cas où les extensions \Lpack{appendix}
-% et \Lpack{hyperref} seraient chargées dans le \og mauvais \fg{} ordre, ce
-% qui amène alors \Lpack{hyperref} à définir la commande avant que 
-% \Lpack{appendix} ne puisse y accéder.
-% \changes{v1.2}{06/08/2002}{Ajour de \cs{theH@pps}.}
+%   La commande |\theH@pps| est utilisée pour lever l'ambiguïté sur le contenu
+%   d'annexes pouvant partager les mêmes marques hypertextes. Cette commande
+%   est définie avec |\providecommand| au cas où les extensions 
+%   \Lpack{appendix} et \Lpack{hyperref} seraient chargées dans le \og mauvais
+%   \fg{} ordre, ce qui amène alors \Lpack{hyperref} à définir la commande
+%   avant que \Lpack{appendix} ne puisse y accéder.
+%   \changes{v1.2}{06/08/2002}{Ajour de \cs{theH@pps}.}
 %    \begin{macrocode}
 \providecommand{\theH@pps}{\alph{@pps}}
 
@@ -782,14 +812,16 @@
 % \end{macro}
 %
 % \begin{macro}{\@resets@pp}
-% La commande réinitialise les compteurs de structure et des noms associés. 
-% Cela fait à peu près la même chose que la commande |\appendix| standard, à 
-% ceci près qu'elle sauvegarde et restaure la numérotation des sections. La
-% sauvegarde est faite au début de l'utilisation, la restauration (du numéro
-% d'annexe) en fin d'utilisation.
-% \changes{v1.1}{29/02/2000}{Ajout de la sauvegarde/restauration des numéros 
-%  avec \cs{@reset@pp}.}
-% \changes{v1.2}{06/08/2002}{Ajout du code \Lpack{hyperref} à \cs{@reset@pp}.}
+%   La commande réinitialise les compteurs de sectionnement appropriés et les 
+%   noms associés. Elle fait ainsi à peu près la même chose que la commande 
+%   |\appendix| standard, à ceci près qu'elle sauvegarde et restaure la
+%   numérotation de certaines divisions : la sauvegarde du numéro de division 
+%   (la section ou le chapitre selon la classe) est faite au début de
+%   l'utilisation, la restauration du numéro d'annexe en fin d'utilisation.
+%   \changes{v1.1}{29/02/2000}{Ajout de la sauvegarde/restauration des numéros 
+%   avec \cs{@reset@pp}.}
+%   \changes{v1.2}{06/08/2002}{Ajout du code \Lpack{hyperref} à 
+%   \cs{@reset@pp}.}
 %    \begin{macrocode}
 \newcommand{\@resets@pp}{\par
   \@ppsavesec
@@ -805,7 +837,7 @@
   \fi
   \if@pphyper
 %    \end{macrocode}
-% Cette partie traite des points associés à l'extension \Lpack{hyperref}.
+%   Le code traite ici des points associés à l'extension \Lpack{hyperref}.
 %    \begin{macrocode}
     \if@chapter@pp
       \renewcommand{\theHchapter}{\theH@pps.\Alph{chapter}}%
@@ -821,24 +853,24 @@
 % \end{macro}
 %
 % \begin{environment}{appendices}
-% Cette partie est au c\oe{}ur de l'extension. Elle commence par les
-% réinitialisations faites par la commande |\appendix|. Ensuite elle traite 
-% les options simples avant d'entrer dans les difficultés liées aux
-% redéfinitions. Pensez bien à faire attention à l'interaction entre
-% |\addappheadtotoc| et |\appendixpage|.
-% \changes{v1.1a}{15/03/2001}{Changement de l'implémentation des options
-% simples dans l'environnement \texttt{appendices}.}
+%   Cette partie est au c\oe{}ur de l'extension. Elle commence par les
+%   réinitialisations faites par la commande |\appendix|. Ensuite elle traite 
+%   les options simples avant d'entrer dans les difficultés liées aux
+%   redéfinitions. Pensez bien à faire attention à l'interaction entre
+%   |\addappheadtotoc| et |\appendixpage|.
+%   \changes{v1.1a}{15/03/2001}{Changement de l'implémentation des options
+%   simples dans l'environnement \texttt{appendices}.}
 %    \begin{macrocode}
 \newenvironment{appendices}{%
   \@resets@pp
   \if@dotoc@pp 
     \if@dopage@pp              % page et table des matières à la fois
-      \if@chapter@pp           % chapitres
+      \if@chapter@pp           % présence de chapitre
         \clear@ppage
       \fi
       \appendixpage
     \else                      % table des matières uniquement
-       \if@chapter@pp          % chapitres
+       \if@chapter@pp          % présence de chapitre
          \clear@ppage
        \fi
       \addappheadtotoc
@@ -849,22 +881,22 @@
     \fi
   \fi
 %    \end{macrocode}
-% Il y a une seule autre option se rapportant au style du chapitre : elle
-% est traitée ici, ce qui préfigure le traitement du style de la section.
-% Pour implémenter l'option \Lopt{titletoc}, la commande |\addcontentsline|
-% est redéfinie.
+%   Il y a une seule autre option se rapportant au style des chapitres : elle
+%   est traitée ici, ce qui prépare le traitement du style des sections.
+%   Pour implémenter l'option \Lopt{titletoc}, la commande |\addcontentsline|
+%   est redéfinie.
 %    \begin{macrocode}
   \if@chapter@pp
     \if@dotitletoc@pp \@redotocentry@pp{chapter} \fi
   \else
 %    \end{macrocode}
-% Le reste du code est spécifique au style section. Nous en profitons pour
-% finir de traiter l'option \Lopt{titletoc} par la même occasion.
+%   Le reste du code est spécifique au style des sections. Nous en profitons
+%   pour finir de traiter l'option \Lopt{titletoc} par la même occasion.
 %    \begin{macrocode}
     \if@dotitletoc@pp \@redotocentry@pp{section} \fi
 %    \end{macrocode}
-% Le code suivant implémente l'option \Lopt{header} en créant une version
-% spéciale de |\sectionmark|.
+%   Le code suivant implémente l'option \Lopt{header} en créant une version
+%   spéciale de la commande |\sectionmark|.
 %    \begin{macrocode}
     \if@dohead@pp 
       \def\sectionmark##1{%
@@ -875,10 +907,10 @@
         \fi}
     \fi
 %    \end{macrocode}
-% Le code suivant implémente l'option \Lopt{title} en bidouillant
-% astucieusement la commande |\@seccntformat|\footnote{d'après une
-% contribution de Donald \textsc{Arsenau} dans \texttt{compt.text.tex} le 13
-% août 1998.}.
+%   Le code suivant implémente l'option \Lopt{title} en traitant
+%   astucieusement la commande |\@seccntformat|\footnote{d'après une
+%   contribution de Donald \textsc{Arsenau} dans \texttt{compt.text.tex} le 13
+%   août 1998.}.
 %    \begin{macrocode}
     \if@dotitle@pp
       \def\sectionname{\appendixname}
@@ -887,9 +919,10 @@
     \fi
   \fi}{%
 %    \end{macrocode}
-% \`{A} la fin de l'environnement, le numéro d'annexe est sauvé et le numéro
-% de section est restauré.
-% \changes{v1.1}{29/02/2000}{Changement de la fin de l'environnement appendix.}
+%   \`{A} la fin de l'environnement, le numéro d'annexe est sauvé et le numéro
+%   de section est restauré.
+%   \changes{v1.1}{29/02/2000}{Changement de la fin de l'environnement
+%   appendix.}
 %    \begin{macrocode}
   \@ppsaveapp\@pprestoresec}
 
@@ -898,9 +931,9 @@
 %
 % \begin{macro}{\setthesection}
 % \begin{macro}{\setthesubsection}
-% Ces commandes utilisateurs permettent de spécifier le style de numérotation
-% pour les sous-annexes. 
-% \changes{v1.1}{29/02/2000}{Ajout des commandes \cs{setthesection} et 
+%   Ces commandes permettent à l'utilisateur de spécifier le style de
+%   numérotation pour les \og sous-annexes \fg{}. 
+%   \changes{v1.1}{29/02/2000}{Ajout des commandes \cs{setthesection} et 
 %   \cs{setthesubsection}.}
 %    \begin{macrocode}
 \newcommand{\setthesection}{\thechapter.\Alph{section}}
@@ -911,10 +944,11 @@
 % \end{macro}
 %
 % \begin{macro}{\@resets@ppsub}
-% La commande est similaire à |\@resets@pp| à ceci près qu'elle est utilisée 
-% pour l'environnement |subappendices| ; de fait, elle est un peu plus simple. 
-% \changes{v1.1}{29/02/2000}{Ajout de la commande \cs{@resets@ppsub}.}
-% \changes{v1.2}{07/08/2002}{Ajout du code \Lpack{hyperref} dans 
+%   La commande est similaire à |\@resets@pp| à ceci près qu'elle est utilisée 
+%   pour l'environnement |subappendices| ; de fait, elle est un peu plus
+%   simple. 
+%   \changes{v1.1}{29/02/2000}{Ajout de la commande \cs{@resets@ppsub}.}
+%   \changes{v1.2}{07/08/2002}{Ajout du code \Lpack{hyperref} dans 
 %   \cs{@resets@ppsub}.}
 %    \begin{macrocode}
 \newcommand{\@resets@ppsub}{\par
@@ -928,7 +962,7 @@
   \fi
   \if@pphyper
 %    \end{macrocode}
-% Cette partie traite des points associés à l'extension \Lpack{hyperref}.
+%   Le code traite ici des points associés à l'extension \Lpack{hyperref}.
 %    \begin{macrocode}
     \if@chapter@pp
       \renewcommand{\theHsection}{\theH@pps.\setthesection}%
@@ -943,22 +977,22 @@
 % \end{macro}
 %
 % \begin{environment}{subappendices}
-%  Cet environnement gère les sous-annexes. Il commence par reparamétrer
-%  la commande |\(sub)section|. 
-% \changes{v1.1}{29/02/2000}{Ajout de l'environnement subappendices.}
+%   Cet environnement gère les \og sous-annexes \fg{}. Il commence par
+%   reparamétrer la commande |\(sub)section|. 
+%   \changes{v1.1}{29/02/2000}{Ajout de l'environnement subappendices.}
 %    \begin{macrocode}
 \newenvironment{subappendices}{%
   \@resets@ppsub
 %    \end{macrocode}
-% Il y a deux options utilisables pour le style des chapitres. Pour
-% implémenter l'option \Lopt{titletoc}, la commande |\addcontentsline| est 
-% redéfinie.
+%   Il y a deux options utilisables pour le style des chapitres. Pour
+%   implémenter l'option \Lopt{titletoc}, la commande |\addcontentsline| est 
+%   redéfinie.
 %    \begin{macrocode}
   \if@chapter@pp
     \if@dotitletoc@pp \@redotocentry@pp{section} \fi
 %    \end{macrocode}
-% L'option \Lopt{title} est implémentée en bidouillant astucieusement 
-% la commande |\@seccntformat|
+%   L'option \Lopt{title} est implémentée en traitant astucieusement 
+%   la commande |\@seccntformat|
 %    \begin{macrocode}
     \if@dotitle@pp
       \def\sectionname{\appendixname}
@@ -967,7 +1001,7 @@
     \fi
   \else
 %    \end{macrocode}
-% Le reste du code gère ici le style des sections.
+%   Le reste du code gère ici le style des sections.
 %    \begin{macrocode}
     \if@dotitletoc@pp \@redotocentry@pp{subsection} \fi
     \if@dotitle@pp
@@ -981,7 +1015,7 @@
 % \end{environment}
 %
 % \begin{macro}{\@formatsecmark@pp}
-% La commande formate l'en-tête pour un |\sectionmark| redéfini.
+%   La commande formate l'en-tête pour la commande |\sectionmark| redéfinie.
 %    \begin{macrocode}
 \newcommand{\@formatsecmark@pp}[1]{%
   \MakeUppercase{\appendixname\space
@@ -993,49 +1027,50 @@
 % \end{macro}
 %
 % \begin{macro}{\@redotocentry@pp}
-% Pour implémenter l'option \Lopt{titletoc}, la commande |\addcontentsline|, 
-% qui ajoute des entrées en table des matières, est redéfinie. 
-% |\@redotocentry@pp{|\meta{sect}|}| réalise la redéfinition, avec \meta{sect}
-% le nom de l'en-tête souhaité (soit le chapitre avec |chapter|, soit la
-% section avec |section|).\trad{tester}
-% \changes{v1.2}{06/08/2002}{Remplacement de l'extension \Lpack{ifthen} dans
+%   Pour implémenter l'option \Lopt{titletoc}, la commande |\addcontentsline|, 
+%   qui ajoute des entrées en table des matières, est redéfinie. 
+%   |\@redotocentry@pp{|\meta{sect}|}| réalise la redéfinition, avec 
+%   \meta{sect} le nom de la division souhaitée (soit le chapitre avec 
+%   |chapter|, soit la section avec |section|).
+%   \changes{v1.2}{06/08/2002}{Remplacement de l'extension \Lpack{ifthen} dans
 %   \cs{@redotocentry@pp} par le code \cs{ifx}.}
-% \changes{v1.2}{06/08/2002}{Gestion de \cs{@redotocentry@pp}}
+%   \changes{v1.2}{06/08/2002}{Gestion de \cs{@redotocentry@pp}}
 %    \begin{macrocode}
 \newcommand{\@redotocentry@pp}[1]{%
 %    \end{macrocode}
-% La définition originelle de |\addcontentsline| est sauvegardée et la 
-% redéfinition commence.
+%   La définition classique de |\addcontentsline| est sauvegardée et la 
+%   redéfinition commence.
 %    \begin{macrocode}
   \let\oldacl@pp=\addcontentsline
   \def\addcontentsline##1##2##3{%
 %    \end{macrocode}
-% Il est vérifié si l'écriture se fait dans le fichier de table des matières.
+%   Il faut vérifier si l'écriture dans le fichier de table des matières est
+%   demandée.
 %    \begin{macrocode}
     \def\@pptempa{##1}\def\@pptempb{toc}%
     \ifx\@pptempa\@pptempb
 %    \end{macrocode}
-% Si c'est bien le cas, le niveau de sectionnement est vérifié.
+%   Si c'est bien le cas, le niveau de sectionnement est vérifié.
 %    \begin{macrocode}
       \def\@pptempa{##2}\def\@pptempb{#1}%
       \ifx\@pptempa\@pptempb
 %    \end{macrocode}
-% Le niveau de sectionnement est le même que celui spécifié par l'argument de
-% |\@redotocentry@pp|; la redéfinition se poursuit donc.
+%   Le niveau de sectionnement est le même que celui spécifié par l'argument de
+%   |\@redotocentry@pp|; la redéfinition se poursuit donc.
 %    \begin{macrocode}
 	\oldacl@pp{##1}{##2}{\appendixname\space ##3}%
       \else
 %    \end{macrocode}
-% Le niveau de sectionnement est différent : la redéfinition n'est donc pas
-% nécessaire, la commande |\addcontentsline| originale est utilisée.
+%   Le niveau de sectionnement est différent : la redéfinition n'est donc pas
+%   nécessaire, la commande |\addcontentsline| classique est utilisée.
 %    \begin{macrocode}
         \oldacl@pp{##1}{##2}{##3}%
       \fi
     \else
 %    \end{macrocode}
-% Le fichier ciblé n'était pas celui de la table des matières : la 
-% redéfinition n'est donc pas nécessaire, la commande |\addcontentsline|
-% originale est utilisée.
+%   Le fichier ciblé n'était pas celui de la table des matières : la 
+%   redéfinition n'est donc pas nécessaire, la commande |\addcontentsline|
+%   classique est utilisée.
 %    \begin{macrocode}
       \oldacl@pp{##1}{##2}{##3}%
     \fi}
