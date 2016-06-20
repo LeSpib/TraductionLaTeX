@@ -106,28 +106,27 @@
 % de même que  \verb|\lipsum[23]| compose le 23\ieme~paragraphe. 
 % Utiliser \cmd{\lipsum} sans son argument optionnel lui fait composer les
 % paragraphes spécifiés par la commande \DescribeMacro{\setlipsumdefault} 
-% \cmd{\setlipsumdefault}. Il s'agit de la deuxième commande mise à
-% disposition par l'extension. Par défaut, elle vaut |1-7|, ce qui permet
-% d'obtenir un peu plus d'une page quand \cmd{\lipsum} est utilisée avec 
-% un format A4 (|a4paper|) et avec les classes standards ou les classes 
-% \KOMAScript\ avec les fontes par défaut. Pour changer cette plage par
-% défaut, utilisez \verb|\setlipsumdefault{131-133}|. Bien entendu, les nombres
-% |131| et |133| sont ici des exemples qui représentent le premier et le
-% dernier paragraphes choisis pour être composés par défaut. 
+% \cmd{\setlipsumdefault}, la deuxième commande mise à disposition par
+% l'extension. Par défaut, elle vaut |1-7|, ce qui permet d'obtenir un peu
+% plus d'une page quand \cmd{\lipsum} est utilisée avec un format A4 
+% (|a4paper|), les fontes par défaut et les classes standards ou les classes
+% \KOMAScript. Pour changer cette plage par défaut, utilisez 
+% \verb|\setlipsumdefault{131-133}|. Bien entendu, les nombres |131| et |133|
+% sont ici des exemples qui représentent les premiers et derniers paragraphes choisis pour être composés par défaut. 
 %
 % Notez que le contenu de l'argument optionnel est développé une seule fois. 
 % C'est pourquoi, si vous souhaitez utiliser une commande au lieu d'un simple
 % nombre en argument, soyez sûr (vraisemblablement en utilisant \verb|\edef|)
 % qu'un développement unique suffit à générer une chaîne de caractère à l'image
-% de celles présentées plus haut et permet ainsi de spécifier la plage de
+% de celles présentées plus haut, permettant ainsi de spécifier la plage de
 % paragraphes souhaités.
 % 
-% Si l'utilisation de \verb|\lipsum| suit les règles précisés ci-dessus, les
+% Si l'utilisation de \verb|\lipsum| suit les règles précisées ci-dessus, les
 % paragraphes générés sont séparés par la commande \verb|\par|. Plus
 % précisément, chaque paragraphe s'achève par cette commande. Parfois, cela 
 % peut causer des effets inattendus. L'extension propose donc une option
 % \option{nopar} qui fait omettre à \verb|\lipsum| la commande \verb|\par|. 
-% Pour l'active, l'extension doit être chargée comme suit :
+% Pour l'activer, l'extension doit être chargée comme suit :
 % \begin{verbatim}
 %     \usepackage[nopar]{lipsum}
 % \end{verbatim}
@@ -145,69 +144,79 @@
 % Notez que \verb|\lipsum*| fait appel à la commande 
 % \DescribeMacro{\ChangeLipsumPar} \verb|\ChangeLipsumPar| dans un groupe et
 % appelle par la suite la commande interne \verb|\@lipsum| qui génère le texte
-% en sortie. \verb|\ChangeLipsumPar| fait basculer alternativement la commande
-% interne \verb|\lips@par| entre les commandes \verb|\relax| et \verb|\par|. 
-% \verb|\lips@par| est appelée à la fin de chaque paragraphe et ceci permet à
-% \verb|\ChangeLipsumPar| de constituer une bascule modifiant le 
-% comportement de l'extension au sein d'un document quand il convient d'éviter de générer des groupes additionnels. 
+% en sortie. Ici, \verb|\ChangeLipsumPar| fait basculer alternativement la
+% définition de la commande interne \verb|\lips@par| entre la définition de
+% \verb|\relax| et celle de \verb|\par|. \verb|\lips@par| est appelée à la fin
+% de chaque paragraphe et ceci permet à \verb|\ChangeLipsumPar| d'avoir un rôle
+% de bascule modifiant le comportement de l'extension au sein d'un document
+% quand il faut éviter de générer des groupes additionnels. 
 % 
 % \section*{Commandes avancées}
-% \tradini
-% While I never expected this package, which was intended to provide some
-% filling text while testing page layouts or similar things, to provide
-% \emph{advanced macros}, I am happy that \paket{lipsum} is used so
-% frequently. However, as you can imagine from the sparse updates of the
-% package, I'm not spending a lot of time with \TeX\ development any more, hence
-% the following macros have not been testet exhaustively and are somewhat
-% experimental. Thus, the code of these macros is documented (although
-% sparsely, see below). 
+% Bien que je n'ai jamais supposé que cette extension, pensée pour fournir
+% du texte de remplissage lors d'essais de mise en page ou de choses
+% similaires, puisse intégrer des \emph{commandes avancées}, je suis heureux
+% qu'elle soit utilisée aussi fréquemment. Cependant, comme vous pouvez vous
+% en douter compte tenu des rares mises à jour de cette extension, je ne passe
+% plus beaucoup de temps sur du développement \TeX ; c'est pourquoi les 
+% commandes suivantes n'ont pas été testées et sont quelque peu expérimentales.
+% Aussi le code de ces commandes est documenté (bien que de manière peu
+% abondante, voir ci-dessous).
 %
-% It turned out that some people need access to the expanded content of the
-% \verb|\lipsum| macro, that is, the mere text. The easiest way for this would
-% be simply to use one of the internal macros that store the text like
-% \verb|\lipsum@i| or similar. Anyway, \name{egreg} posted a solution on
-% stackexchange.com\footnote{\href{https://tex.stackexchange.com/questions/26806/expanding-edef-a-lipsum-command}{https://tex.stackexchange.com/questions/26806/expanding-edef-a-lipsum-command}}, 
-% the macro \verb|\unpacklipsum|, that made (slightly altered) its way into the package now (in
-% v1.3). The general idea is the following: First, a macro is called that
-% stores the expanded content of the \verb|\lipsum| command in a second
-% macro. In contrast to the posting from \name{egreg}, the name of this second
-% macro is fixed in \paket{lipsum}, it is
-% \DescribeMacro{\lipsumexp}\verb|\lipsumexp|. Therefore, everytime you need
-% access to the expanded content of \verb|\lipsum|, use \verb|\lipsumexp|.
+% Il s'est avéré que des personnes ont eu besoin d'accéder au contenu développé
+% de la commande \verb|\lipsum|, autrement dit, le texte du \emph{Lorem ipsum}.
+% La manière la plus simple pour cela revient simplement à utiliser une des
+% commandes internes qui stocke le texte comme \verb|\lipsum@i| et ses 
+% cons\oe urs. Toutefois, \name{egreg} a posté une solution sur 
+% stackexchange.com\footnote{\href{https://tex.stackexchange.com/questions/26806/expanding-edef-a-lipsum-command}{https://tex.stackexchange.com/questions/26806/expanding-edef-a-lipsum-command}}, la commande 
+% \verb|\unpacklipsum|, qui vient de rejoindre (avec de légères modifications) 
+% l'extension (en version v1.3). L'idée générale est la suivante : une 
+% commande est appelée pour stocker le contenu développé de \verb|\lipsum|
+% dans une seconde commande. Par rapport au message
+% d'\name{egreg}, le nom de cette seconde commande est fixé dans l'extension
+% \paket{lipsum} : \DescribeMacro{\lipsumexp}\verb|\lipsumexp|. Aussi, à chaque
+% fois que vous souhaitez accéder au contenu développé de \verb|\lipsum|, 
+% utilisez \verb|\lipsumexp|.
 %
-% To control the content of \verb|\lipsumexp|, \paket{lipsum} provides four
-% macros which all take one optional argument. This argument provides the
-% paragraphs which should be included in \verb|\lipsumexp| and should have
-% the same form as the optional argument of \verb|\lipsum|. If the optional
-% argument is omitted,  the paragraphs provided by \verb|\setlipsumdefault|
-% are used. 
+% Pour contrôler le contenu de \verb|\lipsumexp|, l'extension \paket{lipsum}
+% fournit quatre commandes qui prennent toutes un argument optionnel. Cet
+% argument indique quels paragraphes doivent être sélectionnés par 
+% \verb|\lipsumexp| et il doit avoir la même forme que l'argument optionnel
+% de \verb|\lipsum|. Si l'argument optionnel est omis, les paragraphes
+% indiqués par \verb|\setlipsumdefault| sont utilisés.
 % 
-% \DescribeMacro{\unpacklipsum} The macro \verb|\unpacklipsum| stores the
-% content of the paragraphs specified by its optional argument and stores them
-% in the macro \verb|\lipsumexp|. Depending on whether \paket{lipsum} was
-% loaded with or without the option \verb|nopar|, the paragraphs are separated by either
-% \verb|\par| or \verb|\relax| (as long as \verb|\lips@par| was not
-% changed). \DescribeMacro{\unpacklipsum*} The starred version
-% \verb|\unpacklipsum*| is the corresponding counterpart, as \verb|\lipsum*| is
-% for \verb|\lipsum|.  
+% \DescribeMacro{\unpacklipsum} La commande \verb|\unpacklipsum| récupère le 
+% contenu des paragraphes spécifiés par l'argument optionnel et les stocke 
+% dans la commande \verb|\lipsumexp|. Selon que l'extension \paket{lipsum} ait
+% été chargée avec ou sans l'option \verb|nopar|, les paragraphes sont séparés
+% respectivement par \verb|\par| ou par \verb|\relax| (tant que 
+% \verb|\lips@par| n'est pas modifié). \DescribeMacro{\unpacklipsum*} La 
+% version étoilée \verb|\unpacklipsum*| est la commande opposée à 
+% \verb|\unpacklipsum| , comme \verb|\lipsum*| est l'opposée de 
+% \verb|\lipsum|.  
 % 
-% While most users who need the expanded content of \verb|\lipsum| want to get
-% rid of the terminating \verb|\par|s, there might be some situations where the
-% separating \verb|\relax| is annoying, too. \DescribeMacro{\UnpackLipsum} The
-% macro \verb|\UnpackLipsum| terminates the paragraphs of Lorem ipsum by a
-% space (independent from the package option \verb|nopar|), hence the content of \verb|\lipsumexp| consists only of characters. 
+% Tandis que la plupart des utilisateurs qui ont besoin d'accéder au contenu
+% développé de \verb|\lipsum| souhaitent se débarasser des commandes 
+% \verb|\par|, il peut y avoir des situations où même la commande 
+% \verb|\relax| est gênante. \DescribeMacro{\UnpackLipsum} La commande 
+% \verb|\UnpackLipsum| termine les paragraphes du \emph{Lorem ipsum} par une
+% espace (indépendamment de l'option d'extension \verb|nopar|), ce qui fait que
+% \verb|\lipsumexp| ne contient que des caractères.
 %
-% The fourth macro, \DescribeMacro{\UnpackLipsum*}\verb|\UnpackLipsum*|, separates the paragraphs
-% of Lorem ipsum by the (unexpanded) macro \verb|\lips@par|. This allows controlling the content of the separating macro when \verb|\lipsumexp| is
-% expanded. However, note that redefining \verb|\lips@par| changes the
-% behaviour of all \verb|\lipsum| macros in the remaining document, hence keep
-% the redefinition local.
+% La quatrième commande, \DescribeMacro{\UnpackLipsum*}\verb|\UnpackLipsum*|,
+% sépare les paragraphes du \emph{Lorem ipsum} par la commande (non développée)
+% \verb|\lips@par|. Ceci permet de contrôler le contenu de la commande de 
+% séparation quand \verb|\lipsumexp| est développé. Notez bien cependant que 
+% la redéfinition de \verb|\lips@par| modifie le comportement de toutes les 
+% commandes \verb|\lipsum| dans la suite du document ; gardez donc la
+% rédéfinition locale.
 % \section*{Remerciements}
-% All paragraphs are taken with permission from
-% \href{http://lipsum.com/}{http://lipsum.com/}. Thanks to \name{James
-% Wilson} for his work. Furthermore, stackexchange.com user \name{egreg} has to be
-% mentioned here for his/her improvements of lipsum on stackexchange which
-% eventually made their way into version 1.3 of lipsum.sty. 
+% Tous les paragraphes sont tirés du site
+% \href{http://lipsum.com/}{http://lipsum.com/}, avec l'aimable autorisation
+% de son propriétaire. Merci à \name{James Wilson} pour son travail. Par
+% ailleurs, \name{egreg}, contributeur (ou contributrice) sur
+% stackexchange.com, doit être mentionné(e) ici pour les améliorations
+% apportées à \paket{lipsum}, ces dernières ayant finalement intégré la
+% version 1.3 de lipsum.sty. 
 % \StopEventually{}
 % \clearpage
 % \section*{Code}\small
@@ -275,9 +284,11 @@
   \@ifstar\@@unpacklipsum\@unpacklipsum
 }
 %    \end{macrocode}
+% \tradini
 %   \DescribeMacro{\@@unpacklipsum}This macro is called by the starred version \verb|\unpacklipsum*|. It calls
 %   \verb|\ChangeLipsumPar| in a group and subsequently calls
 %   \verb|\@unpacklipsum| with its argument. 
+% \tradfin
 %    \begin{macrocode}
 \newcommand\@@unpacklipsum[1][\lips@default]{%
   \begingroup
@@ -286,14 +297,17 @@
   \endgroup
 }
 %    \end{macrocode}
+% \tradini
 % \DescribeMacro{\@unpacklipsum} This is the true work horse for the
 % \verb|\unpacklipsum| and \verb|\unpacklipsum*| macros. The major part
 % consists of the loop posted by \name{egreg}. 
+% \tradfin
 %    \begin{macrocode}
 
 \newcommand\@unpacklipsum[1][\lips@default]{%
 
 %    \end{macrocode}
+% \tradini
 % In both the
 % package option definition for \verb|nopar| as well as in
 % \verb|\ChangeLipsumPar|, \verb|\lips@par| is \verb|\let| to be \verb|\relax|
@@ -301,24 +315,31 @@
 % use a group, test whether \verb|\ifx\lips@par\relax| is true and then
 % locally \verb|\def| \verb|\lips@par| to \verb|\relax|, which subsequently
 % can can be expanded:
+% \tradfin
 %    \begin{macrocode}
   \begingroup
     \ifx\lips@par\relax\def\lips@par{\relax}\fi
 %    \end{macrocode}
+% \tradini
 % Now process the argument as in \verb|\@lipsum| and set the counter
+% \tradfin
 %    \begin{macrocode}
     \expandafter\lips@minmax\expandafter{#1}%
     \c@lips@count=\lips@min\relax
     \advance\c@lips@count\m@ne
 %    \end{macrocode}
+% \tradini
 % Since we are in a group, a direct \verb|\edef| of \verb|\lipsumexp| would be
 % long, thus I use an internal macro here...
+% \tradfin
 %    \begin{macrocode}
     \def\@lipsumexp{}%
 %    \end{macrocode}
+% \tradini
 % Now start the loop and populate the internal macro with the contents of
 % Lorem ipsum. Since we are in a group, I had to polute the global context
 % with \verb|\@lipsumexp|\ldots
+% \tradfin
 %    \begin{macrocode}
     \loop\ifnum\c@lips@count<\lips@max\relax
       \advance\c@lips@count\@ne
@@ -327,9 +348,11 @@
     \repeat
   \endgroup
 %    \end{macrocode}
+% \tradini
 % After the group is closed, \verb|\edef| \verb|\lipsumexp| with the content
 % of \verb|\@lipsumexp|. We need \verb|\global| here since
 % \verb|\@unpacklipsum| might be called from within a group by \verb|\@@unpacklipsum|
+% \tradfin
 %    \begin{macrocode}
   \global\edef\lipsumexp{\@lipsumexp}%  
 }
@@ -338,8 +361,10 @@
   \@ifstar\@@UnpackLipsum\@UnpackLipsum
 }
 %    \end{macrocode}
+% \tradini
 % The uppercase versions \verb|\UnpackLipsum| and \verb|\UnpackLipsum*| work
 % quite similar in that they redefine \verb|\lips@par| locally.
+% \tradfin
 %    \begin{macrocode}
 
 \newcommand\@UnpackLipsum[1][\lips@default]{%

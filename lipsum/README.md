@@ -12,7 +12,7 @@ L'objectif est de traduire la documentation de l'extension *lipsum* utilisable a
 
 ### Avancement de la traduction, en vision table de matières
 - [ ] En-tête du document tex (définitions, métadonnées)
-- [x] Utilisation (1 page)
-- [ ] Commandes avancées (1 page)
-- [ ] Remerciement (1 page)
+- [x] Utilisation (1 page) ** À relire **
+- [x] Commandes avancées (1 page) ** À relire **
+- [x] Remerciement (1 page) ** À relire **
 - [ ] Code (38 pages dont 3 seulement à traduire)
