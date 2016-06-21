@@ -284,11 +284,10 @@
   \@ifstar\@@unpacklipsum\@unpacklipsum
 }
 %    \end{macrocode}
-% \tradini
-%   \DescribeMacro{\@@unpacklipsum}This macro is called by the starred version \verb|\unpacklipsum*|. It calls
-%   \verb|\ChangeLipsumPar| in a group and subsequently calls
-%   \verb|\@unpacklipsum| with its argument. 
-% \tradfin
+% \DescribeMacro{\@@unpacklipsum}Cette commande est appelée par la version
+% étoilée \verb|\unpacklipsum*|. Dans un groupe, elle appelle la commande
+% \verb|\ChangeLipsumPar| puis la commande \verb|\@unpacklipsum| avec son
+% propre argument. 
 %    \begin{macrocode}
 \newcommand\@@unpacklipsum[1][\lips@default]{%
   \begingroup
@@ -297,49 +296,42 @@
   \endgroup
 }
 %    \end{macrocode}
-% \tradini
-% \DescribeMacro{\@unpacklipsum} This is the true work horse for the
-% \verb|\unpacklipsum| and \verb|\unpacklipsum*| macros. The major part
-% consists of the loop posted by \name{egreg}. 
-% \tradfin
+% \DescribeMacro{\@unpacklipsum} Cette commande est le véritable bourreau
+% de travail caché derrière les commandes \verb|\unpacklipsum| et 
+% \verb|\unpacklipsum*|. Elle est composée pour sa plus grand part de la
+% boucle postée par \name{egreg}. 
 %    \begin{macrocode}
 
 \newcommand\@unpacklipsum[1][\lips@default]{%
 
 %    \end{macrocode}
-% \tradini
-% In both the
-% package option definition for \verb|nopar| as well as in
-% \verb|\ChangeLipsumPar|, \verb|\lips@par| is \verb|\let| to be \verb|\relax|
-% and not \verb|\def|ed. Thus, \verb|\lips@par| would not be expanded. I
-% use a group, test whether \verb|\ifx\lips@par\relax| is true and then
-% locally \verb|\def| \verb|\lips@par| to \verb|\relax|, which subsequently
-% can can be expanded:
-% \tradfin
+% Dans la définition de l'option de l'extension aussi bien que dans la commande
+% \verb|\ChangeLipsumPar|, \verb|\lips@par| est défini avec \verb|\let| 
+% (et non \verb|\def|) comme étant \verb|\relax|. Ainsi, \verb|\lips@par|
+% n'est pas développé. J'utilise un groupe, teste si 
+% \verb|\ifx\lips@par\relax| est vrai et alors définis localement avec
+% \verb|\def| la commande \verb|\lips@par| comme étant \verb|\relax|, ce qui
+% par la suite peut être développé :
 %    \begin{macrocode}
   \begingroup
     \ifx\lips@par\relax\def\lips@par{\relax}\fi
 %    \end{macrocode}
-% \tradini
-% Now process the argument as in \verb|\@lipsum| and set the counter
-% \tradfin
+% Maintenant l'argument est traité comme dans \verb|\@lipsum| et le compteur
+% est fixé.
 %    \begin{macrocode}
     \expandafter\lips@minmax\expandafter{#1}%
     \c@lips@count=\lips@min\relax
     \advance\c@lips@count\m@ne
 %    \end{macrocode}
-% \tradini
-% Since we are in a group, a direct \verb|\edef| of \verb|\lipsumexp| would be
-% long, thus I use an internal macro here...
-% \tradfin
+% Comme nous sommes dans un groupe, l'utilisation directe d'une commande
+% \verb|\edef| pour \verb|\lipsumexp| serait trop longue ; c'est pourquoi 
+% j'utilise une commande interne ici...
 %    \begin{macrocode}
     \def\@lipsumexp{}%
 %    \end{macrocode}
-% \tradini
-% Now start the loop and populate the internal macro with the contents of
-% Lorem ipsum. Since we are in a group, I had to polute the global context
-% with \verb|\@lipsumexp|\ldots
-% \tradfin
+% Maintenant commence la boucle, ce qui peuple la commande interne avec le
+% contenu du \emph{Lorem ipsum}. Comme nous sommes dans un groupe, je dois
+% polluer le contexte global avec \verb|\@lipsumexp|\ldots
 %    \begin{macrocode}
     \loop\ifnum\c@lips@count<\lips@max\relax
       \advance\c@lips@count\@ne
@@ -348,23 +340,21 @@
     \repeat
   \endgroup
 %    \end{macrocode}
-% \tradini
-% After the group is closed, \verb|\edef| \verb|\lipsumexp| with the content
-% of \verb|\@lipsumexp|. We need \verb|\global| here since
-% \verb|\@unpacklipsum| might be called from within a group by \verb|\@@unpacklipsum|
-% \tradfin
+% Une fois le groupe fermé, \verb|\lipsumexp| est défini avec la commande
+% \verb|\edef| comme le contenu de \verb|\@lipsumexp|. Nous avons ici besoin de
+% la commande \verb|\global| car \verb|\@unpacklipsum| pourrait être appelé
+% depuis un groupe par \verb|\@@unpacklipsum|.
 %    \begin{macrocode}
-  \global\edef\lipsumexp{\@lipsumexp}%  
+  \global\edef\lipsumexp{\@lipsumexp}% 
 }
 
 \newcommand\UnpackLipsum{%
   \@ifstar\@@UnpackLipsum\@UnpackLipsum
 }
 %    \end{macrocode}
-% \tradini
-% The uppercase versions \verb|\UnpackLipsum| and \verb|\UnpackLipsum*| work
-% quite similar in that they redefine \verb|\lips@par| locally.
-% \tradfin
+% Les versions avec majuscules \verb|\UnpackLipsum| et \verb|\UnpackLipsum*|
+% fonctionnent de façon assez similaire dans la mesure où elle rédéfinissent
+% \verb|\lips@par| localement.
 %    \begin{macrocode}
 
 \newcommand\@UnpackLipsum[1][\lips@default]{%

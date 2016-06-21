@@ -15,4 +15,4 @@ L'objectif est de traduire la documentation de l'extension *lipsum* utilisable a
 - [x] Utilisation (1 page) ** À relire **
 - [x] Commandes avancées (1 page) ** À relire **
 - [x] Remerciement (1 page) ** À relire **
-- [ ] Code (38 pages dont 3 seulement à traduire)
+- [x] Code (38 pages dont 3 seulement à traduire)
