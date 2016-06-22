@@ -23,12 +23,12 @@ Ces extensions sont considérées comme traduites. Elles peuvent encore contenir
 
 - [ ] *appendix* ;
 - [ ] *geometry* ;
+- [ ] *lipsum* ;
 - [ ] *titlesec*.
 
 ### Liste des extensions en cours de traitement
 
 - [ ] *fontspec* ;
-- [ ] *lipsum* ;
 - [ ] *xcolor*.
 
 ### Liste des extensions envisagées par la suite
