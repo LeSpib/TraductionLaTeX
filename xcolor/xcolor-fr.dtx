@@ -1067,7 +1067,7 @@
 % La forme étendue \Meta{modèle 
 % central}|:|\Meta[1]{modèle}|/|\Meta[2]{modèle}|/.../|\Meta[m]{modèle} 
 % provoque la conversion immédiate de la \Meta{spéc} adéquate au \Meta{modèle
-% central}; un modèle inconnu sera tout simplment ignoré ici, sans aucun commentaire.
+% central}; un modèle inconnu sera tout simplement ignoré ici, sans aucun commentaire.
 %
 % Exemples: `|rgb/cmyk/named/gray|', `|0,0,0/0,0,0,1/Black/0|', `|rgb:cmy/hsb|'.
 %
@@ -1443,46 +1443,57 @@
 %   dernière restant disponible pour des raisons de compatibilité.}\\
 % Il s'agit d'une des commandes qui peut être utilisée pour assigner un 
 % \Meta{nom} à une couleur spécifique.
-% \tradini
-% Afterwards, this color is known to the system (in the current group) and may be used in \emph{\Index{color expression}s}, as explained in section \vref{sec.term}.
-% It replaces both \LC's |\DefineNamedColor| and |\definecolor|.
-% Note that an already existing color \Meta{name} will be overwritten.
-% The variable |\tracingcolors| controls whether such an overwriting will be logged or not (see section \vref{sec.info} for details).
-% The arguments are described in section \vref{sec.term}.
-% Hence, valid expressions for color definitions are
-% \begin{itemize}
+% La couleur est ensuite connue du système (dans le groupe où elle est
+% définie) et peut être utilisée dans toute \emph{\Index{expression de
+% expression}}, comme expliquée en section \vref{sec.term}. 
+% La commande remplace à la fois |\DefineNamedColor| et |\definecolor| de \LC.
+% Notez que la définition d'un \Meta{nom} de couleur existant déjà est écrasée.
+% La variable |\tracingcolors| contrôle si cet écrasement est indiqué dans le
+% fichier \og log \fg{} ou pas (voir section \vref{sec.info} pour plus d'informations).
+% Les arguments sont décrits en section \vref{sec.term}.
+% Aussi, des expressions valides définissant des couleurs sont, par exemple :\begin{itemize}
 % \item |\definecolor{red}{rgb}{1,0,0}|,
 % \item |\definecolor{red}{rgb/cmyk}{1,0,0/0,1,1,0}|,
 % \item |\definecolor{red}{hsb:rgb/cmyk}{1,0,0/0,1,1,0}|,
 % \item |\definecolor[named]{Black}{cmyk}{0,0,0,1}|,
 % \item |\definecolor{myblack}{named}{Black}|,
 % \end{itemize}
-% where the last command is equivalent to |\colorlet{myblack}{Black}| (see below); the second command defines \Color{red} in the \Model{rgb} or \Model{cmyk} model, depending on the current setting of the \emph{target model}, whereas the third will additionally transform the color to \Model{hsb} prior to saving.
-% Note that there is a special \Package{pstricks}-related version as described in section \vref{sec.pstricks}.
+% où la dernière commande est équivalente à |\colorlet{myblack}{Black}| (voir
+% ci-dessous); la deuxième commande définit \Color{red} dans le modèle 
+% \Model{rgb} ou \Model{cmyk} selon la paramètre actuel du 
+% \emph{modèle cible}, tandis que la troisième convertit la couleur au modèle
+% \Model{hsb} avant d'être enregistré. Notez qu'il existe une version spéciale
+% associée à \Package{pstricks}, comme décrit en section \vref{sec.pstricks}.
 %
 % \medskip
 %
 % \DescribeMacro\providecolor
-%   \oarg{type}\marg{name}\marg{model-list}\marg{spec-list}\\
-% Similar to |\definecolor|, but the color \Meta{name} is only defined if it does not exist already.
+%   \oarg{type}\marg{nom}\marg{liste-modèle}\marg{liste-spéc}\\
+% Cette commande est similaire à |\definecolor| à ceci près que la couleur
+% \Meta{nom} est définie seulement si elle n'existe pas déjà.
 %
 % \medskip
 %
 % \DescribeMacro\colorlet
-%   \oarg{type}\marg{name}\oarg{num model}\marg{color}\\
-% Copies the actual color which results from \Meta{color} to \Meta{name}.
-% If \Meta{num model} is non-empty, \Meta{color} is first transformed to the specified model, before \Meta{name} is being defined.
-% The pseudo model \nModel{named} is \emph{not} allowed here, it may, however, be specified in the \Meta{type} argument.
-% Note that an already existing color \Meta{name} will be overwritten.
+%   \oarg{type}\marg{nom}\oarg{modèle numérique}\marg{couleur}\\
+% Cette commande copie la couleur obtenue avec \Meta{couleur} dans \Meta{name}.
+% Si \Meta{modèle numérique} n'est pas vide, \Meta{couleur} est tout d'abord
+% converti dans le modèle spécifié avant que \Meta{name} ne soit défini.     
+% Le pseudo-modèle \nModel{named} \emph{n'est pas} autorisé ici mais il peut
+% cependant être spécifié dans l'argument \Meta{type}.
+% Notez qu'une couleur nommée \Meta{nom} définie auparavant sera écrasée.
 %
-% Example: we said |\colorlet{tableheadcolor}{gray!25}| in the preamble of this document.
-% In most of the tables we then formatted the first row by using the command |\rowcolor{tableheadcolor}|.
+% Exemple: |\colorlet{tableheadcolor}{gray!25}| a été utilisé dans le
+% préambule du document.
+% Dans la plupart des tables, la première ligne est mise en forme en utilisant
+% la commande |\rowcolor{tableheadcolor}|.
 %
 %
-% \subsubsection{Defining sets of colors}
+% \subsubsection{Définition d'ensembles de couleur}
 %
 % \DescribeMacro\definecolorset
-%   \oarg{type}\marg{model-list}\marg{head}\marg{tail}\marg{set spec}\\
+%   \oarg{type}\marg{liste-modèle}\marg{tête}\marg{queue}\marg{ensemble-spéc}\\
+% \tradini
 % This command facilitates the construction of \emph{\Index{color set}s}, i.e.~(possibly large) sets of individual colors with common underlying \Meta{model-list} and \Meta{type}.
 % Here, \Meta{set spec} = \Meta[1]{name},\Meta[1]{spec-list};\dots;\Meta[l]{name},\Meta[l]{spec-list} ($l\ge1$ name/specification-list pairs).
 % Individual colors are being constructed by single
