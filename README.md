@@ -1,68 +1,116 @@
-## Traduction d'extensions courantes de LaTeX
+## TransLaTeX - Traduction en français d'extensions courantes de LaTeX
 
-L'objectif de ce projet est de traduire en français la documentation de différentes extensions de LaTeX.
+L'objectif de ce projet est de traduire en français la documentation de différentes extensions de LaTeX. En espérant que cela aide le plus grand monde ! :smile:
 
-*The goal of this project is to translate in french some LaTeX packages documentations.* 
+> *The goal of this project is to translate in french some LaTeX packages documentations. Hope this helps !* :smile:
+
 
 ### Aspects juridiques
 
-Nous reprenons ici le principe retenu par un projet de traduction datant de 2000 : [French translations](https://www.ctan.org/pkg/french-translations).
+Nous reprenons ici le principe retenu par un projet de traduction datant de 2000 : [French translations].
 
-Toutes ces traductions sont régies par la License Publique du Projet LaTeX (LPPL). Elles sont donc librement distribuables, du moment que le code des extensions inclus dans les documentations l'est (il n'est pas de notre ressort). Si vous êtes autorisés à utiliser une extension d'une certaine façon, alors vous êtes autorisé à faire la même chose avec la version française de sa documentation. Les seules restrictions
-(imposées par la LPPL) sont sur la traduction elle-même.
+Toutes ces traductions sont régies par la License Publique du Projet LaTeX (LPPL). Elles sont donc librement distribuables, du moment que le code des extensions inclus dans les documentations l'est (il n'est pas de notre ressort). Si vous êtes autorisés à utiliser une extension d'une certaine façon, alors vous êtes autorisé à faire la même chose avec la version française de sa documentation. Les seules restrictions (imposées par la LPPL) sont sur la traduction elle-même.
 
-En quelques mots: ne modifiez pas un document si vous trouvez une faute, indiquez-la plutôt à la bonne personne (l'auteur de l'extension, le traducteur, l'équipe de traduction, etc).
+:heavy_exclamation_mark: En quelques mots: ne modifiez pas un document si vous trouvez une faute, indiquez-la plutôt à la bonne personne (l'auteur de l'extension, le traducteur, l'équipe de traduction, etc).
 
-*All those translations are under the LaTeX Project Public License. Thus they are freely distributable, as long as the code of the packages that is in the document (which does not belong to us) is itself freely distributable. If you're allowed to use a package in a given way, then you are allowed to use the french translation of its documentation in exactly the sane way. The only restrictions (imposed by the LPPL) are on the translation itself.*
+> *All those translations are under the LaTeX Project Public License. Thus they are freely distributable, as long as the code of the packages that is in the document (which does not belong to us) is itself freely distributable. If you're allowed to use a package in a given way, then you are allowed to use the french translation of its documentation in exactly the sane way. The only restrictions (imposed by the LPPL) are on the translation itself.*
 
-*In short words: do not modify a document if you find a mistake, just contact the right person (the author of the package, the person who translated it, the translation team, etc).*
+> :heavy_exclamation_mark: *In short words: do not modify a document if you find a mistake, just contact the right person (the author of the package, the person who translated it, the translation team, etc).*
 
-### Liste des extensions traduites 
 
-Ces extensions sont considérées comme traduites. Elles peuvent encore contenir des coquilles. Les retours sur ces traductions sont les bienvenus !
+### Liste des extensions traitées et avancement des traductions
 
-- [ ] *appendix* ;
-- [ ] *geometry* ;
-- [ ] *lipsum* ;
-- [ ] *titlesec*.
+Ce tableau indique les différentes extensions envisagées dans le projet ainsi que l'avancement de ces traductions. Le code visuel pour l'avancée de la traduction reprend les phases de la lune, soit dans l'ordre : :new_moon: :waxing_crescent_moon: :first_quarter_moon: :waxing_gibbous_moon: :full_moon: (plus c'est jaune, mieux c'est).
 
-### Liste des extensions en cours de traitement
+> *This table shows the different extensions envisaged in this project and the progress of these translations. The visual code for the progress uses the phases of the moon and their order : :new_moon: :waxing_crescent_moon: :first_quarter_moon: :waxing_gibbous_moon: :full_moon: (the brighter, the better).*
 
-- [ ] *fontspec* ;
-- [ ] *xcolor*.
+Traduction      | Source            | Avancée                | Pages traduites | Commentaires 
+----------      | ---------         | :-----------------:    | :-------------: | ------------
+                | [adjustbox]       |                        | *. / 29*        |
+[appendix-fr]   | [appendix] v1.2b  | :full_moon:            | 16              |
+                | [booktabs]        |                        | *. / 17*        | Une traduction existe
+                | [cleveref]        |                        | *. / 31*        |
+                | [datatool]        |                        | *. / 220*       |
+                | [datetime2]       |                        | *. / 169*       |
+                | [etoc]            |                        | *. / 114*       |
+[fontspec-fr]   | [fontspec] v2.4e  | :new_moon:             | 4 / 124         | Auteur contacté et intéressé
+[geometry-fr]   | [geometry] v5.6   | :full_moon:            | 42              | Auteur contacté et intéressé
+                | [glossaries]      |                        | *. / 248*       |
+                | [hyperref]        |                        | *. / 31*        | Licence GNU FDL à analyser
+[lipsum-fr]     | [lipsum] v1.3     | :full_moon:            | 41              |
+                | [pgfplots]        |                        | *. / 544*       |
+                | [siunitx]         |                        | *. / 102*       |
+                | [tikz] (pgf)      |                        | *. / 1161*      |
+[titlesec-fr]   | [titlesec] 2.10.0 | :full_moon:            | 25              | Version actuelle : 2.10.2
+                | [varioref]        |                        | *. / 32*        |
+[xcolor-fr]     | [xcolor] v2.11    | :waxing_crescent_moon: | 22 / 71         | Version actuelle : v2.12
 
-### Liste des extensions envisagées par la suite
-- [ ] *adjustbox* ;
-- [ ] *booktabs* ;
-- [ ] *cleveref* ;
-- [ ] *datatool* (énorme) ;
-- [ ] *datetime2* (gros) ;
-- [ ] *etoc* ;
-- [ ] *glossaries* (énorme) ;
-- [ ] *hyperref* ;
-- [ ] *pgfplots* (énorme) ;
-- [ ] *siunitx* (gros) ;
-- [ ] *tikz* (gigantesque) ;
-- [ ] *varioref*.
 
-### Formalisation de l'avancée de la traduction
+### Traduction des documents 
+
+##### Fichiers associés à la traduction
+
+Les fichiers employés par LaTeX utilisent par défaut des termes anglais, tout particulièrement l'index composé dans la plupart des extensions avec le fichier de style `gind.ist`. Quelques commandes placées dans le préambule du document principal permettent de traduire (par redéfinition) la plupart de ces termes mais certains cas demandent un fichier extérieur. Ces fichiers spécifiques sont placés dans le dossier [TransLaTeX] avec l'explicitation des commandes placées en préambule.
+
+> *LaTeX uses files displaying english terms by default, especially when typesetting the index with the style file `gind.ist`. Some macros placed in the preamble of the main document are used to translate (by redefinition) most of these terms, but some cases require an external file. These specific files are placed in the [TransLaTeX] with some explanations. Others macros used for translation are also described.*
+
+
+##### Formalisation de l'avancée de la traduction
 
 Le résultat courant de chaque traduction est fourni en PDF avec des passages mis en orange pour indiquer les passages ou éléments restant à traduire. Ces marques sont parfois un peu approximatives pour certains éléments ajoutés au texte comme les tables et index.
 
-Ces marques sont gérées par quelques commandes placées en préambule de document : `\trad{}`, `\tradini` et `\tradfin`. Les commandes et leur définition seront retirées une fois la traduction achevée.
+Ces marques sont gérées par trois commandes placées en préambule de document : `\trad{}`, `\tradini` et `\tradfin`. Les commandes et leur définition seront retirées une fois la traduction achevée.
 
-### Terminologie
+> *The current result of each translation is provided in PDF with passages set in orange to indicate the remaining elements or passages to translate. These indications are sometimes a little rough for some elements added to the text, such as tables and indexes.*
 
-De nombreux termes se retrouvent dans les différentes documents traduits. Cette section sert de pense-bête sur ce sujet en regroupant certains de ces termes. Chaque traduction d'extension reprend dans son ReadMe dédié ce principe, de façon plus ciblée.
+> *These indications are managed by three macros placed in the document preamble: `\trad{}`, `\tradini` and `\tradfin`. These macros and their definition are removed when the translation is finished.*
 
-- *control sequence* : commande ;
-- *cropmarks* : traits de coupe (source Wiktionnaire) ;
-- *device* : périphérique, input/output d'entrée de sortie ;
-- *driver* : pilote (informatique, graphique...) ;
-- *error report* : rapports d'erreur ;
-- *filler* : motif (de remplissage) ;
-- *header* : en-tête ;
-- *heading(s)* : titre ;
-- *leaders* : points de conduite ;
-- *leading* : interlignage ;
-- *package* : extension.
+
+##### Terminologie
+
+De nombreux termes spécifiques se retrouvent dans les différents documents traduits. Cette section sert de pense-bête sur ce sujet en regroupant certains de ces termes. Chaque traduction d'extension reprend dans son ReadMe dédié ce principe, de façon plus ciblée.
+
+> *Many specific terms are found in the various documents translated. This section serves as a reminder by grouping some of these terms. Each translation uses this principle more finely in its own ReadMe.*
+
+Anglais                | Français                                       | Commentaires 
+---------------------- | ---------------------------------------------- | -------------------------------
+*control sequence*     | commande                                       |   
+*cropmarks*            | traits de coupe                                | source Wiktionnaire
+*device*               | périphérique, input/output d'entrée de sortie  |
+*driver*               | pilote (informatique, graphique...)            |
+*error report*         | rapports d'erreur                              |
+*filler*               | motif (de remplissage)                         |
+*header*               | en-tête                                        |
+*heading(s)*           | titre                                          |
+*leaders*              | points de conduite                             |
+*leading*              | interlignage                                   |
+*package*              | extension                                      |
+
+[//]: # Sur le Markdown : https://guides.github.com/features/mastering-markdown/
+
+[French translations]: <https://www.ctan.org/pkg/french-translations>
+[adjustbox]: <https://www.ctan.org/pkg/adjustbox>
+[appendix]: <https://www.ctan.org/pkg/appendix>
+[appendix-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/appendix>
+[booktabs]: <https://www.ctan.org/pkg/booktabs>
+[cleveref]: <https://www.ctan.org/pkg/cleveref>
+[datatool]: <https://www.ctan.org/pkg/datatool>
+[datetime2]: <https://www.ctan.org/pkg/datetime2>
+[etoc]: <https://www.ctan.org/pkg/etoc>
+[fontspec]: <https://www.ctan.org/pkg/fontspec>
+[fontspec-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/fontspec>
+[geometry]: <https://www.ctan.org/pkg/geometry>
+[geometry-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/geometry>
+[glossaries]: <https://www.ctan.org/pkg/glossaries>
+[hyperref]: <https://www.ctan.org/pkg/hyperref>
+[lipsum]: <https://www.ctan.org/pkg/lipsum>
+[lipsum-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/lipsum>
+[pgfplots]: <https://www.ctan.org/pkg/pgfplots>
+[siunitx]: <https://www.ctan.org/pkg/siunitx>
+[titlesec]: <https://www.ctan.org/pkg/titlesec>
+[titlesec-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/titlesec>
+[tikz]: <https://www.ctan.org/pkg/pgf>
+[varioref]: <https://www.ctan.org/pkg/varioref>
+[xcolor]: <https://www.ctan.org/pkg/xcolor>
+[xcolor-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/xcolor>
+[TransLaTeX]: <https://github.com/LeSpib/TransLaTeX/tree/master/TransLaTeX>
