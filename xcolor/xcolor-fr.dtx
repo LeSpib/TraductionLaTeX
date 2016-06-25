@@ -106,6 +106,25 @@
 \usepackage[french]{babel}
 \usepackage[french]{varioref}
 \usepackage{chngpage,tabularx,amsmath,amsthm}
+% Traduction du titre de l'Index
+\IndexPrologue{\section*{Index}\markboth{Index}{Index} Les numéros en italique renvoient à la page où se trouve l'entrée correspondante; les numéros soulignés renvoient à la ligne de code de la définition; les numéros en romain renvoient aux lignes de code où l'entrée est utilisée.}%
+% Traduction des entrées d'index concernant les environnements (code repris
+% de doc.dtx permettant de documenter des extensions, avec modifications.)
+\makeatletter
+\def\SpecialMainEnvIndex#1{\@bsphack\special@index{%
+                                      #1\actualchar
+                                      {\string\ttfamily\space#1}
+                                         (environnement)%
+                                      \encapchar main}%
+    \special@index{environnements:\levelchar#1\actualchar{%
+                   \string\ttfamily\space#1}\encapchar
+           main}\@esphack}
+\def\SpecialEnvIndex#1{\@bsphack
+    \index{#1\actualchar{\protect\ttfamily#1}
+           (environnement)\encapchar usage}%
+    \index{environnements:\levelchar#1\actualchar
+          {\protect\ttfamily#1}\encapchar usage}\@esphack}
+\makeatother
 \usepackage
  [\GinDriver,hyperindex=false,bookmarks,bookmarksopen,bookmarksopenlevel=1,%
   pdftitle={xcolor \XCfileversion{} (\XCfiledate)},pdfauthor={Dr. Uwe Kern},%
@@ -1493,30 +1512,41 @@
 %
 % \DescribeMacro\definecolorset
 %   \oarg{type}\marg{liste-modèle}\marg{tête}\marg{queue}\marg{ensemble-spéc}\\
-% \tradini
-% This command facilitates the construction of \emph{\Index{color set}s}, i.e.~(possibly large) sets of individual colors with common underlying \Meta{model-list} and \Meta{type}.
-% Here, \Meta{set spec} = \Meta[1]{name},\Meta[1]{spec-list};\dots;\Meta[l]{name},\Meta[l]{spec-list} ($l\ge1$ name/specification-list pairs).
-% Individual colors are being constructed by single
+% Cette commande facilite la construction d'un \emph{\Index{ensemble de
+% couleur}}, autrement dit un ensemble (potentiellement vaste) de couleurs
+% individuelles ayant en commun une même \Meta{liste-modèle} et un même 
+% \Meta{type}.
+% Ici, \Meta{ensemble-spéc} = 
+% \Meta[1]{nom},\Meta[1]{liste-spéc};\dots;\Meta[l]{nom},\Meta[l]{liste-spéc}
+% ($l\ge1$ nom/paires de liste de spécification).
+% Les couleurs individuelles sont construites par des commandes
 % \begin{center}
-% |\definecolor|\oarg{type}|{|\Meta{head}\Meta[\lambda]{name}\Meta{tail}|}|\marg{model-list}|{|\Meta[\lambda]{spec-list}|}|
+% |\definecolor|\oarg{type}|{|\Meta{tête}\Meta[\lambda]{nom}\Meta{queue}|}|\marg{liste-modèle}|{|\Meta[\lambda]{liste-spéc}|}|
 % \end{center}
-% commands, $\lambda=1,\dots,l$.
-% For example,
+% où $\lambda=1,\dots,l$.
+% Par exemple,
 % \begin{itemize}
 % \item |\definecolorset{rgb}{}{}{red,1,0,0;green,0,1,0;blue,0,0,1}|\\
-% could be used to define the basic colors \Color{red}, \Color{green}, and \Color{blue};\footnote{Actually, \XC{} uses a more complicated variant to provide the basic colors for different underlying models (see the source code for the full command):\\
+% peut être utilisé pour définir les couleurs de base \Color{red}, 
+% \Color{green}, et \Color{blue};\footnote{En fait, \XC{} utilise une variante
+% plus complexe pour fournir les couleurs de base pour les différents modèles
+% sous-jacents (voir le code source pour observer la commande intégrale):\\
 % \cs{definecolorset\string{rgb/hsb/cmyk/gray\string}\string{\string}\string{\string}\string{red,1,0,0/0,1,1/0,1,1,0/.3;green,...\string}}.}
 % \item |\definecolorset{rgb}{x}{10}{red,1,0,0;green,0,1,0;blue,0,0,1}|\\
-% would define the colors \Color[-]{xred10}, \Color[-]{xgreen10}, and \Color[-]{xblue10}.
+% définit les couleurs \Color[-]{xred10}, \Color[-]{xgreen10} et 
+% \Color[-]{xblue10}.
 % \end{itemize}
 %
 % \DescribeMacro\providecolorset
-%   \oarg{type}\marg{model-list}\marg{head}\marg{tail}\marg{set spec}\\
-% Similar to |\definecolorset|, but based on |\providecolor|, thus the individual colors are defined only if they do not exist already.
+%   \oarg{type}\marg{liste-modèle}\marg{tête}\marg{queue}\marg{ensemble-spéc}\\
+% Cette commande est similaire à |\definecolorset| mais est basée sur 
+% |\providecolor|; ainsi les couleurs individuelles ne sont définies que si
+% elles n'existent pas déjà.
 %
 %
-% \subsubsection{Immediate and deferred definitions}\label{sec.deferred}
+% \subsubsection{Définitions immédiates et différées}\label{sec.deferred}
 %
+% \tradini
 % Traditionally, the definition of a color as described above leads to the immediate construction of a command that holds at least the information needed by the driver to display the desired color.
 % Thus, defining 300 colors, e.g., by loading a huge set of predefined colors, will result in 300 new commands, although most of them --- except for the purpose of displaying lists of colors --- will hardly ever be used within a document.
 % Along the development of computer memory --- increasing in size, decreasing in price --- recent \TeX{} implementations have increased their provisions for internal memory stacks that are available for strings, control sequences, etc.
@@ -4122,35 +4152,33 @@
 %
 % \tradfin
 % \subsubsection*{15/12/2003 v1.06}
-% \tradini
 % \begin{itemize}
-% \item New feature: extended color expressions, allowing for cascaded mix
-%  operations, e.g., |\color{red!30!green!40!blue}|.
-% \item Documentation: new section on color expressions.
-% \item Bugfix:~color series stepping did not work correctly within 
-%  non-displaying commands like |\extractcolorspec{foo!!+}| (this bug was
-%  introduced in v1.05).
-% \item Renamed~commands:~|\ukfileversion| and similar internal constants
-%  renamed to |\XCfileversion| etc.
-% \item Removed~commands:~|\ifXCpst| and |\ifXCtable| made obsolete by a
-%  simple trick.
+% \item Nouvelle fonctionnalité : expressions de couleur étendues, ce qui
+%  permet des opérations de mélange en cascade, par exemple
+%  |\color{red!30!green!40!blue}|.
+% \item Documentation : nouvelle section sur les expressions de couleur.
+% \item Correction d'erreur : l'incrémentation des séries de couleur ne 
+%  fonctionnait pas correctement dans les commandes sans affichage telle
+%  |\extractcolorspec{foo!!+}| (cette erreur a été introduite en in v1.05).
+% \item Commandes renommées : |\ukfileversion| et les constantes internes 
+%  similaires sont renommées en |\XCfileversion| et ainsi de suite.
+% \item Commandes retranchées : |\ifXCpst| et |\ifXCtable| sont rendues 
+%  obsolètes par une simple astuce.
 % \end{itemize}
 %
-% \tradfin
 % \subsubsection*{21/11/2003 v1.05}
-% \tradini
 % \begin{itemize}
 % \item Corrections d'erreur :
 %   \begin{itemize}
-%   \item package option \Option{hideerrors} should now work as expected;
-%   \item usage of `.' in the first color expression in a document caused an
-%    error due to incorrect initialisation.
+%   \item l'option d'extension \Option{hideerrors} fonctionne maintenant comme
+%    attendu ;
+%   \item l'utilisation de `.' dans la première expression de couleur causait
+%    une erreur du fait d'une initialisation incorrecte.
 %   \end{itemize}
-% \item Réorganisation du code : |\extractcolorspec| now uses |\XC@splitcolor|,
-%  making |\XC@extract| obsolete.
+% \item Réorganisation du code : |\extractcolorspec| utilise maintenant 
+% |\XC@splitcolor|, ce qui rend |\XC@extract| obsolète.
 % \end{itemize}
 %
-% \tradfin
 % \subsubsection*{09/11/2003 v1.04}
 % \begin{itemize}
 % \item Nouvelle fonctionnalité : accès simplifié à la couleur courante dans

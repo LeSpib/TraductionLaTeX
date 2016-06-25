@@ -2,6 +2,14 @@
 
 L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *xcolor* utilisable avec LaTeX.
 
+### Commandes pour obtenir le document
+
+    pdflatex xcolor-fr.dtx
+    pdflatex xcolor-fr.dtx
+    makeindex -s gind-fr.ist xcolor-fr.idx
+    pdflatex xcolor-fr.dtx
+    pdflatex xcolor-fr.dtx
+
 ### Quelques termes récurrents dans la traduction de ce document
 - *brightness* : luminosité ;
 - *color harmony* : accord de couleurs ;
