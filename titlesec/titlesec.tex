@@ -2,10 +2,10 @@
 % | Typeset this file to get the documentation.      |
 % +--------------------------------------------------+
 %
-% Copyright (c) 1998-2011 by Javier Bezos.
+% Copyright (c) 1998-2016 by Javier Bezos.
 % All Rights Reserved.
 %
-% This file is part of the titlesec distribution release 2.10.0
+% This file is part of the titlesec distribution release 2.10.2
 % -----------------------------------------------------------
 %
 % It may be distributed and/or modified under the
@@ -20,8 +20,8 @@
 % 
 % The Current Maintainer of this work is Javier Bezos.
 
-\def\fileversion{2.10.0}
-\def\docdate{2011-12-15}
+\def\fileversion{2.10.2}
+\def\docdate{2016-03-21}
 
 \documentclass[a4paper]{ltxguide}
 \usepackage[sf,bf,compact,topmarks,calcwidth,pagestyles]{titlesec}
@@ -43,10 +43,10 @@
 
 \title{The \textsf{titlesec}, \textsf{titleps} and \textsf{titletoc} 
 Packages\footnote{The \textsf{titlesec} package is currently at 
-version 2.10.0.  \copyright{} 1998--2011 Javier Bezos.
+version 2.10.2.  \copyright{} 1998--2016 Javier Bezos.
 The \textsf{titletoc} package is currently at 
 version 1.6.  The \textsf{titleps} package is currently at version 
-1.1.0 \copyright{} 1999--2011 Javier Bezos.  All Rights 
+1.1.1 \copyright{} 1999--2016 Javier Bezos.  All Rights 
 Reserved.}}
 
 \author{Javier Bezos\footnote{For bug reports, comments and
@@ -273,7 +273,15 @@ lines long and the \texttt{hang} shape is used, except with explicit
 \item[display] puts the label in a separate paragraph. (Like the
 standard |\chapter|.)
 
-\item[runin] A run-in title.  (Like the standard |\paragraph|.)
+\item[runin] A run-in title, like the standard
+  |\paragraph|.\footnote{Well, not quite. The title is first boxed to
+  avoid some unexpected results if, for example, there is a
+  \texttt{\string\color} between the title and the
+  text. Unfortunately, due to an optimization done by \TeX{}
+  discretionaries may be lost. I have found no solution, except using
+  \textsf{luatex}, which works as one could expect. Anyway, if the
+  title doesn't contain hyphen or dashes, this is not usually a real
+  problem.}
 
 \item[leftmargin] puts the title at the left margin.  Titles at the 
 very end of a page will be moved to the next one and will not stick 
@@ -731,8 +739,17 @@ TOC entries, which will be based on the full title.
 titles by a space in running heads and TOC entries.  This way, you
 do not have to repeat the title just to remove a formatting command.
 
+\begin{desc}
+|notocpart*| \quad (Package option)
+\end{desc}
 
-
+\fbox{2.10.1} Long ago (by the year 2000) I decided for some reason
+\verb|\part*| would behave like the AMS classes and therefore there
+should be a contents entry for it. This is somewhat odd, indeed, but
+the very fact is nobody has complained until now! On the other hand,
+restoring the behaviour one could expect after 15 years doesn't seem a
+good idea. A new page/part style in on the way, but for the moment
+this option restores the standard behaviour.
 
 \subsection{Extended Settings}
 %~~~~~~~~~~~~~~~~~~~~~~~~~

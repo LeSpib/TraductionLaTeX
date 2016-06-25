@@ -41,7 +41,7 @@ Traduction      | Source            | Avancée                | Pages traduites 
                 | [pgfplots]        |                        | *. / 544*       |
                 | [siunitx]         |                        | *. / 102*       |
                 | [tikz] (pgf)      |                        | *. / 1161*      |
-[titlesec-fr]   | [titlesec] 2.10.0 | :full_moon:            | 25              | Version actuelle : 2.10.2
+[titlesec-fr]   | [titlesec] 2.10.2 | :full_moon:            | 25              | 
                 | [varioref]        |                        | *. / 32*        |
 [xcolor-fr]     | [xcolor] v2.11    | :waxing_crescent_moon: | 22 / 71         | Version actuelle : v2.12
 

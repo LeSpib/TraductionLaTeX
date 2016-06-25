@@ -2,12 +2,23 @@
 
 L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *titlesec* utilisable avec LaTeX.
 
+### Commandes pour obtenir le document
+
+```bash
+pdflatex titlesec-fr.tex
+pdflatex titlesec-fr.tex
+```
+
 ### Quelques termes récurrents dans la traduction de ce document
-- *bot mark*, *bottom mark* : marque de fin de page ; 
-- *contents* : table des matières, sommaire ;
-- *label* : numérotation ;
-- *top mark* : marque de début de page ; 
-- *width* : largeur (d'une page, d'une boîte) et non longueur.
+
+Anglais                   | Français                                          | Commentaires 
+------------------------- | ------------------------------------------------- | -------------------------------
+*bot mark*, *bottom mark* | marque de fin de page                             |   
+*contents*                | table des matières, sommaire                      | 
+*discretionary*           | césure facultative                                |
+*label*                   | numérotation                                      |
+*top mark*                | marque de début de page                           |
+*width*                   | largeur (d'une page, d'une boîte) et non longueur |
 
 ### Avancement de la traduction, en vision table de matières
 - [x] En-tête du document tex (définitions, métadonnées)

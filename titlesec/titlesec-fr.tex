@@ -2,10 +2,10 @@
 % | Compilez ce fichier pour obtenir la documentation. |
 % +----------------------------------------------------+
 %
-% Copyright (c) 1998-2011 de Javier Bezos.
+% Copyright (c) 1998-2016 by Javier Bezos.
 % Tous droits réservés. 
 %
-% Ce fichier est une partie de la distribution de titlesec en version 2.10.0
+% Ce fichier est une partie de la distribution de titlesec en version 2.10.2
 % --------------------------------------------------------------------------
 %
 % Il peut être distribué et/ou modifié sous les conditions définies par la
@@ -21,8 +21,8 @@
 % L'actuel mainteneur est Javier Bezos.
 
 
-\def\fileversion{2.10.0}
-\def\docdate{2011-12-15}
+\def\fileversion{2.10.2}
+\def\docdate{2016-03-21}
 
 \documentclass[a4paper]{ltxguide}
 \usepackage[T1]{fontenc}
@@ -46,10 +46,10 @@
 \usepackage[linktocpage]{hyperref}
 
 \title{Les extensions \textsf{titlesec}, \textsf{titleps} et \textsf{titletoc} 
-\footnote{L'extension \textsf{titlesec} est actuellement en version 2.10.0.  
-\copyright{} 1998--2011 Javier Bezos. L'extension \textsf{titletoc} est
+\footnote{L'extension \textsf{titlesec} est actuellement en version 2.10.2.  
+\copyright{} 1998--2016 Javier Bezos. L'extension \textsf{titletoc} est
 actuellement en version 1.6. L'extension \textsf{titleps} est actuellement en
-version 1.1.0 \copyright{} 1999--2011 Javier Bezos. Tous droits réservés.}}
+version 1.1.1 \copyright{} 1999--2016 Javier Bezos. Tous droits réservés.}}
 
 \author{Javier Bezos\footnote{Pour des rapports d'erreur, commentaires et 
 suggestions, allez à \href{http://www.tex-tipografia.com/contact.html}%
@@ -291,7 +291,14 @@ comme |picture|, |pspicture|, etc.).
 |\chapter| dans les classes standards).
 
 \item[runin] restitue un titre suivi directement du texte sur la même ligne
-(comme avec |\paragraph| dans les classes standards).
+(comme avec |\paragraph| dans les classes standards\footnote{En fait, pas 
+tout à fait. Le titre est d'abord mis dans une boîte pour éviter des résultats
+inattendus si, par exemple, il y a une commande \texttt{\string\color} entre le 
+titre et le texte. Malheureusement, du fait d'une optimisation faite par 
+\TeX{}, des césures facultatives peuvent être perdues. Je n'ai pas ici de 
+solutions, exceptée celle d'utiliser \textsf{luatex}, qui fonctionne ici comme 
+souhaité. Toutefois, si le titre ne contient ni trait d'union ni tiret, ceci
+ne devrait pas poser de réel problème.}).
 
 \item[leftmargin] place le titre dans la marge de gauche. Les titres en bas de
 page sont déplacés sur la page suivante et ne restent pas isolés dans la marge
@@ -761,6 +768,18 @@ le titre complet.
 \verb|\\*| dans les titres par une espace dans les en-têtes et les entrées 
 en table des matières. De cette façon, vous n'avez pas à répéter le titre juste
 pour retrancher une commande de mise en forme. 
+
+\begin{desc}
+|notocpart*| \quad (option d'extension)
+\end{desc}
+
+\fbox{2.10.1} Il y a un moment de cela (en l'an 2000), j'ai décidé pour
+certaines raisons que la commande \verb|\part*| se comporterait comme dans les
+classes de l'AMS et qu'elle devrait donc avoir une entrée en table de matière. C'est pour le moins assez curieux et il s'avère que personne ne s'en est
+plaint jusqu'à présent ! Par ailleurs, imposer le comportement attendu plus de
+15 ans plus tard ne semble pas être une bonne idée. Un nouveau style de 
+page/partie est en cours de constitution mais, pour le moment, cette option
+restaure le comportement standard.
 
 \subsection{Paramétrages étendus} \label{extended}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
