@@ -24,7 +24,7 @@ renvoient à la ligne de code de la définition; les numéros en romain renvoien
 aux lignes de code où l'entrée est utilisée.}
 ```
 
-Dans les classes `doc` et `ltxdoc`, les entrées d'index associées à des environnements appliquent des définitions intégrant le terme *environment*. Les définitions sont ici écrasées par des définitions où les termes anglais ont été traduits.
+Dans les classes `doc` et `ltxdoc`, les entrées d'index associées à des environnements appliquent des définitions intégrant le terme *environment*. Les définitions sont ici écrasées par des définitions où seuls les termes anglais ont été modifiés.
 
 ```tex
 \makeatletter

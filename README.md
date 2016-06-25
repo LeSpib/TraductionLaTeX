@@ -86,7 +86,9 @@ Anglais                | Français                                       | Comme
 *leading*              | interlignage                                   |
 *package*              | extension                                      |
 
-[//]: # Sur le Markdown : https://guides.github.com/features/mastering-markdown/
+
+[//]: <> Sur le Markdown : https://guides.github.com/features/mastering-markdown/
+
 
 [French translations]: <https://www.ctan.org/pkg/french-translations>
 [adjustbox]: <https://www.ctan.org/pkg/adjustbox>
