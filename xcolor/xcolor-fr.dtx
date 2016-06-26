@@ -214,7 +214,7 @@
 % \def\nModel#1{`#1'\index{modèles colorimétriques\levelchar`#1'\string|usage}}
 % \def\pModel#1{\textbf{\itshape #1}}
 % \def\People#1#2{#1 #2\index{personnes\levelchar#2, #1\string|usage}}
-% \newcommand*\Color[2][+]{\textsl{#2}\ifx#1+\index{noms de couleur\levelchar\textsl{#2}\string|usage}\fi}
+% \newcommand*\Color[3][+]{#2 (\emph{#3})\ifx#1+\index{noms de couleur\levelchar#2 (\emph{#3})\string|usage}\fi}
 % \def\Option#1{\texttt{#1}\index{options d'extension\levelchar\texttt{#1}\string|usage}}
 % \def\oOption#1{\texttt{#1}\index{options d'extension (obsolètes)\levelchar\texttt{#1}\string|usage}}
 % \def\Key#1{\textit{#1}\index{clés\levelchar\textit{#1}\string|usage}}
@@ -224,9 +224,9 @@
 % \def\med{\mathop{\textrm{med}}}
 % \def\mix{\mathop{\textrm{mélange}}}
 % \def\rd{\mathop{\textrm{round}}}
-% \def\tint{\mathop{\textrm{teinte}}}
-% \def\shade{\mathop{\textrm{nuance}}}
-% \def\tone{\mathop{\textrm{ton}}}
+% \def\tint{\mathop{\textrm{éclaicie}}}
+% \def\shade{\mathop{\textrm{assombrie}}}
+% \def\tone{\mathop{\textrm{assourdie}}}
 % \def\LC{\Package{color}}
 % \def\LCP{extension \Package{color}}
 % \def\XC{\Package{xcolor}}
@@ -266,15 +266,15 @@
 %
 % \begin{abstract}
 % \noindent
-% \XC{} met à disposition, simplement et indépendamment des pilotes
+% L'extension \XC{} met à disposition, simplement et indépendamment des pilotes
 % graphiques, à de multiples types de couleurs, teintes, nuances, tons et
 % mélanges de couleurs arbitraires par le biais d'expressions dédiées comme 
 % |\color{red!50!green!20!blue}|.
-% Il permet de sélectionner un modèle de couleur à l'échelle du document et
-% offre des outils d'assortiment de couleurs automatiques, de conversion des
-% couleurs entre douze modèles colorimétriques, d'utilisation de couleurs
-% alternées pour des lignes de tableau, de mélange et de masque de couleur, de
-% séparation de couleur et de calculs de cercle chromatique.
+% Elle permet de sélectionner un modèle de couleur cible à l'échelle du
+% document et offre des outils d'assortiment de couleurs automatiques, de
+% conversion des couleurs entre douze modèles colorimétriques, d'utilisation de
+% couleurs alternées pour des lignes de tableau, de mélange et de masque de
+% couleur, de séparation de couleur et de calculs de cercle chromatique.
 % \end{abstract}
 %
 % \phantomsection\pdfbookmark[1]{\contentsname}{toc}
@@ -291,15 +291,15 @@
 % L'\LCP{} met à disposition un outil puissant et stable pour manipuler les
 % couleurs dans (pdf)\LaTeX{} de façon cohérente, indépendamment des pilotes
 % graphiques, tout en supportant différents modèles colorimétriques (de
-% manière un peu moins indépendante des pilotes).
+% manière un peu plus dépendante des pilotes).
 %
 % Néanmoins, il est parfois un peu laborieux de l'utiliser, particulièrement
 % dans les cas où de légères variations de couleur, des mélanges de couleur ou
 % des conversions de couleur sont en jeu :
-% ceci implique d'habitude l'utisation d'un autre programme qui calcule les
+% ceci impose d'habitude l'utisation d'un autre programme qui calcule les
 % paramètres souhaités, paramètres alors copiés dans une commande 
 % |\definecolor| dans \LaTeX.
-% Assez fréquemment, une calculatrice de poche est également retenue dans le
+% Assez fréquemment, une calculatrice de poche est également impliquée dans le
 % traitement de problèmes comme ceux indiqués ci-après :
 % \begin{itemize}
 % \item Ma société a défini une couleur d'entreprise et le service des
@@ -315,51 +315,59 @@
 % Que faire alors ?\\
 % (Réponse : utiliser tout simplement les définitions \Model{hsb}, \XC{} fera
 % les calculs nécessaires.)
-% \item Qu'affiche le mélange de 40\% de \Color{green} et de 60\% de 
-% \Color{yellow} ?\\
+% \item Qu'affiche le mélange de 40\% de \Color{vert}{green} et de 60\%
+% de \Color{jaune}{yellow} ?\\
 % (Réponse : 40\% \testclr{green} $+$ 60\% \testclr{yellow} $=$ 
 % \testclr{green!40!yellow}, soit |\color{green!40!yellow}|)
 % \item Et quelle est l'aspect de sa couleur complémentaire ?\\
 % (Réponse: \testclr{-green!40!yellow}, accessible via 
 % |\color{-green!40!yellow}|)
 % \item Maintenant, je souhaite mélanger trois mesures de la dernière couleur
-% avec deux mesures de sa complémentaire et une mesure de \Color{rouge}.
+% avec deux mesures de sa complémentaire et une mesure de \Color{rouge}{red}.
 % Qu'est-ce que cela donne ?\\
 % (Réponse: $3\times$ \testclr{-green!40!yellow} $+ 2\times$ 
 % \testclr{green!40!yellow} $+ 1\times$ \testclr{red} $=$ 
 % \testclr{rgb:-green!40!yellow,3;green!40!yellow,2;red,1}, cette couleur
-% étant accessible via 
+% étant accessible avec
 % |\color{rgb:-green!40!yellow,3;green!40!yellow,2;red,1}|)
 % \item Je sais qu'un rayonnement de longueur d'onde de 485nm appartient au
 % spectre visible. Mais quelle couleur a-t-il ?\\
 % (Réponse : approximativement \testclr[wave]{485}, via |\color[wave]{485}|)
 % \item Mon service des impressions souhaite que toutes les définitions de
-% couleur dans mon document soit basculées en modèle \Model{cmyk} (CMJN en
-% français).
+% couleur dans mon document soit basculées en modèle \Model{cmyk}\footnote{NdT :
+% CMJN en français.}.
 % Comment puis-je faire ces calculs efficacement ?\\
 % (Réponse : |\usepackage[cmyk]{xcolor}| ou |\selectcolormodel{cmyk}|)
 % \item J'ai un tableau de 50 lignes.
 % Comment puis-je obtenir des lignes de tableau avec deux couleurs alternées
-% (A pour les lignes paires et B pour les lignes impaires) sans recours à la
+% (A pour les lignes paires et B pour les lignes impaires) sans recourir à la
 % copie de 50 commandes |\rowcolor| ? Ce motif alterné devrait d'ailleurs
 % commencer à partir de la troisième ligne.\\
 % (Réponse: \emph{grosso modo} |\rowcolors{3}{CouleurA}{CouleurB}|)
 % \end{itemize}
 % Ceci répresente quelques uns des problème résolus par l'\XCP.
-% Son objectif peut être résumé en la conservation des caractéristiques de \LC, tout en apportant des fonctionnalités additionnelles et de la flexibilité avec des interfaces simples d'utilisation (avec un peu de chance).
+% Son objectif peut être résumé en la conservation des caractéristiques de \LC,
+% tout en apportant des fonctionnalités additionnelles et de la flexibilité
+% avec des interfaces simples d'utilisation (avec un peu de chance).
 %
 %
 %
-% \subsection{Teintes, nuances, tons et couleurs complémentaires}
+% \subsection{Terminologie des couleurs pour ce document}
 %
-% Sur la base de \cite{smith} nous définissons les termes suivants :
+% Sur la base de \cite{smith} nous définissons les termes 
+% suivants\footnote{N.D.T. : ces termes ne sont pas l'exacte traduction des
+% termes anglais car les notions de teinte (\emph{tint}), nuance (\emph{shade})
+% et ton (\emph{tone}) utilisées par l'auteur sont bien trop polysémiques en
+% français. Nous conservons ici juste la notion de \og teinte \fg{} à laquelle
+% nous adjoignons des adjectifs bien moins sujets à discussion, en évitant ici
+% les adjectifs \og rompu \fg{}, \og rabattu \fg{} ou \og désaturé \fg{}.} :
 % \begin{itemize}
-% \item \textbf{\Index{teinte}}: une couleur à laquelle est ajoutée du 
-% \Color{blanc} (white) ;
-% \item \textbf{\Index{nuance}}: une couleur à laquelle est ajoutée du 
-% \Color{noir} (black) ;
-% \item \textbf{\Index{ton}}: une couleur à laquelle est ajoutée du 
-% \Color{gris} (gray).
+% \item \textbf{\Index{couleur éclaircie}} : une couleur à laquelle est ajoutée
+% du \Color{blanc}{white} ;
+% \item \textbf{\Index{couleur assombrie}} : une couleur à laquelle est ajoutée
+% du \Color{noir}{black} ;
+% \item \textbf{\Index{couleur assourdie}} : une couleur à laquelle est ajoutée
+% du \Color{gris}{gray}.
 % \end{itemize}
 % Ce sont des cas spéciaux d'une fonction plus générale
 % $\mix(C,C',p)$ qui construit une nouvelle couleur, composée de $p$ mesures
@@ -370,12 +378,12 @@
 % \shade(C,p) &:= \mix(C,|black|,p)\\
 % \tone(C,p) &:= \mix(C,|gray|,p)
 % \end{align}
-% où |white|, |black|, and |gray| sont des constantes dépendantes des modèles,
+% où |white|, |black|, et |gray| sont des constantes dépendantes des modèles,
 % comme présentées en table \vref{tab.const}.
 % Par la suite, nous définissons le terme :
 % \begin{itemize}
-% \item \textbf{complémentaire}: une couleur $C^*$ qui génère du \Color{blanc}
-% si elle est mélangée avec la couleur d'origine $C$,
+% \item \textbf{couleur complémentaire}: une couleur $C^*$ qui génère du 
+% \Color{blanc}{white} si elle est mélangée avec la couleur d'origine $C$,
 % \end{itemize}
 % sachant qu'il existe également différents concepts de complémentarité (par
 % exemple des couleurs opposées sur les \emph{cercles chromatiques}).
@@ -399,23 +407,23 @@
 % base et de règles permettant de construire d'autres couleurs à partir des
 % couleurs de base. 
 % Par exemple, un large ensemble de couleurs peut être construit par
-% combinaison linéaire des couleurs de base \Color{rouge}, \Color{vert} et
-% \Color{bleu}.
+% combinaison linéaire des couleurs de base \Color{rouge}{red}, 
+% \Color{vert}{green} et \Color{bleu}{blue}.
 % En contrepartie, un \Index{ton direct} ne peut souvent être 
 % qu'\emph{approximé} par des valeurs de paramètres dans les modèles comme
 % \Model{cmyk} ou \Model{rgb}; les couleurs originales se mélangent
 % physiquement et dépendent aussi du type de papier retenu. 
-% Enfin, il existe certaines couleurs comme l'\Color{or} ou l'\Color{argent}
-% qui sont difficilement reproductibles par des modèles paramétriques avec 
-% des encres standard ou des imprimantes laser.
+% Enfin, il existe certaines couleurs comme l'\Color{or}{gold} ou 
+% l'\Color{argent}{silver} qui sont difficilement reproductibles par des
+% modèles paramétriques avec des encres standards ou des imprimantes laser.
 %
 %
 %
 % \subsection{Cercles chromatiques et accords de couleurs}\label{sec.harmony}
 %
 % Il s'est développé une longue histoire du placement de couleurs 
-% (\trad{teintes}) sur des cercles pour discuter de problèmes théoriques ou
-% pratiques sur les couleurs (par exemple \People{Isaac}{Newton}, 
+% (les teintes saturées) sur des cercles pour discuter de problèmes théoriques
+% ou pratiques sur les couleurs (par exemple \People{Isaac}{Newton}, 
 % \People{Johann Wolfgang von}{Goethe}).
 % Une explication de ceci pourrait être que le cercle lui-même est un outil
 % tout naturel pour illustrer des relations communes aussi bien que des
@@ -423,20 +431,21 @@
 %
 % De nos jours, une certaine confusion portant sur les notions associées aux
 % couleurs existe, dans la mesure où deux grands domaines qui y sont liés ---
-% l'art et le design graphique d'une part, la théorie scientifique de couleur
-% de l'autre --- tendent à utiliser les même mots pour décrire les propriétés
-% de la couleur bien qu'en décrivant parfois des faits très différents !
-% Ainsi, l'apparence des cercles chromatiques diffère autant que la
-% signification de concepts comme couleurs `primaires' ou `complémentaires'. 
+% l'art et le design graphique d'une part, la théorie scientifique de la
+% couleur de l'autre --- tendent à utiliser des termes identiques pour décrire 
+% des propriétés de la couleur bien qu'en décrivant parfois des faits très
+% différents ! Ainsi, l'apparence des cercles chromatiques diffère autant que
+% la signification de concepts comme couleurs \og primaires \fg{} ou
+% \og complémentaires \fg{}. 
 %
 %
 % \paragraph{Construction d'un cercle chromatique typique}
 % Tout d'abord, trois \emph{couleurs primaires} sont placées sur le cercle à 
 % 0\Circ, 120\Circ, 240\Circ (les artistes choisissent souvent le triplet
-% \Color{rouge}, \Color{jaune}, \Color{bleu}, tandis que les scientifiques
-% spécialistes de la couleur préféreront le triplet \Color{rouge}, 
-% \Color{vert}, \Color{bleu}).
-% Ensuite, les trois \emph{coulerus secondaires} sont placées à 60\Circ, 
+% \Color{rouge}{red}, \Color{jaune}{yellow}, \Color{bleu}{blue}, tandis que les
+% scientifiques spécialistes de la couleur préféreront le triplet 
+% \Color{rouge}{red}, \Color{vert}{green}, \Color{bleu}{blue}.
+% Ensuite, les trois \emph{couleurs secondaires} sont placées à 60\Circ, 
 % 180\Circ, 300\Circ.
 % Puis, six \emph{couleurs tertiaires} pourront être placées au milieu de
 % chaque arc (30\Circ, 90\Circ, \dots).
@@ -449,9 +458,9 @@
 % \begin{itemize}
 % \item les \textbf{couleurs complémentaires} sont situées à une distance 
 % de 180\Circ{} sur le cercle ;
-% \item les \trad{\textbf{}} correspondent à trois couleurs séparées par 
+% \item les \textbf{triades} correspondent à trois couleurs séparées par 
 % 120\Circ ;
-% \item les \trad{\textbf{}} correspondent à quatre couleurs séparées par 
+% \item les \textbf{tétrades} correspondent à quatre couleurs séparées par 
 % 90\Circ.
 % \end{itemize}
 % Nous supposons maintenant que le cercle est décomposé en $2n$ secteurs de
@@ -464,10 +473,10 @@
 % quatre voisines, caractérisées par les positions  
 % $\pm\frac{1}{2n}\cdot360^\circ$ and $\pm\frac{2}{2n}\cdot360^\circ$.
 % \end{itemize}
-% Vu les méthodes utilisées pour générer des accords de couleur, nous 
+% Compte tenu des méthodes utilisées pour générer des accords de couleur, nous 
 % concluons que les résultats dépendent fortement de la manière dont nous
-% construisons le cercle.
-% Qui plus est, le choix de $n$ affectera également le résultat visuel.
+% construisons le cercle !
+% Qui plus est, le choix de $n$ affecte le résultat visuel.
 % Des exemples sont donnés en figure \vref{fig.harmony}.
 %
 %
@@ -481,8 +490,9 @@
 %
 % Il faut tout d'abord placer \File{xcolor.sty} et tous les fichiers dans un
 % répertoire où (pdf)\LaTeX{} les trouvera.
-% Un emplacement classique selon le \trad{\emph{\TeX\ Directory Structure}
-% (TDS)} serait le répertoire |texmf/tex/latex/xcolor|, où |texmf| est à
+% Un emplacement classique selon la structure des répertoires de 
+% \TeX\footnote{N.D.T. : \emph{\TeX\ Directory Structure} (TDS)}
+% serait le répertoire |texmf/tex/latex/xcolor|, où |texmf| est à
 % remplacer par le répertoire principal de votre installation de \TeX\.
 % De plus, il faut placer \File{xcolor.pro} à un endroit où \Program{dvips} 
 % le trouvera, typiquement |texmf/dvips/xcolor|.
@@ -618,7 +628,7 @@
 % couleur non définie est utilisée (comportement similaire à celui de 
 % l'\LCP\ originale).\\
 % \Option{hideerrors}& Affiche seulement une alerte en cas d'utilisation d'une
-% couleur non définie et remplace cette couleur par du \Color{noir}.\\
+% couleur non définie et remplace cette couleur par du \Color{noir}{black}.\\
 % \hline\hline
 % \multicolumn2{c}{\footnotemark[1]\,Voir section \vref{sec.additionalcolors}.
 % \quad \footnotemark[2]\,Voir section \vref{sec.fbox}.}\\
@@ -698,8 +708,8 @@
 % commande comme 
 % \og|latex \def\xcolorcmd{\colorlet{black}{red}}\input{a}|\fg{}
 % saisie en invite de commande génère un fichier |a.dvi| avec toutes les
-% occurences de \Color{noir} remplacées par du \Color{rouge}, sans besoin de
-% modifier le fichier source lui-même.
+% occurences de \Color{noir}{black} remplacées par du \Color{rouge}{red}, sans
+% besoin de modifier le fichier source lui-même.
 % (La ligne de commande peut varier selon les systèmes d'exploitation et les
 % distributions de \TeX{}).
 %
@@ -759,10 +769,10 @@
 % \DescribeMacro\rangetHsb
 % qui indique que $\emph{hue\Circ}=x_1$ dans \Model{tHsb} signifie 
 % $\emph{hue\Circ}=y_1$ dans \Model{Hsb}, etc.
-% Par exemple, le \Color{jaune} est placé à 60\Circ{} dans le cercle 
-% \Model{Hsb} (le \Color{rouge} étant à 0\Circ); cependant dans la plus
-% plupart des cercles chromatiques servant aux artistes, le \Color{jaune} est
-% à 120\Circ.
+% Par exemple, le \Color{jaune}{yellow} est placé à 60\Circ{} dans le cercle 
+% \Model{Hsb} (le \Color{rouge}{red} étant à 0\Circ); cependant dans la plus
+% plupart des cercles chromatiques servant aux artistes, le 
+% \Color{jaune}{yellow} est à 120\Circ.
 % Ainsi, une entrée \og |120,60| \fg{} ferait sens si nous avions décidé de
 % répliquer un cercle chromatique d'artiste par le biais de \Model{tHsb}.
 % Voir la section \vref{sec.tHsb2Hsb} pour la formule exacte de la
@@ -1236,12 +1246,12 @@
 % \end{gather*}
 % Ensuite, la somme de tous ces vecteurs est calculée.
 %
-% Exemple: mélanger 4 parts de \testclr{red} \Color{red}, 2~parts de 
-% \testclr{green} \Color{green}, et une part de \testclr{yellow} 
-% \Color{yellow} permet d'obtenir \testclr{rgb:red,4;green,2;yellow,1} par le
-% biais de |\color{rgb:red,4;green,2;yellow,1}|.
-% Essayer le même mélange en mettant $-1$ part de \Color{yellow} au lieu d'une
-% fait obtenir \testclr{rgb:red,4;green,2;yellow,-1}.
+% Exemple: mélanger 4 parts de \testclr{red} \Color{red}{rouge}, 2~parts de 
+% \testclr{green} \Color{vert}{green}, et une part de \testclr{yellow} 
+% \Color{jaune}{yellow} permet d'obtenir \testclr{rgb:red,4;green,2;yellow,1}
+% par le biais de |\color{rgb:red,4;green,2;yellow,1}|.
+% Essayer le même mélange en mettant $-1$ part de \Color{jaune}{yellow} au lieu
+% d'une fait obtenir \testclr{rgb:red,4;green,2;yellow,-1}.
 % Notez que ce mécanisme peut être aussi utilisé pour afficher une (expression
 % de) couleur individuelle dans un certain modèle colorimétrique: |\color{rgb:yellow,1}| permet une telle conversion.
 % La forme générale
@@ -1347,15 +1357,15 @@
 % Pour obtenir les 752 noms de couleur de \File{rgb.txt} sans trop d'effort :
 % \begin{itemize}
 % \item chargez \Option{x11names} ainsi que \Option{svgnames} ;
-% \item mettez les initiales en majuscule et supprimez les espaces : \Color[-]{DarkSlateGray} au lieu de \Color[-]{dark slate gray} par exemple ;
+% \item mettez les initiales en majuscule et supprimez les espaces : \Color[-]{DarkSlateGray}{} au lieu de \Color[-]{dark slate gray}{} par exemple ;
 % \item les noms \Index{X11} sans les nombres sont identiques aux couleurs
 %  \Index{SVG} sauf dans 5~cas :
-%  utilisez \Color{Gray0}, \Color{Grey0}, \Color{Green0}, \Color{Maroon0},
-%  \Color{Purple0} au lieu de \Color[-]{Gray}, \Color[-]{Grey}, 
-%  \Color[-]{Green}, \Color[-]{Maroon}, \Color[-]{Purple} pour obtenir les
+%  utilisez \Color{Gray0}{}, \Color{Grey0}{}, \Color{Green0}{}, \Color{Maroon0}{},
+%  \Color{Purple0}{} au lieu de \Color[-]{Gray}{}, \Color[-]{Grey}{}, 
+%  \Color[-]{Green}{}, \Color[-]{Maroon}{}, \Color[-]{Purple}{} pour obtenir les
 %  couleurs \Index{X11} d'origine ;
 % \item pour $N=0,1,\dots,100$, utilisez `|[gray]{|$N/100$|}|' ou 
-% `|black!|$100-N$' au lieu de \Color[-]{grayN} ou \Color[-]{greyN}.
+% `|black!|$100-N$' au lieu de \Color[-]{grayN}{} ou \Color[-]{greyN}{}.
 % \end{itemize}
 % \end{itemize}
 %
@@ -1423,8 +1433,8 @@
 %  En contrepartie, ceci impose à l'utilisateur de prendre soin de la 
 %  redéfinition des noms de couleur.\\
 %  Exemple: |\colorlet{foo}{red}\colorlet{foo}{blue}\color{foo}| va basculer
-%  la couleur à \Color{blue} dans la logique usuelle de \XC, bien que le 
-%  fichier \File{.ps} va afficher \Color{red} (à moins que \Color{foo} n'ait
+%  la couleur à \Color{bleu}{blue} dans la logique usuelle de \XC, bien que le 
+%  fichier \File{.ps} va afficher \Color{rouge}{red} (à moins que foo n'ait
 %  été défini différemment avant).\\
 %  Il faut souligner que ce mécanisme est employé uniquement avec l'option
 %  \Option{prologue}. 
@@ -1478,7 +1488,7 @@
 % \item |\definecolor{myblack}{named}{Black}|,
 % \end{itemize}
 % où la dernière commande est équivalente à |\colorlet{myblack}{Black}| (voir
-% ci-dessous); la deuxième commande définit \Color{red} dans le modèle 
+% ci-dessous); la deuxième commande définit \Color{rouge}{red} dans le modèle 
 % \Model{rgb} ou \Model{cmyk} selon la paramètre actuel du 
 % \emph{modèle cible}, tandis que la troisième convertit la couleur au modèle
 % \Model{hsb} avant d'être enregistré. Notez qu'il existe une version spéciale
@@ -1513,7 +1523,7 @@
 % \DescribeMacro\definecolorset
 %   \oarg{type}\marg{liste-modèle}\marg{tête}\marg{queue}\marg{ensemble-spéc}\\
 % Cette commande facilite la construction d'un \emph{\Index{ensemble de
-% couleur}}, autrement dit un ensemble (potentiellement vaste) de couleurs
+% couleurs}}, autrement dit un ensemble (potentiellement vaste) de couleurs
 % individuelles ayant en commun une même \Meta{liste-modèle} et un même 
 % \Meta{type}.
 % Ici, \Meta{ensemble-spéc} = 
@@ -1527,77 +1537,123 @@
 % Par exemple,
 % \begin{itemize}
 % \item |\definecolorset{rgb}{}{}{red,1,0,0;green,0,1,0;blue,0,0,1}|\\
-% peut être utilisé pour définir les couleurs de base \Color{red}, 
-% \Color{green}, et \Color{blue};\footnote{En fait, \XC{} utilise une variante
+% peut être utilisé pour définir les couleurs de base \Color{rouge}{red}, 
+% \Color{vert}{green}, et \Color{bleu}{blue};\footnote{En fait, \XC{} utilise une variante
 % plus complexe pour fournir les couleurs de base pour les différents modèles
 % sous-jacents (voir le code source pour observer la commande intégrale):\\
 % \cs{definecolorset\string{rgb/hsb/cmyk/gray\string}\string{\string}\string{\string}\string{red,1,0,0/0,1,1/0,1,1,0/.3;green,...\string}}.}
 % \item |\definecolorset{rgb}{x}{10}{red,1,0,0;green,0,1,0;blue,0,0,1}|\\
-% définit les couleurs \Color[-]{xred10}, \Color[-]{xgreen10} et 
-% \Color[-]{xblue10}.
+% définit les couleurs \Color[-]{xred10}{}, \Color[-]{xgreen10}{} et 
+% \Color[-]{xblue10}{}.
 % \end{itemize}
 %
 % \DescribeMacro\providecolorset
 %   \oarg{type}\marg{liste-modèle}\marg{tête}\marg{queue}\marg{ensemble-spéc}\\
-% Cette commande est similaire à |\definecolorset| mais est basée sur 
-% |\providecolor|; ainsi les couleurs individuelles ne sont définies que si
-% elles n'existent pas déjà.
+% Cette commande, similaire à |\definecolorset|, se base sur |\providecolor|;
+% ainsi les couleurs individuelles ne sont définies que si elles n'existent pas
+% déjà.
 %
 %
 % \subsubsection{Définitions immédiates et différées}\label{sec.deferred}
 %
-% \tradini
-% Traditionally, the definition of a color as described above leads to the immediate construction of a command that holds at least the information needed by the driver to display the desired color.
-% Thus, defining 300 colors, e.g., by loading a huge set of predefined colors, will result in 300 new commands, although most of them --- except for the purpose of displaying lists of colors --- will hardly ever be used within a document.
-% Along the development of computer memory --- increasing in size, decreasing in price --- recent \TeX{} implementations have increased their provisions for internal memory stacks that are available for strings, control sequences, etc.
-% However, as memory continues to be finite, it may still be useful (or occasionally necessary) to have a method at hand that allows to reduce memory requirements a bit.
-% This is the point where \emph{deferred color definition} comes into play.
-% Its principle is simple: for every definition of this type (e.g., via |\preparecolor|), all necessary information is saved on a specific global \emph{\Index{definition stack}}, where it can be taken from later (e.g., via |\definecolors|) in order to construct the actual color command.
+% Traditionnellement, la définition d'une couleur comme décrit ci-dessus
+% conduit à la construction immédiate d'une commande contenant au moins 
+% l'information nécessaire au pilote pour afficher la couleur souhaitée.
+% Ainsi, définir par exemple 300 couleurs en chargeant un large ensemble de
+% couleurs prédéfinies va créer 300 nouvelles commandes, bien que la plupart
+% d'entre elles --- sauf dans des documents listant délibérément les couleurs
+% --- ne soient pas utilisées.
+% Avec le développement de la mémoire des ordinateurs --- augmentation en
+% taille, diminution du prix --- les récentes implémentations de \TeX{} ont
+% augmenté leur capacité de mémoire interne disponible pour les chaînes,
+% commandes, etc. Cependant, la mémoire restant finie, il peut être toujours
+% utile (ou occasionnellement nécessaire) de disposer d'une méthode permettant
+% de réduire un peu les besoins de mémoire.
+% C'est ici qu'intervient la \emph{définition de couleur différée}.
+% Son principe est simple : pour chaque définition de ce type (par exemple 
+% avec |\preparecolor|), tout l'information nécessaire est sauvée dans une 
+% \emph{pile de définitions} globale dédiée où elle peut être récupérée par la
+% suite (par exemple avec |\definecolors|) afin de construire la commande
+% souhaitée.
 %
-% Note that the following commands are only to be used in the document preamble, since the definition stack of colors for deferred definitions is deleted at the begin of the document body --- in order to save memory.
+% Notez que les commandes suivantes doivent être utilisées uniquement dans le
+% préambule du document car la pile de définitions de couleur pour les
+% définitions différées est supprimée au début du corps du document --- afin 
+% d'économiser de la mémoire.
 %
 % \medskip
-%
+% 
 % \DescribeMacro\preparecolor
-%   \oarg{type}\marg{name}\marg{model-list}\marg{spec-list}\\
-% Similar to |\definecolor|, but the color \Meta{name} is not yet being defined: the arguments \Meta{model-list} and \Meta{spec-list} are evaluated immediately, then all necessary parameters (i.e.~\Meta{type}, \Meta{name}, \Meta{model}, \Meta{spec}) are put onto the \emph{\Index{definition stack}} for later usage.
+%   \oarg{type}\marg{nom}\marg{liste-modèle}\marg{liste-spéc}\\
+% Similaire à |\definecolor|, cette commande ne définit pas cependant la 
+% couleur \Meta{nom} : les arguments \Meta{liste-modèle} et \Meta{list-spéc}
+% sont évalués immédiatement puis tous les paramètres nécessaires (\Meta{type},
+% \Meta{nom}, \Meta{modèle} et \Meta{spéc}) sont mis sur la \emph{\Index{pile
+% de définitions}} pour un usage ultérieur.
 %
 % \medskip
 %
 % \DescribeMacro\preparecolorset
-%   \oarg{type}\marg{model-list}\marg{head}\marg{tail}\marg{set spec}
+%   \oarg{type}\marg{liste-modèle}\marg{tête}\marg{queue}\marg{ensemble-spéc}
 % \DescribeMacro\ifdefinecolors\\
-% Similar to |\definecolorset|, but depending on the |\ifdefinecolors| switch: if set to `true', to each element of the set the command |\definecolor| (i.e.~immediate definition) is applied; if set to `false', |\preparecolor| (i.e.~deferred definition) is applied.
-% For example, the package option \Option{svgnames} performs something like |\definecolorstrue\preparecolorset|, whereas \Option{svgnames*} acts like |\definecolorsfalse\preparecolorset|.
-% Both options set |\definecolorstrue| at the end, in order to have a proper starting point for other color sets.
+% Cette commande est similaire à |\definecolorset| mais dépend de la bascule
+% |\ifdefinecolors| : si elle vaut \og true \fg{}, la commande |\definecolor|
+% est appliquée à chaque élément de l'ensemble (ce qui revient à une définition
+% immédiate); sinon la commande |\preparecolor| est appliquée (ce qui donne une
+% définition différée).
+% Par exemple, l'option d'extension \Option{svgnames} réalise quelque chose
+% comme |\definecolorstrue\preparecolorset|, tandis que \Option{svgnames*} agit
+% comme |\definecolorsfalse\preparecolorset|.
+% Les deux options imposent à leur fin |\definecolorstrue|, de façon à ce que
+% les autres commandes disposent d'une situation initiale propre.
 %
 % \medskip
 %
 % \DescribeMacro\DefineNamedColor
-%   \marg{type}\marg{name}\marg{model-list}\marg{spec-list}
-% is provided mainly for compatibility reasons, especially to support the predefined colors in \File{dvipsnam.def}.
-% It is the same as \Meta{cmd}\oarg{type}\marg{name}\marg{model}\marg{spec}, where \Meta{cmd} is either |\definecolor| or |\preparecolor|, depending on the state of |\ifdefinecolors|.
-% Note that \LC's restriction to allow |\DefineNamedColor| only in the document preamble has been abolished in \XC.
+%   \marg{type}\marg{nom}\marg{liste-modèle}\marg{liste-spéc}
+% Cette commande est principalement fournie pour des raisons de compatibilité,
+% particulièrement pour permettre le support de couleurs prédéfinies dans
+% \File{dvipsnam.def}.
+% Elle est équivalente à 
+% \Meta{commande}\oarg{type}\marg{nom}\marg{modèle}\marg{spéc}, où 
+% \Meta{commande} est soit |\definecolor| soit |\preparecolor|, selon l'état
+% de |\ifdefinecolors|.
+% Notez que les restrictions de \LC pour l'utilisation de |\DefineNamedColor|
+% dans le seul préambule du document ont été abolies dans \XC.
 %
 % \medskip
 %
 % \DescribeMacro\definecolors
-%   \marg{id-list}\\
-% Recall that \Meta{id-list} has the form \Meta[1]{ext id}|,...,|\Meta[l]{ext id} where each \Meta[\lambda]{ext id} is either an identifier \Meta[\lambda]{id} or an assignment \Meta[\lambda']{id}|=|\Meta[\lambda]{id}.
-% We consider the first case to be an abbreviation for \Meta[\lambda]{id}|=|\Meta[\lambda]{id} and describe the general case:
-% the \Index{definition stack} is searched for the name \Meta[\lambda]{id} and its corresponding color parameters; if there is no match, nothing happens; if the name \Meta[\lambda]{id} is on the stack and its color parameters are \Meta[\lambda]{type}, \Meta[\lambda]{model}, and \Meta[\lambda]{spec}, then the command |\definecolor[|\Meta[\lambda]{type}|]{|\Meta[\lambda']{id}|}{|\Meta[\lambda]{model}|}{|\Meta[\lambda]{spec}|}| is executed.
-% Thus, the user may control by which names the \emph{prepared} colors are to be used in the document.
-% Note that the entry \Meta[\lambda]{id} is not removed from the stack, such that it can be used several times (even within the same |\definecolors| command).
+%   \marg{list-id}\\
+% Il faut ici se rappeler que \Meta{liste-id} est de la forme 
+% \Meta[1]{id-étendu}|,...,|\Meta[l]{id-étendu} où chaque 
+% \Meta[\lambda]{id-étendu} est soit un identifiant \Meta[\lambda]{id} ou une
+% équivalence \Meta[\lambda']{id}|=|\Meta[\lambda]{id}.
+% Le premier cas est considéré comme un raccourci pour 
+% \Meta[\lambda]{id}|=|\Meta[\lambda]{id}, ce qui amène à la description
+% générale suivante : la \Index{pile de définitions} est parcourue pour trouver
+% le nom \Meta[\lambda]{id} et ses paramètres de couleur associés ; s'il n'y a
+% pas de correspondance, rien ne se passe ; si le nom \Meta[\lambda]{id} est
+% dans la pile et que ses paramètres de couleur sont \Meta[\lambda]{type}, 
+% \Meta[\lambda]{modèle}, et \Meta[\lambda]{spec}, alors la commande 
+% |\definecolor[|\Meta[\lambda]{type}|]{|\Meta[\lambda']{id}|}{|\Meta[\lambda]{modèle}|}{|\Meta[\lambda]{spéc}|}| est exécutée.
+% Ainsi, l'utilisateur peut contrôler sous quels noms les couleurs 
+% \emph{préparées} peuvent être appelées dans le document.
+% Notez que l'entrée \Meta[\lambda]{id} n'est pas retranchée de la pile de 
+% façon à ce qu'elle puisse être utilisée plusieurs fois (y compris dans une
+% même commande |\definecolors|).
 %
 % \medskip
 %
 % \DescribeMacro\providecolors
-%   \marg{id-list}\\
-% Similar to |\definecolors|, but based on |\providecolor|, thus the individual colors are defined only if they do not exist already.
+%   \marg{list-id}\\
+% Similaire à |\definecolors|, cette commande se base sur |\providecolor| ce
+% qui fait que les couleurs sont définies si elles n'existent pas déjà.
 %
 %
-% \subsubsection{Global color definitions}
+% \subsubsection{Définitions de couleur globales}
 %
+% \tradini
 % \DescribeMacro\ifglobalcolors
 % By default, definitions via |\definecolor|, |\providecolor|, \dots{} are available only within the current group.
 % By setting |\globalcolorstrue|, all such definitions are being made globally available --- until the current group ends.\footnote{The switch may also be set in the preamble in order to control the whole document.}
@@ -1612,16 +1668,16 @@
 %
 % Here is the list of user-level color commands, as known from the \LCP, but with an extended syntax for the colors, allowing for expressions etc.:\\
 % \DescribeMacro\color\marg{color}\\
-% \oarg{model-list}\marg{spec-list}\\
+% \oarg{liste-modèle}\marg{liste-spéc}\\
 % Switches to the color given either by name/expression or by model/specification.
 % This color will stay in effect until the end of the current \TeX\ group.\\
 % \DescribeMacro\textcolor\marg{color}\marg{text}\\
-% \oarg{model-list}\marg{spec-list}\marg{text}\\
+% \oarg{liste-modèle}\marg{liste-spéc}\marg{text}\\
 % are just alternative syntax for |\color|, in which the groups are added implicitly.
 % Thus \meta{text} appears in the specified color, but then the color reverts to its previous value.
 % Additionally, it calls |\leavevmode| to ensure the start of horizontal mode.\\
 % \DescribeMacro\pagecolor\marg{color}\\
-% \oarg{model-list}\marg{spec-list}\\
+% \oarg{liste-modèle}\marg{liste-spéc}\\
 % Specifies the background color for the current, and all following, pages.
 % It is a global declaration which does not respect \TeX\ groups.
 %
@@ -1636,12 +1692,12 @@
 % \subsubsection{Colored boxes}\label{sec.fbox}
 %
 % \DescribeMacro\colorbox\marg{color}\marg{text}\\
-% \oarg{model-list}\marg{spec-list}\marg{text}\\
+% \oarg{liste-modèle}\marg{liste-spéc}\marg{text}\\
 % Takes the same argument forms as |\textcolor|, but the color specifies the \emph{background} color of the box.\\
 % \DescribeMacro\fcolorbox\marg{frame color}\marg{background color}\marg{text}\\
-% \oarg{model-list}\marg{frame spec-list}\marg{background spec-list}\marg{text}\\
-% \oarg{fr.~model-list}\marg{fr.~spec-list}\oarg{backgr.~model-list}\marg{backgr.~spec-list}\marg{text}\\
-% \marg{frame color}\oarg{background model-list}\marg{background spec-list}\marg{text}\\
+% \oarg{liste-modèle}\marg{frame liste-spéc}\marg{background liste-spéc}\marg{text}\\
+% \oarg{fr.~liste-modèle}\marg{fr.~liste-spéc}\oarg{backgr.~liste-modèle}\marg{backgr.~liste-spéc}\marg{text}\\
+% \marg{frame color}\oarg{background liste-modèle}\marg{background liste-spéc}\marg{text}\\
 % Puts a frame of the first color around a box with a background specified by the second color.
 % If only the first optional argument is given, it specifies the color model for both colors.
 % Besides the possibility to specify color \emph{expressions} as arguments, |\fcolorbox| now offers more flexibility for its arguments than the \LC{} version:
@@ -1690,7 +1746,7 @@
 %
 % \DescribeMacro\testcolor
 %   \marg{color}\\
-%   \oarg{model-list}\marg{spec-list}\\
+%   \oarg{liste-modèle}\marg{liste-spéc}\\
 % Each |\testcolor| command generates a table row, containing a display sample plus the respective parameters for each of the models.
 % If the column-model matches the model of the color in question, its parameters are underlined.
 % Note that this command is only available within the |testcolors| environment.
@@ -1729,16 +1785,16 @@
 % \subsection{Color masks and separation}
 %
 % The purpose of \emph{color separation} is to represent all colors that appear in the document as a combination of a finite subset of base colors and their tints.
-% Most prominent is \Model{cmyk} separation, where the base colors are \Color{cyan}, \Color{magenta}, \Color{yellow}, and \Color{black}, as required by the printers.
+% Most prominent is \Model{cmyk} separation, where the base colors are \Color{}{cyan}, \Color{}{magenta}, \Color{}{yellow}, and \Color{}{black}, as required by the printers.
 % This can be done by choosing the package option \Option{cmyk}, such that all colors will be converted in this model, and post-processing the output file.
 % We describe now another --- and more general --- solution: \emph{color masking}.
 % How does it work?
 % Color masking is based on a specified color model \Meta{m-model} and a parameter vector \Meta{m-spec}.
 % Whenever a color is to be displayed in the document, it will first be converted to \Meta{m-model}, afterwards each component of the resulting color vector will be multiplied by the corresponding component of \Meta{m-spec}.
 % For example, let's assume that \Meta{m-model} equals |cmyk|, and \Meta{m-spec} equals $(\mu_c,\mu_m,\mu_y,\mu_k)$.
-% Then an arbitrary color \Color{foo} will be transformed according to
+% Then an arbitrary color foo will be transformed according to
 % \begin{gather}
-% \Color{foo} \mapsto (c,m,y,k) \mapsto (\mu_c\cdot c,\mu_m\cdot m,\mu_y\cdot y,\mu_k\cdot k)
+% foo \mapsto (c,m,y,k) \mapsto (\mu_c\cdot c,\mu_m\cdot m,\mu_y\cdot y,\mu_k\cdot k)
 % \end{gather}
 % Obviously, color separation is a special case of masking by the vectors $(1,0,0,0)$, $(0,1,0,0)$, etc.
 % An interesting application is to shade or tint all colors by masking them with $(x,x,x)$ in the \Model{rgb} or \Model{cmy} model, see the last two rows in figure \vref{fig.mask}.
@@ -1758,7 +1814,7 @@
 % The final remark of the color blending section applies here similarly.
 %
 % Now it is easy to separate a complete document without touching the source code:
-% |latex| |\def\xcolorcmd{\maskcolors[cmyk]{cyan}}\input{a}| will do the \Color{cyan} part of the job for |a.tex|.
+% |latex| |\def\xcolorcmd{\maskcolors[cmyk]{cyan}}\input{a}| will do the \Color{}{cyan} part of the job for |a.tex|.
 %
 % \DescribeMacro\colormask
 % Caution: \XC{} has no idea about colors in files that are included via the command |\includegraphics|, e.g., images of type \File{.eps}, \File{.pdf}, \File{.jpg}, or \File{.png}.
@@ -1773,7 +1829,7 @@
 %
 %
 %
-% \subsection{Color series}\label{sec.series}
+% \subsection{Séries de couleurs}\label{sec.series}
 %
 % Automatic coloring may be useful in graphics or chart applications, where a --- potentially large and unspecified --- number of colors are needed, and the user does not want or is not able to specify each individual color.
 % Therefore, we introduce the term \emph{color series}, which consists of a base color and a scheme, how the next color is being constructed from the current color.
@@ -1782,7 +1838,9 @@
 % definition of a color series (usually once in the document), initialisation of the series (potentially several times), and application --- with or without stepping --- of the current color of the series (potentially many times).
 %
 %
-% \subsubsection{Definition of a color series}
+% \tradfin
+% \subsubsection{Définition d'une série de couleurs}
+% \tradini
 %
 % \DescribeMacro\definecolorseries
 %   \marg{name}\marg{core model}\marg{method}\oarg{b-model}\marg{b-spec}\oarg{s-model}\marg{s-spec}\\
@@ -1832,7 +1890,9 @@
 % Of course, similar to \TeX's |\let| primitive, the \emph{current} definition of the current color at the time of execution is used, there is no relation to current colors in any later stage of the document.
 %
 %
-% \subsubsection{Initialisation of a color series}
+% \tradfin
+% \subsubsection{Initialisation d'une série de couleurs}
+% \tradini
 %
 % \DescribeMacro\resetcolorseries
 %   \oarg{div}\marg{name}\\
@@ -1844,7 +1904,9 @@
 % The optional argument is ignored in case of the |step| method.
 %
 %
-% \subsubsection{Application of a color series}
+% \tradfin
+% \subsubsection{Utilisation d'une série de couleurs}
+% \tradini
 %
 % There are two ways to display the current color of a color series:
 % any of the \emph{color expressions} in section \vref{sec.term} used within a |\color|, |\textcolor|, \dots{} command will display this color according to the usual syntax of such expressions.
@@ -1854,7 +1916,9 @@
 % See figure \vref{fig.csx} for a demonstration of different methods.
 %
 %
-% \subsubsection{Differences between colors and color series}
+% \tradfin
+% \subsubsection{Différences entre couleurs et séries de couleurs}
+% \tradini
 %
 % Although they behave similar if applied within color expressions, the objects defined by |\definecolor| and |\definecolorseries| are fundamentally different with respect to their scope/availability:
 % like \LC's original |\definecolor| command, |\definecolor| generates \emph{local} colors, whereas |\definecolorseries| generates \emph{global} objects (otherwise it would not be possible to use the stepping mechanism within tables or graphics conveniently).
@@ -1872,7 +1936,9 @@
 %
 %
 %
-% \subsection{Border colors for hyperlinks}\label{sec.hyperref}
+% \tradfin
+% \subsection{Couleur d'encadrement d'hyperliens}\label{sec.hyperref}
+% \tradini
 %
 % The \Package{hyperref} package offers all kinds of support for hyperlinks, pdfmarks etc.
 % There are two standard ways to make hyperlinks visible (see the package documentation \cite{hyperref} for additional information on how to set up these features):
@@ -1895,7 +1961,9 @@
 %
 %
 %
-% \subsection{Additional color specification in the \Package{pstricks} world}\label{sec.pstricks}
+% \tradfin
+% \subsection{Spécifications de couleurs additionnelles le monde de \Package{pstricks}}\label{sec.pstricks}
+% \tradini
 %
 % For \Package{pstricks} users, there are different ways of invoking colors within command option keys:
 % \begin{itemize}
@@ -1906,7 +1974,7 @@
 % Note the additional curly braces in the last case; without them, the optional argument of |\psframebox| would be terminated too early.
 %
 % \DescribeMacro\definecolor
-%   |[ps]|\marg{name}\marg{core model-list}\marg{code}\\
+%   |[ps]|\marg{name}\marg{core liste-modèle}\marg{code}\\
 % Stores \Index{PostScript} \Meta{code} --- that should not contain slash~`|/|' characters --- within a color.
 % Example:
 % after |\definecolor[ps]{foo}{rgb}{bar}|, the \Package{pstricks} command |\psline[linecolor=foo]...| inserts `|bar setrgbcolor|' where the linecolor information is required --- at least in case of the \Option{dvips} driver.
@@ -1914,7 +1982,9 @@
 %
 %
 %
-% \subsection{Color in tables}
+% \tradfin
+% \subsection{Couleur dans des tableaux}
+% \tradini
 %
 % \DescribeMacro\rowcolors
 %   \oarg{commands}\marg{row}\marg{odd-row color}\marg{even-row color}\\
@@ -1939,7 +2009,9 @@
 %
 %
 %
-% \subsection{Color information}\label{sec.info}
+% \tradfin
+% \subsection{Information sur la couleur}\label{sec.info}
+% \tradini
 %
 % \DescribeMacro\extractcolorspec
 %   \marg{color}\marg{cmd}\\
@@ -1968,7 +2040,9 @@
 %
 %
 %
-% \subsection{Color conversion}
+% \tradfin
+% \subsection{Conversion de couleur}
+% \tradini
 %
 % \DescribeMacro\convertcolorspec
 %   \marg{model}\marg{spec}\marg{target model}\marg{cmd}\\
@@ -1979,19 +2053,21 @@
 %
 %
 %
-% \subsection{Problems and solutions}
+% \tradfin
+% \subsection{Problèmes et solutions}
+% \tradini
 %
 % \subsubsection{Name clashs between \Option{dvipsnames} and \Option{svgnames}}\label{sec.clash}
 %
 % Due to the fixed option processing order (which does not depend on the order how the options were specified in the |\usepackage| command), the \Option{svgnames} colors will always overrule \Option{dvipsnames} colors with identical names.
 % This can lead to undesired results if both options are used together.
-% For instance, \Color{Fuchsia} yields \testclr[cmyk]{0.47,0.91,0,0.08} under the regime of \Option{dvipsnames} and \testclr[rgb]{1,0,1} with respect to \Option{svgnames}.
+% For instance, \Color{}{Fuchsia} yields \testclr[cmyk]{0.47,0.91,0,0.08} under the regime of \Option{dvipsnames} and \testclr[rgb]{1,0,1} with respect to \Option{svgnames}.
 % However, there is a simple trick --- based on \emph{deferred color definition} --- that allows us to use colors from both sets in the desired way:
 % \begin{verbatim}
 % \usepackage[dvipsnames*,svgnames]{xcolor}
 % \definecolors{Fuchsia}
 % \end{verbatim}
-% Now all colors from the \Index{SVG} set are available (except \Color{Fuchsia}) plus \Color{Fuchsia} from the other set.
+% Now all colors from the \Index{SVG} set are available (except \Color{}{Fuchsia}) plus \Color{}{Fuchsia} from the other set.
 %
 % \subsubsection{Page breaks and pdf\TeX}\label{sec.fixpdftex}
 %
@@ -2003,7 +2079,7 @@
 % black\color{red}red1\newpage red2\color{black}black
 % \end{document}
 % \end{verbatim}
-% This works as expected with |dvips|, i.e., `red1' and `red2' being \Color{red}, however, with |pdftex|, `red2' is displayed in \Color{black}.
+% This works as expected with |dvips|, i.e., `red1' and `red2' being \Color{}{red}, however, with |pdftex|, `red2' is displayed in \Color{}{black}.
 % The problem may be solved by using the \Option{fixpdftex} option which simply loads Heiko Oberdiek's \Package{pdfcolmk} package \cite{pdfcolmk}.
 % However, its author also lists some limitations:
 % \begin{itemize}
@@ -2046,7 +2122,7 @@
 %
 % \clearpage
 % \begin{adjustwidth}{-2.5cm}{}
-% \section{Examples}
+% \section{Exemples}
 %
 %
 % \begin{figure}[htbp]\caption{Color spectrum}\label{fig.spectrum}
@@ -2637,36 +2713,36 @@
 % \medskip
 % \begin{adjustwidth}{1cm}{1cm}
 % \footnotesize\raggedright Duplicate colors:
-% \Color[-]{Aqua} = \Color[-]{Cyan},
-% \Color[-]{Fuchsia} = \Color[-]{Magenta};
-% \Color[-]{Navy} = \Color[-]{NavyBlue};
-% \Color[-]{Gray} = \Color[-]{Grey},
-% \Color[-]{DarkGray} = \Color[-]{DarkGrey},
-% \Color[-]{LightGray} = \Color[-]{LightGrey},
-% \Color[-]{SlateGray} = \Color[-]{SlateGrey},
-% \Color[-]{DarkSlateGray} = \Color[-]{DarkSlateGrey},
-% \Color[-]{LightSlateGray} = \Color[-]{LightSlateGrey},
-% \Color[-]{DimGray} = \Color[-]{DimGrey}.
+% \Color[-]{}{Aqua} = \Color[-]{}{Cyan},
+% \Color[-]{}{Fuchsia} = \Color[-]{}{Magenta};
+% \Color[-]{}{Navy} = \Color[-]{}{NavyBlue};
+% \Color[-]{}{Gray} = \Color[-]{}{Grey},
+% \Color[-]{}{DarkGray} = \Color[-]{}{DarkGrey},
+% \Color[-]{}{LightGray} = \Color[-]{}{LightGrey},
+% \Color[-]{}{SlateGray} = \Color[-]{}{SlateGrey},
+% \Color[-]{}{DarkSlateGray} = \Color[-]{}{DarkSlateGrey},
+% \Color[-]{}{LightSlateGray} = \Color[-]{}{LightSlateGrey},
+% \Color[-]{}{DimGray} = \Color[-]{}{DimGrey}.
 % \par\smallskip
 % \Index{HTML4} color keyword subset:
-% \Color[-]{Aqua}, \Color[-]{Black}, \Color[-]{Blue}, \Color[-]{Fuchsia},
-% \Color[-]{Gray}, \Color[-]{Green}, \Color[-]{Lime}, \Color[-]{Maroon},
-% \Color[-]{Navy}, \Color[-]{Olive}, \Color[-]{Purple}, \Color[-]{Red},
-% \Color[-]{Silver}, \Color[-]{Teal}, \Color[-]{White}, \Color[-]{Yellow}.
+% \Color[-]{}{Aqua}, \Color[-]{}{Black}, \Color[-]{}{Blue}, \Color[-]{}{Fuchsia},
+% \Color[-]{}{Gray}, \Color[-]{}{Green}, \Color[-]{}{Lime}, \Color[-]{}{Maroon},
+% \Color[-]{}{Navy}, \Color[-]{}{Olive}, \Color[-]{}{Purple}, \Color[-]{}{Red},
+% \Color[-]{}{Silver}, \Color[-]{}{Teal}, \Color[-]{}{White}, \Color[-]{}{Yellow}.
 % \par\smallskip
 % Colors taken from \Index{Unix}/\Index{X11}:
-% \Color[-]{LightGoldenrod},
-% \Color[-]{LightSlateBlue},
-% \Color[-]{NavyBlue},
-% \Color[-]{VioletRed}.
+% \Color[-]{}{LightGoldenrod},
+% \Color[-]{}{LightSlateBlue},
+% \Color[-]{}{NavyBlue},
+% \Color[-]{}{VioletRed}.
 % \end{adjustwidth}
 %
 % \ColorList4{x11}{x11}\Testclr
 % \medskip
 % \begin{adjustwidth}{1cm}{1cm}
 % \footnotesize\raggedright Duplicate colors:
-% \Color[-]{Gray0} = \Color[-]{Grey0},
-% \Color[-]{Green0} = \Color[-]{Green1}.
+% \Color[-]{}{Gray0} = \Color[-]{}{Grey0},
+% \Color[-]{}{Green0} = \Color[-]{}{Green1}.
 % \end{adjustwidth}
 %
 % \end{adjustwidth}
@@ -3521,12 +3597,12 @@
 % (\emph{red},\emph{green},\emph{blue}) & := \bigl((f\cdot r)^\gamma, (f\cdot g)^\gamma, (f\cdot b)^\gamma\bigr)
 % \end{align}
 % The intermediate colors $(r,g,b)$ at the interval borders of equation (\ref{eq.gamma2rgb1}) are well-known:
-% for $\lambda=380,440,490,510,580,645$ we get \Color{magenta}, \Color{blue}, \Color{cyan}, \Color{green}, \Color{yellow}, \Color{red}, respectively.
+% for $\lambda=380,440,490,510,580,645$ we get \Color{}{magenta}, \Color{}{blue}, \Color{}{cyan}, \Color{}{green}, \Color{}{yellow}, \Color{}{red}, respectively.
 % These turn out to be represented in the \Model{hsb} model by $\emph{hue}=\frac56,\frac46,\frac36,\frac26,\frac16,\frac06$, whereas $\emph{saturation}=\emph{brightness}=1$ throughout the 6~colors.
 % Furthermore, these \Model{hsb} representations are independent of the actual $\gamma$ value.
 % Staying within this model framework, we observe that the intensity fall off near the vision limits --- as represented by equation (\ref{eq.gamma2rgb2}) --- translates into decreasing \emph{brightness} parameters towards the margins.
 % A simple calculation shows that the edges $\lambda=380,780$ of the algorithm yield the colors |magenta!|$0.3^\gamma$|!black|, |red!|$0.3^\gamma$|!black|, respectively.
-% We see no reason why we should not extend these edges in a similar fashion to end-up with true \Color{black} on either side.
+% We see no reason why we should not extend these edges in a similar fashion to end-up with true \Color{}{black} on either side.
 % Now we are prepared to translate everything into another, more natural algorithm.
 %
 %
@@ -3711,7 +3787,7 @@
 % \begin{itemize}
 % \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item les noms de couleur \Color{lime} et \Color{teal} sont ajoutés à
+%   \item les noms de couleur \Color{}{lime} et \Color{}{teal} sont ajoutés à
 %   l'ensemble des couleurs prédéfinies.
 %   \end{itemize}
 % \item Correction d'erreur :
@@ -3727,7 +3803,7 @@
 % \item Nouvelles fonctionnalités :
 %   \begin{itemize}
 %   \item \Option{fixinclude} option prevents \Program{dvips} from explicitly
-%    resetting current color to \Color{black} before actually inserting an 
+%    resetting current color to \Color{}{black} before actually inserting an 
 %    \File{.eps} file via |\color{red}\includegraphics{foo}|.
 %   \end{itemize}
 % \item Changements :
@@ -3800,7 +3876,7 @@
 %    user-defined \emph{hue} configuration on color wheels;
 %   \item easy generation of color harmonies derived from \Model{Hsb} or 
 %    \Model{tHsb} color wheels, e.g., |\color{red>wheel,1,12}| yields an
-%    `analogous' color to \Color{red} on a 12-spoke wheel;
+%    `analogous' color to \Color{}{red} on a 12-spoke wheel;
 %   \item additional 317 predefined color names according to \File{rgb.txt},
 %    which is part of \Index{Unix}/\Index{X11} distributions;
 %   \item \Option{svgnames} option extended by~4~colors taken from 
@@ -3857,7 +3933,7 @@
 %    showing both the visual result and the model-specific parameters;
 %   \item |\extractcolorspecs| puts model/color specification into two
 %    separate commands, as opposed to |\extractcolorspec|;
-%   \item color names \Color{pink} and \Color{olive} added to the set of
+%   \item color names \Color{}{pink} and \Color{}{olive} added to the set of
 %    predefined colors.
 %   \end{itemize}
 % \item Corrections d'erreur :
@@ -4095,8 +4171,8 @@
 %   \begin{itemize}
 %   \item color model \Model{HTML}, a 24-bit hexadecimal \Model{RGB} variant;
 %    allows to specify colors like |\color[HTML]{AFFE90}|;
-%   \item color names \Color{orange}, \Color{violet}, \Color{purple}, and
-%    \Color{brown} added to the set of predefined colors.
+%   \item color names \Color{}{orange}, \Color{}{violet}, \Color{}{purple}, and
+%    \Color{}{brown} added to the set of predefined colors.
 %   \end{itemize}
 % \item Nouvelle page web de \XC{} : \XCW
 % \item Correction d'erreur : |\xdefinecolor| sometimes did not normalise its
@@ -4453,7 +4529,7 @@
 % \begin{macro}{\XC@sdef}
 %   \marg{cmd}\marg{code}\\
 % Defines \Meta{cmd} as a safe expansion of \Meta{code}; needed for color expressions in certain languages.
-% The second form is a streamlined version that takes only care of active `|/|' and `|:|' characters that may occur in \Meta{model-list} and \Meta{spec-list} arguments.
+% The second form is a streamlined version that takes only care of active `|/|' and `|:|' characters that may occur in \Meta{liste-modèle} and \Meta{liste-spéc} arguments.
 % The third form defines a sanitized expansion without considering active characters.
 % It is faster since it needs no grouping operation.
 %    \begin{macrocode}
@@ -5516,7 +5592,7 @@
 % \subsubsection{Colors}\label{sec.definition}
 %
 % \begin{macro}{\definecolor}
-%   \oarg{type}\marg{name}\oarg{prefix}\marg{model-list}\marg{spec-list}\\
+%   \oarg{type}\marg{name}\oarg{prefix}\marg{liste-modèle}\marg{liste-spéc}\\
 % Extends the facilities of \LC's |\definecolor|.
 % The optional argument \Meta{type} has currently to be either empty (= normal color definition) or `named' or `ps'.
 % \Meta{préfixe} is an argument used for the internal driver-dependent representation.
@@ -5590,17 +5666,17 @@
 % \end{macro}
 %
 % \begin{macro}{\XC@getmodclr}
-%   \marg{mod-opt}\marg{clr-opt}\marg{model-list}\marg{spec-list}\marg{undefined}\marg{defined}\\
+%   \marg{mod-opt}\marg{clr-opt}\marg{liste-modèle}\marg{liste-spéc}\marg{undefined}\marg{defined}\\
 % Depending on \Meta{mod-opt}, different tasks are performed:
 % \begin{itemize}
-% \item[0:] Retrieve color model and target model from \Meta{model-list} if |\XC@@getmod| is `true'.
-% \item[1:] Retrieve color model and target model from \Meta{model-list} always.
+% \item[0:] Retrieve color model and target model from \Meta{liste-modèle} if |\XC@@getmod| is `true'.
+% \item[1:] Retrieve color model and target model from \Meta{liste-modèle} always.
 % \end{itemize}
 % The color model is stored in |\@@mod|, its position in |\XC@@pos|, a possible target model in |\@@Mod|.
 % Depending on \Meta{clr-opt}, different tasks are performed:
 % \begin{itemize}
-% \item[0:] Don't pick color specification from \Meta{spec-list}.
-% \item[1:] Pick color specification from \Meta{spec-list}, convert it from model |\@@mod| to |\@@Mod|, unless the latter is `ignore' or |\@@cls| is `ps'.
+% \item[0:] Don't pick color specification from \Meta{liste-spéc}.
+% \item[1:] Pick color specification from \Meta{liste-spéc}, convert it from model |\@@mod| to |\@@Mod|, unless the latter is `ignore' or |\@@cls| is `ps'.
 % \item[2:] Like the former case, additionally |\let\@@mod\@@Mod|.
 % \end{itemize}
 % The color specification is stored in |\@@clr|.
@@ -5671,7 +5747,7 @@
 % \end{macro}
 %
 % \begin{macro}{\providecolor}
-%   \oarg{type}\marg{name}\marg{model-list}\marg{spec-list}\\
+%   \oarg{type}\marg{name}\marg{liste-modèle}\marg{liste-spéc}\\
 % Similar to |\definecolor|, but the color \Meta{name} is only defined if it does not exist already.
 %    \begin{macrocode}
 \def\providecolor{\@testopt{\XC@providecolor}{}}
@@ -5745,7 +5821,7 @@
 % \end{macro}
 %
 % \begin{macro}{\DefineNamedColor}
-%   \marg{type}\marg{name}\marg{model-list}\marg{spec-list}
+%   \marg{type}\marg{name}\marg{liste-modèle}\marg{liste-spéc}
 %    \begin{macrocode}
 \def\DefineNamedColor#1%
  {\@nameuse{XC@\ifdefinecolors defin\else prepar\fi ecolor}[#1]}
@@ -5756,7 +5832,7 @@
 % \subsubsection{Deferred definition}
 %
 % \begin{macro}{\preparecolor}
-%   \oarg{type}\marg{name}\oarg{prefix}\marg{model-list}\marg{spec-list}\\
+%   \oarg{type}\marg{name}\oarg{prefix}\marg{liste-modèle}\marg{liste-spéc}\\
 %    \begin{macrocode}
 \def\preparecolor{\@testopt{\XC@preparecolor}{}}
 \def\XC@preparecolor[#1]#2%
@@ -5825,10 +5901,10 @@
 % \subsubsection{Sets of colors}
 %
 % \begin{macro}{\definecolorset}
-%   \oarg{type}\marg{model-list}\marg{head}\marg{tail}\marg{set spec}\\
-% This command facilitates the construction of \emph{color sets} with common underlying \Meta{model-list} and \Meta{type}.
-% Here, \Meta{set spec} = \Meta[1]{name},\Meta[1]{spec-list};\dots;\Meta[k]{name},\Meta[k]{spec-list} ($k\ge1$ name/specification-list pairs).
-% Individual colors are being constructed by |\definecolor|\oarg{type}|{|\Meta{head}\Meta[1]{name}\Meta{tail}|}|\marg{model-list}|{|\Meta[1]{spec-list}|}| etc.
+%   \oarg{type}\marg{liste-modèle}\marg{head}\marg{tail}\marg{set spec}\\
+% This command facilitates the construction of \emph{color sets} with common underlying \Meta{liste-modèle} and \Meta{type}.
+% Here, \Meta{set spec} = \Meta[1]{name},\Meta[1]{liste-spéc};\dots;\Meta[k]{name},\Meta[k]{liste-spéc} ($k\ge1$ name/specification-list pairs).
+% Individual colors are being constructed by |\definecolor|\oarg{type}|{|\Meta{head}\Meta[1]{name}\Meta{tail}|}|\marg{liste-modèle}|{|\Meta[1]{liste-spéc}|}| etc.
 %    \begin{macrocode}
 \def\definecolorset
  {\let\XC@@cmd\definecolor\@testopt{\XC@definecolorset}{}}
@@ -5847,7 +5923,7 @@
 % \end{macro}
 %
 % \begin{macro}{\providecolorset}
-%   \oarg{type}\marg{model-list}\marg{name-prefix}\marg{name-postfix}\marg{set spec}\\
+%   \oarg{type}\marg{liste-modèle}\marg{name-prefix}\marg{name-postfix}\marg{set spec}\\
 % Similar to |\definecolorset|, but based on |\providecolor|, thus the individual colors are defined only if they do not exist already.
 %    \begin{macrocode}
 \def\providecolorset
@@ -5856,7 +5932,7 @@
 % \end{macro}
 %
 % \begin{macro}{\preparecolorset}
-%   \oarg{type}\marg{model-list}\marg{name-prefix}\marg{name-postfix}\marg{set spec}\\
+%   \oarg{type}\marg{liste-modèle}\marg{name-prefix}\marg{name-postfix}\marg{set spec}\\
 % Similar to |\definecolorset|, but dependent on |\ifdefinecolors|, either a |\definecolor| or a |\preparecolor| command will be executed for each single set member.
 %    \begin{macrocode}
 \def\preparecolorset
@@ -6027,7 +6103,7 @@
 %
 %  \begin{macro}{\color}
 %   \marg{color}\\
-%   \oarg{model-list}\marg{spec-list}\\
+%   \oarg{liste-modèle}\marg{liste-spéc}\\
 % Switches to the color given either by name/expression or by model/specification.
 % This color will stay in effect until the end of the current \TeX\ group.
 %    \begin{macrocode}
@@ -6037,7 +6113,7 @@
 %  \end{macro}
 %
 % \begin{macro}{\@undeclaredcolor}
-%   \oarg{model-list}\marg{spec-list}\\
+%   \oarg{liste-modèle}\marg{liste-spéc}\\
 % Display a color that is given by \Meta{model} name and numerical \Meta{spec}.
 %    \begin{macrocode}
 \def\@undeclaredcolor[#1]#2%
@@ -6106,7 +6182,7 @@
 %
 %  \begin{macro}{\textcolor}
 %   \marg{color}\marg{text}\\
-%   \oarg{model-list}\marg{spec-list}\marg{text}\\
+%   \oarg{liste-modèle}\marg{liste-spéc}\marg{text}\\
 % are just alternative syntax for |\color|, in which the groups are added implicitly.
 % Thus \emph{text} appears in the specified color, but then the color reverts to its previous value.
 % The naming is by analogy with |\textrm| (as opposed to |\rm| and |\rmfamily|) although it is slightly a misnomer as the command also works in math-mode.
@@ -6119,7 +6195,7 @@
 %
 % \begin{macro}{\pagecolor}
 %   \marg{color}\\
-%   \oarg{model-list}\marg{spec-list}\\
+%   \oarg{liste-modèle}\marg{liste-spéc}\\
 % Specifies the background color for the current, and all following, pages.
 % It is a global declaration which does not respect \TeX\ groups.
 %    \begin{macrocode}
@@ -6867,7 +6943,7 @@
 %
 % \begin{macro}{\testcolor}
 %   \marg{color}\\
-%   \oarg{model-list}\marg{spec-list}\\
+%   \oarg{liste-modèle}\marg{liste-spéc}\\
 % Each |\testcolor| command generates a table row.
 % If the column-model matches the model of the color in question, its parameters are underlined.
 %    \begin{macrocode}
@@ -7426,8 +7502,8 @@
 % It is assumed that at least one of the models \Model{rgb}, \Model{RGB}, \Model{HTML}, \Model{hsb}, \Model{Hsb}, \Model{HSB}, \Model{cmy}, \Model{cmyk}, \Model{gray}, \Model{Gray} exists.
 %
 % \begin{macro}{\substitutecolormodel}
-%   \marg{source model}\marg{target model-list}\\
-% Substitute \Meta{source model} by the first actually present model from \Meta{target model-list}:
+%   \marg{source model}\marg{target liste-modèle}\\
+% Substitute \Meta{source model} by the first actually present model from \Meta{target liste-modèle}:
 % each reference to the driver-specific command |\color@|\Meta{source model} is replaced by a color model conversion, followed by the driver-specific command |\color@|\Meta{target model}.
 %    \begin{macrocode}
 \def\substitutecolormodel#1#2%
@@ -7705,13 +7781,13 @@
 % \subsubsection{Basic color definitions}
 %
 % \Model{rgb}-minded colors.\footnote{Generic definitions:
-% \Color{brown} = \Color{violet}|!|50|!|\Color{yellow},
-% \Color{lime} = \Color{green}|!|25|!|\Color{yellow},
-% \Color{orange} = \Color{red}|!|50|!|\Color{yellow},
-% \Color{pink} = \Color{red}|!|25,
-% \Color{purple} = \Color{violet}|!|50|!|\Color{red},
-% \Color{teal} = \Color{green}|!|50|!|\Color{blue},
-% \Color{violet} = \Color{blue}|!|50|!|\Color{red}.}
+% \Color{}{brown} = \Color{}{violet}|!|50|!|\Color{}{yellow},
+% \Color{}{lime} = \Color{}{green}|!|25|!|\Color{}{yellow},
+% \Color{}{orange} = \Color{}{red}|!|50|!|\Color{}{yellow},
+% \Color{}{pink} = \Color{}{red}|!|25,
+% \Color{}{purple} = \Color{}{violet}|!|50|!|\Color{}{red},
+% \Color{}{teal} = \Color{}{green}|!|50|!|\Color{}{blue},
+% \Color{}{violet} = \Color{}{blue}|!|50|!|\Color{}{red}.}
 %    \begin{macrocode}
 \definecolorset{rgb/hsb/cmyk/gray}{}{}%
  {red,1,0,0/0,1,1/0,1,1,0/.3;%
@@ -7727,7 +7803,7 @@
 %    \end{macrocode}
 %
 % \Model{cmyk}-minded colors.\footnote{Generic definitions:
-% \Color{olive} = \Color{red}|!|50|!|\Color{green}.}
+% \Color{}{olive} = \Color{}{red}|!|50|!|\Color{}{green}.}
 %    \begin{macrocode}
 \definecolorset{cmyk/rgb/hsb/gray}{}{}%
  {cyan,1,0,0,0/0,1,1/.5,1,1/.7;%
