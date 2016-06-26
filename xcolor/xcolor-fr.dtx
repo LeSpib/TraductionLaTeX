@@ -488,12 +488,12 @@
 %
 % \subsubsection{Installation de l'extension}
 %
-% Il faut tout d'abord placer \File{xcolor.sty} et tous les fichiers dans un
-% répertoire où (pdf)\LaTeX{} les trouvera.
+% Il faut tout d'abord placer \File{xcolor.sty} et tous les fichiers 
+% \File{.def} dans un répertoire où (pdf)\LaTeX{} les trouvera.
 % Un emplacement classique selon la structure des répertoires de 
 % \TeX\footnote{N.D.T. : \emph{\TeX\ Directory Structure} (TDS)}
 % serait le répertoire |texmf/tex/latex/xcolor|, où |texmf| est à
-% remplacer par le répertoire principal de votre installation de \TeX\.
+% remplacer par le répertoire principal de votre installation de \TeX.
 % De plus, il faut placer \File{xcolor.pro} à un endroit où \Program{dvips} 
 % le trouvera, typiquement |texmf/dvips/xcolor|.
 % Normalement, vous devez lancer une mise à jour de votre base de noms de
@@ -504,7 +504,7 @@
 % Pour cela, la commande générale d'appel est 
 % |\usepackage|\oarg{options}|{xcolor}| dans le préambule du document.
 % La table \vref{tab.package} montre dans quel ordre certaines extensions
-% doivent être alors chargées.
+% doivent alors être chargées.
 %
 % \subsubsection{Options de l'extension}
 %
@@ -521,8 +521,8 @@
 % \footnote{La section \vref{sec.tgt} explique comment ce paramétrage peut
 % être annulé n'importe où dans un document.} (\Option{natural}, \Option{rgb},
 % \Option{cmy}, \Option{cmyk}, \Option{hsb}, \Option{gray}, \Option{RGB},
-% \Option{HTML}, \Option{HSB}, \Option{Gray}) ou une sortie avec des couleurs
-% désactivées (\Option{monochrome}) ;
+% \Option{HTML}, \Option{HSB}, \Option{Gray}) ou qui génèrent une sortie avec
+% des couleurs désactivées (\Option{monochrome}) ;
 % \item les options qui contrôlent si certains ensembles de couleurs
 % prédéfinies sont chargés et comment : \Option{dvipsnames}, 
 % \Option{dvipsnames*}, \Option{svgnames}, \Option{svgnames*}, 
@@ -546,7 +546,6 @@
 % automatiquement si l'option d'extension \Option{hyperref} est sélectionnée.}
 % qui récupère le nom du pilote effectivement utilisé et qui le place dans la
 % commande |\GinDriver|.
-
 % Ce dernier peut alors être utilisé au sein de l'extension \Package{hyperref}
 % (ou toute autre extension), voir l'exemple de code en page 
 % \pageref{ex.range}. 
@@ -561,7 +560,7 @@
 % qu'une des couleurs est utilisée sans l'appel explicite de l'option 
 % \Option{dvipsnames}, les autres pilotes comme |pdftex| renvoient un message
 % d'erreur pour cause de couleur inconnue.
-% C'est pourquoi \XC{} nécessite toujours explicitement l'option 
+% C'est pourquoi \XC{} doit toujours recevoir explicitement l'option 
 % \Option{dvipsnames} pour utiliser ces noms --- qui fonctionnent alors pour
 % tous les pilotes. 
 %
@@ -576,7 +575,7 @@
 % \rowcolor{tableheadcolor}
 % \em Option & \em Description\\
 % \Option{natural}& (valeur par défaut.) Garde toutes les couleurs dans leur
-% modèle, à l'expcetion de \Model{RGB} (converti en \Model{rgb}), 
+% modèle, à l'exception de \Model{RGB} (converti en \Model{rgb}), 
 % \Model{HSB} (converti en \Model{hsb}), et \Model{Gray} (converti en 
 % \Model{gray}).\\
 % \Option{rgb}& Convertit toutes les couleurs en modèle \Model{rgb}.\\
@@ -596,20 +595,20 @@
 % ensuite en \Model{gray}).\\
 % \hline
 % \Option{dvipsnames}, \Option{dvipsnames*}& Charge un ensemble de couleurs
-% prédéfinies.\footnotemark[1]\\
+% prédéfinies\footnotemark[1].\\
 % \Option{svgnames}, \Option{svgnames*}& Charge un ensemble de couleurs
-% prédéfinies selon la norme \Index{SVG} 1.1.\footnotemark[1]\\
+% prédéfinies selon la sépcification \Index{SVG} 1.1\footnotemark[1].\\
 % \Option{x11names}, \Option{x11names*}& Charge un ensemble de couleurs
-% prédéfinies selon la norme \Index{Unix}/\Index{X11}.\footnotemark[1]\\
+% prédéfinies selon la norme \Index{Unix}/\Index{X11}\footnotemark[1].\\
 % \hline
 % \Option{table}& Charge l'extension \Package{colortbl} contenant les outils
 % de colorisation des lignes, colonnes et cellules dans des tables.\\
 % \Option{fixpdftex}& Charge l'extension \Package{pdfcolmk} permettant
-% d'améliorer la gestion des couleurs dee |pdftex| (voir section 
+% d'améliorer la gestion des couleurs de |pdftex| (voir section 
 % \vref{sec.fixpdftex}).\\
 % \Option{hyperref}& Permet de prendre en charge l'extension 
-% \Package{hyperref} pour les \trad{expressions de couleur} en définissant 
-% des \trad{clés} additionnelles (voir section \vref{sec.hyperref}).\\
+% \Package{hyperref} pour les expressions de couleur en définissant 
+% des clés additionnelles (voir section \vref{sec.hyperref}).\\
 % \hline
 % \Option{prologue}& \'{E}crit des informations en début de fichier 
 % \File{.xcp} pour chaque définition de couleur (comme décrit en section 
@@ -617,15 +616,15 @@
 % \hline
 % \Option{kernelfbox}& Utilise la méthode du noyau \LaTeX{} pour dessiner des
 % boîtes \texttt{\string\f(rame)box}\footnotemark[2].\\
-% \Option{xcdraw}& Use driver-specific commands to draw frames and color 
-% boxes.\footnotemark[2]\\
+% \Option{xcdraw}& Utilise des commandes propres aux pilotes pour dessiner
+% les encadrements et boîtes de couleur\footnotemark[2].\\
 % \Option{noxcdraw}& (Valeur par défaut.) Utilise un code générique pour
-% dessiner les encadrements et boîets de couleur.\footnotemark[2]\\
+% dessiner les encadrements et boîtes de couleur\footnotemark[2].\\
 % \Option{fixinclude}& Empêche la réinitialisation de couleur de |dvips| avant
 % l'inclusion de fichier \File{.eps} (voir section \vref{sec.fixinclude}).\\
 % \hline
 % \Option{showerrors}& (Valeur par défaut.) Affiche un message d'erreur si une 
-% couleur non définie est utilisée (comportement similaire à celui de 
+% couleur non définie est utilisée (comportement identique à celui de 
 % l'\LCP\ originale).\\
 % \Option{hideerrors}& Affiche seulement une alerte en cas d'utilisation d'une
 % couleur non définie et remplace cette couleur par du \Color{noir}{black}.\\
@@ -699,7 +698,7 @@
 % \subsubsection{\'{E}xecution de commandes additionnelles à l'initialisation}
 %
 % \DescribeMacro\xcolorcmd
-% Voici un interface simple pour passer des commandes devant être exécutées à
+% Voici un moyen simple pour passer des commandes devant être exécutées à
 % la fin de l'extension \XCP{} (immédiatement avant que l'initialisation de
 % |\color{black}| ne soit traitée).
 % Indiquez juste |\def\xcolorcmd|\marg{commandes} avant le chargement de \XC{}.
@@ -709,8 +708,8 @@
 % \og|latex \def\xcolorcmd{\colorlet{black}{red}}\input{a}|\fg{}
 % saisie en invite de commande génère un fichier |a.dvi| avec toutes les
 % occurences de \Color{noir}{black} remplacées par du \Color{rouge}{red}, sans
-% besoin de modifier le fichier source lui-même.
-% (La ligne de commande peut varier selon les systèmes d'exploitation et les
+% besoin de modifier le fichier source lui-même
+% (la ligne de commande peut varier selon les systèmes d'exploitation et les
 % distributions de \TeX{}).
 %
 %
@@ -730,16 +729,16 @@
 %
 % \paragraph{\Model{rgb}, \Model{cmyk}, \Model{hsb}, \Model{gray}}
 % Ce sont les modèles supportés directement par \Index{PostScript}.
-% C'est pourquoi \trad{nous nous référons} à \cite{plrm} pour une description
+% C'est pourquoi nous vous renvoyons à \cite{plrm} pour une description
 % de leurs propriétés et relations.
 % Il existe une commande spécifique \DescribeMacro\adjustUCRBG
 % pour régler finement les mécanismes de \trad{\emph{undercolor-removal}} 
-% et \trad{\emph{black-generation]}} durant la conversion vers le modèle 
+% et \trad{\emph{black-generation}} durant la conversion vers le modèle 
 % \Model{cmyk}, voir section \vref{sec.cmy2cmyk} pour plus de détails.
 %
 % \paragraph{\Model{cmy}}
 % Il s'agit principalement d'un modèle pour les étapes de calcul intermédiaire.
-% De ce fait, il s'agit d'un simple complément de \Model{rgb}.
+% De ce fait, il s'agit d'un simple complément à \Model{rgb}.
 % En terme d'affichage, \Model{cmy} est traité comme \Model{cmyk} avec $k=0$.
 %
 % \paragraph{\Model{HTML}}
@@ -763,7 +762,7 @@
 % 
 % Deuxièmement, \Model{Hsb} est la base du \Model{tHsb}, également nommé 
 % \Model{Hsb} \pModel{réglé},qui permet à l'utilisateur d'appliquer une
-% transformation linéaire \trad{piecewise} sur \emph{teinte\Circ} en déplaçant
+% transformation linéaire par morceaux sur \emph{teinte\Circ} en déplaçant
 % la \emph{teinte\Circ} sélectionnée en avant ou en arrière sur le cercle.
 % La transformation est définie par |\def\rangetHsb{|$x_1,y_1;x_2,y_2;\dots$|}|
 % \DescribeMacro\rangetHsb
@@ -874,8 +873,8 @@
 % Les deux bascules valent \og vrai \fg{} en sélectionnant n'importe quel
 % modèle, à l'exception de \Option{natural} qui leur donne la valeur \og faux
 % \fg{}.
-% Ceci \trad{s'applique} à une sélection par le biais d'une option d'extension
-% comme par le biais de |\selectcolormodel|.
+% Ceci autorise d'autres choix grâce à une option d'extension ou à 
+% |\selectcolormodel|.
 % Pourquoi ne convertissons-nous pas toutes les couleurs au moment de
 % l'utilisation ? Si de nombreuses couleurs sont impliquées, cela peut
 % économiser du temps de traitement lorsque les conversions sont déjà faites 
@@ -1653,22 +1652,28 @@
 %
 % \subsubsection{Définitions de couleur globales}
 %
-% \tradini
 % \DescribeMacro\ifglobalcolors
-% By default, definitions via |\definecolor|, |\providecolor|, \dots{} are available only within the current group.
-% By setting |\globalcolorstrue|, all such definitions are being made globally available --- until the current group ends.\footnote{The switch may also be set in the preamble in order to control the whole document.}
+% Par défaut, les définitions faites avec |\definecolor|, |\providecolor|, \dots{} sont 
+% seulement disponibles dans le groupe courant.
+% En utilisant |\globalcolorstrue|, toutes ces définitions deviennent disponibles
+% globalement --- jusqu'à ce que le groupe courant prenne fin\footnote{Cette bascule
+% peut être placée aussi dans le préambule pour contrôler le document dans son ensemble.}.
 % \DescribeMacro\xglobal
-% Another method to specify that an individual color definition is to be made global is to prefix it by |\xglobal|, e.g., |\xglobal\definecolor{foo}...|.
+% Une autre méthode pour indiquer qu'une définition de couleur individuelle doit être
+% globale revient à la préfixer avec |\xglobal|, soit, par exemple, |\xglobal\definecolor{toto}...|.
 %
 %
 %
-% \subsection{Color application}
+% \subsection{Utilisation de la couleur}
 %
-% \subsubsection{Standard color commands}
+% \subsubsection{Commandes de couleur standards}
 %
-% Here is the list of user-level color commands, as known from the \LCP, but with an extended syntax for the colors, allowing for expressions etc.:\\
-% \DescribeMacro\color\marg{color}\\
+% Voici la liste des commandes appliquant les couleurs qui se retrouvent dans
+% l'\LCP et qui bénéficient ici de la syntaxe étendue pour les couleurs comme vu 
+% ci-dessus :\\
+% \DescribeMacro\color\marg{couleur}\\
 % \oarg{liste-modèle}\marg{liste-spéc}\\
+% \tradini
 % Switches to the color given either by name/expression or by model/specification.
 % This color will stay in effect until the end of the current \TeX\ group.\\
 % \DescribeMacro\textcolor\marg{color}\marg{text}\\

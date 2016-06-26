@@ -41,19 +41,19 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 - :waxing_crescent_moon: : traduction en cours ;
 - :first_quarter_moon: : traduction achevée ;
 - :waxing_gibbous_moon: : première relecture achevée (comparant original et traduction) ; 
-- :full_moon: : seconde relecture achevée (vérifiant la cohérence de la traduction) ;
+- :full_moon: : seconde relecture achevée (vérifiant la cohérence de la traduction seule).
 
-Section                       | Avancée               | Pages traduites | Commentaires 
------------------------------ | :-------------------: | :-------------: | -------------------------
-En-tête du document tex       | :new_moon:            |                 |
-Pages d'avant-propos          | :first_quarter_moon:  | 1 / 4           | 
-1. Introduction               | :waxing_gibbous_moon: | 4 / 4           |
-2. L'interface utilisateur    | :first_quarter_moon:  | 15 / 27         | Section en cours : 2.5.5
-3. Exemples                   | :new_moon:            | 0 / 7           |
-4. Couleurs nommées           | :new_moon:            | 0 / 3           |
-5. Compléments techniques     | :new_moon:            | 0 / 3           |
-6. Les formules               | :new_moon:            | 0 / 13          |
-Références                    | :new_moon:            | 0 / 1           | 
-Annexes                       | :new_moon:            | 0 / 5           |
-Index                         | :new_moon:            | 0 / 3           |
+Section                       | Avancée                | Pages traduites | Commentaires 
+----------------------------- | :--------------------: | :-------------: | -------------------------
+En-tête du document tex       | :waxing_crescent_moon: |                 |
+Pages d'avant-propos          | :first_quarter_moon:   | 1 / 4           | 
+1. Introduction               | :waxing_gibbous_moon:  | 4 / 4           |
+2. L'interface utilisateur    | :first_quarter_moon:   | 17 / 27         | Section en cours : 2.6.1
+3. Exemples                   | :new_moon:             | 0 / 7           |
+4. Couleurs nommées           | :new_moon:             | 0 / 3           |
+5. Compléments techniques     | :new_moon:             | 0 / 3           |
+6. Les formules               | :new_moon:             | 0 / 13          |
+Références                    | :new_moon:             | 0 / 1           | 
+Annexes                       | :new_moon:             | 0 / 5           |
+Index                         | :new_moon:             | 0 / 3           |
 
