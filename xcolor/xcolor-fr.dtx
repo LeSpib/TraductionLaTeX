@@ -1,7 +1,7 @@
 % \iffalse meta-comment
 %%
 %% ----------------------------------------------------------------
-%% Copyright (C) 2003-2007 by Dr. Uwe Kern <xcolor at ukern dot de>
+%% Copyright (C) 2003-2016 by Dr. Uwe Kern <xcolor at ukern dot de>
 %% ----------------------------------------------------------------
 %%
 %<*package>
@@ -17,8 +17,8 @@
 %%
 %</package>
 %<*extract|driver|test1|test2|test3|test4>
-\def\XCfileversion{v2.11}%
-\def\XCfiledate{21/01/2007}%
+\def\XCfileversion{v2.12}%
+\def\XCfiledate{11/05/2016}%
 %</extract|driver|test1|test2|test3|test4>
 %
 % This file may be distributed and/or modified under the
@@ -513,10 +513,10 @@
 % \item les options qui déterminent le pilote graphique comme expliqué dans
 % \cite{dpc} et \cite{color}, soit actuellement : \Option{dvips}, 
 % \Option{xdvi}, \Option{dvipdf}, \Option{dvipdfm}, \Option{dvipdfmx}, 
-% \Option{pdftex}, \Option{dvipsone}, \Option{dviwindo}, \Option{emtex},
-% \Option{dviwin}, \Option{oztex}, \Option{textures}, \Option{pctexps}, 
-% \Option{pctexwin}, \Option{pctexhp}, \Option{pctex32}, \Option{truetex},
-% \Option{tcidvi}, \Option{vtex}, \Option{xetex} ;
+% \Option{luatex}, \Option{pdftex}, \Option{dvipsone}, \Option{dviwindo},
+% \Option{emtex}, \Option{dviwin}, \Option{oztex}, \Option{textures}, 
+% \Option{pctexps}, \Option{pctexwin}, \Option{pctexhp}, \Option{pctex32},
+% \Option{truetex}, \Option{tcidvi}, \Option{vtex}, \Option{xetex} ;
 % \item les options qui déterminent le modèle colorimétrique cible 
 % \footnote{La section \vref{sec.tgt} explique comment ce paramétrage peut
 % être annulé n'importe où dans un document.} (\Option{natural}, \Option{rgb},
@@ -1693,6 +1693,10 @@
 % Note that color-specific commands from other packages may give unexpected results if directly confronted with color expressions (e.g., \Package{soul}'s |\sethlcolor| and friends).
 % However, one can turn the expression into a name via |\colorlet| and try to use that name instead.
 %
+% \DescribeMacro\nopagecolor
+% Removes any currently specified page color returning to the default transparent background.
+% It is not yet supported by all driver options and so generates a warning if there is no definition in the driver file.
+%
 %
 % \subsubsection{Colored boxes}\label{sec.fbox}
 %
@@ -2774,37 +2778,35 @@
 % \rowcolor{tableheadcolor}
 % \hline
 % \em Driver&\em Version&\Model{rgb}&\Model{cmy}&\Model{cmyk}&\Model{hsb}&\Model{gray}&\Model{RGB}&\Model{HTML}&\Model{HSB}&\Model{Gray}\\
-% \Option{dvipdf}&1999/02/16 v3.0i&d&n&d&n&d&i&n&n&n\\
-% \Option{dvips}&1999/02/16 v3.0i&d&n&d&d&d&i&n&n&n\\
-% \Option{dvipsone}&1999/02/16 v3.0i&d&n&d&d&d&i&n&n&n\\
-% \Option{pctex32}&1999/02/16 v3.0i&d&n&d&d&d&i&n&n&n\\
-% \Option{pctexps}&1999/02/16 v3.0i&d&n&d&d&d&i&n&n&n\\
+% \Option{dvipdf}&2015/12/30 v3.0k&d&n&d&n&d&i&n&n&n\\
+% \Option{dvips}&2015/12/30 v3.0k&d&n&d&d&d&i&n&n&n\\
+% \Option{dvipsone}&2015/12/30 v3.0k&d&n&d&d&d&i&n&n&n\\
+% \Option{pctex32}&2015/12/30 v3.0k&d&n&d&d&d&i&n&n&n\\
+% \Option{pctexps}&2015/12/30 v3.0k&d&n&d&d&d&i&n&n&n\\
 % \hline
-% \Option{pdftex}&2006/03/02 v0.03p&d&n&d&n&d&i&n&n&n\\
+% \Option{pdftex}&2011/05/27 v0.06d&d&n&d&n&d&i&n&n&n\\
+% \Option{luatex}&2016/01/23 v0.01b&d&n&d&n&d&i&n&n&n\\
 % \hline
-% \Option{dvipdfm}&1998/11/24 vx.x\,\footnotemark[1]&d&n&d&a&d&i&n&n&n\\
-% \Option{dvipdfm}&1999/9/6 vx.x\,\footnotemark[2]&d&n&d&a&d&i&n&n&n\\
+% \Option{dvipdfm}&1999/9/6 vx.x&d&n&d&n&d&i&n&n&n\\
+% \Option{dvipdfmx}&2016/04/06 v4.08&d&n&d&?&d&i&n&n&n\\
 % \hline
-% \Option{dvipdfmx}&?&d&n&d&f&d&i&n&n&n\\
-% \hline
-% \Option{textures}&1997/5/28 v0.3&d&n&d&a&i&n&n&n&n\\
+% \Option{textures}&1997/5/28 v0.3&d&n&d&?&i&n&n&n&n\\
 % \hline
 % \Option{vtex}&1999/01/14 v6.3&d&n&d&n&i&i&n&n&n\\
 % \hline
-% \Option{xetex}&2004/05/09 v0.7&i&n&i&i&i&i&d&n&n\\
+% \Option{xetex}&2016/04/06 v4.08&d&n&d&d&d&i&n&n&n\\
 % \hline
-% \Option{tcidvi}&1999/02/16 v3.0i&i&n&i&n&i&d&n&n&n\\
-% \Option{truetex}&1999/02/16 v3.0i&i&n&i&n&i&d&n&n&n\\
+% \Option{tcidvi}&2015/12/30 v3.0k&i&n&i&n&i&d&n&n&n\\
+% \Option{truetex}&2015/12/30 v3.0k&i&n&i&n&i&d&n&n&n\\
 % \hline
-% \Option{dviwin}&1999/02/16 v3.0i&n&n&n&n&n&n&n&n&n\\
-% \Option{emtex}&1999/02/16 v3.0i&n&n&n&n&n&n&n&n&n\\
-% \Option{pctexhp}&1999/02/16 v3.0i&n&n&n&n&n&n&n&n&n\\
-% \Option{pctexwin}&1999/02/16 v3.0i&n&n&n&n&n&n&n&n&n\\
+% \Option{dviwin}&2015/12/30 v3.0k&n&n&n&n&n&n&n&n&n\\
+% \Option{emtex}&2015/12/30 v3.0k&n&n&n&n&n&n&n&n&n\\
+% \Option{pctexhp}&2015/12/30 v3.0k&n&n&n&n&n&n&n&n&n\\
+% \Option{pctexwin}&2015/12/30 v3.0k&n&n&n&n&n&n&n&n&n\\
 % \hline\hline
 % \multicolumn{11}c{\Option{dviwindo} = \Option{dvipsone}; \Option{oztex} = \Option{dvips}; \Option{xdvi} = \Option{dvips} + \Option{monochrome}}\\
-% \multicolumn{11}c{\footnotemark[1]\,part of \Package{graphics} package\quad \footnotemark[2]\,additionally distributed with MiK\TeX}\\
 % \hline
-% \multicolumn{11}c{Driver's color model support: d\,=\,direct, i\,=\,indirect, a\,=\,alleged, n\,=\,none, f\,=\,faulty}\\
+% \multicolumn{11}c{Driver's color model support: d\,=\,direct, i\,=\,indirect, n\,=\,none}\\
 % \hline
 % \end{tabular}
 % \end{table}
@@ -3682,12 +3684,11 @@
 %
 % \bibitem{dpc}%
 %  {\People{David P.}{Carlisle}: \og Packages in the `graphics' bundle \fg{},
-%  2005.
+%  2014.
 %   \CTAN{macros/latex/required/graphics/}{grfguide.*}}
 %
 % \bibitem{color}%
-%  {\People{David P.}{Carlisle}: \LCP, \og 2005/11/14 v1.0j Standard \LaTeX{}
-%  Color \fg{}.
+%  {\People{David P.}{Carlisle}: \LCP, ``2016/01/03 v1.1b Standard LaTeX Color (DPC)''.
 %   \CTAN{macros/latex/required/graphics/}{color.dtx}}
 %
 % \bibitem{colortbl}%
@@ -3787,6 +3788,20 @@
 %
 % \subsection*{Historique}
 % \addcontentsline{toc}{subsection}{Historique}
+%
+% \subsubsection*{11/05/2016 v2.12}
+% \begin{itemize}
+% \item Nouvelles fonctionnalités :
+%   \begin{itemize}
+%   \item |\nopagecolor| command as introduced in \LC{} v1.1a (example added to \File{xcolor3.tex});
+%   \item \Option{luatex} driver option (code provided by DPC) to fix incompatibilities due to changes in new Lua\TeX\ version.
+%   \end{itemize}
+% \item Corrections d'erreur:
+%   \begin{itemize}
+%   \item possible name conflict by |\XC@ifxcase| call;
+%   \item incorrect internal |\@hex@@Hex| macro.
+%   \end{itemize}
+% \end{itemize}
 %
 % \subsubsection*{21/01/2007 v2.11}
 % \begin{itemize}
@@ -4585,10 +4600,10 @@
 % If all tests are `false', then \Meta{default code} is executed.
 %    \begin{macrocode}
 \long\def\XC@ifxcase#1#2#3%
- {\long\def\@@tmp##1##2%
+ {\long\def\XC@if@##1##2%
    {\ifx#1##1%
-      \toks@{##2}\expandafter\remove@to@nnil\else\expandafter\@@tmp\fi}%
-  \@@tmp#2#1{#3}\@nnil\the\toks@}
+      \toks@{##2}\expandafter\remove@to@nnil\else\expandafter\XC@if@\fi}%
+  \XC@if@#2#1{#3}\@nnil\the\toks@}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -4600,10 +4615,10 @@
 % If all tests are `false', then \Meta{default code} is executed.
 %    \begin{macrocode}
 \long\def\XC@ifcase#1#2#3%
- {\long\def\@@tmp##1##2%
+ {\long\def\XC@if@##1##2%
    {\@expandtwoargs\in@{,#1,}{,##1,}\ifin@
-      \toks@{##2}\expandafter\remove@to@nnil\else\expandafter\@@tmp\fi}%
-  \@@tmp#2{#1}{#3}\@nnil\the\toks@}
+      \toks@{##2}\expandafter\remove@to@nnil\else\expandafter\XC@if@\fi}%
+  \XC@if@#2{#1}{#3}\@nnil\the\toks@}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -4825,7 +4840,7 @@
 % Drivers that come with their individual definition files:
 %    \begin{macrocode}
 \@tfor\@@tmp:={dvipdf}{dvipdfm}{dvipdfmx}{dvips}{dvipsone}{dviwin}%
-              {emtex}{pctex32}{pctexhp}{pctexps}{pctexwin}{pdftex}%
+              {emtex}{luatex}{pctex32}{pctexhp}{pctexps}{pctexwin}{pdftex}%
               {tcidvi}{textures}{truetex}{vtex}{xetex}\do
  {\edef\@@tmp{\noexpand\DeclareOption{\@@tmp}%
     {\def\noexpand\Gin@driver{\@@tmp.def}}}%
@@ -4938,6 +4953,13 @@
     {pdftex}%
     {\def\@tempa{1}
      \def\XC@special#1{\pdfliteral{ q #1 Q }}}%
+    {luatex}%
+    {\def\@tempa{1}
+     \ifnum\luatexversion<87%
+       \def\XC@special#1{\pdfliteral{ q #1 Q }}%
+     \else%
+       \def\XC@special#1{\pdfextension literal{ q #1 Q }}%
+     \fi}%
     {dvipdfm}%
     {\def\@tempa{1}
      \def\XC@special#1{\special{pdf: content #1}}}%
@@ -5051,7 +5073,7 @@
 %    \begin{macrocode}
 \def\GetGinDriver
  {\@tempswafalse
-  \@tfor\@@tmp:={dvips}{pdftex}{dvipdf}{dvipdfm}{dvipsone}{vtex}{textures}%
+  \@tfor\@@tmp:={dvips}{luatex}{pdftex}{dvipdf}{dvipdfm}{dvipsone}{vtex}{textures}%
   \do{\ifx\XC@@drv\@@tmp\@tempswatrue\@break@tfor\fi}%
   \edef\GinDriver{\if@tempswa\XC@@drv\else hypertex\fi}}
 %    \end{macrocode}
@@ -5069,7 +5091,7 @@
 \def\@hex@Hex#1{\ifx#1\relax\else\expandafter\@hex@@Hex\expandafter#1\fi}
 \def\@hex@@Hex#1%
  {\if a#1A\else \if b#1B\else \if c#1C\else \if d#1D\else
-  \if e#1E\else \if f#1f\else #1\fi\fi\fi\fi\fi\fi \@hex@Hex}
+  \if e#1E\else \if f#1F\else #1\fi\fi\fi\fi\fi\fi \@hex@Hex}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -6208,6 +6230,17 @@
  {\begingroup
   \let\ignorespaces\endgroup \let\set@color\set@page@color
   \color}
+%    \end{macrocode}
+%  \end{macro}
+%
+% \begin{macro}{\nopagecolor}
+% Removes any currently specified page color returning to the default transparent background.
+% It is not yet supported by all driver options and so generates a warning if there is no definition in the driver file.
+%    \begin{macrocode}
+\def\nopagecolor
+ {\@ifundefined{no@page@color}%
+   {\PackageInfo{xcolor}{\string\nopagecolor\space is not supported}}%
+   {\no@page@color}}
 %    \end{macrocode}
 %  \end{macro}
 %
@@ -7754,7 +7787,7 @@
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-  {dvipsone,pctexps,pdftex,tcidvi,truetex,vtex,xetex}%
+  {dvipsone,luatex,pctexps,pdftex,tcidvi,truetex,vtex,xetex}%
   {\def\c@lor@@named#1,#2,#3\@@#4%
     {\edef#4{\expandafter\expandafter\expandafter\@thirdoffive
              \csname\string\color@#1\endcsname}}
@@ -8785,6 +8818,11 @@ By playing around with different values of \texttt{\string\tracingcolors}, one c
 \vfill
 
 \clearpage
+\nopagecolor
+Switch off \texttt{\string\pagecolor} by \texttt{\string\nopagecolor}.
+The driver may or may not obey this command \dots
+
+\clearpage
 \pagecolor{white}
 
 \section{Color definition and application}
@@ -8920,6 +8958,7 @@ Type test:
 %%\PassOptionsToPackage{dviwindo}{xcolor}
 %%\PassOptionsToPackage{emtex}{xcolor}
 %%\PassOptionsToPackage{oztex}{xcolor}
+%%\PassOptionsToPackage{luatex}{xcolor}
 %%\PassOptionsToPackage{pctex32}{xcolor}
 %%\PassOptionsToPackage{pctexhp}{xcolor}
 %%\PassOptionsToPackage{pctexps}{xcolor}

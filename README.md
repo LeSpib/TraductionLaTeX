@@ -43,7 +43,7 @@ Traduction      | Source            | Avancée                | Pages traduites 
                 | [tikz] (pgf)      |                        | *. / 1161*      |
 [titlesec-fr]   | [titlesec] 2.10.2 | :full_moon:            | 25              | 
                 | [varioref]        |                        | *. / 32*        |
-[xcolor-fr]     | [xcolor] v2.11    | :waxing_crescent_moon: | 22 / 71         | Version actuelle : v2.12
+[xcolor-fr]     | [xcolor] v2.12    | :waxing_crescent_moon: | 22 / 71         | 
 
 
 ### Traduction des documents 
