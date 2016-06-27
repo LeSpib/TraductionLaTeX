@@ -24,27 +24,27 @@ Ce tableau indique les différentes extensions envisagées dans le projet ainsi 
 
 > *This table shows the different extensions foreseen for this project and the progress of these translations. The visual code for the translation progress uses the phases of the moon and their order :* :new_moon: :waxing_crescent_moon: :first_quarter_moon: :waxing_gibbous_moon: :full_moon: *(the brighter, the better).*
 
-Traduction      | Source            | Avancée                | Pages traduites | Commentaires 
-----------      | ---------         | :-----------------:    | :-------------: | ------------
-                | [adjustbox]       |                        | *. / 29*        |
-[appendix-fr]   | [appendix] v1.2b  | :full_moon:            | 16              |
-                | [booktabs]        |                        | *. / 17*        | Une traduction existe
-                | [cleveref]        |                        | *. / 31*        |
-                | [datatool]        |                        | *. / 220*       |
-                | [datetime2]       |                        | *. / 169*       |
-                | [etoc]            |                        | *. / 114*       |
-[fontspec-fr]   | [fontspec] v2.4e  | :new_moon:             | 4 / 124         | Auteur contacté et intéressé
-[geometry-fr]   | [geometry] v5.6   | :full_moon:            | 42              | Auteur contacté et intéressé
-                | [glossaries]      |                        | *. / 248*       |
-                | [hyperref]        |                        | *. / 31*        | Licence GNU FDL à analyser
-[lipsum-fr]     | [lipsum] v1.3     | :full_moon:            | 41              |
-                | [pgfplots]        |                        | *. / 544*       |
-                | [siunitx]         |                        | *. / 102*       |
-                | [tikz] (pgf)      |                        | *. / 1161*      |
-[titlesec-fr]   | [titlesec] 2.10.2 | :full_moon:            | 25              | 
-                | [varioref]        |                        | *. / 32*        |
-[xcolor-fr]     | [xcolor] v2.12    | :waxing_crescent_moon: | 25 / 72         | 
-[xkeyval-fr]    | [xkeyval] v2.7    | :new_moon:             | 0 / 73          |
+Traduction      | Source              | Avancée                | Pages traduites | Commentaires 
+--------------- | ------------------- | :--------------------: | :-------------: | ------------------------------------
+                | [adjustbox]         |                        | *. / 29*        |
+[appendix-fr]   | [appendix] v1.2b    | :full_moon:            | 16              | Une traduction de la v1.0 existe.
+[booktabs-fr]   | [booktabs] 1.618033 | :new_moon:             | 0 / 17          | Une traduction de la v1.00 existe.
+                | [cleveref]          |                        | *. / 31*        |
+                | [datatool]          |                        | *. / 220*       |
+                | [datetime2]         |                        | *. / 169*       |
+                | [etoc]              |                        | *. / 114*       |
+[fontspec-fr]   | [fontspec] v2.4e    | :new_moon:             | 4 / 124         | Auteur contacté et intéressé.
+[geometry-fr]   | [geometry] v5.6     | :full_moon:            | 42              | Auteur contacté et intéressé.
+                | [glossaries]        |                        | *. / 248*       |
+                | [hyperref]          |                        | *. / 31*        | Licence GNU FDL à analyser.
+[lipsum-fr]     | [lipsum] v1.3       | :full_moon:            | 41              |
+                | [pgfplots]          |                        | *. / 544*       |
+                | [siunitx]           |                        | *. / 102*       |
+                | [tikz] (pgf)        |                        | *. / 1161*      |
+[titlesec-fr]   | [titlesec] 2.10.2   | :full_moon:            | 25              | 
+                | [varioref]          |                        | *. / 32*        |
+[xcolor-fr]     | [xcolor] v2.12      | :waxing_crescent_moon: | 25 / 72         | 
+[xkeyval-fr]    | [xkeyval] v2.7      | :new_moon:             | 0 / 73          |
 
 ### Traduction des documents 
 
@@ -95,6 +95,7 @@ Anglais                | Français                                       | Comme
 [appendix]: <https://www.ctan.org/pkg/appendix>
 [appendix-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/appendix>
 [booktabs]: <https://www.ctan.org/pkg/booktabs>
+[booktabs-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/booktabs>
 [cleveref]: <https://www.ctan.org/pkg/cleveref>
 [datatool]: <https://www.ctan.org/pkg/datatool>
 [datetime2]: <https://www.ctan.org/pkg/datetime2>
