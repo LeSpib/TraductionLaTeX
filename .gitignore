@@ -46,9 +46,12 @@ Network Trash Folder
 Temporary Items
 .apdisk
 *.aux
+*.bbl
+*.blg
 *.cfg
 *.dvi
 *.glo
+*.gls
 *.idx
 *.ilg
 *.ind

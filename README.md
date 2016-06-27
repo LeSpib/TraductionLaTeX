@@ -44,7 +44,7 @@ Traduction      | Source            | Avancée                | Pages traduites 
 [titlesec-fr]   | [titlesec] 2.10.2 | :full_moon:            | 25              | 
                 | [varioref]        |                        | *. / 32*        |
 [xcolor-fr]     | [xcolor] v2.12    | :waxing_crescent_moon: | 25 / 72         | 
-
+[xkeyval-fr]    | [xkeyval] v2.7    | :new_moon:             | 0 / 73          |
 
 ### Traduction des documents 
 
@@ -115,4 +115,6 @@ Anglais                | Français                                       | Comme
 [varioref]: <https://www.ctan.org/pkg/varioref>
 [xcolor]: <https://www.ctan.org/pkg/xcolor>
 [xcolor-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/xcolor>
+[xkeyval]: <https://www.ctan.org/pkg/xkeyval>
+[xkeyval-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/xkeyval>
 [TransLaTeX]: <https://github.com/LeSpib/TransLaTeX/tree/master/TransLaTeX>
