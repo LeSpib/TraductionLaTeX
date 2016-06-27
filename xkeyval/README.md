@@ -14,23 +14,6 @@ pdflatex xkeyval-fr.dtx
 pdflatex xkeyval-fr.dtx
 ```
 
-### Quelques termes récurrents dans la traduction de ce document
-
-Anglais                   | Français                                          | Commentaires 
-------------------------- | ------------------------------------------------- | -------------------------------
-*brightness*              | luminosité                                        |   
-*color harmony*           | accord de couleurs                                | 
-*color model*             | modèle colorimétrique                             | 
-*color wheel*             | cercle chromatique                                | 
-*complement*              | complémentaire, couleur complémentaire            | 
-*hue*                     | teinte                                            | 
-*shade*                   | nuance (usuel), couleur assombrie (ici)           |
-*spot color*              | ton direct                                        | Source : Wikipédia
-*tetrad*                  | tétrade                                           | 
-*tint*                    | teinte (usuel), couleur éclaircie (ici)           | 
-*tone*                    | ton (usuel), couleur assourdie (ici)              |
-*triad*                   | triade                                            | 
-
 ### Avancement de la traduction, en vision table de matières
 
 L'évolution est précisée par un code visuel identique à celui de la page principale mais avec une définition affinée :
@@ -64,3 +47,7 @@ Remerciements                 | :new_moon:             | 0 / 1           |
 Historique des versions       | :new_moon:             | 0 / 1           |
 Index                         | :new_moon:             | 0 / 3           |
 
+### Glossaire pour la traduction
+
+Anglais                   | Français                                          | Commentaires 
+------------------------- | ------------------------------------------------- | -------------------------------

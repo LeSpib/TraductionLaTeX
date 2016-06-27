@@ -66,7 +66,7 @@ Ces marques sont gérées par trois commandes placées en préambule de document
 > *These indications are managed by three macros placed in the document preamble: `\trad{}`, `\tradini` and `\tradfin`. These macros and their definitions are removed when the translation is finished.*
 
 
-##### Glossaire
+##### Glossaire pour la traduction
 
 De nombreux termes spécifiques se retrouvent dans les différents documents traduits. Cette section sert de glossaire en regroupant certains de ces termes. Chaque traduction d'extension reprend ce principe dans son ReadMe de façon plus ciblée.
 
