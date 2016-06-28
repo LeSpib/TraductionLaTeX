@@ -42,6 +42,7 @@ Traduction      | Source              | Avancée                | Pages traduite
                 | [siunitx]           |                        | *. / 102*       |
                 | [tikz] (pgf)        |                        | *. / 1161*      |
 [titlesec-fr]   | [titlesec] 2.10.2   | :full_moon:            | 25              | 
+[tocbibind-fr]  | [tocbibind] v1.5k   | :new_moon:             | 0 / 17          | 
                 | [varioref]          |                        | *. / 32*        |
 [xcolor-fr]     | [xcolor] v2.12      | :waxing_crescent_moon: | 25 / 72         | 
 [xkeyval-fr]    | [xkeyval] v2.7      | :new_moon:             | 0 / 73          |
@@ -112,6 +113,8 @@ Anglais                | Français                                       | Comme
 [siunitx]: <https://www.ctan.org/pkg/siunitx>
 [titlesec]: <https://www.ctan.org/pkg/titlesec>
 [titlesec-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/titlesec>
+[tocbibind]: <https://www.ctan.org/pkg/tocbibind>
+[tocbibind-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/tocbibind>
 [tikz]: <https://www.ctan.org/pkg/pgf>
 [varioref]: <https://www.ctan.org/pkg/varioref>
 [xcolor]: <https://www.ctan.org/pkg/xcolor>
