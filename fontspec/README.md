@@ -2,25 +2,39 @@
 
 L'objectif est de traduire la documentation de l'extension *fontspec* utilisable avec LaTeX.
 
-### Quelques termes récurrents dans la traduction de ce document
+```bash
+pdflatex fontspec-fr.dtx
+pdflatex fontspec-fr.dtx
+
+```
 
 ### Avancement de la traduction, en vision table de matières
-- [ ] En-tête du document tex (définitions, métadonnées)
-- [x] Pages d'avant-propos (4 pages) 
-  - [x] Historique
-  - [x] Introduction
-  - [x] Chargement de l'extension et options
-- [ ] Sélection générale de fontes (17 pages)
-  - [ ] Sélection de fontes
-  - [ ] Nouvelles commandes de sélection de familles de fontes
-  - [ ] Sélection de fonctionnalités de fontes
-  - [ ] Options indépendantes des fontes
-- [ ] OpenType (13 pages)
-- [ ] LuaTeX-only font features (3 pages)
-- [ ] Fonts and feature with XeTeX (6 pages)
-- [ ] Programming interface (3 pages)
-- [ ] The patching/improvement of LaTeX2e and other packages (2 pages)
-- [ ] fontspec.sty and friends (68 pages)
-- [ ] fontspec.lua (2 pages)
-- [ ] fontspec-patches.sty (4 pages) 
-- [ ] fontspec.cfg (1 page)
+
+L'évolution est précisée par un code visuel identique à celui de la page principale mais avec une définition affinée :
+
+- :new_moon: : traduction non entamée ;
+- :waxing_crescent_moon: : traduction en cours ;
+- :first_quarter_moon: : traduction achevée ;
+- :waxing_gibbous_moon: : première relecture achevée (comparant original et traduction) ; 
+- :full_moon: : seconde relecture achevée (vérifiant la cohérence de la traduction seule).
+
+Section                       | Avancée                | Pages traduites | Commentaires 
+----------------------------- | :--------------------: | :-------------: | -------------------------
+En-tête du document tex       | :new_moon:             |                 |
+Page d'avant-propos           | :first_quarter_moon:   | 4 / 4           | 
+Sélection générale de...      | :new_moon:             | 1 / 17          | 
+OpenType                      | :new_moon:             | 0 / 13          |   
+LuaTeX-only font features     | :new_moon:             | 0 / 3           |  
+Fonts and feature with XeTeX  | :new_moon:             | 0 / 6           |  
+Programming interface         | :new_moon:             | 0 / 3           |
+The patching/improvement...   | :new_moon:             | 0 / 2           |  
+fontspec.sty and friends      | :new_moon:             | 0 / 68          |  
+fontspec.lua                  | :new_moon:             | 0 / 2           |  
+fontspec-patches.sty          | :new_moon:             | 0 / 4           |  
+fontspec.cfg                  | :new_moon:             | 0 / 1           |
+
+### Glossaire pour la traduction
+
+Anglais                   | Français                                          | Commentaires 
+------------------------- | ------------------------------------------------- | -------------------------------
+

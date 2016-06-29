@@ -319,23 +319,23 @@ This work consists of this file fontspec.dtx
 %
 % Cette section concerne les différentes commandes qui peuvent être utilisées
 % pour sélectionner des fontes.
-% \tradini 
 %
 % \cmdbox{%
-%   \CMD{\string\fontspec}\marg{font name}\oarg{font features}\\
-%   \CMD{\string\setmainfont}\marg{font name}\oarg{font features}\\
-%   \CMD{\string\setsansfont}\marg{font name}\oarg{font features}\\
-%   \CMD{\string\setmonofont}\marg{font name}\oarg{font features}\\
-%   \CMD{\string\newfontfamily}\meta{cmd}\marg{font name}\oarg{font features}
+%   \CMD{\string\fontspec}\marg{nom-fonte}\oarg{fonctionnalités-fonte}\\
+%   \CMD{\string\setmainfont}\marg{nom-fonte}\oarg{fonctionnalités-fonte}\\
+%   \CMD{\string\setsansfont}\marg{nom-fonte}\oarg{fonctionnalités-fonte}\\
+%   \CMD{\string\setmonofont}\marg{nom-fonte}\oarg{fonctionnalités-fonte}\\
+%   \CMD{\string\newfontfamily}\meta{commande}\marg{nom-fonte}\oarg{fonctionnalités-fonte}
 % }
 %
-% These are the main font-selecting commands of this package.
-% The \cs{fontspec} command selects a font for one-time use; all
-% others should be used to define the standard fonts used in a document, as shown in \exref{fontload}.
-% Here, the scales of the fonts have been chosen to equalise their
-% lowercase letter heights. The \feat{Scale} font feature will be discussed
-% further in \vref{sec:font-ind-features}, including methods for automatic
-% scaling.
+% Ce sont les principales commandes de sélection de fonte de cette extension.
+% La commande \cs{fontspec} sélectionne une fonte pour un usage 
+% \trad{one-time}; toutes les autres servent à définir les fontes standards
+% utilisées par un document, comme illustré dans \exref{fontload}.
+% Ici, les tailles des fontes ont été choisies pour égaliser la taille de leur 
+% minuscules. La fonctionnalité \feat{Scale} sera présentée par la suite en 
+% \vref{sec:font-ind-features}, en incluant les méthodes pour un
+% dimensionnement automatique.
 %
 % \begin{Lexample}{fontload}{Loading the default, sans serif, and monospaced fonts.}
 %   \setmainfont{TeX Gyre Bonum}
@@ -347,23 +347,25 @@ This work consists of this file fontspec.dtx
 %   \ttfamily Pack my box with five dozen liquor jugs
 % \end{Lexample}
 %
-% The font features argument accepts comma separated
-% \meta{font feature}=\meta{option} lists; these are described in later:
+% L'argument de fonctionnalités des fontes accepte des listes de paires 
+% \meta{fonctionnalité-fonte}=\meta{option} séparées par des virgules; ces
+% arguments sont décrits par la suite :
 % \begin{itemize}
-% \item For general font features, see \vref{sec:font-ind-features}
-% \item For OpenType fonts, see Part~\vref{sec:opentype-features}
-% \item For \XeTeX-only general font features, see Part~\vref{sec:xetex-features}
-% \item For \LuaTeX-only general font features, see Part~\vref{sec:luatex-features}
-% \item For features for \AAT\ fonts in \XeTeX, see \vref{sec:aat-features}
+% \item pour des fonctionnalités de fonte générales, voir \vref{sec:font-ind-features}
+% \item pour les fontes OpenType, voir la partie~\vref{sec:opentype-features}
+% \item pour les fonctionnalités de fontes propres à \XeTeX, voir la partie~\vref{sec:xetex-features}
+% \item pour les fonctionnalités de fontes propres à \LuaTeX, voir la partie~\vref{sec:luatex-features}
+% \item pour les fonctionnalité pour les fontes \AAT\ dans \XeTeX, voir \vref{sec:aat-features}
 % \end{itemize}
 %
-% \section{Font selection}
+% \section{Sélection de fontes}
 %
-% In both \LuaTeX\ and \XeTeX, fonts can be selected either by `font name' or
-% by `file name'.
+% Dans \LuaTeX\ et \XeTeX, les fontes peuvent être sélectionnées par leur \og 
+% nom de fonte \fg{} comme par leur \og nom de fichier \fg{}.
 %
-% \subsection{By font name}
+% \subsection{Par nom de fonte}
 %
+% \tradini 
 % Fonts known to \LuaTeX\ or \XeTeX\ may be loaded by their standard names as
 % you'd speak them out loud, such as \emph{Times New Roman} or
 % \emph{Adobe Garamond}.
