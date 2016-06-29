@@ -4,7 +4,7 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *bo
 
 Cette traduction a la particularité d'avoir déjà été traitée totalement sur la version v1.00 de l'extension par Jean-Pierre Drucbert et Mathieu Goutelle (ci-dessous le fichier *f-booktabs*), en lien avec le projet [French translations](https://www.ctan.org/pkg/french-translations). Les fichiers d'origine de la traduction se retrouvent sur le site du [CTAN](https://www.ctan.org/tex-archive/info/french-translations/macros/latex/contrib/supported/booktabs).
 
-Il s'agit ici donc de revoir cette traduction et de la compléter des évolutions apportées à l'extension entre la version v1.00 (datant de 1995) et la version v1.618033 (datant de 2016).
+Mathieu Goutelle ayant donné son accord, il s'agit ici donc de revoir cette traduction et de la compléter des évolutions apportées à l'extension entre la version v1.00 (datant de 1995) et la version v1.618033 (datant de 2016).
 
 ### Commandes pour obtenir le document
 
@@ -31,8 +31,8 @@ Section                       | Avancée                | Pages traduites | Comm
 ----------------------------- | :--------------------: | :-------------: | -------------------------
 En-tête du document tex       | :new_moon:             |                 |
 Page d'avant-propos           | :first_quarter_moon:   | 1 / 1           | 
-1. Introduction               | :new_moon:             | 0 / 1           |
-2. La mise en page de...      | :new_moon:             | 0 / 1           | 
+1. Introduction               | :first_quarter_moon:   | 1 / 1           |
+2. Mise en page de...         | :new_moon:             | 0 / 1           | 
 3. Utilisation de nouvelles...| :new_moon:             | 0 / 1           |
 4. Abus des nouvelles...      | :new_moon:             | 0 / 1           |
 5. Booktabs et longtable      | :new_moon:             | 0 / 1           |

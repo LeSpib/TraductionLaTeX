@@ -36,6 +36,7 @@
   \usepackage[utf8]{inputenc}
   \usepackage[french]{babel}
   \usepackage{booktabs}[2016/04/27]
+  \usepackage{eurosym}
   % Bloc pour traduction
   \usepackage{xcolor}
   \usepackage{pifont}
@@ -104,12 +105,12 @@
 % \DeleteShortVerb{\|}
 % \GetFileInfo{booktabs.dtx}
 %
-%  \title{Tables de qualité professionnelle avec \LaTeX%
-%        \thanks{Ce fichier a pour numéro de version \fileversion
+%  \title{Tables scientifiques de qualité avec \LaTeX%
+%        \thanks{Ce fichier a pour numéro de version \fileversion\ 
 %                (convergeant vers phi, le nombre d'or)
 %                et date \filedate. La première traduction en français de 
 %                 \og \emph{Publication quality tables in \LaTeX} \fg{} a été
-%                faite par Jean-Pierre Drucbert et Mathieu Goutelle le
+%                publiée par Jean-Pierre Drucbert et Mathieu Goutelle le
 %                2~mai~2001 sur la base de la version 1.00.}}
 % \author{Simon Fear\\300A route de Meyrin\\Meyrin\\Switzerland}
 % \date{Généré le \today}
@@ -118,8 +119,8 @@
 %
 % \begin{abstract}
 % Cet article décrit quelques commandes supplémentaires pour améliorer la
-% qualité des tables en \LaTeX. Dans ce cadre, des conseils sont donnés pour
-% constituer une table visuellement satisfaisante. La version de l'an 2000 
+% qualité des tables en \LaTeX. Dans ce cadre, des principes sont donnés pour
+% constituer des tables visuellement satisfaisantes. La version de l'an 2000 
 % (1.61) de l'extension =booktabs=, décrite ici, ajoute quelques
 % améliorations à celle de 1995 (1.00), essentiellement la
 % compatibilité avec =longtable=.
@@ -134,117 +135,121 @@
 %
 % \section{Introduction}
 %
-% \tradini
-% The routines described below are to enable the easy production
-% of tables such as should appear in published scientific books and
-% journals. What distinguishes these from plain
-% \LaTeX{} tables is the default use of additional space above and below rules,
-% and rules of varying `thickness'. What further distinguishes them from
-% the tables many people {\em do} produce using \LaTeX{} is the
-% absence of vertical rules and double rules.
+% Les commandes décrites ci-dessous facilitent la production de tables telles
+% qu'elles devraient apparaître dans les livres et journaux scientifiques. Ce
+% qui distingue ces tables de celles que LaTeX{} produit normalement est 
+% la présence par défaut d'un espace au-dessus comme au-dessous des filets 
+% ainsi que des filets d'épaisseur variable.
+% Ce qui les distingue encore plus des tables que beaucoup de gens produisent
+% en utilisant \emph{pourtant} \LaTeX{} est l'absence de filets verticaux et 
+% de filets doubles.
+
 %
-% I must draw a clear
-% distinction between what I call here a {\em formal table},
-% which is a set of values in labelled columns, as distinct from
-% what I will call a {\em tableau}. The latter is the kind of thing
-% illustrated in the \LaTeX{} manual, and increasingly
-% common as the output of
-% many database management systems; it will probably have
-% icons in abundance, and no doubt use colour too.
-% The layout of such a {\em tableau} is determined
-% (hopefully) as a one-off, given a jumble of material the
-% designer is trying to combine into a meaningful configuration.
-% But the layout of a {\em table} has been established over
-% centuries of experience and should only be altered in
-% extraordinary circumstances.
+% Je dois faire une distinction claire entre ce que j'appelle une
+% \emph{table formelle}, ensemble de valeurs dans des colonnes titrées, et ce
+% que j'appelle un \emph{tableau}. Ce dernier est le genre de choses présentés
+% dans le manuel \LaTeX, de plus en plus fréquent en tant que sortie de 
+% systèmes de gestion de bases de données ; il aura probablement des icônes en 
+% abondance et de la couleur sans l'ombre d'un doute. 
+% La mise en page d'un tel \emph{tableau} est (heureusement) à usage unique,
+% compte tenu du méli-mélo de commandes que le concepteur essaie de
+% combiner en une configuration sensée.
+% À l'opposé, la mise en page d'une \emph{table} a été établie sur la base de
+% siècles d'expérience et ne devrait être altérée que dans des cas
+% extraordinaires. 
 %
-% By way of illustration, consider this tableau from the \LaTeX{}
-% manual (p. 64 old edition):
+% Pour illustrer ce propos, considérons ce tableau extrait du manuel
+% \LaTeX{} (page~64 de l'ancienne édition\footnote{N.D.T.: table ici traduite.}) :
 %
 % \begin{center}
 % \begin{tabular}{||l|lr||} \hline
-% gnats     & gram      & \$13.65 \\ \cline{2-3}
-%           & each      & .01 \\ \hline
-% gnu       & stuffed   & 92.50 \\ \cline{1-1} \cline{3-3}
-% emu       &           & 33.33 \\ \hline
-% armadillo & frozen    & 8.99 \\ \hline
+% moucherons    & gramme         & 13,65\euro  \\ \cline{2-3}
+%           	& la pièce       & ,01         \\ \hline
+% gnou          & farci          & 92,50       \\ \cline{1-1} \cline{3-3}
+% émeu          &                & 33,33       \\ \hline
+% tatou         & congelé        & 8,99        \\ \hline
 % \end{tabular}
 % \end{center}
 %
-% This is a hotch-potch of information that is probably
-% reasonably clearly presented as is (but is the emu stuffed or
-% not?). However, as a published table, this should
-% much rather appear along the lines suggested
-% further down the page in the manual:
+% C'est un fatras d'informations, probablement présenté de manière 
+% raisonnablement claire ainsi (mais l'émeu est-il farci ou pas ?). Cependant,
+% en tant que  table publiée, elle devrait certainement suivre les principes
+% donnés dans la suite de ce manuel :
 %
 % \begin{center}
 % \begin{tabular}{@{}llr@{}} \toprule
-% \multicolumn{2}{c}{Item} \\ \cmidrule(r){1-2}
-% Animal & Description & Price (\$)\\ \midrule
-% Gnat  & per gram  & 13.65 \\
-%       & each      & 0.01 \\
-% Gnu   & stuffed   & 92.50 \\
-% Emu   & stuffed   & 33.33 \\
-% Armadillo & frozen & 8.99 \\ \bottomrule
+% \multicolumn{2}{c}{\'{E}lément} \\ \cmidrule(r){1-2}
+% Animal     & Description   & Prix (\euro)  \\ \midrule
+% Moucheron  & le gramme     & 13,65         \\
+%            & la pièce      & 0,01          \\
+% Gnou       & farci         & 92,50         \\
+% \'{E}meu   & farci         & 33,33         \\
+% Tatou      & congelé       & 8,99          \\ \bottomrule
 % \end{tabular}
 % \end{center}
 %
-% It takes much less work to lay
-% this out, as a formal table; we don't have to work out a new
-% layout for everything we do. Moreover, we can be almost certain
-% that the data cannot be misread, because the reader does not
-% have to learn how to read some novel presentation.
+% Cette table formelle a demandé un travail de présentation bien moindre ; nous
+% n'avons pas à construire une nouvelle mise en page pour chaque table que nous
+% constituons.
+% De plus, nous pouvons être quasiment certains que les données ne pourront pas
+% être mal interprêtées car le lecteur n'a pas à apprendre comment lire un 
+% nouveau type de présentation.
 %
-% The above table cannot be produced in pure \LaTeX,
-% unfortunately. It can be laid out as it should be, but despite
-% your best efforts, using plain =\hline= commands produces
+% Malheureusement, la table ci-dessus ne peut pas être produite en \LaTeX{} 
+% standard. Une tentative de mise en page peut être faite mais, malgré
+% tous nos efforts, l'utilisation de simples commandes =\hline= donne
 %
 % \begin{center}
 % \begin{tabular}{@{}llr@{}} \hline
-% \multicolumn{2}{c}{Item} \\ \cline{1-2}
-% Animal & Description & Price (\$)\\ \hline
-% Gnat  & per gram  & 13.65 \\
-%       & each      & 0.01 \\
-% Gnu   & stuffed   & 92.50 \\
-% Emu   & stuffed   & 33.33 \\
-% Armadillo & frozen & 8.99 \\ \hline
+% \multicolumn{2}{c}{\'{E}lément} \\ \cline{1-2}
+% Animal     & Description   & Prix (\euro)  \\ \hline
+% Moucheron  & le gramme     & 13,65         \\
+%            & la pièce      & 0,01          \\
+% Gnou       & farci         & 92,50         \\
+% \'{E}meu   & farci         & 33,33         \\
+% Tatou      & congelé       & 8,99          \\ \hline
 % \end{tabular}
 % \end{center}
 %
-% Note (if it is not already obvious) that there is not enough
-% space between the top line and the capital I of `Item', and so
-% on for all the lines: contrast with the previous version. Also, in
-% the first version
-% the top and bottom rules (ie lines) are
-% heavier than the middle rule, which is turn heavier than the
-% subrule underneath `Item'. Of course you \emph{could} redefine
-% =\doublerulesep= and then use =\hline\hline= to get something
-% near the same effect, and you could use struts to improve
-% the spacing. But you should not have to
-% think of such things. The =booktabs= style defines its commands so
-% that such things are taken care of automatically.
+% Notez (si ce n'est pas déjà évident) qu'il n'y a pas assez d'espace
+% entre la ligne du haut et le \og \'{E} \fg{} majuscule de \og \'{E}lément 
+% \fg{}, et que cela se trouve pour toutes les lignes : comparez avec la
+% version précédente. Qui plus est, les filets du haut et du bas dans la
+% première version sont plus gras que le filet du milieu, qui à son tour est
+% plus gras que le filet mineur en-dessous de \og \'{E}lément \fg{}. Bien sûr,
+% vous \emph{pourriez} redéfinir =\doublerulesep= et ensuite utiliser
+% =\hline\hline= pour obtenir quelque chose donnant presque le même effet, et
+% vous pouvez utiliser des cales (avec la commande \strut par exemple) pour
+% améliorer l'espacement. Mais vous ne devriez pas avoir à vous soucier de
+% telles choses. L'extension \texttt{booktabs} définit ses propres commandes
+% pour que ces questions soient traitées automatiquement.
 %
-% In general, I would say that
-% this package is of no interest to those looking for
-% an alternative to Pic\TeX{} to conjure up fancy tableaux.
-% Rather, it is a style guide for authors of scientific papers
-% and books as regards table layout. It is not going too far to
-% say that if you cannot
-% create a table using the commands in this package, you should
-% redesign it.
+% En général, cette extension n'a aucun intérêt pour ceux qui cherche une
+% alternative à Pic\TeX{} pour générer des tableaux sophistiqués. Elle doit
+% être considérée comme un code typographique pour tables à destination
+% d'auteurs d'articles et de livres scientifiques. Il n'est pas exagéré de dire
+% que si vous ne parvenez pas à créer votre table en utilisant cette extension,
+% vous devriez la revoir en profondeur.
 %
-% \subsection{A note on terminology\label{notation}}
+% \subsection{Note sur la terminologie\label{notation}}
 %
-% In British typesetting, a `line' is always called a `rule'. Perhaps
-% confusingly (for historic reasons in fact), the `thickness' of
-% rule is often referred to as is its `width' (whereas just about
-% everyone else would call this `depth' or `height', if they were thinking
-% of a horizontal rule). A `thick black line' is called a `heavy
-% rule'. I have used this terminology in most of the new commands
-% below. If nothing else it avoids confusion with =\hline=.
+% En typographie\footnote{N.D.T.: le texte d'origine évoque la typographie
+% britannique. Le traduction reprend ici la terminologie française et précise 
+% les termes anglais entre parenthèses, ces derniers étant ceux utilisés dans 
+% les noms de commande par la suite.}, un \og trait droit \fg{} (\emph{line})
+% est toujours appelé \og filet \fg{} (\emph{rule}). Source de confusion
+% éventuelle (pour des raisons historiques), l'\og épaisseur \fg{} 
+% (\emph{thickness}) d'un filet est souvent appelée \og largeur \fg{} 
+% (\emph{width}), alors que tout à chacun l'appellerait \og profondeur \fg{} ou
+% \og hauteur \fg{} en pensant à un filet horizontal.
+% Une \og ligne noire épaisse \fg{} (\emph{thick black line}) est appelée  
+% \og filet gras \fg{} (\emph{heavy rule}). La terminologie anglaise est 
+% reprise dans la plupart des noms des nouvelles commandes décrites ci-dessous.
+% Ceci évite au moins la confusion avec =\hline=.
 %
-% \section{The layout of formal tables}
+% \section{Mise en page de tables formelles}
 %
+% \tradini
 % You will not go far wrong if you remember two simple
 % guidelines at all times:
 % \begin{enumerate}
