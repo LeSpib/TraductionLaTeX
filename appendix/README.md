@@ -8,24 +8,37 @@ Il s'agit ici donc de revoir cette traduction et de la compléter des évolution
 
 ### Commandes pour obtenir le document
 
-    pdflatex appendix-fr.dtx
-    makeindex -s gind-fr.ist appendix-fr.idx
-    pdflatex appendix-fr.dtx
-    pdflatex appendix-fr.dtx
-
-Le fichier gind-fr.ist se base sur le fichier gind.ist classique. Il intègre uniquement deux lignes supplémentaires pour bien traduire l'index en français (sans cela, les termes "Symboles" et "Nombres" en titre dans les colonnes de l'index seraient toujours en anglais) :
-
-    symhead_positive  "Symboles"
-    numhead_positive  "Nombres"
-
-### Quelques termes récurrents dans la traduction de ce document
-- *appendix* : annexe. 
+```bash
+pdflatex appendix-fr.dtx
+makeindex -s gind-fr.ist appendix-fr.idx
+pdflatex appendix-fr.dtx
+pdflatex appendix-fr.dtx
+```
 
 ### Avancement de la traduction, en vision table de matières
-- [x] En-tête du document tex (définitions, métadonnées)
-- [x] Introduction (1 page)
-- [x] L'extension *appendix* (3 pages)
-  - [x] Problèmes connus
-- [x] Le code de l'extension (9 pages)
-- [x] Références (1 page)
-- [x] Index (1 page)
+
+L'évolution est précisée par un code visuel identique à celui de la page principale mais avec une définition affinée :
+
+- :new_moon: : traduction non entamée ;
+- :waxing_crescent_moon: : traduction en cours ;
+- :first_quarter_moon: : traduction achevée ;
+- :waxing_gibbous_moon: : première relecture achevée (comparant original et traduction) ; 
+- :full_moon: : seconde relecture achevée (vérifiant la cohérence de la traduction seule).
+
+Section                       | Avancée                | Pages traduites | Commentaires 
+----------------------------- | :--------------------: | :-------------: | -------------------------
+En-tête du document tex       | :full_moon:            |                 |
+Page d'avant-propos           | :full_moon:            | 1 / 1           | 
+1. Introduction               | :full_moon:            | 1 / 1           |
+2. L'extension *appendix*     | :full_moon:            | 3 / 3           | 
+3. Le code de l'extension     | :full_moon:            | 9 / 9           |
+Références                    | :full_moon:            | 1 / 1           |
+Index                         | :full_moon:            | 1 / 1           |
+
+
+### Glossaire pour la traduction
+
+Anglais                   | Français                                          | Commentaires 
+------------------------- | ------------------------------------------------- | -------------------------------
+appendix                  | annexe                                            | ------------------
+
