@@ -28,17 +28,17 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 Section                       | Avancée                | Pages traduites | Commentaires 
 ----------------------------- | :--------------------: | :-------------: | -------------------------
 En-tête du document tex       | :full_moon:            |                 |
-Page d'avant-propos           | :full_moon:            | 1 / 1           | 
-1. Introduction               | :full_moon:            | 1 / 1           |
-2. L'extension *appendix*     | :full_moon:            | 3 / 3           | 
-3. Le code de l'extension     | :full_moon:            | 9 / 9           |
-Références                    | :full_moon:            | 1 / 1           |
-Index                         | :full_moon:            | 1 / 1           |
+Page d'avant-propos           | :full_moon:            | 1               | 
+1. Introduction               | :full_moon:            | 1               |
+2. L'extension *appendix*     | :full_moon:            | 3               | 
+3. Le code de l'extension     | :full_moon:            | 9               |
+Références                    | :full_moon:            | 1               |
+Index                         | :full_moon:            | 1               |
 
 
 ### Glossaire pour la traduction
 
 Anglais                   | Français                                          | Commentaires 
 ------------------------- | ------------------------------------------------- | -------------------------------
-appendix                  | annexe                                            | ------------------
+appendix                  | annexe                                            | 
 
