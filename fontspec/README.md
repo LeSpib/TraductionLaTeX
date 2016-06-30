@@ -2,6 +2,8 @@
 
 L'objectif est de traduire la documentation de l'extension *fontspec* utilisable avec LaTeX.
 
+### Commandes pour obtenir le document
+
 ```bash
 pdflatex fontspec-fr.dtx
 pdflatex fontspec-fr.dtx
