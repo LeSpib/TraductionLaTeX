@@ -5,9 +5,33 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *ti
 ### Commandes pour obtenir le document
 
 ```bash
-pdflatex titlesec-fr.tex
-pdflatex titlesec-fr.tex
+pdflatex fontspec-fr.dtx
+pdflatex fontspec-fr.dtx
+
 ```
+
+### Avancement de la traduction, en vision table de matières
+
+L'évolution est précisée par un code visuel identique à celui de la page principale mais avec une définition affinée :
+
+- :new_moon: : traduction non entamée ;
+- :waxing_crescent_moon: : traduction en cours ;
+- :first_quarter_moon: : traduction achevée ;
+- :waxing_gibbous_moon: : première relecture achevée (comparant original et traduction) ; 
+- :full_moon: : seconde relecture achevée (vérifiant la cohérence de la traduction seule).
+
+Section                       | Avancée                | Pages traduites | Commentaires 
+----------------------------- | :--------------------: | :-------------: | -------------------------
+En-tête du document tex       | :full_moon:            |                 |
+Page d'avant-propos           | :full_moon:            | 1               |  
+1. Introduction               | :full_moon:            | 1               | 
+2. Interface simplifiée       | :full_moon:            | 1               |
+3. Interface avancée          | :full_moon:            | 7               | 
+4. Notes complémentaires      | :full_moon:            | 2               | 
+5. L'extension *titleps*      | :full_moon:            | 1               | 
+6. L'extension *titletoc*     | :full_moon:            | 6               |  
+7. La philosophie de...       | :full_moon:            | 1               | 
+8. Annexess                   | :full_moon:            | 4               | 
 
 ### Quelques termes récurrents dans la traduction de ce document
 
@@ -20,37 +44,3 @@ Anglais                   | Français                                          |
 *top mark*                | marque de début de page                           |
 *width*                   | largeur (d'une page, d'une boîte) et non longueur |
 
-### Avancement de la traduction, en vision table de matières
-- [x] En-tête du document tex (définitions, métadonnées)
-- [x] Pages d'avant-propos (1 page)
-- [x] Introduction (1 page)
-- [x] Interface simplifiée (1 page)
-- [x] Interface avancée (7 pages)
-  - [x] Format
-  - [x] Espacement
-  - [x] Outils liés à l'espacement
-  - [x] Filets
-  - [x] Styles de page
-  - [x] Sauts de page
-  - [x] Autres options de l'extension
-  - [x] Paramétrages étendus
-  - [x] Création de nouveaux niveaux et changement de classe
-- [x] Notes complémentaires (2 pages)
-  - [x] Numérotation à largeur fixe
-  - [x] Version étoilée
-  - [x] Variantes
-  - [x] Placement d'un point après un titre de section
-- [x] L'extension titleps et le style de page (1 page)
-- [x] L'extension titletoc et la table des matières (6 pages)
-  - [x] Visite guidée de titletoc en 10 minutes
-  - [x] Et bien plus
-  - [x] Table des matières partielle
-  - [x] Liste partielle
-  - [x] Exemples
-  - [x] Insertion d'une figure en table des matières
-  - [x] Repérage d'entrées avec des astérisques
-- [x] La philosophie de titlesec (1 page)
-- [x] Annexes (4 pages)
-  - [x] Un exemple complet
-  - [x] Classes standards
-  - [x] Exemple de chapitre
