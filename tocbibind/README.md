@@ -25,12 +25,12 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 Section                       | Avancée                | Pages traduites | Commentaires 
 ----------------------------- | :--------------------: | :-------------: | -------------------------
 En-tête du document tex       | :new_moon:             |                 |
-Page d'avant-propos           | :first_quarter_moon:   | 0 / 1           | 
-1. Introduction               | :new_moon:             | 0 / 1           |
+Page d'avant-propos           | :first_quarter_moon:   | 1 / 1           | 
+1. Introduction               | :first_quarter_moon:   | 1 / 1           |
 2. L'extension tocbibind      | :new_moon:             | 0 / 4           | 
 3. Le code de l'extension     | :new_moon:             | 0 / 9           |
-Références                    | :new_moon:             | 0 / 1           |
-Index                         | :new_moon:             | 0 / 1           |
+Références                    | :first_quarter_moon:   | 1 / 1           |
+Index                         | :first_quarter_moon:   | 1 / 1           |   
 
 ### Glossaire pour la traduction
 

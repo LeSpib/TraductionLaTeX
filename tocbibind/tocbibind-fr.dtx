@@ -174,27 +174,29 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 %
 % \section{Introduction}
 %
+% Des questions pour ajouter la bibliographie dans les entrées de la table des
+% matières semblent surgir assez régulièrement sur le forum 
+% \texttt{comp.text.tex}. 
+%
+% L'extension \Lpack{tocbibind} fournit une solution pour insérer 
+% automatiquement des références à une bibliographie, un index ou tout élément
+% titré d'un document en table des matières (\Lpack{tocbibind} est censé être 
+% une abréviation pour \og \emph{Table of Contents\footnote{N.D.T. : table des
+% matières.}, Bibliography, Index, etc.}).
+%
+% Certaines parties de l'extension ont été développées en tant que part d'une
+% classe et d'un ensemble d'extensions traitant de la composition de documents
+% au standard ISO~\cite{PRW96i}. Ce manuel est réalisé conformément aux
+% conventions de l'utilitaire \LaTeX\ \textsc{docstrip} qui permet
+% l'extraction automatique du fichier source contenant les macros
+% \LaTeX~\cite{GOOSSENS05}.
+%
+% La section~\ref{sec:usc} décrit l'utilisation de l'extension. Son code
+% source est, quant à lui, détaillé dans la section~\ref{sec:code}.
+%
+% \section{L'extension \Lpack{tocbibind}} \label{sec:usc}
+%
 % \tradini
-% Questions about adding the bibliography to the Table of Contents
-% seem to pop up fairly regularly on the
-% \texttt{comp.text.tex} newsgroup. 
-%
-%  The \Lpack{tocbibind} package provides a solution for
-% automatically inserting references to a bibliography or an index,
-% or other headed document elements into the Table of Contents.
-% (\Lpack{tocbibind} is meant to be shorthand for `Table of Contents,
-% Bibliography, Index, etc').
-% Portions of the package were developed as part of a class
-% and package bundle for typesetting ISO standards~\cite{PRW96i}.
-% This manual is typeset according to the conventions of the
-% \LaTeX{} \textsc{docstrip} utility which enables the automatic
-% extraction of the \LaTeX{} macro source files~\cite{GOOSSENS94}.
-%
-%    Section~\ref{sec:usc} describes the usage of the package.
-% Commented source code for the package is in Section~\ref{sec:code}.
-%
-% \section{The \Lpack{tocbibind} package} \label{sec:usc}
-%
 %    The \Lpack{tocbibind} package enables the titles of the
 % Table of Contents, the List of Figures, the List of Tables, the
 % Bibliography and the Index all to be added to the Table of Contents.
@@ -1175,19 +1177,20 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 %    \end{macrocode}
 %
 %
+% \tradfin
 % \bibliographystyle{alpha}
 %
-% \begin{thebibliography}{GMS94}
+% \begin{thebibliography}{GM05}
 %
-% \bibitem[GMS94]{GOOSSENS94}
-% Michel Goossens, Frank Mittelbach, and Alexander Samarin.
-% \newblock {\em The LaTeX Companion}.
-% \newblock Addison-Wesley Publishing Company, 1994.
+% \bibitem[GM05]{GOOSSENS05}
+% Michel Goossens et Frank Mittelbach.
+% \newblock {\em LaTeX Companion}, 2\ieme~éd.,
+% \newblock Pearson, 2005.
 %
 % \bibitem[Wil96]{PRW96i}
 % Peter~R. Wilson.
 % \newblock {\em {LaTeX for standards: The LaTeX package files user manual}}.
-% \newblock NIST Report NISTIR, June 1996.
+% \newblock NIST Report NISTIR, juin 1996.
 %
 % \end{thebibliography}
 %
