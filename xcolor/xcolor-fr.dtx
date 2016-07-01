@@ -1673,35 +1673,50 @@
 % ci-dessus :\\
 % \DescribeMacro\color\marg{couleur}\\
 % \oarg{liste-modèle}\marg{liste-spéc}\\
-% \tradini
-% Switches to the color given either by name/expression or by model/specification.
-% This color will stay in effect until the end of the current \TeX\ group.\\
-% \DescribeMacro\textcolor\marg{color}\marg{text}\\
-% \oarg{liste-modèle}\marg{liste-spéc}\marg{text}\\
-% are just alternative syntax for |\color|, in which the groups are added implicitly.
-% Thus \meta{text} appears in the specified color, but then the color reverts to its previous value.
-% Additionally, it calls |\leavevmode| to ensure the start of horizontal mode.\\
-% \DescribeMacro\pagecolor\marg{color}\\
+% Cette commande fait passer à la couleur donnée soit par nom/expression, soit
+% par modèle/spécification. La couleur restera active jusqu'à la fin du groupe
+% courant.
+% \DescribeMacro\textcolor\marg{couleur}\marg{texte}\\
+% \oarg{liste-modèle}\marg{liste-spéc}\marg{texte}\\
+% La commande est ici juste une syntaxe alternative à |\color|, cette syntaxe
+% précisant le groupe de façon explicite. Ainsi, le \meta{texte} apparaît dans
+% la couleur spécifiée puis la couleur reprend sa valeur précédente. Par 
+% ailleurs, elle fait appel à |\leavevmode| pour garantir le démarrage du mode
+% horizontal.\\
+% \DescribeMacro\pagecolor\marg{couleur}\\
 % \oarg{liste-modèle}\marg{liste-spéc}\\
-% Specifies the background color for the current, and all following, pages.
-% It is a global declaration which does not respect \TeX\ groups.
+% Cette commande spécifie la couleur de fond pour la page courante comme les
+% suivantes. Il s'agit d'une déclaration globale qui ne tient pas compte des
+% groupes \TeX.
 %
-% Remark: all of these commands except |\color| require that the \Meta{color} resp.\ \Meta{spec} arguments are put into curly braces |{}|, even if they are buried in macros.
+% Note : toutes ces commandes, à l'exception de |\color| demandent à ce que les
+% arguments \Meta{color} ou \Meta{spéc} soient mis dans accolades |{}|, même
+% s'ils sont enfouis dans les commandes.
 %
-% For example, after |\def\foo{red}|, one may say |\color\foo|, but one should always write |\textcolor{\foo}{bar}| instead of |\textcolor\foo{bar}| in order to avoid strange results.
+% Par exemple, une fois posé |\def\toto{red}|, il est possible d'écrire 
+% |\color\toto| dans le document mais il vaut mieux toujours écrire 
+% |\textcolor{\toto}{truc}| au lieu de |\textcolor\foo{truc}| pour éviter des 
+% résultats étranges.
 %
-% Note that color-specific commands from other packages may give unexpected results if directly confronted with color expressions (e.g., \Package{soul}'s |\sethlcolor| and friends).
-% However, one can turn the expression into a name via |\colorlet| and try to use that name instead.
+% Notez que les commandes dédiées aux couleurs tirées d'autres extensions
+% peuvent avoir des résultats inattendus si elles sont directement confrontées
+% à des expressions de couleur (par exemple, |\sethlcolor| et similaires issues
+% de l'extension \Package{soul}). 
+% Cependant, il est possible de passer l'expression en un nom par le biais de
+% |\colorlet| et d'essayer d'utiliser ce nom à la place.
 %
 % \DescribeMacro\nopagecolor
-% Removes any currently specified page color returning to the default transparent background.
-% It is not yet supported by all driver options and so generates a warning if there is no definition in the driver file.
+% Contrairement à |\pagecolor|, cette commande retire la couleur de fond de
+% page en restaurant le fond transparent usuel. Elle n'est pas supportée par 
+% toutes les options de pilote et génère donc une alerte s'il n'existe pas de
+% définition dans le fichier du pilote.
 %
 %
-% \subsubsection{Colored boxes}\label{sec.fbox}
+% \subsubsection{Boîtes colorées}\label{sec.fbox}
 %
-% \DescribeMacro\colorbox\marg{color}\marg{text}\\
-% \oarg{liste-modèle}\marg{liste-spéc}\marg{text}\\
+% \DescribeMacro\colorbox\marg{couleur}\marg{texte}\\
+% \oarg{liste-modèle}\marg{liste-spéc}\marg{texte}\\
+% \tradini
 % Takes the same argument forms as |\textcolor|, but the color specifies the \emph{background} color of the box.\\
 % \DescribeMacro\fcolorbox\marg{frame color}\marg{background color}\marg{text}\\
 % \oarg{liste-modèle}\marg{frame liste-spéc}\marg{background liste-spéc}\marg{text}\\
