@@ -30,9 +30,9 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 Section                       | Avancée                | Pages traduites | Commentaires 
 ----------------------------- | :--------------------: | :-------------: | -------------------------
 En-tête du document tex       | :new_moon:             |                 |
-Page d'avant-propos           | :first_quarter_moon:   | 1 / 1           | 
-1. Introduction               | :first_quarter_moon:   | 1 / 1           |
-2. Mise en page de...         | :new_moon:             | 0 / 1           | 
+Page d'avant-propos           | :first_quarter_moon:   | 1               | 
+1. Introduction               | :first_quarter_moon:   | 1               |
+2. Mise en page de...         | :first_quarter_moon:   | 1               | 
 3. Utilisation de nouvelles...| :new_moon:             | 0 / 1           |
 4. Abus des nouvelles...      | :new_moon:             | 0 / 1           |
 5. Booktabs et longtable      | :new_moon:             | 0 / 1           |
