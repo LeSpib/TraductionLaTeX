@@ -33,15 +33,15 @@ En-tête du document tex       | :new_moon:             |                 |
 Page d'avant-propos           | :first_quarter_moon:   | 1               | 
 1. Introduction               | :first_quarter_moon:   | 1               |
 2. Mise en page de...         | :first_quarter_moon:   | 1               | 
-3. Utilisation de nouvelles...| :new_moon:             | 0 / 1           |
+3. Utilisation de nouvelles...| :new_moon:             | 2               |
 4. Abus des nouvelles...      | :new_moon:             | 0 / 1           |
 5. Booktabs et longtable      | :new_moon:             | 0 / 1           |
 6. Booktabs et colortbl       | :new_moon:             | 0 / 1           |
 7. Résumé technique des...    | :new_moon:             | 0 / 1           |
 8. Remerciements              | :new_moon:             | 0 / 1           |
 9. Le code                    | :new_moon:             | 0 / 6           |
-Historique des versions       | :new_moon:             | 0 / 1           |
-Index                         | :new_moon:             | 0 / 1           |
+Historique                    | :first_quarter_moon:   | 1               |
+Index                         | :full_moon:            | 1               |
 
 ### Glossaire pour la traduction
 

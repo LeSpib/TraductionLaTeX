@@ -22,7 +22,7 @@
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{booktabs.dtx}
+\ProvidesFile{booktabs-fr.dtx}
 %</driver>
 %<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<package>\ProvidesPackage{booktabs}
@@ -66,6 +66,10 @@
              (environnement)\encapchar usage}%
       \index{environnements:\levelchar#1\actualchar
             {\protect\ttfamily#1}\encapchar usage}\@esphack}
+  \def\glossary@prologue{\section*{{Historique}}%
+                 \markboth{{Historique}}{{Historique}}%
+                 }
+  \def\generalname{Général}
   \makeatother
   \EnableCrossrefs
   \CodelineIndex
@@ -77,7 +81,6 @@
 \begin{document}
   \DocInput{booktabs-fr.dtx}
   \PrintChanges
-  \tradfin
   \PrintIndex
 \end{document}
 %</driver>
@@ -103,7 +106,7 @@
 %
 %
 % \DeleteShortVerb{\|}
-% \GetFileInfo{booktabs.dtx}
+% \GetFileInfo{booktabs-fr.dtx}
 %
 %  \title{Tables scientifiques de qualité avec \LaTeX%
 %        \thanks{Ce fichier a pour numéro de version \fileversion\ 
@@ -290,113 +293,110 @@
 % \DescribeMacro\toprule
 % \DescribeMacro\midrule
 % \DescribeMacro\bottomrule
-% \tradini
-% In the simplest of cases a table begins with a =\toprule=, has
-% a single row of column headings, then a dividing rule called
-% here a =\midrule=; after the columns of data we finish off with
-% a =\bottomrule=. Most book publishers set the =\toprule= and
-% =\bottomrule= heavier (ie thicker, or darker; see section \ref{notation})
-% than the intermediate =\midrule=. However, when tables appear
-% in very small typesizes it is sometimes impossible to make this
-% distinction, and moreover quite a few journals routinely use all rules of
-% the same heaviness.
+% Dans les cas les plus simples une table commence avec un filet initial, 
+% =\toprule=, a une rangée unique d'en-têtes de colonnes, puis un filet de
+% séparation appelé ici =\midrule=; après les colonnes de données, la table
+% s'achève avec un filet terminal, =\bottomrule=. La plupart des éditeurs de
+% livres rendent les filets =\toprule= et =\bottomrule= plus gras 
+% (c'est-à-dire plus larges ou plus sombres; voir la section \ref{notation}) 
+% que le filet intermédiaire =\midrule=. Cependant, lorsque les tables sont 
+% composées en très petits caractères, il est parfois impossible de faire 
+% cette distinction ; de plus, un bon nombre de journaux utilisent des filets
+% tous de même épaisseur. 
 %
-% The rule commands here all take a default
-% which may be reset within the document (preferably, but not
-% necessarily, in the preamble). For the top and bottom rules this
-% default
-% is =\heavyrulewidth= and for midrules it is =\lightrulewidth=
-% (fully described below). In very rare cases where you need to do
-% something special, you may use the optional arguments to the rule
-% commands which have formal syntax as follows:
+% Les commandes de filet de cette extension ont toutes une épaisseur par défaut
+% qui peut être modifiée à l'intérieur du document (de préférence, mais pas
+% obligatoirement, dans le préambule). Pour le filet initial et le filet final,
+% il s'agit de =\heavyrulewidth= et, pour les filets intermédiaires, de
+% =\lightrulewidth= (commandes décrites par la suite). Dans
+% de très rares cas, vous pouvez utiliser les arguments optionnels des
+% commandes de filet ayant la syntaxe formelle suivante:
 % \begin{quote}
-%   "\toprule["\meta{wd}"]" \\
-%   "\midrule["\meta{wd}"]" \\
-%   "\bottomrule["\meta{wd}"]"
+%   "\toprule["\meta{largeur}"]" \\
+%   "\midrule["\meta{largeur}"]" \\
+%   "\bottomrule["\meta{largeur}"]"
 % \end{quote}
-% where \meta{wd} is a \TeX dimension (for example 1pt, .5em,
-% etc.).
+% où \meta{largeur} est une dimension \TeX{} (par exemple 1pt, .5em, etc.).
 %
-% All the rule commands described here go after the closing
-% =\\= of the preceding row (except =\toprule=, which
-% comes right after the =\tabular{}= command); in other words,
-% exactly where plain \LaTeX{} allows =\hline= or =\cline=.
+% Toutes ces commandes de filet se placent immédiatement après la commande 
+% =\\= achevant la rangée précédente du tableau (sauf bien sûr pour =\toprule=,
+% qui se place juste après le début de l'environnement \texttt{tabular}); 
+% en d'autres termes, exactement là où \LaTeX{} autorise traditionnellement
+% =\hline= ou =\cline=.
 %
 % \DescribeMacro\cmidrule
-% Frequently we need a sub-rule to extend over only some of the columns,
-% for which we need a =\cmidrule= (the analogue of \LaTeX's =\cline=
-% command). Generally, this rule should not come to the full width of
-% the columns, and this is especially the case when we need to begin
-% a =\cmidrule= straight after the end of another one (\LaTeX's
-% =\cline=s crash into each other here if you are not extra careful with
-% =\extracolsep=).  Thus, you will generally want to use the optional
-% `trimming' commands.
+% Il arrive fréquemment d'avoir besoin d'un filet qui ne s'étend que sur 
+% certaines des colonnes, ce que permet =\cmidrule= (équivalent à la commande
+% =\cline= de \LaTeX). En général, ce filet ne devrait pas recouvrir toute la
+% largeur des colonnes, en particulier lorsqu'un filet =\cmidrule= commence
+% immédiatement après la fin d'un autre (des =\cline= de \LaTeX{} peuvent 
+% se toucher si vous n'êtes pas extrêmement attentifs à =\extracolsep=). Aussi,
+% des options de raccourcissement vont généralement être utilisées.
 %
-% The trimming commands, if used at all, go in
-% parentheses (like this), with no spaces separating them. The possible
-% specifications are =r=, =r{=\meta{wd}=}=, =l= and
-% =l{=\meta{wd}=}=, or any combination of these, where \meta{wd} is a
-% dimension, and =r= and =l= indicate whether the right and/or left ends
-% of the rule should be trimmed. The form without explicit argument is
-% equivalent to =r{\cmidrulekern}=, where =\cmidrulekern= defaults to
-% $0.5$ em, but can be set by the user in the preamble.\footnote{User
-%   feedback suggested the Version 1.00 default, 0.25 em, was too
-%   small. Sorry for any loss of backward compatibility. Remember that
-% you
-%   can easily set \texttt{\textbackslash cmidrulekern} in the preamble, or just use
-%   \texttt{(r\{.25em\})} to recover the original behaviour.}
+% Ces options de raccourcissement se placent entre parenthèses (comme ceci),
+% sans aucune espace entre elles. Les valeurs possibles sont =r=, 
+% =r{=\meta{largeur}=}=, =l=, =l{=\meta{largeur}=}= ou toute combinaison de
+% quatre valeurs précédentes. =r= et =l= indiquent si les extrémités droite 
+% et/ou gauche doivent être rognées tandis que \meta{largeur} est une 
+% dimension. La commande sans argument explicite est équivalente à 
+% =r{\cmidrulekern}=, où =\cmidrulekern= vaut par défaut 0,5~em mais peut être
+% redéfini par l'utilisateur dans le préambule\footnote{Des retours 
+% utilisateurs ont suggéré que la valeur par défaut de la version 1.00, 
+% 0,25~em, était trop petite. Désolé pour cette perte de rétrocompatibilité.
+% Rappelez-vous que vous pouvez facilement redéfinir 
+% \texttt{\textbackslash cmidrulekern}% en préambule, ou juste retenir 
+% \texttt{(r\{.25em\})} pour retrouver le comportement d'origine.}.
 %
-% Here's an illustrative example: =(lr{.75em})= gives you a default
-% left trim and exactly $0.75$ em right trim. Equally valid here is
-% =(r{.75em}l)=.\footnote{As a matter of fact, \texttt{(lrrlr\{.75em\})}
-% does the same thing: only the
-% last encountered left and the last encountered right specification
-% are applied.}
+% À titre d'exemple, =(lr{.75em})= génère un filet à extrémité gauche rognée
+% par défaut et à extrémité droite rognée d'exactement de 0,75~em. L'option
+% =(r{.75em}l)= est également valide\footnote{Pour être tout à fait précis,
+% \texttt{(lrrlr\{.75em\})} génère également le même résultat : seules les
+% dernières options droite et gauche rencontrées sont appliquées.}.
 %
-% The full syntax of the command is
+% La syntaxe complète de la commande est :
 % \begin{quote}
-%   "\cmidrule["\meta{wd}"]("\meta{trim}"){"$a$--$b$"}"
+%   "\cmidrule["\meta{largeur}"]("\meta{rognage}"){"$a$--$b$"}"
 % \end{quote}
-% where \meta{wd} is an optional rule width command, in square
-% brackets [like this] (the
-% default here is =\cmidrulewidth=), and the last argument, \emph{which
-% is not optional}, gives the column numbers to be spanned.
+% où \meta{largeur} est une option d'épaisseur de filet, entre crochets (la 
+% valeur par défaut étant =\cmidrulewidth=), et le dernier argument, 
+% \emph{non optionnel}, donne le numéro des premières et dernières colonnes sur
+% lesquelles s'étend le filet.
 %
-% An example of the commands in use is given by the code used to
-% produce the example table above:
+% Voici un exemple d'utilisation de ces commandes avec le code utilisé pour
+% produire l'exemple de table ci-dessus:
 % \begin{verbatim}
-% \begin{tabular}{@{}llr@{}} \toprule
-% \multicolumn{2}{c}{Item} \\ \cmidrule(r){1-2}
-% Animal & Description & Price (\$)\\ \midrule
-% Gnat  & per gram  & 13.65 \\
-%       & each      & 0.01 \\
-% Gnu   & stuffed   & 92.50 \\
-% Emu   & stuffed   & 33.33 \\
-% Armadillo & frozen & 8.99 \\ \bottomrule
+% \begin{tabular}{@{}llr@{}}  \toprule
+% \multicolumn{2}{c}{\'{E}lément}           \\ \cmidrule(r){1-2}
+% Animal     & Description   & Prix (\euro) \\ \midrule
+% Moucheron  & le gramme     & 13,65        \\
+%            & la pièce      & 0,01         \\
+% Gnou       & farci         & 92,50        \\
+% \'{E}meu   & farci         & 33,33        \\
+% Tatou      & congelé       & 8,99         \\ \bottomrule
 % \end{tabular}
 % \end{verbatim}
 %
 % \DescribeMacro\addlinespace
-% Occasionally we want to put an extra space between certain rows
-% of a table; for example, before the last row, if this is a
-% total. This is simply a matter of inserting
+% À l'occasion, il peut être pertinent d'insérer un espace supplémentaire entre
+% certaines rangées d'une table; par exemple, avant la dernière rangée, s'il
+% s'agit d'un total. Ceci s'obtient simplement en insérant :
 % \begin{quote}
-%   "\addlinespace["\meta{wd}"]"
+%   "\addlinespace["\meta{largeur}"]"
 % \end{quote}
-%  after the =\\= alignment marker. Between ordinary rows of text, the
-%  effect is identical to the ordinary \LaTeX\ usage
-%  =\\[\defaultaddspace]=, which I find rather clumsy, and it is better
-%  than =\\ \\=, which inserts too much space. Also,
-%  =\addlinespace= can be used before, after, or between rules if you
-%  want to control the exact amount of space to be inserted. The default
-%  space before or after an adjacent rule is replaced by exactly
-%  =\defaultaddspace= or the amount of
-%  space specified in the optional argument.\footnote{This is a change
-% from version 1.00, where the space was sometimes \emph{in addition
-% to} default rule space.}
+% après la marque d'alignement =\\=. L'effet est alors tout à fait identique à
+% celui de =\\[\defaultaddspace]=, que je trouve plutôt maladroit, entre des
+% lignes de texte ordinaire, et est meilleur que =\\ \\=, qui insère trop
+% d'espace. De même, =\addlinespace= peut être utilisé avant, après ou entre 
+% les filets si vous souhaitez contrôler exactement l'espace à insérer. 
+% L'espace par défaut placé avant ou après un filet est alors remplacé
+% exactement par =\defaultaddspace= ou l'espace spécifié dans l'argument 
+% optionnel\footnote{Il s'agit d'un changement par rapport à la version 1.00
+% où l'espace était parfois \emph{ajoutés} à l'espace autour du filet par
+% défaut.}.
 %
-% \section{Abuse of the new commands}
+% \section{Abus des nouvelles commandes}
 %
+% \tradini 
 % Let's face it, nobody can leave well alone, so here are some
 % guidelines and extra commands.
 %
@@ -679,7 +679,7 @@
 \defaultaddspace=.5em
 %    \end{macrocode}
 % And some internal counters of no interest to the end user:
-% \changes{v1.618}{2003/03/28}{Remove \cs{@cmidrulewidth} }
+% \changes{v1.618}{28/03/2003}{retrait de la commande \cs{@cmidrulewidth}}
 %    \begin{macrocode}
 \newcount\@cmidla
 \newcount\@cmidlb
@@ -740,7 +740,7 @@
 %
 %
 % \begin{macro}{\toprule}
-% \changes{v1.61803}{2005/04/14}{Change \cmd{\@belowrulesep} to \cmd{\belowrulesep}}
+% \changes{v1.61803}{14/04/2005}{changement du nom de \cmd{\@belowrulesep} en \cmd{\belowrulesep}}
 % \begin{macro}{\midrule}
 % \begin{macro}{\bottomrule}
 % \begin{macro}{\specialrule}
@@ -786,7 +786,8 @@
 %
 % \begin{macro}{\@BTrule}
 % All the rules (except =\addlinespace=) share this code.
-% \changes{v1.618033}{2016/04/27}{Rearranged and added \cmd{\nobreak} within longtable (Morten H{\o}gholm)}
+% \changes{v1.618033}{27/04/2016}{réarrangement et ajout de \cmd{\nobreak} dans
+%   longtable (Morten H{\o}gholm)}
 %    \begin{macrocode}
 \def\@BTrule[#1]{%
 %    \end{macrocode}
@@ -842,7 +843,8 @@
 %
 %
 % \begin{macro}{\CT@arc@}
-%   \changes{v1.6180}{2005/03/16}{add colortbl command for color support}
+%   \changes{v1.6180}{16/03/2005}{ajout de la commande \cmd{\CT@arc@} de 
+%     colortbl pour le support de la couleur}
 %   This is support for the colortbl package for colored
 %   rules.  \cmd{\CT@arc@} hold the \cmd{\arrayrulecolor} setting.
 %    \begin{macrocode}
@@ -853,7 +855,8 @@
 %
 %
 % \begin{macro}{\@BTnormal}
-%   \changes{v1.6180}{2005/03/16}{add colortbl \cmd{\CT@arc@} command for color support}
+%   \changes{v1.6180}{16/03/2005}{ajout de la commande \cmd{\CT@arc@} de 
+%     colortbl pour le support de la couleur}
 % This is when we're \emph{not} within a longtable. We are already in a
 %  =\noalign= group, all we need do is draw an =\hrule= and gobble any
 %  trailing spaces, then call the closing routine with =\@tempa= set
@@ -945,7 +948,8 @@
 %     currently specified. I have been too lazy to program an error
 %     message should one encounter tokens other than =r=, =l= or
 %     ={=\meta{wd}=}=.
-% \changes{v1.6180}{2005/03/16}{Refine option testing in \cmd{\@setrulekerning}}
+% \changes{v1.6180}{16/03/2005}{amélioration du test d'option dans 
+%   \cmd{\@setrulekerning}}
 %    \begin{macrocode}
 \def\@setrulekerning#1{%
    \global\let\cmrkern@l\z@
@@ -1032,8 +1036,8 @@
 % we add (positive) =\cmidrulesep= (and again set =\@lastruleclass=
 % to one). Otherwise this is the last rule of the current group
 % and we can just add =\belowrulesep=. Finally, we close the =\noalign=.
-% \changes{v1.618}{2003/03/28}{Change to \cmd{\@xcmidrule}:
-%         replace \cmd{\@cmidrulewidth} with \cmd{\@thisrulewidth }}
+% \changes{v1.618}{28/03/2003}{changement de \cmd{\@xcmidrule} avec le
+%         remplacement de \cmd{\@cmidrulewidth} par \cmd{\@thisrulewidth}}
 %    \begin{macrocode}
 \def\@xcmidrule{%
    \ifx\@tempa\cmidrule
@@ -1052,8 +1056,10 @@
 % This code (called below) actually draws the rules. They are drawn
 % as boxes in text, rather than in a =\noalign= group, which permits
 % the left and right kerning.
-%   \changes{v1.6180}{2005/03/16}{add colortbl \cmd{\CT@arc@} command for color support}
-%   \changes{v1.618033}{2016/04/27}{add  \cmd{\kern}\cmd{\z@}  after \cmd{\hfill} to protects against unskips}
+%   \changes{v1.6180}{16/03/2005}{ajout de la commande \cmd{\CT@arc@} de 
+%     colortbl pour le support de la couleur}
+%   \changes{v1.618033}{27/04/2016}{ajout de \cmd{\kern}\cmd{\z@} après 
+%     \cmd{\hfill} pour se préserver de commandes \cmd{\unskip}}
 %    \begin{macrocode}
 \def\@cmidrulea{%
    \multispan\@cmidla&\multispan\@cmidlb
@@ -1063,8 +1069,10 @@
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\@cmidruleb}
-%   \changes{v1.6180}{2005/03/16}{add colortbl \cmd{\CT@arc@} command for color support}
-%   \changes{v1.618033}{2016/04/27}{add  \cmd{\kern}\cmd{\z@}  after \cmd{\hfill} to protects against unskips}
+%   \changes{v1.6180}{16/03/2005}{ajout de la commande \cmd{\CT@arc@} de 
+%     colortbl pour le support de la couleur}
+%   \changes{v1.618033}{27/04/2016}{ajout de \cmd{\kern}\cmd{\z@} après 
+%     \cmd{\hfill} pour se préserver de commandes \cmd{\unskip}}
 %    \begin{macrocode}
 \def\@cmidruleb{%
     \multispan\@cmidlb
@@ -1089,5 +1097,6 @@
 %</package>
 %    \end{macrocode}
 %
+% \tradfin
 % \Finale
 %

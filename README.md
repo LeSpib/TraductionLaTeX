@@ -28,7 +28,7 @@ Traduction      | Source              | Avancée                | Pages traduite
 --------------- | ------------------- | :--------------------: | :-------------: | ------------------------------------
                 | [adjustbox]         |                        | *. / 29*        |
 [appendix-fr]   | [appendix] v1.2b    | :full_moon:            | 16              | Une traduction de la v1.0 existe.
-[booktabs-fr]   | [booktabs] 1.618033 | :new_moon:             | 3 / 17          | Accord d'utilisation de la traduction.
+[booktabs-fr]   | [booktabs] 1.618033 | :new_moon:             | 7 / 17          | Accord d'utilisation de la traduction.
                 | [cleveref]          |                        | *. / 31*        |
                 | [datatool]          |                        | *. / 220*       |
                 | [datetime2]         |                        | *. / 169*       |
