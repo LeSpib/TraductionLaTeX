@@ -1812,39 +1812,61 @@
 %
 %
 %
-% \subsection{Mélange de couleurs}
+% \subsection{Glissement de couleur}
 %
-% \tradini
-% The purpose of \emph{color blending} is to add some mixing color (expression) to all subsequent explicit color commands.
-% Thus, it is possible to perform such a mix (or blend) operation for many colors without touching the individual commands.
+% L'objectif du \emph{glissement de couleur} est d'ajouter une expression de
+% mélange de couleur à toutes les couleurs explicites qui suivent. Il devient
+% ainsi possible d'effectuer une même opération de mélange pour plusieurs 
+% couleurs sans toucher à leur définition individuelle.
 %
 % \medskip
 %
 % \DescribeMacro\blendcolors
-%   \marg{mix expr}\\
+%   \marg{expr de mélange}\\
 % \DescribeMacro{\blendcolors*}
-%   \marg{mix expr}\\
-% Initialises all necessary parameters for color blending.
-% The actual (completed) color blend expression is stored in |\colorblend|.
-% In the starred version, the argument will be appended to a previously defined blend expression.
-% An empty \Meta{mix expr} argument will switch blending off.
+%   \marg{expr de mélange}\\
+% Cette commande initialise tous les paramètres nécessaires pour le glissement 
+% de couleur. L'expression complète de glissement de couleur à proprement 
+% parler est stockée dans |\colorblend|.
+% Dans la version étoilée, l'argument sera ajouté à l'expression de glissement 
+% existante. Un argument \Meta{expr de mélange} vide annule l'effet du 
+% glissement à sa suite.
 %
-% Example: after |\blendcolors{!50!yellow}|, the colors \testclr{red} \testclr{green} \testclr{blue} are transformed into {\blendcolors{!50!yellow}\testclr{red} \testclr{green} \testclr{blue}, an additional |\blendcolors*{!50}| yields \blendcolors*{!50}\testclr{red} \testclr{green} \testclr{blue}}.
+% Exemple: après |\blendcolors{!50!yellow}|, les couleurs \testclr{red} 
+% \testclr{green} \testclr{blue} sont transformées en 
+% {\blendcolors{!50!yellow}\testclr{red} \testclr{green} \testclr{blue} et 
+% après un |\blendcolors*{!50}| complémentaire en 
+% \blendcolors*{!50}\testclr{red} \testclr{green} \testclr{blue}}.
 % \DescribeMacro\xglobal
-% In order to achieve global scope, |\blendcolors| may be prefixed by |\xglobal|.
+% Afin d'obtenir un effet global, |\blendcolors| peut être préfixé avec 
+% |\xglobal|.
 %
-% Remark: color blending is applied only to \emph{explicit} color commands, i.e.~|\color|, |\fcolorbox| and the like.
-% In the previous example the frames are not being blended because their color is set by an driver-internal command (switching back to the `current color').
-% Thus, to influence these \emph{implicit} colors as well, we have to set the current color \emph{after} the blending:
-% |\blendcolors{!50!yellow}\color{black}| results in {\blendcolors{!50!yellow}\color{black}\testclr{red} \testclr{green} \testclr{blue}, an additional |\blendcolors*{!50}\color{black}| yields \blendcolors*{!50}\color{black}\testclr{red} \testclr{green} \testclr{blue}}.
+% Remarque : le glissement de couleur peut être appliqué uniquement à des
+% commandes de couleur \emph{explicites}, autrement dit |\color|, 
+%|\fcolorbox| et similaires.
+% Dans l'exemple précédent, les cadres ne sont pas touchés par le glissement
+% car leur couleur est fixée par une commande interne au pilote (revenant à la
+% \og couleur courante \fg{}). Ausi, pour influencer également ces couleurs 
+% \emph{implicites}, il faut fixer la couleur courante \emph{après} le 
+% glissement :
+% |\blendcolors{!50!yellow}\color{black}| conduit à 
+% {\blendcolors{!50!yellow}\color{black}\testclr{red} \testclr{green} 
+% \testclr{blue}, et un |\blendcolors*{!50}\color{black}| complémentaire à 
+% \blendcolors*{!50}\color{black}\testclr{red} \testclr{green} \testclr{blue}}.
 %
 %
+% \subsection{Masques de couleur et séparation}
 %
-% \subsection{Color masks and separation}
-%
-% The purpose of \emph{color separation} is to represent all colors that appear in the document as a combination of a finite subset of base colors and their tints.
-% Most prominent is \Model{cmyk} separation, where the base colors are \Color{}{cyan}, \Color{}{magenta}, \Color{}{yellow}, and \Color{}{black}, as required by the printers.
-% This can be done by choosing the package option \Option{cmyk}, such that all colors will be converted in this model, and post-processing the output file.
+% Le but de la \emph{séparation de couleur} est de représenter toutes les 
+% couleurs qui apparaissent dans un document comme une combinaison d'un
+% sous-ensemble fini de couleurs de base et de leurs variantes assourdies.
+% La séparation la plus importante est \Model{cmyk} où les couleurs de base
+% sont le \Color{cyan}{cyan}, le \Color{magenta}{magenta}, le \Color{jaune}{yellow} et le \Color{noir}{black}, comme demandé par les imprimeurs.
+% Ceci peut se faire en choisissant l'option d'extension \Option{cmyk}, de 
+% telle manière à ce que toutes les couleurs soient converties dans ce modèle,
+% et de retraiter alors le fichier de sortie pour en extraire les compositions
+% des couleurs.
+% \tradini
 % We describe now another --- and more general --- solution: \emph{color masking}.
 % How does it work?
 % Color masking is based on a specified color model \Meta{m-model} and a parameter vector \Meta{m-spec}.
