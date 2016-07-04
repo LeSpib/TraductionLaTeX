@@ -208,7 +208,7 @@
 % \makeatother
 %
 % \def\Index#1{#1\index{#1\string|usage}}
-% \def\Package#1{\textsf{#1}\index{packages\levelchar\textsf{#1}\string|usage}}
+% \def\Package#1{\textsf{#1}\index{extensions\levelchar\textsf{#1}\string|usage}}
 % \def\Program#1{\textsf{\itshape#1}\index{programmes\levelchar\textsf{\itshape#1}\string|usage}}
 % \def\Model#1{\textsf{\bfseries#1}\index{modèles colorimétriques\levelchar\textsf{\bfseries#1}\string|usage}}
 % \def\nModel#1{`#1'\index{modèles colorimétriques\levelchar`#1'\string|usage}}
@@ -689,7 +689,7 @@
 % \Model{wave} & lambda \emph{(nm)}& \left[363,814\right]&& \\
 % \hline\hline
 % \multicolumn5{c}{$L,M,N$ sont des nombres entiers positifs; $H$ est un
-% entier réel positif}\\
+% entier réel positif.}\\
 % \hline
 % \end{tabular}
 % \end{table}
@@ -757,11 +757,10 @@
 % transformant $\emph{teinte}\in[0,1]$ en $\emph{teinte\Circ}\in[0,H]$, où $H$
 % est donné par |\def\rangeHsb|\marg{H}.
 % \DescribeMacro\rangeHsb
-% Aussi, si $H=360$, nous pouvons penser à un cercle ou une roue pour 
-% \trad{décrire} le paramètre \emph{teinte\Circ}.
-% 
+% Aussi, si $H=360$, nous pouvons imaginer un cercle ou une roue pour 
+% décrire le paramètre \emph{teinte\Circ}.
 % Deuxièmement, \Model{Hsb} est la base du \Model{tHsb}, également nommé 
-% \Model{Hsb} \pModel{réglé},qui permet à l'utilisateur d'appliquer une
+% \Model{Hsb} \pModel{transformé}, qui permet à l'utilisateur d'appliquer une
 % transformation linéaire par morceaux sur \emph{teinte\Circ} en déplaçant
 % la \emph{teinte\Circ} sélectionnée en avant ou en arrière sur le cercle.
 % La transformation est définie par |\def\rangetHsb{|$x_1,y_1;x_2,y_2;\dots$|}|
@@ -775,7 +774,7 @@
 % Ainsi, une entrée \og |120,60| \fg{} ferait sens si nous avions décidé de
 % répliquer un cercle chromatique d'artiste par le biais de \Model{tHsb}.
 % Voir la section \vref{sec.tHsb2Hsb} pour la formule exacte de la
-% transformation et les restrictions avancées, et la section 
+% transformation et les restrictions détaillées, et la section 
 % \vref{sec.harmony} pour les cercles chromatiques et les accords de couleur.
 % La figure \vref{fig.tHsb} peut servir pour effectuer des comparaisons.
 %
@@ -783,8 +782,8 @@
 % paramétrage par défaut de \XC.
 %
 % \paragraph{\Model{wave}}
-% Avec ce modèle nous essayons de transformer les longueurs d'onde en un
-% modèle de colorimétrique standard afin de réaliser une approximation de
+% Avec ce modèle nous essayons de convertir les longueurs d'onde dans des
+% modèles colorimétrique standards afin de réaliser une approximation de
 % l'apparence visuelle des ondes lumineuses.
 % Tandis que le spectre visible couvre un intervalle de valeur de 400 à 
 % 750 nm, l'implémentation dans \XC{} permet de traiter toutes les longueurs
@@ -794,21 +793,21 @@
 % Toutefois, la probabilité d'obtenir une couleur différente du noir hors de
 % plage de valeur $[363,814]$ est très précisément nulle.
 % Aussi, la figure \vref{fig.spectrum} illustre seulement l'intervalle de
-% valeur mention ci-dessus.
+% valeurs mentionné ci-dessus.
 % Notez qu'il n'est pas possible de convertir fidèlement les autres modèles en
 % \Model{wave} puisque ce dernier ne couvre qu'un ensemble limité de couleurs. 
 %
 % \paragraph{\Model{RGB}, \Model{HSB}, \Model{Gray}}
 % Ce sont des modèles dérivés, transformant la plage de valeurs continue 
 % $[0,1]$ des paramètres de \Model{rgb}, \Model{hsb} et \Model{gray} en un
-% ensemble de valeurs finies ; ce qui nous nous fait les désigner par le terme
+% ensemble de valeurs finies ; ceci nous fait les désigner par le terme
 % de \emph{modèles entiers}.
 % Les constantes $L, M, N$ de la table \ref{tab.mod} sont définies par les
 % commandes |\def\rangeRGB|\marg{L},
 % \DescribeMacro\rangeRGB
 % |\def\rangeHSB|\marg{M},
 % \DescribeMacro\rangeHSB
-% and |\def\rangeGray|\marg{N}.
+% et |\def\rangeGray|\marg{N}.
 % \DescribeMacro\rangeGray
 % La modification de ces constantes peut être fait \emph{avant} ou 
 % \emph{après} que l'\XCP{} ait été chargée, par exemple :
@@ -828,13 +827,13 @@
 % \end{verbatim}
 %
 %
-% \subsubsection{Substitution de modéles colorimétriques individuels}
+% \subsubsection{Substitution de modèles colorimétriques individuels}
 % \label{sec.subst}
 %
 % \DescribeMacro\substitutecolormodel
 %   \marg{modèle source}\marg{liste de modèles cibles}\\
-% Substitue le \Meta{modèle source} par le premier modèle disponible
-% apparaissant dans la \Meta{liste de modèles cibles}.
+% Cette commande substitue le \Meta{modèle source} par le premier modèle 
+% disponible apparaissant dans la \Meta{liste de modèles cibles}.
 % Seuls les modèles de type \Meta{modèle numérique} sont possibles; tous les 
 % changements sont locaux au groupe courant, mais un |\xglobal| préfixé est
 % respecté.
@@ -851,39 +850,40 @@
 % \label{sec.tgt}
 %
 % \DescribeMacro\selectcolormodel
-%   \marg{num model}\\
-% Définit le modèle cible au \Meta{modèle numérique}, où ce dernier est un des
-% noms de modèles autorisés comme option de l'extension (autrement dit, 
+%   \marg{modèle numérique}\\
+% Cette commande définit le modèle cible comme étant le \Meta{modèle 
+% numérique} indiqué, ce dernier appartenant à la liste des
+% noms de modèles autorisés comme option de l'extension (soit  
 % \Option{natural}, \Option{rgb}, \Option{cmy}, \Option{cmyk}, \Option{hsb},
 % \Option{gray}, \Option{RGB}, \Option{HTML}, \Option{HSB}, \Option{Gray}),
 % voir figure \vref{fig.tgt} pour un exemple.
-% Il y a deux possibilités pour rendre possible la conversion au modèle cible :
+% Il y a deux possibilités pour effectuer la conversion au modèle cible :
 % \begin{itemize}
 % \item \DescribeMacro\ifconvertcolorsD au moment de la \emph{définition} des 
 % couleurs\footnote{Ceci signifie que toute couleur \emph{nouvellement} 
 % définie sera d'abord convertie dans le modèle cible, puis sauvegardée.}
-% (autrement dit dans |\definecolor| et ses assimilées); ceci est contrôlé 
+% (avec |\definecolor| et assimilées); ceci est contrôlé 
 % par la bascule |\ifconvertcolorsD|;
 % \item \DescribeMacro\ifconvertcolorsU au moment de l'\emph{utilisation} des
-% couleurs (immédiatement avant que la couleur soit affichée, ce qui traite 
-% qui ont été définies dans d'autres modèles ou qui ont été définies
-% directement comme avec |\color[rgb]{.1,.2,.3}|) ; ceci est contrôlé par la
-% bascule |\ifconvertcolorsU|.
+% couleurs (immédiatement avant que l'affichage de la couleur, ce qui traite 
+% les couleurs qui ont été définies dans d'autres modèles ou qui ont été 
+% définies directement comme avec |\color[rgb]{.1,.2,.3}|) ; ceci est contrôlé
+% par |\ifconvertcolorsU|.
 % \end{itemize}
 % Les deux bascules valent \og vrai \fg{} en sélectionnant n'importe quel
 % modèle, à l'exception de \Option{natural} qui leur donne la valeur \og faux
 % \fg{}.
-% Ceci autorise d'autres choix grâce à une option d'extension ou à 
+% D'autres choix sont autorisés grâce à une option d'extension ou à 
 % |\selectcolormodel|.
 % Pourquoi ne convertissons-nous pas toutes les couleurs au moment de
 % l'utilisation ? Si de nombreuses couleurs sont impliquées, cela peut
 % économiser du temps de traitement lorsque les conversions sont déjà faites 
 % au moment des définitions. De meilleures performances peuvent être obtenues
-% par |\usepackage[rgb,...]{xcolor}\convertcolorsUfalse|, ce qui est en fait 
-% la façon dont \XC{} fonctionnait jusqu'à la version 1.07.
+% par |\usepackage[rgb,...]{xcolor}| puis |\convertcolorsUfalse|, ce qui correspond
+% en fait à la façon dont \XC{} fonctionnait jusqu'à la version 1.07.
 %
 %
-% \begin{table}[p]\caption{Arguments et terminologie}\label{tab.term}
+% \begin{table}[p]\caption{Arguments et terminologie associée}\label{tab.term}
 % \def\RS{\ensuremath{\to}\space}
 % \footnotesize\raggedleft
 % \extrarowheight2pt
@@ -965,7 +965,7 @@
 % |\Meta[1]{déc}|;|\Meta[2]{expr}|,|\Meta[2]{déc}|;...;|\Meta[k]{expr}|,
 % |\Meta[k]{déc}\\
 % \hline
-% \Meta*{expr fonctionnellle}& \RS |>|\Meta{fonction}|,|\Meta[1]{arg}|,
+% \Meta*{expr fonctionnelle}& \RS |>|\Meta{fonction}|,|\Meta[1]{arg}|,
 % |\Meta[2]{arg}|,...,|\Meta[j]{arg}\hfill(\emph{expression fonctionnelle de
 %  couleur})\\
 % \Meta*{fonction}& \RS `|wheel|', `|twheel|'\hfill(\emph{fonctions de 
@@ -1716,71 +1716,105 @@
 %
 % \DescribeMacro\colorbox\marg{couleur}\marg{texte}\\
 % \oarg{liste-modèle}\marg{liste-spéc}\marg{texte}\\
-% \tradini
-% Takes the same argument forms as |\textcolor|, but the color specifies the \emph{background} color of the box.\\
-% \DescribeMacro\fcolorbox\marg{frame color}\marg{background color}\marg{text}\\
-% \oarg{liste-modèle}\marg{frame liste-spéc}\marg{background liste-spéc}\marg{text}\\
-% \oarg{fr.~liste-modèle}\marg{fr.~liste-spéc}\oarg{backgr.~liste-modèle}\marg{backgr.~liste-spéc}\marg{text}\\
-% \marg{frame color}\oarg{background liste-modèle}\marg{background liste-spéc}\marg{text}\\
-% Puts a frame of the first color around a box with a background specified by the second color.
-% If only the first optional argument is given, it specifies the color model for both colors.
-% Besides the possibility to specify color \emph{expressions} as arguments, |\fcolorbox| now offers more flexibility for its arguments than the \LC{} version:
+% La commande |\colorbox| prend les mêmes arguments que |\textcolor|, mais 
+% l'indication de couleur sert au \emph{fond} de la boîte. \\
+% \DescribeMacro\fcolorbox\marg{couleur-cadre}\marg{couleur-fond}\marg{texte}\\
+% \oarg{liste-modèle}\marg{liste-spéc-cadre}\marg{liste-spéc-fond}\marg{texte}\\
+% \oarg{liste-modèle-cadre}\marg{liste-spéc-cadre}\oarg{liste-modèle-fond}\marg{liste-spéc-fond}\marg{texte}\\
+% \marg{couleur-cadre}\oarg{liste-modèle-fond}\marg{liste-spéc-fond}\marg{texte}\\
+% Cette commande place un cadre de la première couleur autour d'une boîte dont
+% le fond est de la seconde couleur. Si seul le premier argument optionnel est 
+% donné, il spécifie le modèle de couleur pour les deux couleurs.
+% Au-delà de la possibilité de spécifier des \emph{expressions de couleur} 
+% comme arguments, |\fcolorbox| offre maintenant plus de flexibilité pour ses
+% arguments que sa version de l'extension \LC{} :
 % \begin{itemize}
-% \item \fcolorbox{gray}{yellow}{test} |\fcolorbox{gray}{yellow}{test}|,
-% \item \fcolorbox[cmyk]{0,0,0,0.5}{0,0,1,0}{test} |\fcolorbox[cmyk]{0,0,0,0.5}{0,0,1,0}{test}|,
-% \item \fcolorbox[gray]{0.5}[wave]{580}{test} |\fcolorbox[gray]{0.5}[wave]{580}{test}|,
-% \item \fcolorbox{gray}[wave]{580}{test} |\fcolorbox{gray}[wave]{580}{test}|.
+%   \item \fcolorbox{gray}{yellow}{test} |\fcolorbox{gray}{yellow}{test}|,
+%   \item \fcolorbox[cmyk]{0,0,0,0.5}{0,0,1,0}{test} |\fcolorbox[cmyk]{0,0,0,0.5}{0,0,1,0}{test}|,
+%   \item \fcolorbox[gray]{0.5}[wave]{580}{test} |\fcolorbox[gray]{0.5}[wave]{580}{test}|,
+%   \item \fcolorbox{gray}[wave]{580}{test} |\fcolorbox{gray}[wave]{580}{test}|.
 % \end{itemize}
-% Additionally, |\fcolorbox| uses a new approach to frame drawing, which is an extension of \People{Donald}{Arseneau}'s suggestion in bug report latex/3655 \cite{fbox}.
-% The main difference to \LaTeX's implementation is that box construction and frame drawing are split into separate operations, such that the frame is drawn \emph{after} the box contents has been constructed.
-% This ensures that the frame is always on top of the box.
-% \People{Donald}{Arseneau} improved speed as well as memory requirements of this approach.
-% Furthermore, a new macro is introduced:
+% Qui est plus, |\fcolorbox| recourt maintenant à une nouvelle manière de
+% d'encadrer un dessin, un développement de la suggestion de 
+% \People{Donald}{Arseneau} dans le rapport d'erreur latex/3655 \cite{fbox}.
+% La principale différence avec l'implémentation de \LaTeX est que la 
+% construction de boîte et le tracé du cadre sont divisés en opérations
+% distinctes, de telle façon à ce que le cadre soit tracé \emph{après} que
+% contenu de boîte soit construit.
+% Ceci garantit que la cadre est toujours au-dessus de la boîte. 
+% \People{Donald}{Arseneau} a amélioré la rapidité ainsi que les besoins en
+% mémoire de cette approche.
+% Par ailleurs, une nouvelle commande est introduite :
 %
-% \DescribeMacro\boxframe\marg{width}\marg{height}\marg{depth}\\
-% Draws a frame with a linewidth of |\fboxrule|.
-% Returns a |\hbox| with outer dimensions \meta{width}, \meta{height}, \meta{depth}.
-% By this approach, a frame-primitive may also be provided by a driver file, in order to exploit driver-specific drawing facilities (see below).
-% Again, this macro was optimised by \People{Donald}{Arseneau}.
+% \DescribeMacro\boxframe\marg{largeur}\marg{hauteur}\marg{profondeur}\\
+% Elle trace un cadre avec une épaisseur de trait de |\fboxrule|. La boîte
+% |\hbox| qu'elle restitue présente les dimensions extérieures \meta{largeur},
+% \meta{hauteur} et \meta{profondeur}.
+% Avec cette approche, une primitive de cadre peut également être fournie par
+% un fichier de pilote afin d'exploiter les spécificités de tracé des pilotes 
+% (voir ci-dessous). 
+% Là encore, la commande a été optimisée par \People{Donald}{Arseneau}.
 %
-% The new frame approach is used for |\fcolorbox| as well as \LaTeX's |\fbox| and |\framebox| commands, unless the \Option{kernelfbox} option is specified, which returns to \LaTeX's original definitions of |\f(rame)box|.
+% La nouvelle approche de l'encadrement est utilisée pour |\fcolorbox| que pour
+% les commandes |\fbox| et |\framebox| de \LaTeX, à moins que l'option 
+% \Option{kernelfbox} ne soit spécifiée, ce qui restitue alors les définitions
+% originales de \LaTeX\ pour |\f(rame)box|.
 %
-% Option \Option{xcdraw} uses \Index{PostScript} commands to draw frames and color boxes in case of the \Option{dvips} driver and \Index{PDF} code to draw frames in case of the \Option{pdftex} and \Option{dvipdfm} drivers.
-% This is still experimental code that may confuse \File{.dvi} viewers.
-% The opposite option \Option{noxcdraw} forces usage of the generic (driver-independent) code.
-%
-%
-% \subsubsection{Using the current color}
-%
-% Within a color expression, `.' serves as a placeholder for the current color.
-% See figure \vref{fig.cc} for an example.
-%
-% It is also possible to save the current color for later use, e.g., via the command |\colorlet{foo}{.}|.
-%
-% Note that in some cases the current color is of rather limited use, e.g., the construction of an |\fcolorbox| implies that at the time when the \Meta{background color} is evaluated, the current color equals the \Meta{frame color}; in this case `|.|' does not refer to the current color \emph{outside} the box.
+% L'option \Option{xcdraw} utilise les commandes \Index{PostScript} pour tracer
+% les cadres et boîtes colorées en cas de choix du pilote \Option{dvips} et 
+% elle utilise le code \Index{PDF} pour tracer les cadres en cas de choix des
+% pilotes \Option{pdftex} et \Option{dvipdfm}.
+% Ceci reste un code expérimental qui peut perturber les visualisateurs 
+% \File{.dvi}. 
+% L'option opposée, \Option{noxcdraw}, impose l'utilisation d'un code générique
+% (indépendant du pilote).
 %
 %
-% \subsubsection{Color testing}
+% \subsubsection{Utilisation de la couleur courante}
+%
+% Dans une expression de couleur, \og . \fg{} sert de synonyme pour la couleur
+% courante. Voir la figure \vref{fig.cc} pour un exemple.
+%
+% Il est également possible de sauvegarder la couleur courante pour un usage
+% ultérieur, par exemple, par le biais de la commande |\colorlet{foo}{.}|.
+%
+% Notez que, dans certains cas, la couleur courante est d'un intérêt 
+% relativement limité. Par exemple, la construction d'une boîte |\fcolorbox|
+% implique qu'au moment où la \Meta{couleur-fond} est évaluée, la couleur 
+% courante est celle de \Meta{couleur-cadre} ; dans ce cas, \og |.| \fg{} ne 
+% fait pas référence à la couleur courante à l'\emph{extérieur} de la boîte. 
+%
+%
+% \subsubsection{Test de couleurs}
 %
 % \DescribeEnv{testcolors}
-%   \oarg{num models}\\
-% This is a simple tabular environment in order to test (display) colors in different models, showing both the visual result and the model-specific parameters.
-% The optional \Meta{num models} argument is a comma-separated list of \emph{numerical} color models (as usual without spaces) which form the table columns; the default list is
+%   \oarg{modèles-numériques}\\
+% Il s'agit ici d'un simple environnement de table (|tabular|) utilisé pour
+% afficher des couleurs dans différents modèles et montrant à la fois le résultat
+% visuel et les paramètres spécifiques au modèle.
+% L'argument optionnel \Meta{modèles-numériques} est une liste de modèles de 
+% couleur \emph{numériques} (comme d'habitude sans espaces) séparés par des 
+% virgules et qui forment les colonnes de la table ; la liste par défaut est
 % {\makeatletter\ttfamily\let\@protected@testopt\@gobbletwo\edef\tmp{\testcolors}\expandafter\@firstofone\tmp}.
 %
 % \DescribeMacro\testcolor
-%   \marg{color}\\
+%   \marg{couleur}\\
 %   \oarg{liste-modèle}\marg{liste-spéc}\\
-% Each |\testcolor| command generates a table row, containing a display sample plus the respective parameters for each of the models.
-% If the column-model matches the model of the color in question, its parameters are underlined.
-% Note that this command is only available within the |testcolors| environment.
+% Chaque commande |\testcolor| génère une rangée de la table, contenant un
+% exemple d'affichage et les paramètres propres à chaque modèle.
+% Si le modèle associé à la colonne correspond au modèle de la couleur en
+% question,  les paramètres sont alors soulignés.
+% Notez que cette commande n'est disponible que dans l'environnement 
+% |testcolors|.
 %
-% For applications see figure \vref{fig.testcolors} and figures \ref{fig.tHsb}, \ref{fig.harmony}.
+% Pour des exemples, voir la figure \vref{fig.testcolors} ainsi que les figures
+% \ref{fig.tHsb} et \ref{fig.harmony}.
 %
 %
 %
-% \subsection{Color blending}
+% \subsection{Mélange de couleurs}
 %
+% \tradini
 % The purpose of \emph{color blending} is to add some mixing color (expression) to all subsequent explicit color commands.
 % Thus, it is possible to perform such a mix (or blend) operation for many colors without touching the individual commands.
 %
@@ -3771,7 +3805,7 @@
 % \addcontentsline{toc}{section}{Annexes}]
 %
 % \subsection*{Remerciements}
-% \addcontentsline{toc}{subsection}{Acknowledgement}
+% \addcontentsline{toc}{subsection}{Remerciements}
 % Cette extension se base sur \cite{color} (Copyright (C) 1994--1999 
 % \People{David P.}{Carlisle}) et contient du code de cette extension, cette
 % dernière faisant partie de l'\og ensemble graphique\fg{} du standard  
@@ -3833,49 +3867,48 @@
 % \end{itemize}
 %
 % \subsubsection*{28/11/2006 v2.10}
-% \tradini
 % \begin{itemize}
 % \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item \Option{fixinclude} option prevents \Program{dvips} from explicitly
-%    resetting current color to \Color{}{black} before actually inserting an 
-%    \File{.eps} file via |\color{red}\includegraphics{foo}|.
+%   \item l'option \Option{fixinclude} empêche \Program{dvips} de basculer 
+%     explicitement la couleur courante au \Color{noir}{black} avant d'insérer
+%     un fichier \File{.eps} par le biais de 
+%    |\color{red}\includegraphics{test}|.
 %   \end{itemize}
 % \item Changements :
 %   \begin{itemize}
-%   \item |\colorbox| and |\fcolorbox| made robust;
-%   \item obsolete package option \oOption{pst} removed;
-%   \item several changes to internal macros.
+%   \item |\colorbox| et |\fcolorbox| sont rendues robustes ;
+%   \item l'option d'extension obsolète \oOption{pst} est retirée ;
+%   \item plusieurs changements aux commandes internes.
 %   \end{itemize}
 % \item Corrections d'erreur :
 %   \begin{itemize}
-%   \item incorrect processing of \Model{cmyk}-type current color `.'.
+%   \item traitement incorrect de la couleur courante \og . \fg{} de type 
+%     \Model{cmyk}.
 %   \end{itemize}
 % \end{itemize}
 %
-% \tradfin
 % \subsubsection*{21/12/2005 v2.09}
-% \tradini
 % \begin{itemize}
 % \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item |\definecolor| and |\color| now accept space-separated color
-%    specifications, e.g., |\color| |[rgb]{1 .5 0}|;
-%   \item experimental \Option{xcdraw} option extended to \Option{pdftex} 
-%    and \Option{dvipdfm} drivers.
+%   \item |\definecolor| et |\color| acceptent maintenant des spécifications
+%     de couleur avec comme séparateur l'espace, par exemple : 
+%     |\color| |[rgb]{1 .5 0}|;
+%   \item l'option expérimentale \Option{xcdraw} est étendue aux pilotes 
+%     \Option{pdftex} et \Option{dvipdfm}.
 %   \end{itemize}
 % \item Changements :
 %   \begin{itemize}
-%   \item test file \File{xcolor2.tex} made compatible with recent changes 
-%    in \Package{pstricks};
-%   \item test file \File{xcolor3.tex} extended;
-%   \item driver test file \File{xcolor4.tex} extended to demonstrate the
-%    different frame drawing approaches;
-%   \item more efficient implementation of driver-specific code.
+%   \item le fichier de test \File{xcolor2.tex} est rendu compatible avec les
+%     changements récents dans \Package{pstricks};
+%   \item le fichier de test \File{xcolor3.tex} est étendu ;
+%   \item le fichier de test de pilote \File{xcolor4.tex} est étendu pour
+%     illustrer les différentes approches de tracés de cadres ;
+%   \item implémentation plus efficace du code spécifique aux pilotes.
 %   \end{itemize}
 % \end{itemize}
 %
-% \tradfin
 % \subsubsection*{25/11/2005 v2.08}
 % \tradini
 % \begin{itemize}
@@ -4200,68 +4233,69 @@
 %
 % \tradfin
 % \subsubsection*{16/02/2004 v1.09}
-% \tradini
 % \begin{itemize}
 % \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item color model \Model{HTML}, a 24-bit hexadecimal \Model{RGB} variant;
-%    allows to specify colors like |\color[HTML]{AFFE90}|;
-%   \item color names \Color{}{orange}, \Color{}{violet}, \Color{}{purple}, and
-%    \Color{}{brown} added to the set of predefined colors.
+%   \item le modèle de couleur \Model{HTML}, une variante \Model{RGB} en 
+%     héxadecimal 24-bit; ceci permet de spécifier des couleurs comme 
+%    |\color[HTML]{AFFE90}| ;
+%   \item les noms de couleur \Color{orange}{orange}, \Color{violet}{violet},
+%     \Color{pourpre}{purple} et \Color{brun}{brown} sont ajoutés à l'ensemble
+%     des couleurs prédéfinies.
 %   \end{itemize}
 % \item Nouvelle page web de \XC{} : \XCW
-% \item Correction d'erreur : |\xdefinecolor| sometimes did not normalise its
-%  parameters.
+% \item Correction d'erreur : |\xdefinecolor| ne normalisait parfois pas ses
+%   paramètres.
 % \item Changements :
 %   \begin{itemize}
-%   \item slight improvements of the documentation;
-%   \item example file |xcolor1.tex| reorganised and abridged.
+%   \item légères améliorations de la documentation ;
+%   \item le fichier d'exemple |xcolor1.tex| est réorganisé et abrégé.
 %   \end{itemize}
 % \end{itemize}
 %
-% \tradfin
 % \subsubsection*{04/02/2004 v1.08}
-% \tradini
 % \begin{itemize}
-% \item New commands:
+% \item Commandes nouvelles:
 %   \begin{itemize}
-%   \item |\selectcolormodel| to change the target model within a document;
-%   \item |\adjustUCRBG| to fine-tune undercolor-removal and black-generation
-%    during conversion to \Model{cmyk}.
+%   \item |\selectcolormodel| pour changer le modèle cible au sein d'un 
+%     document;
+%   \item |\adjustUCRBG| pour contrôler finement le \trad{undercolor-removal}
+%     et le \trad{black-generation} durant la conversion en \Model{cmyk}.
 %   \end{itemize}
-% \item Bugfix: color expressions did not work correctly in connection with
-%  active `!' character, e.g., in case of |\usepackage[frenchb]babel}|.
-% \item Code re-organisation:
+% \item Correction d'erreur : les expressions de couleur ne fonctionnaient pas
+%   correctement avec le caractère actif \og ! \fg{}, par exemple, en cas 
+%   d'utilisation de |\usepackage[frenchb]{babel}|.
+% \item Réorganisation du code :
 %   \begin{itemize}
-%   \item |\XC@xdefinecolor| merged into |\xdefinecolor|, making the first
-%    command obsolete;
-%   \item several internal commands improved/streamlined.
+%   \item |\XC@xdefinecolor| est intégré à |\xdefinecolor|, rendant la première
+%     commande obsolète ;
+%   \item plusieurs commandes internes améliorées/rationalisées.
 %   \end{itemize}
 % \end{itemize}
 %
-% \tradfin
 % \subsubsection*{20/01/2004 v1.07}
-% \tradini
 % \begin{itemize}
-% \item Nouvelle fonctionnalité : support for color masking and color
-%  separation.
+% \item Nouvelle fonctionnalité : support de \trad{color masking} et de \trad{color
+%  separation}.
 % \item Nouvelles commandes :
 %   \begin{itemize}
-%   \item |\rmultiply| to multiply a dimension register by a real number;
-%   \item |\xcolorcmd| to pass commands that are to be executed at the end of
-%    the package.
+%   \item |\rmultiply| pour multiplier un registre de dimension par un nombre
+%     réel ;
+%   \item |\xcolorcmd| pour passer des commandes à exécuter à la fin de 
+%     l'extension.
 %   \end{itemize}
 % \item Changements :
 %   \begin{itemize}
-%   \item more consistent color handling: extended colors now always take precedence over standard colors;
-%   \item several commands improved by using code from the \LaTeX{} kernel.
+%   \item meilleure gestion de la couleur : les couleurs étendues ont la 
+%     priorité sur les couleurs standards ;
+%   \item plusieurs commandes sont améliorées en utilisant le code du noyau
+%     \LaTeX{}.
 %   \end{itemize}
-% \item Documentation : some minor changes.
-% \item Fichiers d'exemples : additional \Package{pstricks} examples (file 
-%  \href{xcolor2.pdf}{\File{xcolor2.tex}}).
+% \item Documentation : quelques changements mineurs.
+% \item Fichiers d'exemples : exemples \Package{pstricks} complémentaires 
+%  (fichier \href{xcolor2.pdf}{\File{xcolor2.tex}}).
 % \end{itemize}
 %
-% \tradfin
 % \subsubsection*{15/12/2003 v1.06}
 % \begin{itemize}
 % \item Nouvelle fonctionnalité : expressions de couleur étendues, ce qui
@@ -6340,16 +6374,16 @@
 % \subsubsection{Driver-specific and generic drawing}
 %
 % \begin{macro}{\color@block}
-%   \marg{width}\marg{height}\marg{depth}\\
+%   \marg{largeur}\marg{hauteur}\marg{profondeur}\\
 % Should take up no space for \TeX, but produce a block in the current color of the specified size.
 % It is mainly used for producing box backgrounds.
 %  \begin{macro}{\boxframe}
-%   \marg{width}\marg{height}\marg{depth}\\
+%   \marg{largeur}\marg{hauteur}\marg{profondeur}\\
 % Draw a frame with a linewidth of |\fboxrule|.
-% Return a |\hbox| with outer dimensions \meta{width}, \meta{height}, \meta{depth}.
+% Return a |\hbox| with outer dimensions \meta{largeur}, \meta{hauteur}, \meta{profondeur}.
 
 %  \begin{macro}{\XC@boxframe}
-%   \marg{width}\marg{height}\marg{depth}\marg{frame construction}\\
+%   \marg{largeur}\marg{hauteur}\marg{profondeur}\marg{frame construction}\\
 % Wrapper for |\boxframe| commands that return zero-dimension frames.
 %    \begin{macrocode}
 \ifnum\XC@@xcd@>\m@ne
@@ -7960,7 +7994,7 @@ userdict begin
 % \end{macro}
 %
 % \begin{macro}{XCboxframe}
-%   \meta{linewidth} \meta{width} \meta{height} \meta{depth} |XCboxframe|\\
+%   \meta{linewidth} \meta{largeur} \meta{hauteur} \meta{profondeur} |XCboxframe|\\
 % Draw a frame in `sp' coordinates using LanguageLevel~2.
 %    \begin{macrocode}
 /XCboxframe{/d XCed/h XCed/w XCed/l XCed w 0 gt{h d neg gt{l 0 gt
@@ -7971,7 +8005,7 @@ userdict begin
 % \end{macro}
 %
 % \begin{macro}{XCcolorblock}
-%   \meta{width} \meta{height} \meta{depth} |XCcolorblock|\\
+%   \meta{largeur} \meta{hauteur} \meta{profondeur} |XCcolorblock|\\
 % Draw a colored box in `sp' coordinates using LanguageLevel~2.
 %    \begin{macrocode}
 /XCcolorblock{/d XCed/h XCed/w XCed w 0 gt{h d neg gt
