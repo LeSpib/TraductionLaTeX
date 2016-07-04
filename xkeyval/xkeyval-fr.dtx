@@ -81,14 +81,17 @@
   \file{xkvesa.sty}{\from{xkeyval.dtx}{xkvesa}}
   \file{xkvesb.sty}{\from{xkeyval.dtx}{xkvesb}}
   \file{xkvesc.sty}{\from{xkeyval.dtx}{xkvesc}}
-  \file{xkvpream.ble}{\from{xkeyval.dtx}{preamble}}
+  \file{xkvpream.ble}{\from{xkeyval-fr.dtx}{preamble}}
   \file{xkeyval.bib}{\from{xkeyval.dtx}{bib}}
 }
 \endgroup
 %</batchfile>
 %<*driver>
 \documentclass[a4paper]{ltxdoc}
+%\usepackage{fontspec}
 \input{xkvpream.ble}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 % Traduction du titre de l'Index
 \IndexPrologue{\section*{Index}\markboth{Index}{Index} Les numéros en italique renvoient à la page où se trouve l'entrée correspondante; les numéros soulignés renvoient à la ligne de code de la définition; les numéros en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % Traduction des entrées d'index concernant les environnements (code repris
@@ -107,6 +110,10 @@
            (environnement)\encapchar usage}%
     \index{environnements:\levelchar#1\actualchar
           {\protect\ttfamily#1}\encapchar usage}\@esphack}
+\def\glossary@prologue{\section*{{Historique}}%
+               \markboth{{Historique}}{{Historique}}%
+               }
+\def\generalname{Général}
 \makeatother
 % Bloc pour traduction
 \usepackage{pifont}
@@ -120,7 +127,9 @@
 \let\Section\section\def\section*#1{\Section*{#1}\addcontentsline{toc}{section}{#1}}
 \bibliographystyle{plain}
 \bibliography{xkeyval}
-\section*{Acknowledgements}
+\tradfin
+\section*{Remerciements}
+\tradini
 The author is grateful to Carsten Heinz, Morten H\o gholm,
 Josselin Noirel, Heiko Oberdiek, Will Robertson, Till Tantau,
 Herbert Vo\ss and Joseph Wright for help and suggestions.
@@ -259,25 +268,24 @@ macro. \PrintChangesX\PrintIndexX
 %   Grave accent  \`     Left brace    \{     Vertical bar  \|
 %   Right brace   \}     Tilde         \~}
 %
-%\title{\vspace*{-1cm}The \pf{xkeyval} package
-%\thanks{This package can be downloaded from the CTAN mirrors:
-%\texttt{/macros/latex/contrib/xkeyval}. See \texttt{xkeyval.dtx} for
-%information on installing \pf{xkeyval} into your \TeX\ or \LaTeX\
-%distribution and for the license of this package.}}
-%\author{\mktitledecor Hendri Adriaens}
-%\date{\fileversion\ (\filedate)}
-%\maketitle
+% \title{\vspace*{-1cm}L'extension \pf{xkeyval}
+% \thanks{Cette extension peut être téléchargée sur les sites miroirs du CTAN :
+% \texttt{/macros/latex/contrib/xkeyval}. Voir \texttt{xkeyval.dtx} pour plus 
+% d'informations sur l'installation de \pf{xkeyval} dans votre distribution de
+% \TeX\ ou \LaTeX\ et sur la licence de cette extension.}}
+% \author{\mktitledecor Hendri Adriaens}
+% \date{\fileversion\ (\filedate)}
+% \maketitle
 %
-% \tradini
 %\begin{abstract}\noindent
-%This package is an extension of the \pf{keyval} package and offers
-%more flexible macros for defining and setting keys. The package
-%provides a pointer and a preset system. Furthermore, it supplies
-%macros to allow class and package options to contain options of the
-%|key=value| form. A \LaTeX\ kernel patch is provided to avoid
-%premature expansions of macros in class or package options. A
-%specialized system for setting \pf{PSTricks} keys is provided by
-%the \pf{pst-xkey} package.
+% Cette extension développe l'extension \pf{keyval} et offre des commandes plus
+% flexibles pour définir et assigner des valeurs à des clés. Elle fournit un
+% système de pointeur et de prédéfinition. De plus, elle propose des commandes
+% permettant aux classes et options d'extension de contenir des options de la 
+% forme |clé=valeur|. Un patch au noyau \LaTeX\ est fourni pour éviter un 
+% développement prématuré des commandes dans les options de classe ou 
+% d'extension. Un système spécialisé pour assigner les clés \pf{PSTricks} est 
+% donné par l'extension \pf{pst-xkey}. 
 %\end{abstract}
 %
 %\begin{multicols}{2}
@@ -288,19 +296,20 @@ macro. \PrintChangesX\PrintIndexX
 %\end{multicols}
 %
 %\newpage
-%\section{Introduction}\label{sec:intro}
-%This package is an extension of the \pf{keyval} package by David Carlisle
-%\cite{keyval} and offers more flexible and robust macros for defining and
-%setting keys. Using keys in macro definition has the advantage that
-%the 9 arguments maximum can easily be avoided and that it reduces
-%confusion in the syntax of your macro when compared to using a lot
-%of (optional) arguments. Compare for instance the following
-%possible syntaxes of the macro |\mybox| which might for instance
-%use its arguments to draw some box containing text.
-%\begin{example}
+% \section{Introduction}\label{sec:intro}
+% Cette extension développe l'extension \pf{keyval} de David Carlisle et offre
+% des commandes plus flexibles pour définir et assigner des valeurs à des clés. 
+% Se servir de clés dans la définition de la commande permet d'éviter les 9 
+% arguments maximum et de réduire la confusion dans la syntaxe de votre 
+% commande comparé à ce que donne l'utilisation d'un grand nombre d'arguments
+% (optionnels). Comparez par exemple les syntaxes possibles suivantes de la 
+% commande |\maboite| qui peut utiliser par exemple ses arguments pour dessiner
+% une boîte contenant du texte. 
+% \begin{example}
 % \mybox[5pt][20pt]{some text}[red][white][blue]
 % \mybox[text=red,background=white,frame=blue,left=5pt,right=20pt]{some text}
-%\end{example}
+% \end{example}
+% \tradini
 %Notice that, to be able to specify the frame color in the first
 %example, the other colors need to be specified as well. This is not
 %necessary in the second example and these colors can get preset
@@ -382,7 +391,9 @@ macro. \PrintChangesX\PrintIndexX
 %information. This section also provides the information how to
 %generate the full documentation from the source.
 %
-%\section{Loading \pf{xkeyval}}\label{sec:loading}
+% \tradfin
+% \section{Chargement de \pf{xkeyval}}\label{sec:loading}
+% \tradini
 %To load the \pf{xkeyval} package,\footnote{The \pf{xkeyval} package
 %consists of the files \texttt{xkeyval.tex}, \texttt{xkeyval.sty},
 %\texttt{keyval.tex}, \texttt{xkvtxhdr.tex}.} plain \TeX\ users do
@@ -424,7 +435,9 @@ macro. \PrintChangesX\PrintIndexX
 %and which are loaded later, running into problems when trying to copy
 %global options using \LaTeX's |\ProcessOptions|.
 %
-%\section{Defining and managing keys}\label{sec:define}
+% \tradfin
+%\section{Définition et gestion des clés}\label{sec:define}
+% \tradini
 %\changes{v1.4}{2004/08/24}{Added prefix options to macros}
 %\changes{v1.7}{2004/11/25}{Removed optional key checking from define macros}
 %This section discusses macros to define keys and some tools to manage
@@ -432,7 +445,9 @@ macro. \PrintChangesX\PrintIndexX
 %This packages defines commands to generate overviews of defined keys.
 %See section~\ref{sec:view} for more information.
 %
-%\subsection{Ordinary keys}\label{sec:odefine}
+% \tradfin
+%\subsection{Clés ordinaires}\label{sec:odefine}
+% \tradini
 %This section describes how to define ordinary keys.
 %\begin{command}
 % `\cs{define@key}\oarg{prefix}\marg{family}\marg{key}\oarg{default}\marg{function}'
@@ -498,7 +513,9 @@ macro. \PrintChangesX\PrintIndexX
 % \define@key[my]{familya}{keyc}{#1}
 %\end{example}
 %
-%\subsection{Command keys}\label{sec:cdefine}
+% \tradfin
+%\subsection{Clés commandes}\label{sec:cdefine}
+% \tradini
 %Command keys are specialized keys that, before executing any code,
 %save the user input to a macro.
 %\begin{command}
@@ -555,7 +572,9 @@ macro. \PrintChangesX\PrintIndexX
 % \define@key{fam}{keyb}[none]{\def\my@keyb{#1}}
 %\end{example}
 %
-%\subsection{Choice keys}\label{sec:chdefine}
+% \tradfin
+%\subsection{Clés à choix}\label{sec:chdefine}
+% \tradini
 %Choice keys allow only a limited number of different values for user
 %input. These keys are defined as follows.
 %\begin{command}
@@ -654,7 +673,9 @@ macro. \PrintChangesX\PrintIndexX
 %Try to find out why this key cannot be defined with |\define@boolkey|
 %which is introduced in the next section.
 %
-%\subsection{Boolean keys}\label{sec:bdefine}
+% \tradfin
+%\subsection{Clés booléennes}\label{sec:bdefine}
+% \tradini
 %\changes{v1.5}{2004/09/27}{Added boolean keys}
 %This section describes boolean keys which can be either true or
 %false. A boolean key is a special version of a choice key (see
@@ -731,7 +752,9 @@ macro. \PrintChangesX\PrintIndexX
 % \define@boolkey{fam}[my@]{keyc}{}
 %\end{example}
 %
-%\subsection{Checking keys}\label{sec:check}
+% \tradfin
+% \subsection{Clés de vérification}\label{sec:check}
+% \tradini
 %\changes{v1.7}{2004/11/25}{Changed name of \cs{XKV@ifku}}
 %\begin{command}
 % `\cs{key@ifundefined}\oarg{prefix}\marg{families}\marg{key}\marg{undefined}\marg{defined}'
@@ -748,7 +771,9 @@ macro. \PrintChangesX\PrintIndexX
 %\end{example}
 %This example results in |`keya' defined| and |\XKV@tfam| holds |familya|.
 %
-%\subsection{Disabling keys}\label{sec:disable}
+% \tradfin
+% \subsection{Clés désactivantes}\label{sec:disable}
+% \tradini
 %\changes{v1.7}{2004/11/25}{Added \cs{disable@keys}}
 %It is also possible to disable keys after use as to prevent the key
 %from being used again.
@@ -766,8 +791,10 @@ macro. \PrintChangesX\PrintIndexX
 %This would make |keya| and |keyb| produce a warning when one tries to
 %set these keys.
 %
-%\section{Setting keys}\label{sec:setkeys}
-%\subsection{The user interface}
+% \tradini
+% \section{Assignation des clés}\label{sec:setkeys}
+% \subsection{L'interface utilisateur}
+% \tradini
 %\changes{v1.4}{2004/08/24}{Added prefix options to macros}
 %This section describes the available macros for setting keys. All of
 %the macros in this section have an optional argument \meta{prefix}
@@ -909,7 +936,9 @@ macro. \PrintChangesX\PrintIndexX
 %\end{example}
 %The example above sets |keyb| in both families.
 %
-%\subsection{A few details}
+% \tradfin
+% \subsection{Quelques détails}
+% \tradini
 %Several remarks should be made with respect to processing the user
 %input. Assuming that |keya| up to |keyd| are properly defined, one
 %could do the following.
@@ -959,7 +988,9 @@ macro. \PrintChangesX\PrintIndexX
 %keys which can be used in the very same |\setkeys| command. The
 %\pf{extract} package \cite{extract} provides an example for this.
 %
-%\section{Pointers}\label{sec:pointers}
+% \tradfin
+% \section{Pointeurs}\label{sec:pointers}
+% \tradini
 %\changes{v1.4}{2004/08/24}{Added pointer syntax}
 %\changes{v1.5}{2004/09/27}{Removed \cs{ifrecordkeyvals}}
 %\changes{v1.7}{2004/11/25}{Changed value saving mechanism}
@@ -973,7 +1004,9 @@ macro. \PrintChangesX\PrintIndexX
 %commands |\savevalue|, |\gsavevalue| and |\usevalue| can only be used
 %in |\setkeys| commands.
 %
-%\subsection{Saving values}\label{sec:savevalue}
+% \tradfin
+% \subsection{Sauvegarde de valeurs}\label{sec:savevalue}
+% \tradini
 %\DescribeMacro{\savevalue}
 %Saving a value for a particular key can be accomplished by using the
 %|\savevalue| command with the key name as
@@ -1082,7 +1115,9 @@ macro. \PrintChangesX\PrintIndexX
 %|keya,\global{keyc}| to |keya,keyc,\global{keyb}|. The second line
 %changes the list to |keya,keyc|.
 %
-%\subsection{Using saved values}\label{sec:usevalue}
+% \tradfin
+% \subsection{Utilisation des valeurs sauvegardées}\label{sec:usevalue}
+% \tradini
 %\DescribeMacro{\usevalue}
 %The syntax of a pointer is |\usevalue{keyname}| and can only be used
 %inside |\setkeys| and friends. \pf{xkeyval} will
@@ -1189,7 +1224,9 @@ macro. \PrintChangesX\PrintIndexX
 %final command, the value |test| will be submitted to the key macro
 %of |keyc|.
 %
-%\section{Presetting keys}\label{sec:preset}
+% \tradfin
+% \section{Prédéfinition des clés}\label{sec:preset}
+% \tradini
 %\changes{v1.5}{2004/09/27}{Added preset system}
 %In contrast to the default value system where users are required to
 %specify the key without a value to assign it its default value, the
@@ -1318,7 +1355,9 @@ macro. \PrintChangesX\PrintIndexX
 %\end{example}
 %Other examples can be found in the example files. See section~\ref{sec:sande}.
 %
-%\section{Package option processing}\label{sec:options}
+% \tradfin
+% \section[Traitement des options]{Traitement des options de l'extension}\label{sec:options}
+% \tradini
 %\changes{v1.4}{2004/08/24}{Added prefix options to macros}
 %The macros in this section can be used to build \LaTeX\ class or
 %package options systems using \pf{xkeyval}. These are comparable to
@@ -1532,7 +1571,9 @@ macro. \PrintChangesX\PrintIndexX
 %solves this problem. See section~\ref{sec:ltxpatch} for more
 %information.
 %
-%\section{List of macro structures}\label{sec:macrostructs}
+% \tradfin
+% \section[Structures de commande]{Liste des structures de commande}\label{sec:macrostructs}
+% \tradini
 %This section provides a list of all reserved internal macro structures used
 %for key processing. Here |pre| denotes a prefix, |fam| denotes a
 %family and |key| denotes a key. These vary per application. The
@@ -1613,7 +1654,9 @@ macro. \PrintChangesX\PrintIndexX
 %   \fi}
 %\end{example}
 %
-%\section{Warnings and errors}\label{sec:errors}
+% \tradfin
+% \section{Alertes et erreurs}\label{sec:errors}
+% \tradini
 %There are several points where \pf{xkeyval} performs a check and
 %could produce a warning or an error. All possible warnings or and
 %error messages are listed below with an explanation. Here |pre|
@@ -1664,7 +1707,9 @@ macro. \PrintChangesX\PrintIndexX
 %the document class). See section~\ref{sec:options}.
 %\end{description}
 %
-%\section{Category codes}\label{sec:catcodes}
+% \tradfin
+% \section{Codes de catégorie}\label{sec:catcodes}
+% \tradini
 %Some packages change the catcode of the equality sign and the comma.
 %This is a problem for \pf{keyval} as it then does not recognize
 %these characters anymore and cannot parse the input. This problem
@@ -1724,7 +1769,9 @@ macro. \PrintChangesX\PrintIndexX
 %section~\ref{sec:options}) are not protected as \LaTeX\ does not
 %protect them either.
 %
-%\section{Known issues}\label{sec:issues}
+% \tradfin
+% \section{Problèmes connus}\label{sec:issues}
+% \tradini
 %This package redefines \pf{keyval}'s |\define@key| and |\setkeys|.
 %This is risky in general. However, since \pf{xkeyval} extends the
 %possibilities of these commands while still allowing for the
@@ -1763,8 +1810,10 @@ macro. \PrintChangesX\PrintIndexX
 %If not, load an already converted package (like \pf{pstricks-add})
 %after loading the old package to make them work.
 %
-%\section{Additional packages}\label{sec:additional}
+% \tradfin
+% \section{Extensions additionnelles}\label{sec:additional}
 %\subsection{\pf{xkvview}}\label{sec:view}
+% \tradini
 %The \pf{xkeyval} bundle includes a viewer utility, called
 %\pf{xkvview},\footnote{The \pf{xkvview} package is contained in the
 %file \texttt{xkvview.sty}.} which keeps track of the keys that are
@@ -1884,7 +1933,9 @@ macro. \PrintChangesX\PrintIndexX
 %This example only generate |out.tex| and does not put a table in the
 %dvi.
 %
-%\subsection{\pf{xkvltxp}}\label{sec:macrooptions}
+% \tradfin
+% \subsection{\pf{xkvltxp}}\label{sec:macrooptions}
+% \tradini
 %The package and class option system of \LaTeX\ contained in the
 %kernel performs some expansions while processing options. This
 %prevents doing for instance
@@ -1939,7 +1990,9 @@ macro. \PrintChangesX\PrintIndexX
 %to process options since they cannot process them. For examples see
 %section~\ref{sec:sande}.
 %
+% \tradfin
 %\subsection{\pf{pst-xkey}}\label{sec:pst-xkey}
+% \tradini
 %The \pf{pst-xkey} package\footnote{The \pf{pst-xkey} package
 %consists of the files \texttt{pst-xkey.tex} and
 %\texttt{pst-xkey.sty}. To load \pf{pst-xkey} \TeX\ users do
@@ -2008,7 +2061,9 @@ macro. \PrintChangesX\PrintIndexX
 % \psset[pst-new-b]{anotherkey=green}
 %\end{example}
 %
-%\section{Examples and documentation}\label{sec:sande}
+% \tradfin
+%\section{Exemples et documentation}\label{sec:sande}
+% \tradini
 %To generate the package and example files from the source, find the
 %source of this package, the file |xkeyval.dtx|, in your local \TeX\
 %installation or on CTAN and run it with \LaTeX.
@@ -2046,8 +2101,10 @@ macro. \PrintChangesX\PrintIndexX
 %
 % \StopEventually{}
 %
-% \section{Implementation}\label{sec:imple}
+% \tradfin
+% \section{Implémentation}\label{sec:imple}
 % \subsection{\texttt{xkeyval.tex}}
+% \tradini
 % Avoid loading |xkeyval.tex| twice.
 %    \begin{macrocode}
 %<*xkvtex>
@@ -3311,7 +3368,7 @@ macro. \PrintChangesX\PrintIndexX
 % problems when too many pointers present}
 % \changes{v1.9}{2005/01/16}{Added back linking test}
 % \changes{v2.0}{2005/01/30}{Simplified}
-% \changes{v2.7a}{2014/12/03}{Removed erroneous \cs{@empty}}
+% \changes{v2.7a}{03/12/2014}{Removed erroneous \cs{@empty}}
 % \marg{key=value list}\\
 % Replaces all pointers by their saved values. The result is stored in
 % |\XKV@tempa|. We feed the replacement and the following tokens again to the
@@ -3460,7 +3517,9 @@ macro. \PrintChangesX\PrintIndexX
 \XKVcatcodes
 %</xkvtex>
 %    \end{macrocode}
+% \tradfin
 % \subsection{\texttt{xkeyval.sty}}
+% \tradini
 % \changes{v1.5}{2004/09/27}{Made macros avoid expansions of options}
 % Initialize the package.
 %    \begin{macrocode}
@@ -3738,7 +3797,9 @@ macro. \PrintChangesX\PrintIndexX
 \XKVcatcodes
 %</xkvlatex>
 %    \end{macrocode}
+% \tradfin
 % \subsection{\texttt{keyval.tex}}
+% \tradini
 % \changes{v1.4}{2004/08/24}{Added \pf{keyval} primitives}
 % \changes{v2.6 }{2008/08/10}{Added \cs{KV@def} to \texttt{keyval.tex}
 %    as it is used by some packages}
@@ -3802,7 +3863,9 @@ macro. \PrintChangesX\PrintIndexX
   \long\@namedef{KV@#1@#2}##1}
 %</xkvkeyval>
 %    \end{macrocode}
+% \tradfin
 % \subsection{\texttt{xkvtxhdr.tex}}
+% \tradini
 % This section generates |xkvtxhdr.tex| which contains some standard
 % \LaTeX\ macros taken from |latex.ltx|. This will only be loaded
 % when not using |xkeyval.sty|.
@@ -3863,7 +3926,9 @@ macro. \PrintChangesX\PrintIndexX
 }
 %</xkvheader>
 %    \end{macrocode}
+% \tradfin
 % \subsection{\texttt{xkvutils.tex}}
+% \tradini
 % Avoid loading |xkvutils.tex| twice.
 %    \begin{macrocode}
 %<*xkvutils>
@@ -4481,7 +4546,9 @@ macro. \PrintChangesX\PrintIndexX
 \XKeyValUtilsCatcodes
 %</xkvutils>
 %    \end{macrocode}
+% \tradfin
 % \subsection{\texttt{xkvview.sty}}
+% \tradini
 % This section provides a small utility for package developers. It
 % provides several macros to generate overviews of the keys that are
 % defined in a package or a collection of packages. It is possible
@@ -4738,7 +4805,9 @@ macro. \PrintChangesX\PrintIndexX
 %</xkvview>
 %    \end{macrocode}
 % \end{macro}
+% \tradfin
 % \subsection{\texttt{xkvltxp.sty}}\label{sec:ltxpatch}
+% \tradini
 % \changes{v1.5}{2004/09/27}{Added \LaTeX\ kernel patch}
 % This section redefines some kernel macros as to avoid expansions of
 % options at several places to allow for macros in key values in class
@@ -4832,7 +4901,9 @@ macro. \PrintChangesX\PrintIndexX
 \let\@@fileswith@pti@ns\@fileswith@pti@ns
 %</xkvltxpatch>
 %    \end{macrocode}
+% \tradfin
 % \subsection{\texttt{pst-xkey.tex}}
+% \tradini
 % Avoid loading |pst-xkey.tex| twice.
 %    \begin{macrocode}
 %<*pxktex>
@@ -4902,7 +4973,9 @@ macro. \PrintChangesX\PrintIndexX
 \PSTXKeyCatcodes
 %</pxktex>
 %    \end{macrocode}
+% \tradfin
 % \subsection{\texttt{pst-xkey.sty}}
+% \tradini
 % Initialize the package.
 %    \begin{macrocode}
 %<*pxklatex>
@@ -5620,8 +5693,8 @@ actually used. They are not expanded during option processing.\\
   \fi\endgroup\@esphack
 }
 \renewenvironment{theglossary}{%
-  \section*{Version history}%
-  This version history displays recent changes only.\par\bigskip
+  \section*{Historique}%
+  Cet historique n'affiche que les modifications r\'{e}centes.\par\bigskip
   \GlossaryParms \let\item\@idxitem \ignorespaces
 }{}%
 \def\eTeX{$\m@th\varepsilon$-\TeX}

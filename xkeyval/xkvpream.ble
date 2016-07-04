@@ -4,7 +4,7 @@
 %%
 %% The original source files were:
 %%
-%% xkeyval.dtx  (with options: `preamble')
+%% xkeyval-fr.dtx  (with options: `preamble')
 %% 
 %% ---------------------------------------
 %% Copyright (C) 2004-2014 Hendri Adriaens
@@ -81,8 +81,8 @@
   \fi\endgroup\@esphack
 }
 \renewenvironment{theglossary}{%
-  \section*{Version history}%
-  This version history displays recent changes only.\par\bigskip
+  \section*{Historique}%
+  Cet historique n'affiche que les modifications r\'{e}centes.\par\bigskip
   \GlossaryParms \let\item\@idxitem \ignorespaces
 }{}%
 \def\eTeX{$\m@th\varepsilon$-\TeX}

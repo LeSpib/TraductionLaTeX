@@ -45,7 +45,7 @@ Traduction      | Source              | Avancée                | Pages traduite
 [tocbibind-fr]  | [tocbibind] v1.5k   | :new_moon:             | 4 / 17          | 
                 | [varioref]          |                        | *. / 32*        |
 [xcolor-fr]     | [xcolor] v2.12      | :waxing_crescent_moon: | 27 / 73         | 
-[xkeyval-fr]    | [xkeyval] v2.7      | :new_moon:             | 0 / 73          |
+[xkeyval-fr]    | [xkeyval] v2.7      | :new_moon:             | 1 / 73          |
 
 ### Traduction des documents 
 
