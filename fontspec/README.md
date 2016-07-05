@@ -24,7 +24,7 @@ Section                       | Avancée                | Pages traduites | Comm
 ----------------------------- | :--------------------: | :-------------: | -------------------------
 En-tête du document tex       | :new_moon:             |                 |
 Page d'avant-propos           | :first_quarter_moon:   | 4 / 4           | 
-Sélection générale de...      | :new_moon:             | 1 / 17          | 
+Sélection générale de...      | :new_moon:             | 2 / 17          | 
 OpenType                      | :new_moon:             | 0 / 13          |   
 LuaTeX-only font features     | :new_moon:             | 0 / 3           |  
 Fonts and feature with XeTeX  | :new_moon:             | 0 / 6           |  

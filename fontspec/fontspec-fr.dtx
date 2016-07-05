@@ -337,25 +337,30 @@ This work consists of this file fontspec.dtx
 % \vref{sec:font-ind-features}, en incluant les méthodes pour un
 % dimensionnement automatique.
 %
-% \begin{Lexample}{fontload}{Loading the default, sans serif, and monospaced fonts.}
+% \begin{Lexample}{fontload}{Chargement de fontes par défaut, sans sérif et à chasse fixe.}
 %   \setmainfont{TeX Gyre Bonum}
 %   \setsansfont{Latin Modern Sans}[Scale=MatchLowercase]
 %   \setmonofont{Inconsolata}[Scale=MatchLowercase]
 %
-%   \rmfamily Pack my box with five dozen liquor jugs\par
-%   \sffamily Pack my box with five dozen liquor jugs\par
-%   \ttfamily Pack my box with five dozen liquor jugs
+%   \rmfamily Buvez de ce whisky que le patron juge fameux. \par
+%   \sffamily Buvez de ce whisky que le patron juge fameux. \par
+%   \ttfamily Buvez de ce whisky que le patron juge fameux. 
 % \end{Lexample}
 %
 % L'argument de fonctionnalités des fontes accepte des listes de paires 
 % \meta{fonctionnalité-fonte}=\meta{option} séparées par des virgules; ces
 % arguments sont décrits par la suite :
 % \begin{itemize}
-% \item pour des fonctionnalités de fonte générales, voir \vref{sec:font-ind-features}
-% \item pour les fontes OpenType, voir la partie~\vref{sec:opentype-features}
-% \item pour les fonctionnalités de fontes propres à \XeTeX, voir la partie~\vref{sec:xetex-features}
-% \item pour les fonctionnalités de fontes propres à \LuaTeX, voir la partie~\vref{sec:luatex-features}
-% \item pour les fonctionnalité pour les fontes \AAT\ dans \XeTeX, voir \vref{sec:aat-features}
+% \item pour des fonctionnalités de fonte générales, voir 
+%   \vref{sec:font-ind-features}
+% \item pour les fontes OpenType, voir la 
+%   partie~\vref{sec:opentype-features}
+% \item pour les fonctionnalités de fontes propres à \XeTeX, voir la 
+%   partie~\vref{sec:xetex-features}
+% \item pour les fonctionnalités de fontes propres à \LuaTeX, voir la 
+%   partie~\vref{sec:luatex-features}
+% \item pour les fonctionnalité pour les fontes \AAT\ dans \XeTeX, voir 
+%   \vref{sec:aat-features}
 % \end{itemize}
 %
 % \section{Sélection de fontes}
@@ -365,34 +370,43 @@ This work consists of this file fontspec.dtx
 %
 % \subsection{Par nom de fonte}
 %
-% \tradini 
-% Fonts known to \LuaTeX\ or \XeTeX\ may be loaded by their standard names as
-% you'd speak them out loud, such as \emph{Times New Roman} or
-% \emph{Adobe Garamond}.
-% `Known to' in this case generally means `exists in a standard fonts location'
-% such as |~/Library/Fonts| on \MacOSX, or |C:\Windows\Fonts| on Windows.
+% Les fontes connues de \LuaTeX\ ou de \XeTeX\ peuvent être chargées en 
+% utilisant leur nom standard, celui que vous diriez à voix haute, tel 
+% \emph{Times New Roman} ou \emph{Adobe Garamond}.
+% \og Connues de \fg{} dans ce cas signifie \og existent dans un \og répertoire
+% de fontes standard \fg{} comme |~/Library/Fonts| sur \MacOSX, ou 
+% |C:\Windows\Fonts| sur Windows.
 %
-% The simplest example might be something like
+% L'exemple le plus simple pourrait être quelque chose comme :
 % \begin{Verbatim}
 %   \setmainfont{Cambria}[ ... ]
 % \end{Verbatim}
-% in which the bold and italic fonts will be found automatically
-% (if they exist) and are immediately accessible with the usual
-% \cs{textit} and \cs{textbf} commands.
+% dans lequel les fontes grasses et italiques sont automatiquement trouvées (si
+% elles existent) et sont immédiatement accessibles avec les commandes usuelles
+% \cs{textit} et \cs{textbf}.
 %
-% TODO: add explanation for how to find out what the `font name' is.
+% À FAIRE: ajouter une explication pour dire comment trouver le \og nom d'une
+% fonte \fg{}.
 %
 %
-% \subsection{By file name}
+% \subsection{Par nom de fichier}
 % \label{sec:by-file-name}
 %
-% \XeTeX\ and \LuaTeX\ also allow fonts to be loaded by file name instead of font name.
-% When you have a very large collection of fonts, you will sometimes not
-% wish to have them all installed in your system's font directories.
-% In this case, it is more convenient to load them from a different location on your disk.
-% This technique is also necessary in \XeTeX\ when loading OpenType fonts that are present within your \TeX\ distribution, such as \path{/usr/local/texlive/2013/texmf-dist/fonts/opentype/public}.
-% Fonts in such locations are visible to \XeTeX\ but cannot be loaded by font name, only file name; \LuaTeX\ does not have this restriction.
+% \XeTeX\ et \LuaTeX\ permettent également de charger les fontes par leur nom
+% de fichier au lieu de leur nom de fonte.
+% Lorsque vous avez une très grande collection de fontes, vous ne souhaitez 
+% parfois pas les voir installées dans votre répertoire de fontes de votre 
+% système.
+% Dans ce cas, il est souvent plus pratique de les charger depuis un autre
+% répertoire de votre disque. 
+% Cette technique est également nécessaire dans \XeTeX\ lors du chargement de
+% fontes OpenType qui sont présentes dans votre distribution \TeX\, par 
+% exemple \path{/usr/local/texlive/2013/texmf-dist/fonts/opentype/public}.
+% Les fontes dans de tels répertoires sont visibles pour \XeTeX\ mais elles ne 
+% peuvent être chargées que par leur nom de fichier ; \LuaTeX\ n'a pas cette
+% restriction.
 %
+% \tradini 
 % When selecting fonts by file name, any font that can be found in the default
 % search paths may be used directly (including in the current directory)
 % without having to explicitly define the location of the font file on disk.
