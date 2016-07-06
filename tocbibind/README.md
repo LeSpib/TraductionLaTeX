@@ -22,12 +22,12 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 - :waxing_gibbous_moon: : première relecture achevée (comparant original et traduction) ; 
 - :full_moon: : seconde relecture achevée (vérifiant la cohérence de la traduction seule).
 
-Section                       | Avancée                | Pages traduites | Commentaires 
+Section                       | Avancée                | Pages traduites |   Commentaires 
 ----------------------------- | :--------------------: | :-------------: | -------------------------
 En-tête du document tex       | :new_moon:             |                 |
 Page d'avant-propos           | :first_quarter_moon:   | 1 / 1           | 
-1. Introduction               | :first_quarter_moon:   | 1 / 1           |
-2. L'extension tocbibind      | :new_moon:             | 0 / 4           | 
+1. Introduction               | :first_quarter_moon:   | 1 / 1           | 
+2. L'extension tocbibind      | :new_moon:             | 1 / 4           | En cours
 3. Le code de l'extension     | :new_moon:             | 0 / 9           |
 Références                    | :first_quarter_moon:   | 1 / 1           |
 Index                         | :first_quarter_moon:   | 1 / 1           |   

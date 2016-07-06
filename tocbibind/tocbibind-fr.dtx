@@ -196,122 +196,122 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 %
 % \section{L'extension \Lpack{tocbibind}} \label{sec:usc}
 %
-% \tradini
-%    The \Lpack{tocbibind} package enables the titles of the
-% Table of Contents, the List of Figures, the List of Tables, the
-% Bibliography and the Index all to be added to the Table of Contents.
-%    By default, all of these document elements, if they exist, will be
-% incorporated into the Table of Contents (ToC for short).
-%    Package options are available to switch off any of these inclusions.
+% L'extension \Lpack{tocbibind} permet aux titres de la table des matières, de 
+% la liste des figures, de la liste des tables, de la bibliographie et de 
+% l'index de figurer comme entrées dans la table des matières. Par défaut, tous
+% ces éléments, s'ils existent, seront incorporés dans la table des matières. 
+% Les options d'extension sont disponibles pour empêcher ces ajouts :
 % \begin{itemize}
-% \item \Lopt{notbib} Disables the inclusion of the Bibliography.
-% \item \Lopt{notindex} Disables the inclusion of the Index (inclusion
-%       of the Index of an \Lpack{ltxdoc} class document is permanantly
-%       disabled).
-% \item \Lopt{nottoc} Disables the inclusion of the ToC.
-% \item \Lopt{notlot} Disables the inclusion of the List of Tables.
-% \item \Lopt{notlof} Disables the inclusion of the List of Figures.
-% \item \Lopt{chapter} Use chapter-level headings, if possible.
-% \item \Lopt{section} Use section-level headings, if possible.
-% \item \Lopt{numbib} Number the Bibliography heading (default is no number).
-% \item \Lopt{numindex} Number the Index heading (default is no number).
-% \item \Lopt{other} Use a non-traditional heading command. This option
-% effectively requires the use of the |\tocotherhead| command.
-% \item \Lopt{none} Disables everything.
+% \item \Lopt{notbib} désactive l'ajout de la bibliographie ;
+% \item \Lopt{notindex} désactive l'ajout de l'index (l'ajout de l'index pour
+%   un document de classe \Lpack{ltxdoc} est désactivé systématiquement) ;
+% \item \Lopt{nottoc} désactive l'ajout de la table des matières ;
+% \item \Lopt{notlot} désactive l'ajout de la Liste des tableaux ;
+% \item \Lopt{notlof} désactive l'ajout de la Liste des figures ;
+% \item \Lopt{chapter} fait utiliser des titres de niveau \og chapitre \fg{}, 
+%   si possible ; 
+% \item \Lopt{section} fait utiliser des titres de niveau \og section \fg{}, 
+%   si possible ;
+% \item \Lopt{numbib} numérote le titre de la bibliographie (par défaut, il n'y
+%   a pas de numéro).
+% \item \Lopt{numindex} numérote l'index (par défaut, il n'y a pas de numéro) ;
+% \item \Lopt{other} utilise une commande de titre non usuelle. Cette option implique l'utilisation de la commande |\tocotherhead| ;
+% \item \Lopt{none} désactive tout.
 % \end{itemize}
 %
-%    The package is designed to work with the standard \LaTeX{}
-% document classes \Lpack{book}, \Lpack{report}, \Lpack{article}, \Lpack{proc}
-% and \Lpack{ltxdoc} class (which is based to a large extent on
-% the \Lpack{article} class).
-% In the \Lpack{article}, \Lpack{proc} and \Lpack{ltxdoc} classes \LaTeX{} 
-% uses the |\section*| heading
-% style for the bibliography etc., while for the other two classes
-% it uses the |\chapter*| heading style. \Lpack{tocbibind} honours
-% these conventions. However, if the package is used with another
-% class (perhaps with a class for typesetting theses which has
-% different conventions), then the
-% \Lopt{chapter} or \Lopt{section} options can be used to select the
-% appropriate style (but the class must define |\chapter*| and
-% |\@makeschapterhead|, or |\section*| respectively).
+% Cette extension est conçue pour fonctionner avec les classes de documents 
+% \LaTeX{} standards, à savoir \Lpack{book}, \Lpack{report}, \Lpack{article},
+% \Lpack{proc} et \Lpack{ltxdoc} (qui se base dans une large mesure sur la 
+% classe article). Dans les classes \Lpack{article}, \Lpack{proc} et 
+% \Lpack{ltxdoc}, \LaTeX{} recourt au style de titre |\section*| pour la
+% bibliographie et assimilées, tandis que pour les deux autres classes, il 
+% recourt au style de titre |\chapter*|. En l'occurrence, \Lpack{tocbibind} 
+% suit ces conventions. Cependant, si l'extension est associée à une autre
+% classe (telle une classe pour composer des thèses ayant des conventions
+% différentes), alors les options \Lopt{chapter} ou \Lopt{section} peuvent être
+% utilisées pour sélectionner le style approprié (mais la classe doit définir 
+% |\chapter*| et |\@makeschapterhead|, ou |\section*| respectivement).
 %
-% The standard classes, except for \Lpack{ltxdoc}, have a feature whereby the
-% height of the title for an index is at a different height than
-% any other in a document (latex bug~3126). The \Lpack{tocbibind} package
-% disables this feature.
-% The disablement has the side effect that 
-% the |\columnseprule| and |\columnsep| lengths can be
-% set via |\setlength| to alter the column seperation and the thickness
-% of a rule between the two columns in the index.
-% The effect of using the \Lopt{none} option is to limit any changes to
-% the single one of disabling this standard feature.
+% Les classes standards, exception faite de \Lpack{ltxdoc}, présentent une
+% fonctionnalité avec laquelle la hauteur du titre de l'index diffère de celle
+% des autres sections dans un document (bug de \LaTeX{}~3126). L'extension 
+% \Lpack{tocbibind} désactive cette fonctionnalité. Cette désactivation a un 
+% effet secondaire: les longueurs |\columnseprule| et |\columnsep| peuvent être
+% réglées via |\setlength| pour modifier l'espace séparant les deux colonnes de 
+% l'index et l'épaisseur de la règle placée dans cet espace. L'effet de
+% l'option \Lopt{none} revient à limiter les modifications à la seule 
+% désactivation de cette fonctionnalité standard.
 %
 % \DescribeMacro{\tocotherhead}
-%  In the standard \LaTeX{} classes the bibliography and index headings
-% are either both defined in terms of the |\chapter*| command or in
-% terms of the |\section*| command.
-%  The package assumes that any class, other than the standard classes
-% already mentioned, will either use code from the standard classes for
-% implementing the bibliography and other headings, or will use very
-% similar code. Some classes (and maybe packages) change the names of
-% the heading commands. One example that I am aware of uses |\clause|
-% instead of |\section|, |\sclause| instead of |\subsection| and so on.
-% If your document's headings are defined like this and the same
-% heading level is used for the bibliography, etc., then you can use
-% the \Lopt{other} option and 
-% the |\tocotherhead{|\meta{headingname}|}| command to cater for this.
-% If your document uses |\clause| then put |\tocotherhead{clause}|
-% in the preamble after loading the package. The package then assumes
-% that the bibliography heading is defined in terms of |\clause*|.
+% Dans les classes standards de \LaTeX{}, les titres de la bibliographie et de
+% l'index sont soit définis en terme de commande |\chapter*| ou en terme de
+% commande |\section*|.
+% L'extension retient pour hypothèse que toute classe, autre que les classes
+% standards déjà citée, utilise soit le code des classes standards pour
+% implémenter la bibliographie et autres titres ou utilise un code très
+% similaire. Certaines classes (et peut-être aussi des extensions) modifient
+% les noms des commandes de sectionnement. Un exemple dont j'ai connaissance
+% se sert de |\clause| au lieu de |\section|, |\sclause| au lieu de 
+% |\subsection| et ainsi de suite.
+% Si les titres de votre document sont définis comme cela et que le même niveau
+% de titre est utilisé pour la bibliographie et assimilées alors vous pouvez
+% utiliser l'option \Lopt{other} et la commande 
+% |\tocotherhead{|\meta{commande-de-titre}|}| pour traiter ce point.
+% Si votre document utilise |\clause| alors indiquez |\tocotherhead{clause}| 
+% dans le préambule après avoir chargé l'extension.
+% L'extension suppose alors que le titre de la bibliographie est défini en 
+% terme de |\clause*|.
 %
-%    If you use the |\tocotherhead| command, then it overrides any
-% \Lopt{chapter} or \Lopt{section} option.
+% Si vous utilisez la commande |\tocotherhead|, elle prime sur les options
+% \Lopt{chapter} et \Lopt{section}.
 %
 % \DescribeMacro{\tocbibname}
-%  The package attempts to pick up the name for the Bibliography from
-%  the class definition. (Note that the \Lpack{article} class and
-%  its derivatives stores
-%  the name text in the |\refname| whilst the \Lpack{book} and \Lpack{report}
-%  classes
-%  store the name in |\bibname|). This package uses |\tocbibname|
-%  to store the name of the bibliography. 
+% L'extension essaye de récupérer le nom de la bibliographie dans les 
+% définitions de la classe (notez que la classe \Lpack{article} et ses dérivées
+% stocke ce nom dans la commande |\refname| tandis que les classes \Lpack{book}
+% et \Lpack{report} stocke ce nom dans |\bibname|). Cette extension stocke
+% le nom de la bibliographie dans |\tocbibname|.
 %
-% \changes{v1.2}{1999/01/17}{Replaced toc\ldots name commands by the set\ldots commands.}
+% \changes{v1.2}{17/01/1999}{Remplacement des noms de commandes \og toc\ldots 
+%   name \fg{} par les commandes \og set\ldots \fg{}.}
 % \DescribeMacro{\setindexname}
 % \DescribeMacro{\settocname}
 % \DescribeMacro{\setlotname}
 % \DescribeMacro{\setlofname}
 % \DescribeMacro{\settocbibname}
-%    These commands set the heading texts for the index,
-% ToC, list of tables and list of figures. When used with the three
-% standard classes, the heading text is picked up from the |\indexname|,
-% |\contentsname|, |\listtablename| and |\listfigurename| commands
-% respectively. The heading texts can be changed by changing the standard
-% commands, or by using |\setindexname{|\meta{name}|}|, and similarly for
-% the other headings. Thus, the following two lines of code have the 
-% same effect:
+% Ces commandes définissent les textes des titres pour l'index, la liste des
+% tables et la liste des figures. Lors de l'utilisation des trois classes
+% standards, le texte du titre est tiré respectivement des commandes 
+% |\indexname|, |\contentsname|, |\listtablename| et |\listfigurename|   
+% Les titres de texte peuvent être changés en modifiant les commandes 
+% standards ou en se servant de |\setindexname{|\meta{nom}|}| pour l'index
+% et les commandes similaires pour les autres titres. De fait, les deux
+% lignes suivantes ont le même effet :
 % \begin{verbatim}
 % \renewcommand{\listfigurename}{Figures}
 % \setlofname{Figures}
 % \end{verbatim}
-% \textit{Note that these commands replace the } |\toc...name| 
-% \textit{commands that were in version 1.1.}
+% \textit{Notez que ces commandes remplacent les commandes } |\toc...name| 
+% \textit{présentes en version 1.1.}
 %
 %
-% \subsection{Numbering the List of Figures, etc.}
+% \subsection{Numérotation de la liste des figures et autres}
 %
-%    Some authors like, or are required, to number the Listof headings.
-% Some commands are provided to simplify doing this. 
+% Certains auteurs apprécient ou sont contraints de numéroter les titres des
+% \og Liste de \fg{}. Quelques commandes sont fournies pour simplifier cet
+% usage.
 %
 % \DescribeMacro{\simplechapter}
 % \DescribeMacro{\simplechapterdelim}
 % \DescribeMacro{\restorechapter}
-% In chaptered documents, the Listof headings are effectively typeset as
-% |\chapter*{}|. The natural way to get numbered headings would be to
-% typeset them as |\chapter{}| but this has the potential disadvantage
-% that the word `Chapter', or equivalent, would be written before the 
-% heading, which is probably not what is required. The 
-% |\simplechapter[|\meta{name}|]|
+% Dans les documents avec chapitre, les titres de type \og Liste de \fg{} sont
+% composés comme des |\chapter*{}|. 
+% La manière naturelle d'obtenir des titres numérotés serait de les composer
+% comme des |\chapter{}| mais ceci a l'inconvénient potentiel que le mot
+% \og Chapitre \fg{}, ou équivalent, apparaisse devant le titre, ce qui n'est
+% probablement pas souhaité.
+% \tradini
+% The |\simplechapter[|\meta{name}|]|
 % command modifies any subsequent |\chapter| commands so that the result
 % looks like that of |\chapter*| except that the chapter number is put
 % on the same line as the title and the value of |\simplechapterdelim|
@@ -476,7 +476,7 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 %
 %
 % 
-% \section{The package code} \label{sec:code}
+% \section{Le code de l'extension} \label{sec:code}
 %
 %    Announce the name and version of the package, which requires
 % \LaTeXe.
