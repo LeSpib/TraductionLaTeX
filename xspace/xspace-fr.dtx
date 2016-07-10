@@ -33,27 +33,44 @@
 %<driver>\ProvidesFile{xspace.drv}
 % \fi
 %         \ProvidesFile{xspace.dtx}
-          [2014/10/28 v1.13 Space after command names (DPC,MH)]
+          [28/10/2014 v1.13 Space after command names (DPC,MH)]
 %
 % \iffalse
 %<*driver>
 \documentclass{ltxdoc}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
 \makeatletter
 \providecommand*\eTeX{{%
   \if b\expandafter\@car\f@series\@nil\boldmath\fi$\m@th
   \varepsilon$-\TeX}}
+\def\MaintainedByLaTeXTeam#1{%
+{\gdef\@maintainedby{%
+Ce fichier est maintenu par l'équipe du \og \LaTeX{} Project \fg{}.\\%
+Les rapports d'anomalie peuvent être envoyés en anglais à \\%
+\url{http://latex-project.org/bugs.html} (catégorie \texttt{#1}).}}}
 \makeatother
+% Bloc pour traduction
+\usepackage{xcolor}
+\usepackage{pifont}
+\definecolor{orange5}{RGB}{255,153,0} 
+\newcommand{\trad}[1]{\textbf{\textcolor{orange5}{\noindent\ding{54} #1 \ding{54}}}}
+\newcommand{\tradini}{\color{orange5}\ding{54}}
+\newcommand{\tradfin}{\ding{54}\color{black}}
+% Fin du bloc qui doit être retiré une fois le travail achevé
 \usepackage{xspace}[2006/05/08]
 \begin{document}
-\DocInput{xspace.dtx}
+\DocInput{xspace-fr.dtx}
 \end{document}
 %</driver>
 % \fi
 %
 % \GetFileInfo{xspace.dtx}
-% \title{The \textsf{xspace} package\thanks{This file
-%        has version number \fileversion, last
-%        revised \filedate.}}
+% \title{L'extension \textsf{xspace}\thanks{Ce fichier a pour numéro de 
+%        version \fileversion\ et a été revu le \filedate. La première 
+%        traduction, basée sur la version 1.06 a été publiée par 
+%        Jean-Drucbert en 2001.}}
 % \author{David Carlisle \and Morten H\o gholm}
 % \date{\filedate}
 % \MaintainedByLaTeXTeam{tools}
@@ -76,99 +93,101 @@
 % conditional processing}
 % \changes{v1.10}{2005/10/04}{Improve expansion method}
 %
+
 % \begin{abstract}
-% |\xspace| should be used at the end of a macro designed to
-% be used mainly in text. It adds a space unless the macro is
-% followed by certain punctuation characters.
+% La commande |\xspace| s'utilise à la fin de commandes pensées pour être
+% intégrée principalement dans du texte. Elle ajoute une espace à moins que 
+% la commande ne soit suivie par certains signes de ponctuation. 
 % \end{abstract}
 %
 % \section{Introduction}
-% \newcommand{\gb}{Great Britain\xspace}\DescribeMacro{\xspace}
-% After defining |\newcommand{\gb}{Great Britain\xspace}|,
-% the command |\gb| will determine when to insert a space
-% after itself and when not. Thus the input
+% \newcommand{\gb}{La Grande Bretagne\xspace}\DescribeMacro{\xspace}
+% Après avoir défini |\newcommand{\gb}{Great Britain\xspace}|, la commande 
+% |\gb| détermine si une espace doit être insérée après elle ou pas. Ainsi, 
+% la saisie
 % \begin{quote}
-% |\gb is a very nice place to live.\\| \\
-% |\gb, a small island off the coast of France.\\|\\
-% |\gb\footnote{The small island off the coast of France.}|\\
-% |is a very nice place to live.|
+% |\gb est un très bel endroit pour vivre.\\| \\
+% |\gb, une petite île au large des côtes françaises.\\|\\
+% |\gb\footnote{La petite île au large des côtes françaises.}|\\
+% |est un très bel endroit pour vivre.|
 % \end{quote}
-% results in the output
+% conduit au résultat suivant 
 % \begin{quote}
-% \gb is a very nice place to live. \\
-% \gb, a small island off the coast of France.\\
-% \gb\footnote{The small island off the coast of France.}
-% is a very nice place to live.
+% \gb est un très bel endroit pour vivre. \\
+% \gb, une petite île au large des côtes françaises.\\
+% \gb\footnote{La petite île au large des côtes françaises.}
+% est un très bel endroit pour vivre.
 % \end{quote}
-% |\xspace| saves the user from having to type \verb*+\ + or
-% |{}| after most occurrences of a macro name in text.
-% However if either of these constructions follows |\xspace|,
-% a space is not added by |\xspace|. This means that it is
-% safe to add |\xspace| to the end of an existing macro
-% without making too many changes in your document. In particular,
-% |\xspace| will always insert a space if the thing following it is
-% a normal letter which is the usual case.
+% |\xspace| évite à l'utilisateur de saisir \verb*+\ + ou |{}| après la plupart
+% des occurrences d'une commande dans du texte. Cependant, si l'une de ces
+% constructions suit |\xspace|, ce dernier n'ajoute pas d'espace. Ceci implique
+% qu'il est d'ajouter |\xspace| à la fin de commandes déjà présentes sans faire
+% trop de changements dans votre document. En particulier, |\xspace| insèrera
+% toujours une espace si l'élément qui le suit est une lettre normale, ce qui
+% est cas classique.
 %
-% Sometimes |\xspace| may make the wrong decision, and add a
-% space when it is not required. There may be different
-% reasons for this behavior but it can always be handled by
-% following the macro with |{}|, as this has the effect of
-% suppressing the space.
+% Parfois, |\xspace| peut prendre une mauvaise décision et ajouter alors une
+% espace non souhaitée. Il y a différentes raisons à ce comportement mais ce 
+% problème peut toujours être géré en faisant suivre la commande d'un |{}|, 
+% dans la mesure où ceci a pour effet de supprimer l'espace.
 %
 %
-% \subsection{Adding new exceptions}
+% \subsection{Ajout de nouvelles exceptions}
 %
-% One of the most common reasons for |\xspace| to add an
-% unwanted space is when it is followed by a macro not on its
-% list of exceptions.
+% Une des raisons les plus courantes pour |\xspace| d'insérer une espace non
+% souhaitée se produit quand il est suivi d'une commande qui n'est pas dans sa
+% liste des exceptions. 
 % \DescribeMacro{\xspaceaddexceptions}%
-% With |\xspaceaddexceptions| you can add new commands or
-% characters to be recognized by |\xspace|'s scanning
-% mechanism. Users of advanced footnote packages like
-% \textsf{manyfoot} will often define new footnote macros
-% that should not cause a command ``enhanced'' with |\xspace|
-% to insert a space. If you define the additional footnote
-% macros |\footnoteA| and |\footnoteB|, simply add the
-% following line to your preamble:
+% Avec |\xspaceaddexceptions|, vous pouvez ajouter de nouveaux caractères ou 
+% commandes pour qu'ils soient reconnus par la mécanique d'analyse de 
+% |\xspace|. Les utilisateurs d'extensions avancées sur les notes en bas de
+% page comme \textsf{manyfoot} vont souvent définir de nouvelles commandes de
+% notes de bas de page qui ne devraient pas impliquer l'ajout d'une espace à la
+% suite d'une commande \og améliorée \fg{} par |\xspace|. Si vous définissez 
+% les commandes de note de page |\footnoteA| et |\footnoteB|, ajoutez la ligne
+% suivante à votre préambule.
 % \begin{quote}
 % |\xspaceaddexceptions{\footnoteA \footnoteB}|
 % \end{quote}
 %
 %
-% \subsection{Support for active characters}
+% \subsection{Support des caractères actifs}
 %
 %
-% The other common instance of |\xspace| not working quite right
-% happens with active characters. Generally this package must be
-% loaded \emph{after} any language (or other) packages that make
-% punctuation characters `active'. This makes it difficult for
-% \textsf{xspace} to work flawlessly with the popular \textsf{babel}
-% package especially since the punctuation characters can switch
-% between being `active' and `other'. Starting at \textsf{xspace}
-% version~1.08 there are two different ways to handle this depending
-% on which engine your \LaTeX-format uses:
+% L'autre exemple courant où |\xspace| ne traite pas bien la situation se
+% produit en présence de caractères actifs. Généralement, cette extension doit
+% être chargée \emph{après} toute extension linguistique (ou autre) qui rend la
+% ponctuation \og active \fg{}. Ceci complexifie la tâche pour \textsf{xspace} 
+% lors de travaux avec l'extension populaire \textsf{babel} tout 
+% particulièrement parce que les signes de ponctuation peuvent basculer du 
+% statut \og actif \fg{} à \og autre \fg{} et inversement. À partir de la 
+% version~1.08 de \textsf{xspace}, deux manières de gérer ce point sont 
+% disponibles en fonction du moteur utilisé par votre format \LaTeX : 
+
 % \begin{description}
-%   \item[\TeX] The punctuation characters are added to the
-%   exception list in both their normal and active states thus
-%   ensuring that they are always recognized.
-%   \item[\eTeX] The characters are re-read when going through
-%   the exception list which means the internal comparison will test
-%   against the current state of the character. This works for
-%   whatever category code tricks some packages may use.
+%   \item[\TeX] Les signes de ponctuation sont ajoutés à la liste d'exceptions 
+%   à la fois dans leur version normale et active, assurant ainsi qu'ils seront
+%   toujours reconnus.
+%   \item[\eTeX] Les caractères sont lus à nouveau lors du passage dans la
+%   liste des exceptions, ce qui signifie que la comparaison interne se fait
+%   sur l'état courant du caractère. Ceci fonctionne quelque soit l'astuce de
+%   code de catégorie utilisée.
 % \end{description}
 %
-% At the time of writing all major \TeX\ distributions are using
-% \eTeX\ as engine for \LaTeX\ so usually everything should work out
-% of the box. If you find that you're running normal \TeX\ and
-% |\xspace| seems to be making the wrong choice then either use |{}|
-% as described above to fix it or add the character to the list but
-% with the desired category code. See the implementation for an example
-% of how to do that.
+% Au moment de la rédaction de ce document, toutes les grandes distributions
+% \TeX\ utilisent \eTeX\ comme moteur pour \LaTeX, ce qui fait que tout devrait
+% bien se passer. S'il se trouve que vous utilisez le \TeX\ standard et que
+% |\xspace| semble prendre la mauvaise décision, alors vous pouvez soit 
+% utiliser |{}| comme décrit ci-dessus pour le corriger, soit ajouter le
+% caractère à la liste mais avec le code de catégorie souhaité. Voir 
+% l'implémentation pour un exemple de ce qu'il faut alors faire.
 %
-% \subsection{Still not satisfied?}
+% \subsection{Toujours pas satisfait ?}
 %
-% Some people don't like the default list of exceptions so they can
-% remove one item at a time with the command
+
+% Certaines personnes n'aiment pas la liste des exceptions, aussi peuvent-ils
+% retrancher un élément à la fois de cette liste avec une commande dédiée 
+% \tradini 
 % \DescribeMacro{\xspaceremoveexception}^^A
 % \cs{xspaceremoveexception}\marg{token}.  Furthermore the command
 % \DescribeMacro{\@xspace@hook}\cs{@xspace@hook} can be redefined to
@@ -201,8 +220,10 @@
 %
 % \StopEventually{}
 %
-% \section{The Macros}
+% \tradfin
+% \section{Les commandes}
 %
+% \tradini
 % |\xspace| peeks ahead for the next token. If the token is in our
 % exception list we break the loop and do nothing; else we try to
 % expand the token once and start over again. If this leads us to an

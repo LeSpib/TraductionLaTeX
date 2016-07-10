@@ -46,7 +46,7 @@ Traduction      | Source              | Avancée                | Pages traduite
                 | [varioref]          |                        | *. / 32*        |
 [xcolor-fr]     | [xcolor] v2.12      | :new_moon:             | 29 / 73         | 
 [xkeyval-fr]    | [xkeyval] v2.7      | :new_moon:             | 1 / 73          |
-[xspace-fr]     | [xspace] v1.13      | :new_moon:             | 0 / 7           | Traduction préexistante.
+[xspace-fr]     | [xspace] v1.13      | :new_moon:             | 2 / 7           | Traduction préexistante.
 
 ### Traduction des documents 
 

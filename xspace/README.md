@@ -26,9 +26,9 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 Section                       | Avancée                | Pages traduites | Commentaires 
 ----------------------------- | :--------------------: | :-------------: | -------------------------
 En-tête du document tex       | :new_moon:             |                 |
-Page d'avant-propos           | :new_moon:             | 0               | 
-1. Introduction               | :new_moon:             | 0 / 1           |
-2. Les commandes              | :new_moon:             | 0 / 1           | 
+Page d'avant-propos           | :first_quarter_moon:   | 0               | 
+1. Introduction               | :waxing_crescent_moon: | 2 / 3           | Traduction de 1.3 en cours.
+2. Les commandes              | :new_moon:             | 0 / 4           | 
 
 ### Glossaire pour la traduction
 
