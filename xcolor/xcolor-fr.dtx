@@ -831,10 +831,10 @@
 % \label{sec.subst}
 %
 % \DescribeMacro\substitutecolormodel
-%   \marg{modèle source}\marg{liste de modèles cibles}\\
-% Cette commande substitue le \Meta{modèle source} par le premier modèle 
-% disponible apparaissant dans la \Meta{liste de modèles cibles}.
-% Seuls les modèles de type \Meta{modèle numérique} sont possibles; tous les 
+%   \marg{modèle-source}\marg{liste-de-modèles-cibles}\\
+% Cette commande substitue le \Meta{modèle-source} par le premier modèle 
+% disponible apparaissant dans la \Meta{liste-de-modèles-cibles}.
+% Seuls les modèles de type \Meta{modèle-numérique} sont possibles; tous les 
 % changements sont locaux au groupe courant, mais un |\xglobal| préfixé est
 % respecté.
 %
@@ -850,7 +850,7 @@
 % \label{sec.tgt}
 %
 % \DescribeMacro\selectcolormodel
-%   \marg{modèle numérique}\\
+%   \marg{modèle-numérique}\\
 % Cette commande définit le modèle cible comme étant le \Meta{modèle 
 % numérique} indiqué, ce dernier appartenant à la liste des
 % noms de modèles autorisés comme option de l'extension (soit  
@@ -914,9 +914,9 @@
 % \Meta[1]{id étendu}|,|\Meta[2]{id étendu}|,...,|\Meta[l]{id étendu}\\
 % \Meta*{nom}& \RS \Meta{id}\hfill(\emph{nom explicite})\newline
 %               \RS `|.|'\hfill(\emph{nom implicite})\\
-% \Meta*{modèle central}& \RS `|rgb|', `|cmy|', `|cmyk|', `|hsb|', 
+% \Meta*{modèle-central}& \RS `|rgb|', `|cmy|', `|cmyk|', `|hsb|', 
 % `|gray|'\hfill(\emph{modèles centraux})\\
-% \Meta*{modèle numérique}& \RS \Meta{modèle central}\newline
+% \Meta*{modèle-numérique}& \RS \Meta{modèle-central}\newline
 %                    \RS `|RGB|', `|HTML|', `|HSB|', 
 % `|Gray|'\hfill(\emph{modèles entiers})\newline
 %                    \RS `|Hsb|', `|tHsb|', `|wave|'\hfill(\emph{modèles
@@ -1040,11 +1040,11 @@
 %
 %
 % \paragraph{Modèles colorimétriques}
-% \DescribeArg{modèle central}
-% \DescribeArg{modèle numérique}
+% \DescribeArg{modèle-central}
+% \DescribeArg{modèle-numérique}
 % \DescribeArg{modèle}
 %
-% La différence faite entre les \emph{modèles centraux} (\Model{rgb}, 
+% La différence faite entre les \emph{modèles-centraux} (\Model{rgb}, 
 % \Model{cmy}, \Model{cmyk}, \Model{hsb}, \Model{gray}), les \emph{modèles
 % entiers} (\Model{RGB}, \Model{HTML}, \Model{HSB}, \Model{Gray}), 
 % les \emph{modèles décimaux} (\Model{Hsb}, \Model{tHsb}, \Model{wave}) et
@@ -1503,9 +1503,9 @@
 % \medskip
 %
 % \DescribeMacro\colorlet
-%   \oarg{type}\marg{nom}\oarg{modèle numérique}\marg{couleur}\\
+%   \oarg{type}\marg{nom}\oarg{modèle-numérique}\marg{couleur}\\
 % Cette commande copie la couleur obtenue avec \Meta{couleur} dans \Meta{name}.
-% Si \Meta{modèle numérique} n'est pas vide, \Meta{couleur} est tout d'abord
+% Si \Meta{modèle-numérique} n'est pas vide, \Meta{couleur} est tout d'abord
 % converti dans le modèle spécifié avant que \Meta{name} ne soit défini.     
 % Le pseudo-modèle \nModel{named} \emph{n'est pas} autorisé ici mais il peut
 % cependant être spécifié dans l'argument \Meta{type}.
@@ -1866,43 +1866,63 @@
 % telle manière à ce que toutes les couleurs soient converties dans ce modèle,
 % et de retraiter alors le fichier de sortie pour en extraire les compositions
 % des couleurs.
-% \tradini
-% We describe now another --- and more general --- solution: \emph{color masking}.
-% How does it work?
-% Color masking is based on a specified color model \Meta{m-model} and a parameter vector \Meta{m-spec}.
-% Whenever a color is to be displayed in the document, it will first be converted to \Meta{m-model}, afterwards each component of the resulting color vector will be multiplied by the corresponding component of \Meta{m-spec}.
-% For example, let's assume that \Meta{m-model} equals |cmyk|, and \Meta{m-spec} equals $(\mu_c,\mu_m,\mu_y,\mu_k)$.
-% Then an arbitrary color foo will be transformed according to
+% Nous décrivons toutefois ici une autre solution bien plus générale : le 
+% \emph{masque de couleur}. Comment cela marche-t-il ? Le masque de couleur 
+% est basé sur un modèle colorimétrique \Meta{modèle-m} et un vecteur de
+% paramètre \Meta{spéc-m}. 
+% À chaque fois qu'une couleur doit être affichée dans le document, elle sera
+% d'abord converti dans \Meta{modèle-m}, après quoi chaque composante de la 
+% vecteur de couleur obtenu sera multipliée par la composante associée de 
+% \Meta{spéc-m}.
+% Par exemple, supposons que \Meta{modèle-m} soit |cmyk| et que \Meta{spéc-m}
+% soit $(\mu_c,\mu_m,\mu_y,\mu_k)$. alors la couleur arbitraire \og test \fg{}
+% est transformée selon la règle suivante :
 % \begin{gather}
-% foo \mapsto (c,m,y,k) \mapsto (\mu_c\cdot c,\mu_m\cdot m,\mu_y\cdot y,\mu_k\cdot k)
-% \end{gather}
-% Obviously, color separation is a special case of masking by the vectors $(1,0,0,0)$, $(0,1,0,0)$, etc.
-% An interesting application is to shade or tint all colors by masking them with $(x,x,x)$ in the \Model{rgb} or \Model{cmy} model, see the last two rows in figure \vref{fig.mask}.
+% test \mapsto (c,m,y,k) \mapsto 
+% (\mu_c\cdot c,\mu_m\cdot m,\mu_y\cdot y,\mu_k\cdot k)
+% \end{gather} 
+% De toute évidence, la séparation de couleur correspond à un cas particulier
+% de masque par les vecteurs $(1,0,0,0)$, $(0,1,0,0)$, etc. Une application
+% intéressante revient à obtenir des couleurs éclaircies ou assombries de
+% toutes les couleurs en les masquant avec $(x,x,x)$ dans le modèle \Model{rgb}
+% ou \Model{cmy}, comme le montrent les deux dernières lignes de la figure 
+% \vref{fig.mask}.
 %
 % \medskip
 %
 % \DescribeMacro\maskcolors
-%   \oarg{num model}\marg{color}\\
-% Initialises all necessary parameters for color masking:
-% if \Meta{num model} is not specified (or empty), \Meta{m-model} will be set to the natural model of \Meta{color}, otherwise to \Meta{num model};
-% the color specification of \Meta{color} is extracted to define \Meta{m-spec}.
-% Additionally, |\maskcolorstrue| is performed.
+%   \oarg{modèle-numérique}\marg{couleur}\\
+% Cette commande initialise tous les paramètres nécessaires pour le masque de
+% couleur: si \Meta{modèle-numérique} n'est pas spécifié (ou vide), 
+% \Meta{modèle-m} est le modèle naturel de la \Meta{couleur}, sinon c'est 
+% \Meta{modèle-numérique}; les paramètres de \Meta{couleur} sont extraits pour
+% définir \Meta{spéc-m}. En outre, |\maskcolorstrue| est exécutée. 
 % \DescribeMacro\ifmaskcolors
-% Color masking can be switched off temporarily by |\maskcolorsfalse|, or --- in a more radical way --- by |\maskcolors{}|, which in addition clears the initialisation parameters.
+% Le masque de couleur peut être désactivé temporairement avec 
+% |\maskcolorsfalse|, ou --- d'une manière plus radicale --- par 
+% |\maskcolors{}| qui, en plus, efface les paramètres d'initialisation. 
 % \DescribeMacro\xglobal
-% In general, the scope of |\maskcolors| is the current group (unless it is prefixed by the |\xglobal| command), but it may be used in the document preamble as well.
-% The final remark of the color blending section applies here similarly.
+% En général, le champ d'application de |\maskcolors| est le groupe courant
+% (sauf si elle est précédée par la commande |\xglobal|), mais elle peut être
+% également utilisée dans le préambule du document. Aussi, la dernière remarque
+% de la section de mélange de couleurs s'applique ici de la même façon.
 %
-% Now it is easy to separate a complete document without touching the source code:
-% |latex| |\def\xcolorcmd{\maskcolors[cmyk]{cyan}}\input{a}| will do the \Color{}{cyan} part of the job for |a.tex|.
+% Il est ainsi aisé d'appliquer une séparation sur tout un document
+% sans toucher le code source :
+% |latex| |\def\xcolorcmd{\maskcolors[cmyk]{cyan}}\input{a}| pratique la
+% séparation du \Color{cyan}{cyan} pour le fichier |a.tex|.
 %
 % \DescribeMacro\colormask
-% Caution: \XC{} has no idea about colors in files that are included via the command |\includegraphics|, e.g., images of type \File{.eps}, \File{.pdf}, \File{.jpg}, or \File{.png}.
-% Such files have to be separated separately.
-% Nevertheless, \XC{} offers some basic support by storing the mask color in |\colormask|, which can be used to decide which file is to be included:
+% Attention : \XC{} n'a aucune notion de couleur dans les fichiers inclus par
+% la commande |\includegraphics|, par exemple, les images de type \File{.eps},
+% \File{.pdf}, \File{.jpg} ou \File{.png}.
+% De tels fichiers doivent être traités séparément.
+% Néanmoins, \XC{} offre un support de base pour stocker la couleur de masque
+% dans |\colormask|, ce qui peut être utilisé pour décider quel fichier doit
+% être intégré au document :
 % \begin{verbatim}
-% \def\temp{cyan}\ifx\colormask\temp \includegraphics{foo_c}\else
-% \def\temp{magenta}\ifx\colormask\temp \includegraphics{foo_m}\else
+% \def\temp{cyan}\ifx\colormask\temp \includegraphics{test_c}\else
+% \def\temp{magenta}\ifx\colormask\temp \includegraphics{test_m}\else
 % ...
 % \fi\fi
 % \end{verbatim}
@@ -1911,6 +1931,7 @@
 %
 % \subsection{Séries de couleurs}\label{sec.series}
 %
+% \tradini
 % Automatic coloring may be useful in graphics or chart applications, where a --- potentially large and unspecified --- number of colors are needed, and the user does not want or is not able to specify each individual color.
 % Therefore, we introduce the term \emph{color series}, which consists of a base color and a scheme, how the next color is being constructed from the current color.
 %
@@ -3932,30 +3953,30 @@
 % \end{itemize}
 %
 % \subsubsection*{25/11/2005 v2.08}
-% \tradini
 % \begin{itemize}
 % \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item more flexibility for |\fcolorbox| arguments, e.g., |\fcolorbox| 
-%    |[gray]{0.5}[wave]{580}{test}|;
-%   \item |\boxframe| returns a frame of given dimensions;
-%   \item new implementation of |\f(rame)box| and |\fcolorbox| as an extension
-%    of bug report latex/3655 to reduce pixel positioning errors in output
-%    devices;
-%   \item \Option{kernelfbox} option for those who prefer the previous 
-%    |\f(rame)box| approach;
-%   \item experimental \Option{xcdraw} option uses \Index{PostScript} commands
-%    to draw frames and color boxes in case of \Option{dvips}.
+%   \item ajout de flexibilité aux arguments de |\fcolorbox|, par exemple, 
+%     |\fcolorbox| |[gray]{0.5}[wave]{580}{test}|;
+%   \item |\boxframe| restitue une boîte de dimensions indiquées ;
+%   \item nouvelle implémentation de |\f(rame)box| et |\fcolorbox| comme des
+%     extensions du rapport d'anomalie latex/3655 pour réduire les erreurs 
+%     de positionnement en pixels sur les matériels en sortie ;
+%   \item l'option \Option{kernelfbox} pour ceux qui préfère l'ancienne
+%     approche de |\f(rame)box| ;
+%   \item l'option expérimentale \Option{xcdraw} utilise des commandes
+%     \Index{PostScript} pour dessiner les cadres et les couleurs des boîtes
+%     dans les cas avec \Option{dvips}.
 %   \end{itemize}
 % \item Corrections d'erreur :
 %   \begin{itemize}
-%   \item insufficient expression type detection within |\colorlet|;
-%   \item wrong calculation in the unit interval reduction for negative
-%    integers (affecting color series and extended color expressions).
+%   \item détection des types d'expression insuffisante dans |\colorlet|;
+%   \item mauvais calcul dans \trad{unit interval reduction} pour les entiers
+%     négatifs (ce qui affecte les séries de couleur et les expressions de 
+%     couleur étendues).
 %   \end{itemize}
 % \end{itemize}
 %
-% \tradfin
 % \subsubsection*{12/11/2005 v2.07}
 % \tradini
 % \begin{itemize}
@@ -4297,8 +4318,8 @@
 %
 % \subsubsection*{20/01/2004 v1.07}
 % \begin{itemize}
-% \item Nouvelle fonctionnalité : support de \trad{color masking} et de \trad{color
-%  separation}.
+% \item Nouvelle fonctionnalité : support des masques de couleur et de la
+%   séparation de couleur.
 % \item Nouvelles commandes :
 %   \begin{itemize}
 %   \item |\rmultiply| pour multiplier un registre de dimension par un nombre
