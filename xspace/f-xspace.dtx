@@ -1,0 +1,132 @@
+% \iffalse
+%% File: xspace.dtx Copyright (C) 1991-1996 David Carlisle
+%
+%<*dtx>
+          \ProvidesFile{f-xspace.dtx}
+%</dtx>
+%<package>\NeedsTeXFormat{LaTeX2e}
+%<package>\ProvidesPackage{xspace}
+%<driver>\ProvidesFile{xspace.drv}
+% \fi
+%         \ProvidesFile{f-xspace.dtx}
+          [1997/10/13 v1.06 Space after command names (DPC)]
+%
+% \iffalse
+%<*driver>
+\def\traductionchanges{oui}
+\documentclass{ltxdoc}
+
+\usepackage[french]{babel}
+\usepackage[latin1]{inputenc}
+
+\usepackage{xspace}
+\begin{document}
+\DocInput{f-xspace.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \GetFileInfo{f-xspace.dtx}
+% \title{Le package \textsf{xspace}\thanks{Cette version
+% a le numéro \fileversion. La dernière révision date du \filedate.}}
+% \author{David Carlisle \\
+%	(traduction française: Jean-Pierre Drucbert\\
+%	Jean-Pierre.Drucbert@onecert.fr)}
+% \date{\filedate}
+% \maketitle
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \CheckSum{87}
+%
+% \changes{v1.00}{1991/08/30}{Première version}
+% \changes{v1.01}{1992/06/26}{Adaptation pour new doc et docstrip}
+% \changes{v1.02}{1994/01/31}{Adaptation pour LaTeX2e (aucun changement 
+% dans le code)}
+%
+% \begin{abstract}
+% |\xspace| se place à la fin d'une macro utilis\'ee généralement pour
+% du texte. Elle ajoute une espace \`a moins que la macro ne soit 
+% suivie d'un caract\`ere de ponctuation particulier.
+% \end{abstract}
+%
+% \section{Introduction}
+% Quand on tape \verb|\newcommand{\gb}{Great Britain\xspace}|, on 
+% obtient:\\
+% \newcommand{\gb}{Great Britain\xspace}
+% |\gb is a very nice place to live.|\\
+% \gb is a very nice place to live.\\
+% |\gb, a small island off the coast of France.|\\
+% \gb, a small island off the coast of France.
+%
+% \verb|\xspace| \'evite \`a l'utilisateur d'avoir \`a taper
+% \verb*+\ + ou \verb|{}| apr\`es la plupart des occurrences d'un nom de
+% macro dans le texte. Cependant % si l'une de ces constructions suit
+% \verb|\xspace|, celui-ci n'ajoute pas une espace. Il est ainsi facile
+% d'ajouter \verb|\xspace| \`a la fin d'une macro existante sans devoir
+% faire trop de modifications dans le document.
+%
+% |\xspace| peut prendre quelquefois une mauvaise décision et ajouter
+% une espace alors qu'elle n'est pas nécessaire. Dans ce cas, faire 
+% suivre la macro d'un |{}| aura pour effet de supprimer l'espace.
+%
+% Notez que ce package doit \^etre chargé \emph{après} tout package de
+% langue (ou autre) qui rend 'actifs' les caractères de ponctuation.
+% \StopEventually{}
+%
+% \section{Les macros}
+%
+%    \begin{macrocode}
+%<*package>
+%    \end{macrocode}
+%
+% \begin{macro}{\xspace}
+% |\xspace| effectue juste une vérification et appelle |\@xspace|.
+% \changes{v1.03}{1994/11/15}{Make robust}
+%    \begin{macrocode}
+\DeclareRobustCommand\xspace{\futurelet\@let@token\@xspace}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\@xspace}
+% Si le caractère qui suit est un de ceux que l'on trouve dans une liste
+% spéciale, ne fait rien, sinon ajoute une espace. Si vous utilisez 
+% souvent un caractère de ponctuation particulier, ajoutez une ligne
+% appropriée (ne pas oublier d'ajouter un |\fi| à la fin!).
+% \changes{v1.03}{1994/11/15}{Add exclamation mark}
+% \changes{v1.04}{1996/05/17}{Add slash}
+% \changes{v1.05}{1996/12/06}{Add space for alltt etc. tools/2322}
+% \changes{v1.06}{1997/10/13}{Add normal space. tools/2632}
+%    \begin{macrocode}
+\def\@xspace{%
+  \ifx\@let@token\bgroup\else
+  \ifx\@let@token\egroup\else
+  \ifx\@let@token\/\else
+  \ifx\@let@token\ \else
+  \ifx\@let@token~\else
+  \ifx\@let@token.\else
+  \ifx\@let@token!\else
+  \ifx\@let@token,\else
+  \ifx\@let@token:\else
+  \ifx\@let@token;\else
+  \ifx\@let@token?\else
+  \ifx\@let@token/\else
+  \ifx\@let@token'\else
+  \ifx\@let@token)\else
+  \ifx\@let@token-\else
+  \ifx\@let@token\@xobeysp\else
+  \ifx\@let@token\space\else
+  \ifx\@let@token\@sptoken\else
+   \space
+%    \end{macrocode}
+% La première fois que j'ai écrit cela, il y avait une demi-douzaine de
+% |\fi| à cet endroit, et j'ai pensé que c'était suffisamment moche 
+% comme ça.
+%    \begin{macrocode}
+   \fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi}
+%</package>
+%    \end{macrocode}
+% \end{macro}
+%
+% \Finale
+%
+
