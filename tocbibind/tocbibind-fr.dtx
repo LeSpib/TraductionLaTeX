@@ -171,7 +171,6 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % \StopEventually{}
 %
 % 
-%
 % \section{Introduction}
 %
 % Des questions pour ajouter la bibliographie dans les entrées de la table des
@@ -262,8 +261,8 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % L'extension suppose alors que le titre de la bibliographie est défini en 
 % terme de |\clause*|.
 %
-% Si vous utilisez la commande |\tocotherhead|, elle prime sur les options
-% \Lopt{chapter} et \Lopt{section}.
+% La commande |\tocotherhead| prime sur les options \Lopt{chapter} et
+% \Lopt{section}.
 %
 % \DescribeMacro{\tocbibname}
 % L'extension essaye de récupérer le nom de la bibliographie dans les 
@@ -295,11 +294,11 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % \textit{présentes en version 1.1.}
 %
 %
-% \subsection{Numérotation de la liste des figures et autres}
+% \subsection{Numérotation de la liste des tableaux et autres}
 %
 % Certains auteurs apprécient ou sont contraints de numéroter les titres des
-% \og Liste de \fg{}. Quelques commandes sont fournies pour simplifier cet
-% usage.
+% \og Liste de \fg{}\footnote{Cet ensemble inclut la \og Table des figures 
+% \fg{}.}. Quelques commandes sont fournies pour simplifier cet usage.
 %
 % \DescribeMacro{\simplechapter}
 % \DescribeMacro{\simplechapterdelim}
@@ -310,51 +309,51 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % comme des |\chapter{}| mais ceci a l'inconvénient potentiel que le mot
 % \og Chapitre \fg{}, ou équivalent, apparaisse devant le titre, ce qui n'est
 % probablement pas souhaité.
-% \tradini
-% The |\simplechapter[|\meta{name}|]|
-% command modifies any subsequent |\chapter| commands so that the result
-% looks like that of |\chapter*| except that the chapter number is put
-% on the same line as the title and the value of |\simplechapterdelim|
-% is typeset immediately after the number. By default, |\simplechapterdelim|
-% is empty.
-% If the optional \meta{name} argument
-% is present, the \meta{name} is typeset before the number. For example:
+% La commande |\simplechapter[|\meta{nom}|]| modifie les commandes |\chapter|
+% qui suivent de telle sorte qu'elles génèrent alors un résultat ressemblant
+% à celui d'un |\chapter*| à ceci près que le numéro du chapitre est mis sur la
+% même ligne que le titre et que la valeur de |\simplechapterdelim| est 
+% immédiatement composée après ce numéro. Par défaut, |\simplechapterdelim| est
+% vide.
+% Si l'argument optionnel \meta{nom} est renseigné, il est composé devant le
+% numéro. Par exemple,
 % \begin{verbatim}
 % \renewcommand{\simplechapterdelim}{:}
 % \simplechapter[Chap]
 % \end{verbatim}
-% will result in |\chapter{First chapter}| being typeset like: \\
-% \quad \textbf{Chap 1: First chapter}. \\
-% The |\restorechapter| command resets
-% any subsequent |\chapter| commands to their default behaviour.
+% conduit la commande |\chapter{Premier chapitre}| à être composée ainsi : \\
+% \quad \textbf{Chap 1: Premier chapitre}. \\
+% La commande |\restorechapter| redonne aux chapitres qui la suivent leur
+% comportement usuel.
 %
 % \DescribeMacro{\tocchapter}
 % \DescribeMacro{\tocsection}
-% Internally, the Listof commands in the \Lpack{tocbibind} package use 
-% |\toc@chapter| for typesetting
-% the Listof headings in chaptered documents and |\toc@section| for 
-% non-chaptered documents. The |\tocchapter| command modifies the
-% |\toc@chapter| command to use a `simple chapter' heading. The |\tocsection|
-% command modifies |\toc@section| to typeset using |\section| instead of
-% |\section*|.
+% En interne, les commandes \og Liste de \fg{} de l'extension \Lpack{tocbibind}
+% se servent de |\toc@chapter| pour composer leur titre dans des documents avec
+% chapitre et |\toc@section| pour les documents sans chapitre. 
+% La commande |\tocchapter| modifie la commande |\toc@chapter| pour utiliser
+% un titre de \og chapitre simple \fg{}. La commande |\tocsection| modifie
+% |\toc@section| pour composer en utilisant |\section| au lieu de 
+% |\section*|.   
 %
-%    For example, to get a numbered List of Figures heading in a chaptered
-% document, put the following in the preamble:
+% Par exemple, pour obtenir un titre numéroté de \og Table des figures \fg{}
+% dans un document avec chapitre, placez ce qui suit dans votre préambule :
 % \begin{verbatim}
 % \renewcommand{\listoffigures}{\begingroup
 %    \tocchapter
 %    \tocfile{\listfigurename}{lof}
 % \endgroup}
 % \end{verbatim}
-% while to get a numbered List of Tables in a non-chaptered document:
+% tandis que pour obtenir un titre numéro de \og Liste de Tableaux \fg{} dans 
+% un document sans chapitre : 
 % \begin{verbatim}
 % \renewcommand{\listoftables}{\begingroup
 %    \tocsection
 %    \tocfile{\listtablename}{lot}
 % \endgroup}
 % \end{verbatim}
-% More generally, to number the Table of Contents in a (non-)chaptered document
-% you can do:
+% Plus généralement, pour numéroter la table des matières dans un document
+% avec (ou sans) chapitre, vous pouvez indiquer :
 % \begin{verbatim}
 % \renewcommand{\tableofcontents}{\begingroup
 %    \tocsection
@@ -362,10 +361,11 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 %    \tocfile{\contentsname}{toc}
 % \endgroup}
 % \end{verbatim}
-% The |\begingroup| |\endgroup| pairing keeps the changes local. 
+% Les paires |\begingroup| |\endgroup| gardent les changements locaux. 
 %
-% \subsection{Page styles}
+% \subsection{Styles de page}
 %
+% \tradini
 %    The package, by default, supports the standard |empty|, |plain|, and
 % |headings| page styles. Other page styles, for example ones you specify
 % yourself via the \Lpack{fancyhdr} package, are indirectly supported.
