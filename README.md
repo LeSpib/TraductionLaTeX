@@ -88,6 +88,7 @@ Anglais                | Français                                       | Comme
 *leading*              | interlignage                                   |
 *package*              | extension                                      |
 *style guide*          | code typographique                             | source Wikipédia
+*token*                | unité lexicale                                 | source Traduction française du TeXbook
 
 
 [//]: # (Sur le Markdown : https://guides.github.com/features/mastering-markdown/)
