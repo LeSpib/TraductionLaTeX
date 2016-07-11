@@ -184,20 +184,19 @@ Les rapports d'anomalie peuvent être envoyés en anglais à \\%
 %
 % \subsection{Toujours pas satisfait ?}
 %
-
 % Certaines personnes n'aiment pas la liste des exceptions, aussi peuvent-ils
 % retrancher un élément à la fois de cette liste avec une commande dédiée 
-% \tradini 
 % \DescribeMacro{\xspaceremoveexception}^^A
-% \cs{xspaceremoveexception}\marg{token}.  Furthermore the command
-% \DescribeMacro{\@xspace@hook}\cs{@xspace@hook} can be redefined to
-% scan forward in the input stream in case you want to check more
-% tokens. It is called after \cs{xspace} has determined if it needed
-% to insert a space or if an exception was found (the default
-% definition is for \cs{@xspace@hook} to be empty). Hence you can use
-% \cs{unskip} to remove the space inserted if \cs{@let@token} matches
-% something special. Below is an example of how one can make sure an
-% endash gets a space inserted before it but a single dash not.
+% \cs{xspaceremoveexception}\marg{unité-lexicale}.  De plus, la commande 
+% \DescribeMacro{\@xspace@hook}\cs{@xspace@hook} peut être définie pour 
+% analyser plus avant la suite du texte dans le cas où vous souhaiteriez
+% vérifier plus d'unités lexicales. Elle est appelée une fois que \cs{xspace}
+% a déterminé s'il faut insérer une espace ou si une exception a été trouvée 
+% (la définition par défaut de \cs{@xspace@hook} est vide). Par conséquent, 
+% vous pouvez utiliser \cs{unskip} pour retirer l'espace insérée si 
+% \cs{@let@token} rencontre quelque chose de spécial. L'exemple ci-dessous 
+% montre comment garantir qu'un tiret demi-quadratin\footnote{Ce tiret est codé
+% par |-{}-| en \LaTeX.} obtienne une espace tandis qu'un trait d'union non.
 % \begin{verbatim}
 % \xspaceremoveexception{-}
 % \makeatletter
@@ -220,22 +219,20 @@ Les rapports d'anomalie peuvent être envoyés en anglais à \\%
 %
 % \StopEventually{}
 %
-% \tradfin
 % \section{Les commandes}
 %
-% \tradini
-% |\xspace| peeks ahead for the next token. If the token is in our
-% exception list we break the loop and do nothing; else we try to
-% expand the token once and start over again. If this leads us to an
-% unexpandable token without finding one of the exceptions we insert a
-% space.
+% |\xspace| jette un coup d'\oe il à l'unité lexicale suivante. Si elle 
+% appartient à notre liste d'exception, |\xspace| sort de la boucle d'analyse
+% et ne fait rien; sinon il essaye de développer l'unité lexicale et 
+% recommence son analyse. Si ceci conduit à une unité lexicale non développable
+% sans qu'une exception ait été trouvée, une espace est insérée.
 %
 %    \begin{macrocode}
 %<*package>
 %    \end{macrocode}
 %
 % \begin{macro}{\xspace}
-% |\xspace| just looks ahead, and then calls |\@xspace|.
+% |\xspace| regarde juste un cran en avant et appelle alors |\@xspace|.
 % \changes{v1.03}{1994/11/15}{Make robust}
 %    \begin{macrocode}
 \DeclareRobustCommand\xspace{\@xspace@firsttrue
@@ -247,7 +244,7 @@ Les rapports d'anomalie peuvent être envoyés en anglais à \\%
 % \changes{v1.11}{2006/02/12}{Added macro}
 % \begin{macro}{\@xspace@simple}
 % \changes{v1.11}{2006/02/12}{Added macro}
-% Some helpers to avoid multiple calls of |\@xspace@eTeX@setup|.
+% Quelques aides pour éviter des appels multiples de |\@xspace@eTeX@setup|.
 %    \begin{macrocode}
 \newif\if@xspace@first
 \def\@xspace@simple{\futurelet\@let@token\@xspace}
@@ -257,9 +254,10 @@ Les rapports d'anomalie peuvent être envoyés en anglais à \\%
 %
 % \begin{macro}{\@xspace@exceptions@tlp}
 % \changes{v1.07}{2004/12/07}{Added macro}
-% The exception list. If the scanning mechanism finds one of
-% these, it won't insert a space after the command. The
-% \texttt{tlp} in the name means `token list pointer.'
+% La liste d'exception. Si la mécanique d'analyse trouve une de ces exceptions,
+% il n'y a pas insertion d'une espace après la commande. Le \texttt{tlp} dans 
+% le nom signifie \og token list pointer \fg{} (pointeur de liste d'unité
+% lexicale).
 %    \begin{macrocode}
 \def\@xspace@exceptions@tlp{%
   ,.'/?;:!~-)\ \/\bgroup\egroup\@sptoken\space\@xobeysp
@@ -267,7 +265,7 @@ Les rapports d'anomalie peuvent être envoyés en anglais à \\%
   \xspace@check@icr
 }
 %    \end{macrocode}
-% And here we get the non-empty definition of \cs{check@icr}.
+% Et ici nous avons la définition non vide de \cs{check@icr}. 
 % \changes{v1.13}{2009/10/20}{fix for "tools/3895": `text font commands fool xspace'}
 %    \begin{macrocode}
 \begingroup
@@ -277,6 +275,7 @@ Les rapports d'anomalie peuvent être envoyés en anglais à \\%
 %    \end{macrocode}
 % \end{macro}
 %
+% \tradini
 % \begin{macro}{\xspaceaddexceptions}
 % \changes{v1.07}{2004/12/07}{Added macro}
 % The user command, which just adds tokens to the list.

@@ -46,7 +46,7 @@ Traduction      | Source              | Avancée                | Pages traduite
                 | [varioref]          |                        | *. / 32*        |
 [xcolor-fr]     | [xcolor] v2.12      | :new_moon:             | 29 / 73         | 
 [xkeyval-fr]    | [xkeyval] v2.7      | :new_moon:             | 1 / 73          |
-[xspace-fr]     | [xspace] v1.13      | :new_moon:             | 2 / 7           | Traduction préexistante.
+[xspace-fr]     | [xspace] v1.13      | :new_moon:             | 3 / 7           | Traduction préexistante.
 
 ### Traduction des documents 
 
@@ -80,6 +80,8 @@ Anglais                | Français                                       | Comme
 *cropmarks*            | traits de coupe                                | source Wiktionnaire
 *device*               | périphérique, input/output d'entrée de sortie  |
 *driver*               | pilote (informatique, graphique...)            |
+*em dash*              | tiret quadratin                                |
+*en dash*              | tiret demi-quadratin                           |
 *error report*         | rapports d'erreur                              |
 *filler*               | motif (de remplissage)                         |
 *header*               | en-tête                                        |
