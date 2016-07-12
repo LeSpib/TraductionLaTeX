@@ -28,7 +28,7 @@ Section                       | Avancée                | Pages traduites | Comm
 En-tête du document tex       | :new_moon:             |                 |
 Page d'avant-propos           | :first_quarter_moon:   | 0               | 
 1. Introduction               | :first_quarter_moon:   | 3               |
-2. Les commandes              | :new_moon:             | 0 / 4           | Traduction en cours
+2. Les commandes              | :waxing_crescent_moon: | 2 / 4           | Traduction en cours
 
 ### Glossaire pour la traduction
 

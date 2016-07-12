@@ -53,6 +53,7 @@ Les rapports d'anomalie peuvent être envoyés en anglais à \\%
 \makeatother
 % Bloc pour traduction
 \usepackage{xcolor}
+% Attention, des commandes mal nommées ligne 82 à 100.
 \usepackage{pifont}
 \definecolor{orange5}{RGB}{255,153,0} 
 \newcommand{\trad}[1]{\textbf{\textcolor{orange5}{\noindent\ding{54} #1 \ding{54}}}}
@@ -275,10 +276,10 @@ Les rapports d'anomalie peuvent être envoyés en anglais à \\%
 %    \end{macrocode}
 % \end{macro}
 %
-% \tradini
 % \begin{macro}{\xspaceaddexceptions}
 % \changes{v1.07}{2004/12/07}{Added macro}
-% The user command, which just adds tokens to the list.
+% La commande utilisateur qui permet d'ajouter (\emph{add}) des unités 
+% lexicales à la liste.
 %    \begin{macrocode}
 \newcommand*\xspaceaddexceptions{%
   \g@addto@macro\@xspace@exceptions@tlp
@@ -288,16 +289,16 @@ Les rapports d'anomalie peuvent être envoyés en anglais à \\%
 % \begin{macro}{\xspaceremoveexception}
 % \changes{v1.10}{2005/10/04}{Use higher level functions for
 % conditional processing}
-% This command removes an exception globally.
+% Cette commande retire (\emph{remove}) une exception globalement.
 %    \begin{macrocode}
 \newcommand*\xspaceremoveexception[1]{%
 %    \end{macrocode}
-% First check that it is in the list at all.
+% Il faut d'abord vérifier s'il est bien dans la liste.
 %    \begin{macrocode}
   \def\reserved@a##1#1##2##3\@@{%
     \@xspace@if@q@nil@NF##2{%
 %    \end{macrocode}
-% It's in the list, remove it.
+% Il est dans la liste, il est alors retranché.
 %    \begin{macrocode}
       \def\reserved@a####1#1####2\@@{%
         \gdef\@xspace@exceptions@tlp{####1####2}}%
@@ -312,7 +313,7 @@ Les rapports d'anomalie peuvent être envoyés en anglais à \\%
 % \begin{macro}{\@xspace@break@loop}
 % \changes{v1.08}{2005/04/28}{Added macro}
 % \changes{v1.10}{2005/10/04}{Use quark instead}
-% To stop the loop.
+% Pour arrêter (\emph{break}) la boucle (\emph{loop}).
 %    \begin{macrocode}
 \def\@xspace@break@loop#1\@nil{}
 %    \end{macrocode}
@@ -320,28 +321,32 @@ Les rapports d'anomalie peuvent être envoyés en anglais à \\%
 %
 % \begin{macro}{\@xspace@hook}
 % \changes{v1.09}{2005/07/26}{Added macro}
-% A hook for users with special needs.
+% Un point d'entrée (\emph{hook}) pour les utilisteurs avec des besoins
+% spéciaux.
 %    \begin{macrocode}
 \providecommand*\@xspace@hook{}
 %    \end{macrocode}
 % \end{macro}
 %
-% Now we check if we're running \eTeX. We can't use \cs{@ifundefined}
-% as that will lock catcodes and we need to change some of those.
-% As there is a small risk that someone already set \cs{eTeXversion}
-% to \cs{relax} by accident we make sure we check for that case but
-% without setting it to \cs{relax} if it wasn't already.
+% Ici, nous vérifions si nous utilisons \eTeX. Nous ne pouvons utiliser la
+% commande \cs{@ifundefined} car elle bloque les codes de catégorie et nous 
+% avons besoin de les modifier. Comme il existe un risque que quelqu'un ait
+% défini par accident \cs{eTeXversion} comme valant \cs{relax}, nous vérifions
+% ce cas précis mais sans définir pour autant la commande à \cs{relax} si elle
+% ne l'était pas.
 %    \begin{macrocode}
 \begingroup\expandafter\expandafter\expandafter\endgroup
   \expandafter\ifx\csname eTeXversion\endcsname\relax
 %    \end{macrocode}
-% If we are running normal \TeX\ we add the most common cases of active
-% punctuation characters. First we make them active.
+% Si nous utilisons un \TeX\ normal, nous ajoutons les cas les plus courants
+% de signes de ponctuation actifs. Nous les rendons tout d'abord actifs.
 %    \begin{macrocode}
   \begingroup
     \catcode`\;=\active  \catcode`\:=\active
     \catcode`\?=\active  \catcode`\!=\active
 %    \end{macrocode}
+% L'environnement \texttt{alltt} rend |,|, |'| et |-| actifs ; nous les 
+% ajoutons donc également.
 %  The \texttt{alltt} environment also makes |,|, |'|, and |-| active
 %  so we add them as well.
 %    \begin{macrocode}
@@ -350,6 +355,7 @@ Les rapports d'anomalie peuvent être envoyés en anglais à \\%
   \endgroup
   \let\@xspace@eTeX@setup\relax
 %    \end{macrocode}
+% \tradini
 % \begin{macro}{\@xspace@eTeX@setup}
 % \changes{v1.10}{2005/10/04}{Added macro}
 % \changes{v1.12}{2006/05/08}{Bug fix for verbatim in output routine}
@@ -473,15 +479,16 @@ Les rapports d'anomalie peuvent être envoyés en anglais à \\%
 %    \end{macrocode}
 % \end{macro}
 %
-% That's all, folks! That is, if we were running \LaTeX3. In that case
-% we would have had nice functions for all the conditionals but here
-% we must define them ourselves. We also optimize them here as
-% \cs{@let@token} will always be the argument in some cases.
+% \tradfin
+% Et c'est tout ! Du moins, si nous avions utilisé \LaTeX3. Dans ce cas, nous
+% aurions eu de belles fonctions pour toutes les conditions mais nous devons
+% ici les définir nous-même. Nous les optimisons également car \cs{@let@token}
+% sera toujours l'argument dans certains cas.
 %
-% \begin{macro}{\@xspace@if@lettoken@letter@TF}
-% \begin{macro}{\@xspace@if@lettoken@expandable@TF}
-% \begin{macro}{\@xspace@cs@if@equal@NNF}
-% First a few comparisons.
+% \begin{macro}{\@xspace@lettoken@if@letter@TF}
+% \begin{macro}{\@xspace@lettoken@if@expandable@TF}
+% \begin{macro}{\@xspace@token@if@equal@NNT}
+% D'abord quelques comparaisons.
 %    \begin{macrocode}
 \def\@xspace@lettoken@if@letter@TF{%
   \ifcat\noexpand\@let@token @% letter
@@ -508,7 +515,7 @@ Les rapports d'anomalie peuvent être envoyés en anglais à \\%
 % \end{macro}
 % \begin{macro}{\@xspace@q@nil}
 % \begin{macro}{\@xspace@if@q@nil@NF}
-% Some macros dealing with quarks.
+% Quelques commandes pour traiter les quarks.
 %    \begin{macrocode}
 \def\@xspace@q@nil{\@xspace@q@nil}
 \def\@xspace@if@q@nil@NF#1{%
