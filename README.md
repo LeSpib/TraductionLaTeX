@@ -33,7 +33,7 @@ Traduction      | Source              | Avancée                | Pages traduite
                 | [datatool]          |                        | *. / 220*       |
                 | [datetime2]         |                        | *. / 169*       |
                 | [etoc]              |                        | *. / 114*       |
-[fontspec-fr]   | [fontspec] v2.4e    | :new_moon:             | 6 / 124         | Auteur contacté et intéressé.
+[fontspec-fr]   | [fontspec] v2.4e    | :new_moon:             | 7 / 123         | Auteur contacté et intéressé.
 [geometry-fr]   | [geometry] v5.6     | :full_moon:            | 42              | Auteur contacté et intéressé.
                 | [glossaries]        |                        | *. / 248*       |
                 | [hyperref]          |                        | *. / 31*        | Licence GNU FDL à analyser.

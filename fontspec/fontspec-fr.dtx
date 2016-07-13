@@ -406,29 +406,27 @@ This work consists of this file fontspec.dtx
 % peuvent être chargées que par leur nom de fichier ; \LuaTeX\ n'a pas cette
 % restriction.
 %
-% \tradini 
-% When selecting fonts by file name, any font that can be found in the default
-% search paths may be used directly (including in the current directory)
-% without having to explicitly define the location of the font file on disk.
+% Avec la sélection de fontes par nom de fichier, toute fonte présente dans les répertoires parcourus par défaut peut être utilisée directement (y compris le répertoire courant) sans avoir à définir explicitement la localisation du fichier de fonte sur le disque dur.
 %
-% Fonts selected by filename must include bold and italic variants explicitly.
+% Les fontes sélectionnées par nom de fichier doivent avoir leurs variantes grasse et italique précisées explicitement. 
+%
 % \begin{Verbatim}
 %   \setmainfont{texgyrepagella-regular.otf}[
 %        BoldFont       = texgyrepagella-bold.otf ,
 %        ItalicFont     = texgyrepagella-italic.otf ,
 %        BoldItalicFont = texgyrepagella-bolditalic.otf ]
 % \end{Verbatim}
-% \pkg{fontspec} knows that the font is to be selected by file name by the
-% presence of the `|.otf|' extension.
-% An alternative is to specify the extension separately, as shown following:
+% L'extension \pkg{fontspec} sait ici que la fonte doit être trouvée avec 
+% son nom de fichier du fait de la présence de l'extension \og |.otf| \fg{}.
+% Une alternative est de spécifier l'extension séparément, comme suit :
 % \begin{Verbatim}
 %   \setmainfont{texgyrepagella-regular}[
 %        Extension      = .otf ,
 %        BoldFont       = texgyrepagella-bold ,
 %        ... ]
 % \end{Verbatim}
-% If desired, an abbreviation can be applied to the font names based on the
-% mandatory `font name' argument:
+% Une abréviation peut aussi être appliquée aux noms des fontes sur la base
+% de l'argument obligatoire, \og nom de fonte \fg{} :
 % \begin{Verbatim}
 %   \setmainfont{texgyrepagella}[
 %        Extension      = .otf ,
@@ -436,14 +434,15 @@ This work consists of this file fontspec.dtx
 %        BoldFont       = *-bold ,
 %        ... ]
 % \end{Verbatim}
-% In this case `texgyrepagella' is no longer the name of an actual font,
-% but is used to construct the font names for each shape;
-% the |*| is replaced by `texgyrepagella'.
-% Note in this case that |UprightFont| is required for constructing the font
-% name of the normal font to use.
+% Dans le cas ci-dessus, \og texgyrepagella \fg{} n'est plus le nom de la 
+% fonte mais sert à construire le nom de fichier pour chaque forme ;
+% le symbole |*| est remplacé par \og texgyrepagella \fg{}. 
+% Notez que, dans ce cas, l'option |UprightFont| est nécessaire pour construire
+% le nom de la fonte normale.
 %
-% To load a font that is not in one of the default search paths, its location
-% in the filesystem must be specified with the |Path| feature:
+% Pour charger une fonte qui n'est pas dans un des répertoires parcourus par
+% défaut, sa localisation dans le système de fichier doit être spécifiée avec
+% la fonctionnalité |Path| :
 % \begin{Verbatim}
 %   \setmainfont{texgyrepagella}[
 %        Path           = /Users/will/Fonts/ ,
@@ -451,26 +450,28 @@ This work consists of this file fontspec.dtx
 %        BoldFont       = *-bold ,
 %        ... ]
 % \end{Verbatim}
-% Note that \XeTeX\ and \LuaTeX\ are able to load the font without giving an
-% extension, but \pkg{fontspec} must know to search for the file; this can can
-% be indicated by declaring the font exists in an `|ExternalLocation|':
+% Notez que \XeTeX\ et \LuaTeX\ peuvent charger la fonte sans que l'extension
+% soit précisée, mais \pkg{fontspec} doit, lui, le savoir ; ceci peut être
+% indiqué en déclarant que la fonte existe dans un endroit externe, \og 
+% |ExternalLocation| \fg{} :
 % \begin{Verbatim}
 %   \setmainfont{texgyrepagella-regular}[
 %        ExternalLocation ,
 %        BoldFont       = texgyrepagella-bold ,
 %        ... ]
 % \end{Verbatim}
-% To be honest, |Path| and |ExternalLocation| are actually the same feature
-% with different names. The former can be given without an argument and the
-% latter can be given with one; the different names are just for clarity.
+% Pour être honnête, |Path| et |ExternalLocation| sont une même fonctionnalité
+% sous deux noms différents. La première peut être donnée sans argument et la
+% seconde avec ; les deux noms existent juste pour ajouter en clarté.
 %
 %
 %
 %
 %
 %
-% \section{New commands to select font families}
+% \section{Nouvelles commandes pour la sélection de familles de fonte}
 %
+% \tradini 
 % \cmdbox{
 %   \CMD{\string\newfontfamily}\cs{\meta{font-switch}}\marg{font name}\oarg{font features} \\
 %   \CMD{\string\newfontface}\cs{\meta{font-switch}}\marg{font name}\oarg{font features}
