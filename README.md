@@ -24,31 +24,30 @@ Ce tableau indique les différentes extensions envisagées dans le projet ainsi 
 
 > *This table shows the different extensions foreseen for this project and the progress of these translations. The visual code for the translation progress uses the phases of the moon and their order :* :new_moon: :waxing_crescent_moon: :first_quarter_moon: :waxing_gibbous_moon: :full_moon: *(the brighter, the better).*
 
-Traduction      | Source              | Avancée                | Pages traduites | Commentaires 
---------------- | ------------------- | :--------------------: | :-------------: | ------------------------------------
-[adjustbox-fr]  | [adjustbox] v1.0    | :new_moon:             | 0 / 29          |
-[appendix-fr]   | [appendix] v1.2b    | :full_moon:            | 16              | Traduction préexistante ([FT-tools]).
-[booktabs-fr]   | [booktabs] 1.618033 | :new_moon:             | 7 / 17          | Traduction préexistante ([FT-tools]).
-                | [cleveref]          |                        | *. / 31*        |
-                | [datatool]          |                        | *. / 220*       |
-                | [datetime2]         |                        | *. / 169*       |
-                | [etoc]              |                        | *. / 114*       |
-[fontspec-fr]   | [fontspec] v2.4e    | :new_moon:             | 7 / 123         | Auteur contacté et intéressé.
-[geometry-fr]   | [geometry] v5.6     | :full_moon:            | 42              | Auteur contacté et intéressé.
-                | [glossaries]        |                        | *. / 248*       |
-                | [hyperref]          |                        | *. / 31*        | Licence GNU FDL à analyser.
-[indentfirst-fr]| [indentfirst] v1.03 | :new_moon:             | 0 / 1          | Traduction préexistante ([FT-tools]).
-
-[lipsum-fr]     | [lipsum] v1.3       | :full_moon:            | 41              |
-                | [pgfplots]          |                        | *. / 544*       |
-                | [siunitx]           |                        | *. / 102*       |
-                | [tikz] (pgf)        |                        | *. / 1161*      |
-[titlesec-fr]   | [titlesec] 2.10.2   | :full_moon:            | 25              | 
-[tocbibind-fr]  | [tocbibind] v1.5k   | :waxing_crescent_moon: | 9 / 18          | 
-[varioref-fr]   | [varioref] v1.5c    | :new_moon:             | 0 / 35          | Traduction préexistante ([FT-tools]).
-[xcolor-fr]     | [xcolor] v2.12      | :new_moon:             | 29 / 73         | 
-[xkeyval-fr]    | [xkeyval] v2.7      | :new_moon:             | 1 / 73          |
-[xspace-fr]     | [xspace] v1.13      | :waxing_crescent_moon: | 5 / 7           | Traduction préexistante ([FT-tools]).
+Traduction       | Source              | Avancée                | Pages traduites | Commentaires 
+---------------- | ------------------- | :--------------------: | :-------------: | ------------------------------------
+[adjustbox-fr]   | [adjustbox] v1.0    | :new_moon:             | 0 / 29          |
+[appendix-fr]    | [appendix] v1.2b    | :full_moon:            | 16              | Traduction préexistante ([FT-tools]).
+[booktabs-fr]    | [booktabs] 1.618033 | :new_moon:             | 7 / 17          | Traduction préexistante ([FT-tools]).
+                 | [cleveref]          |                        | *. / 31*        |
+                 | [datatool]          |                        | *. / 220*       |
+                 | [datetime2]         |                        | *. / 169*       |
+                 | [etoc]              |                        | *. / 114*       |
+[fontspec-fr]    | [fontspec] v2.4e    | :new_moon:             | 7 / 123         | Auteur contacté et intéressé.
+[geometry-fr]    | [geometry] v5.6     | :full_moon:            | 42              | Auteur contacté et intéressé.
+                 | [glossaries]        |                        | *. / 248*       |
+                 | [hyperref]          |                        | *. / 31*        | Licence GNU FDL à analyser.
+[indentfirst-fr] | [indentfirst] v1.03 | :full_moon:            | 1               | Traduction préexistante ([FT-tools]).
+[lipsum-fr]      | [lipsum] v1.3       | :full_moon:            | 41              |
+                 | [pgfplots]          |                        | *. / 544*       |
+                 | [siunitx]           |                        | *. / 102*       |
+                 | [tikz] (pgf)        |                        | *. / 1161*      |
+[titlesec-fr]    | [titlesec] 2.10.2   | :full_moon:            | 25              | 
+[tocbibind-fr]   | [tocbibind] v1.5k   | :waxing_crescent_moon: | 9 / 18          | 
+[varioref-fr]    | [varioref] v1.5c    | :new_moon:             | 0 / 35          | Traduction préexistante ([FT-tools]).
+[xcolor-fr]      | [xcolor] v2.12      | :new_moon:             | 29 / 73         | 
+[xkeyval-fr]     | [xkeyval] v2.7      | :new_moon:             | 1 / 73          |
+[xspace-fr]      | [xspace] v1.13      | :waxing_crescent_moon: | 5 / 7           | Traduction préexistante ([FT-tools]).
 
 ### Traduction des documents 
 
@@ -122,6 +121,8 @@ Anglais                | Français                                       | Comme
 [glossaries-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/glossaries>
 [hyperref]:      <https://www.ctan.org/pkg/hyperref>
 [hyperref-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/hyperref>
+[indentfirst]:   <https://www.ctan.org/pkg/indentfirst>
+[indentfirst-fr]:<https://github.com/LeSpib/TransLaTeX/tree/master/indentfirst>
 [lipsum]:        <https://www.ctan.org/pkg/lipsum>
 [lipsum-fr]:     <https://github.com/LeSpib/TransLaTeX/tree/master/lipsum>
 [listings]:      <https://www.ctan.org/pkg/listings>

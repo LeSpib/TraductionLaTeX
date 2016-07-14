@@ -25,14 +25,11 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 
 Section                       | Avancée                | Pages traduites | Commentaires 
 ----------------------------- | :--------------------: | :-------------: | -------------------------
-En-tête du document tex       | :new_moon:             |                 |
-Page d'avant-propos           | :new_moon:             |                 | 
-Texte                         | :new_moon:             | 0 / 1           |
+En-tête du document tex       | :full_moon:            |                 |
+Page d'avant-propos           | :full_moon:            |                 | 
+Texte                         | :full_moon:            | 1 / 1           |
 
 
 ### Glossaire pour la traduction
 
-Anglais                   | Français                                          | Commentaires 
-------------------------- | ------------------------------------------------- | -------------------------------
-appendix                  | annexe                                            | 
-
+Il n'y a pas eu besoin d'un glossaire pour cette traduction.
