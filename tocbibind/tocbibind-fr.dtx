@@ -429,61 +429,64 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % \endgroup}
 % \end{verbatim}
 %
-% \tradini
-%    The \Lpack{ccaption} package enables authors to define new kinds of
-% floats (together with their captions) and Listof for each new kind of float.
-% The command to define a new float is essentially 
-% |\newfloatlist{|\meta{fenv}|}{|\meta{ext}|}{|\meta{listname}|}{|\meta{capname}|}|,
-% where \meta{fenv} is the name of the new float environment and \meta{ext}
-% is the file extension for the listof file. The typesetting of the
-% Listof listing is called by the command 
-% |\listoffenv|, where |fenv| is the name \meta{fenv}.
-% For example, a new float environment for diagrams could be
-% defined via \\
-% |\newfloatlist{diagram}{dia}{List of Diagrams}{Diagram}|, and the Listof
-% called for by \\
-% |\listofdiagram|
+% L'extension \Lpack{ccaption} permet à l'utilisateur de définir de nouveaux
+% types de flottants (avec leurs légendes) et des \og listes de \fg{} pour
+% chaque type de flottant. La commande pour définir un nouveau flottant est
+% essentiellement 
+% |\newfloatlist{|\meta{env}|}{|\meta{ext}|}{|\meta{nom-liste}|}{|\meta{nom-légende}|}|, où \meta{env} est le nom de l'environnement du flottant et 
+% \meta{ext} est le nom de l'extension du fichier de la \og liste de \fg{}.
+% La composition de la \og liste de \fg{} s'obtient avec la commande 
+% |\listofenv|, où |env| est le nom \meta{fenv}.
+% Par exemple, un nouvel environnement de flottant pour des diagrammes pourrait
+% être défini avec :
+% \begin{verbatim}
+% \newfloatlist{diagram}{dia}{Liste des diagrammes}{Diagramme}
+% \end{verbatim}
+% et la  \og liste de \fg{} est alors appelée avec |\listofdiagram|.
 %
-%    In this case, to add the `List of Diagrams' to the ToC it is 
-% necessary to define a
-% new listof command, and use this in place of the |\listoffenv|. 
-% For the diagram example this could be (unnumbered):
+% Dans ce cas, pour ajouter la \og liste des diagrammes \fg{} à la table des
+% matières, il faut définir une nouvelle commande de \og liste de \fg{} et 
+% l'utiliser à la place de |\listofenv|. Pour notre exemple, ceci pourrait
+% donner (sans numérotation) : 
 % \begin{verbatim}
 % \newcommand{\listofdia}{\begingroup
-%    \tocfile{List of Diagrams}{dia}
+%    \tocfile{Liste des diagrammes}{dia}
 % \endgroup}
 % \end{verbatim}
-% and correspondingly for a numbered version:
+% ou, pour tenir compte d'une numérotation, il faudrait :
 % \begin{verbatim}
 % \newcommand{\listofdia}{\begingroup
 %    \tocsection  
 %    \tocchapter  
-%    \tocfile{List of Diagrams}{dia}
+%    \tocfile{Liste des diagrammes}{dia}
 % \endgroup}
 % \end{verbatim}
-% and then use |\listofdia| instead of |\listofdiagram|.
+% et il faut dans tous les cas utiliser |\listofdia| au lieu
+% de |\listofdiagram|.
 % 
 %
 %
-% \subsection{Abstracts}
+% \subsection{Résumés}
 %
-% On rare occasions a publisher may want an abstract listed in the
-% ToC. This package does not provide for that, partly because
-% it is easier to do than the other headings. Just proceed along
-% the lines below, where \texttt{section} might have to be 
-% \texttt{chapter}, and if you are using the \Lpack{hyperref} package
-% you have to use the |\phantomsection| macro.
+% Dans de rares cas, un éditeur peut souhaiter d'avoir le résumé listé
+% en table des matières. Cette extension ne propose pas cette fonctionnalité,
+% en partie parce que ceci s'obtient plus facilement que pour les autres
+% titres. Il suffit ici d'utiliser les lignes ci-dessous, dans lesquelles
+% \texttt{section} pourra être selon le cas remplacé par \texttt{chapter}. De
+% plus, si l'extension \Lpack{hyperref} est utilisée, il faudra alors
+% utiliser la commande |\phantomsection|.
 % \begin{verbatim}
 %   \begin{abstract}
-%   % \phantomsection  % required if using hyperref
+%   % \phantomsection  % à utiliser si hyperref est chargé
 %   \addcontentsline{toc}{section}{\abstractname}
-%   ... rest of the abstract
+%   ... le reste du résumé ...
 % \end{verbatim}
 %
 %
 % 
 % \section{Le code de l'extension} \label{sec:code}
 %
+% \tradini
 %    Announce the name and version of the package, which requires
 % \LaTeXe.
 % \changes{v1.5}{2001/04/17}{Deleted requirement for stdclsdv package} 
@@ -1118,19 +1121,21 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 
 %    \end{macrocode}
 % \end{macro}
+% \tradfin
 %
 % \begin{macro}{\simplechapter}
 % \begin{macro}{\restorechapter}
 % \begin{macro}{\simplechapterdelim}
-% The |\simplechapter| command modifies the |\@makechapterhead| command to
-% result in an appearance akin to |\@makeschapterhead|, and is based on the
-% latter. The |\restorechapter| command restores everything back to its
-% original state. The value of |\simplechapterdelim| is appended to the
-% chapter number before the title text.
-% \changes{v1.4}{2000/03/04}{Added \cs{simplechapter} and \cs{restorechapter}
-% commands}
-% \changes{v1.4a}{2000/03/05}{Added \cs{simplechapterdelim} command}
-% \changes{v1.5a}{2000/08/07}{Added undefined test to \cs{restorechapter}}
+% La commande |\simplechapter| modifie |\@makechapterhead| pour obtenir une
+% apparence semblable à |\@makeschapterhead| en se basant sur cette dernière.
+% La commande |\restorechapter| restaure tout à son état d'origine. La valeur
+% de |\simplechapterdelim| est composée après le numéro du chapitre, avant le
+% texte du titre.
+% \changes{v1.4}{04/03/2000}{Ajout des commandes \cs{simplechapter} et
+%   \cs{restorechapter}.}
+% \changes{v1.4a}{05/03/2000}{Ajout de la commande \cs{simplechapterdelim}.}
+% \changes{v1.5a}{07/08/2000}{Ajout d'un test de commande non définie à 
+%   \cs{restorechapter}.}
 %    \begin{macrocode}
 \newcommand{\simplechapter}[1][\@empty]{%
   \let\@tbiold@makechapterhead\@makechapterhead
@@ -1157,11 +1162,12 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 %
 % \begin{macro}{\tocchapter}
 % \begin{macro}{\tocsection}
-% These two commands modify the |\toc@chapter| and |\toc@section| commands
-% to make numbered Listof headings.
-% \changes{v1.4}{2000/03/04}{Added \cs{tocchapter} and \cs{tocsection}
-% commands}
-% \changes{v1.5d}{2002/04/09}{Provided \cs{@makechapterhead} in \cs{tocchapter}}
+% Ces deux commandes modifient |\toc@chapter| et |\toc@section| pour obtenir 
+% des titres de \og listes de \fg{} numérotées.
+% \changes{v1.4}{04/03/2000}{Ajout des commandes \cs{tocchapter} et 
+%   \cs{tocsection}.}
+% \changes{v1.5d}{09/04/2002}{Ajout de \cs{@makechapterhead} dans 
+%   \cs{tocchapter}.}
 %    \begin{macrocode}
 \newcommand{\tocchapter}{%
   \providecommand{\@makechapterhead}{}
@@ -1177,13 +1183,12 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % \end{macro}
 %
 %
-%    The end of this package.
+%    Fin de l'extension.
 %    \begin{macrocode}
 %</usc>
 %    \end{macrocode}
 %
 %
-% \tradfin
 % \bibliographystyle{alpha}
 %
 % \begin{thebibliography}{GM05}
