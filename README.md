@@ -7,7 +7,7 @@ L'objectif de ce projet est de traduire en français la documentation de différ
 
 ### Aspects juridiques
 
-Nous reprenons ici le principe retenu par un projet de traduction datant de 2000 : [French translations].
+Nous reprenons ici le principe retenu par un projet de traduction datant de 2000 : [French translations], ci-après noté FT.
 
 Toutes ces traductions sont régies par la License Publique du Projet LaTeX (LPPL). Elles sont donc librement distribuables, du moment que le code des extensions inclus dans les documentations l'est (il n'est pas de notre ressort). Si vous êtes autorisés à utiliser une extension d'une certaine façon, alors vous êtes autorisé à faire la même chose avec la version française de sa documentation. Les seules restrictions (imposées par la LPPL) sont sur la traduction elle-même.
 
@@ -26,9 +26,9 @@ Ce tableau indique les différentes extensions envisagées dans le projet ainsi 
 
 Traduction      | Source              | Avancée                | Pages traduites | Commentaires 
 --------------- | ------------------- | :--------------------: | :-------------: | ------------------------------------
-                | [adjustbox]         |                        | *. / 29*        |
-[appendix-fr]   | [appendix] v1.2b    | :full_moon:            | 16              | Une traduction de la v1.0 existe.
-[booktabs-fr]   | [booktabs] 1.618033 | :new_moon:             | 7 / 17          | Accord d'utilisation de la traduction.
+[adjustbox-fr]  | [adjustbox] v1.0    | :new_moon:             | 0 / 29          |
+[appendix-fr]   | [appendix] v1.2b    | :full_moon:            | 16              | Traduction préexistante ([FT-tools]).
+[booktabs-fr]   | [booktabs] 1.618033 | :new_moon:             | 7 / 17          | Traduction préexistante ([FT-tools]).
                 | [cleveref]          |                        | *. / 31*        |
                 | [datatool]          |                        | *. / 220*       |
                 | [datetime2]         |                        | *. / 169*       |
@@ -46,7 +46,7 @@ Traduction      | Source              | Avancée                | Pages traduite
                 | [varioref]          |                        | *. / 32*        |
 [xcolor-fr]     | [xcolor] v2.12      | :new_moon:             | 29 / 73         | 
 [xkeyval-fr]    | [xkeyval] v2.7      | :new_moon:             | 1 / 73          |
-[xspace-fr]     | [xspace] v1.13      | :waxing_crescent_moon: | 5 / 7           | Traduction préexistante.
+[xspace-fr]     | [xspace] v1.13      | :waxing_crescent_moon: | 5 / 7           | Traduction préexistante ([FT-tools]).
 
 ### Traduction des documents 
 
@@ -97,35 +97,49 @@ Anglais                | Français                                       | Comme
 
 
 [French translations]: <https://www.ctan.org/pkg/french-translations>
-[adjustbox]: <https://www.ctan.org/pkg/adjustbox>
-[appendix]: <https://www.ctan.org/pkg/appendix>
-[appendix-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/appendix>
-[booktabs]: <https://www.ctan.org/pkg/booktabs>
-[booktabs-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/booktabs>
-[cleveref]: <https://www.ctan.org/pkg/cleveref>
-[datatool]: <https://www.ctan.org/pkg/datatool>
-[datetime2]: <https://www.ctan.org/pkg/datetime2>
-[etoc]: <https://www.ctan.org/pkg/etoc>
-[fontspec]: <https://www.ctan.org/pkg/fontspec>
-[fontspec-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/fontspec>
-[geometry]: <https://www.ctan.org/pkg/geometry>
-[geometry-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/geometry>
-[glossaries]: <https://www.ctan.org/pkg/glossaries>
-[hyperref]: <https://www.ctan.org/pkg/hyperref>
-[lipsum]: <https://www.ctan.org/pkg/lipsum>
-[lipsum-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/lipsum>
-[pgfplots]: <https://www.ctan.org/pkg/pgfplots>
-[siunitx]: <https://www.ctan.org/pkg/siunitx>
-[titlesec]: <https://www.ctan.org/pkg/titlesec>
-[titlesec-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/titlesec>
-[tocbibind]: <https://www.ctan.org/pkg/tocbibind>
-[tocbibind-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/tocbibind>
-[tikz]: <https://www.ctan.org/pkg/pgf>
-[varioref]: <https://www.ctan.org/pkg/varioref>
-[xcolor]: <https://www.ctan.org/pkg/xcolor>
-[xcolor-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/xcolor>
-[xkeyval]: <https://www.ctan.org/pkg/xkeyval>
-[xkeyval-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/xkeyval>
-[xspace]: <https://www.ctan.org/pkg/xspace>
-[xspace-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/xspace>
-[TransLaTeX]: <https://github.com/LeSpib/TransLaTeX/tree/master/TransLaTeX>
+[FT-tools]:      <https://www.ctan.org/tex-archive/info/french-translations/macros/latex/required/tools>
+[adjustbox]:     <https://www.ctan.org/pkg/adjustbox>
+[adjustbox-fr]:  <https://github.com/LeSpib/TransLaTeX/tree/master/adjustbox>
+[appendix]:      <https://www.ctan.org/pkg/appendix>
+[appendix-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/appendix>
+[booktabs]:      <https://www.ctan.org/pkg/booktabs>
+[booktabs-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/booktabs>
+[cleveref]:      <https://www.ctan.org/pkg/cleveref>
+[cleveref-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/cleveref>
+[datatool]:      <https://www.ctan.org/pkg/datatool>
+[datatool-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/datatool>
+[datetime2]:     <https://www.ctan.org/pkg/datetime2>
+[datetime2-fr]:  <https://github.com/LeSpib/TransLaTeX/tree/master/datetime2>
+[etoc]:          <https://www.ctan.org/pkg/etoc>
+[etoc-fr]:       <https://github.com/LeSpib/TransLaTeX/tree/master/etoc>
+[fontspec]:      <https://www.ctan.org/pkg/fontspec>
+[fontspec-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/fontspec>
+[geometry]:      <https://www.ctan.org/pkg/geometry>
+[geometry-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/geometry>
+[glossaries]:    <https://www.ctan.org/pkg/glossaries>
+[glossaries-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/glossaries>
+[hyperref]:      <https://www.ctan.org/pkg/hyperref>
+[hyperref-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/hyperref>
+[lipsum]:        <https://www.ctan.org/pkg/lipsum>
+[lipsum-fr]:     <https://github.com/LeSpib/TransLaTeX/tree/master/lipsum>
+[listings]:      <https://www.ctan.org/pkg/listings>
+[listings-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/listings>
+[pgfplots]:      <https://www.ctan.org/pkg/pgfplots>
+[pgfplots-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/pgfplots>
+[siunitx]:       <https://www.ctan.org/pkg/siunitx>
+[siunitx-fr]:    <https://github.com/LeSpib/TransLaTeX/tree/master/siunitx>
+[titlesec]:      <https://www.ctan.org/pkg/titlesec>
+[titlesec-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/titlesec>
+[tocbibind]:     <https://www.ctan.org/pkg/tocbibind>
+[tocbibind-fr]:  <https://github.com/LeSpib/TransLaTeX/tree/master/tocbibind>
+[tikz]:          <https://www.ctan.org/pkg/pgf>
+[tikz-fr]:       <https://github.com/LeSpib/TransLaTeX/tree/master/tikz>
+[varioref]:      <https://www.ctan.org/pkg/varioref>
+[varioref-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/varioref>
+[xcolor]:        <https://www.ctan.org/pkg/xcolor>
+[xcolor-fr]:     <https://github.com/LeSpib/TransLaTeX/tree/master/xcolor>
+[xkeyval]:       <https://www.ctan.org/pkg/xkeyval>
+[xkeyval-fr]:    <https://github.com/LeSpib/TransLaTeX/tree/master/xkeyval>
+[xspace]:        <https://www.ctan.org/pkg/xspace>
+[xspace-fr]:     <https://github.com/LeSpib/TransLaTeX/tree/master/xspace>
+[TransLaTeX]:    <https://github.com/LeSpib/TransLaTeX/tree/master/TransLaTeX>

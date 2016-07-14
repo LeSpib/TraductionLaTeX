@@ -50,6 +50,7 @@ Temporary Items
 *.blg
 *.cfg
 *.dvi
+*.exa
 *.glo
 *.gls
 *.idx
