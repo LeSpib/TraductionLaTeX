@@ -1,0 +1,125 @@
+%%
+%% Ce fichier est "translatex-fr.sty".
+%% 
+%% ---------------------------------
+%% Copyright (C) 2016 Yannick Tanguy
+%% ---------------------------------
+%%
+%% Il peut être distribué et/ou modifié sous les conditions définies par la
+%% LaTeX Project Public License, soit en version 1.3c, soit (à votre choix)
+%% en toute version ultérieure.
+%% La dernière version de cette license est à l'adresse :
+%%   http://www.latex-project.org/lppl.txt
+%% et la version 1.3c et les suivantes se retrouve dans toutes les 
+%% distributions de LaTeX dès la version 2005/12/01
+%%
+%% Ce travail a le statut de maintenance LPPL "maintenu".
+%%
+%% Le mainteneur actuel de ce travail est Yannick Tanguy.
+%%
+%% Ce travail document consiste en ce seul fichier "translatex-fr.sty"
+%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Déclaration générale
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{translatex-fr}[2016/07/14 v1.0 Commandes pour faciliter 
+                                la traduction en français d'extension]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Options par défaut
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\DeclareOption{defaut}{
+  \newcommand{\appelbabel}{}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Options spécifiques
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Option ltxdoc permettant de retraiter la classe de document ltxdoc (et doc)
+
+\DeclareOption{ltxdoc}{
+  % Traduction de la clause de maintenance du LaTeX Project.
+  \makeatletter 
+  \def\MaintainedByLaTeXTeam#1{%
+  {\gdef\@maintainedby{%
+  Ce fichier est maintenu par l'équipe du \og \LaTeX{} Project \fg{}.\\%
+  Les rapports d'anomalie peuvent être envoyés en anglais à \\%
+  \url{http://latex-project.org/bugs.html} (catégorie \texttt{#1}).}}}
+  %
+  % Traduction des termes automatiques associés à l'index.
+  \def\SpecialMainEnvIndex#1{\@bsphack\special@index{%
+                                        #1\actualchar
+                                        {\string\ttfamily\space#1}
+                                           (environnement)%
+                                        \encapchar main}%
+      \special@index{environnements:\levelchar#1\actualchar{%
+                     \string\ttfamily\space#1}\encapchar
+             main}\@esphack}
+  \def\SpecialEnvIndex#1{\@bsphack
+      \index{#1\actualchar{\protect\ttfamily#1}
+             (environnement)\encapchar usage}%
+      \index{environnements:\levelchar#1\actualchar
+            {\protect\ttfamily#1}\encapchar usage}\@esphack}
+  % 
+  % Traduction du titre du texte en prologue à l'index.
+  \IndexPrologue{\section*{Index}\markboth{Index}{Index} Les numéros en 
+  italique renvoient à la page où se trouve l'entrée correspondante; les 
+  numéros soulignés renvoient à la ligne de code de la définition; les 
+  numéros en romain renvoient aux lignes de code où l'entrée est utilisée.}
+  %
+  % Traduction des termes associés aux glossaires (servant d'historiques).
+  \def\glossary@prologue{\section*{{Historique}}%
+                 \markboth{{Historique}}{{Historique}}%
+                 }
+  \def\generalname{Général}
+  \makeatother
+}
+
+%% Option babel pour activer l'extension babel
+\DeclareOption{babel}{
+  \renewcommand{\appelbabel}{\RequirePackage[french]{babel}}  
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exécution des options    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ExecuteOptions{defaut}
+\ProcessOptions \relax
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Appel des extensions    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\appelbabel
+\RequirePackage{xcolor}
+\RequirePackage{pifont}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Commandes diverses    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Commandes de colorisation pour faire apparaître les éléments non traduits
+\definecolor{orange5}{RGB}{255,153,0} 
+\newcommand{\trad}[1]{\textbf{\textcolor{orange5}{\noindent\ding{54} #1 \ding{54}}}}
+\newcommand{\tradini}{\color{orange5}\ding{54}}
+\newcommand{\tradfin}{\ding{54}\color{black}}
+
+% Commandes pour retraiter les dates (\parsedate\datefile permet d'utiliser 
+% ensuite \datefilefr.
+% sur base de http://tex.stackexchange.com/questions/54594/tex-capacity-exceeded-while-parsing-a-date-string
+\def\filedate{1900/01/01} % Date par défaut pour éviter des anomalies.
+\def\parsedate#1{\edef\temp{#1}%
+  \expandafter\parsedateX\temp\relax}
+\def\parsedateX #1/#2/#3\relax{\def\filedatefr{#3/#2/#1}}
+
+\AtBeginDocument{\parsedate\filedate}
+
+%%
+%% Fin du fichier
+%%

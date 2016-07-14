@@ -47,6 +47,7 @@ Traduction       | Source              | Avancée                | Pages traduit
 [varioref-fr]    | [varioref] v1.5c    | :new_moon:             | 0 / 35          | Traduction préexistante ([FT-tools]).
 [xcolor-fr]      | [xcolor] v2.12      | :new_moon:             | 29 / 73         | 
 [xkeyval-fr]     | [xkeyval] v2.7      | :new_moon:             | 1 / 73          |
+[xr-fr]          | [xr] v5.02          | :new_moon:             | 0 / 2           | Traduction préexistante ([FT-tools]).
 [xspace-fr]      | [xspace] v1.13      | :waxing_crescent_moon: | 5 / 7           | Traduction préexistante ([FT-tools]).
 
 ### Traduction des documents 
@@ -143,6 +144,8 @@ Anglais                | Français                                       | Comme
 [xcolor-fr]:     <https://github.com/LeSpib/TransLaTeX/tree/master/xcolor>
 [xkeyval]:       <https://www.ctan.org/pkg/xkeyval>
 [xkeyval-fr]:    <https://github.com/LeSpib/TransLaTeX/tree/master/xkeyval>
+[xr]:            <https://www.ctan.org/pkg/xr>
+[xr-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/xr>
 [xspace]:        <https://www.ctan.org/pkg/xspace>
 [xspace-fr]:     <https://github.com/LeSpib/TransLaTeX/tree/master/xspace>
 [TransLaTeX]:    <https://github.com/LeSpib/TransLaTeX/tree/master/TransLaTeX>
