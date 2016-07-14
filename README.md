@@ -43,7 +43,7 @@ Traduction      | Source              | Avancée                | Pages traduite
                 | [tikz] (pgf)        |                        | *. / 1161*      |
 [titlesec-fr]   | [titlesec] 2.10.2   | :full_moon:            | 25              | 
 [tocbibind-fr]  | [tocbibind] v1.5k   | :waxing_crescent_moon: | 9 / 18          | 
-                | [varioref]          |                        | *. / 32*        |
+[varioref-fr]   | [varioref]          | :new_moon:             | 0 / 35          | Traduction préexistante ([FT-tools]).
 [xcolor-fr]     | [xcolor] v2.12      | :new_moon:             | 29 / 73         | 
 [xkeyval-fr]    | [xkeyval] v2.7      | :new_moon:             | 1 / 73          |
 [xspace-fr]     | [xspace] v1.13      | :waxing_crescent_moon: | 5 / 7           | Traduction préexistante ([FT-tools]).
