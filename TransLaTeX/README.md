@@ -1,5 +1,7 @@
 ## Commandes et fichiers associés à la traduction en français
 
+Une extension `translatex-fr` a été constituée pour simplifier la gestion du préambule des documents à traduire. Elle présente deux options : `ltxdoc` qui charge les différentes fonctions présentées ci-après et `babel` qui charge l'extension babel (avec son option `french`). Cette extension est développée au fur et à mesure des traductions rencontrées pour essayer de la rendre la plus générale possible. Sa documentation reste à faire mais les éléments ci-dessous décrivent la plupart des éléments.
+
 ### Commandes pour marquer la traduction
 
 Les trois commandes pour marquer les endroits encore non traduits utilisent un symbole issu de l'extension `pifont` ainsi que les commandes de couleur tirées de `xcolor`.
@@ -98,4 +100,14 @@ La constitution de l'index fait donc appel à ce nouveau fichier de style. En su
 
 ```bash
 makeindex -s gglo-fr.ist -o extension-fr.gls extension-fr.glo
+```
+
+### Date de fichier en français
+
+La date d'un fichier, telle que restituée par LaTeX avec la fonction \filedate après utilisation de \GetFileInfo, est au format "AAAA/MM/JJ". Le code ci-dessous la remet dans l'ordre français "JJ/MM/AAAA". Ce retraitement est une reprise d'une réponse de [Leo Liu](http://tex.stackexchange.com/questions/54594/tex-capacity-exceeded-while-parsing-a-date-string). La fonction \filedatefr restitue le résultat souhaité.
+
+```tex
+\def\parsedate#1{\edef\temp{#1}%
+  \expandafter\parsedateX\temp\relax}
+\def\parsedateX #1/#2/#3\relax{\def\filedatefr{#3/#2/#1}}
 ```
