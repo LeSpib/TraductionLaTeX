@@ -65,3 +65,6 @@ Temporary Items
 *.sty
 *.toc
 *.@@@
+
+# Fichiers de test
+test*.*
