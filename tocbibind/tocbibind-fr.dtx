@@ -365,57 +365,62 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 %
 % \subsection{Styles de page}
 %
-% \tradini
-%    The package, by default, supports the standard |empty|, |plain|, and
-% |headings| page styles. Other page styles, for example ones you specify
-% yourself via the \Lpack{fancyhdr} package, are indirectly supported.
-% 
-%    As an example, assume that you are using the \Lpack{fancyhdr} package
-% and you use a |fancy| pagestyle in a \Lpack{book/report} class 
-% document like:
+% L'extension, par défaut, supporte les styles de page |empty|, |plain| et 
+% |headings|. D'autres styles de page tels, par exemple, ceux que vous pouvez
+% spécifier vous-même avec l'extension \Lpack{fancyhdr} sont indirectement
+% supportés.
+%
+% Dans l'exemple suivant, nous supposons que vous utilisez l'extension
+% \Lpack{fancyhdr} et que vous avez retenu un style de page |fancy| dans un
+% document associé à une classe \Lpack{book/report} :
 % \begin{verbatim}
 % \pagestyle{fancy}
 % \renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
 % \end{verbatim}
-% then you will find that the chapter titles in headers are in normalcase
-% but the ToC, etc., headers are still in uppercase.
+% vous observerez alors que, dans les en-têtes, les titres de la table des
+% matières et assimilées sont toujours en majuscules, contrairement aux 
+% titres des chapitres.
 %
 % \DescribeMacro{\tocetcmark}
-% In this package, the marks for the ToC, LoF\ldots headers are specified
-% via the command |\tocetcmark|\marg{head}. To match the |fancy| pagestyle
-% this must be redefined, like:
+% Dans cette extension, les marques pour les en-têtes de la table des matières
+% et assimilées sont spécifiées par le biais de la commande 
+% |\tocetcmark|\marg{en-tête}. Pour correspondre au style de page |fancy|,
+% cette commande doit être redéfinie avec quelque chose comme :
 % \begin{verbatim}
 % \pagestyle{fancy}
 % \renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
 % \renewcommand{\tocetcmark}[1]{\markboth{#1}{}}
 % \end{verbatim}
-% which will give normalcase headers for the ToC, LoF\ldots. As these
-% are not normally numbered, it would be a misjudgement to try and
-% get a non-existent chapter number into the header.
+% ce qui donnera en en-têtes des titres de tables des matières et assimilées
+% composés en minuscules/majuscules à l'image du texte. Ces titres étant 
+% normalement non numérotés, ce serait ici une erreur de jugement que d'essayer
+% d'obtenir un numéro de chapitre qui n'existe pas dans l'en-tête.
 %
-%    Documents with sections, but not chapters, can be treated in a similar
-% manner by redefining |\tocetcmark| appropriately.
+% Les documents associés à des classes sans chapitre peuvent être également 
+% traités en redéfinissant |\tocetcmark| de manière similaire.
 % 
 %
 %
-% \subsection{Package Defined Listof...}
+% \subsection{Les \og Listes de \fg{} définies par des extensions}
 %
-% There are packages, such as \Lpack{listings} and \Lpack{ccaption}, that
-% provide new Listof lists. These can be handled by the \Lpack{tocbibind}
-% package in a similar manner to the usual Listofs. Two examples are given
-% below.
+% Il existe des extensions, telles que \Lpack{listings} et \Lpack{ccaption}
+% qui proposent de nouvelles \og Listes de \fg{}. Elles peuvent être gérées
+% par l'extension \Lpack{tocbibind} à l'image des \og Listes de \fg{} usuelles.
+% Deux exemples sont présentés ici.
 %
-%    The \Lpack{listings} package version 0.2 provides a |\lstlistoflistings|
-% command to print a list of listings. The header name for this list
-% is in |\lstlistingname| and the listing file has the extension |lol|.
-% This can be treated just like the |\listoffigure|, etc., commands.
-% To add the List of Listings header to the ToC do:
+% L'extension \Lpack{listings} en version 0.2 fournit une commande 
+% |\lstlistoflistings| pour composer une liste des programmes informatiques. Le
+% titre de cette liste est contenu dans |\lstlistingname| et le contenu de la 
+% liste est stocké dans un fichier d'extension |lol|. Tout ceci peut être 
+% traité comme les commandes |\listoffigure| et autres. Pour ajouter le titre 
+% de liste des programmes en table des matières, il suffit de saisir en
+% préambule :
 % \begin{verbatim}
 % \renewcommand{\lstlistoflistings}{\begingroup
 %    \tocfile{\lstlistingname}{lol}
 % \endgroup}
 % \end{verbatim}
-% and to number the Listof heading do:
+% et pour numéroter le titre de cet élément :
 % \begin{verbatim}
 % \renewcommand{\lstlistoflistings}{\begingroup
 %    \tocsection
@@ -424,6 +429,7 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % \endgroup}
 % \end{verbatim}
 %
+% \tradini
 %    The \Lpack{ccaption} package enables authors to define new kinds of
 % floats (together with their captions) and Listof for each new kind of float.
 % The command to define a new float is essentially 
