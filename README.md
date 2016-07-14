@@ -39,6 +39,7 @@ Traduction       | Source              | Avancée                | Pages traduit
                  | [hyperref]          |                        | *. / 31*        | Licence GNU FDL à analyser.
 [indentfirst-fr] | [indentfirst] v1.03 | :full_moon:            | 1               | Traduction préexistante ([FT-tools]).
 [lipsum-fr]      | [lipsum] v1.3       | :full_moon:            | 41              |
+[listings-fr]    | [listings] v1.6     | :new_moon:             | 0 / 61          |
                  | [pgfplots]          |                        | *. / 544*       |
                  | [siunitx]           |                        | *. / 102*       |
                  | [tikz] (pgf)        |                        | *. / 1161*      |

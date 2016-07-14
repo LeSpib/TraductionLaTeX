@@ -48,6 +48,7 @@ Temporary Items
 *.aux
 *.bbl
 *.blg
+*.c
 *.cfg
 *.dvi
 *.exa
@@ -63,6 +64,7 @@ Temporary Items
 *.lua
 *.out
 *.ps
+*.tmp
 *.toc
 *.@@@
 
