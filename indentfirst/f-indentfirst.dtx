@@ -1,0 +1,60 @@
+% \iffalse
+%% File: indent.dtx Copyright (C) 1991-1994 David Carlisle
+%
+%<package>\NeedsTeXFormat{LaTeX2e}
+%<package>\ProvidesPackage{indentfirst}
+%<package>         [1995/11/23 v1.03 Indent first paragraph (DPC)]
+%
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage{indentfirst}
+\usepackage[francais]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\GetFileInfo{indentfirst.sty}
+\begin{document}
+\title{Le package \textsf{identfirst}\thanks{Ce fichier a le
+        num\'ero de version \fileversion, derni\`ere mise \`a
+        jour le \filedate.}}
+\author{David Carlisle\\carlisle@cs.man.ac.uk\and
+        Traduit de l'anglais par:\\Jean-Pierre Drucbert}
+\date{\filedate}
+\maketitle
+\DocInput{f-indentfirst.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \changes{v1.00}{1991/01/02}{Premi\`ere version}
+% \changes{v1.01}{1992/06/26}{Mise-\`a-jour pour utiliser les nouvelles
+% versions de doc et docstrip}
+% \changes{v1.02}{1994/01/31}{Mise-\`a-jour pour LATeX2e}
+% \changes{v1.03}{1995/11/23}{Fautes de frappe dans la documentation}
+%
+% \begin{abstract}
+%Fait que la premi\`ere ligne de toutes les sections, paragraphes 
+%(derri\`ere \verb|\paragraph|), etc. sera indent\'ee
+%comme la premi\`ere ligne de chaque paragraphe. Devrait fonctionner
+%avec toutes les classes de document standard.
+% \end{abstract}
+%
+% \CheckSum{4}^^A  Still I think a record:-)
+%
+% \StopEventually{}
+%
+% \begin{macro}{\if@afterindent}
+% \LaTeX\ utilise la variable |\if@afterindent| pour d\'ecider s'il faut
+% ou pas indenter le premier paragraphe avec une t\^ete de section. Il
+% nous suffit de nous assurer que ce soit toujours positionn\'e sur vrai.
+%    \begin{macrocode}
+%<*package>
+\let\@afterindentfalse\@afterindenttrue
+\@afterindenttrue
+%</package>
+%    \end{macrocode}
+% \end{macro}
+%
+% \Finale
+%

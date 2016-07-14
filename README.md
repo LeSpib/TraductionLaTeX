@@ -37,6 +37,8 @@ Traduction      | Source              | Avancée                | Pages traduite
 [geometry-fr]   | [geometry] v5.6     | :full_moon:            | 42              | Auteur contacté et intéressé.
                 | [glossaries]        |                        | *. / 248*       |
                 | [hyperref]          |                        | *. / 31*        | Licence GNU FDL à analyser.
+[indentfirst-fr]| [indentfirst] v1.03 | :new_moon:             | 0 / 1          | Traduction préexistante ([FT-tools]).
+
 [lipsum-fr]     | [lipsum] v1.3       | :full_moon:            | 41              |
                 | [pgfplots]          |                        | *. / 544*       |
                 | [siunitx]           |                        | *. / 102*       |
