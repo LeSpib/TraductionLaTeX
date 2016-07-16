@@ -63,24 +63,24 @@
 \endpreamble
 \askforoverwritefalse
 \generate{
-  \file{xkeyval.tex}{\from{xkeyval.dtx}{xkvtex}}
-  \file{xkeyval.sty}{\from{xkeyval.dtx}{xkvlatex}}
-  \file{xkvview.sty}{\from{xkeyval.dtx}{xkvview}}
-  \file{xkvltxp.sty}{\from{xkeyval.dtx}{xkvltxpatch}}
-  \file{keyval.tex}{\from{xkeyval.dtx}{xkvkeyval}}
-  \file{xkvtxhdr.tex}{\from{xkeyval.dtx}{xkvheader}}
-  \file{xkvutils.tex}{\from{xkeyval.dtx}{xkvutils}}
-  \file{pst-xkey.tex}{\from{xkeyval.dtx}{pxktex}}
-  \file{pst-xkey.sty}{\from{xkeyval.dtx}{pxklatex}}
-  \file{xkvex1.tex}{\from{xkeyval.dtx}{xkvex1}}
-  \file{xkvex2.tex}{\from{xkeyval.dtx}{xkvex2}}
-  \file{xkvex3.tex}{\from{xkeyval.dtx}{xkvex3}}
-  \file{xkvex4.tex}{\from{xkeyval.dtx}{xkvex4}}
-  \file{xkveca.cls}{\from{xkeyval.dtx}{xkveca}}
-  \file{xkvecb.cls}{\from{xkeyval.dtx}{xkvecb}}
-  \file{xkvesa.sty}{\from{xkeyval.dtx}{xkvesa}}
-  \file{xkvesb.sty}{\from{xkeyval.dtx}{xkvesb}}
-  \file{xkvesc.sty}{\from{xkeyval.dtx}{xkvesc}}
+%  \file{xkeyval.tex}{\from{xkeyval.dtx}{xkvtex}}
+%  \file{xkeyval.sty}{\from{xkeyval.dtx}{xkvlatex}}
+%  \file{xkvview.sty}{\from{xkeyval.dtx}{xkvview}}
+%  \file{xkvltxp.sty}{\from{xkeyval.dtx}{xkvltxpatch}}
+%  \file{keyval.tex}{\from{xkeyval.dtx}{xkvkeyval}}
+%  \file{xkvtxhdr.tex}{\from{xkeyval.dtx}{xkvheader}}
+%  \file{xkvutils.tex}{\from{xkeyval.dtx}{xkvutils}}
+%  \file{pst-xkey.tex}{\from{xkeyval.dtx}{pxktex}}
+%  \file{pst-xkey.sty}{\from{xkeyval.dtx}{pxklatex}}
+%  \file{xkvex1.tex}{\from{xkeyval.dtx}{xkvex1}}
+%  \file{xkvex2.tex}{\from{xkeyval.dtx}{xkvex2}}
+%  \file{xkvex3.tex}{\from{xkeyval.dtx}{xkvex3}}
+%  \file{xkvex4.tex}{\from{xkeyval.dtx}{xkvex4}}
+%  \file{xkveca.cls}{\from{xkeyval.dtx}{xkveca}}
+%  \file{xkvecb.cls}{\from{xkeyval.dtx}{xkvecb}}
+%  \file{xkvesa.sty}{\from{xkeyval.dtx}{xkvesa}}
+%  \file{xkvesb.sty}{\from{xkeyval.dtx}{xkvesb}}
+%  \file{xkvesc.sty}{\from{xkeyval.dtx}{xkvesc}}
   \file{xkvpream.ble}{\from{xkeyval-fr.dtx}{preamble}}
   \file{xkeyval.bib}{\from{xkeyval.dtx}{bib}}
 }
@@ -92,36 +92,7 @@
 \input{xkvpream.ble}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-% Traduction du titre de l'Index
-\IndexPrologue{\section*{Index}\markboth{Index}{Index} Les numéros en italique renvoient à la page où se trouve l'entrée correspondante; les numéros soulignés renvoient à la ligne de code de la définition; les numéros en romain renvoient aux lignes de code où l'entrée est utilisée.}%
-% Traduction des entrées d'index concernant les environnements (code repris
-% de doc.dtx permettant de documenter des extensions, avec modifications.)
-\makeatletter
-\def\SpecialMainEnvIndex#1{\@bsphack\special@index{%
-                                      #1\actualchar
-                                      {\string\ttfamily\space#1}
-                                         (environnement)%
-                                      \encapchar main}%
-    \special@index{environnements:\levelchar#1\actualchar{%
-                   \string\ttfamily\space#1}\encapchar
-           main}\@esphack}
-\def\SpecialEnvIndex#1{\@bsphack
-    \index{#1\actualchar{\protect\ttfamily#1}
-           (environnement)\encapchar usage}%
-    \index{environnements:\levelchar#1\actualchar
-          {\protect\ttfamily#1}\encapchar usage}\@esphack}
-\def\glossary@prologue{\section*{{Historique}}%
-               \markboth{{Historique}}{{Historique}}%
-               }
-\def\generalname{Général}
-\makeatother
-% Bloc pour traduction
-\usepackage{pifont}
-\definecolor{orange5}{RGB}{255,153,0} 
-\newcommand{\trad}[1]{\textbf{\textcolor{orange5}{\noindent\ding{54} #1 \ding{54}}}}
-\newcommand{\tradini}{\color{orange5}\ding{54}}
-\newcommand{\tradfin}{\ding{54}\color{black}}
-% Fin du bloc qui doit être retiré une fois le travail achevé
+\usepackage[ltxdoc,babel]{translatex-fr}
 \begin{document}
 \DocInput{xkeyval-fr.dtx}
 \let\Section\section\def\section*#1{\Section*{#1}\addcontentsline{toc}{section}{#1}}
@@ -309,89 +280,88 @@ macro. \PrintChangesX\PrintIndexX
 % \mybox[5pt][20pt]{some text}[red][white][blue]
 % \mybox[text=red,background=white,frame=blue,left=5pt,right=20pt]{some text}
 % \end{example}
-% \tradini
-%Notice that, to be able to specify the frame color in the first
-%example, the other colors need to be specified as well. This is not
-%necessary in the second example and these colors can get preset
-%values. The same thing holds for the margins.
+% Notez que pour être en mesure de spécifier le cadre coloré dans le premier
+% exemple, il faut spécifier les autres couleurs. Ceci n'est pas nécessaire 
+% dans le second exemple et ces couleurs peuvent avoir des valeurs prédéfinies.
+% Ces constats valents aussi pour les marges.
 %
-%The idea is that one first defines a set of keys using the tools
-%presented in section~\ref{sec:define} in the document preamble or in a
-%package or class. These keys can perform a function with the user
-%input. The way to submit user input to these key macros, is by using
-%one of the user interfaces described in sections~\ref{sec:setkeys},
-%\ref{sec:pointers} and~\ref{sec:preset}. The main user interface is
-%provided by the |\setkeys| command. Using these interfaces, one can
-%simplify macro syntax and for instance define the |\mybox| macro
-%above as follows.
+% L'idée est que cette dernière fonction définit d'abord un ensemble de clés
+% en utilisant les outils présentés en section~\ref{sec:define} dans le 
+% préambule du document, dans une extension ou dans une classe. 
+% Ces clés peuvent effectuer une action selon la saisie de l'utilisation.
+% La manière de soumettre la saisie de l'utilisateur aux commandes-clés
+% se fait par l'utilisation de l'une des interfaces utilisateur décrites dans
+% les sections~\ref{sec:setkeys}, \ref{sec:pointers} et~\ref{sec:preset}. 
+% La principale interface est fournie par la commande |\setkeys|. Par le biais
+% de ces interfaces, il devient possible de simplifier la syntaxe des commandes
+% et de définir par exemple la commande |\mybox| ci-dessus comme suit :
 %\begin{example}
 % \define@key{mybox}{left}{\setlength\myleft{#1}}
 % \define@key{mybox}{background}{\def\background{#1}}
-% % and some other keys
+% % et quelques autres clés
 % \def\mybox{\@ifnextchar[\@mybox{\@mybox[]}}
 % \def\@mybox[#1]#2{%
 %   \setkeys{mybox}{#1}%
-%   % some operations to typeset #2
+%   % quelques opérations pour composer #2
 % }
 %\end{example}
-%Notice that the combination of the two definitions |\mybox| and
-%|\@mybox| can be replaced by |\newcommand\mybox[2][]{...}|
-%when using \LaTeX.
+% Notez que la combinaison de deux définitions |\mybox| et |\@mybox| peut
+% être remplacée par |\newcommand\mybox[2][]{...}| en utilisant \LaTeX.
 %
-%Both keys defined using the \pf{keyval} and \pf{xkeyval} can be set
-%by this package. The \pf{xkeyval} macros allow for scanning multiple
-%sets (called `families') of keys. This can, for instance, be used to
-%create local families for macros and environments which may not
-%access keys meant for other macros and environments, while at the
-%same time, allowing the use of a single command to (pre)set all of
-%the keys from the different families globally.
+% Les clés définies en utilisant \pf{keyval} et \pf{xkeyval} peuvent être
+% gérées par cette extension. Les commandes de \pf{xkeyval} permettent de
+% passer en revue plusieurs ensembles (appelés \og familles \fg{}) de clés.
+% Ceci peut être utilisé, par exemple, pour créer des familles locales pour des
+% commandes et des environnements qui ne peuvent pas accéder à des clés
+% destinées à d'autres macros et environnements alors qu'en même temps une
+% unique commande peut être utilisée pour (pré)configurer toutes les clés des
+% différentes familles globalement.
 %
-%The package is compatible to plain \TeX\ and redefines several
-%\pf{keyval} macros to provide an easy way to switch between using
-%\pf{keyval} and \pf{xkeyval}. This might be useful for package
-%writers that cannot yet rely on the availability of \pf{xkeyval} in
-%a certain distribution. After loading \pf{xkeyval}, loading
-%\pf{keyval} is prevented to make sure that the extended macros of
-%\pf{xkeyval} will not be redefined. Some internal \pf{keyval} macros
-%are supplied in |keyval.tex| to guarantee compatibility to packages
-%that use those macros. Section~\ref{sec:issues} provides more
-%information about this issue.
+% L'extension est compatible avec le format \emph{plain} de \TeX\ et redéfinit
+% plusieurs commandes de \pf{keyval} de fournir un moyen facile de basculer 
+% entre \pf{keyval} et \pf{xkeyval}. Cela pourrait être utile pour les auteurs
+% d'extension qui ne peuvent pas encore compter sur la disponibilité de 
+% \pf{xkeyval} dans certaines distributions. Après le chargement de 
+% \pf{xkeyval}, le chargement \pf{keyval} est empêché pour faire en sorte que
+% les macros étendues de \pf{xkeyval} ne seront pas redéfinies. Certaines
+% commandes internes de \pf{keyval} sont fournies dans le |keyval.tex| pour 
+% garantir la compatibilité avec les extensions qui utilisent ces commandes. La
+% section~\ref{sec:issues} apporte plus d'informations sur ce sujet.
 %
-%The organization of this documentation is as follows.
-%Section~\ref{sec:loading} discusses how to load \pf{xkeyval} and
-%what the package does when it is loaded. Section~\ref{sec:define}
-%will discuss the macros available to define and manage keys.
-%Section~\ref{sec:setkeys} will continue with describing the macros
-%that can set the keys. Section~\ref{sec:pointers} explains special
-%syntax which will allow saving and copying key values. In
-%section~\ref{sec:preset}, the preset system will be introduced.
-%Section~\ref{sec:catcodes} will explain how \pf{xkeyval} protects
-%itself for catcode changes of the comma and the equality sign by
-%other packages. The \pf{xkeyval} package also provides commands to
-%declare and process class and package options that can take values.
-%These will be discussed in section~\ref{sec:options}.
-%Section~\ref{sec:macrostructs} provides an overview of structures
-%used to create \pf{xkeyval} internal macros used for keys, values,
-%presets, etcetera. Sections~\ref{sec:errors} and~\ref{sec:issues}
-%discuss feedback that \pf{xkeyval} might give and known issues,
-%respectively. Section~\ref{sec:additional} discusses several
-%additional packages that come with the \pf{xkeyval} bundle.
-%Section~\ref{sec:view} presents a viewer utility which produces
-%overviews of defined keys. An extension of the \LaTeXe\ kernel with
-%respect to the class and package options system is discussed in
-%section~\ref{sec:macrooptions}. This extension provides a way to use
-%expandable macros in package options. Section~\ref{sec:pst-xkey}
-%presents the \pf{pst-xkey} package, which provides an options system
-%based on \pf{xkeyval}, but which is specialized in setting
-%\pf{PSTricks} keys.
+% L'organisation de cette documentation est la suivante. La 
+% section~\ref{sec:loading} explique comment charger \pf{xkeyval} et ce que
+% l'extension fait quand il est chargé. La section~\ref{sec:define} présente
+% les commandes disponibles pour définir et gérer les clés. La 
+% section~\ref{sec:setkeys} poursuit en décrivant les commandes qui peuvent 
+% configurer les clés. La section~\ref{sec:pointers} explique la syntaxe 
+% spéciale qui permet de sauvegarder et de copier les valeurs de clé. Dans la
+% section~\ref{sec:preset}, le système de préconfiguration est introduit. 
+% La section~\ref{sec:catcodes} explique comment \pf{xkeyval} se protège des 
+% changements de code de catégorie de la virgule et du signe d'égalité faits 
+% par d'autres extensions. L'extension \pf{xkeyval} fournit également des 
+% commandes pour déclarer et traiter des options de classe et d'extension qui 
+% peuvent prendre des valeurs : celles-ci sont examinées à la 
+% section~\ref{sec:options}. La section~\ref{sec:macrostructs} donne un aperçu
+% des structures ayant servi à créer les commandes internes de \pf{xkeyval}
+% traitant les clés, leurs valeurs, leurs préréglages, etc. Les 
+% sections~\ref{sec:errors} et~\ref{sec:issues} discutent respectivement des 
+% retours que peut faire l'extension \pf{xkeyval} et des problèmes connus. La
+% section~\ref{sec:additional} évoque plusieurs extensions complémentaires 
+% fournies avec \pf{xkeyval}. La section~\ref{sec:view} présente un utilitaire 
+% générant une vue d'ensemble des clés définies. Une extension du noyau de
+% \LaTeXe\ par rapport au système d'options de classes et d'extension est 
+% discutée dans la section~\ref{sec:macrooptions}. Cette extension fournit un
+% moyen d'utiliser des commandes développables dans les options d'extension. 
+% La section~\ref{sec:pst-xkey} présente l'extension \pf{pst-xkey} qui met à
+% disposition un système d'options basé sur \pf{xkeyval}, mais qui est 
+% spécialisée dans l'instanciation des clés de \pf{PSTricks}.
 %
-%Throughout this documentation, you will find some examples with a
-%short description. More examples can be found in the example files
-%that come with this package. See section~\ref{sec:sande} for more
-%information. This section also provides the information how to
-%generate the full documentation from the source.
+% Tout au long de cette documentation, vous trouverez des exemples avec une
+% courte description. D'autres exemples peuvent être trouvés dans les fichiers
+% d'exemples fournis avec cette extension. Voir la section~\ref{sec:sande} pour
+% plus d'informations. Cette section fournit également les informations sur la
+% façon de générer la documentation complète à partir du fichier source.
 %
-% \tradfin
 % \section{Chargement de \pf{xkeyval}}\label{sec:loading}
 % \tradini
 %To load the \pf{xkeyval} package,\footnote{The \pf{xkeyval} package

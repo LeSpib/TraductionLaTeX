@@ -28,8 +28,8 @@ Section                       | Avancée                | Pages traduites | Comm
 ----------------------------- | :--------------------: | :-------------: | -------------------------
 En-tête du document tex       | :new_moon:             |                 |
 Page d'avant-propos           | :first_quarter_moon:   | 1               | 
-1. Introduction               | :new_moon:             | 0 / 1           |
-2. Chargement de xkeyval      | :new_moon:             | 0 / 1           | 
+1. Introduction               | :first_quarter_moon:   | 1               |
+2. Chargement de xkeyval      | :new_moon:             | 0 / 1           | En cours. 
 3. Définir et gérer les clés  | :new_moon:             | 0 / 5           |
 4. Paramétrer les clés        | :new_moon:             | 0 / 2           |
 5. Pointeurs                  | :new_moon:             | 0 / 4           |

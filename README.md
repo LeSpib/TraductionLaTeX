@@ -47,7 +47,7 @@ Traduction       | Source              | Avancée                | Pages traduit
 [tocbibind-fr]   | [tocbibind] v1.5k   | :waxing_crescent_moon: | 9 / 18          | 
 [varioref-fr]    | [varioref] v1.5c    | :new_moon:             | 0 / 35          | Traduction préexistante ([FT-tools]).
 [xcolor-fr]      | [xcolor] v2.12      | :new_moon:             | 29 / 73         | 
-[xkeyval-fr]     | [xkeyval] v2.7      | :new_moon:             | 1 / 73          |
+[xkeyval-fr]     | [xkeyval] v2.7      | :new_moon:             | 2 / 73          |
 [xr-fr]          | [xr] v5.02          | :first_quarter_moon:   | 2               | Traduction préexistante ([FT-tools]).
 [xspace-fr]      | [xspace] v1.13      | :waxing_crescent_moon: | 5 / 7           | Traduction préexistante ([FT-tools]).
 
