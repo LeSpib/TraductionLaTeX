@@ -54,34 +54,34 @@ This work consists of this file fontspec.dtx
 \askforoverwritefalse
 
 \def\MetaPrefix{-- }
-\generate{\file{fontspec.lua}          {\from{fontspec.dtx}{lua}}}
+%\generate{\file{fontspec.lua}          {\from{fontspec.dtx}{lua}}}
 
 \let\MetaPrefix\DoubleperCent
 
-\ifx\FontspecDebug\undefined
+%\ifx\FontspecDebug\undefined
 
-\generate{\file{fontspec.sty}          {\from{fontspec.dtx}{fontspec}}}
-\generate{\file{fontspec-xetex.sty}    {\from{fontspec.dtx}{fontspec,xetexx}}}
-\generate{\file{fontspec-luatex.sty}   {\from{fontspec.dtx}{fontspec,luatex}}}
-\generate{\file{fontspec-patches.sty}  {\from{fontspec.dtx}{patches}}}
+%\generate{\file{fontspec.sty}          {\from{fontspec.dtx}{fontspec}}}
+%\generate{\file{fontspec-xetex.sty}    {\from{fontspec.dtx}{fontspec,xetexx}}}
+%\generate{\file{fontspec-luatex.sty}   {\from{fontspec.dtx}{fontspec,luatex}}}
+%\generate{\file{fontspec-patches.sty}  {\from{fontspec.dtx}{patches}}}
 
-\else
+%\else
 
-\generate{\file{fontspec.sty}          {\from{fontspec.dtx}{fontspec,debug}}}
-\generate{\file{fontspec-xetex.sty}    {\from{fontspec.dtx}{fontspec,xetexx,debug}}}
-\generate{\file{fontspec-luatex.sty}   {\from{fontspec.dtx}{fontspec,luatex,debug}}}
-\generate{\file{fontspec-patches.sty}  {\from{fontspec.dtx}{patches,debug}}}
+%\generate{\file{fontspec.sty}          {\from{fontspec.dtx}{fontspec,debug}}}
+%\generate{\file{fontspec-xetex.sty}    {\from{fontspec.dtx}{fontspec,xetexx,debug}}}
+%\generate{\file{fontspec-luatex.sty}   {\from{fontspec.dtx}{fontspec,luatex,debug}}}
+%\generate{\file{fontspec-patches.sty}  {\from{fontspec.dtx}{patches,debug}}}
 
-\fi
+%\fi
 
 \nopreamble\nopostamble
-\generate{\file{fontspec.cfg}          {\from{fontspec.dtx}{cfg}}}
-\generate{\file{fontspec-example.tex}  {\from{fontspec.dtx}{example}}}
+%\generate{\file{fontspec.cfg}          {\from{fontspec.dtx}{cfg}}}
+%\generate{\file{fontspec-example.tex}  {\from{fontspec.dtx}{example}}}
 
 \def\tmpa{plain}
 \ifx\tmpa\fmtname\endgroup\expandafter\bye\fi
 
-\generate{\file{fontspec-style.sty}    {\from{fontspec.dtx}{doc-style}}}
+\generate{\file{fontspec-style-fr.sty}    {\from{fontspec-fr.dtx}{doc-style}}}
 \endgroup
 %</internal>
 %
@@ -93,24 +93,13 @@ This work consists of this file fontspec.dtx
 %<fontspec&luatex>\ProvidesPackage{fontspec-luatex}
 %<patches>\ProvidesPackage{fontspec-patches}
 %<*fontspec|patches>
-  [24/09/2015 v2.4e Font selection for XeLaTeX and LuaLaTeX]
+  [24/09/2015 v2.4e Sélection de fontes pour XeLaTeX et LuaLaTeX]
 %</fontspec|patches>
 %
 %<*driver>
 \documentclass[a4paper]{ltxdoc}
-\usepackage[utf8x]{inputenc}
-%\usepackage[T1]{fontenc}
-\usepackage[french]{babel}
-\usepackage{lmodern}
-% Bloc pour traduction
-\usepackage{color}
-\usepackage{pifont}
-\definecolor{orange5}{RGB}{255,153,0} 
-\newcommand{\trad}[1]{\textbf{\textcolor{orange5}{\noindent\ding{54} #1 \ding{54}}}}
-\newcommand{\tradini}{\color{orange5}\ding{54}}
-\newcommand{\tradfin}{\ding{54}\color{black}}
-% Fin du bloc qui doit être retiré une fois le travail achevé
-\usepackage{fontspec-style}
+\usepackage[ltxdoc,babel]{translatex-fr}
+\usepackage{fontspec-style-fr}
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
@@ -406,9 +395,13 @@ This work consists of this file fontspec.dtx
 % peuvent être chargées que par leur nom de fichier ; \LuaTeX\ n'a pas cette
 % restriction.
 %
-% Avec la sélection de fontes par nom de fichier, toute fonte présente dans les répertoires parcourus par défaut peut être utilisée directement (y compris le répertoire courant) sans avoir à définir explicitement la localisation du fichier de fonte sur le disque dur.
+% Avec la sélection de fontes par nom de fichier, toute fonte présente dans les
+% répertoires parcourus par défaut peut être utilisée directement (y compris le
+% répertoire courant) sans avoir à définir explicitement la localisation du
+% fichier de fonte sur le disque dur.
 %
-% Les fontes sélectionnées par nom de fichier doivent avoir leurs variantes grasse et italique précisées explicitement. 
+% Les fontes sélectionnées par nom de fichier doivent avoir leurs variantes
+% grasse et italique précisées explicitement. 
 %
 % \begin{Verbatim}
 %   \setmainfont{texgyrepagella-regular.otf}[
@@ -471,56 +464,59 @@ This work consists of this file fontspec.dtx
 %
 % \section{Nouvelles commandes pour la sélection de familles de fonte}
 %
-% \tradini 
 % \cmdbox{
-%   \CMD{\string\newfontfamily}\cs{\meta{font-switch}}\marg{font name}\oarg{font features} \\
-%   \CMD{\string\newfontface}\cs{\meta{font-switch}}\marg{font name}\oarg{font features}
+%   \CMD{\string\newfontfamily}\cs{\meta{bascule-fonte}}\marg{nom-fonte}\oarg{fontionnalités-fonte} \\
+%   \CMD{\string\newfontface}\cs{\meta{bascule-fonte}}\marg{nom-fonte}\oarg{fontionnalités-fonte}
 % }
 %
-% \noindent For cases when a specific font with a specific
-% feature set is going to be re-used many times in a document, it is inefficient
-% to keep calling \cs{fontspec} for every use. While the \cs{fontspec} command does not define
-% a new font instance after the first call, the feature options must still be
-% parsed and processed.
+% \noindent Dans les cas où une fonte particulière associée à une 
+% fonctionnalité est réutilisée à plusieurs reprises dans un document, il n'est
+% guère efficace de passer par \cs{fontspec} à chaque utilisation. Alors que la
+% commande \cs{fontspec} ne définit pas une nouvelle instance de fonte après 
+% avoir été appelée déjà une première fois, les options de fonctionnalité
+% doivent par contre être analysées et traitées.
 %
 % \DescribeMacro{\newfontfamily}
-% For this reason, new commands can be created for loading a particular font
-% family with the \cmd\newfontfamily\ command, demonstrated in \exref{nff}.
-% This macro should be used to create commands that would be used in
-% the same way as \cmd\rmfamily, for example.
-% If you would like to create a command that only changes the font
-% inside its argument (i.e., the same behaviour as \cs{emph}) define it using regular \LaTeX\
-% commands:
+% Pour cette raison, de nouvelles commandes peuvent être créées pour charger
+% une famille de fontes avec la commande \cmd\newfontfamily, illustrée en 
+% \exref{nff}. 
+% Cette commande sert à créer des commandes qui seront utilisées de la même 
+% façon que \cmd\rmfamily, par exemple.
+% Si vous voulez créer une commande qui change uniquement la fonte de 
+% l'argument intérieur (soit le même comportement que \cs{emph}), définissez-là
+% avec les commandes \LaTeX\ classiques : 
 % \begin{Verbatim}
 %   \newcommand\textnote[1]{{\notefont #1}}
-%   \textnote{This is a note.}
+%   \textnote{Ceci est une note.}
 % \end{Verbatim}
-% Note that the double braces are intentional; the inner pair are used to
-% to delimit the scope of the font change.
+% Notez que les doubles accolades sont intentionnelles : la paire intérieure
+% sert à délimiter l'étendue du changement de fonte.
 %
-% \begin{Lexample}{nff}{Defining new font families.}
+% \begin{Lexample}{nff}{Définition de nouvelles familles de fonte.}
 %   \newfontfamily\notefont{Kurier}
-%   \notefont This is a \emph{note}.
+%   \notefont Ceci est une \emph{note}.
 % \end{Lexample}
 %
 % \DescribeMacro{\newfontface}
-% Sometimes only a specific font face is desired, without accompanying italic or bold variants
-% being automatically selected.
-% This is common when selecting a fancy italic font, say, that has swash features unavailable
-% in the upright forms. \cmd\newfontface\ is used for this purpose, shown
-% in \exref{nfface}, which is repeated in \vref{sec:contextuals}.
+% Parfois, seule une forme particulière de \trad{font face} est souhaitée, sans
+% que les variantes italique ou grasse soient automatiquement sélectionnées. 
+% C'est couramment le cas lors de la sélection d'une fonte italique fantaisie
+% qui dispose d'ornements non disponibles dans la forme romaine. 
+% \cmd\newfontface\ est utile pour ce cas, comme illustré en \exref{nfface}, 
+% ce qui précisé en \vref{sec:contextuals}.
 %
-% \begin{Xexample}{nfface}{Defining a single font face.}
+% \begin{Xexample}{nfface}{Définition d'une \trad{font face} isolée.}
 %   \newfontface\fancy{Hoefler Text Italic}%
 %       [Contextuals={WordInitial,WordFinal}]
-%   \fancy where is all the vegemite
-%   % \emph, \textbf, etc., all don't work
+%   \fancy où est toute la vegemite
+%   % \emph, \textbf, etc., aucune ne marche.
 % \end{Xexample}
 %
-% Comment for advanced users:
-% The commands defined by \cs{newfontface} and \cs{newfontfamily} include
-% their encoding information, so even if the document is set to use a
-% legacy \TeX\ encoding, such commands will still work correctly. For example,
+% Commentaire pour les utilisateurs avancés :
+% Les commandes définies par \cs{newfontface} et \cs{newfontfamily} incluent
+% leur information d'encodage, si bien que, même si le document est paramétré
+% pour utiliser l'encodage historique de \TeX, ces commandes fonctionneront
+% toujours correctement. Par exemple,
 % \begin{Verbatim}
 % \documentclass{article}
 % \usepackage{fontspec}
@@ -528,13 +524,14 @@ This work consists of this file fontspec.dtx
 % \usepackage{mathpazo}
 % \usepackage[T1]{fontenc}
 % \begin{document}
-% A legacy \TeX\ font. {\unicodefont A unicode font.}
+% Une fonte historique de \TeX. {\unicodefont Une fonte unicode.}
 % \end{document}
 % \end{Verbatim}
 %
-% \subsection{More control over font shape selection}
+% \subsection{Contrôle accru sur la sélection de la forme des fontes}
 % \label{sec:bfitfonts}
 %
+% \tradini 
 % \cmdbox{
 %  \feat{BoldFont} = \meta{font name} \\
 %  \feat{ItalicFont} = \meta{font name} \\
@@ -7451,8 +7448,8 @@ information.
 
 \newcounter{example}
 
-\newcommand\exref[1]{Example~\ref{ex:#1}}
-\newcommand\Exref[1]{Example~\ref{ex:#1}}
+\newcommand\exref[1]{Exemple~\ref{ex:#1}}
+\newcommand\Exref[1]{Exemple~\ref{ex:#1}}
 
 \newenvironment{Xexample}[3][]
   {\VerbatimEnvironment\begin{Fexample}[#1]{#2}{#3}{X}}

@@ -5,10 +5,13 @@ L'objectif est de traduire la documentation de l'extension *fontspec* utilisable
 ### Commandes pour obtenir le document
 
 ```bash
-pdflatex fontspec-fr.dtx
-pdflatex fontspec-fr.dtx
+xelatex fontspec-fr.dtx
+xelatex fontspec-fr.dtx
 
 ```
+
+Sur ce point, un fichier Makefile est mis à disposition (voir par exemple [OpenClassrooms](https://openclassrooms.com/courses/compilez-sous-gnu-linux#/id/r-1130480) pour plus d'informations)
+
 
 ### Avancement de la traduction, en vision table de matières
 
@@ -24,7 +27,7 @@ Section                       | Avancée                | Pages traduites | Comm
 ----------------------------- | :--------------------: | :-------------: | -------------------------
 En-tête du document tex       | :new_moon:             |                 |
 Page d'avant-propos           | :first_quarter_moon:   | 4 / 4           | 
-Sélection générale de...      | :new_moon:             | 3 / 17          | Section 5 en cours.
+Sélection générale de...      | :new_moon:             | 4 / 18          | Section 5 en cours.
 OpenType                      | :new_moon:             | 0 / 13          |   
 LuaTeX-only font features     | :new_moon:             | 0 / 3           |  
 Fonts and feature with XeTeX  | :new_moon:             | 0 / 6           |  
@@ -35,8 +38,10 @@ fontspec.lua                  | :new_moon:             | 0 / 2           |
 fontspec-patches.sty          | :new_moon:             | 0 / 4           |  
 fontspec.cfg                  | :new_moon:             | 0 / 1           |
 
+
 ### Glossaire pour la traduction
 
 Anglais                   | Français                                          | Commentaires 
 ------------------------- | ------------------------------------------------- | -------------------------------
+swash                     | ornements                                         | Source [Wikipédia](https://en.wikipedia.org/wiki/Swash_(typography)
 
