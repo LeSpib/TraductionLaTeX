@@ -69,26 +69,27 @@
 %
 % Pour qu'un document se réfère à certaines sections d'un autre, par exemple
 % |aaa.tex|, il convient de charger cette extension dans le fichier principal 
-% et placer la commande |\externaldocument{aaa}| dans le préambule.
+% et de placer la commande |\externaldocument{aaa}| dans le préambule.
 %
 % Vous pouvez alors utiliser |\ref| et |\pageref| pour vous référer à tout ce 
-% qui a été défini par |\label| dans chaque |aaa.tex| ou dans le document 
-% principal. Il est possible de déclarer autant de documents externes que 
-% souhaité.
+% qui a été défini par des commandes |\label| dans le document externe 
+% |aaa.tex| ou dans le document principal. Il est possible de déclarer autant
+% de documents externes que souhaité.
 %
-% Si l'un des documents externes ou le document principal utilise le même 
-% |\label|, une erreur survient car l'étiquette est définie plusieurs fois.
+% Si jamais des documents externes ou le document principal utilisent la même 
+% étiquette dans un |\label|, une erreur survient car l'étiquette est définie 
+% plusieurs fois. 
 % Afin de contourner ce problème, la commande |\externaldocument| a un 
 % argument optionnel. Si vous déclarez |\externaldocument[A-]{aaa}| alors 
-% alors toutes les références dans le document |aaa| sont préfixées par |A-|.
-% Par exemple, si une section de |aaa| contient |\label{intro}|, alors cette 
+% toutes les références du document |aaa| sont préfixées par |A-|. Par exemple,
+% si une section de |aaa| contient |\label{intro}|, alors la référence de cette
 % étiquette pourra être appelée par |\ref{A-intro}|. Le préfixe peut être 
-% différent de |A-| et être en fait toute chaîne de caractères telle que toutes
-% les étiquettes importées depuis des fichiers externes soient uniques. Notez
-% cependant que si vos extensions déclarent certains caractères comme actifs 
-% (|:| en français, |"| en allemand), alors ils ne peuvent pas en général être
-% utilisés dans l'argument de |\label| ni dans l'argument optionnel de 
-% |\externaldocument|.
+% différent de |A-|; en fait, il peut être toute chaîne de caractères telle que
+% toutes les étiquettes importées depuis des fichiers externes soient uniques. 
+% Notez cependant que si vos extensions déclarent certains caractères comme
+% actifs (|:| en français, |"| en allemand), alors ils ne peuvent pas en 
+% général être utilisés dans l'argument de |\label| ni dans l'argument
+% optionnel de |\externaldocument|.
 %
 % \StopEventually{}
 %
