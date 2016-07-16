@@ -4,6 +4,8 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *xc
 
 ### Commandes pour obtenir le document
 
+Les commandes suivantes doivent être exécutées.
+
 ```bash
 pdflatex xcolor-fr.dtx
 pdflatex xcolor-fr.dtx
@@ -11,6 +13,8 @@ makeindex -s gind-fr.ist xcolor-fr.idx
 pdflatex xcolor-fr.dtx
 pdflatex xcolor-fr.dtx
 ```
+
+Sur ce point, un fichier Makefile est mis à disposition (voir par exemple [OpenClassrooms](https://openclassrooms.com/courses/compilez-sous-gnu-linux#/id/r-1130480) pour plus d'informations).
 
 ### Avancement de la traduction, en vision table de matières
 
@@ -27,7 +31,7 @@ Section                       | Avancée                | Pages traduites | Comm
 En-tête du document tex       | :waxing_crescent_moon: |                 |
 Pages d'avant-propos          | :new_moon:             | 1 / 4           | 
 1. Introduction               | :waxing_gibbous_moon:  | 4               |
-2. L'interface utilisateur    | :waxing_crescent_moon: | 21 / 28         | Section en cours : 2.9
+2. L'interface utilisateur    | :waxing_crescent_moon: | 22 / 28         | Section en cours : 2.9
 3. Exemples                   | :new_moon:             | 0 / 7           |
 4. Couleurs nommées           | :new_moon:             | 0 / 3           |
 5. Compléments techniques     | :new_moon:             | 0 / 3           |
@@ -46,6 +50,7 @@ Anglais                   | Français                                          |
 ------------------------- | ------------------------------------------------- | -------------------------------
 *brightness*              | luminosité                                        |   
 *color harmony*           | accord de couleurs                                | 
+*color masking*           | masque de couleur                                 |
 *color model*             | modèle colorimétrique                             | 
 *color wheel*             | cercle chromatique                                | 
 *complement*              | complémentaire, couleur complémentaire            | 

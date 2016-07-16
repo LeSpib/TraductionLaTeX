@@ -103,28 +103,9 @@
 \usepackage[table,showerrors,dvipsnames,hyperref]{xcolor}[2005/06/06]
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[french]{babel}
+\usepackage[ltxdoc,babel]{translatex-fr}
 \usepackage[french]{varioref}
 \usepackage{chngpage,tabularx,amsmath,amsthm}
-% Traduction du titre de l'Index
-\IndexPrologue{\section*{Index}\markboth{Index}{Index} Les numéros en italique renvoient à la page où se trouve l'entrée correspondante; les numéros soulignés renvoient à la ligne de code de la définition; les numéros en romain renvoient aux lignes de code où l'entrée est utilisée.}%
-% Traduction des entrées d'index concernant les environnements (code repris
-% de doc.dtx permettant de documenter des extensions, avec modifications.)
-\makeatletter
-\def\SpecialMainEnvIndex#1{\@bsphack\special@index{%
-                                      #1\actualchar
-                                      {\string\ttfamily\space#1}
-                                         (environnement)%
-                                      \encapchar main}%
-    \special@index{environnements:\levelchar#1\actualchar{%
-                   \string\ttfamily\space#1}\encapchar
-           main}\@esphack}
-\def\SpecialEnvIndex#1{\@bsphack
-    \index{#1\actualchar{\protect\ttfamily#1}
-           (environnement)\encapchar usage}%
-    \index{environnements:\levelchar#1\actualchar
-          {\protect\ttfamily#1}\encapchar usage}\@esphack}
-\makeatother
 \usepackage
  [\GinDriver,hyperindex=false,bookmarks,bookmarksopen,bookmarksopenlevel=1,%
   pdftitle={xcolor \XCfileversion{} (\XCfiledate)},pdfauthor={Dr. Uwe Kern},%
@@ -137,13 +118,6 @@
 \makeatletter
 \def\Meaning#1{\texttt{\expandafter\expandafter\expandafter\strip@prefix\expandafter\meaning\csname #1\endcsname}}
 \makeatother
-% Bloc pour traduction
-\usepackage{pifont}
-\definecolor{orange5}{RGB}{255,153,0} 
-\newcommand{\trad}[1]{\textbf{\textcolor{orange5}{\noindent\ding{54} #1 \ding{54}}}}
-\newcommand{\tradini}{\color{orange5}\ding{54}}
-\newcommand{\tradfin}{\ding{54}\color{black}}
-% Fin du bloc qui doit être retiré une fois le travail achevé
 \pagestyle{myheadings}
 \markright{\hskip-2.5cm xcolor \XCfileversion\space(\XCfiledate)}
 \begin{document}
@@ -1931,72 +1905,102 @@
 %
 % \subsection{Séries de couleurs}\label{sec.series}
 %
-% \tradini
-% Automatic coloring may be useful in graphics or chart applications, where a --- potentially large and unspecified --- number of colors are needed, and the user does not want or is not able to specify each individual color.
-% Therefore, we introduce the term \emph{color series}, which consists of a base color and a scheme, how the next color is being constructed from the current color.
+% 
+% La colorisation automatique peut être utile pour des logiciels générant des
+% graphiques techniques où un nombre potentiellement grand de couleurs peut 
+% être nécessaire et où l'utilisateur ne veut pas ou ne peut pas définir 
+% chaque couleur séparément.
+% C'est pourquoi nous introduisons le terme de \emph{séries de couleur} qui 
+% consiste en une couleur de base et une règle indiquant comment la couleur
+% suivante est construite à partir de la couleur courante.
+% 
+% La mise en application se fait en trois étapes :
+% définition de la série (normalement en une seule fois dans le document),
+% initialisation de la série (potentiellement plusieurs fois) et 
+% utilisation --- avec ou sans passage à la couleur suivante --- de la 
+% couleur actuelle de la série (potentiellement de nombreuses fois).
 %
-% The practical application consists of three parts:
-% definition of a color series (usually once in the document), initialisation of the series (potentially several times), and application --- with or without stepping --- of the current color of the series (potentially many times).
 %
-%
-% \tradfin
-% \subsubsection{Définition d'une série de couleurs}
-% \tradini
+% \subsubsection{Définition d'une série}
 %
 % \DescribeMacro\definecolorseries
-%   \marg{name}\marg{core model}\marg{method}\oarg{b-model}\marg{b-spec}\oarg{s-model}\marg{s-spec}\\
-% Defines a color series called \Meta{name}, whose calculations are performed within the color model \Meta{core model}, where \Meta{method} selects the algorithm (one of |step|, |grad|, |last|, see below).
-% The method details are determined by the remaining arguments:
+%   \marg{nom}\marg{modèle-central}\marg{algo}\oarg{modèle-b}\marg{spéc-b}\oarg{modèle-p}\marg{spéc-p}\\
+% Cette commande définit une série de couleur nommée \Meta{nom} pour laquelle
+% les calculs sont effectués dans le modèle \Meta{modèle-central} en utilisant
+% l'algorithme \Meta{algo} (à choisir entre |step|, |grad| et |last|, voir
+% ci-dessous).
+% Les paramètres de l'algorithme sont donnés par les arguments restants : 
 % \begin{itemize}
-% \item \oarg{b-model}\marg{b-spec} specifies the \emph{base} (= first) color in the algorithm, either directly, e.g., |[rgb]{1,0.5,0.5}|, or as a \Meta{color}, e.g., |{-yellow!50}|, if the optional argument is missing.
-% \item \oarg{s-model}\marg{s-spec} specifies how the \emph{step} vector is calculated in the algorithm, according to the chosen \Meta{method}:
+% \item \oarg{modèle-b}\marg{spéc-b} spécifie la couleur de \emph{base}
+% (\emph{i.e.} la première) de l'algorithme, soit directement, par exemple 
+% avec |[rgb]{1,0.5,0.5}|, soit avec une \Meta{couleur}, par exemple avec
+% |{-yellow!50}|, si l'argument optionnel est manquant ;
+% \item \oarg{modèle-s}\marg{s-spec} spécifie comment le vecteur du 
+% \emph{pas} de la série est calculé par l'algorithme \Meta{algo} choisi :
 %   \begin{itemize}
-%   \item |step|,\ |grad|:\ the optional argument is meaningless, and \Meta{s-spec} is a parameter vector whose dimension is determined by \Meta{core model}, e.g., |{0.1,-0.2,0.3}| in case of |rgb|, |cmy|, or |hsb|.
-%   \item |last|:\ the last color is specified either directly, e.g., |[rgb]{1,0.5,0.5}|, or as a \Meta{color}, e.g., |{-yellow!50}|, if the optional argument is missing.
+%   \item |step|,\ |grad|:\ l'argument optionnel n'a pas de sens et 
+%     \Meta{spéc-p} est un vecteur de paramètre dont la dimension dépend du
+%     \Meta{modèle-central}, par exemple |{0.1,-0.2,0.3}| dans le cas de |rgb|,
+%     |cmy| ou |hsb|.
+%   \item |last|:\ la dernière\footnote{NDT : en anglais, \emph{last}.} couleur est indiquée, soit directement, par
+%     exemple avec |[rgb]{1,0.5,0.5}|, soit avec une \Meta{couleur}, par
+%     exemple avec |{-yellow!50}| si l'argument optionnel est manquant.
 %   \end{itemize}
 % \end{itemize}
-% This is the general scheme:
+% En voici la mécanique générale :
 % \begin{gather}
-% \emph{color}_1 := \emph{base},\qquad
-% \emph{color}_{n+1} := U\bigl(\emph{color}_{n} + \emph{step}\bigr)
+% \emph{couleur}_1 := \emph{base},\qquad
+% \emph{couleur}_{n+1} := U\bigl(\emph{couleur}_{n} + \emph{pas}\bigr)
 % \end{gather}
-% for $n=1,2,\dots$, where $U$ maps arbitrary real $m$-vectors into the unit $m$-cube:
+% avec $n=1,2,\dots$ et $U$ une fonction définie sur l'ensemble des vecteurs 
+% de dimension $m$ et à valeur dans le cube unité de dimension $m$ :
 % \begin{gather}
 % U(x_1,\dots,x_m) = (u(x_1),\dots,u(x_m)),\qquad
 % u(x) =
 % \begin{cases}
-%  1 & \text{if $x=1$}\\
-%  x-[x]& \text{if $x\neq1$}\\
+%  1 & \text{si $x=1$}\\
+%  x-[x]& \text{si $x\neq1$}\\
 % \end{cases}\label{eq.U}
 % \end{gather}
-% Thus, every step of the algorithm yields a valid color with parameters from the interval $[0,1]$.
+% Ainsi, chaque étape de l'algorithme conduit à une couleur valide avec des 
+% paramètres dans l'intervalle $[0,1]$.
 %
 % \medskip
-% Now, the different methods use different schemes to calculate the \emph{step} vector:
+% Ici, chaque algorithme utilise une méthode différente pour calculer le
+% vecteur \emph{pas} :
 % \begin{itemize}
-% \item |step|,\ |grad|:\ the last argument, \marg{s-spec}, defines the directional vector \emph{grad}.
-% \item |last|:\ \marg{s-spec} resp.\ \oarg{s-model}\marg{s-spec} defines the color parameter vector \emph{last}.
+% \item |step|,\ |grad|:\ le dernier argument, \marg{spéc-p}, définit le
+% vecteur directionnel \emph{gradient} ;
+% \item |last|:\ \marg{spéc-p} ou \oarg{modèle-p}\marg{spéc-p}, selon le cas, 
+% définit le \emph{dernier} vecteur de paramètres de couleur.
 % \end{itemize}
-% Then, during |\resetcolorseries|, the actual \emph{step} vector is calculated:
+% Durant le traitement de |\resetcolorseries|, le vecteur courant
+% \emph{pas} est alors calculé ainsi :
 % \begin{gather}
-% \emph{step} :=
+% \emph{pas} :=
 % \begin{cases}
-% \emph{grad} & \text{if $\Meta{method} = |step|$}\\
-% \frac1{\Meta{div}}\cdot\emph{grad} & \text{if $\Meta{method} = |grad|$}\\
-% \frac1{\Meta{div}}\cdot(\emph{last}-\emph{base}) & \text{if $\Meta{method} = |last|$}\\
+% \emph{gradient} & \text{si $\Meta{algo} = |step|$}\\
+% \frac1{\Meta{div}}\cdot\emph{gradient} & \text{si $\Meta{algo} = 
+%   |grad|$}\\
+% \frac1{\Meta{div}}\cdot(\emph{dernier}-\emph{base}) & \text{si 
+%   $\Meta{algo} = |last|$}\\
 % \end{cases}\label{eq.cs}
 % \end{gather}
-% Please note that it is also possible to use the current color placeholder `.' within the definition of color series.
-% Thus, |\definecolorseries{foo}{rgb}{last}{.}{-.}| will set up a series that starts with the current color and ends with its complement.
-% Of course, similar to \TeX's |\let| primitive, the \emph{current} definition of the current color at the time of execution is used, there is no relation to current colors in any later stage of the document.
+% Notez qu'il est possible d'utiliser l'abréviation de la couleur courante
+% \og . \fg{} dans la définition d'une série.
+% Ainsi, |\definecolorseries{test}{rgb}{last}{.}{-.}| constitue une série
+% qui commence avec la couleur courante et s'achève avec sa complémentaire.
+% Bien sûr, de façon similaire à la primitive |\let| de \TeX, la définition
+% de la couleur courante est celle au moment de l'exécution de la commande et
+% il n'y a pas ici de relation avec les couleurs utilisées par la suite dans
+% le document.
 %
 %
-% \tradfin
-% \subsubsection{Initialisation d'une série de couleurs}
-% \tradini
+% \subsubsection{Initialisation d'une série}
 %
 % \DescribeMacro\resetcolorseries
-%   \oarg{div}\marg{name}\\
+%   \oarg{div}\marg{nom}\\
+% \tradini
 % This command has to be applied at least once, in order to make use of the color series \Meta{name}.
 % It resets the current color of the series to the base color and calculates the actual step vector according to the chosen \Meta{div}, a non-zero real number, for the methods |grad| and |last|, see equation (\ref{eq.cs}).
 % \DescribeMacro\colorseriescycle
@@ -2006,7 +2010,7 @@
 %
 %
 % \tradfin
-% \subsubsection{Utilisation d'une série de couleurs}
+% \subsubsection{Utilisation d'une série}
 % \tradini
 %
 % There are two ways to display the current color of a color series:
