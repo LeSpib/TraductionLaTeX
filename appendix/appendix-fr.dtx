@@ -17,31 +17,8 @@
 % 
 %<*driver>
 \documentclass{ltxdoc}
-% Ajout pour la traduction
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[french]{babel}
-% Traduction du titre de l'Index
-\IndexPrologue{\section*{Index}\markboth{Index}{Index} Les nombres en italique renvoient à la page où se trouve l'entrée correspondante; les numéros soulignés renvoient à la ligne de code de la définition; les numéros en caractères romains renvoient aux lignes de code où l'entrée est utilisée.}%
-% Traduction des entrées d'index concernant les environnements (code repris
-% de doc.dtx permettant de documenter des extensions, avec modifications.)
-\makeatletter
-\def\SpecialMainEnvIndex#1{\@bsphack\special@index{%
-                                      #1\actualchar
-                                      {\string\ttfamily\space#1}
-                                         (environnement)%
-                                      \encapchar main}%
-    \special@index{environnements:\levelchar#1\actualchar{%
-                   \string\ttfamily\space#1}\encapchar
-           main}\@esphack}
-\def\SpecialEnvIndex#1{\@bsphack
-    \index{#1\actualchar{\protect\ttfamily#1}
-           (environnement)\encapchar usage}%
-    \index{environnements:\levelchar#1\actualchar
-          {\protect\ttfamily#1}\encapchar usage}\@esphack}
-\makeatother
+\usepackage[ltxdoc,inputenc,fontenc,babel]{translatex-fr}
 \usepackage[colorlinks,linkcolor=blue,citecolor=cyan]{hyperref}
-% Fin d'ajout pour la traduction.
 \EnableCrossrefs
 \CodelineIndex
 \setcounter{StandardModuleDepth}{1}
@@ -1092,12 +1069,13 @@
 %
 % \bibitem[GM05]{GOOSSENS05}
 % Michel Goossens et Frank Mittelbach.
-% \newblock {\em LaTeX Companion}, 2\ieme~éd.,
+% \newblock {\em \LaTeX{} Companion}, 2\ieme~éd.,
 % \newblock Pearson, 2005.
 %
 % \bibitem[Wil96]{PRW96i}
 % Peter~R. Wilson.
-% \newblock {\em {LaTeX for standards: The LaTeX package files user manual}}.
+% \newblock {\em {\LaTeX{} for standards: The \LaTeX{} package files user
+%   manual}}.
 % \newblock NIST Report NISTIR, juin 1996.
 %
 % \end{thebibliography}
