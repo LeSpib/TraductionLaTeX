@@ -33,6 +33,7 @@ Traduction       | Source              | Avancée                | Pages traduit
                  | [datatool]          |                        | *. / 220*       |
                  | [datetime2]         |                        | *. / 169*       |
                  | [etoc]              |                        | *. / 114*       |
+[fileerr-fr]     | [fileerr] v1.1a     | :new_moon:             | 0 / 2           | 
 [fontspec-fr]    | [fontspec] v2.4e    | :new_moon:             | 8 / 124         | Auteur contacté et intéressé.
 [geometry-fr]    | [geometry] v5.6     | :full_moon:            | 42              | Auteur contacté et intéressé.
                  | [glossaries]        |                        | *. / 248*       |
@@ -42,7 +43,7 @@ Traduction       | Source              | Avancée                | Pages traduit
 [listings-fr]    | [listings] v1.6     | :new_moon:             | 0 / 61          |
                  | [pgfplots]          |                        | *. / 544*       |
                  | [siunitx]           |                        | *. / 102*       |
-                 | [tikz] (pgf)        |                        | *. / 1161*      |
+                 | [tikz+pgf]          |                        | *. / 1161*      |
 [titlesec-fr]    | [titlesec] 2.10.2   | :full_moon:            | 25              | 
 [tocbibind-fr]   | [tocbibind] v1.5k   | :waxing_crescent_moon: | 9 / 18          | 
 [varioref-fr]    | [varioref] v1.5c    | :new_moon:             | 0 / 35          | Traduction préexistante ([FT-tools]).
@@ -115,6 +116,8 @@ Anglais                | Français                                       | Comme
 [datetime2-fr]:  <https://github.com/LeSpib/TransLaTeX/tree/master/datetime2>
 [etoc]:          <https://www.ctan.org/pkg/etoc>
 [etoc-fr]:       <https://github.com/LeSpib/TransLaTeX/tree/master/etoc>
+[fileerr]:       <https://www.ctan.org/pkg/fileerr>
+[fileerr-fr]:    <https://github.com/LeSpib/TransLaTeX/tree/master/fileerr>
 [fontspec]:      <https://www.ctan.org/pkg/fontspec>
 [fontspec-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/fontspec>
 [geometry]:      <https://www.ctan.org/pkg/geometry>
@@ -137,7 +140,7 @@ Anglais                | Français                                       | Comme
 [titlesec-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/titlesec>
 [tocbibind]:     <https://www.ctan.org/pkg/tocbibind>
 [tocbibind-fr]:  <https://github.com/LeSpib/TransLaTeX/tree/master/tocbibind>
-[tikz]:          <https://www.ctan.org/pkg/pgf>
+[tikz+pgf]:      <https://www.ctan.org/pkg/pgf>
 [tikz-fr]:       <https://github.com/LeSpib/TransLaTeX/tree/master/tikz>
 [varioref]:      <https://www.ctan.org/pkg/varioref>
 [varioref-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/varioref>
