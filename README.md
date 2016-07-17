@@ -33,7 +33,7 @@ Traduction       | Source              | Avancée                | Pages traduit
                  | [datatool]          |                        | *. / 220*       |
                  | [datetime2]         |                        | *. / 169*       |
                  | [etoc]              |                        | *. / 114*       |
-[fileerr-fr]     | [fileerr] v1.1a     | :new_moon:             | 0 / 2           | 
+[fileerr-fr]     | [fileerr] v1.1a     | :waxing_crescent_moon: | 1 / 2           | 
 [fontspec-fr]    | [fontspec] v2.4e    | :new_moon:             | 8 / 124         | Auteur contacté et intéressé.
 [geometry-fr]    | [geometry] v5.6     | :full_moon:            | 42              | Auteur contacté et intéressé.
                  | [glossaries]        |                        | *. / 248*       |

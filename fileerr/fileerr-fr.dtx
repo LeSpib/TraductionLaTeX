@@ -35,42 +35,42 @@
 % \changes{v1.0e}{97/07/07}{Added q and r replies (PR/2525).}
 %
 % \section{Introduction}
-% \tradini
-%    When \LaTeXe{} is unable to find a file it will ask for an
-%    alternative file name. However, sometimes the problem is
-%    only noticed by \TeX{}, and in that case \TeX{} insists on
-%    getting a valid file name; any other attempt to leave this
-%    error loop will fail.\footnote{On some systems, \TeX{}
-%    accepts a special character denoting the end of file to
-%    return from this loop, e.g.\ Control-D on UNIX or Control-Z
-%    on DOS.} Many users try to respond in the same way as to
-%    normal error messages, e.g.\ by typing \meta{return}, or |s|
-%    or |x|, but \TeX{} will interpret this as a file name and
-%    will ask again.
-%    \par To provide a graceful exit out of this loop, we define
-%    a number of files which emulate the normal behavior of
-%    \TeX{} in the error loop as far as possible.
-%    \par After installing these files the user can respond with
-%    |h|,  |q|, |r|, |s|, |e|, |x|, and on some systems also with
-%    \meta{return} to \TeX's missing file name question.
+%    Quand \LaTeXe{} est incapable de trouver un fichier, il demande à avoir un
+%    autre nom de fichier. Cependant, le problème est parfois seulement vu par
+%    \TeX{} et, dans ce cas, \TeX{} insiste pour obtenir un nom de fichier 
+%    valide ; toute autre tentative pour sortir de cette boucle 
+%    échoue\footnote{Sur certains systèmes, \TeX{} accepte un caractère spécial
+%    indiquant la fin d'un fichier, ce qui permet de sortir de cette boucle, 
+%    par exemple Contrôle-D sur UNIX ou Contrôle-Z sur DOS.}. Beaucoup 
+%    d'utilisateurs essayent de répondre comme à l'accoutumée lors de messages
+%    d'erreurs en appuyant sur les touches \meta{return}, |s| ou |x| mais 
+%    \TeX{} va interprêter cela comme un nom de fichier et persistera à reposer 
+%    la question.
+%    \par Pour proposer une sortie élégante de cette boucle, nous définissons
+%    un certain nombre de fichiers qui émulent le comportement de \TeX{} dans
+%    cette boucle aussi précisément que possible.
+%    \par Après avoir installé ces fichiers, l'utilisateur peut répondre à la
+%    question du fichier manquant de \TeX{} avec les touches |h|, |q|, |r|, 
+%    |s|, |e|, |x| et sur certains systèmes avec \meta{return}.   
 % \StopEventually{}
 %
-% \section{The documentation driver}
-%    This code will generate the documentation. Since it is the
-%    first piece of code in the file, the documentation can be
-%    obtained by simply processing this file with \LaTeXe.
+% \section{Le pilote de documentation}
+%    Ce code génère la documentation\footnote{NDT: en l'occurrence, la 
+%    documentation française. Le code original ne contient pas la ligne 3 et 
+%    renvoit au fichier |fileerr.dtx| en ligne 4.}. Dans la mesure où il s'agit
+%    du premier bloc de code du fichier, la documentation peut être obtenue en 
+%    faisant exécuter \LaTeXe\ sur ce fichier.
 %    \begin{macrocode}
 %<*driver>
 \documentclass{ltxdoc}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[ltxdoc,babel]{translatex-fr}
+\usepackage[ltxdoc,fontenc,inputenc,babel]{translatex-fr}
 \begin{document} \DocInput{fileerr-fr.dtx}  \end{document}
 %</driver>
 %    \end{macrocode}
-% \section{The files}
+% \section{Les fichiers}
 %
 % \subsection{Asking for help with {\tt h}}
+% \tradini
 %    When the user types |h| in the file error loop \TeX{} will
 %    look for the file |h.tex|. In this file we put a message
 %    informing the user about the situation (we use |^^J| to
