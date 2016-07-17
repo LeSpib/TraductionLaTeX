@@ -41,11 +41,11 @@ Page d'avant-propos           | :first_quarter_moon:   | 1               |
 2. Mise en page de...         | :first_quarter_moon:   | 1               | 
 3. Utilisation de nouvelles...| :first_quarter_moon:   | 2               |
 4. Abus des nouvelles...      | :first_quarter_moon:   | 1               |
-5. Booktabs et longtable      | :new_moon:             | 0 / 1           |
-6. Booktabs et colortbl       | :new_moon:             | 0 / 1           |
-7. Résumé technique des...    | :new_moon:             | 0 / 1           |
-8. Remerciements              | :new_moon:             | 0 / 1           |
-9. Le code                    | :new_moon:             | 0 / 6           |
+5. Booktabs et l'extension... | :first_quarter_moon:   | 1               |
+6. Booktabs et l'extension... | :first_quarter_moon:   | 0               |
+7. Profil technique des...    | :new_moon:             | 0 / 2           | En cours.
+8. Remerciements              | :new_moon:             | 0 / 0           |
+9. Le code                    | :new_moon:             | 0 / 7           |
 Historique                    | :first_quarter_moon:   | 1               |
 Index                         | :full_moon:            | 1               |
 

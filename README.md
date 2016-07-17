@@ -28,7 +28,7 @@ Traduction       | Source              | Avancée                | Pages traduit
 ---------------- | ------------------- | :--------------------: | :-------------: | ------------------------------------
 [adjustbox-fr]   | [adjustbox] v1.0    | :new_moon:             | 0 / 29          |
 [appendix-fr]    | [appendix] v1.2b    | :full_moon:            | 16              | Traduction préexistante ([FT-tools]).
-[booktabs-fr]    | [booktabs] 1.618033 | :new_moon:             | 8 / 18          | Traduction préexistante ([FT-tools]).
+[booktabs-fr]    | [booktabs] 1.618033 | :waxing_crescent_moon: | 9 / 18          | Traduction préexistante ([FT-tools]).
 [cleveref-fr]    | [cleveref] v0.19    | :new_moon:             | 0 / 31          |
                  | [datatool]          |                        | *. / 220*       |
                  | [datetime2]         |                        | *. / 169*       |

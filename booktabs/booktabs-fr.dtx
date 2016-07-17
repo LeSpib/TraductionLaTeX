@@ -359,7 +359,7 @@
 % où l'espace était parfois \emph{ajoutés} à l'espace autour du filet par
 % défaut.}.
 %
-% \section{Abus des nouvelles commandes}
+% \section{Abus avec les nouvelles commandes}
 %
 % Il faut le reconnaître: tout ceci ne marche parfois pas tout seul. Quelques 
 % conseils et commandes supplémentaires sont apportés ici.
@@ -420,58 +420,63 @@
 % supplémentaire à chaque fois que c'était possible.}.
 %
 %
-% \section{Booktabs et longtable}
+% \section{Booktabs et l'extension longtable}
 %
 % Si les deux extensions =booktabs= et =longtable= sont chargées, les commandes
 % de filets de =booktabs= peuvent toutes être utilisées exactement comme décrit
-% plus haut dans une table de type \og longtable \fg{}.
+% plus haut dans une table \og longtable \fg{}.
+%
+% Il faut mentionner ici un ajout particulier : dans une table \og longtable 
+% \fg{}, vous pouvez utiliser des commandes optionnelles de raccourcissement à
+% gauche et à droite qui ne fonctionnent normalement que sur les  =\cmidrule=, 
+% =\toprule=, =\midrule= et =\bottomrule= (et, si nécessaire, aussi sur les 
+% =\specialrule=).
+% Des utilisateurs ayant bidouillé le code de la version précédente pour
+% obtenir une compatibilité avec =longtable=\footnote{Jim Service a été le
+% premier.} semblent avoir touts aimé disposer de filets raccourcis de 
+% $0.5$ em. Vous devriez pouvoir obtenir la même chose en faisant de =@{}= 
+% le spécificateur  de votre dernière colonne.
+% Ceci étant, après avoir revu le reste du code, il était facile d'ajouter
+% un test pour les arguments optionnels, ce que j'ai fait (je n'ai cependant
+% pas fait le développement intégral permettant d'utiliser les arguments
+% de raccourcissement \emph{hors} d'une table \og longtable \fg{}. Si vous
+% voulez des filets raccourcis, passez toutes vos tables en version
+% =longtable= !)
+%
+% Pour finir ce point, un point quelque peu technique : dans une table \og
+% longtable \fg{}, =\hline= et =\hline\hline= produisent toutes deux un filet
+% \emph{double} (pour permettre un saut de page à cet endroit). Mais les règles
+% de =booktabs= \emph{ne l'autorisent pas}. Le doublement automatique de 
+% =\hline= par =longtable= est discutable, ainsi que le précise d'ailleurs la 
+% documentation de l'extension. Mais le doublement des filets par =booktabs=
+% n'a aucun sens. Dans le cas malheureux où un filet est mis par =booktabs=
+% lors d'un saut de page, vous devrez faire les ajustements nécessaires à la
+% main\footnote{Point résolu en version 1.618033 (Morten H{\o}gholm).} (en 
+% général, cela signifie retirer le filet incriminé).
+%
+%
+% \section{Booktabs et l'extension colortbl}
+%
+% =Booktabs= est désormais compatible avec l'extension 
+% =colortbl=\footnote{Depuis la version v1.6180.}. La commande 
+% \cmd{\arrayrulecolor} donne des filets en couleur si l'extension =colortbl= 
+% est chargée.
+%
+%
+% \section{Profil technique des commandes}
+%
+% Les nouvelles commandes de filet sont valides au sein des environnements
+% =tabular= (et =array=), des environnements =tabular= et =array= modifiés
+% par l'extension =array= et dans les tables classiques et =longtable= après
+% le chargement de l'extension =longtable=.
+%
+% Les commandes suivent les règles de placement standard de =\hline=. Il peut
+% y avoir des espaces (incluant un retour à la ligne mais pas deux) entre deux
+% commandes consécutives de filet\footnote{Un changement bienvenu par rapport à
+% la version 1.00 où des espaces entre ces commandes générait un message 
+% d'erreur vraiment déroutant.}.
 %
 % \tradini
-% There is an addition worth noting: within a =longtable=, you can use
-% the optional left and right trimming commands, which normally only
-% work for =\cmidrule=s, with =\toprule=, =\midrule= and =\bottomrule=
-% (and if you must, also with =\specialrule=). Users who hacked the
-% previous release for longtable compatability\footnote{Jim Service was
-% the first} seemed to like all the rules to be right trimmed 0.5 em. I
-% think you can do the same by making =@{}= be the last column
-% specifier. Still, after working out the rest of the code, it was easy
-% to add parsing for the optional arguments, so I did. (I didn't go the
-% whole way and allow the optional trimming \emph{outside} a
-% =longtable=; this would be a huge amount of work. If you must have
-% trimmed rules, make all your tables be =longtable=s!)
-%
-% A somewhat technical note: within a =longtable=, =\hline= and
-% =\hline\hline= both produce a \emph{double} rule (to allow for page
-% breaks occurring at that point). But the =booktabs= rules do
-% \emph{not}. Longtable's automatic doubling of =\hline= is
-% questionable, even according to the documentation within that
-% package. But doubled =booktabs= rules make almost no sense at all. In
-% the unfortunate event that a =booktabs= rule should occur at a page
-% break, then you will have to make the necessary adjustments by
-% hand.\footnote{Fixed in version  1.618033 (Morten H{\o}gholm)}
-% (In general, this will mean deleting the offending rule.)
-%
-%
-% \section{Booktabs and and the colortbl package}
-%
-%  =Booktabs= is now compatible with the =colortbl= package.\footnote{Since v1.6180}
-%  The \cmd{\arrayrulecolor} command will result in coloured
-%  rules if the =colortbl= package is loaded.
-%
-%
-% \section{Technical summary of commands}
-%
-% The new rule commands are valid inside the standard =tabular= (and
-% =array=) environment, in the modified =tabular= and =array= of
-% =\usepackage{array}=, and within both standard tables and longtables
-% after =\usepackage{longtable}=.
-%
-% The commands follow the standard placement syntax of =\hline=.
-% There can be space (including carriage-return,
-% but not two carriage-returns) between successive
-% rule commands.\footnote{A welcome change from Version 1.00, where space between
-% rule commands generated a very baffling error message.}
-%
 % In what amounts to quite a big change from former releases, within
 % the macro code I now define three classes of rules. (But we don't need these
 % definitions within ordinary use, so I haven't even mentioned them above.)
