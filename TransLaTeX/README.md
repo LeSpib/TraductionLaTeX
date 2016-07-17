@@ -1,6 +1,9 @@
 ## Commandes et fichiers associés à la traduction en français
 
-Une extension `translatex-fr` a été constituée pour simplifier la gestion du préambule des documents à traduire. Elle présente deux options : `ltxdoc` qui charge les différentes fonctions présentées ci-après et `babel` qui charge l'extension babel (avec son option `french`). Cette extension est développée au fur et à mesure des traductions rencontrées pour essayer de la rendre la plus générale possible. Sa documentation reste à faire mais les éléments ci-dessous décrivent la plupart des éléments.
+Une extension `translatex-fr` a été constituée pour simplifier la gestion du préambule des documents à traduire. Cette extension est développée au fur et à mesure des traductions rencontrées pour essayer de la rendre la plus générale possible. Sa documentation reste à faire mais les éléments ci-dessous décrivent la plupart des éléments.
+
+Elle présente quatre options : `ltxdoc`,`babel`,`inputenc`,`fontenc`. `ltxdoc` charge les différentes fonctions présentées ci-après. Les trois autres options chargent les extensions de même nom : `babel` avec son option `french`, `inputenc` avec son option `utf8`, `fontenc` avec son option `T1`. Ces dernières servent surtout à éviter de multiplier les appels d'extension ajouter pour la traduction (en récupérant un format français et les lettres accentuées) et réduire si possible l'impact d'édition des préambules à une unique ligne. La question se pose de mettre ou pas `hyperref` également dans cette liste.
+
 
 ### Commandes pour marquer la traduction
 
