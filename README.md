@@ -25,28 +25,53 @@ Ce tableau indique les différentes extensions envisagées dans le projet ainsi 
 > *This table shows the different extensions foreseen for this project and the progress of these translations. The visual code for the translation progress uses the phases of the moon and their order :* :new_moon: :waxing_crescent_moon: :first_quarter_moon: :waxing_gibbous_moon: :full_moon: *(the brighter, the better).*
 
 Traduction       | Source              | Avancée                | Pages traduites | Commentaires 
----------------- | ------------------- | :--------------------: | :-------------: | ------------------------------------
+---------------- | ------------------- | :--------------------: | :-------------: | ---------------------------------------
 [adjustbox-fr]   | [adjustbox] v1.0    | :new_moon:             | 0 / 29          |
+                 | [afterpage] v1.08   |                        | *. / 5*         | 
 [appendix-fr]    | [appendix] v1.2b    | :full_moon:            | 16              | Traduction préexistante ([FT-tools]).
+                 | [array] v2.4c       |                        | *. / 35*        | Traduction préexistante ([FT-tools]).
+                 | [bm] v1.2b          |                        | *. / 20*        | 
 [booktabs-fr]    | [booktabs] 1.618033 | :waxing_crescent_moon: | 9 / 18          | Traduction préexistante ([FT-tools]).
+                 | [calc] v4.3         |                        | *. / 17*        | Traduction préexistante ([FT-tools]).
 [cleveref-fr]    | [cleveref] v0.19    | :new_moon:             | 0 / 31          |
                  | [datatool]          |                        | *. / 220*       |
                  | [datetime2]         |                        | *. / 169*       |
-                 | [etoc]              |                        | *. / 114*       |
+                 | [dcolumn] v1.06     |                        | *. / 4*         | Traduction préexistante ([FT-tools]).
+                 | [delarray] v1.01    |                        | *. / 3*         | Traduction préexistante ([FT-tools]).
+                 | [enumerate] v3.00   |                        | *. / 4*         | Traduction préexistante ([FT-tools]).
+                 | [enumitem] v3.5.2   |                        | *. / 17*        | 
+                 | [etoc] v1.08g       |                        | *. / 114*       |
+                 | [fancyhdr] v3.1     |                        | *. / 26*        |
+                 | [fncychap] v1.34    |                        | *. / 10*        |
+                 | [fontsmpl] v0.11    |                        | *. / 5*         | Traduction préexistante ([FT-tools]).
+                 | [ftnright] v1.1f    |                        | *. / 11*        | Traduction préexistante ([FT-tools]).
 [fileerr-fr]     | [fileerr] v1.1a     | :waxing_crescent_moon: | 1 / 2           | 
 [fontspec-fr]    | [fontspec] v2.4e    | :new_moon:             | 8 / 124         | Auteur contacté et intéressé.
 [geometry-fr]    | [geometry] v5.6     | :full_moon:            | 42              | Auteur contacté et intéressé.
-                 | [glossaries]        |                        | *. / 248*       |
-                 | [hyperref]          |                        | *. / 31*        | Licence GNU FDL à analyser.
+                 | [glossaries] v4.25  |                        | *. / 248*       |
+                 | [graphicx] v1.0g    |                        | *. / 15*        |
+                 | [graphicx] v1.0g    |                        | *. / 15*        |
+                 | [hhline] v2.03      |                        | *. / 4*         | Traduction préexistante ([FT-tools]).
+                 | [ifthen] v1.1c      |                        | *. / 6*         |
 [indentfirst-fr] | [indentfirst] v1.03 | :full_moon:            | 1               | Traduction préexistante ([FT-tools]).
+                 | [layout] v1.02c     |                        | *. / 13*        | Traduction préexistante ([FT-tools]).
 [lipsum-fr]      | [lipsum] v1.3       | :full_moon:            | 41              |
 [listings-fr]    | [listings] v1.6     | :new_moon:             | 0 / 61          |
+                 | [longtable] v4.11   |                        | *. / 26*        | Traduction préexistante ([FT-tools]).
+                 | [multicol] v1.8p    |                        | *. / 36*        | Traduction préexistante ([FT-tools]).
                  | [pgfplots]          |                        | *. / 544*       |
+                 | [rawfonts] v0.01    |                        | *. / 4*         | Traduction préexistante ([FT-tools]).
+                 | [showkeys] v3.17    |                        | *. / 10*        | Traduction préexistante ([FT-tools]).
                  | [siunitx]           |                        | *. / 102*       |
-                 | [tikz+pgf]          |                        | *. / 1161*      |
+                 | [somedefs] v0.03    |                        | *. / 3*         | Traduction préexistante ([FT-tools]).
+                 | [tabularx] v2.11    |                        | *. / 12*        | Traduction préexistante ([FT-tools]).
+                 | [theorem] v2.2c     |                        | *. / 15*        | Traduction préexistante ([FT-tools]).
+                 | [tikz+pgf] v3.0.1a  |                        | *. / 1161*      |
 [titlesec-fr]    | [titlesec] 2.10.2   | :full_moon:            | 25              | 
 [tocbibind-fr]   | [tocbibind] v1.5k   | :waxing_crescent_moon: | 9 / 18          | 
+                 | [trace] v1.1d       |                        | *. / 9*         | 
 [varioref-fr]    | [varioref] v1.5c    | :new_moon:             | 0 / 35          | Traduction préexistante ([FT-tools]).
+                 | [verbatim] v1.5q    |                        | *. / 21*        | Traduction préexistante ([FT-tools]).
 [xcolor-fr]      | [xcolor] v2.12      | :new_moon:             | 29 / 73         | 
 [xkeyval-fr]     | [xkeyval] v2.7      | :new_moon:             | 2 / 73          |
 [xr-fr]          | [xr] v5.02          | :first_quarter_moon:   | 2               | Traduction préexistante ([FT-tools]).
