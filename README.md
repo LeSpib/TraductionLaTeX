@@ -27,7 +27,7 @@ Ce tableau indique les différentes extensions envisagées dans le projet ainsi 
 Traduction       | Source              | Avancée                | Pages traduites | Commentaires 
 ---------------- | ------------------- | :--------------------: | :-------------: | ---------------------------------------
 [adjustbox-fr]   | [adjustbox] v1.0    | :new_moon:             | 0 / 29          |
-                 | [afterpage] v1.08   |                        | *. / 5*         | 
+[afterpage-fr]   | [afterpage] v1.08   | :new_moon:             | 0 / 5           | 
 [appendix-fr]    | [appendix] v1.2b    | :full_moon:            | 16              | Traduction préexistante ([FT-tools]).
                  | [array] v2.4c       |                        | *. / 35*        | Traduction préexistante ([FT-tools]).
                  | [bm] v1.2b          |                        | *. / 20*        | 
