@@ -30,7 +30,7 @@ Section                       | Avancée                | Pages traduites | Comm
 ----------------------------- | :--------------------: | :-------------: | -------------------------
 En-tête du document tex       | :new_moon:             |                 |
 Page d'avant-propos           | :waxing_gibbous_moon:  | 1               | 
-1. Les commandes              | :first_quarter_moon:   | 1               |
+1. Les commandes              | :waxing_gibbous_moon:  | 1               |
 
 
 ### Glossaire pour la traduction

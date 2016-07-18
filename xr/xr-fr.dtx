@@ -35,7 +35,7 @@
 \usepackage{xr}
 \GetFileInfo{xr.sty}
 \begin{document}
-\title{L'extension \texttt{xr}\thanks{Ce fichier a pour numéro de
+\title{L'extension \textsf{xr}\thanks{Ce fichier a pour numéro de
         version \fileversion\ et a été mis à jour le \filedatefr. La
         première traduction, basée sur la version 5.02, a été publiée par 
         Jean-Pierre Drucbert en 2000.}}
@@ -63,18 +63,18 @@
 % \changes{v5.02}{28/05/1994}{Mise à jour pour LaTeX2e}
 %
 %
-% Cette extension permet de gérer des références externes\footnote{NDT : soit 
+% Cette extension permet de gérer des références externes\footnote{N.D.T. : soit 
 % en anglais des \emph{eXternal References}, ce qui donne son nom à 
 % l'extension.}. 
 %
 % Pour qu'un document se réfère à certaines sections d'un autre, par exemple
-% |aaa.tex|, il convient de charger cette extension dans le fichier principal 
-% et de placer la commande |\externaldocument{aaa}| dans le préambule.
+% |aaa.tex|, il faut charger cette extension dans le fichier principal et
+% placer la commande |\externaldocument{aaa}| dans le préambule.
 %
-% Vous pouvez alors utiliser |\ref| et |\pageref| pour vous référer à tout ce 
-% qui a été défini par des commandes |\label| dans le document externe 
+% Vous pouvez alors utiliser |\ref| et |\pageref| pour vous référer à toute 
+% étiquette définie par des commandes |\label| dans le document externe 
 % |aaa.tex| ou dans le document principal. Il est possible de déclarer autant
-% de documents externes que souhaité.
+% de documents externes que nécessaire.
 %
 % Si jamais des documents externes ou le document principal utilisent la même 
 % étiquette dans un |\label|, une erreur survient car l'étiquette est définie 
@@ -88,7 +88,7 @@
 % toutes les étiquettes importées depuis des fichiers externes soient uniques. 
 % Notez cependant que si vos extensions déclarent certains caractères comme
 % actifs (|:| en français, |"| en allemand), alors ils ne peuvent pas en 
-% général être utilisés dans l'argument de |\label| ni dans l'argument
+% général être utilisés dans l'argument de |\label| ou dans l'argument
 % optionnel de |\externaldocument|.
 %
 % \StopEventually{}
@@ -145,12 +145,12 @@
     \expandafter\XR@read\fi}
 %    \end{macrocode}
 %
-% Lecture de la ligne suivante du fichier |aux|
+% Lecture de la ligne suivante du fichier |aux|.
 %    \begin{macrocode}
 \def\XR@read{%
   \read\@inputcheck to\XR@line
 %    \end{macrocode}
-% Le |...| assure que |\XR@test| a toujours suffisamment d'arguments.
+% Le |...| garantit que |\XR@test| a toujours suffisamment d'arguments.
 %    \begin{macrocode}
   \expandafter\XR@test\XR@line...\XR@}
 %    \end{macrocode}

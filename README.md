@@ -74,7 +74,7 @@ Traduction       | Source              | Avancée                | Pages traduit
                  | [verbatim] v1.5q    |                        | *. / 21*        | Traduction préexistante ([FT-tools]).
 [xcolor-fr]      | [xcolor] v2.12      | :new_moon:             | 29 / 73         | 
 [xkeyval-fr]     | [xkeyval] v2.7      | :new_moon:             | 2 / 73          |
-[xr-fr]          | [xr] v5.02          | :first_quarter_moon:   | 2               | Traduction préexistante ([FT-tools]).
+[xr-fr]          | [xr] v5.02          | :waxing_gibbous_moon:  | 2               | Traduction préexistante ([FT-tools]).
 [xspace-fr]      | [xspace] v1.13      | :waxing_crescent_moon: | 5 / 7           | Traduction préexistante ([FT-tools]).
 
 ### Traduction des documents 
