@@ -8,7 +8,7 @@ L'objectif de ce dépôt GIT est de traduire la documentation de l'extension *af
 Les commandes suivantes doivent être exécutées :
 
 ```bash
-pdflatex booktabs-fr.dtx
+pdflatex afterpage-fr.dtx
 ```
 
 Sur ce point, un fichier Makefile est mis à disposition (voir par exemple [OpenClassrooms](https://openclassrooms.com/courses/compilez-sous-gnu-linux#/id/r-1130480) pour plus d'informations).
