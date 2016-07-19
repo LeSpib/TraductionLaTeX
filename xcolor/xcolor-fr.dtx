@@ -1942,9 +1942,10 @@
 %     \Meta{spéc-p} est un vecteur de paramètre dont la dimension dépend du
 %     \Meta{modèle-central}, par exemple |{0.1,-0.2,0.3}| dans le cas de |rgb|,
 %     |cmy| ou |hsb|.
-%   \item |last|:\ la dernière\footnote{NDT : en anglais, \emph{last}.} couleur est indiquée, soit directement, par
-%     exemple avec |[rgb]{1,0.5,0.5}|, soit avec une \Meta{couleur}, par
-%     exemple avec |{-yellow!50}| si l'argument optionnel est manquant.
+%   \item |last|:\ la dernière\footnote{NDT : en anglais, \emph{last}.} couleur
+%     est indiquée, soit directement, par exemple avec |[rgb]{1,0.5,0.5}|, soit
+%     avec une \Meta{couleur}, par exemple avec |{-yellow!50}| si l'argument 
+%     optionnel est manquant.
 %   \end{itemize}
 % \end{itemize}
 % En voici la mécanique générale :
@@ -2000,52 +2001,67 @@
 %
 % \DescribeMacro\resetcolorseries
 %   \oarg{div}\marg{nom}\\
-% \tradini
-% This command has to be applied at least once, in order to make use of the color series \Meta{name}.
-% It resets the current color of the series to the base color and calculates the actual step vector according to the chosen \Meta{div}, a non-zero real number, for the methods |grad| and |last|, see equation (\ref{eq.cs}).
+% Cette commande doit être exécutée au moins une fois afin de pouvoir se servir
+% de la série \Meta{nom}. Elle réinitialise la couleur courante de la série à 
+% la couleur de base et calculé le vecteur pas selon le \Meta{div} choisi, un 
+% nombre réel non nul, pour les algorithmes |grad| et |last|, voir 
+% équation~\ref{eq.cs}. 
 % \DescribeMacro\colorseriescycle
-% If the optional argument is empty, the value stored in the macro |\colorseriescycle| is applied.
-% Its default value is \colorseriescycle, which can be changed by |\def\colorseriescycle|\marg{div}, applied \emph{before} the \XCP{} is loaded (similar to |\rangeRGB| and friends).
-% The optional argument is ignored in case of the |step| method.
+% Si l'argument optionnel est vide, la valeur stockée dans |\colorseriescycle|
+% est appliquée. Sa valeur par défaut est \colorseriescycle et peut être
+% changée par |\def\colorseriescycle|\marg{div} qui doit être indiqué 
+% \emph{avant} que l'\XCP{} ne soit chargée (de façon similaire à |\rangeRGB|
+% et assimilés). L'argument optionnel est ignoré dans le cadre de l'algorithme
+% |step|.
 %
 %
-% \tradfin
 % \subsubsection{Utilisation d'une série}
-% \tradini
 %
-% There are two ways to display the current color of a color series:
-% any of the \emph{color expressions} in section \vref{sec.term} used within a |\color|, |\textcolor|, \dots{} command will display this color according to the usual syntax of such expressions.
-% However, in the cases when \Meta{postfix} equals `|!!+|', |\color{|\Meta{name}|!!+}| etc., will not only display the color, but it will also perform a step operation.
-% Thus, the current color of the series will be changed in that case.
-% An expression |\color{|\Meta{name}|!![|\Meta{num}|]}| enables direct access to an element of a series, where \Meta{num} = $0,1,2,\dots$, starting with~0 for the base color.
-% See figure \vref{fig.csx} for a demonstration of different methods.
+% Il existe deux manières d'afficher la couleur courante d'une série: n'importe 
+% quelle \emph{expression de couleur} de la section \vref{sec.term} utilisée 
+% dans une commande  |\color|, |\textcolor| ou autre affiche cette couleur 
+% selon la syntaxe usuelle de telles expressions. Cependant, dans les cas où le
+% \Meta{suffixe} vaut \og |!!+| \fg{}, par exemple |\color{|\Meta{nom}|!!+}|, 
+% la commande affiche non seulement la couleur mais incrémente la série d'un 
+% pas. Ainsi la couleur courante de la série est changée dans ce cas. Une 
+% expression |\color{|\Meta{name}|!![|\Meta{num}|]}| permet par ailleurs
+% l'accès direct à un élément de la série, avec \Meta{num} = $0,1,2\dots$, en 
+% commençant par~0 pour la couleur de base. Voir la figure \vref{fig.csx} pour
+% une démonstration des différentes méthodes.
 %
 %
-% \tradfin
 % \subsubsection{Différences entre couleurs et séries de couleurs}
-% \tradini
 %
-% Although they behave similar if applied within color expressions, the objects defined by |\definecolor| and |\definecolorseries| are fundamentally different with respect to their scope/availability:
-% like \LC's original |\definecolor| command, |\definecolor| generates \emph{local} colors, whereas |\definecolorseries| generates \emph{global} objects (otherwise it would not be possible to use the stepping mechanism within tables or graphics conveniently).
-% E.g., if we assume that |bar| is an undefined color, then after saying
+% Bien qu'ils se comportent de manière similaire lors d'une utilisation dans 
+% des expressions de couleur, les objets définis par |\definecolor| et 
+% |\definecolorseries| sont fondamentalement différents en termes de 
+% portée/disponibilité : comme la commande |\definecolor| originale de \LC, 
+% |\definecolor| génère des couleurs \emph{locales} tandis que 
+% |\definecolorseries| génère des objets \emph{globaux} (sinon, il serait 
+% impossible de se servir aisément du mécanisme de pas dans les tables et les
+% graphiques). Par exemple, si nous supposons que |truc| est une couleur non 
+% définie, alors après avoir écrit 
 % \begin{verbatim}
 % \begingroup
-% \definecolorseries{foo}{rgb}{last}{red}{blue}
-% \resetcolorseries[10]{foo}
-% \definecolor{bar}{rgb}{.6,.5,.4}
+% \definecolorseries{test}{rgb}{last}{red}{blue}
+% \resetcolorseries[10]{test}
+% \definecolor{truc}{rgb}{.6,.5,.4}
 % \endgroup
 % \end{verbatim}
-% commands like |\color{foo}| or |\color{foo!!+}| may be used without restrictions, whereas |\color{bar}| will give an error message.
-% However, it is possible to say |\colorlet{bar}{foo}| or |\colorlet{bar}{foo!!+}| in order to save the current color of a series locally --- with or without stepping.
+% les commandes comme |\color{test}| or |\color{test!!+}| peuvent être 
+% utilisées sans restriction tandis que |\color{truc}| génère un message
+% d'erreur. Cependant, il est possible de saisir |\colorlet{truc}{test}| ou 
+% |\colorlet{truc}{test!!+}| afin de sauvegarder la couleur courante d'une 
+% série localement --- avec ou sans utilisation du pas.
 %
 %
 %
 %
-% \tradfin
 % \subsection{Couleur d'encadrement d'hyperliens}\label{sec.hyperref}
-% \tradini
 %
-% The \Package{hyperref} package offers all kinds of support for hyperlinks, pdfmarks etc.
+% L'extension \Package{hyperref} offre toutes sortes de support pour les
+% hyperliens, les \trad{fonctionnalités} PDF, etc.
+% \tradini
 % There are two standard ways to make hyperlinks visible (see the package documentation \cite{hyperref} for additional information on how to set up these features):
 % \begin{itemize}
 % \item print hyperlinks in a different color than normal text, using the keys \Key{citecolor}, \Key{filecolor}, \Key{linkcolor}, \Key{menucolor}, \Key{pagecolor}, \Key{runcolor}, \Key{urlcolor} with color expressions, e.g., |\hypersetup{urlcolor=-green!50}|;
