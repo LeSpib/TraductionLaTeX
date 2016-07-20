@@ -63,9 +63,10 @@
 % \changes{v5.02}{28/05/1994}{Mise à jour pour LaTeX2e}
 %
 %
-% Cette extension permet de gérer des références externes\footnote{N.D.T. : soit 
-% en anglais des \emph{eXternal References}, ce qui donne son nom à 
-% l'extension.}. 
+% Cette extension permet de gérer des références externes\footnote{N.D.T. : 
+% l'expression anglaise associée, \emph{eXternal References}, donne son nom à 
+% l'extension.}, autrement dit des références présentes dans d'autres 
+% documents \LaTeX.
 %
 % Pour qu'un document se réfère à certaines sections d'un autre, par exemple
 % |aaa.tex|, il faut charger cette extension dans le fichier principal et
@@ -79,17 +80,18 @@
 % Si jamais des documents externes ou le document principal utilisent la même 
 % étiquette dans un |\label|, une erreur survient car l'étiquette est définie 
 % plusieurs fois. 
-% Afin de contourner ce problème, la commande |\externaldocument| a un 
+% Afin de contourner ce problème, la commande |\externaldocument| dispose d'un
 % argument optionnel. Si vous déclarez |\externaldocument[A-]{aaa}| alors 
-% toutes les références du document |aaa| sont préfixées par |A-|. Par exemple,
-% si une section de |aaa| contient |\label{intro}|, alors la référence de cette
-% étiquette pourra être appelée par |\ref{A-intro}|. Le préfixe peut être 
-% différent de |A-|; en fait, il peut être toute chaîne de caractères telle que
-% toutes les étiquettes importées depuis des fichiers externes soient uniques. 
-% Notez cependant que si vos extensions déclarent certains caractères comme
-% actifs (|:| en français, |"| en allemand), alors ils ne peuvent pas en 
-% général être utilisés dans l'argument de |\label| ou dans l'argument
-% optionnel de |\externaldocument|.
+% toutes les références du document |aaa| sont préfixées par \og |A-| \fg{}. 
+% Par exemple, si une section de |aaa| contient |\label{intro}|, alors la 
+% référence à cette étiquette peut être obtenue par |\ref{A-intro}|. Bien 
+% entendu, le préfixe peut être différent de \og |A-| \fg{} : est acceptée 
+% toute chaîne de caractères telle que toutes les étiquettes importées depuis 
+% des fichiers externes soient uniques. Notez d'ailleurs que si vos extensions
+% déclarent certains caractères comme actifs (\og |:| \fg{} en français, \og 
+% |"| \fg{} en allemand), alors, en général, ceux-ci ne peuvent pas être 
+% utilisés dans l'argument de |\label| ou dans l'argument optionnel de
+% |\externaldocument|.
 %
 % \StopEventually{}
 %
@@ -104,8 +106,8 @@
 \def\externaldocument{\@ifnextchar[\XR@{\XR@[]}}
 %    \end{macrocode}
 %
-% Sauvegarde du préfixe optionnel et début du traitement du premier fichier
-% |aux|.
+% Sauvegarde du préfixe optionnel dans |\XR@prefix| et début du traitement du
+% fichier |aux| demandé.
 %    \begin{macrocode}
 \def\XR@[#1]#2{{%
   \makeatletter
@@ -133,8 +135,11 @@
 \def\XR@explist{\expandafter\XR@next\XR@list\\}
 %    \end{macrocode}
 %
-% Si le fichier |aux| existe, repérage ligne après ligne des |\newlabel| et 
-% |\@input|. Sinon, passage au fichier suivant dans la liste.
+% Si le fichier |aux| n'existe pas, émission d'une alerte indiquant \og Pas de
+% fichier <\emph{Nom du fichier}> Pas d'étiquettes importées. \fg{} et passage au 
+% fichier suivant dans la liste. Sinon, émission d'une information \og 
+% Importation des étiquettes de <\emph{Nom du fichier}> \fg{} et repérage ligne 
+% après ligne des |\newlabel| et |\@input|.
 %    \begin{macrocode}
 \def\XR@loop#1{\openin\@inputcheck#1\relax
   \ifeof\@inputcheck
@@ -150,14 +155,15 @@
 \def\XR@read{%
   \read\@inputcheck to\XR@line
 %    \end{macrocode}
-% Le |...| garantit que |\XR@test| a toujours suffisamment d'arguments.
+% Les caractères \og |...| \fg{} garantissent que |\XR@test| a toujours
+% suffisamment d'arguments.
 %    \begin{macrocode}
   \expandafter\XR@test\XR@line...\XR@}
 %    \end{macrocode}
 %
 % Observation de la première unité lexicale de la ligne. Si c'est un 
-%|\newlabel|, exécution du |\newlabel|. Si c'est un |\@input|, ajout du
-% nom du fichier dans la liste des fichiers à traiter. Sinon, pas 
+%|\newlabel|, exécution de celui-ci. Si c'est un |\@input|, ajout du
+% nom du fichier dans la liste des fichiers |aux| à traiter. Sinon, pas 
 % de traitement.
 % Parcours en boucle tant que la fin du fichier n'est pas atteinte. 
 % Ensuite passage au fichier suivant dans la liste.
@@ -178,4 +184,3 @@
 %
 % \Finale
 %
-
