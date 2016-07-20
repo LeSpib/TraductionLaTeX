@@ -31,14 +31,14 @@ Section                       | Avancée                | Pages traduites | Comm
 En-tête du document tex       | :waxing_crescent_moon: |                 |
 Pages d'avant-propos          | :new_moon:             | 1 / 4           | 
 1. Introduction               | :waxing_gibbous_moon:  | 4               |
-2. L'interface utilisateur    | :waxing_crescent_moon: | 23 / 28         | Section en cours : 2.10
+2. L'interface utilisateur    | :waxing_crescent_moon: | 24 / 28         | Section en cours : 2.11
 3. Exemples                   | :new_moon:             | 0 / 7           |
 4. Couleurs nommées           | :new_moon:             | 0 / 3           |
 5. Compléments techniques     | :new_moon:             | 0 / 3           |
 6. Les formules               | :new_moon:             | 0 / 13          |
 Références                    | :first_quarter_moon:   | 1 / 1           | 
 Annexes                       | :new_moon:             | 2 / 6           |
-Index                         | :new_moon:             | 0 / 3           |
+Index                         | :new_moon:             | 0 / 4           |
 
 ### Quelques termes récurrents dans la traduction de ce document
 

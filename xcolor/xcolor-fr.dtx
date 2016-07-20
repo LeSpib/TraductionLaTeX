@@ -2060,32 +2060,60 @@
 % \subsection{Couleur d'encadrement d'hyperliens}\label{sec.hyperref}
 %
 % L'extension \Package{hyperref} offre toutes sortes de support pour les
-% hyperliens, les \trad{fonctionnalités} PDF, etc.
-% \tradini
-% There are two standard ways to make hyperlinks visible (see the package documentation \cite{hyperref} for additional information on how to set up these features):
+% hyperliens, les \trad{fonctionnalités} PDF, etc. Il y a d'ordinaire deux
+% façons pour rendre les hyperliens visibles (voir la documentation de 
+% l'extension \cite{hyperref} pour plus d'informations sur l'utilisation de ces
+% fonctionnalités) :
 % \begin{itemize}
-% \item print hyperlinks in a different color than normal text, using the keys \Key{citecolor}, \Key{filecolor}, \Key{linkcolor}, \Key{menucolor}, \Key{pagecolor}, \Key{runcolor}, \Key{urlcolor} with color expressions, e.g., |\hypersetup{urlcolor=-green!50}|;
-% \item display a colored border around hyperlinks, using the keys \Key{citebordercolor}, \Key{filebordercolor}, \Key{linkbordercolor}, \Key{menubordercolor}, \Key{pagebordercolor}, \Key{runbordercolor}, \Key{urlbordercolor} with explicit numerical \Model{rgb} parameter specification, e.g., |\hypersetup{urlbordercolor={1 0.5 0.25}}|.
+% \item composer les hyperliens avec une couleur différente de celle du texte 
+%   en recourant aux clés \Key{citecolor}, \Key{filecolor}, \Key{linkcolor}, 
+%   \Key{menucolor}, \Key{pagecolor}, \Key{runcolor} et \Key{urlcolor} avec des 
+%   expressions de couleur telles que, par exemple, 
+%  |\hypersetup{urlcolor=-green!50}| ;
+% \item afficher un cadre coloré autour des hyperliens avec les clés 
+%   \Key{citebordercolor}, \Key{filebordercolor}, \Key{linkbordercolor}, 
+%   \Key{menubordercolor}, \Key{pagebordercolor}, \Key{runbordercolor} et 
+%   \Key{urlbordercolor} associées à des paramètres \Model{rgb} numériques 
+%   explicites, comme par exemple |\hypersetup{urlbordercolor={1 0.5 0.25}}|.
 % \end{itemize}
-% Obviously, the second method is somewhat inconvenient since it does not allow for color names or even color expressions.
-% Therefore, \XC{} provides --- via the package option \Option{hyperref} --- a set of extended keys \Key{xcitebordercolor}, \Key{xfilebordercolor}, \Key{xlinkbordercolor}, \Key{xmenubordercolor}, \Key{xpagebordercolor}, \Key{xrunbordercolor}, \Key{xurlbordercolor} which are being used in conjunction with color expressions, e.g., |\hypersetup{xurlbordercolor=-green!50}|.
+% À l'évidence, la seconde méthode n'est pas très pratique puisqu'elle ne
+% permet pas d'utiliser les noms de couleur ou les expressions de couleur. 
+% Ici, \XC{} propose --- par le biais de l'option d'extension 
+% \Option{hyperref} --- les clés étendues \Key{xcitebordercolor}, 
+% \Key{xfilebordercolor}, \Key{xlinkbordercolor}, \Key{xmenubordercolor}, 
+% \Key{xpagebordercolor}, \Key{xrunbordercolor} et \Key{xurlbordercolor} qui
+% peuvent être utilisées en conjonction avec les expressions de couleur, par
+% exemple |\hypersetup{xurlbordercolor=-green!50}|.
 %
-% Another new key, \Key{xpdfborder}, provides a way to deal with a \Program{dvips}-related problem:
-% for most of the drivers, a setting like |pdfborder={0 0 1}| will determine the width of the border that is drawn around hyperlinks in points.
-% However, in the \Program{dvips} case, the numerical parameters are interpreted in relation to the chosen output resolution for processing the \File{.dvi} file into a \File{.ps} file.
-% Unfortunately, at the time when the \File{.dvi} is constructed, nobody knows if and at which resolution a transformation into \File{.ps} will take place afterwards.
-% Consequently, any default value for \Key{pdfborder} may be useful or not.
-% Within \Package{hyperref}, the default for \Program{dvips} is |pdfborder={0 0 12}|, which works fine for a resolution of 600 or 1200 dpi, but which produces an invisible border for a resolution of 8000 dpi, as determined by the command-line switch |-Ppdf|.
-% On the other hand, setting |pdfborder={0 0 80}| works fine for \Program{dvips} at 8000 dpi, but makes a document unportable, since other drivers (or even |dvips| in a low resolution) will draw very thick boxes in that case.
-% This is were the \Key{xpdfborder} key comes in handy: it rescales its arguments for the |dvips| case by a factor 80 (ready for 8000 dpi) and leaves everything unchanged for other drivers.
-% Thus one can say |xpdfborder={0 0 1}| in a driver-independent way.
+% Une autre clé, \Key{xpdfborder}, propose une façon de traiter un problème lié
+% \Program{dvips} : pour la plupart des pilotes, un paramétrage comme 
+% |pdfborder={0 0 1}| détermine l'épaisseur du cadre qui est tracé autour des
+% hyperliens en points. Toutefois, dans le cas de \Program{dvips}, les 
+% paramètres numériques sont interprêtés en lien avec la résolution de sortie
+% choisie pour convertir le fichier \File{.dvi} en fichier \File{.ps}. 
+% Malheureusement, au moment où le fichier \File{.dvi} est construit, personne 
+% ne sait si une conversion du fichier \File{.dvi} en \File{.ps} sera effectuée
+% par la suite et à quelle résolution. 
+% Par conséquent, toute valeur par défaut pour \Key{pdfborder} peut avoir du 
+% sens ou pas. Au sein d'\Package{hyperref}, la valeur par défaut pour 
+% \Program{dvips} est |pdfborder={0 0 12}|, ce qui fonctionne bien pour des
+% résolutions de 600 ou 1200~dpi mais produit un cadre invisible pour une 
+% résolution de 8000~dpi, comme déterminé par l'option |-Ppdf| en ligne de 
+% commande.
+% À l'opposé, paramétrer |pdfborder={0 0 80}| fonctionne bien avec 
+% \Program{dvips} à 8000~dpi, mais rend le document peu portable puisque les
+% autres pilotes (y compris |dvips| en faible résolution) dessinent un cadre
+% très épais dans ce cas.  
+% La clé \Key{xpdfborder} prend là tout son sens : elle redimensionne son 
+% argument dans le cas du pilote |dvips| d'un facteur 80 (prêt pour 8000~dpi)
+% et le garde inchangé pour les autres pilotes. Ainsi il est possible
+% de spécifier |xpdfborder={0 0 1}| de façon indépendante des pilotes.
 %
 %
 %
-% \tradfin
-% \subsection{Spécifications de couleurs additionnelles le monde de \Package{pstricks}}\label{sec.pstricks}
+% \subsection{Spécifications de couleurs additionnelles pour \Package{pstricks}}\label{sec.pstricks}
+%
 % \tradini
-%
 % For \Package{pstricks} users, there are different ways of invoking colors within command option keys:
 % \begin{itemize}
 % \item |\psset{linecolor=green!50}|
