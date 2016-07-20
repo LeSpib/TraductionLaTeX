@@ -33,6 +33,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \DeclareOption{defaut}{
+  \newcommand{\appelfontenc}{}
+  \newcommand{\appelinputenc}{}
   \newcommand{\appelbabel}{}
 }
 
@@ -47,9 +49,9 @@
   \makeatletter 
   \def\MaintainedByLaTeXTeam#1{%
   {\gdef\@maintainedby{%
-  Ce fichier est maintenu par l'équipe du \og \LaTeX{} Project \fg{}.\\%
-  Les rapports d'anomalie peuvent être envoyés en anglais à \\%
-  \url{http://latex-project.org/bugs.html} (catégorie \texttt{#1}).}}}
+  Ce fichier est maintenu par l'\'{e}quipe du \og \LaTeX{} Project \fg{}.\\%
+  Les rapports d'anomalie peuvent \^{e}tre envoy\'{e}s en anglais \`{a} \\%
+  \url{http://latex-project.org/bugs.html} (cat\'{e}gorie \texttt{#1}).}}}
   %
   % Traduction des termes automatiques associés à l'index.
   \def\SpecialMainEnvIndex#1{\@bsphack\special@index{%
@@ -67,17 +69,28 @@
             {\protect\ttfamily#1}\encapchar usage}\@esphack}
   % 
   % Traduction du titre du texte en prologue à l'index.
-  \IndexPrologue{\section*{Index}\markboth{Index}{Index} Les numéros en 
-  italique renvoient à la page où se trouve l'entrée correspondante; les 
-  numéros soulignés renvoient à la ligne de code de la définition; les 
-  numéros en romain renvoient aux lignes de code où l'entrée est utilisée.}
+  \IndexPrologue{\section*{Index}\markboth{Index}{Index} Les num\'{e}ros en 
+  italique renvoient \`{a} la page o\`{u} se trouve l'entr\'{e}e 
+  correspondante; les num\'{e}ros soulign\'{e}s renvoient \`{a} la ligne de 
+  code de la d\'{e}finition; les num\'{e}ros en romain renvoient aux lignes de
+  code o\`{u} l'entr\'{e}e est utilis\'{e}e.}
   %
   % Traduction des termes associés aux glossaires (servant d'historiques).
   \def\glossary@prologue{\section*{{Historique}}%
                  \markboth{{Historique}}{{Historique}}%
                  }
-  \def\generalname{Général}
+  \def\generalname{G\'{e}n\'{e}ral}
   \makeatother
+}
+
+%% Option babel pour activer l'extension fontenc
+\DeclareOption{fontenc}{
+  \renewcommand{\appelfontenc}{\RequirePackage[T1]{fontenc}}  
+}
+
+%% Option babel pour activer l'extension inputenc
+\DeclareOption{inputenc}{
+  \renewcommand{\appelinputenc}{\RequirePackage[utf8]{inputenc}}  
 }
 
 %% Option babel pour activer l'extension babel
@@ -96,6 +109,8 @@
 % Appel des extensions    
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\appelfontenc
+\appelinputenc
 \appelbabel
 \RequirePackage{xcolor}
 \RequirePackage{pifont}

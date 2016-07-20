@@ -1,7 +1,6 @@
 # Variables pour le codage 
 latex = pdflatex
 doc = xr-fr
-styleind = gind-fr
 
 # Déclaration des actions (et dépendance) 
 all: $(doc).pdf
