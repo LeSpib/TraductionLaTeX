@@ -2160,52 +2160,66 @@
 % Chacun des arguments de couleur peut aussi être laissé vide, ce qui implique
 % alors l'absence de couleur.
 % Dans la version étoilée, les \Meta{commandes} sont ignorées dans les rangées
-% avec des \emph{status rowcolors} inactifs (voir ci-dessous) tandis que dans 
+% avec des \emph{status de rowcolors} inactifs (voir ci-dessous) tandis que dans 
 % la version non étoilée, les \Meta{commandes} sont appliquées dans chaque 
 % rangée de la table.    
 % Ces commandes optionnelles peuvent être |\hline| ou |\noalign|\marg{trucs}.
 %
 % \DescribeMacro\showrowcolors
 % \DescribeMacro\hiderowcolors
-% \tradini
-% The \emph{rowcolors status} is activated (i.e., use coloring scheme) by default and/or |\showrowcolors|, it is inactivated (i.e., ignore coloring scheme) by the command |\hiderowcolors|.
+% Le \emph{status de rowcolors} est activé (c'est-à-dire que le motif de
+% couleur est appliqué) par défaut ou en utilisant la commande 
+% |\showrowcolors|, il est désactivé (le motif est ignoré) avec la commande 
+% |\hiderowcolors|.
 % \DescribeMacro\rownum
-% The counter |\rownum| may be used within such a table to access the current row number.
-% An example is given in figure \vref{fig.row}.
-% These commands require the \Option{table} option (which loads the \Package{colortbl} package).
+% Le compteur |\rownum| peut être utilisé au sein d'une table pour accéder 
+% au numéro courant de la rangée. Un exemple est donné en figure 
+% \vref{fig.row}. Ces commandes requièrent l'option \Option{table} (qui charge
+% l'extension \Package{colortbl}).
 %
-% Note that table coloring may be combined with color series.
-% This method was used to construct the examples in figure \vref{fig.csx}.
+% Notez que la mise en couleur de table peut être combinée avec des séries de
+% couleur. Cette méthode a servi pour constituer les exemples en figure 
+% \vref{fig.csx}.
 %
 %
 %
-% \tradfin
 % \subsection{Information sur la couleur}\label{sec.info}
-% \tradini
 %
 % \DescribeMacro\extractcolorspec
-%   \marg{color}\marg{cmd}\\
-% Extracts the color specification of \Meta{color} and puts it into \Meta{cmd}; equivalent to |\def\cmd{|\marg{model}\marg{spec}|}|.
+%   \marg{couleur}\marg{commande}\\
+% Cette commande extrait les spécifications de la \Meta{couleur} et les place 
+% dans la \Meta{commande}, ce dernier point étant équivalent à  
+% |\def\commande{|\marg{modèle}\marg{spéc}|}|.
 %
 % \DescribeMacro\extractcolorspecs
-%   \marg{color}\marg{model-cmd}\marg{color-cmd}\\
-% Extracts the color specification of \Meta{color} and puts it into \Meta{model-cmd} and \Meta{color-cmd}, respectively.
+%   \marg{couleur}\marg{model-cmd}\marg{color-cmd}\\
+% Cette commande extrait les spécifications de la \Meta{couleur} et les place 
+% dans la \Meta{commande-modèle} et la \Meta{commande-couleur} respectivement.
 %
 % \medskip
 % \DescribeMacro\tracingcolors
 %   |=|\Meta{int}\\
-% Controls the amount of information that is written into the |log| file:
+% Cette commande contrôle la quantité d'information écrite (ou trace) dans le
+% fichier |log| :
 % \begin{itemize}
-% \item \mbox{$\Meta{int}\le0$:}~no specific color logging.
-% \item \mbox{$\Meta{int}\ge1$:}~ignored color definitions due to |\providecolor| are logged.
-% \item \mbox{$\Meta{int}\ge2$:}~multiple (i.e.~overwritten) color definitions are logged.
-% \item \mbox{$\Meta{int}\ge3$:}~every command that defines a color will be logged.
-% \item \mbox{$\Meta{int}\ge4$:}~every command that sets a color will be logged.
+% \item \mbox{$\Meta{int}\le0$:}~aucune trace spécifique aux couleurs n'est 
+%   générée ;
+% \item \mbox{$\Meta{int}\ge1$:}~les définitions de couleur ignorées après un
+%   |\providecolor| sont tracées ;
+% \item \mbox{$\Meta{int}\ge2$:}~les définitions multiples d'une couleur (qui
+%   s'écrasent donc) sont tracées ;
+% \item \mbox{$\Meta{int}\ge3$:}~chaque commande qui définit une couleur est
+%   tracée ;
+% \item \mbox{$\Meta{int}\ge4$:}~chaque commande qui \trad{paramètre} une 
+%   couleur est tracée.
 % \end{itemize}
-% Like \TeX's |\tracing...| commands, this command may be used globally (in the document preamble) or locally/block-wise.
-% The package sets |\tracingcolors=0| as default.
-% Remark: since registers are limited and valuable, no counter is wasted for this issue.
+% Comme les commandes |\tracing...| de \TeX, cette commande peut être utilisée
+% globalement (dans le préambule du document) ou localement dans des blocs.
+% L'extension fixe |\tracingcolors=0| as default. 
+% Remarque : dans la mesure où les registres sont en nombre limité et précieux,
+% aucun compteur n'est perdu pour traiter ce sujet.
 %
+% \tradini
 % Note that whenever a color is used that has been defined via \LC's |\definecolor| command rather than \XC's new |\definecolor| and friends, a warning message `Incompatible color definition' will be issued.\footnote{This should not happen since usually there is no reason to load \LC{} in parallel to \XC{}.}
 %
 %
