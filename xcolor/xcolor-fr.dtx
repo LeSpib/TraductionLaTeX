@@ -2188,7 +2188,7 @@
 % \DescribeMacro\extractcolorspec
 %   \marg{couleur}\marg{commande}\\
 % Cette commande extrait les spécifications de la \Meta{couleur} et les place 
-% dans la \Meta{commande}, ce dernier point étant équivalent à  
+% dans la \Meta{commande} ce qui est équivalent à  
 % |\def\commande{|\marg{modèle}\marg{spéc}|}|.
 %
 % \DescribeMacro\extractcolorspecs
@@ -2219,17 +2219,20 @@
 % Remarque : dans la mesure où les registres sont en nombre limité et précieux,
 % aucun compteur n'est perdu pour traiter ce sujet.
 %
-% \tradini
-% Note that whenever a color is used that has been defined via \LC's |\definecolor| command rather than \XC's new |\definecolor| and friends, a warning message `Incompatible color definition' will be issued.\footnote{This should not happen since usually there is no reason to load \LC{} in parallel to \XC{}.}
+% Notez qu'à chaque fois qu'est utilisée une couleur qui a été définie par la
+% commande |\definecolor| de \LC plutôt que par celle de \XC (ou autre), un
+% message d'avertissement sur l'incompatibilité de définition de couleur 
+% \og Incompatible color definition \fg{} est émis\footnote{Ceci ne devrait pas
+% survenir puisqu'il n'y a pas de raison de charger \LC{} en parallèle de 
+% \XC{}.}.
 %
 %
 %
-% \tradfin
 % \subsection{Conversion de couleur}
-% \tradini
 %
 % \DescribeMacro\convertcolorspec
-%   \marg{model}\marg{spec}\marg{target model}\marg{cmd}\\
+%   \marg{modèle}\marg{spéc}\marg{modèle-cible}\marg{commande}\\
+% \tradini
 % Converts a color, given by the \Meta{spec} in model \Meta{model}, into \Meta{target model} and stores the new color specification in |\cmd|.
 % \Meta{target model} must be of type \Meta{num model}, whereas \Meta{model} may also be `named', in which case \Meta{spec} is simply the name of the color.
 %
