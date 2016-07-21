@@ -101,9 +101,7 @@
                           `xcolor' source and documentation (FR)]
 \documentclass{ltxdoc}
 \usepackage[table,showerrors,dvipsnames,hyperref]{xcolor}[2005/06/06]
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[ltxdoc,babel]{translatex-fr}
+\usepackage[ltxdoc,fontenc,inputenc,babel]{translatex-fr}
 \usepackage[french]{varioref}
 \usepackage{chngpage,tabularx,amsmath,amsthm}
 \usepackage
@@ -1255,13 +1253,15 @@
 % \DescribeFunc{twheel}
 % Ces fonctions permettent de déterminer des couleurs liées par des relations 
 % harmoniques basées sur les cercles chromatiques (voir section~\vref{sec.harmony}).
-% Les arguments sont ici \Meta{angle} ou \Meta{angle}|,|\Meta{cercle complet}, le premier servant d'abbréviation à \Meta{angle}|,\rangeHsb|.
+% Les arguments sont ici \Meta{angle} ou \Meta{angle}|,|\Meta{cercle complet},
+% le premier servant d'abbréviation à \Meta{angle}|,\rangeHsb|.
 % Le second argument \Meta{cercle complet} indique de combien d'unités un 
 % cercle complet est constitué tandis que le premier argument indique de
 % combien d'unités doit être faite la rotation à appliquer à la couleur
 % donnée. 
 % Pour cela, la couleur donnée est tout d'abord convertie en \Model{Hsb} 
-% (dans le cas de \Function{wheel}), ce qui génère les paramètres \emph{teinte\Circ}, \emph{saturation}, et \emph{luminosité}.
+% (dans le cas de \Function{wheel}), ce qui génère les paramètres 
+% \emph{teinte\Circ}, \emph{saturation}, et \emph{luminosité}.
 % Ensuite,
 % \begin{gather}
 % \displaystyle\emph{teinte\Circ} := \emph{teinte\Circ} + 
@@ -1321,7 +1321,8 @@
 %  Notez que \Index{HTML4} accepte un sous-ensemble de 16~noms de couleur (en
 %  utilisant des spécifications identiques), voir \cite{HTML4} et la section
 %  \vref{sec.names}.  
-% \item \Option{x11names}/\Option{x11names*} charge un ensemble de 317 noms de %  couleur\footnote{Ces noms représentent 315 couleurs différentes.} 
+% \item \Option{x11names}/\Option{x11names*} charge un ensemble de 317 noms de 
+%  couleur\footnote{Ces noms représentent 315 couleurs différentes.} 
 %  \Model{rgb} qui sont une simple variation sur un sous-ensemble de l'ensemble
 %  \Index{SVG} mentionné précédemment, respectant le fichier \File{rgb.txt}
 %  appartenant aux distributions \Index{Unix}/\Index{X11}\footnote{Une
@@ -1330,15 +1331,17 @@
 % Pour obtenir les 752 noms de couleur de \File{rgb.txt} sans trop d'effort :
 % \begin{itemize}
 % \item chargez \Option{x11names} ainsi que \Option{svgnames} ;
-% \item mettez les initiales en majuscule et supprimez les espaces : \Color[-]{DarkSlateGray}{} au lieu de \Color[-]{dark slate gray}{} par exemple ;
+% \item mettez les initiales en majuscule et supprimez les espaces : 
+%   \Color[-]{DarkSlateGray}{} au lieu de \Color[-]{dark slate gray}{} par 
+%   exemple ;
 % \item les noms \Index{X11} sans les nombres sont identiques aux couleurs
-%  \Index{SVG} sauf dans 5~cas :
-%  utilisez \Color{Gray0}{}, \Color{Grey0}{}, \Color{Green0}{}, \Color{Maroon0}{},
-%  \Color{Purple0}{} au lieu de \Color[-]{Gray}{}, \Color[-]{Grey}{}, 
-%  \Color[-]{Green}{}, \Color[-]{Maroon}{}, \Color[-]{Purple}{} pour obtenir les
-%  couleurs \Index{X11} d'origine ;
+%   \Index{SVG} sauf dans 5~cas :
+%   utilisez \Color{Gray0}{}, \Color{Grey0}{}, \Color{Green0}{}, \Color{Maroon0}{},
+%   \Color{Purple0}{} au lieu de \Color[-]{Gray}{}, \Color[-]{Grey}{}, 
+%   \Color[-]{Green}{}, \Color[-]{Maroon}{}, \Color[-]{Purple}{} pour obtenir les
+%   couleurs \Index{X11} d'origine ;
 % \item pour $N=0,1,\dots,100$, utilisez `|[gray]{|$N/100$|}|' ou 
-% `|black!|$100-N$' au lieu de \Color[-]{grayN}{} ou \Color[-]{greyN}{}.
+%  `|black!|$100-N$' au lieu de \Color[-]{grayN}{} ou \Color[-]{greyN}{}.
 % \end{itemize}
 % \end{itemize}
 %
@@ -1451,9 +1454,10 @@
 % La commande remplace à la fois |\DefineNamedColor| et |\definecolor| de \LC.
 % Notez que la définition d'un \Meta{nom} de couleur existant déjà est écrasée.
 % La variable |\tracingcolors| contrôle si cet écrasement est indiqué dans le
-% fichier \og log \fg{} ou pas (voir section \vref{sec.info} pour plus d'informations).
-% Les arguments sont décrits en section \vref{sec.term}.
-% Aussi, des expressions valides définissant des couleurs sont, par exemple :\begin{itemize}
+% fichier \og log \fg{} ou pas (voir section \vref{sec.info} pour plus 
+% d'informations). Les arguments sont décrits en section \vref{sec.term}.
+% Aussi, des expressions valides définissant des couleurs sont, par exemple :
+% \begin{itemize}
 % \item |\definecolor{red}{rgb}{1,0,0}|,
 % \item |\definecolor{red}{rgb/cmyk}{1,0,0/0,1,1,0}|,
 % \item |\definecolor{red}{hsb:rgb/cmyk}{1,0,0/0,1,1,0}|,
@@ -1704,9 +1708,12 @@
 % arguments que sa version de l'extension \LC{} :
 % \begin{itemize}
 %   \item \fcolorbox{gray}{yellow}{test} |\fcolorbox{gray}{yellow}{test}|,
-%   \item \fcolorbox[cmyk]{0,0,0,0.5}{0,0,1,0}{test} |\fcolorbox[cmyk]{0,0,0,0.5}{0,0,1,0}{test}|,
-%   \item \fcolorbox[gray]{0.5}[wave]{580}{test} |\fcolorbox[gray]{0.5}[wave]{580}{test}|,
-%   \item \fcolorbox{gray}[wave]{580}{test} |\fcolorbox{gray}[wave]{580}{test}|.
+%   \item \fcolorbox[cmyk]{0,0,0,0.5}{0,0,1,0}{test}
+%     |\fcolorbox[cmyk]{0,0,0,0.5}{0,0,1,0}{test}|,
+%   \item \fcolorbox[gray]{0.5}[wave]{580}{test}
+%     |\fcolorbox[gray]{0.5}[wave]{580}{test}|,
+%   \item \fcolorbox{gray}[wave]{580}{test}
+%     |\fcolorbox{gray}[wave]{580}{test}|.
 % \end{itemize}
 % Qui est plus, |\fcolorbox| recourt maintenant à une nouvelle manière de
 % d'encadrer un dessin, un développement de la suggestion de 
@@ -1835,7 +1842,9 @@
 % couleurs qui apparaissent dans un document comme une combinaison d'un
 % sous-ensemble fini de couleurs de base et de leurs variantes assourdies.
 % La séparation la plus importante est \Model{cmyk} où les couleurs de base
-% sont le \Color{cyan}{cyan}, le \Color{magenta}{magenta}, le \Color{jaune}{yellow} et le \Color{noir}{black}, comme demandé par les imprimeurs.
+% sont le \Color{cyan}{cyan}, le \Color{magenta}{magenta}, le 
+% \Color{jaune}{yellow} et le \Color{noir}{black}, comme demandé par les 
+% imprimeurs.
 % Ceci peut se faire en choisissant l'option d'extension \Option{cmyk}, de 
 % telle manière à ce que toutes les couleurs soient converties dans ce modèle,
 % et de retraiter alors le fichier de sortie pour en extraire les compositions
@@ -1971,9 +1980,9 @@
 % vecteur \emph{pas} :
 % \begin{itemize}
 % \item |step|,\ |grad|:\ le dernier argument, \marg{spéc-p}, définit le
-% vecteur directionnel \emph{gradient} ;
+%   vecteur directionnel \emph{gradient} ;
 % \item |last|:\ \marg{spéc-p} ou \oarg{modèle-p}\marg{spéc-p}, selon le cas, 
-% définit le \emph{dernier} vecteur de paramètres de couleur.
+%   définit le \emph{dernier} vecteur de paramètres de couleur.
 % \end{itemize}
 % Durant le traitement de |\resetcolorseries|, le vecteur courant
 % \emph{pas} est alors calculé ainsi :
@@ -2111,42 +2120,54 @@
 %
 %
 %
-% \subsection{Spécifications de couleurs additionnelles pour \Package{pstricks}}\label{sec.pstricks}
+% \subsection{Spécifications de couleurs additionnelles pour
+%   \Package{pstricks}}\label{sec.pstricks}
 %
-% \tradini
-% For \Package{pstricks} users, there are different ways of invoking colors within command option keys:
+% Pour les utilisateurs de \Package{pstricks}, il existe plusieurs méthodes
+% pour indiquer de la couleur dans les clés des options :
 % \begin{itemize}
 % \item |\psset{linecolor=green!50}|
 % \item |\psset{linecolor=[rgb]{0.5,1,0.5}}|
 % \item |\psframebox[linecolor={[rgb]{0.5,1,0.5}}]{foo}|
 % \end{itemize}
-% Note the additional curly braces in the last case; without them, the optional argument of |\psframebox| would be terminated too early.
+% Notez la présence des accolades dans le dernier cas; sans elles, l'argument
+% optionnel de |\psframebox| s'achèverait trop tôt.
 %
 % \DescribeMacro\definecolor
-%   |[ps]|\marg{name}\marg{core liste-modèle}\marg{code}\\
-% Stores \Index{PostScript} \Meta{code} --- that should not contain slash~`|/|' characters --- within a color.
-% Example:
-% after |\definecolor[ps]{foo}{rgb}{bar}|, the \Package{pstricks} command |\psline[linecolor=foo]...| inserts `|bar setrgbcolor|' where the linecolor information is required --- at least in case of the \Option{dvips} driver.
-% See also \href{xcolor2.pdf}{\File{xcolor2.tex}} for an illustrative application.
+%   |[ps]|\marg{nom}\marg{liste-modèle-central}\marg{code}\\
+% Cette commande stocke le \Meta{code} \Index{PostScript} --- qui ne devrait 
+% pas contenir de caractères \og |/| \fg{} --- dans une couleur.
+% Exemple:
+% après avoir déclaré |\definecolor[ps]{tic}{rgb}{tac}|, 
+% la commande |\psline[linecolor=tic]...| de l'extension de \Package{pstricks}
+% insère \og |tac setrgbcolor| \fg{} là où l'information de |linecolor| est
+% requise --- au moins dans le cas du pilote \Option{dvips}.
+% Voir aussi \href{xcolor2.pdf}{\File{xcolor2.tex}} pour une illustration de
+% point.
 %
 %
 %
-% \tradfin
 % \subsection{Couleur dans des tableaux}
-% \tradini
 %
 % \DescribeMacro\rowcolors
-%   \oarg{commands}\marg{row}\marg{odd-row color}\marg{even-row color}\\
+%   \oarg{commandes}\marg{rangée}\marg{couleur-rangée-impaire}\marg{couleur-rangée-paire}\\
 % \DescribeMacro{\rowcolors*}
-%   \oarg{commands}\marg{row}\marg{odd-row color}\marg{even-row color}\\
-% One of these commands has to be executed \emph{before} a table starts.
-% \Meta{row} tells the number of the first row which should be colored according to the \Meta{odd-row color} and \Meta{even-row color} scheme.
-% Each of the color arguments may also be left empty (= no color).
-% In the starred version, \Meta{commands} are ignored in rows with inactive \emph{rowcolors status} (see below), whereas in the non-starred version, \Meta{commands} are applied to every row of the table.
-% Such optional commands may be |\hline| or |\noalign|\marg{stuff}.
+%   \oarg{commandes}\marg{rangée}\marg{couleur-rangée-impaire}\marg{couleur-rangée-paire}\\
+% Ces commandes doivent être exécutées \emph{avant} que la table ne commence. 
+% L'argument \Meta{rangée} précise le numéro de la première rangée qui doit
+% être colorée avec le motif composé de \Meta{couleur-rangée-impaire} et de
+% \Meta{couleur-rangée-paire} 
+% Chacun des arguments de couleur peut aussi être laissé vide, ce qui implique
+% alors l'absence de couleur.
+% Dans la version étoilée, les \Meta{commandes} sont ignorées dans les rangées
+% avec des \emph{status rowcolors} inactifs (voir ci-dessous) tandis que dans 
+% la version non étoilée, les \Meta{commandes} sont appliquées dans chaque 
+% rangée de la table.    
+% Ces commandes optionnelles peuvent être |\hline| ou |\noalign|\marg{trucs}.
 %
 % \DescribeMacro\showrowcolors
 % \DescribeMacro\hiderowcolors
+% \tradini
 % The \emph{rowcolors status} is activated (i.e., use coloring scheme) by default and/or |\showrowcolors|, it is inactivated (i.e., ignore coloring scheme) by the command |\hiderowcolors|.
 % \DescribeMacro\rownum
 % The counter |\rownum| may be used within such a table to access the current row number.

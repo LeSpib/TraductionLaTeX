@@ -3,6 +3,7 @@ latex = pdflatex
 doc = xcolor-fr
 styleind = gind-fr
 
+# Déclaration des actions (et dépendances) 
 all: $(doc).pdf
 
 $(doc).pdf: $(doc).dtx
@@ -12,6 +13,7 @@ $(doc).pdf: $(doc).dtx
 	$(latex) $(doc).dtx
 	$(latex) $(doc).dtx
 
+# Nettoyage simple du répertoire
 clean:
 	rm -f  \
 		$(doc).out \
@@ -26,5 +28,6 @@ clean:
 		$(doc).blg \
 		$(doc).aux 
 
+# Nettoyage complet
 mrproper: clean
-	rm -rf $(doc).pdf
+	rm -f $(doc).pdf
