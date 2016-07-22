@@ -2257,15 +2257,17 @@
 % Par exemple, \Color{Fuchsia}{Fuchsia} restitue 
 % \testclr[cmyk]{0.47,0.91,0,0.08} avec l'option \Option{dvipsnames} et
 % \testclr[rgb]{1,0,1} avec l'option \Option{svgnames}.
-% \tradini
-% However, there is a simple trick --- based on \emph{deferred color definition} --- that allows us to use colors from both sets in the desired way:
+% Toutefois, il existe ici une astuce --- basée sur la \emph{définition
+% différée de couleur} --- qui nous permet d'utiliser des couleurs des deux 
+% ensembles comme souhaité :
 % \begin{verbatim}
 % \usepackage[dvipsnames*,svgnames]{xcolor}
 % \definecolors{Fuchsia}
 % \end{verbatim}
-% Now all colors from the \Index{SVG} set are available (except \Color{}{Fuchsia}) plus \Color{}{Fuchsia} from the other set.
+% Maintenant toutes les couleurs de l'ensemble \Index{SVG} sont disponibles 
+% (exception faites de \Color{Fuchsia}{Fuchsia}) ainsi que 
+% \Color{Fuchsia}{Fuchsia} de l'autre ensemble.
 %
-% \tradfin
 % \subsubsection{Saut de page et pdf\TeX}\label{sec.fixpdftex}
 %
 % \tradini
@@ -2319,13 +2321,13 @@
 %
 %
 %
-%
+% \tradfin
 % \clearpage
 % \begin{adjustwidth}{-2.5cm}{}
 % \section{Exemples}
 %
 %
-% \begin{figure}[htbp]\caption{Color spectrum}\label{fig.spectrum}
+% \begin{figure}[htbp]\caption{Spectre visible}\label{fig.spectrum}
 % \small
 % \newcount\WL \unitlength.75pt
 % \begin{picture}(460,60)(355,-10)
@@ -2357,7 +2359,7 @@
 % \end{figure}
 %
 %
-% \begin{figure}[htbp]\caption{Color testing}\label{fig.testcolors}
+% \begin{figure}[htbp]\caption{Tests de couleur}\label{fig.testcolors}
 % \small
 % \begin{adjustwidth}{-2.5cm}{}
 % \raggedleft
@@ -2395,7 +2397,7 @@
 % \colorlet{\ukColor-hsb}[hsb]{\ukColor}
 % \colorlet{\ukColor-gray}[gray]{\ukColor}
 %
-% \begin{figure}[htbp]\caption{Progressing from one to another color}\label{fig.progress}
+% \begin{figure}[htbp]\caption{Progression d'une couleur à une autre}\label{fig.progress}
 % \small
 % \begin{adjustwidth}{-2.5cm}{}
 % \makeatletter
@@ -2424,7 +2426,7 @@
 % \ColorLoop0{blue}
 % \ColorLoop0{yellow}
 % \\\noalign{\vspace*{-2.5ex}}\hline\noalign{\vspace*{1.5ex}}
-% \itshape Color&\itshape Definition/representation (\textup{\Option{\csname XC@@drv\endcsname}} driver)\\
+% \itshape Couleur&\itshape Définition/représentation (pilote \textup{\Option{\csname XC@@drv\endcsname}})\\
 % \ColorLoop1{}
 % \end{tabular}
 % \end{adjustwidth}
@@ -2800,6 +2802,7 @@
 % \begin{adjustwidth}{-2.5cm}{}
 % \raggedcolumns\columnsep2.5em
 %
+% \tradini
 % \section{Couleurs par nom}\label{sec.names}
 %
 % \begin{multicols}{5}[\subsection{Couleurs de base (toujours disponibles)}\label{sec.basenam}]

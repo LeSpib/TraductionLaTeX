@@ -32,7 +32,7 @@ En-tête du document tex       | :waxing_crescent_moon: |                 |
 Pages d'avant-propos          | :waxing_crescent_moon: | 2 / 4           | 
 1. Introduction               | :waxing_gibbous_moon:  | 4               |
 2. L'interface utilisateur    | :waxing_crescent_moon: | 26 / 28         | Section en cours : 2.15
-3. Exemples                   | :new_moon:             | 0 / 7           |
+3. Exemples                   | :new_moon:             | 2 / 7           | Figure en cours : 4
 4. Couleurs nommées           | :new_moon:             | 0 / 3           |
 5. Compléments techniques     | :new_moon:             | 0 / 3           |
 6. Les formules               | :new_moon:             | 0 / 13          |
