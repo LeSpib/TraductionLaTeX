@@ -2232,23 +2232,32 @@
 %
 % \DescribeMacro\convertcolorspec
 %   \marg{modèle}\marg{spéc}\marg{modèle-cible}\marg{commande}\\
-% \tradini
-% Converts a color, given by the \Meta{spec} in model \Meta{model}, into \Meta{target model} and stores the new color specification in |\cmd|.
-% \Meta{target model} must be of type \Meta{num model}, whereas \Meta{model} may also be `named', in which case \Meta{spec} is simply the name of the color.
+% Cette commande convertit une couleur, donnée par les \Meta{spéc} dans le
+% \Meta{modèle}, dans le \Meta{modèle-cible} et stocke les nouvelles 
+% spécifications dans |\commande|.
+% Le \Meta{modèle-cible} doit être de type \Meta{modèle-numérique}, tandis que
+% le \Meta{modèle} peut être également \og named \fg{}, auquel cas \Meta{spéc}
+% correspond tout simplement au nom de la couleur.
 %
-% Example: |\convertcolorspec{cmyk}{0.81,1,0,0.07}{HTML}\tmp| acts like |\def| |\tmp{1F00ED}|.
+% Exemple : |\convertcolorspec{cmyk}{0.81,1,0,0.07}{HTML}\temp| fait la même
+% opération que |\def| |\temp{1F00ED}|.
 %
 %
 %
-% \tradfin
 % \subsection{Problèmes et solutions}
+%
+% \subsubsection{Conflits de nom entre \Option{dvipsnames} et \Option{svgnames}}\label{sec.clash}
+%
+% Du fait de l'ordre fixe de traitement des options (qui ne dépend pas de
+% l'ordre dans lequel les options sont listées dans la commande 
+% |\usepackage|), les couleurs \Option{svgnames} priment toujours sur les
+% couleurs \Option{dvipsnames} portant le même nom.
+% Ceci peut conduire à des résultats non souhaités si les deux options sont
+% chargées ensemble.
+% Par exemple, \Color{Fuchsia}{Fuchsia} restitue 
+% \testclr[cmyk]{0.47,0.91,0,0.08} avec l'option \Option{dvipsnames} et
+% \testclr[rgb]{1,0,1} avec l'option \Option{svgnames}.
 % \tradini
-%
-% \subsubsection{Name clashs between \Option{dvipsnames} and \Option{svgnames}}\label{sec.clash}
-%
-% Due to the fixed option processing order (which does not depend on the order how the options were specified in the |\usepackage| command), the \Option{svgnames} colors will always overrule \Option{dvipsnames} colors with identical names.
-% This can lead to undesired results if both options are used together.
-% For instance, \Color{}{Fuchsia} yields \testclr[cmyk]{0.47,0.91,0,0.08} under the regime of \Option{dvipsnames} and \testclr[rgb]{1,0,1} with respect to \Option{svgnames}.
 % However, there is a simple trick --- based on \emph{deferred color definition} --- that allows us to use colors from both sets in the desired way:
 % \begin{verbatim}
 % \usepackage[dvipsnames*,svgnames]{xcolor}
@@ -2256,8 +2265,10 @@
 % \end{verbatim}
 % Now all colors from the \Index{SVG} set are available (except \Color{}{Fuchsia}) plus \Color{}{Fuchsia} from the other set.
 %
-% \subsubsection{Page breaks and pdf\TeX}\label{sec.fixpdftex}
+% \tradfin
+% \subsubsection{Saut de page et pdf\TeX}\label{sec.fixpdftex}
 %
+% \tradini
 % Since pdf\TeX{} does not maintain a \emph{\Index{color stack}} --- in contrast to \Program{dvips} --- a typical problem is the behaviour of colors in the case of page breaks, as illustrated by the following example:
 % \begin{verbatim}
 % \documentclass{minimal}
@@ -2279,8 +2290,10 @@
 % \item It does not support several independent text streams like footnotes.
 % \end{itemize}
 %
-% \subsubsection{Change color of included \File{.eps} file}\label{sec.fixinclude}
+% \tradfin
+% \subsubsection{Changement de couleur d'un fichier \File{.eps} inclus}\label{sec.fixinclude}
 %
+% \tradini
 % In general, \XC{} cannot change colors of an image that is being included via the |\includegraphics| command from the \Package{graphics} or \Package{graphicx} package.
 % There is, however, a limited opportunity to influence the current color of included \Index{PostScript} files.
 % Consider the following file |foo.eps| which draws a framed gray box:
@@ -2787,9 +2800,9 @@
 % \begin{adjustwidth}{-2.5cm}{}
 % \raggedcolumns\columnsep2.5em
 %
-% \section{Colors by Name}\label{sec.names}
+% \section{Couleurs par nom}\label{sec.names}
 %
-% \begin{multicols}{5}[\subsection{Base colors (always available)}\label{sec.basenam}]
+% \begin{multicols}{5}[\subsection{Couleurs de base (toujours disponibles)}\label{sec.basenam}]
 % \footnotesize\def\0#1{\Testclr{#1}{#1}}
 % \0{black}
 % \0{blue}
@@ -2813,7 +2826,7 @@
 % \end{multicols}
 %
 %
-% \begin{multicols}{5}[\subsection{Colors via \Option{dvipsnames} option}\label{sec.dvipsnam}]
+% \begin{multicols}{5}[\subsection{Couleurs obtenues avec l'option \Option{dvipsnames}}\label{sec.dvipsnam}]
 % \footnotesize\def\0#1{\Testclr{#1}{#1}}
 % \0{Apricot}
 % \0{Aquamarine}
@@ -2887,7 +2900,7 @@
 %
 %
 % \makeatletter
-% \def\ColorList#1#2#3#4{\begin{multicols}{#1}[\subsection{Colors via \Option{#2names} option}\label{sec.#2nam}]
+% \def\ColorList#1#2#3#4{\begin{multicols}{#1}[\subsection{Couleurs obtenues avec l'option \Option{#2names}}\label{sec.#2nam}]
 %   \footnotesize
 %   \def\preparecolorset
 %    {\def\XC@@cmd[####1]####2####3####4{\definecolor[####1]{@test}{####3}{####4}#4{@test}{####2}}\@testopt{\XC@definecolorset}{}}
