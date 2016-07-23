@@ -7,7 +7,6 @@ all: $(doc).pdf
 
 $(doc).pdf: $(doc).dtx
 	$(latex) $(doc).dtx
-	$(latex) $(doc).dtx
 
 # Nettoyage simple du répertoire
 clean:

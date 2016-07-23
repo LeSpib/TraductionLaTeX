@@ -13,7 +13,6 @@ Les commandes suivantes doivent être exécutées :
 
 ```bash
 pdflatex xspace-fr.dtx
-pdflatex xspace-fr.dtx
 ```
 
 Sur ce point, un fichier Makefile est mis à disposition (voir par exemple [OpenClassrooms](https://openclassrooms.com/courses/compilez-sous-gnu-linux#/id/r-1130480) pour plus d'informations).
@@ -34,10 +33,9 @@ Section                       | Avancée                | Pages traduites | Comm
 En-tête du document tex       | :new_moon:             |                 |
 Page d'avant-propos           | :first_quarter_moon:   | 0               | 
 1. Introduction               | :first_quarter_moon:   | 3               |
-2. Les commandes              | :waxing_crescent_moon: | 2 / 4           | Traduction en cours
+2. Les commandes              | :first_quarter_moon:   | 4               | 
 
 
 ### Glossaire pour la traduction
 
-Anglais                   | Français                                          | Commentaires 
-------------------------- | ------------------------------------------------- | -------------------------------
+Il n'y a pas eu besoin d'un glossaire pour cette traduction.
