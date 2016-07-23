@@ -34,8 +34,8 @@ Traduction       | Source              | Avancée                | Pages traduit
 [booktabs-fr]    | [booktabs] 1.618033 | :waxing_crescent_moon: | 9 / 18          | Traduction préexistante ([FT-tools]).
                  | [calc] v4.3         |                        | *. / 17*        | Traduction préexistante ([FT-tools]).
 [cleveref-fr]    | [cleveref] v0.19    | :new_moon:             | 0 / 31          |
-                 | [datatool]          |                        | *. / 220*       |
-                 | [datetime2]         |                        | *. / 169*       |
+                 | [datatool] v2.26    |                        | *. / 220*       |
+                 | [datetime2] v1.5.2  |                        | *. / 169*       |
                  | [dcolumn] v1.06     |                        | *. / 4*         | Traduction préexistante ([FT-tools]).
                  | [delarray] v1.01    |                        | *. / 3*         | Traduction préexistante ([FT-tools]).
                  | [enumerate] v3.00   |                        | *. / 4*         | Traduction préexistante ([FT-tools]).
@@ -59,10 +59,11 @@ Traduction       | Source              | Avancée                | Pages traduit
 [listings-fr]    | [listings] v1.6     | :new_moon:             | 0 / 61          |
                  | [longtable] v4.11   |                        | *. / 26*        | Traduction préexistante ([FT-tools]).
                  | [multicol] v1.8p    |                        | *. / 36*        | Traduction préexistante ([FT-tools]).
-                 | [pgfplots]          |                        | *. / 544*       |
+                 | [pgfplots] v1.13    |                        | *. / 544*       |
                  | [rawfonts] v0.01    |                        | *. / 4*         | Traduction préexistante ([FT-tools]).
+[shellesc-fr]    | [shellesc] v0.02a   | :new_moon:             | 0 / 3           | 
                  | [showkeys] v3.17    |                        | *. / 10*        | Traduction préexistante ([FT-tools]).
-                 | [siunitx]           |                        | *. / 102*       |
+                 | [siunitx] v2.6q     |                        | *. / 102*       |
                  | [somedefs] v0.03    |                        | *. / 3*         | Traduction préexistante ([FT-tools]).
                  | [tabularx] v2.11    |                        | *. / 12*        | Traduction préexistante ([FT-tools]).
                  | [theorem] v2.2c     |                        | *. / 15*        | Traduction préexistante ([FT-tools]).
@@ -197,10 +198,12 @@ Anglais                | Français                                       | Comme
 [pgfplots-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/pgfplots>
 [rawfonts]:      <https://www.ctan.org/pkg/rawfonts>
 [rawfonts-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/rawfonts>
-[siunitx]:       <https://www.ctan.org/pkg/siunitx>
-[siunitx-fr]:    <https://github.com/LeSpib/TransLaTeX/tree/master/siunitx>
+[shellesc]:      <https://www.ctan.org/pkg/shellesc>
+[shellesc-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/shellesc>
 [showkeys]:      <https://www.ctan.org/pkg/showkeys>
 [showkeys-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/showkeys>
+[siunitx]:       <https://www.ctan.org/pkg/siunitx>
+[siunitx-fr]:    <https://github.com/LeSpib/TransLaTeX/tree/master/siunitx>
 [somedefs]:      <https://www.ctan.org/pkg/somedefs>
 [somedefs-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/somedefs>
 [tabularx]:      <https://www.ctan.org/pkg/tabularx>
