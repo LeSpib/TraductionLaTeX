@@ -2307,7 +2307,7 @@
 % biais de la commande |\includegraphics| des extensions \Package{graphics} 
 % comme \Package{graphicx}.
 % Il existe toutefois une possibilité limitée d'influer sur la couleur courante
-% des fichiers \Index{PostScript}. Considérons le fichier |truc.eps| suivant
+% des fichiers \Index{PostScript}. Considérez le fichier |truc.eps| suivant
 % qui dessine une boîte grise encadrée. 
 % \begin{verbatim}
 % %!PS-Adobe-3.0 EPSF-3.0
@@ -2316,23 +2316,24 @@
 % 0.75 setgray
 % 2 2 56 8 rectfill
 % \end{verbatim}
-% \tradini
-% Now run the following code through \LaTeX{} and \Program{dvips}:
+% Maintenant exécutez le code suivant avec \LaTeX{} puis \Program{dvips}:
 % \begin{verbatim}
 % \documentclass{minimal}
 % \usepackage[fixinclude]{xcolor}
 % \usepackage{graphics}
 % \begin{document}
-% \includegraphics{foo} \textcolor{red}{\includegraphics{foo}}
+% \includegraphics{truc} \textcolor{red}{\includegraphics{truc}}
 % \end{document}
 % \end{verbatim}
-% The resulting \File{.ps} file will display two gray boxes: the first with a black frame, the second with a red frame.
-% If we had omitted the \Option{fixinclude} option, the second box would also display a black frame.
-% This is because \Program{dvips} usually resets the current color to black immediately before including an \File{.eps} file.
+% Le fichier \File{.ps} qui en résulte affiche deux boîtes grises : la première
+% avec un cadre noir, la seconde avec un cadre rouge. Si l'option 
+% \Option{fixinclude} avait été omise, la seconde boîte afficherait également
+% un cadre noir. Ce comportement s'explique par le fait que \Program{dvips}
+% réinitialise la couleur courante au noir aussitôt avant d'inclure un fichier 
+% \File{.eps}.
 %
 %
 %
-% \tradfin
 % \clearpage
 % \begin{adjustwidth}{-2.5cm}{}
 % \section{Exemples}
