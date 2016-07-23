@@ -168,9 +168,9 @@
 % \def\testclr#1#{\@testclr{#1}}
 % \def\@testclr#1#2{{\fboxsep\z@\fbox{\colorbox#1{#2}{\phantom{XX}}}}}
 % \def\Testclr#1#{\@Testclr{#1}}
-% \def\@Testclr#1#2#3{\testclr#1{#2}~\rlap{\Color[-]{#3}}\\}
+% \def\@Testclr#1#2#3{\testclr#1{#2}~\rlap{\Colorfr[-]{#3}}\\}
 % \def\TestClr#1#{\@TestClr{#1}}
-% \def\@TestClr#1#2#3{\testclr#1{#2}~\rlap{\Color[+]{#3}}\\}
+% \def\@TestClr#1#2#3{\testclr#1{#2}~\rlap{\Colorfr[+]{#3}}\\}
 % \newif\if@Meta
 % \DeclareRobustCommand*\Meta{\@ifstar{\@Metatrue\@Meta}{\@Metafalse\@Meta}}
 % \newcommand*\@Meta[2][]{\meta{#2}\@ifxempty{#1}{}{\ensuremath{\mskip-1mu\rule[-.4ex]{0pt}{1ex}_{#1}}}\if@Meta\index{arguments\levelchar\meta{#2}\string|usage}\fi}
@@ -187,6 +187,7 @@
 % \def\pModel#1{\textbf{\itshape #1}}
 % \def\People#1#2{#1 #2\index{personnes\levelchar#2, #1\string|usage}}
 % \newcommand*\Color[3][+]{#2 (\emph{#3})\ifx#1+\index{noms de couleur\levelchar#2 (\emph{#3})\string|usage}\fi}
+% \newcommand*\Colorfr[2][+]{\textsl{#2}\ifx#1+\index{noms de couleur\levelchar#2\string|usage}\fi}
 % \def\Option#1{\texttt{#1}\index{options d'extension\levelchar\texttt{#1}\string|usage}}
 % \def\oOption#1{\texttt{#1}\index{options d'extension (obsolètes)\levelchar\texttt{#1}\string|usage}}
 % \def\Key#1{\textit{#1}\index{clés\levelchar\textit{#1}\string|usage}}
@@ -2445,7 +2446,7 @@
 % \end{figure}
 %
 %
-% \begin{figure}[htbp]\caption{Target color model}\label{fig.tgt}
+% \begin{figure}[htbp]\caption{Modèle de couleur cible}\label{fig.tgt}
 % \small
 % \begin{adjustwidth}{-2.5cm}{}
 % \raggedleft
@@ -2468,7 +2469,7 @@
 % \end{figure}
 %
 %
-% \begin{figure}[htbp]\caption{Standard color expressions}\label{fig.expr}
+% \begin{figure}[htbp]\caption{Expressions de couleurs standards}\label{fig.expr}
 % \centering\small
 % \def\test#1{\testclr{#1}& \texttt{#1}}
 % \def\X#1{\test{#1}& \test{-#1}}
@@ -2484,16 +2485,16 @@
 % \end{figure}
 %
 %
-% \begin{figure}[htbp]\caption{Standard color expressions}\label{fig.ex}
+% \begin{figure}[htbp]\caption{Expressions de couleurs standards}\label{fig.ex}
 % \begin{minipage}{\textwidth}\small
 % \begin{verbatim}
 % \fboxrule6pt
 % \fcolorbox
-%  {red!70!green}% outer frame
-%  {yellow!30!blue}% outer background
+%  {red!70!green}% cadre extérieur
+%  {yellow!30!blue}% fond extérieur
 %  {\fcolorbox
-%    {-yellow!30!blue}% inner frame
-%    {-red!70!green}% inner background
+%    {-yellow!30!blue}% cadre intérieur
+%    {-red!70!green}% fond intérieur
 %    {Test\textcolor{red!72.75}{Test}\color{-green}Test}}
 % \end{verbatim}
 % \end{minipage}\relax
@@ -2503,33 +2504,33 @@
 % \end{figure}
 %
 %
-% \begin{figure}[htbp]\caption{Current color}\label{fig.cc}
+% \begin{figure}[htbp]\caption{Couleur courante}\label{fig.cc}
 % \begin{minipage}{\textwidth}\small
 % \begin{verbatim}
-% \def\test{current, \textcolor{.!50}{50\%},
-%           \textcolor{-.}{complement},
-%           \textcolor{yellow!50!.}{mix}}
+% \def\test{courante, \textcolor{.!50}{50\%},
+%           \textcolor{-.}{complémentaire},
+%           \textcolor{yellow!50!.}{mélange}}
 % \textcolor{blue}{\test}\\
-%  and \textcolor{red}{\test}\\
+%  et \textcolor{red}{\test}\\
 % \def\Test{\color{.!80}Test}
 % \textcolor{blue}{\Test\Test\Test\Test\Test}\\
-% and \textcolor{red}{\Test\Test\Test\Test\Test}
+% et \textcolor{red}{\Test\Test\Test\Test\Test}
 % \end{verbatim}
 % \end{minipage}\relax
 % \llap{\begin{minipage}{.5\textwidth}\small\raggedleft
-% \def\test{current, \textcolor{.!50}{50\%},
-%           \textcolor{-.}{complement},
-%           \textcolor{yellow!50!.}{mix}}
-% \textcolor{blue}{\test}\\
-%  and \textcolor{red}{\test}\\
+% \def\test{courante, \textcolor{.!50}{50\%},
+%           \textcolor{-.}{complémentaire},
+%           \textcolor{yellow!50!.}{mélange}}
+% \ \\[0.5cm] \textcolor{blue}{\test}\\
+%  et \textcolor{red}{\test}\\
 % \def\Test{\color{.!80}Test}
 % \textcolor{blue}{\Test\Test\Test\Test\Test}\\
-% and \textcolor{red}{\Test\Test\Test\Test\Test}
+% et \textcolor{red}{\Test\Test\Test\Test\Test}
 % \end{minipage}}
 % \end{figure}
 %
 %
-% \begin{figure}[htbp]\caption{Color series}\label{fig.csx}
+% \begin{figure}[htbp]\caption{Séries de couleur}\label{fig.csx}
 % \centering
 % \def\tabulartest#1{\definecolorseries{test}#1\resetcolorseries[12]{test}%
 %  \rowcolors[\hline]{1}{test!!+}{test!!+}%
@@ -2559,7 +2560,7 @@
 % \rowcolors{3}{tablerowcolor}{}
 % \begin{tabular}{>{$}l<{$}l}
 % \hline
-% \multicolumn2{>{\columncolor{tableheadcolor}}c}{\em Individual definitions}\\
+% \multicolumn2{>{\columncolor{tableheadcolor}}c}{\em Définitions individuelles}\\
 % S_1& |\definecolorseries{test}{rgb}{step}[rgb]{.95,.85,.55}{.17,.47,.37}|\\
 % S_2& |\definecolorseries{test}{hsb}{step}[hsb]{.575,1,1}{.11,-.05,0}|\\
 % G_1& |\definecolorseries{test}{rgb}{grad}[rgb]{.95,.85,.55}{3,11,17}|\\
@@ -2570,7 +2571,7 @@
 % L_4& |\definecolorseries{test}{hsb}{last}{yellow!50}{blue}|\\
 % L_5& |\definecolorseries{test}{cmy}{last}{yellow!50}{blue}|\\
 % \hline
-% \multicolumn2{>{\columncolor{tableheadcolor}}c}{\em Common definitions}\\
+% \multicolumn2{>{\columncolor{tableheadcolor}}c}{\em Définitions communes}\\
 % \hiderowcolors
 % &|\resetcolorseries[12]{test}|\\
 % &|\rowcolors[\hline]{1}{test!!+}{test!!+}|\\
@@ -2585,13 +2586,18 @@
 % \end{figure}
 %
 %
-% \begin{figure}[htbp]\caption{Color masking}\label{fig.mask}
+% \begin{figure}[htbp]\caption{Masques de couleur}\label{fig.mask}
 % \begin{adjustwidth}{-2.5cm}{}
 % \small\raggedleft
 % \extrarowheight2pt
 % \makeatletter
 % \def\X#1#2{\edef\tmp{\@ifxempty{#1}{}{[#1]}{#2}}\dots\Meaning{tmp}&
-%   \maskcolors[#1]{#2}\testclr{red} \testclr{green} \testclr{blue} \testclr{cyan} \testclr{magenta} \testclr{yellow} \testclr{brown} \testclr{lime} \testclr{olive} \testclr{orange} \testclr{pink} \testclr{purple} \testclr{teal} \testclr{violet} \testclr{black} \testclr{darkgray} \testclr{gray} \testclr{lightgray} \testclr{white}\\}\relax
+%   \maskcolors[#1]{#2}\testclr{red} \testclr{green} \testclr{blue} 
+% \testclr{cyan} \testclr{magenta} \testclr{yellow} \testclr{brown} 
+% \testclr{lime} \testclr{olive} \testclr{orange} \testclr{pink} 
+% \testclr{purple} \testclr{teal} \testclr{violet} \testclr{black} 
+% \testclr{darkgray} \testclr{gray} \testclr{lightgray} 
+% \testclr{white}\\}\relax
 % \makeatother
 % \begin{tabular}{@{}>{\ttfamily}l@{ }l@{}}
 % \string\maskcolors&\\
@@ -2622,82 +2628,84 @@
 % \end{figure}
 %
 %
-% \begin{figure}[htbp]\caption{Alternating row colors in tables: \cmd\rowcolors{} vs. \cmd\rowcolors\texttt*}\label{fig.row}
+% \begin{figure}[htbp]\caption{Rangées de couleurs alternées : \cmd\rowcolors{}
+%   face à \cmd\rowcolors\texttt*}\label{fig.row}
 % \centering
 % \begin{minipage}{\textwidth}
 % \begin{verbatim}
 % \rowcolors[\hline]{3}{green!25}{yellow!50} \arrayrulecolor{red!75!gray}
 % \begin{tabular}{ll}
-% test & row \number\rownum\\
-% test & row \number\rownum\\
-% test & row \number\rownum\\
-% test & row \number\rownum\\
+% test & rangée \number\rownum\\
+% test & rangée \number\rownum\\
+% test & rangée \number\rownum\\
+% test & rangée \number\rownum\\
 % \arrayrulecolor{black}
-% test & row \number\rownum\\
-% test & row \number\rownum\\
+% test & rangée \number\rownum\\
+% test & rangée \number\rownum\\
 % \rowcolor{blue!25}
-% test & row \number\rownum\\
-% test & row \number\rownum\\
+% test & rangée \number\rownum\\
+% test & rangée \number\rownum\\
 % \hiderowcolors
-% test & row \number\rownum\\
-% test & row \number\rownum\\
+% test & rangée \number\rownum\\
+% test & rangée \number\rownum\\
 % \showrowcolors
-% test & row \number\rownum\\
-% test & row \number\rownum\\
+% test & rangée \number\rownum\\
+% test & rangée \number\rownum\\
 % \multicolumn{1}%
-%  {>{\columncolor{red!12}}l}{test} & row \number\rownum\\
+%  {>{\columncolor{red!12}}l}{test} & rangée \number\rownum\\
 % \end{tabular}
 % \end{verbatim}
 % \end{minipage}
-% \hskip-.5\textwidth
+% \hskip-.55\textwidth
 % \rowcolors[\hline]{3}{green!25}{yellow!50} \arrayrulecolor{red!75!gray}
 % \begin{tabular}{ll}
-% test & row \number\rownum\\
-% test & row \number\rownum\\
-% test & row \number\rownum\\
-% test & row \number\rownum\\
+% test & rangée \number\rownum\\
+% test & rangée \number\rownum\\
+% test & rangée \number\rownum\\
+% test & rangée \number\rownum\\
 % \arrayrulecolor{black}
-% test & row \number\rownum\\
-% test & row \number\rownum\\
+% test & rangée \number\rownum\\
+% test & rangée \number\rownum\\
 % \rowcolor{blue!25}
-% test & row \number\rownum\\
-% test & row \number\rownum\\
+% test & rangée \number\rownum\\
+% test & rangée \number\rownum\\
 % \hiderowcolors
-% test & row \number\rownum\\
-% test & row \number\rownum\\
+% test & rangée \number\rownum\\
+% test & rangée \number\rownum\\
 % \showrowcolors
-% test & row \number\rownum\\
-% test & row \number\rownum\\
+% test & rangée \number\rownum\\
+% test & rangée \number\rownum\\
 % \multicolumn{1}%
-%  {>{\columncolor{red!12}}l}{test} & row \number\rownum\\
+%  {>{\columncolor{red!12}}l}{test} & rangée \number\rownum\\
 % \end{tabular}
-% \qquad
+% \quad
 % \rowcolors*[\hline]{3}{green!25}{yellow!50}\arrayrulecolor{red!75!gray}
 % \begin{tabular}{ll}
-% test & row \number\rownum\\
-% test & row \number\rownum\\
-% test & row \number\rownum\\
-% test & row \number\rownum\\
+% test & rangée \number\rownum\\
+% test & rangée \number\rownum\\
+% test & rangée \number\rownum\\
+% test & rangée \number\rownum\\
 % \arrayrulecolor{black}
-% test & row \number\rownum\\
-% test & row \number\rownum\\
+% test & rangée \number\rownum\\
+% test & rangée \number\rownum\\
 % \rowcolor{blue!25}
-% test & row \number\rownum\\
-% test & row \number\rownum\\
+% test & rangée \number\rownum\\
+% test & rangée \number\rownum\\
 % \hiderowcolors
-% test & row \number\rownum\\
-% test & row \number\rownum\\
+% test & rangée \number\rownum\\
+% test & rangée \number\rownum\\
 % \showrowcolors
-% test & row \number\rownum\\
-% test & row \number\rownum\\
+% test & rangée \number\rownum\\
+% test & rangée \number\rownum\\
 % \multicolumn{1}%
-%  {>{\columncolor{red!12}}l}{test} & row \number\rownum\\
+%  {>{\columncolor{red!12}}l}{test} & rangée \number\rownum\\
 % \end{tabular}
 % \arrayrulecolor{black}
 % \end{figure}
 %
 %
-% \begin{figure}[htbp]\caption{\Model{Hsb} and \Model{tHsb}: \emph{hue\Circ} in $15^\circ$ steps}\label{fig.tHsb}
+% \begin{figure}[htbp]\caption{\Model{Hsb} et \Model{tHsb}: \emph{teinte\Circ} par
+%   pas de $15^\circ$}\label{fig.tHsb}
 % \begin{adjustwidth}{-2.5cm}{}
 % \footnotesize\sffamily\raggedleft
 % \extrarowheight.5pt
@@ -2758,25 +2766,25 @@
 % \end{figure}
 %
 %
-% \begin{figure}[htbp]\caption{Color harmony}\label{fig.harmony}
+% \begin{figure}[htbp]\caption{Harmonies de couleur}\label{fig.harmony}
 % \begin{adjustwidth}{-2.5cm}{}
 % \small\sffamily\raggedleft
 % \extrarowheight1.5pt
 % \begin{testcolors}[rgb,cmyk,Hsb,tHsb]
 % \noalign{\smallskip}
-% \rlap{\em complementary colors (two-color harmony):}\\
+% \rlap{\em couleurs complémentaires (harmonie à deux couleurs):}\\
 % \testcolor{yellow>wheel,1,2}
 % \testcolor{yellow}
 % \testcolor{yellow>twheel,1,2}
 % \noalign{\medskip}
-% \rlap{\em color triad (three-color harmony):}\\
+% \rlap{\em triade (harmonie à trois couleurs):}\\
 % \testcolor{yellow>wheel,2,3}
 % \testcolor{yellow>wheel,1,3}
 % \testcolor{yellow}
 % \testcolor{yellow>twheel,1,3}
 % \testcolor{yellow>twheel,2,3}
 % \noalign{\medskip}
-% \rlap{\em color tetrad (four-color harmony):}\\
+% \rlap{\em tétrade (harmonie à quatre couleurs):}\\
 % \testcolor{yellow>wheel,3,4}
 % \testcolor{yellow>wheel,2,4}
 % \testcolor{yellow>wheel,1,4}
@@ -2785,14 +2793,14 @@
 % \testcolor{yellow>twheel,2,4}
 % \testcolor{yellow>twheel,3,4}
 % \noalign{\medskip}
-% \rlap{\em split complementary colors:}\\
+% \rlap{\em couleurs complémentaires adjacentes :}\\
 % \testcolor{yellow>wheel,7,12}
 % \testcolor{yellow>wheel,5,12}
 % \testcolor{yellow}
 % \testcolor{yellow>twheel,5,12}
 % \testcolor{yellow>twheel,7,12}
 % \noalign{\medskip}
-% \rlap{\em analogous (adjacent) colors:}\\
+% \rlap{\em couleurs analogues (adjacentes) :}\\
 % \testcolor{yellow>wheel,11,12}
 % \testcolor{yellow>wheel,10,12}
 % \testcolor{yellow>wheel,2,12}
@@ -2814,7 +2822,6 @@
 % \begin{adjustwidth}{-2.5cm}{}
 % \raggedcolumns\columnsep2.5em
 %
-% \tradini
 % \section{Couleurs par nom}\label{sec.names}
 %
 % \begin{multicols}{5}[\subsection{Couleurs de base (toujours disponibles)}\label{sec.basenam}]
@@ -2927,7 +2934,7 @@
 % \ColorList4{svg}{svg}\Testclr
 % \medskip
 % \begin{adjustwidth}{1cm}{1cm}
-% \footnotesize\raggedright Duplicate colors:
+% \footnotesize\raggedright Couleurs doublées :
 % \Color[-]{}{Aqua} = \Color[-]{}{Cyan},
 % \Color[-]{}{Fuchsia} = \Color[-]{}{Magenta};
 % \Color[-]{}{Navy} = \Color[-]{}{NavyBlue};
@@ -2939,13 +2946,13 @@
 % \Color[-]{}{LightSlateGray} = \Color[-]{}{LightSlateGrey},
 % \Color[-]{}{DimGray} = \Color[-]{}{DimGrey}.
 % \par\smallskip
-% \Index{HTML4} color keyword subset:
+% Sous-ensemble des mot-clés de couleur \Index{HTML4} :
 % \Color[-]{}{Aqua}, \Color[-]{}{Black}, \Color[-]{}{Blue}, \Color[-]{}{Fuchsia},
 % \Color[-]{}{Gray}, \Color[-]{}{Green}, \Color[-]{}{Lime}, \Color[-]{}{Maroon},
 % \Color[-]{}{Navy}, \Color[-]{}{Olive}, \Color[-]{}{Purple}, \Color[-]{}{Red},
 % \Color[-]{}{Silver}, \Color[-]{}{Teal}, \Color[-]{}{White}, \Color[-]{}{Yellow}.
 % \par\smallskip
-% Colors taken from \Index{Unix}/\Index{X11}:
+% Couleurs tirées de \Index{Unix}/\Index{X11}:
 % \Color[-]{}{LightGoldenrod},
 % \Color[-]{}{LightSlateBlue},
 % \Color[-]{}{NavyBlue},
@@ -2955,7 +2962,7 @@
 % \ColorList4{x11}{x11}\Testclr
 % \medskip
 % \begin{adjustwidth}{1cm}{1cm}
-% \footnotesize\raggedright Duplicate colors:
+% \footnotesize\raggedright Couleurs doublées :
 % \Color[-]{}{Gray0} = \Color[-]{}{Grey0},
 % \Color[-]{}{Green0} = \Color[-]{}{Green1}.
 % \end{adjustwidth}
@@ -2968,10 +2975,9 @@
 % \clearpage
 % \section{Supplément technique}
 %
-% \tradini
-% \subsection{Color models supported by drivers}
+% \subsection{Modèles colorimétriques supportés par les pilotes}
 %
-% Since some of the drivers only pretend to support the \Model{hsb} model, we included some code to bypass this behaviour.
+% \tradini Since some of the drivers only pretend to support the \Model{hsb} model, we included some code to bypass this behaviour.
 % The models actually added by \XC{} are shown in the log file.
 % Table \vref{tab.drv} lists mainly the drivers that are part of current MiK\TeX{} \cite{mik} distributions and their color model support.
 % Probably, other distributions behave similarly.
