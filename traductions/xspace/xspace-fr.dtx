@@ -38,29 +38,14 @@
 % \iffalse
 %<*driver>
 \documentclass{ltxdoc}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[french]{babel}
+\usepackage[ltxdoc,inputenc,fontenc,babel]{translatex-fr}
 \makeatletter
 \providecommand*\eTeX{{%
   \if b\expandafter\@car\f@series\@nil\boldmath\fi$\m@th
   \varepsilon$-\TeX}}
-\def\MaintainedByLaTeXTeam#1{%
-{\gdef\@maintainedby{%
-Ce fichier est maintenu par l'équipe du \og \LaTeX{} Project \fg{}.\\%
-Les rapports d'anomalie peuvent être envoyés en anglais à \\%
-\url{http://latex-project.org/bugs.html} (catégorie \texttt{#1}).}}}
 \makeatother
-% Bloc pour traduction
-\usepackage{xcolor}
-% Attention, des commandes mal nommées ligne 82 à 100.
-\usepackage{pifont}
-\definecolor{orange5}{RGB}{255,153,0} 
-\newcommand{\trad}[1]{\textbf{\textcolor{orange5}{\noindent\ding{54} #1 \ding{54}}}}
-\newcommand{\tradini}{\color{orange5}\ding{54}}
-\newcommand{\tradfin}{\ding{54}\color{black}}
-% Fin du bloc qui doit être retiré une fois le travail achevé
 \usepackage{xspace}[2006/05/08]
+\GetFileInfo{xspace.sty}
 \begin{document}
 \DocInput{xspace-fr.dtx}
 \end{document}
@@ -69,18 +54,18 @@ Les rapports d'anomalie peuvent être envoyés en anglais à \\%
 %
 % \GetFileInfo{xspace.dtx}
 % \title{L'extension \textsf{xspace}\thanks{Ce fichier a pour numéro de 
-%        version \fileversion\ et a été revu le \filedate. La première 
+%        version \fileversion\ et a été mis à jour le \filedatefr. La première
 %        traduction, basée sur la version 1.06 a été publiée par 
 %        Jean-Drucbert en 2001.}}
 % \author{David Carlisle \and Morten H\o gholm}
-% \date{\filedate}
+% \date{\filedatefr}
 % \MaintainedByLaTeXTeam{tools}
 % \maketitle
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-% \changes{v1.00}{1991/08/30}{Initial version}
+% \changes{v1.00}{1991/08/30}{Version initiale}
 % \changes{v1.01}{1992/06/26}{Re-issue for the new doc and docstrip}
 % \changes{v1.02}{1994/01/31}{Re-issue for LaTeX2e (no change to
 %   code)}
@@ -355,16 +340,15 @@ Les rapports d'anomalie peuvent être envoyés en anglais à \\%
   \endgroup
   \let\@xspace@eTeX@setup\relax
 %    \end{macrocode}
-% \tradini
 % \begin{macro}{\@xspace@eTeX@setup}
 % \changes{v1.10}{2005/10/04}{Added macro}
 % \changes{v1.12}{2006/05/08}{Bug fix for verbatim in output routine}
-% When we're running \eTeX, we have the advantage of \cs{scantokens}
-% which will rescan tokens with current catcodes. This little
-% expansion trick makes sure that the exception list is redefined to
-% itself but with the contents of it exposed to the current catcode
-% regime. That is why we must make sure the catcode of space is 10,
-% since we have a \verb*|\ | inside the list.
+% Quand nous utilisons \eTeX, nous avons l'avantage de disposer de la commande
+% \cs{scantokens} qui va repasser en revue les codes de catégories courant.
+% Cette petite astuce sur le développement garantit que la liste des exceptions
+% est redéfinie avec son contenu prenant la valeur courante des codes de 
+% catégorie. C'est pourquoi nous faisons en sorte que le code de catégorie
+% de l'espace est 10, car nous avons un \verb*|\ | dans la liste.
 %    \begin{macrocode}
 \else
   \def\@xspace@eTeX@setup{%
@@ -374,10 +358,10 @@ Les rapports d'anomalie peuvent être envoyés en anglais à \\%
       \catcode`\ =10\relax
       \makeatletter
 %    \end{macrocode}
-% We may also be so unfortunate that the re-reading of the list takes
-% place when the catcodes of |\|, |{| and |}| are ``other,'' e.g., if
-% it takes place in a header and the output routine was called in the
-% middle of a \texttt{verbatim} environment.
+% Nous pouvons aussi avoir la malchance que la relecture de la liste se passe
+% au moment où les codes de catégorie de |\|, |{| et |}| sont \og autres 
+% \fg{}, par exemple quand, dans un en-tête, la routine de sortie est 
+% appelée au milieu d'un environnement \texttt{verbatim}.
 %    \begin{macrocode}
       \catcode`\\\z@
       \catcode`\{\@ne
@@ -402,31 +386,32 @@ Les rapports d'anomalie peuvent être envoyés en anglais à \\%
 % \changes{v1.09}{2005/07/26}{Only check non-letters and add hook}
 % \changes{v1.10}{2005/10/04}{Use higher level functions for
 % conditional processing}
-% \changes{v1.10}{2005/10/04}{Improve expansion method}
-% If the next token is one of a specified list of characters,
-% do nothing, otherwise add a space. With version~1.07 the
-% approach was altered dramatically to run through the
-% exception list |\@xspace@exceptions@tlp| and check each
-% token one at a time.
+% \changes{v1.10}{2005/10/04}{Improve expansion method} 
+% Si l'unité lexicale suivante est une de celles appartenant à une liste de
+% caractères, rien n'est fait, sinon une espace est ajoutée. Avec la 
+% version~1.07, l'approche était modifiée radicalement pour passer à travers
+% la liste d'exception |\@xspace@exceptions@tlp| et vérifier chaque unité
+% lexicale une par une.
 %    \begin{macrocode}
 \def\@xspace{%
 %    \end{macrocode}
-% Before we start checking the exception list it makes sense to
-% perform a quick check on the token in question. Most of the time
-% \cs{xspace} is used in regular text so \cs{@let@token} is set equal
-% to a letter. In that case there is no point in checking the list
-% because it will definitely not contain any tokens with catcode~11.
+% Avant de commencer à vérifier la liste des exceptions, il est intéressant
+% de procéder à une vérification rapide de l'unité lexicale en question.
+% La plupart du temps, \cs{xspace} sert dans du texte normal et \cs{@let@token}
+% est une lettre. Dans ce cas, il n'y a aucun sens à vérifier la liste des
+% exceptions car elle ne contiendra pas d'unité lexicale de catégorie~11. 
 %
-% You may wonder why there are special functions here instead of
-% simpler \cs{ifx} conditionals. The reason is that a)~this way we
-% don't have to add many, many \cs{expandafter}s to get the nesting
-% right and b)~we don't get into trouble when \cs{@let@token} has been
-% let equal to \cs{if} etc.
+% Vous pourriez ici vous demander pourquoi il y a ici des fonctions spéciales
+% plutôt que de simples \cs{ifx} conditionnels. La raison pour cela est que
+% a)~de cette façon, nous n'avons pas à ajouter une multitude 
+% d'\cs{expandafter} pour obtenir le bon regroupement et b)~nous ne 
+% rencontrerons pas de problème quand \cs{@let@token} sera égale à \cs{if}.
 %    \begin{macrocode}
   \@xspace@lettoken@if@letter@TF \space{%
 %    \end{macrocode}
-% Otherwise we start testing after setting up a few things. If running
-% \eTeX{} we rescan the catcodes but only the first time around.
+% Sinon nous commençons à tester après avoir défini quelques éléments. Si
+% nous utilisons \eTeX{}, nous repassons en revue les codes de catégorie mais
+% seulement la première fois.
 %    \begin{macrocode}
     \if@xspace@first
       \@xspace@firstfalse
@@ -436,14 +421,15 @@ Les rapports d'anomalie peuvent être envoyés en anglais à \\%
     \expandafter\@xspace@check@token
       \@xspace@exceptions@tlp\@xspace@q@nil\@nil
 %    \end{macrocode}
-% If an exception was found \cs{@xspace@maybespace} is let to
-% \cs{relax} and we do nothing.
+% Si une exception a été trouvée, \cs{@xspace@maybespace} est définie
+% comme \cs{relax} et nous en faisons rien. 
 %    \begin{macrocode}
     \@xspace@token@if@equal@NNT \space \@xspace@maybespace
 %    \end{macrocode}
-% Otherwise we check to see if we found something expandable and try
-% again with that token one level expanded. If no expandable token is
-% found we insert a space and then execute the hook.
+% Sinon nous vérifions si nous pouvons trouver un élément développable et
+% réessayons avec cette unité lexicale développée une fois. Si aucune 
+% unité développable n'est trouvée, nous insérons un espace et appliquons 
+% alors le code du point d'entrée.
 %    \begin{macrocode}
     {%
       \@xspace@lettoken@if@expandable@TF
@@ -462,9 +448,9 @@ Les rapports d'anomalie peuvent être envoyés en anglais à \\%
 % conditional processing}
 % \changes{v1.11}{2006/02/12}{Modified so the \cs{@let@token} can be
 %   \cs{outer}}
-% This macro just checks the current item in the exception list
-% against the \cs{@let@token}. If they are equal we make sure that no
-% space is inserted and break the loop.
+% La commande compare juste l'élément courant dans la liste des exceptions
+% avec \cs{@let@token}. Si ils sont égaux, nous faisons en sorte qu'aucune
+% espace ne soit insérée et nous sortons de la boucle.
 %    \begin{macrocode}
 \def\@xspace@check@token #1{%
   \ifx\@xspace@q@nil#1%
@@ -479,7 +465,6 @@ Les rapports d'anomalie peuvent être envoyés en anglais à \\%
 %    \end{macrocode}
 % \end{macro}
 %
-% \tradfin
 % Et c'est tout ! Du moins, si nous avions utilisé \LaTeX3. Dans ce cas, nous
 % aurions eu de belles fonctions pour toutes les conditions mais nous devons
 % ici les définir nous-même. Nous les optimisons également car \cs{@let@token}
