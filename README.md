@@ -56,7 +56,7 @@ Traduction       | Source              | Avancée                | Pages traduit
 [indentfirst-fr] | [indentfirst] v1.03 | :full_moon:            | 1               | Traduction préexistante ([FT-tools]).
                  | [layout] v1.02c     |                        | *. / 13*        | Traduction préexistante ([FT-tools]).
 [lipsum-fr]      | [lipsum] v1.3       | :full_moon:            | 41              |
-[listings-fr]    | [listings] v1.6     | :new_moon:             | 0 / 61          |
+[listings-fr]    | [listings] v1.6     | :new_moon:             | 1 / 61          |
                  | [longtable] v4.11   |                        | *. / 26*        | Traduction préexistante ([FT-tools]).
                  | [multicol] v1.8p    |                        | *. / 36*        | Traduction préexistante ([FT-tools]).
                  | [pgfplots] v1.13    |                        | *. / 544*       |

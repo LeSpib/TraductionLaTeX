@@ -7,7 +7,9 @@ L'objectif est de traduire la documentation de l'extension *listings* utilisable
 
 ```bash
 pdflatex listings-fr.dtx
+pdflatex listings-fr.dtx
 makeindex -s gind.ist -o listings-fr.ind listings-fr.idx
+pdflatex listings-fr.dtx
 pdflatex listings-fr.dtx
 ```
 
@@ -24,8 +26,8 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 Section                       | Avancée                | Pages traduites | Commentaires 
 ----------------------------- | :--------------------: | :-------------: | -------------------------
 En-tête du document tex       | :new_moon:             |                 |
-Page d'avant-propos           | :new_moon:             | 0 / 3           | 
-1. Prise en main              | :new_moon:             | 0 / 7           |
+Page d'avant-propos           | :new_moon:             | 1 / 3           | 
+1. Prise en main              | :new_moon:             | 0 / 7           | Section 1.2 en cours
 2. Les étapes suivantes       | :new_moon:             | 0 / 11          |
 3. Techniques avancées        | :new_moon:             | 0 / 5           |
 4. Fonctionnement du guide    | :new_moon:             | 0 / 1           |

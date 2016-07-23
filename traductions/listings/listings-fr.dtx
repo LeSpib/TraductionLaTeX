@@ -41,9 +41,7 @@
 \documentclass[a4paper]{ltxdoc}
 \DisableCrossrefs
 \OnlyDescription
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[ltxdoc]{translatex-fr}
+\usepackage[ltxdoc,fontenc,inputenc]{translatex-fr}
 \usepackage{lstdoc,textcomp}
 \usepackage{mdframed}           % frames for external files
 \usepackage{moreverb}           % writing external files
@@ -104,14 +102,15 @@
 %^^A
 %\newbox\abstractbox
 %\setbox\abstractbox=\vbox{
-%       \tradini
 %	\begin{abstract}
-%	The \packagename{listings} package is a source code printer for \LaTeX.
-%	You can typeset stand alone files as well as listings with an environment
-%   similar to \texttt{verbatim} as well as you can print code snippets using
-%   a command similar to |\verb|.
-%	Many parameters control the output and if your preferred programming
-%   language isn't already supported, you can make your own definition.
+%       L'extension \packagename{listings} sert à la mise en forme de code
+%       source avec \LaTeX. Vous pouvez traiter des fichiers à part entière
+%       tout autant que du code avec un environnement similaire à 
+%       \texttt{verbatim} ou bien encore des bouts de code en utilisant une 
+%       commande similaire à |\verb|. 
+%       De nombreux paramètres contrôlent la restitution et, si votre langage
+%       favori n'est pas pris en charge, vous pouvez créer votre propre
+%       définition de mise en forme.
 %	\end{abstract}}
 %
 % \title{\vspace*{-2\baselineskip}L'extension \textsf{listings}}
@@ -131,63 +130,63 @@
 % \csname @twocolumntrue\endcsname
 % \maketitle
 %^^A \enlargethispage{2\baselineskip}
-% \tradini
 % \csname @starttoc\endcsname{toc}
 % \onecolumn
 %
 %
-% \section*{Preface}
+% \section*{Préface}
 %
-% \paragraph{Transition of package maintenance}
-% The \TeX\ world lost contact with Carsten Heinz in late 2004, shortly after
-% he released version 1.3b of the \packagename{listings} package.  After many
-% attempts to reach him had failed, Hendri Adriaens took over maintenance of
-% the package in accordance with the LPPL's procedure for abandoned packages.
-% He then passed the maintainership of the package to Brooks Moses, who had
-% volunteered for the position while this procedure was going through. The
-% result is known as listings version 1.4.
+% \paragraph{Transition de la maintenance de l'extension}
+% Le monde de \TeX\ a perdu contact avec Carstein Heinz fin 2004, peu après
+% qu'il ait mis à disposition la version 1.3b de l'extension
+% \packagename{listings}. Après de nombreuses tentatives de prises de contact,
+% Hendri Adriaens a pris en charge la maintenance de l'extension en accord avec
+% la procédure de la LPPL concernant les extensions abandonnées. Puis il a 
+% passé cette responsabilité à Brooks Moses, ce dernier s'étant porté
+% volontaire lors que la procédure décrite ci-dessus se déroulait. Le résultat
+% est connu comme la version 1.4 de packagename{listings}.
 %
-% This release, version 1.5, is a minor maintenance release since
-% I accepted maintainership of the package.  I would like to thank Stephan
-% Hennig who supported the Lua language definitions. He is the one who
-% asked for the integration of a new language and gave the impetus to me to
-% become the maintainer of this package.
+% Cette version, numérotée 1.5, consiste en une évolution mineure depuis
+% j'ai accepté d'être le mainteneur de cette extension. J'aimerais remercier
+% Stephan Hennig qui \trad{a participé} aux définitions du langage Lua. Il avait 
+% demandé l'intégration d'un nouveau langage et m'a donné l'impulsion pour
+% devenir le mainteneur de cette extension.
 %
-%
-% \paragraph{News and changes}
-% Version 1.5 is the fifth bugfix release.  There are no changes
-% in this version, but two extensions: support of modern Fortran (2003,
-% 2008) and Lua.
+% \paragraph{Nouveautés et changements}
+% La version 1.5 est la cinquième version correctrice d'erreurs. Il n'y a pas
+% de changement mais deux ajouts de langages : support du Fortran moderne 
+% (2003, 2008) et Lua.
 %
 %
 % \vfill
-% \paragraph{Thanks}
-% There are many people I have to thank for fruitful communication, posting
-% their ideas, giving error reports, adding programming languages to
-% \texttt{lstdrvrs.dtx}, and so on. Their names are listed in section
-% \ref{uClosingAndCredits}.
+% \paragraph{Remerciements}
+% Il y a de nombreuses personnes que je dois remercier pour leur communication
+% fructueuse, leurs idées, leurs rapports d'erreur, leurs ajouts de langages de
+% programmation à \texttt{lstdrvrs.dtx} et ainsi de suite. Ils sont listés dans
+% la section \ref{uClosingAndCredits}.
 %
-% \paragraph{Trademarks}
-% Trademarks appear throughout this documentation without any trademark
-% symbol; they are the property of their respective trademark owner.
-% There is no intention of infringement; the usage is to the benefit of the
-% trademark owner.
+% \paragraph{Marques déposées}
+% Des marques déposées apparaissent tout au long de cette documentation sans
+% aucun symbole \emph{trademark}; elles sont la propriété de leurs détenteurs
+% respectifs. Il n'y a ici aucune intention d'infraction ; l'usage est au 
+% bénéfice du propriétaire de la marque déposée.
 %
 %
 % \clearpage
 %
 %
-% \part{User's guide}
+% \part{Guide utilisateur}
 %
 %
-% \section{Getting started}\label{uGettingStarted}
+% \section{Prise en main}\label{uGettingStarted}
 %
 %
-% \subsection{A minimal file}\label{uAMinimalFile}
+% \subsection{Un fichier minimal}\label{uAMinimalFile}
 %
-% Before using the \packagename{listings} package, you should be familiar with
-% the \LaTeX\ typesetting system. You need not to be an expert.
-% Here is a minimal file for \packagename{listings}.
+% Avant que vous n'utilisiez l'extension \packagename{listings}, vous devriez
+% être familiarisé avec le système de composition \LaTeX. Vous n'avez pas 
+% besoin d'être un expert. Voici un fichier minimal pour 
+% \packagename{listings}.
 % \begin{verbatim}
 %    \documentclass{article}
 %    \usepackage{listings}
@@ -195,42 +194,44 @@
 %    \begin{document}
 %    \lstset{language=Pascal}
 %
-%      % Insert Pascal examples here.
+%      % Insérez des exemples Pascal ici.
 %
 %    \end{document}\end{verbatim}
-% Now type in this first example and run it through \LaTeX.
+% Maintenant, saisissez ce premier exemple et compilez-le avec \LaTeX.
 % \begin{advise}
-% \item Must I do that really?
+% \item Dois-je vraiment le faire ?
 %       \advisespace
-%       Yes and no. Some books about programming say this is good.
-%       What a mistake! Typing takes time---which is wasted if the code is clear to
-%       you. And if you need that time to understand what is going on, the
-%       author of the book should reconsider the concept of presenting the
-%       crucial things---you might want to say that about this guide even---or
-%       you're simply inexperienced with programming. If only the latter case
-%       applies, you should spend more time on reading (good) books about
-%       programming, (good) documentations, and (good) source code from other
-%       people. Of course you should also make your own experiments.
-%       You will learn a lot. However, running the example through \LaTeX\
-%       shows whether the \packagename{listings} package is installed correctly.
-% \item The example doesn't work.
+%       Oui et non. Certains livres sur la programmation disent que c'est bien.
+%       Quelle erreur ! Saisir du code prend du temps --- qui est gaspillé si
+%       le code est clair pour vous. Et si vous avez eu besoin de ce temps pour
+%       comprendre ce qui se passe, l'auteur du livre devrait reconsidérer sa
+%       façon de présenter les choses cruciales --- vous pourriez même le dire
+%       pour ce guide --- ou vous êtes inexpérimenté en programmation. Si seul
+%       ce dernier point s'applique, vous devriez passer plus de temps à lire
+%       des (bons) livres sur la programmation, des (bonnes) documentations et
+%       du (bon) code source d'autres personnes. Bien sûr, vous devriez aussi
+%       faire vos propres expérimentations. Vous apprendrez beaucoup. 
+%       Cependant, compiler cet exemple avec \LaTeX\ permet de savoir si 
+%       l'extension \packagename{listings} est installée correctement. 
+% \item L'exemple ne marche pas.
 %       \advisespace
-%       Are the two packages \packagename{listings} and \packagename{keyval}
-%       installed on your system? Consult the administration tool of your
-%       \TeX\ distribution, your system administrator, the local \TeX\ and
-%       \LaTeX\ guides, a \TeX\ FAQ, and section \ref{rInstallation}---in
-%       that order. If you've checked \emph{all} these sources and are
-%       still helpless, you might want to write a post to a \TeX\ newsgroup
-%       like \texttt{comp.text.tex}.
-% \item Should I read the software license before using the package?
+%       Les deux extensions \packagename{listings} et \packagename{keyval}
+%       sont-elles installées sur votre système ? Consulter l'outil 
+%       d'administration de votre distribution \TeX, votre administrateur
+%       systèmes, les guides \TeX\ et \LaTeX\ locaux, une FAQ \TeX et la 
+%       section \ref{rInstallation} --- dans cet ordre. Si vous avez vérifié
+%       \emph{toutes} ces sources et que vous n'avez rien trouvé, vous
+%       pouvez alors écrire à un forum \TeX\ tel que \texttt{fr.comp.text.tex}. 
+% \item Dois-je lire la licence logicielle avant d'utiliser cette extension ?
 %       \advisespace
-%       Yes, but read this \emph{Getting started} section first to decide
-%       whether you are willing to use the package.^^A ;-)
+%       Oui, mais lisez d'abord cette section \emph{Prise en main} pour décider
+%       si vous avez l'intention d'utiliser cette extension.^^A ;-)
 % \end{advise}
 %
 %
-% \subsection{Typesetting listings}
+% \subsection{Mise en forme de code}
 %
+% \tradini
 % Three types of source codes are supported: code snippets, code segments, and
 % listings of stand alone files.  Snippets are placed inside paragraphs and the
 % others as separate paragraphs---the difference is the same as between text
