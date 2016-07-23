@@ -2246,7 +2246,8 @@
 %
 % \subsection{Problèmes et solutions}
 %
-% \subsubsection{Conflits de nom entre \Option{dvipsnames} et \Option{svgnames}}\label{sec.clash}
+% \subsubsection{Conflits de nom entre \Option{dvipsnames} et 
+%   \Option{svgnames}}\label{sec.clash}
 %
 % Du fait de l'ordre fixe de traitement des options (qui ne dépend pas de
 % l'ordre dans lequel les options sont listées dans la commande 
@@ -2270,35 +2271,44 @@
 %
 % \subsubsection{Saut de page et pdf\TeX}\label{sec.fixpdftex}
 %
-% \tradini
-% Since pdf\TeX{} does not maintain a \emph{\Index{color stack}} --- in contrast to \Program{dvips} --- a typical problem is the behaviour of colors in the case of page breaks, as illustrated by the following example:
+% Dans la mesure où pdf\TeX{} ne gère pas une \emph{\Index{pile de couleur}} 
+% --- contrairement à \Program{dvips} --- ceci pose une difficulté de 
+% comportement des couleurs en cas de saut de page, comme illustré dans 
+% l'exemple suivant :
 % \begin{verbatim}
 % \documentclass{minimal}
 % \usepackage{xcolor}
 % \begin{document}
-% black\color{red}red1\newpage red2\color{black}black
+% noir\color{red}rouge1\newpage rouge2\color{black}noir
 % \end{document}
 % \end{verbatim}
-% This works as expected with |dvips|, i.e., `red1' and `red2' being \Color{}{red}, however, with |pdftex|, `red2' is displayed in \Color{}{black}.
-% The problem may be solved by using the \Option{fixpdftex} option which simply loads Heiko Oberdiek's \Package{pdfcolmk} package \cite{pdfcolmk}.
-% However, its author also lists some limitations:
+% Ceci fonctionne comme attendu avec |dvips|, autrement dit \og red1 \fg{} et 
+% \og rouge2 \fg{} apparaissent en \Color{rouge}{red}. Cependant, avec 
+% |pdftex|, \og rouge2 \fg{} est affiché en \Color{noir}{black}.
+% Ce problème peut être résolu en utilisant l'option \Option{fixpdftex} qui
+% charge l'extension \Package{pdfcolmk} de Heiko Oberdiek \cite{pdfcolmk}.
+% Cependant, ce dernier liste quelques limitations :
 % \begin{itemize}
-% \item Mark limitations: page breaks in math.
-% \item LaTeX's output routine is redefinded.
+% \item limitations sur les marques (cas du saut de page en mode mathématique).
+% \item la routine de sortie de \LaTeX{} est redéfinie :
 % \begin{itemize}
-% \item Changes in the output routine of newer versions of LaTeX are not detected.
-% \item Packages that change the output routine are not supported.
+% \item les changements de routine des nouvelles versions de \LaTeX{} ne sont
+%   détectés,
+% \item les extensions qui changent cette routine ne sont pas supportées.
 % \end{itemize}
-% \item It does not support several independent text streams like footnotes.
+% \item le suivi de plusieurs flux de textes comme les notes en base de page
+% n'est pas supporté.
 % \end{itemize}
 %
-% \tradfin
-% \subsubsection{Changement de couleur d'un fichier \File{.eps} inclus}\label{sec.fixinclude}
+% \subsubsection{Changement de couleur d'une image \File{.eps} 
+%   insérée}\label{sec.fixinclude}
 %
-% \tradini
-% In general, \XC{} cannot change colors of an image that is being included via the |\includegraphics| command from the \Package{graphics} or \Package{graphicx} package.
-% There is, however, a limited opportunity to influence the current color of included \Index{PostScript} files.
-% Consider the following file |foo.eps| which draws a framed gray box:
+% En général, \XC{} ne peut pas changer les couleurs d'une image insérée par le
+% biais de la commande |\includegraphics| des extensions \Package{graphics} 
+% comme \Package{graphicx}.
+% Il existe toutefois une possibilité limitée d'influer sur la couleur courante
+% des fichiers \Index{PostScript}. Considérons le fichier |truc.eps| suivant
+% qui dessine une boîte grise encadrée. 
 % \begin{verbatim}
 % %!PS-Adobe-3.0 EPSF-3.0
 % %%BoundingBox: 0 0 60 12
@@ -2306,6 +2316,7 @@
 % 0.75 setgray
 % 2 2 56 8 rectfill
 % \end{verbatim}
+% \tradini
 % Now run the following code through \LaTeX{} and \Program{dvips}:
 % \begin{verbatim}
 % \documentclass{minimal}
@@ -2954,8 +2965,9 @@
 %
 %
 % \clearpage
-% \section{Technical Supplement}
+% \section{Supplément technique}
 %
+% \tradini
 % \subsection{Color models supported by drivers}
 %
 % Since some of the drivers only pretend to support the \Model{hsb} model, we included some code to bypass this behaviour.
