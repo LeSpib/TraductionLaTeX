@@ -29,7 +29,7 @@ Traduction       | Source              | Avancée                | Pages traduit
 [adjustbox-fr]   | [adjustbox] v1.0    | :new_moon:             | 0 / 29          |
 [afterpage-fr]   | [afterpage] v1.08   | :new_moon:             | 0 / 5           | 
 [appendix-fr]    | [appendix] v1.2b    | :full_moon:            | 16              | Traduction préexistante ([FT-tools]).
-                 | [array] v2.4c       |                        | *. / 35*        | Traduction préexistante ([FT-tools]).
+[array-fr]       | [array] v2.4c       | :new_moon:             | 0 / 35          | Traduction préexistante ([FT-tools]).
                  | [bm] v1.2b          |                        | *. / 20*        | 
 [booktabs-fr]    | [booktabs] 1.618033 | :waxing_crescent_moon: | 9 / 18          | Traduction préexistante ([FT-tools]).
                  | [calc] v4.3         |                        | *. / 17*        | Traduction préexistante ([FT-tools]).
