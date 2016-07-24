@@ -43,7 +43,7 @@ Traduction       | Source              | Avancée                | Pages traduit
                  | [etoc] v1.08g       |                        | *. / 114*       |
                  | [fancyhdr] v3.1     |                        | *. / 26*        |
 [fileerr-fr]     | [fileerr] v1.1a     | :waxing_crescent_moon: | 1 / 2           | 
-[fncychap-fr]    | [fncychap] v1.34    | :new_moon:             | 2 / 11          |
+[fncychap-fr]    | [fncychap] v1.34    | :new_moon:             | 3 / 11          |
                  | [fontsmpl] v0.11    |                        | *. / 5*         | Traduction préexistante ([FT-tools]).
 [fontspec-fr]    | [fontspec] v2.4e    | :new_moon:             | 8 / 124         | Auteur contacté et intéressé.
                  | [ftnright] v1.1f    |                        | *. / 11*        | Traduction préexistante ([FT-tools]).

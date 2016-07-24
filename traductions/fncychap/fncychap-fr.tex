@@ -18,23 +18,11 @@
 
 \documentclass{report}
 
- \setlength{\textheight}{23 cm}
- \setlength{\voffset}{-0.54cm}
- \setlength{\hoffset}{-0.54cm}
- \setlength{\oddsidemargin}{0.5 cm}
- \setlength{\evensidemargin}{0.5 cm}
- \setlength{\textwidth}{16 cm}
- \setlength{\marginparwidth}{2.5 cm}
- \setlength{\topmargin}{0.5 cm}
- \setlength{\headheight}{0.5 cm}
- \setlength{\headsep}{0.5 cm}
-
-% \setlength{\voffset}{-5cm}
- \usepackage[T1]{fontenc}
- \usepackage[inputenc,babel]{translatex-fr}
+  \usepackage[body={16cm,23cm}]{geometry} % Pour remplacer les réglages manuels
+  \usepackage[T1]{fontenc}
+  \usepackage[inputenc,babel]{translatex-fr}
   \usepackage{graphicx}
   \usepackage[Lenny]{fncychap}
-  %\usepackage{ydrop}
   \usepackage{lettrine} % Pour remplacer ydrop qui ne donne pas les résultats attendus.
 
   \newcommand{\sk}{\vspace{0.2 cm}}
@@ -95,50 +83,50 @@
     \lettrine[findent=0.2em,nindent=0em,realheight=true]{E}{n} parallèle des 
     styles de chapitre, quelques commandes additionnelles sont mises à 
     disposition afin de créer ses titres de chapitre personnalisés.
-    \tradini
-  The commands
-  will in the sequel be described. Each command is boxed and placed on
-  a separate line. Lets begin the descriptions of the commands.\sk\\ 
-  \nsp\fbox{\A{mghrulefill}\{{\em width}\}}\sk\\
-  The above command is a more general version of the command
-  \A{hrulefill} in the sense that the width of the ruler can be
-  specified. This command is provided in order to decorate the chapter
-  headers. The chapter heading are divided into two parts. The first
-  part defines the so called \A{chapapp} and \A{thechapter} which
-  holds information of the text ``Chapter'' and the current chapter number
-  respectively. The second part is the chapter title provided by the
-  user. From now one, the \A{chapapp} and \A{thechapter} will be
-  referred to as chapter name and chapter number respectively. The
-  user defined title is referred to as the chapter title.
+    Les commandes vont être décrites les unes à la suite des autres. Chaque
+    commande est encadrée et placée sur une ligne séparée. Commençons donc 
+    ces descriptions.\sk\\
+    \nsp\fbox{\A{mghrulefill}\{{\em largeur}\}}\sk\\
+    La commande ci-dessus est une version plus générale de la commande
+    \A{hrulefill} dans le sens où la largeur du filet peut être spécifiée.
+    Cette commande est fournie pour décorer les titres de chapitre. Les
+    titres se divisent en deux parties. La première définit \A{chapapp} 
+    contenant le texte \og Chapter \fg{}\footnote{N.D.T. : avec le chargement
+    de \textsl{color} et de son option \texttt{french}, ce texte est 
+    \og Chapitre \fg{}.} ainsi que \A{thechapter} contenant le numéro du
+    chapitre. La seconde partie est le titre du chapitre donné par 
+    l'utilisateur. À partir d'ici, \A{chapapp} et \A{thechapter} seront
+    respectivement nommé nom du chapitre et numéro du chapitre. Le titre
+    donné par l'utilisateur sera nommé titre du chapitre.
 
-  \section{Toward customization of the chapter head}
-  \label{sec:TW}
-    The chapter name, number and title can be changed easy, first lets
-    introduce the following two commands\sk\\
-    \nsp\fbox{\A{ChNameUpperCase}}\sk\\
-    and\sk\\
-    \nsp\fbox{\A{ChNameLowerCase}}\sk\\
-    these commands will change the chapter name into either upper or
-    lower case. One additional case command is provided for the
-    chapter name, namely\sk\\
+    \section{Vers la personnalisation du titre de chapitre}
+    \label{sec:TW}
+    Les nom, numéro et titre du chapitre peuvent être changés simplement. 
+    Introduisons ici les deux commandes suivantes :\sk\\
+    \nsp\fbox{\A{ChNameUpperCase} et \A{ChNameLowerCase}}\sk\\
+    qui passent respectivement le nom du chapitre en lettres majuscules
+    (\emph{uppercase}) ou en lettres minuscules (\emph{lowercase}). Un
+    cas particulier est ajouté pour le nom du chapitre, à savoir\sk\\
     \nsp\fbox{\A{ChNameAsIs}}\sk\\
-    which result in the default case. Three similar commands for the
-    chapter title are defined by the commands\sk\\
-    \nsp\fbox{\A{ChTitleUpperCase}, \A{ChTitleLowerCase} and
+    qui affiche le format par défaut. Trois commandes similaires existent pour
+    le titre du chapitre \sk\\
+    \nsp\fbox{\A{ChTitleUpperCase}, \A{ChTitleLowerCase} et
       \A{ChNameAsIs}}\sk\\
-    The rule width of the predefined chapter styles can be controlled
-    by the command\sk\\
-    \nsp\fbox{\A{ChRuleWidth}\{{\em width}\}}\sk\\
-    just remember that the {\em width} must have a unit, for instance
-    {\em pt, mm, etc}. The font related matters such as size, type and
-    face can be sent using the commands\sk\\
-    \nsp\fbox{\A{ChNameVar}\{{\em stuff}\}, \A{ChNumVar}\{{\em stuff}\} and
-      \A{ChTitleVar}\{{\em stuff}\}}\sk\\
-    related to the chapter name number and title respectively.
-    The argument, {\em stuff}, to these functions can be for example
+    La largeur du filet des styles de chapitre prédéfinis peut être contrôlée
+    par la commande\sk\\
+    \nsp\fbox{\A{ChRuleWidth}\{{\em largeur}\}}\sk\\
+    en gardant en tête que la {\em largeur} doit avoir une unité, par exemple
+    {\em pt, mm}, etc. Les éléments liés aux polices de caractères tels que la
+    police, son corps, sa graisse peuvent être transmis par les commandes\sk\\
+    \nsp\fbox{\A{ChNameVar}\{{\em argument}\}, \A{ChNumVar}\{{\em argument}\} 
+    et \A{ChTitleVar}\{{\em argument}\}}\sk\\
+    liées respectivement aux nom, numéro et titre du chapitre. L{\em 'argument}
+    de ces fonctions peut être par exemple 
     \mbox{\A{ChNameVar}\{\A{huge}\A{rm}\A{centering}\}}.
-    \enlargethispage{1cm}
-  \chapter{An overview of the chapter styles}
+
+
+  \chapter{Aperçu des styles de chapitre}
+    \tradini
     \lettrine[findent=0.2em,nindent=0em,realheight=true]{T}{he} chapter styles have default settings for all of the functions
     described in section~\ref{sec:TW}. However, it can be changed
     using the commands. Note that if \A{centering}, etc is used to
