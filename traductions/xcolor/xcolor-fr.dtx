@@ -1147,7 +1147,8 @@
 %
 %
 
-% \subsubsection{Signification des expressions de couleur standards}\label{sec.expr-meaning}
+% \subsubsection{Signification des expressions de couleur 
+%   standards}\label{sec.expr-meaning}
 %
 % Est expliquée maintenant comme l'expression
 % \begin{gather*}
@@ -1225,7 +1226,8 @@
 % Essayer le même mélange en mettant $-1$ part de \Color{jaune}{yellow} au lieu
 % d'une fait obtenir \testclr{rgb:red,4;green,2;yellow,-1}.
 % Notez que ce mécanisme peut être aussi utilisé pour afficher une (expression
-% de) couleur individuelle dans un certain modèle colorimétrique: |\color{rgb:yellow,1}| permet une telle conversion.
+% de) couleur individuelle dans un certain modèle colorimétrique: 
+% |\color{rgb:yellow,1}| permet une telle conversion.
 % La forme générale
 % \begin{gather*}
 % \Meta{modèle central}|,|\Meta{div}|:|\Meta[1]{expr}|,|\Meta[1]{déc}|;|\Meta[2]{expr}|,|\Meta[2]{déc}|;...;|\Meta[k]{expr}|,|\Meta[k]{déc}
@@ -1632,14 +1634,16 @@
 % \subsubsection{Définitions de couleur globales}
 %
 % \DescribeMacro\ifglobalcolors
-% Par défaut, les définitions faites avec |\definecolor|, |\providecolor|, \dots{} sont 
-% seulement disponibles dans le groupe courant.
-% En utilisant |\globalcolorstrue|, toutes ces définitions deviennent disponibles
-% globalement --- jusqu'à ce que le groupe courant prenne fin\footnote{Cette bascule
-% peut être placée aussi dans le préambule pour contrôler le document dans son ensemble.}.
+% Par défaut, les définitions faites avec |\definecolor|, |\providecolor|, 
+% \dots{} sont seulement disponibles dans le groupe courant.
+% En utilisant |\globalcolorstrue|, toutes ces définitions deviennent 
+% disponibles globalement --- jusqu'à ce que le groupe courant prenne 
+% fin\footnote{Cette bascule peut être placée aussi dans le préambule pour 
+% contrôler le document dans son ensemble.}.
 % \DescribeMacro\xglobal
-% Une autre méthode pour indiquer qu'une définition de couleur individuelle doit être
-% globale revient à la préfixer avec |\xglobal|, soit, par exemple, |\xglobal\definecolor{toto}...|.
+% Une autre méthode pour indiquer qu'une définition de couleur individuelle
+% doit être globale revient à la préfixer avec |\xglobal|, soit, par exemple,
+% |\xglobal\definecolor{toto}...|.
 %
 %
 %
@@ -1648,8 +1652,8 @@
 % \subsubsection{Commandes de couleur standards}
 %
 % Voici la liste des commandes appliquant les couleurs qui se retrouvent dans
-% l'\LCP et qui bénéficient ici de la syntaxe étendue pour les couleurs comme vu 
-% ci-dessus :\\
+% l'\LCP et qui bénéficient ici de la syntaxe étendue pour les couleurs comme 
+% vu ci-dessus :\\
 % \DescribeMacro\color\marg{couleur}\\
 % \oarg{liste-modèle}\marg{liste-spéc}\\
 % Cette commande fait passer à la couleur donnée soit par nom/expression, soit
@@ -2454,7 +2458,11 @@
 % \makeatletter
 % \def\X#1%
 %  {\def\tmp{{#1}}\dots\Meaning{tmp}&
-%   \selectcolormodel{#1}\testclr{red} \testclr{green} \testclr{blue} \testclr{cyan} \testclr{magenta} \testclr{yellow} \testclr{brown} \testclr{lime} \testclr{olive} \testclr{orange} \testclr{pink} \testclr{purple} \testclr{teal} \testclr{violet} \testclr{black} \testclr{darkgray} \testclr{gray} \testclr{lightgray} \testclr{white}\\}
+%   \selectcolormodel{#1}\testclr{red} \testclr{green} \testclr{blue} 
+%   \testclr{cyan} \testclr{magenta} \testclr{yellow} \testclr{brown} 
+%   \testclr{lime} \testclr{olive} \testclr{orange} \testclr{pink} 
+%   \testclr{purple} \testclr{teal} \testclr{violet} \testclr{black} 
+%   \testclr{darkgray} \testclr{gray} \testclr{lightgray} \testclr{white}\\}
 % \makeatother
 % \begin{tabular}{@{}>{\ttfamily}l@{ }l@{}}
 % \string\selectcolormodel&\\
@@ -2469,7 +2477,8 @@
 % \end{figure}
 %
 %
-% \begin{figure}[htbp]\caption{Expressions de couleurs standards}\label{fig.expr}
+% \begin{figure}[htbp]\caption{Expressions de couleurs 
+%   standards}\label{fig.expr}
 % \centering\small
 % \def\test#1{\testclr{#1}& \texttt{#1}}
 % \def\X#1{\test{#1}& \test{-#1}}
@@ -2922,7 +2931,8 @@
 %
 %
 % \makeatletter
-% \def\ColorList#1#2#3#4{\begin{multicols}{#1}[\subsection{Couleurs obtenues avec l'option \Option{#2names}}\label{sec.#2nam}]
+% \def\ColorList#1#2#3#4{\begin{multicols}{#1}[\subsection{Couleurs obtenues 
+%   avec l'option \Option{#2names}}\label{sec.#2nam}]
 %   \footnotesize
 %   \def\preparecolorset
 %    {\def\XC@@cmd[####1]####2####3####4{\definecolor[####1]{@test}{####3}{####4}#4{@test}{####2}}\@testopt{\XC@definecolorset}{}}
@@ -2977,12 +2987,18 @@
 %
 % \subsection{Modèles colorimétriques supportés par les pilotes}
 %
-% \tradini Since some of the drivers only pretend to support the \Model{hsb} model, we included some code to bypass this behaviour.
-% The models actually added by \XC{} are shown in the log file.
-% Table \vref{tab.drv} lists mainly the drivers that are part of current MiK\TeX{} \cite{mik} distributions and their color model support.
-% Probably, other distributions behave similarly.
+% Comme certains pilotes ne font que prétendre supporter le modèle \Model{hsb},
+% nous avons inclus du code pour éviter cet comportement.
+% Les modèles effectivement ajoutés par \XC{} sont indiqués dans le fichier 
+% journal.
+% La table \vref{tab.drv} liste principalement les pilotes qui font partie de 
+% la distribution MiK\TeX{} \cite{mik} et leur support des modèles 
+% colorimétriques.
+% Selon toute vraisemblance, d'autres distributions se comportent de façon
+% similaire.
 %
-% \begin{table}[htbp]\caption{Drivers and color models}\label{tab.drv}
+% \begin{table}[htbp]\caption{Pilotes et modèles 
+%   colorimétriques}\label{tab.drv}
 % \centering\small
 % \extrarowheight1pt
 % \tabcolsep3pt
@@ -2990,7 +3006,7 @@
 % \begin{tabular}{ll*{9}{c}}
 % \rowcolor{tableheadcolor}
 % \hline
-% \em Driver&\em Version&\Model{rgb}&\Model{cmy}&\Model{cmyk}&\Model{hsb}&\Model{gray}&\Model{RGB}&\Model{HTML}&\Model{HSB}&\Model{Gray}\\
+% \em Pilote&\em Version&\Model{rgb}&\Model{cmy}&\Model{cmyk}&\Model{hsb}&\Model{gray}&\Model{RGB}&\Model{HTML}&\Model{HSB}&\Model{Gray}\\
 % \Option{dvipdf}&2015/12/30 v3.0k&d&n&d&n&d&i&n&n&n\\
 % \Option{dvips}&2015/12/30 v3.0k&d&n&d&d&d&i&n&n&n\\
 % \Option{dvipsone}&2015/12/30 v3.0k&d&n&d&d&d&i&n&n&n\\
@@ -3019,19 +3035,27 @@
 % \hline\hline
 % \multicolumn{11}c{\Option{dviwindo} = \Option{dvipsone}; \Option{oztex} = \Option{dvips}; \Option{xdvi} = \Option{dvips} + \Option{monochrome}}\\
 % \hline
-% \multicolumn{11}c{Driver's color model support: d\,=\,direct, i\,=\,indirect, n\,=\,none}\\
+% \multicolumn{11}c{Support du modèle par le pilote : d\,=\,direct, i\,=\,indirect, n\,=\,none}\\
 % \hline
 % \end{tabular}
 % \end{table}
 %
 %
 %
-% \subsection{How \XC{} handles driver-specific color models}
+% \subsection{Comment \XC{} gère les modèles colorimétriques spécifiques aux 
+%   pilotes}
 %
-% Although there is a variety of drivers that implement different approaches to color visualisation, they all have some features in common, as defined by the original \LCP.
-% One of these features is that any color model `foo' requires a |\color@foo|\marg{cmd}\marg{spec} command in order to translate the `foo'-dependent color \Meta{spec} into some driver-specific code that is stored in \Meta{cmd}.
-% Therefore, \XC{} in general detects driver-support for the `foo' model via the existence of |\color@foo|.
+% Bien qu'il y a une grande variété de pilotes qui implémentent différentes
+% approches à la visualisation des couleurs, ils ont tous des fonctionnalités
+% en commun, comme définies par l'\LCP originale. 
+% Une des fonctionnalités est que tout modèle de couleur \og test \fg{} 
+% requiert une commande |\color@test|\marg{commande}\marg{spéc} afin de 
+% traduire la couleur dépendante de test \Meta{spéc} en code spécifique
+% au pilote qui est stocké dans \Meta{commande}.
+% Ainsi, \XC{} détecte en général le support du pilote pour le modèle
+% \og test \fg{} par l'existence de |\color@test|. 
 %
+% \tradini 
 % By this mechanism, \XC{} can also change the behaviour of certain models without touching the driver file itself.
 % A good example is the |\substitutecolormodel| command which is used during the package initialisation process to provide support for models that are not covered by the actual driver (like \Model{hsb} for \Option{pdftex}) or that have incorrect implementations (like \Model{hsb} for \Option{dvipdfm}).
 %
