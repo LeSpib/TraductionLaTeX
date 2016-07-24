@@ -33,7 +33,7 @@ Pages d'avant-propos          | :first_quarter_moon:   | 2               |
 1. Description de l'extension | :first_quarter_moon:   | 1               |
 2. Nouvelles commandes        | :first_quarter_moon:   | 1               |
 3. Aperçu des styles de...    | :first_quarter_moon:   | 4               |
-4. Exemple simple             | :new_moon:             | 0 / 2           |
+4. Exemple simple             | :first_quarter_moon:   | 2               |
 5. Historique                 | :new_moon:             | 0 / 1           |
 
 ### Glossaire pour la traduction

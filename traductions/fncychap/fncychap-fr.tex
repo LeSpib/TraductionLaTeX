@@ -277,47 +277,47 @@
     \lettrine[findent=0.2em,nindent=0em,realheight=true]{S}{i} les styles
     prédéfinis ne répondent pas à vos besoins, vous pouvez modifier les
     routines de mise en forme. Cette mise en forme est contrôlée par trois
-    commandes.
-    \tradini
-    One might as well redefine the original
-    chapter definitions using the \A{secdef} and \A{renewcommand}, see
-    The \LaTeX{} companion. However, at the time of creating this
-    package I decided that this was easier. The command\sk\\
+    commandes. Il est possible de rédéfinir les styles de chapitre d'origine
+    en se servant de \A{secdef} et de \A{renewcommand}, voir là le 
+    \emph{\LaTeX{} Companion}. Cependant, au moment de la création de cette
+    extension, j'ai décidé de rendre ce point plus simple. La commande\sk\\
     \nsp\fbox{\A{DOCH}}\sk\\
-    formats the chapter name and number. The commands\sk\\
+    met en forme le nom et le numéro du chapitre. La commande\sk\\
     \nsp\fbox{\A{DOTI}\{{\#1}\}}\sk\\
-    and\sk\\
+    et\sk\\
     \nsp\fbox{\A{DOTIS}\{{\#1}\}}\sk\\
-    formats the chapter title for \A{chapter} and \A{chapter*} respectively.
-    In order to modify these you will have to use the preamble along
-    with the commands \A{makeatletter} and \A{makeatother}. The in
-    addition some predefined parameters can be used. The predefined
-    length variables are\sk\\
+    mettent en forme le titre du chapitre pour \A{chapter} et \A{chapter*} 
+    respectivement.
+    Afin de modifier celles-ci, vous devez les traiter dans le préambule du
+    document avec les commandes \A{makeatletter} et \A{makeatother}. 
+    En complément, certains paramètres prédéfinis peuvent être utilisés. Ces
+    variables de longueur sont\sk\\
     \nsp\fbox{\A{mylen}, \A{myhi}, \A{px}, \A{py}, \A{pxx}, \A{pyy}
-      and \A{RW}}\sk\\
-    note that \A{RW} is special, since it is set by \A{ChRuleWidth}.
-    The formatting controlled by \A{ChNameVar}, \A{ChNumVar} and
-    \A{ChTitleVar} store their values in \A{CNV}, \A{CNoV} and \A{CTV}
-    respectively. Finally, The functions \A{FmN}\{ \} and \A{FmTi}\{
-    \} acts accordingly to \A{Ch***AsIs}, \A{Ch***UpperCase} and
-    \A{Ch***LowerCase}. Note that the stars indicate appropriate
-    substitution of text, see section~\ref{sec:TW}.
-
-    To illustrate this lets define a new chapter style in which the
-    Chapter name and number in a \A{fbox} and the chapter title
-    centered. The \A{fboxrule} is linked to the predefined length
-    \A{RW} so that it can be controlled by the command
-    \A{ChRuleWidth}. Try this example at a computer near you.
+      et \A{RW}}\sk\\
+    Notez que \A{RW} est particulier car il est déterminé par \A{ChRuleWidth}.
+    Les mises en forme contrôlées par \A{ChNameVar}, \A{ChNumVar} et
+    \A{ChTitleVar} stockent leurs valeurs dans \A{CNV}, \A{CNoV} et \A{CTV}
+    respectivement. Finalement, les fonctions \A{FmN}\{ \} et \A{FmTi}\{
+    \} agissent selon \A{Ch***AsIs}, \A{Ch***UpperCase} et
+    \A{Ch***LowerCase}. Notez que les étoiles indiquent ici un texte 
+    à compléter en fonction du contexte ; voir section~\ref{sec:TW}.
+    
+    Pour illustrer ceci, définissons un nouveau style de chapitre dans lequel
+    le nom et le numéro de chapitre sont placés dans une \A{fbox} et le titre
+    est centré.
+    La commande \A{fboxrule} est liée à la longueur prédéfinie \A{RW} de telle
+    manière qu'elle peut être contrôlée par la commande \A{ChRuleWidth}. 
+    Essayez cet exemple :
     \begin{verbatim}
        \makeatletter
-         \ChNameVar{\Large\rm}    % sets the style for name
-         \ChNumVar{\Huge}         % sets the style for digit
-         \ChTitleVar{\Large\rm\centering}   % sets the style for title
-         \ChRuleWidth{4pt}        % Set RW=4pt
-         \ChNameUpperCase         % Make name uppercase
+         \ChNameVar{\Large\rm}    % définition du style du nom
+         \ChNumVar{\Huge}         % définition du style du nombre
+         \ChTitleVar{\Large\rm\centering}   % définition du style du titre
+         \ChRuleWidth{4pt}        % définition du RW=4pt
+         \ChNameUpperCase         % utilisation de noms en majuscule
          \renewcommand{\DOCH}{%
-           \setlength{\fboxrule}{\RW} % Let fbox lines be controlled by
-                                      % \ChRuleWidth
+           \setlength{\fboxrule}{\RW} % définition des files de la fbox 
+                                      % contrôlée par \ChRuleWidth
 
            \fbox{\CNV\FmN{\@chapapp}\space \CNoV\thechapter}\par\nobreak
            \vskip 40\p@}
@@ -330,22 +330,24 @@
            \vskip 40\p@}
        \makeatother
     \end{verbatim}
-    That is all there is to it. Note that the commands \A{DOTI} and
-    \A{DOTIS} can be redefined anywhere in the document, but that is
-    not a good idea. Suppose that you want to use the
-    \A{TheAlphaChapter}. This can be done by initially chose the style
-    {\em Bjarne}\/ and then redefine \A{DOCH}, \A{DOTI} and \A{DOTIS}.
+
+    C'est tout ce qu'il y a à faire. Notez que les commandes \A{DOTI} et
+    \A{DOTIS} peuvent être redéfinies n'importe où dans le document mais que 
+    cela n'est pas une bonne idée. Supposez que vous souhaitiez utiliser la
+    commande \A{TheAlphaChapter}. Ceci peut être fait en choisissant 
+    initialement le style \emph{Bjarne} et en redéfinissant \A{DOCH}, \A{DOTI}
+    et \A{DOTIS}.
 
 
   \chapter{Historique}
+    \lettrine[findent=0.2em,nindent=0em,realheight=true]{C}{e} 
+    document décrit la version 1.34 dans laquelle quelques problèmes mineurs
+    ont été traités et deux nouveaux style de chapitre ont été ajoutés. La
+    gestion des majuscules et minuscules a été corrigée. Un comportement 
+    erroné suite aux changements entre \verb+\frontmatter+,
+     \verb+\mainmatter+ et \verb+\backmatter+ a été également corrigé.   
 
-    \lettrine[findent=0.2em,nindent=0em,realheight=true]{T}{his} 
-    is version 1.34, some minor problems have been
-     addressed and two new predefined chapter heads have been
-     incorporated. The upper case and lower case handling have been
-     corrected. A bad behavior in changes between \verb+\frontmatter+,
-     \verb+\mainmatter+ and  \verb+\backmatter+, have been fixed.   
-
+    \tradini
      In version 1.33 Rejne definition streched text caused ugly gaps
      in the vrule aligned with the title text. A compatibility problem
      with the KOMA class 'scrbook.cls' the remedy is a redefinition of
