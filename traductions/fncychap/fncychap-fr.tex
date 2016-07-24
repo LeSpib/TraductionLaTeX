@@ -47,53 +47,56 @@
 
 \begin{document}
   \maketitle
-  \tradini
   \tableofcontents
-  \chapter{Package description}
-    \lettrine[findent=0.2em,nindent=0em,realheight=true]{T}{he} package \textsl{fncychap} has been written such that
-    chapter level headings can be altered fast and for me to learn more
-    about \LaTeX{} and \TeX{}. I have no idea if this package is
-    written in a good way. Thus, if anyone reads and tries {\em
-    FncyChap} I would appreciate any feedback. This will help me gain
-  insight in writing macros. 
-    
-    In any publication it is important to remember that consistency
-    plays an important role. That is, with this package one can change
-    the appearance of each chapter in the publication. However, this is
-    not desirable so don't forget modesty and consistency.
+  \chapter{Description de l'extension}
+    \lettrine[findent=0.2em,nindent=0em,realheight=true]{L'}{extension} 
+    \textsl{fncychap} a été écrite afin que des titres de niveau chapitre
+    puissent être altérés rapidement et que je puisse apprendre plus sur
+    \LaTeX{} et \TeX{}. Je ne sais pas si cette extension est écrite de façon
+    adéquate. Aussi, si quelqu'un lit cette documentation et essaye 
+    \textsl{fncychap}, je serais reconnaissant pour tout retour d'expérience. 
+    Ceci m'aidera à monter compétence dans l'écriture de commandes. 
+ 
+    Dans toute publication, il est essentiel de se rappeler que la cohérence
+    joue un rôle important. Ainsi, avec cette extension, il est possible de
+    modifier l'apparence de chaque chapitre séparément dans un document. Ceci
+    n'est cependant pas souhaitable : n'oubliez ici pas la modestie et la 
+    cohérence.
 
-    \section{Basic use and requirements}
-    The package is invoked by writing the following in the preamble of
-    your document\sk\\
-    \nsp\fbox{\A{usepackage}[{\em style}]\{{\em fncychap}\}}\sk\\
-    If the option, {\em style}, is omitted then the default definition
-    of chapter is used. Originally, there were six predefined chapter styles,
-    namely {\em Sonny, Lenny, Glenn, Conny, Rejne} and {\em Bjarne}.
-    The names corresponds to Swedish given names, almost surely (a.s.)
-    like
-    IKEA\footnote{reg. trademark of Ingvar Kamprad Emtaryd
-    Agunnaryd}. Each such style has a default configuration and if
-    that configuration is sufficient, then this is all that is needed.
-    
-    In the present release of \textsl{fncychap} two additional chapter
-    definitions have been included. The first of these is named {\em
-      PetersLenny}, after the author Peter Osborn. This chapter
-    definition is based on {\em Lenny}, Peter has carefully tweaked
-    the measures of the lines, individually, for each chapter number (up to 20)
-    and each appendix (up to Z). The second chapter head is a new one
-    defined by Jean-Marc Francois and he named it \textsl{Bjornstrup}.
+    \section{Chargement et utilisation classique}
+    Cette extension est chargée en saisissant la ligne suivante en 
+    préambule\sk\\    
+    \nsp\fbox{\A{usepackage}[{\em style}]\{{\em fncychap}\}}\sk\\    
+    Si l'option {\em style} est omise alors la définition par défaut des 
+    chapitres est utilisée. À l'origine, il existait six styles de chapitres
+    prédéfinis, à savoir {\em Sonny, Lenny, Glenn, Conny, Rejne} et 
+    {\em Bjarne}. Ces noms correspondent à des prénoms suédois, à l'image sans 
+    doute d'IKEA\footnote{Marque déposée d'Ingvar Kamprad Emtaryd Agunnaryd.}. 
+    Chacun de ces styles dispose d'une configuration par défaut et, si elle
+    est suffisante, il ne reste rien d'autre à faire.
 
-    Originally, \textsl{fncychap} did not rely on any other package. However, for the
-    style {\tt Lenny} a postscript font is default, but this font can
-    easily be changed. I encourage the use of the default postscript
-    font since it is scalable in a truly huge manner, which makes
-    {\em Lenny} nice. In the current release and with the use of
-    Jean-Marcs \textsl{Bjornstrup} the color package from the base
-    distribution will be invoked.
+    Dans la version actuelle de \textsl{fncychap}, deux styles additionnels
+    ont été ajoutés. Le premier se nomme {\em PetersLenny}, d'après le nom de
+    son auteur Peter Osborn. Ce style se base sur celui de {\em Lenny} : Peter
+    a finement ajusté la taille des filets pour chacun des chapitres numérotés
+    (jusqu'à 20) et chacune des annexes (jusqu'à Z). Le second style a été 
+    défini par Jean-Marc François et il l'a nommé \textsl{Bjornstrup}.
+
+    À l'origine, \textsl{fncychap} ne dépendait d'aucune autre extension. 
+    Cependant, pour le style {\tt Lenny}, une fonte postscript est utilisée
+    par défaut ; mais ceci peut être facilement changé. J'encourage 
+    l'utilisation de cette fonte postscript par défaut car elle est 
+    redimensionnable de façon très importante, ce qui rend {\em Lenny} 
+    très agréable. Dans la version actuelle, si le style \textsl{Bjornstrup}
+    de Jean-Marc est utilisé, l'extension \textsl{color} de la distribution de
+    base sera chargée. 
     
-  \chapter{Commands provided}
-  \lettrine[findent=0.2em,nindent=0em,realheight=true]{A}{}part from the chapter styles, some additional commands are
-  provided in order to create user defined chapter heads. The commands
+  \chapter{Nouvelles commandes}
+    \lettrine[findent=0.2em,nindent=0em,realheight=true]{E}{n} parallèle des 
+    styles de chapitre, quelques commandes additionnelles sont mises à 
+    disposition afin de créer ses titres de chapitre personnalisés.
+    \tradini
+  The commands
   will in the sequel be described. Each command is boxed and placed on
   a separate line. Lets begin the descriptions of the commands.\sk\\ 
   \nsp\fbox{\A{mghrulefill}\{{\em width}\}}\sk\\

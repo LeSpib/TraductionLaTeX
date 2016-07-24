@@ -29,8 +29,8 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 Section                       | Avancée                | Pages traduites | Commentaires 
 ----------------------------- | :--------------------: | :-------------: | -------------------------
 En-tête du document tex       | :new_moon:             |                 |
-Pages d'avant-propos          | :new_moon:             | 0 / 2           | 
-1. Description de l'extension | :new_moon:             | 0 / 1           |
+Pages d'avant-propos          | :waxing_crescent_moon: | 1 / 2           | 
+1. Description de l'extension | :first_quarter_moon:   | 1               |
 2. Nouvelles commandes        | :new_moon:             | 0 / 1           |
 3. Aperçu des styles de...    | :new_moon:             | 0 / 4           |
 4. Exemple simple             | :new_moon:             | 0 / 2           |
