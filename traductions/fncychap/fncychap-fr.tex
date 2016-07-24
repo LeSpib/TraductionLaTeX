@@ -31,7 +31,6 @@
   \title{L'extension FncyChap\\V1.34}
   \author{Ulf A. Lindgren}
   \date{}
-  
 
 \begin{document}
   \maketitle
@@ -40,7 +39,7 @@
     \lettrine[findent=0.2em,nindent=0em,realheight=true]{L'}{extension} 
     \textsl{fncychap} a été écrite afin que des titres de niveau chapitre
     puissent être altérés rapidement et que je puisse apprendre plus sur
-    \LaTeX{} et \TeX{}. Je ne sais pas si cette extension est écrite de façon
+    \TeX{} et \LaTeX{}. Je ne sais pas si cette extension est écrite de façon
     adéquate. Aussi, si quelqu'un lit cette documentation et essaye 
     \textsl{fncychap}, je serais reconnaissant pour tout retour d'expérience. 
     Ceci m'aidera à monter compétence dans l'écriture de commandes. 
@@ -55,17 +54,17 @@
     Cette extension est chargée en saisissant la ligne suivante en 
     préambule\sk\\    
     \nsp\fbox{\A{usepackage}[{\em style}]\{{\em fncychap}\}}\sk\\    
-    Si l'option {\em style} est omise alors la définition par défaut des 
+    Si l'option \emph{style} est omise alors la définition par défaut des 
     chapitres est utilisée. À l'origine, il existait six styles de chapitres
-    prédéfinis, à savoir {\em Sonny, Lenny, Glenn, Conny, Rejne} et 
-    {\em Bjarne}. Ces noms correspondent à des prénoms suédois, à l'image sans 
+    prédéfinis, à savoir \emph{Sonny, Lenny, Glenn, Conny, Rejne} et 
+    \emph{Bjarne}. Ces noms correspondent à des prénoms suédois, à l'image sans
     doute d'IKEA\footnote{Marque déposée d'Ingvar Kamprad Emtaryd Agunnaryd.}. 
     Chacun de ces styles dispose d'une configuration par défaut et, si elle
     est suffisante, il ne reste rien d'autre à faire.
 
     Dans la version actuelle de \textsl{fncychap}, deux styles additionnels
-    ont été ajoutés. Le premier se nomme {\em PetersLenny}, d'après le nom de
-    son auteur Peter Osborn. Ce style se base sur celui de {\em Lenny} : Peter
+    ont été ajoutés. Le premier se nomme \emph{PetersLenny}, d'après le nom de
+    son auteur Peter Osborn. Ce style se base sur celui de \emph{Lenny} : Peter
     a finement ajusté la taille des filets pour chacun des chapitres numérotés
     (jusqu'à 20) et chacune des annexes (jusqu'à Z). Le second style a été 
     défini par Jean-Marc François et il l'a nommé \textsl{Bjornstrup}.
@@ -74,7 +73,7 @@
     Cependant, pour le style {\tt Lenny}, une fonte postscript est utilisée
     par défaut ; mais ceci peut être facilement changé. J'encourage 
     l'utilisation de cette fonte postscript par défaut car elle est 
-    redimensionnable de façon très importante, ce qui rend {\em Lenny} 
+    redimensionnable de façon très importante, ce qui rend \emph{Lenny} 
     très agréable. Dans la version actuelle, si le style \textsl{Bjornstrup}
     de Jean-Marc est utilisé, l'extension \textsl{color} de la distribution de
     base sera chargée. 
@@ -126,156 +125,161 @@
 
 
   \chapter{Aperçu des styles de chapitre}
-    \tradini
-    \lettrine[findent=0.2em,nindent=0em,realheight=true]{T}{he} chapter styles have default settings for all of the functions
-    described in section~\ref{sec:TW}. However, it can be changed
-    using the commands. Note that if \A{centering}, etc is used to
-    format the text part of the chapter style then the result can be
-    ugly. The chapter style {\em Bjarne} contains one additional
-    command\sk\\
+    \lettrine[findent=0.2em,nindent=0em,realheight=true]{L}{es} styles de 
+    chapitre ont tous des réglages par défaut pour chacune des commandes
+    décrites en section~\ref{sec:TW}. Cependant, ils peuvent être changés
+    en recourant à ces commandes. Notez que si \A{centering}, etc. est 
+    utilisé pour mettre en forme le titre de chapitre, cela peut conduire
+    à des résultats affreux. Le style de chapitre \emph{Bjarne} contient 
+    une commande complémentaire\sk\\
     \nsp\fbox{\A{TheAlphaChapter}}\sk\\
-    This command will write the chapter number using the corresponding
-    word. \A{TheAlphaChapter} have a capability of writing the words
-    {\em ZERO} to {NINETYNINE}.
+    Cette commande écrit le numéro du chapitre en utilisant les mots 
+    équivalents. \A{TheAlphaChapter} peut écrire les nombres de
+    emph{ZERO} to \emph{NINETYNINE}\footnote{N.D.T. : dans un texte français,
+    il faut redéfinir la commande \A{TheAlphaChapter} ainsi que la 
+    commande \A{AlphaNo} pour remplacer les termes anglais par des termes 
+    français.}.
     
+    Dans les sections suivantes, les styles prédéfinis sont présentés en 
+    compagnie de leur paramétrage par défaut. Les versions \A{chapter} 
+    et \A{chapter*} (dite \og étoilée \fg{}) sont toutes deux illustrées.
 
-    In the following sections the pre-defined styles are shown along
-    with the default settings. Both the \A{chapter} and \A{chapter*}
-    are given.
-    \section{The chapter Sonny}
-    The following settings have been used as default parameters
+    \section{Le style de chapitre Sonny}
+    Les paramètres par défaut sont les suivants :
     {\small\begin{verbatim}  
-      \ChNameVar{\Large\sf}  \ChNumVar{\Huge}  \ChTitleVar{\Large\sf}
-      \ChRuleWidth{0.5pt}    \ChNameUpperCase
+     \ChNameVar{\Large\sf}  \ChNumVar{\Huge}  \ChTitleVar{\Large\sf}
+     \ChRuleWidth{0.5pt}    \ChNameUpperCase
     \end{verbatim}}    
     \begin{figure}[h]
       \begin{minipage}{7 cm}
         \label{fig:Sonnys}
         \centerline{\includegraphics[height=6cm]{Sonnys.eps}} 
-        \caption{The stared chapter style sonny}
+        \caption{Le style Sonny \og étoilé \fg{}}
       \end{minipage}\hfill
       \begin{minipage}{7 cm}
         \label{fig:Sonny}
         \centerline{\includegraphics[height=6cm]{Sonny.eps}}
-        \caption{The chapter style Sonny}
+        \caption{Le style Sonny}
       \end{minipage}\hfill
     \end{figure}    
     
-% \clearpage
-    \section{The chapter Lenny}
-    The following settings have been used as default parameters
+    \section{Le style de chapitre Lenny}
+    Les paramètres par défaut sont les suivants :
     {\small\begin{verbatim}
-      \ChNameVar{\fontsize{14}{16}\usefont{OT1}{phv}{m}{n}\selectfont}
-      \ChNumVar{\fontsize{60}{62}\usefont{OT1}{ptm}{m}{n}\selectfont}
-      \ChTitleVar{\Huge\bfseries\rm},  \ChRuleWidth{1pt}
+     \ChNameVar{\fontsize{14}{16}\usefont{OT1}{phv}{m}{n}\selectfont}
+     \ChNumVar{\fontsize{60}{62}\usefont{OT1}{ptm}{m}{n}\selectfont}
+     \ChTitleVar{\Huge\bfseries\rm}  \ChRuleWidth{1pt}
     \end{verbatim}}
     \begin{figure}[h]
       \begin{minipage}{7 cm}
         \centerline{\includegraphics[height=6cm]{Lennys.eps}} 
-        \caption{The stared chapter style Lenny}
+        \caption{Le style Lenny \og étoilé \fg{}}
       \end{minipage}\hfill
       \begin{minipage}{7 cm}
         \centerline{\includegraphics[height=6cm]{Lenny.eps}}
-        \caption{The chapter style Lenny}
+        \caption{Le style Lenny}
       \end{minipage}\hfill
     \end{figure}
-\textbf{Note:} An alternative version of this chapter head exist
-entitled \textsl{PetersLenny}.
-%\enlargethispage{2cm}
+    \textbf{Note:} Une version alternative nommée \textsl{PetersLenny} existe.
 
-    \section{The chapter Glenn}
-    The following settings have been used as default parameters
+    \section{Le style de chapitre Glenn}
+    Les paramètres par défaut sont les suivants :
     {\small\begin{verbatim}
-      \ChNameVar{\bfseries\Large\sf},  \ChNumVar{\Huge},  \ChTitleVar{\bfseries\Large\rm}, 
-      \ChRuleWidth{1pt},               \ChNameUpperCase,  \ChTitleUpperCase
+     \ChNameVar{\bfseries\Large\sf}  \ChNumVar{\Huge}  \ChTitleVar{\bfseries\Large\rm}, 
+     \ChRuleWidth{1pt}               \ChNameUpperCase  \ChTitleUpperCase
     \end{verbatim}}
     \begin{figure}[h]
       \begin{minipage}{7 cm}
         \centerline{\includegraphics[height=6cm]{Glenns.eps}}
-        \caption{The stared chapter style Glenn}
+        \caption{Le style Glenn \og étoilé \fg{}}
       \end{minipage}\hfill
       \begin{minipage}{7 cm}
         \centerline{\includegraphics[height=6cm]{Glenn.eps}}
-        \caption{The chapter style Glenn}
+        \caption{Le style Glenn}
       \end{minipage}\hfill
     \end{figure}
 
-    \section{The chapter Conny}
-    The following settings have been used as default parameters
+    \section{Le style de chapitre Conny}
+    Les paramètres par défaut sont les suivants :
     {\small\begin{verbatim}
-       \ChNameUpperCase     \ChTitleUpperCase    \ChNameVar{\centering\Huge\rm\bfseries}
-       \ChNumVar{\Huge}     \ChRuleWidth{2pt}    \ChTitleVar{\centering\Huge\rm}
+     \ChNameUpperCase     \ChTitleUpperCase    \ChNameVar{\centering\Huge\rm\bfseries}
+     \ChNumVar{\Huge}     \ChRuleWidth{2pt}    \ChTitleVar{\centering\Huge\rm}
     \end{verbatim}}
     \begin{figure}[h]
       \begin{minipage}{7 cm}
         \centerline{\includegraphics[height=6cm]{Connys.eps}}
-        \caption{The stared chapter style Conny}
+        \caption{Le style Conny \og étoilé \fg{}}
       \end{minipage}\hfill
       \begin{minipage}{7 cm}
         \centerline{\includegraphics[height=6cm]{Conny.eps}}
-        \caption{The chapter style Conny}
+        \caption{Le style Conny}
       \end{minipage}\hfill
     \end{figure}
 
-    \section{The chapter Rejne}
-    The following settings have been used as default parameters\\
+    \section{Le style de chapitre Rejne}
+    Les paramètres par défaut sont les suivants :
     {\small\begin{verbatim}  
-      \ChNameVar{\centering\Huge\rm\bfseries}, \ChNumVar{\Huge},  \ChTitleVar{\centering\Huge\rm}
-      \ChNameUpperCase,                        \ChTitleUpperCase, \ChRuleWidth{1pt}
-   \end{verbatim}}
+     \ChNameVar{\centering\Huge\rm\bfseries} \ChNumVar{\Huge}  \ChTitleVar{\centering\Huge\rm}
+     \ChNameUpperCase                        \ChTitleUpperCase \ChRuleWidth{1pt}
+    \end{verbatim}}
     \begin{figure}[h]
       \begin{minipage}{7 cm}
         \centerline{\includegraphics[height=6cm]{Rejnes.eps}}
-        \caption{The stared chapter style Rejne}
+        \caption{Le style Rejne \og étoilé \fg{}}
       \end{minipage}\hfill
       \begin{minipage}{7 cm}
         \centerline{\includegraphics[height=6cm]{Rejne.eps}}
-        \caption{The chapter style Rejne}
-      \end{minipage}\hfill
-    \end{figure}
-    \section{The chapter Bjarne}
-    The following settings have been used as default parameters\\
-    {\small\begin{verbatim}
-  \ChNameUpperCase   \ChNameVar{\raggedleft\normalsize\rm}   \ChRuleWidth{1pt}
-  \ChTitleUpperCase  \ChNumVar{\raggedleft \bfseries\Large}  \ChTitleVar{\raggedleft \Large\rm}
-     \end{verbatim}}
-    \begin{figure}[h]
-      \begin{minipage}{7 cm}
-        \centerline{\includegraphics[height=6cm]{Bjarnes.eps}} 
-        \caption{The stared chapter style Bjarne}
-      \end{minipage}\hfill
-      \begin{minipage}{7 cm}
-        \centerline{\includegraphics[height=6cm]{Bjarne.eps}}
-        \caption{The chapter style Bjarne}
+        \caption{Le style Rejne}
       \end{minipage}\hfill
     \end{figure}
 
-    \section{The chapter Bjornstrup}
-    The following settings have been used as default parameters\\
+    \section{Le style de chapitre Bjarne}
+    Les paramètres par défaut sont les suivants :
     {\small\begin{verbatim}
-  \ChNumVar{\fontsize{76}{80}\usefont{OT1}{pzc}{m}{n}\selectfont}
-  \ChTitleVar{\raggedleft\Large\sffamily\bfseries}
-  
-     \end{verbatim}}
+     \ChNameUpperCase   \ChNameVar{\raggedleft\normalsize\rm}   \ChRuleWidth{1pt}
+     \ChTitleUpperCase  \ChNumVar{\raggedleft \bfseries\Large} 
+     \ChTitleVar{\raggedleft \Large\rm}
+    \end{verbatim}}
+    \begin{figure}[h]
+      \begin{minipage}{7 cm}
+        \centerline{\includegraphics[height=6cm]{Bjarnes.eps}} 
+        \caption{Le style Bjarne \og étoilé \fg{}}
+      \end{minipage}\hfill
+      \begin{minipage}{7 cm}
+        \centerline{\includegraphics[height=6cm]{Bjarne.eps}}
+        \caption{Le style Bjarne}
+      \end{minipage}\hfill
+    \end{figure}
+
+    \section{Le style de chapitre Bjornstrup}
+    Les paramètres par défaut sont les suivants :
+    {\small\begin{verbatim}
+     \ChNumVar{\fontsize{76}{80}\usefont{OT1}{pzc}{m}{n}\selectfont}
+     \ChTitleVar{\raggedleft\Large\sffamily\bfseries}
+    \end{verbatim}}
     \begin{figure}[h]
       \begin{minipage}{7 cm}
         \centerline{\includegraphics[height=6cm]{BjornstrupS.eps}} 
-        \caption{The stared chapter style Bjornstrup}
+        \caption{Le style Bjornstrup \og étoilé \fg{}}
       \end{minipage}\hfill
       \begin{minipage}{7 cm}
         \centerline{\includegraphics[height=6cm]{Bjornstrup.eps}}
-        \caption{The chapter style Bjornstrup}
+        \caption{Le style Bjornstrup}
       \end{minipage}\hfill
     \end{figure}
-\textbf{Note:} It appears as if the rendering in YAP (dvi previewer in
-MikTeX) differs from dvips in that the gray box become
-foreground. Thus, the chapter number is partly hidden. 
-\enlargethispage{2cm}
-  \chapter{A simple example}
-    \lettrine[findent=0.2em,nindent=0em,realheight=true]{I}{f}
-    the pre defined styles does not fulfill your needs then you can
-    modify the formating routines. The formatting is controlled by
-    three commands. One might as well redefine the original
+    \textbf{Note:} la restitution faite par YAP (visualisateur dvi de MikTeX)
+    diffère de dvips dans la mesure où la boîte grise passe au premier plan et
+    cache ainsi une partie du numéro de chapitre. 
+    \enlargethispage{2cm}
+
+
+  \chapter{Exemple simple}
+    \lettrine[findent=0.2em,nindent=0em,realheight=true]{S}{i} les styles
+    prédéfinis ne répondent pas à vos besoins, vous pouvez modifier les
+    routines de mise en forme. Cette mise en forme est contrôlée par trois
+    commandes.
+    \tradini
+    One might as well redefine the original
     chapter definitions using the \A{secdef} and \A{renewcommand}, see
     The \LaTeX{} companion. However, at the time of creating this
     package I decided that this was easier. The command\sk\\
@@ -331,9 +335,12 @@ foreground. Thus, the chapter number is partly hidden.
     not a good idea. Suppose that you want to use the
     \A{TheAlphaChapter}. This can be done by initially chose the style
     {\em Bjarne}\/ and then redefine \A{DOCH}, \A{DOTI} and \A{DOTIS}.
-    \chapter{Revision details}
 
-     \lettrine[findent=0.2em,nindent=0em,realheight=true]{T}{his} is version 1.34, some minor problems have been
+
+  \chapter{Historique}
+
+    \lettrine[findent=0.2em,nindent=0em,realheight=true]{T}{his} 
+    is version 1.34, some minor problems have been
      addressed and two new predefined chapter heads have been
      incorporated. The upper case and lower case handling have been
      corrected. A bad behavior in changes between \verb+\frontmatter+,
