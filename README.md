@@ -41,7 +41,7 @@ Traduction       | Source              | Avancée                | Pages traduit
                  | [enumerate] v3.00   |                        | *. / 4*         | Traduction préexistante ([FT-tools]).
                  | [enumitem] v3.5.2   |                        | *. / 17*        | 
                  | [etoc] v1.08g       |                        | *. / 114*       |
-                 | [fancyhdr] v3.1     |                        | *. / 26*        |
+[fancyhdr-fr]    | [fancyhdr] v3.1     | :new_moon:             | 0 / 26          |
 [fileerr-fr]     | [fileerr] v1.1a     | :waxing_crescent_moon: | 1 / 2           | 
 [fncychap-fr]    | [fncychap] v1.34    | :first_quarter_moon:   | 12              | Ajout d'infos dans le doc
                  | [fontsmpl] v0.11    |                        | *. / 5*         | Traduction préexistante ([FT-tools]).
