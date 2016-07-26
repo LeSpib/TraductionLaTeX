@@ -36,7 +36,7 @@ Traduction       | Source              | Avancée                | Pages traduit
 [cleveref-fr]    | [cleveref] v0.19    | :new_moon:             | 0 / 31          |
                  | [datatool] v2.26    |                        | *. / 220*       |
                  | [datetime2] v1.5.2  |                        | *. / 169*       |
-                 | [dcolumn] v1.06     |                        | *. / 4*         | Traduction préexistante ([FT-tools]).
+[dcolumn-fr]     | [dcolumn] v1.06     | :new_moon:             | 0 / 4           | Traduction préexistante ([FT-tools]).
                  | [delarray] v1.01    |                        | *. / 3*         | Traduction préexistante ([FT-tools]).
                  | [enumerate] v3.00   |                        | *. / 4*         | Traduction préexistante ([FT-tools]).
                  | [enumitem] v3.5.2   |                        | *. / 17*        | 
