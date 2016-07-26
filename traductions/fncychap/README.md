@@ -32,14 +32,13 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 Section                       | Avancée                | Pages traduites | Commentaires 
 ----------------------------- | :--------------------: | :-------------: | -------------------------
 En-tête du document tex       | :new_moon:             |                 |
-Pages d'avant-propos          | :first_quarter_moon:   | 2               | 
-1. Description de l'extension | :first_quarter_moon:   | 1               |
-2. Nouvelles commandes        | :first_quarter_moon:   | 1               |
-3. Aperçu des styles de...    | :first_quarter_moon:   | 4               |
-4. Exemple simple             | :first_quarter_moon:   | 2               |
-5. Historique                 | :first_quarter_moon:   | 1               |
+Pages d'avant-propos          | :waxing_gibbous_moon:  | 2               | 
+1. Description de l'extension | :waxing_gibbous_moon:  | 1               |
+2. Nouvelles commandes        | :waxing_gibbous_moon:  | 1               |
+3. Aperçu des styles de...    | :waxing_gibbous_moon:  | 4               |
+4. Exemple simple             | :waxing_gibbous_moon:  | 2               |
+5. Historique                 | :waxing_gibbous_moon:  | 1               |
 
 ### Glossaire pour la traduction
 
-Anglais                | Français                                       | Commentaires 
----------------------- | ---------------------------------------------- | -------------------------------
+Il n'y a pas eu besoin d'un glossaire pour cette traduction.
