@@ -33,10 +33,9 @@ Section                       | Avancée                | Pages traduites | Comm
 En-tête du document tex       | :new_moon:             |                 |
 Page d'avant-propos           | :first_quarter_moon:   | 0               | 
 1. Exemples                   | :first_quarter_moon:   | 1               |
-2. Les commandes              | :new_moon:             | 0 / 2           |
+2. Les commandes              | :first_quarter_moon:   | 2               |
 
 
 ### Glossaire pour la traduction
 
-Anglais                | Français                                       | Commentaires 
----------------------- | ---------------------------------------------- | -------------------------------
+Il n'y a pas eu besoin d'un glossaire pour cette traduction.

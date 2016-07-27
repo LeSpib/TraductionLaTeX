@@ -37,7 +37,7 @@ Traduction       | Source              | Avancée                | Pages traduit
                  | [datatool] v2.26    |                        | *. / 220*       |
                  | [datetime2] v1.5.2  |                        | *. / 169*       |
 [dcolumn-fr]     | [dcolumn] v1.06     | :new_moon:             | 0 / 4           | Traduction préexistante ([FT-tools]).
-[delarray-fr]    | [delarray] v1.01    | :new_moon:             | 1 / 3           | Traduction préexistante ([FT-tools]).
+[delarray-fr]    | [delarray] v1.01    | :first_quarter_moon:   | 3               | Traduction préexistante ([FT-tools]).
                  | [enumerate] v3.00   |                        | *. / 4*         | Traduction préexistante ([FT-tools]).
                  | [enumitem] v3.5.2   |                        | *. / 17*        | 
                  | [etoc] v1.08g       |                        | *. / 114*       |

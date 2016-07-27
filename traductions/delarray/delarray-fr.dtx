@@ -125,13 +125,12 @@
 \def\@tabarray{\@ifnextchar[{\@@array}{\@@array[c]}}
 %    \end{macrocode}
 % \end{macro}
-% \tradini
 % \begin{macro}{\@@array}
-%    This macro tests for an optional delimiter before the left brace
-%    of the main preamble argument. If there is no delimiter,
-%    |\@arrayleft| and |\@arrayright| are made a no-ops, and
-%    |\@array| is called with the positional argument. Otherwise
-%    call |\@del@array|.
+%    Cette commande teste la présense d'un délimiteur optionnel avant
+%    l'accolade gauche débutant le préambule de la table. S'il n'y a pas de
+%    délimiteur, |\@arrayleft| et |\@arrayright| ne sont associés à aucune
+%    action et |\@array| est appelé avec l'argument positionnel (entre 
+%    crochets). Sinon, |\@del@array| est appelé.
 %    \begin{macrocode}
 \def\@@array[#1]{\@ifnextchar\bgroup
   {\let\@arrayleft\relax\let\@arrayright\relax\@array[#1]}%
@@ -139,59 +138,60 @@
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\@del@array}
-%    We now know that we have an {\tt array} (or {\tt tabular}) with
-%    delimiters.
+%    Nous savons maintenant que nous avons un environnement \texttt{array}
+%    (ou \texttt{tabular}) avec des délimiteurs. 
 %    \begin{macrocode}
 \def\@del@array[#1]#2#3#4{%
 %    \end{macrocode}
-% The following line is completely redundant but it does catch errors
-% involving delimiters  before the processing of the alignment begins.
-% A common error is likely to be omitting the `.' in a
-% |\cases|-type construction. This causes the first token of the
-% alignment to be gobbled, possibly causing lots of spurious errors
-% before the cause of the error, the missing delimiter, is discovered as
-% |\@arrayright| puts the alignment and the delimiters together.
+% La ligne suivante est complétement redondante mais elle permet de capter
+% des erreurs associées aux délimiteurs avant que le traitement de 
+% l'alignement ne commence. Une erreur courante est ici l'oubli d'un
+% \og . \fg{} dans une construction à l'image de l'environnement |\cases|.
+% Ceci provoque l'engloutissement de la première unité lexicale, ce qui conduit
+% généralement à de nombreux messages d'erreurs infondés masquant 
+% la vraie source de l'erreur, le délimiteur manquant, d'autant que 
+% |\@arrayright| place l'alignement et les délimiteurs ensemble.
 %    \begin{macrocode}
   \setbox\z@\hbox{$\left#2\right#4$}%
 %    \end{macrocode}
-% In the case of a `c' argument we do not need to rebox the alignment,
-% so we can define |\@arrayleft| and |\@arrayright| just to
-% insert the delimiters.
+% Dans le cas de l'argument \og c \fg{}, nous n'avons pas besoin de remettre 
+% en boîte l'alignement, ce qui fait que nous pouvons définir |\@arrayleft| et
+% |\@arrayright| juste en y insérant les délimiteurs.
 %    \begin{macrocode}
   \if#1c\def\@arrayleft{\left#2}\def\@arrayright{\right#4}%
 %    \end{macrocode}
-% Otherwise we (should) have a {\tt[t]} or {\tt[b]} argument, so first we
-% store the alignment, without delimiters in box0.
+% Sinon, nous avons (sauf erreur) un argument {\tt[t]} ou {\tt[b]} et nous
+% stockons alors l'alignement sans les délimiteurs dans box0.
 %    \begin{macrocode}
   \else\def\@arrayleft{\setbox\z@}%
 %    \end{macrocode}
-% Then after the alignment is finished:
+% Puis une fois que l'alignement est traité, |\@arrayright| est traité.
 %    \begin{macrocode}
   \def\@arrayright{%
 %    \end{macrocode}
-% Calculate the amount the box needs to be lowered (this will be
-% negative in the case of |[b]|). A little bit of arithmetic cf.\
-% the \TeX{}Book, Appendix G, rule 8. We calculate the amount this
-% way, rather than just taking the difference between the depth of box0
-% and the depth of the box defined below, as the depth of that box may
-% be affected by the delimiters if |\delimitershortfall| or
-% |\delimiterfactor| have non-standard values.
+% Est calculé l'abaissement que doit subir la boîte (cette mesure est négative
+% dans le cas de |[b]|). Il s'agit là d'un peu d'arithmétique, telle que 
+% décrite dans le \TeX{}Book, annexe G, règle 8. Nous effectuons le calcul de
+% cette manière plutôt qu'en prenant la différence entre la profondeur de la 
+% boîte box0 et la profondeur de la boîte définie ci-dessous dans la mesure où 
+% la profondeur de cette boîte peut être affectée par les délimiteurs si 
+% |\delimitershortfall| ou |\delimiterfactor| ont des valeurs non standards.
 %    \begin{macrocode}
      \dimen@=\dp\z@
      \advance\dimen@-\ht\z@
      \divide \dimen@ by \tw@
      \advance\dimen@ by\fontdimen22 \textfont\tw@
 %    \end{macrocode}
-% Now lower the alignment and the delimiters into place.
+% Maintenant, nous abaissons l'alignement et les délimiteurs à leur place.
 %    \begin{macrocode}
      \lower\dimen@\hbox{$\left#2\vcenter{\unvbox\z@}\right#4$}}%
 %    \end{macrocode}
-% End the |\if#1c|
+% Fin du |\if#1c|
 %    \begin{macrocode}
   \fi
 %    \end{macrocode}
-% Now that we have defined |\@arrayleft| and |\@arrayright|, call
-% |\@array|.
+% Maintenant que nous avons défini |\@arrayleft| et |\@arrayright|, |\@array|
+% est appelé.
 %    \begin{macrocode}
   \@array[#1]{#3}}
 %    \end{macrocode}
@@ -203,8 +203,8 @@
 %
 %
 % \subsection{newarray.sty}
-% All the features of the old {\tt newarray} style option have been
-% merged into the {\tt array} or {\tt delarray} options.
+% Toutes les fonctionnalités de l'ancienne extension \texttt{newarray} ont été
+% basculées dans les extensions \texttt{array} ou \texttt{delarray}.
 % \changes{v1.00}{1992/07/06}
 %    {Stop generating a `shell' newarray.sty}
 %
