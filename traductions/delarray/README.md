@@ -32,7 +32,7 @@ Section                       | Avancée                | Pages traduites | Comm
 ----------------------------- | :--------------------: | :-------------: | -------------------------
 En-tête du document tex       | :new_moon:             |                 |
 Page d'avant-propos           | :first_quarter_moon:   | 0               | 
-1. Exemples                   | :new_moon:             | 0 / 1           |
+1. Exemples                   | :first_quarter_moon:   | 1               |
 2. Les commandes              | :new_moon:             | 0 / 2           |
 
 

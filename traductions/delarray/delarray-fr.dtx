@@ -66,31 +66,31 @@
 % |\begin{array}({cc})| \ldots
 % \[  \begin{array}({cc})a&b\\c&d\end{array}   \]
 %
-% \tradini
-% Similarly if an environment equivalent to \PlainTeX's |\cases| could
-% be defined by:\\
+% De la même manière, un environnement équivalent à |\cases| de \PlainTeX peut
+% être défini avec :\\
 % |\begin{array}\{{lL}.| \ldots
 %
 % \newcolumntype{L}{>{$}l<{$}}
 % \[  f(x)=\begin{array}\{{lL}.
-%           0        &if $x=0$\\
-%           \sin(x)/x&otherwise
+%           0        &si $x=0$\\
+%           \sin(x)/x&sinon
 %           \end{array}  \]
-% Here |L| is supposed to denote a column of left aligned L-R text. It
-% may be defined via: |\newcolumntype{L}{>{$}l<{$}}|, as discussed in
-% {\tt array.sty}.
-% Note that as the delimiters must always be used in pairs, the  `|.|'
-% must be used to denote a  `null delimiter'.
+% Ici, |L| désigne une colonne de texte sinistroverse\footnote{N.D.T. : il 
+% s'agit d'un mode où le texte est écrit de gauche à droite.} alignée à gauche.
+% Il peut être défini comme suit : |\newcolumntype{L}{>{$}l<{$}}|, comme 
+% expliqué dans \texttt{array.sty}. Notez que les délimiteurs doivent toujours
+% être utilisés par paires, le \og |.| \fg{} doit être utilisé pour indiquer un
+% \og délimiteur nul \fg{}.
 %
-% This feature is especially useful if the |[t]| or |[b]|
-% arguments are also used. In these cases the result is not equivalent
-% to surrounding the environment by |\left|\ldots|\right|, as
-% can be seen from the following example:
+% Ce dispositif est particulièrement utile si les arguments |[t]| ou |[b]| sont
+% aussi utilisés. Dans ces cas le résultat n'est pas équivalent à celui obtenu
+% en entourant l'environnement par |\left|\ldots|\right|, comme vous pouvez le
+% voir dans les exemples suivants:
 % \[
 % \begin{array}[t]({c}) 1\\2\\3 \end{array}
 % \begin{array}[c]({c}) 1\\2\\3 \end{array}
 % \begin{array}[b]({c}) 1\\2\\3 \end{array}
-% \quad\mbox{not}\quad
+% \quad\mbox{et non}\quad
 % \left(\begin{array}[t]{c} 1\\2\\3 \end{array}\right)
 % \left(\begin{array}[c]{c} 1\\2\\3 \end{array}\right)
 % \left(\begin{array}[b]{c} 1\\2\\3 \end{array}\right)
@@ -99,7 +99,7 @@
 % \begin{array}[t]({c}) 1\\2\\3 \end{array}
 % \begin{array}[c]({c}) 1\\2\\3 \end{array}
 % \begin{array}[b]({c}) 1\\2\\3 \end{array}
-% \quad\mbox{not}\quad
+% \quad\mbox{et non}\quad
 % \left(\begin{array}[t]{c} 1\\2\\3 \end{array}\right)
 % \left(\begin{array}[c]{c} 1\\2\\3 \end{array}\right)
 % \left(\begin{array}[b]{c} 1\\2\\3 \end{array}\right)
@@ -108,7 +108,7 @@
 %
 % \StopEventually{}
 %
-% \section{The Macros}
+% \section{Les commandes}
 %
 %    \begin{macrocode}
 %<*package>
@@ -119,12 +119,13 @@
 %    \end{macrocode}
 %
 % \begin{macro}{\@tabarray}
-%    This macro tests for an optional bracket and then calls up
-%    |\@@array| or |\@@array[c]| (as default).
+%    Cette commande teste la présence d'un crochet optionnel puis
+%    appelle |\@@array| ou |\@@array[c]| (par défaut).
 %    \begin{macrocode}
 \def\@tabarray{\@ifnextchar[{\@@array}{\@@array[c]}}
 %    \end{macrocode}
 % \end{macro}
+% \tradini
 % \begin{macro}{\@@array}
 %    This macro tests for an optional delimiter before the left brace
 %    of the main preamble argument. If there is no delimiter,
