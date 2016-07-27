@@ -3055,17 +3055,30 @@
 % Ainsi, \XC{} détecte en général le support du pilote pour le modèle
 % \og test \fg{} par l'existence de |\color@test|. 
 %
-% \tradini 
-% By this mechanism, \XC{} can also change the behaviour of certain models without touching the driver file itself.
-% A good example is the |\substitutecolormodel| command which is used during the package initialisation process to provide support for models that are not covered by the actual driver (like \Model{hsb} for \Option{pdftex}) or that have incorrect implementations (like \Model{hsb} for \Option{dvipdfm}).
+% Avec ce mécanisme, \XC{} peut également changer le comportement de certains
+% modèles sans toucher au pilote lui-même. Un bon exemple est ici la commande
+% |\substitutecolormodel| utilisée pendant le processus d'installation de 
+% l'extension pour fournir un support des modèles qui ne sont pas couverts par
+% le pilote actuel (comme \Model{hsb} pour \Option{pdftex}) ou qui ont une 
+% implémentation incorrecte (comme \Model{hsb} pour \Option{dvipdfm}).
 %
 %
-% \subsection{Behind the scenes: internal color representation}
+% \subsection{En coulisse : la représentation interne des couleurs}
 %
-% Every definition of a color in order to access it by its name requires an internal representation of the color, i.e.~a macro that contains some bits of information required by the driver to display the color properly.
+% 
+% Chaque définition d'une couleur permettant d'y accéder par son nom requiert
+% une représentation interne de la couleur, c'est-à-dire une commande qui 
+% contient les informations nécessaires au pilote pour bien afficher la 
+% couleur.
 %
-% \LC's |\definecolor{foo}{...}{...}| generates a command |\\color@foo|\footnote{The double backslash is intentional.} which contains the color definition in a driver-dependent way; therefore it is possible but non-trivial to access the color model and parameters afterwards (see the \Package{colorinfo} package \cite{colorinfo} for a solution).
+% La commande |\definecolor{foo}{...}{...}| de \LC génère une commande
+% |\\color@foo|\footnote{La double contre-oblique est intentionnelle.} qui 
+% contient la définition de la couleur d'une manière dépendante du pilote ;
+% c'est pourquoi il est possible mais non évident d'accéder au modèle 
+% colorimétrique et aux paramètres par la suite (voir l'extension
+% \Package{colorinfo} \cite{colorinfo} pour une solution).
 %
+% \tradini
 % \LC's |\DefineNamedColor{named}{foo}{...}{...}| generates |\col@foo|\footnote{The single backslash is intentional.} which again contains some driver-dependent information.
 % In this case, an additional |\\color@foo| will only be defined if the package option \Option{usecolors} is active.
 %
