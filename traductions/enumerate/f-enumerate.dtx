@@ -1,0 +1,341 @@
+% \iffalse meta-comment
+%
+% Copyright 1993 1994 1995 1996 1997 1998 1999
+% The LaTeX3 Project and any individual authors listed elsewhere
+% in this file. 
+% 
+% This file is part of the Standard LaTeX `Tools Bundle'.
+% -------------------------------------------------------
+% 
+% It may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.2
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%    http://www.latex-project.org/lppl.txt
+% and version 1.2 or later is part of all distributions of LaTeX 
+% version 1999/12/01 or later.
+% 
+% The list of all files belonging to the LaTeX `Tools Bundle' is
+% given in the file `manifest.txt'.
+% 
+% \fi
+% \iffalse
+%% File: enumerate.dtx Copyright  1993 1994 1999 David Carlisle
+%
+%<*dtx>
+          \ProvidesFile{f-enumerate.dtx}
+%</dtx>
+%<package>\NeedsTeXFormat{LaTeX2e}
+%<package>\ProvidesPackage{enumerate}
+%<driver> \ProvidesFile{enumerate.drv}
+% \fi
+%         \ProvidesFile{f-enumerate.dtx}
+          [1999/03/05 v3.00 enumerate extensions (DPC)]
+%
+% \iffalse
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage{enumerate}
+\usepackage[T1]{fontenc}
+\usepackage[english,frenchb]{babel}
+\begin{document}
+\DocInput{f-enumerate.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \GetFileInfo{f-enumerate.dtx}
+% \title{Le package \textsf{enumerate}\thanks{Ce fichier
+%         a le num\'ero de version \fileversion, r\'evis\'e
+%         le \filedate.}}
+% \author{David Carlisle\\carlisle@cs.man.ac.uk \and
+%             \makebox[0.9\linewidth]{Traduction fran\c{c}aise
+%                 par Jean-Pierre Drucbert\footnote{Derni\`ere mise \`a
+%                 jour le 20/01/2000}}}
+% \date{\filedate}
+% \maketitle
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \CheckSum{200}
+%
+% \changes{v1.00}{1990/00/00}{Premi\`ere version (depuis la perte du fichier)}
+% \changes{v2.00}{1991/07/25}{Nouvel algorithme}
+% \changes{v2.01}{1992/06/26}{Re-mise \`a jour pour les nouveaux doc et docstrip.}
+% \changes{v2.02}{1994/01/31}{Mise \`a jour pour LaTeX2e}
+% \changes{v3.00}{1999/03/05}{Ajout de la commande @enhook -- tools/2916}
+%
+% \begin{abstract}
+% Ce package ajoute un argument optionnel \`a l'environnement
+% \textsf{enumerate} pour d\'eterminer la mani\`ere dont le compteur
+% d'\'enum\'eration doit \^etre imprim\'e.
+% 
+% Une occurrence de l'un des caract\`eres |A a I i| ou |1| produit la
+% valeur du compteur imprim\'ee avec (respectivement) |\Alph|, |\alph|,
+% |\Roman|, |\roman| ou |\arabic|.
+%
+% Ces lettres peuvent \^etre entour\'ees de cha\^{\i}nes quelconques
+% mettant en jeu toute autre expression \TeX, mais les caract\`eres
+% |A a I i 1| doivent \^etre \`a l'int\'erieur d'un groupe |{ }| s'ils
+% ne doivent pas avoir leur sens sp\'ecial.
+% \end{abstract}
+%
+% \section{Exemples}
+%\showboxdepth=10
+% \showboxbreadth=10
+% \[
+% \parbox{2.2in}{\hbadness2000
+% \begin{enumerate}[EX i.]
+% \item un un un un un un un
+%        un un un un un un un\label{LA}
+% \item deux
+%     \begin{enumerate}[exemple a)]
+%     \item un de deux  un de deux\label{LB}
+%     \item deux de deux
+%     \end{enumerate}
+% \end{enumerate}
+% \begin{enumerate}[{A}-1]
+% \item un\label{LC}
+% \item deux
+% \end{enumerate}}
+% \hspace{20pt}
+% \vcenter{\hsize=2.5in
+% \begin{verbatim}
+% \begin{enumerate}[EX i.]
+% \item un un un un un un un
+%        un un un un un un un\label{LA}
+% \item deux
+%     \begin{enumerate}[exemple a)]
+%     \item un de deux  un de deux\label{LB}
+%     \item deux de deux
+%     \end{enumerate}
+% \end{enumerate}
+%
+% \begin{enumerate}[{A}-1]
+% \item un\label{LC}
+% \item deux
+% \end{enumerate}
+% \end{verbatim}
+% }\]
+%
+% Les commandes |\label| et |\ref| peuvent \^etre utilis\'ees comme dans
+% l'environnement \textsf{enumerate} standard. |\ref| produit seulement
+% la valeur du compteur, et non l'\'etiquette compl\`ete. L'affichage
+% est fait dans le m\^eme style que |\item|, qui a \'et\'e d\'etermin\'e
+% par la pr\'esence de l'un des caract\`eres |A a I i 1| dans l'argument
+% optionnel. Dans l'exemple ci-dessus |\ref{LA}|, |\ref{LB}| et
+% |\ref{LC}| produisent <<~\ref{LA}~>>,  <<~\ref{LB}~>> et
+% <<~\ref{LC}~>> respectivement.
+%
+% \StopEventually{}
+%
+%\selectlanguage{english}
+%\section{Macros}
+%
+%    \begin{macrocode}
+%<*package>
+%    \end{macrocode}
+%
+% \begin{macro}{\@enlab}
+% Internal token register used to build up the label command from the
+% optional argument.
+%    \begin{macrocode}
+\newtoks\@enLab
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@enQmark}
+% This just expands to a `?'. |\ref| will produce this, if no counter
+% is printed.
+%    \begin{macrocode}
+\def\@enQmark{?}
+%    \end{macrocode}
+% \end{macro}
+%
+% The next four macros build up the command that will print the item
+% label. They each gobble one token or group from the optional argument,
+% and add corresponding tokens to the register |\@enLab|. They each end
+% with a call to |\@enloop|, which starts the processing of the next
+% token.
+% \begin{macro}{\@enLabel}
+% Add the counter to the label. |#2| will be one of the `special'
+% tokens |A a I i 1|, and is thrown away. |#1| will be a command
+% like |\Roman|.
+%    \begin{macrocode}
+\def\@enLabel#1#2{%
+  \edef\@enThe{\noexpand#1{\@enumctr}}%
+  \@enLab\expandafter{\the\@enLab\csname the\@enumctr\endcsname}%
+  \@enloop}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@enSpace}
+% \begin{macro}{\@enSp@ce}
+% Add a space to the label. The tricky bit is to gobble the space token,
+% as you can not do this with a macro argument.
+%    \begin{macrocode}
+\def\@enSpace{\afterassignment\@enSp@ce\let\@tempa= }
+\def\@enSp@ce{\@enLab\expandafter{\the\@enLab\space}\@enloop}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\@enGroup}
+% Add a |{ }| group to the label.
+%    \begin{macrocode}
+\def\@enGroup#1{\@enLab\expandafter{\the\@enLab{#1}}\@enloop}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@enOther}
+% Add anything else to the label
+%    \begin{macrocode}
+\def\@enOther#1{\@enLab\expandafter{\the\@enLab#1}\@enloop}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@enloop}
+% \begin{macro}{\@enloop@}
+% The body of the main loop.
+% Eating tokens this way instead of using |\@tfor| lets you see
+% spaces and {\bf all} braces. |\@tfor| would treat {\tt a} and
+% |{a}| as  special, but not |{{a}}|.
+%    \begin{macrocode}
+\def\@enloop{\futurelet\@entemp\@enloop@}
+%    \end{macrocode}
+%    \begin{macrocode}
+\def\@enloop@{%
+  \ifx A\@entemp         \def\@tempa{\@enLabel\Alph  }\else
+  \ifx a\@entemp         \def\@tempa{\@enLabel\alph  }\else
+  \ifx i\@entemp         \def\@tempa{\@enLabel\roman }\else
+  \ifx I\@entemp         \def\@tempa{\@enLabel\Roman }\else
+  \ifx 1\@entemp         \def\@tempa{\@enLabel\arabic}\else
+  \ifx \@sptoken\@entemp \let\@tempa\@enSpace         \else
+  \ifx \bgroup\@entemp   \let\@tempa\@enGroup         \else
+  \ifx \@enum@\@entemp   \let\@tempa\@gobble          \else
+                         \let\@tempa\@enOther
+%    \end{macrocode}
+%    Hook for possible extensions
+%    \begin{macrocode}
+                         \@enhook
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+             \fi\fi\fi\fi\fi\fi\fi\fi
+%    \end{macrocode}
+% \end{macro}
+% Process the current token, then look at the next.
+%    \begin{macrocode}
+  \@tempa}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@enhook}
+% Hook for possible extensions.
+% Some packages may want to extend the number of special characters
+% that are associated with counter representations. This feature
+% was requested to enable Russian alphabetic counting, but here
+% I give an example of a footnote symbol counter, triggered by |*|.
+%
+% To enable a new counter type based on a letter, you just need
+% to add a new |\ifx| clause by analogy with the code above.
+% So for example to make |*| trigger footnote symbol counting.
+% a package should do the following.
+%
+% Initialise the hook, in case the package is loaded before
+% \textsf{enumerate}.
+%\begin{verbatim}
+% \providecommand\@enhook{}
+%\end{verbatim}
+%
+% Add to the hook a new |\ifx| clause that associates |*| with the
+% |\fnsymbol| counter command.
+%\begin{verbatim}
+% \g@addto@macro\@enhook{%
+%   \ifx *\@entemp
+%     \def\@tempa{\@enLabel\fnsymbol}%
+%   \fi}
+%\end{verbatim}
+% This code sequence should work whether it is loaded before or after
+% this enumerate package. Any number of new counter types may be added
+% in this way.
+%
+% At this point we just need initialise the hook, taking care not
+% to over write any definitions another package may already have added.
+%    \begin{macrocode}
+\providecommand\@enhook{}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\enumerate}
+% The new {\tt enumerate} environment. This is the first half of the
+% original enumerate environment. If there is an optional argument, call
+% |\@@enum@| to define the label commands, otherwise call
+% |\@enum@| which is the second half of the original definition.
+%    \begin{macrocode}
+\def\enumerate{%
+  \ifnum \@enumdepth >3 \@toodeep\else
+      \advance\@enumdepth \@ne
+      \edef\@enumctr{enum\romannumeral\the\@enumdepth}\fi
+  \@ifnextchar[{\@@enum@}{\@enum@}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@enum@}
+% Handle the optional argument..
+%    \begin{macrocode}
+\def\@@enum@[#1]{%
+%    \end{macrocode}
+% Initialise the loop which will break apart the optional argument.
+% The command to print the label is built up in |\@enlab|.
+% |\@enThe| will be used to define |\theenum|\,$n$.
+%    \begin{macrocode}
+  \@enLab{}\let\@enThe\@enQmark
+%    \end{macrocode}
+% The |\@enum@| below is never expanded, it is used to detect the end
+% of the token list.
+%    \begin{macrocode}
+  \@enloop#1\@enum@
+%    \end{macrocode}
+% Issue a warning if we did not find one of the `special' tokens.
+%    \begin{macrocode}
+  \ifx\@enThe\@enQmark\@warning{The counter will not be printed.%
+   ^^J\space\@spaces\@spaces\@spaces The label is: \the\@enLab}\fi
+%    \end{macrocode}
+% Define |\labelenum|$\,n$ and |\theenum|$\,n$.
+%    \begin{macrocode}
+  \expandafter\edef\csname label\@enumctr\endcsname{\the\@enLab}%
+  \expandafter\let\csname the\@enumctr\endcsname\@enThe
+%    \end{macrocode}
+% Set the counter to 7 so that we get the width of `vii' if roman
+% numbering is in force then set |\leftmargin|$\,n$. to the width of the
+% label plus |\labelsep|.
+%    \begin{macrocode}
+  \csname c@\@enumctr\endcsname7
+  \expandafter\settowidth
+            \csname leftmargin\romannumeral\@enumdepth\endcsname
+            {\the\@enLab\hspace{\labelsep}}%
+%    \end{macrocode}
+% Finally call |\@enum@| which is the second half of the original
+% definition.
+%    \begin{macrocode}
+  \@enum@}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@enum@}
+% All the list parameters have now been defined, so call |\list|. This
+% is taken straight from the original definition of |\enumerate|.
+%    \begin{macrocode}
+\def\@enum@{\list{\csname label\@enumctr\endcsname}%
+           {\usecounter{\@enumctr}\def\makelabel##1{\hss\llap{##1}}}}
+%    \end{macrocode}
+% \end{macro}
+%
+%    \begin{macrocode}
+%</package>
+%    \end{macrocode}
+%
+% \Finale
+%
+\endinput
