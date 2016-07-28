@@ -25,8 +25,9 @@
 % Doc-Source file to use with LaTeX2e
 % Copyright (C) 1994-2004 Frank Mittelbach, all rights reserved.
 % \fi
-% \title{L'extension \texttt{fileerr} : \\ gestion de l'erreur de fichier non trouvé\thanks{Ce fichier a pour numéro de
-%        version \fileversion\ et a été mis à jour le \filedatefr.}}
+% \title{L'extension \texttt{fileerr} : \\ gestion de l'erreur de fichier non
+%        trouvé\thanks{Ce fichier a pour numéro de version \fileversion\ et a
+%        été mis à jour le \filedatefr.}}
 % \author{Frank Mittelbach}
 % \MaintainedByLaTeXTeam{tools}
 % \date{\filedatefr}
@@ -69,14 +70,14 @@
 %    \end{macrocode}
 % \section{Les fichiers}
 %
-% \subsection{Asking for help with {\tt h}}
-% \tradini
-%    When the user types |h| in the file error loop \TeX{} will
-%    look for the file |h.tex|. In this file we put a message
-%    informing the user about the situation (we use |^^J| to
-%    start new lines in the message) and then finish with a
-%    normal |\errmessage| command thereby bringing up \TeX's
-%    normal error mechanism.
+% \subsection{Demande d'aide avec {\tt h}}
+%    Quand l'utilisateur saisit |h|\footnote{N.D.T.: pour \emph{help}, qui 
+%    signifie aide.} dans la boucle d'erreur de fichier, \TeX{} recherche le 
+%    fichier |h.tex|. Dans ce fichier nous mettons un message informant 
+%    l'utilisateur de la situation (nous utilisons |^^J| pour commencer de
+%    nouvelles lignes dans le message) et nous finissons alors avec la 
+%    commande classique |\errmessage| nous renvoyant au mécanisme d'erreur
+%    usuel de \TeX.
 %    \begin{macrocode}
 %<*help>
 \newlinechar=`\^^J
@@ -90,11 +91,13 @@ or `X' to terminate TeX}
 %</help>
 %    \end{macrocode}
 %
-% \subsection{Scrolling this and further errors with {\tt s}}
-%    For the response |s| we put a message into the file |s.tex|
-%    and start |\scrollmode| to scroll further error messages in
-%    this run.  On systems that allow |.tex| as a file name we
-%    can also trap a single \meta{return} from the user.
+% \subsection{Défilement des autres erreurs avec {\tt s}}
+%    Pour la réponse |s|\footnote{N.D.T.: pour \emph{scroll}, qui signifie 
+%    défilement.}, nous affichons un message dans le fichier |s.tex| et passons
+%    en mode |\scrollmode| pour faire défiler les différents autres messages 
+%    d'erreur de la compilation. Sur les systèmes autorisant |.tex| comme nom
+%    de fichier, nous pouvons également repérer l'utilisation de la touche 
+%    \meta{entrée}.
 %    \begin{macrocode}
 %<+scroll|return|run,batch> \message{File ignored}
 %<+scroll>            \scrollmode
@@ -102,25 +105,26 @@ or `X' to terminate TeX}
 %<+batch>             \batchmode
 %    \end{macrocode}
 %
-% \subsection{Exiting the run with {\tt x} or {\tt e}}
+% \subsection{Sortie de la compilation avec {\tt x} ou {\tt e}}
 %
-%    If the user enters |x| or |e| to stop \TeX{}, we need to put
-%    something into the corresponding file which will force \TeX{} to
-%    give up.  We achieve this by turning off terminal output and then
-%    asking \TeX{} to stop: first by using the internal \LaTeX{} name
-%    |\@@end|, and if that doesn't work because something other than
-%    \LaTeX{} is used, by trying the \TeX{} primitive |\end|.  The
-%    |\errmessage| is there to ensure that \TeX{}'s internal "history"
-%    variable is set to |error_message_issued|. This in turn will
-%    hopefully set the exit code on those operating systems that
-%    implement return codes (though there is no guarantee for this).
+%    Si l'utilisateur saisit |x| ou |e|\footnote{N.D.T. : pour \emph{exit}, qui 
+%    signifie sortie.} pour arrêter \TeX{}, nous devons mettre quelque chose 
+%    dans le fichier correspondant qui force \TeX{} à abandonner.
+%    Nous y arrivons en fermant la sortie du terminal et en demandant à \TeX{}
+%    de s'arrêter: d'abord en se servant la commande |\@@end| puis, si cela ne
+%    fonctionne pas parce que quelque chose que \LaTeX{} est utilisé, en se
+%    servant de la primitive \TeX{} |\end|. La commande |\errmessage| est là 
+%    pour garantir que la variable d'historisation interne de \TeX vaut bien
+%    |error_message_issued| (message d'erreur émis). Ceci va normalement lancer
+%    le code de sortie sur les systèmes d'exploitation qui implémentent les
+%    codes de retour (bien qu'il n'y ait pas là de garantie). 
 % \changes{v1.1a}{2003/12/28}{Attempt to set exit code (pr/3538).}
 %    \begin{macrocode}
 %<+edit|exit>  \batchmode \errmessage{}\csname @@end\endcsname \end
 %    \end{macrocode}
-%    We end every file with an explicit |\endinput| which prevents
-%    the docstrip program from putting the character table into
-%    the generated files.
+%    Nous finissons explicitement chaque fichier avec une commande |\endinput|
+%    qui empêche le programme docstrip de placer une table des caractères dans
+%    les fichiers générés.
 %    \begin{macrocode}
 \endinput
 %    \end{macrocode}

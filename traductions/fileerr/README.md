@@ -28,10 +28,11 @@ En-tête du document tex       | :new_moon:             |                 |
 Page d'avant-propos           | :new_moon:             | 0               | 
 1. Introduction               | :first_quarter_moon:   | 1               |
 2. Le pilote de documentation | :first_quarter_moon:   | 0               |  
-3. Les fichiers               | :new_moon:             | 0 / 1           |
+3. Les fichiers               | :new_moon:             | 2               |
 
 
 ### Glossaire pour la traduction
 
 Anglais                   | Français                                          | Commentaires 
 ------------------------- | ------------------------------------------------- | -------------------------------
+*return code*             | code de retour                                    | Dictionnaire [OQLF](http://www.granddictionnaire.com/ficheOqlf.aspx?Id_Fiche=8370215)

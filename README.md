@@ -42,7 +42,7 @@ Traduction       | Source              | Avancée                | Pages traduit
                  | [enumitem] v3.5.2   |                        | *. / 17*        | 
                  | [etoc] v1.08g       |                        | *. / 114*       |
 [fancyhdr-fr]    | [fancyhdr] v3.1     | :new_moon:             | 0 / 26          |
-[fileerr-fr]     | [fileerr] v1.1a     | :waxing_crescent_moon: | 1 / 2           | 
+[fileerr-fr]     | [fileerr] v1.1a     | :first_quarter_moon:   | 3               | 
 [fncychap-fr]    | [fncychap] v1.34    | :waxing_gibbous_moon:  | 12              | Ajout d'infos dans le doc
                  | [fontsmpl] v0.11    |                        | *. / 5*         | Traduction préexistante ([FT-tools]).
 [fontspec-fr]    | [fontspec] v2.4e    | :new_moon:             | 8 / 124         | Auteur contacté et intéressé.
