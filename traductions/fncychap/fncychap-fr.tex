@@ -1,20 +1,23 @@
 %% Copyright 2007 Ulf Lindgren
 %
-% This work may be distributed and/or modified under the conditions of the LaTeX
-% Project Public License, either version 1.3 of this license or (at your option)
-% any later version. The latest version of this license is in
+% Ce document peut être distribué et/ou modifié sous les conditions définies 
+% par la LaTeX Project Public License (LPPL), soit en version 1.3, soit (à 
+% votre choix) en toute version ultérieure.
+% La dernière version de cette license est à l'adresse :
 %   http://www.latex-project.org/lppl.txt
-% and version 1.3 or later is part of all distributions of LaTeX version
-% 2005/12/01 or later.
+% et la version 1.3 et les suivantes se retrouvent dans toutes les 
+% distributions de LaTeX dès la version 2005/12/01.
 %
-% This work has the LPPL maintenance status `maintained'.
-% 
-% The Current Maintainer of this work is Ulf Lindgren.
+% Ce document a le statut de maintenance LPPL "maintenu".
 %
-% This work consists of all files listed in manifest.txt.
+% Le mainteneur actuel de ce document est Ulf Lindgren.
 %
-%% This statement added 2010/12/10 by Clea F. Rees following correspondence
-%% between Ulf Lindgren and Karl Berry concerning licensing.
+% Ce document consiste en l'ensemble des fichiers listés dans le fichier
+% manifest.txt.
+%
+%% Cette déclaration a été ajoutée le 10/12/2010 par Clea F. Ress suite à
+%% la correspondance entre Ulf Lindgren et Karl Berry sur le sujet des 
+%% licences.
 
 \documentclass{report}
 
@@ -41,29 +44,28 @@
     \textsl{fncychap} a été écrite pour que des titres de chapitre puissent
     être altérés rapidement mais aussi pour que je puisse en apprendre plus sur
     \TeX{} et \LaTeX{}. Je ne sais pas d'ailleurs pas si cette extension est 
-    écrite de façon adéquate. Aussi, si quelqu'un lit cette documentation et
-    essaye \textsl{fncychap}, je lui serais reconnaissant pour tout retour 
-    d'expérience. Ceci m'aidera à monter en compétence dans l'écriture de 
+    écrite de façon adéquate : si quelqu'un lit cette documentation et
+    essaye \textsl{fncychap}, je lui serais donc reconnaissant pour tout retour 
+    d'expérience. Cela m'aidera à monter en compétence dans l'écriture de 
     commandes. 
  
     Dans toute publication, il est essentiel de se rappeler que la cohérence
-    joue un rôle important. Ainsi, avec cette extension, il est possible de
-    modifier l'apparence de chaque chapitre séparément dans un document. Ceci
-    n'est cependant pas souhaitable : n'oubliez ici pas de garder votre
-    document modeste et cohérent.
+    joue un rôle important. Avec cette extension, il est possible de modifier 
+    l'apparence de chaque chapitre séparément dans un document. Mais ce
+    n'est guère souhaitable pour garder son document sobre et cohérent.
 
     \section{Chargement et utilisation simple}
     Cette extension est chargée en saisissant la ligne suivante en 
-    préambule\sk\\    
-    \nsp\fbox{\A{usepackage}[{\em style}]\{{\em fncychap}\}}\ .\sk\\    
+    préambule.\sk\\    
+    \nsp\fbox{\A{usepackage}[{\em style}]\{{\em fncychap}\}}\sk\\    
     Si l'option \emph{style} est omise alors la définition par défaut des 
     chapitres est utilisée. À l'origine, il existait six styles de chapitres
     prédéfinis, à savoir \emph{Sonny, Lenny, Glenn, Conny, Rejne} et 
     \emph{Bjarne}. Ces noms correspondent à des prénoms suédois, presque 
     sûrement à l'image de la pratique d'IKEA\footnote{Marque déposée par Ingvar
-    Kamprad Elmtaryd Agunnaryd.}. 
-    Chacun de ces styles dispose d'une configuration par défaut et, si elle
-    est suffisante, il n'y a rien d'autre à faire.
+    Kamprad Elmtaryd Agunnaryd.}. Chacun de ces styles dispose d'une 
+    configuration par défaut et, si elle est suffisante, l'adaptation du
+    document s'arrête là.
 
     Dans la version présente de \textsl{fncychap}, deux styles additionnels
     ont été ajoutés. Le premier se nomme \emph{PetersLenny}, d'après le nom de
@@ -74,7 +76,7 @@
 
     À l'origine, \textsl{fncychap} ne dépendait d'aucune autre extension. 
     Cependant, pour le style \emph{Lenny}, une fonte postscript est utilisée
-    par défaut ; mais ceci reste facilement modifiable. J'encourage 
+    par défaut ; ceci reste cependant facilement modifiable. J'encourage ici 
     l'utilisation de cette fonte postscript par défaut car elle est 
     très largement redimensionnable, ce qui rend \emph{Lenny} 
     très agréable. Dans la version actuelle, si le style \textsl{Bjornstrup}
@@ -92,9 +94,9 @@
     La commande ci-dessus est une version plus générale de la commande
     \A{hrulefill} dans le sens où l'épaisseur du filet peut être spécifiée.
     Cette commande est fournie pour décorer les titres de chapitre. Un
-    titre se divise en deux parties. La première définit \A{@chapapp} 
+    titre se divise en deux parties. La première comprend \A{@chapapp} 
     contenant le texte \og Chapter \fg{}\footnote{N.D.T. : avec le chargement
-    de \textsl{babel} avec son option \texttt{french}, ce texte est 
+    de \textsl{babel} combiné à son option \texttt{french}, ce texte est 
     \og Chapitre \fg{}.} ainsi que \A{thechapter} contenant le numéro du
     chapitre. La seconde partie est le titre du chapitre proprement dit, donné
     par l'utilisateur. À partir d'ici, \A{@chapapp} et \A{thechapter} seront
@@ -130,22 +132,22 @@
 
   \chapter{Aperçu des styles de chapitre}
     \lettrine[findent=0.2em,nindent=0em,realheight=true]{L}{es} styles de 
-    chapitre ont tous des réglages par défaut pour chacune des commandes
-    décrites en section~\ref{sec:TW}. Cependant, ils peuvent être changés
+    chapitre ont tous des paramétrages par défaut pour chacune des commandes
+    décrites en section~\ref{sec:TW}. Aussi, ils peuvent être changés
     en recourant à ces commandes. Notez que si \A{centering} ou autre sont 
     utilisés pour mettre en forme le titre de chapitre, cela peut conduire
     à des résultats affreux. Le style de chapitre \emph{Bjarne} contient 
     une commande complémentaire\sk\\
     \nsp\fbox{\A{TheAlphaChapter}}\sk\\
-    Cette commande écrit le numéro du chapitre en utilisant les mots 
-    équivalents. \A{TheAlphaChapter} peut écrire les nombres de
-    \emph{ZERO} à \emph{NINETYNINE}\footnote{N.D.T. : voir l'annexe 
-    \ref{french} pour une rédéfinition qui permette de remplacer les termes
-    anglais par des termes français.}.
+    qui écrit le numéro du chapitre en utilisant les mots équivalents. 
+    \A{TheAlphaChapter} peut écrire les nombres de \emph{ZERO} à 
+    \emph{NINETYNINE}\footnote{N.D.T. : voir l'annexe \ref{french} pour une 
+    redéfinition qui permette de remplacer les termes anglais par des termes
+    français.}.
     
-    Dans les sections suivantes, les styles prédéfinis sont présentés en 
-    compagnie de leur paramétrage par défaut. Les versions \A{chapter} 
-    et \A{chapter*} (dite \og étoilée \fg{}) sont toutes deux illustrées.
+    Les styles prédéfinis sont ici présentés en compagnie de leur paramétrage 
+    par défaut. Les versions \A{chapter} (dite ci-après \og normale \fg{}) et
+    \A{chapter*} (dite \og étoilée \fg{}) sont toutes deux illustrées.
 
     \section{Le style de chapitre Sonny}
     Les paramètres par défaut sont les suivants :
@@ -271,7 +273,7 @@
         \caption{Style Bjornstrup \og normal \fg{}}
       \end{minipage}\hfill
     \end{figure}
-    \textbf{Note:} la restitution faite par YAP (visualisateur dvi de MikTeX)
+    \textbf{Note :} la restitution faite par YAP (visualisateur dvi de MikTeX)
     diffère de dvips dans la mesure où la boîte grise passe au premier plan et
     cache ainsi une partie du numéro de chapitre. 
     \enlargethispage{2cm}
@@ -281,7 +283,7 @@
     \lettrine[findent=0.2em,nindent=0em,realheight=true]{S}{i} les styles
     prédéfinis ne répondent pas à vos besoins, vous pouvez modifier les
     routines de mise en forme. Cette mise en forme est contrôlée par trois
-    commandes. Il est possible de rédéfinir les styles de chapitre d'origine
+    commandes. Il est possible de redéfinir les styles de chapitre d'origine
     en se servant de \A{secdef} et de \A{renewcommand}, voir pour cela le 
     \emph{\LaTeX{} Companion}. Cependant, au moment de la création de cette
     extension, j'ai décidé de rendre ce point plus simple. La commande\sk\\
@@ -290,37 +292,36 @@
     \nsp\fbox{\A{DOTI}\{{\#1}\}} et \fbox{\A{DOTIS}\{{\#1}\}}\sk\\
     mettent en forme le titre du chapitre pour \A{chapter} et \A{chapter*} 
     respectivement.
-    Afin de modifier celles-ci, vous devez les traiter dans le préambule du
-    document en les encadrant avec les commandes \A{makeatletter} et 
+    Afin de modifier celles-ci, vous devez les modifier dans le préambule du
+    document et les encadrer avec les commandes \A{makeatletter} et 
     \A{makeatother}. En complément, certains paramètres prédéfinis peuvent être
     utilisés. Ces variables de longueur sont\sk\\
     \nsp\fbox{\A{mylen}}, \fbox{\A{myhi}}, \fbox{\A{px}}, \fbox{\A{py}}, 
-      \fbox{\A{pxx}}, \fbox{\A{pyy}} et \fbox{\A{RW}}\sk\\
+      \fbox{\A{pxx}}, \fbox{\A{pyy}} et \fbox{\A{RW}}\ .\sk\\
     Notez que \A{RW} est particulière car elle est définie par \A{ChRuleWidth}.
     Les mises en forme indiquées par \A{ChNameVar}, \A{ChNumVar} et
     \A{ChTitleVar} sont stockées dans \A{CNV}, \A{CNoV} et \A{CTV}
-    respectivement. Finalement, les fonctions \A{FmN}\{ \} pour le nom et
+    respectivement. Enfin, les fonctions \A{FmN}\{ \} pour le nom et
     \A{FmTi}\{ \} pour le titre agissent selon le choix fait avec 
     \A{Ch***AsIs}, \A{Ch***UpperCase} ou \A{Ch***LowerCase}. Notez que les 
     étoiles indiquent ici un texte à compléter en fonction du contexte ; voir 
     section~\ref{sec:TW}.
     
-    Pour illustrer ceci, définissons un nouveau style de chapitre dans lequel
-    le nom et le numéro de chapitre sont placés dans une \A{fbox} et le titre
-    est centré.
-    La commande \A{fboxrule} est liée à la longueur prédéfinie \A{RW} de telle
-    manière qu'elle peut être contrôlée par la commande \A{ChRuleWidth}. 
-    Essayez cet exemple :
+    Pour illustrer tout ceci, définissons un nouveau style de chapitre dans
+    lequel le titre est centré et le nom comme le numéro de chapitre sont 
+    placés dans une boîte encadrée (\A{fbox}). La commande \A{fboxrule} est 
+    liée à la longueur prédéfinie \A{RW} de telle manière qu'elle soit 
+    contrôlée par la commande \A{ChRuleWidth}. Essayez cet exemple :
     \begin{verbatim}
        \makeatletter
-         \ChNameVar{\Large\rm}    % définition du style du nom
-         \ChNumVar{\Huge}         % définition du style du nombre
-         \ChTitleVar{\Large\rm\centering}   % définition du style du titre
-         \ChRuleWidth{4pt}        % définition de RW à 4pt
-         \ChNameUpperCase         % utilisation de noms en majuscule
+         \ChNameVar{\Large\rm}             % définition du style du nom
+         \ChNumVar{\Huge}                  % définition du style du numéro
+         \ChTitleVar{\Large\rm\centering}  % définition du style du titre
+         \ChRuleWidth{4pt}                 % définition de RW à 4pt
+         \ChNameUpperCase                  % utilisation de noms en majuscule
          \renewcommand{\DOCH}{%
-           \setlength{\fboxrule}{\RW} % définition des filets de fbox 
-                                      % contrôlés par \ChRuleWidth
+           \setlength{\fboxrule}{\RW}      % définition des filets de fbox 
+                                           % contrôlés par \ChRuleWidth
 
            \fbox{\CNV\FmN{\@chapapp}\space \CNoV\thechapter}\par\nobreak
            \vskip 40\p@}
@@ -345,46 +346,47 @@
 
   \chapter{Historique}
     \lettrine[findent=0.2em,nindent=0em,realheight=true]{C}{e} 
-    document décrit la version 1.34 dans laquelle quelques problèmes mineurs
-    ont été traités et deux nouveaux style de chapitre ont été ajoutés. La
-    gestion des majuscules et minuscules a été corrigée. Un comportement 
-    erroné dans les changements entre \verb+\frontmatter+,
-    \verb+\mainmatter+ et \verb+\backmatter+ a été également corrigé.   
+    document décrit la version 1.34 dans laquelle deux nouveaux style de 
+    chapitre ont été ajoutés et quelques problèmes mineurs ont été traités. 
+    Ainsi, la gestion des majuscules et minuscules a été corrigée, tout comme
+    un comportement erroné concernant les changements effectuées par 
+    \verb+\frontmatter+, \verb+\mainmatter+ et \verb+\backmatter+.   
 
     Dans la version 1.33, le texte étiré du style \emph{Rejne} causait 
     d'horribles vides dans le filet vertical aligné avec le titre du texte. Un 
-    problème de comptabilité avec la classe KOMA \og scrbook.cls \fg{}
-    est traité avec une redéfinition de \A{@schapter} en ligne avec celle 
-    utilisée par KOMA. Ceci pourrait ne pas être bon car la définition diffère
-    du coup de la définition de base. Une erreur d'orthographe a été corrigée.
+    problème de compatibilité avec la classe KOMA \og scrbook.cls \fg{}
+    a été traité avec une redéfinition de \A{@schapter} en ligne avec celle 
+    utilisée par KOMA. Ceci pourrait être problématique car cette nouvelle 
+    définition diffère du coup de la définition de base. Par ailleurs, une 
+    erreur d'orthographe a été corrigée.
 
     En version 1.3, un problème avec les annexes pour le style \emph{Bjarne} a 
-    été traité. Un mauvais comportement pour les commandes 
-    \verb+\frontmatter+, \verb+\mainmatter+ et \verb+\backmatter+ a également 
-    été corrigé.
+    été traité. De plus, un mauvais comportement pour les commandes 
+    \verb+\frontmatter+, \verb+\mainmatter+ et \verb+\backmatter+ a été
+    corrigé.
 
     En version 1.11, une correction d'erreur de l'option \emph{Lenny} a été 
-    ajouté. Le problème (une boîte verticale sous-remplie \og \emph{underfull
-    vbox} \fg{}), relevé par Diab Jerius, survenait quand l'option \emph{Lenny}
+    ajoutée : un problème de boîte verticale sous-remplie (\emph{underfull
+    vbox}), relevé par Diab Jerius, survenait quand l'option \emph{Lenny}
     était utilisée en conjonction avec la commande \A{section} et que la 
     section était composée à la page suivante. Cela provoquait le mauvais 
     placement d'une ligne. La solution revenait à placer le titre du chapitre
     dans une boîte.
 
-    En version 1.1, une modification a été faire pour qu'il y ait un bon 
-    fonctionnement avec la classe \emph{book}. Le problème survenait lorsque 
-    les styles \emph{Conny}, \emph{Rejne}, \emph{Bjarne} ou \emph{Glenn} 
-    étaient utilisés en conjonction avec la commande  \A{tabelofcontents} 
-    de \LaTeX{}. La raison exacte de l'erreur n'a pas été trouvée. Le 
-    problème a été relevé par Olivier Guibe.
+    En version 1.1, une modification a été faite pour que l'extension  
+    fonctionne bien avec la classe \emph{book}. Un problème, relevé par Olivier
+    Guide, survenait en effet lorsque les styles \emph{Conny}, \emph{Rejne}, 
+    \emph{Bjarne} ou \emph{Glenn} étaient utilisés en conjonction avec la 
+    commande \A{tabelofcontents} de \LaTeX{}. La raison exacte de l'erreur n'a
+    pas été trouvée. 
 
     Dans la version précédente, il n'y a pas eu de changement majeur de 
     l'extension. Cependant, le nom de l'extension a été changé afin de 
     respecter la convention DOS de nom de fichier à huit caractères. J'ai
     également reçu des retours m'informant que la version de \LaTeX{} devait
     être postérieure au 01/12/1994. Cette information a été ajoutée dans 
-    l'extension de telle façon à ce qu'une version antérieure génère une
-    alerte écrite dans le fichier journal (\emph{log}).
+    l'extension de telle façon à ce qu'une version antérieure de \LaTeX{} 
+    génère une alerte écrite dans le fichier journal (\emph{log}).
 
     Historique des versions :
       \begin{description}
@@ -399,7 +401,7 @@
       \end{description}
 
   \appendix
-  \chapter{Numérotation francisée} \label{french}
+  \chapter{Numérotation en français} \label{french}
 
     Le code suivant\footnote{N.D.T. : cette annexe n'existe pas dans la 
     documentation originale mais elle semble assez utile dans un contexte de 

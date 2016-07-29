@@ -4,7 +4,7 @@ L'objectif est de traduire la documentation de l'extension *fncychap* utilisable
 
 Le document demande ici quelques modifications : l'extension *ydrop* n'existe plus (du moins, une [version](http://www.math.vanderbilt.edu/~schectex/wincd_files/tex/docs/Tricks%20for%20TeX%20and%20LaTeX.htm) existe et n'aboutit pas au résultat souhaité). Elle est ici remplacée par *lettrine* et les commandes associées tout au long du document sont adaptées en conséquence.
 
-Par ailleurs, le document a fait l'objet de l'**ajout d'une annexe** pour traiter d'un point permettant de mieux gérer le cas de documents francophones.
+Enfin, le document a fait l'objet de l'**ajout d'une annexe** pour traiter d'un point permettant de mieux gérer le cas de documents francophones.
 
 
 ### Commandes pour obtenir le document
@@ -31,13 +31,13 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 
 Section                       | Avancée                | Pages traduites | Commentaires 
 ----------------------------- | :--------------------: | :-------------: | -------------------------
-En-tête du document tex       | :new_moon:             |                 |
-Pages d'avant-propos          | :waxing_gibbous_moon:  | 2               | 
-1. Description de l'extension | :waxing_gibbous_moon:  | 1               |
-2. Nouvelles commandes        | :waxing_gibbous_moon:  | 1               |
-3. Aperçu des styles de...    | :waxing_gibbous_moon:  | 4               |
-4. Exemple simple             | :waxing_gibbous_moon:  | 2               |
-5. Historique                 | :waxing_gibbous_moon:  | 1               |
+En-tête du document tex       | :full_moon:            |                 |
+Pages d'avant-propos          | :full_moon:            | 2               | 
+1. Description de l'extension | :full_moon:            | 1               |
+2. Nouvelles commandes        | :full_moon:            | 1               |
+3. Aperçu des styles de...    | :full_moon:            | 4               |
+4. Exemple simple             | :full_moon:            | 2               |
+5. Historique                 | :full_moon:            | 1               |
 
 ### Glossaire pour la traduction
 
