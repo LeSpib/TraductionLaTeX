@@ -24,11 +24,11 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 
 Section                       | Avancée                | Pages traduites | Commentaires 
 ----------------------------- | :--------------------: | :-------------: | -------------------------
-En-tête du document tex       | :new_moon:             |                 |
-Page d'avant-propos           | :waxing_gibbous_moon:  | 0               | 
-1. Introduction               | :waxing_gibbous_moon:  | 1               |
-2. Le pilote de documentation | :waxing_gibbous_moon:  | 0               |  
-3. Les fichiers               | :waxing_gibbous_moon:  | 2               |
+En-tête du document tex       | :full_moon:            |                 |
+Page d'avant-propos           | :full_moon:            | 0               | 
+1. Introduction               | :full_moon:            | 1               |
+2. Le pilote de documentation | :full_moon:            | 0               |  
+3. Les fichiers               | :full_moon:            | 2               |
 
 
 ### Glossaire pour la traduction
