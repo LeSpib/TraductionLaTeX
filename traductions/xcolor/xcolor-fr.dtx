@@ -3071,33 +3071,47 @@
 % contient les informations nécessaires au pilote pour bien afficher la 
 % couleur.
 %
-% La commande |\definecolor{foo}{...}{...}| de \LC génère une commande
+% La commande |\definecolor{foo}{...}{...}| de \LC\ génère une commande
 % |\\color@foo|\footnote{La double contre-oblique est intentionnelle.} qui 
 % contient la définition de la couleur d'une manière dépendante du pilote ;
 % c'est pourquoi il est possible mais non évident d'accéder au modèle 
 % colorimétrique et aux paramètres par la suite (voir l'extension
 % \Package{colorinfo} \cite{colorinfo} pour une solution).
 %
-% \tradini
-% \LC's |\DefineNamedColor{named}{foo}{...}{...}| generates |\col@foo|\footnote{The single backslash is intentional.} which again contains some driver-dependent information.
-% In this case, an additional |\\color@foo| will only be defined if the package option \Option{usecolors} is active.
+% La commande |\DefineNamedColor{named}{foo}{...}{...}| de \LC\ génère 
+% |\col@foo|\footnote{La contre-oblique simple est intentionnelle.} qui 
+% contient une nouvelle fois des informations dépendantes du pilote.
+% Dans ce cas, un |\\color@foo| additionnele ne sera défini que si 
+% l'option d'extension \Option{usecolors} est active.
 %
-% \XC's |\definecolor{foo}{...}{...}| generates\footnote{This was introduced in version 1.10; prior to that, a command \cs{\string\xcolor@foo} with a different syntax was generated.} a command |\\color@foo| as well, which combines the features of the former commands and contains both the driver-dependent and driver-independent information, thus making it possible to access the relevant parameters in a standardised way.
-% Although it has now a different syntax, |\\color@foo| expands to the same expression as the original command.
-% On the other hand, |\col@foo| commands are no longer needed and therefore not generated in the `named' case: \XC{} works with a single color data structure (as described).
+% La commande |\definecolor{foo}{...}{...}| de \XC\ génère\footnote{Ce
+% système a été introduit en 1.10; avant cela, une commande 
+% \cs{\string\xcolor@foo} avec une syntaxe différente était générée.} également
+% une commande |\\color@foo|, celle-ci combinant les fonctionnalités de la 
+% commande précédente et contenant à la fois des informations dépendant du 
+% pilote et des informations indépendantes du pilote, rendant ainsi possible
+% l'accès aux paramètres pertinents de façon standardisée. 
+% Bien qu'elle ait maintenant une syntaxe différente, |\\color@foo| se
+% développe en une expression identique à la commande d'origine.
+% Par ailleurs, les commandes |\col@foo| ne sont plus utiles et sont plus
+% générées dans le cas de couleurs nommées : \XC{} fonctionne avec une unique
+% structure de données de couleur (comme décrit).
 %
-% Table \vref{tab.internal} shows some examples for the two most prominent drivers.
-% See also figure \vref{fig.progress} which displays the definitions with respect to the driver that was used to process this document.
+% La table \vref{tab.internal} montre quelques exemples pour deux des pilotes
+% les plus importants avec la couleur \Color{prune}{plum}. Voir aussi la figure
+% \vref{fig.progress} qui affiche les définitions en rapport avec le pilote 
+% utilisé pour traiter ce document.
 %
 %
-% \begin{table}[htb]\caption{Driver-dependent internal color representation}\label{tab.internal}
+% \begin{table}[htb]\caption{Représentation de la couleur interne dépendante 
+%   du pilote}\label{tab.internal}
 % \centering\small
 % \def\X{\hspace*{-.845\textwidth}\\}
 % \extrarowheight1pt
 % \tabcolsep8pt
 % \begin{tabular}{l>{\color{blue}(}r<{)}l}
 % \hline
-% \multicolumn3{>{\columncolor{tableheadcolor}}l}{\Option{dvips} driver}\\
+% \multicolumn3{>{\columncolor{tableheadcolor}}l}{Pilote \Option{dvips}}\\
 % \hline
 % |\\color@Plum=macro:| & |\definecolor{Plum}{rgb}{.5,0,1}| & \LC\\
 % |->rgb .5 0 1.|\X
@@ -3107,13 +3121,13 @@
 % \hline
 % |\col@Plum=macro:| & |\DefineNamedColor{Plum}{rgb}{.5,0,1}|& \LC\\
 % |->\@nil .|\X
-% |\\color@Plum=macro:| & with option \oOption{usenames}\\
+% |\\color@Plum=macro:| & avec l'option \oOption{usenames}\\
 % |-> Plum.|\X
 % \hline
 % |\\color@Plum=macro:| & |\definecolor[named]{Plum}{rgb}{.5,0,1}|& \XC\\
 % |->\xcolor@ {named}{ Plum}{rgb}{0.5,0,1}.|\X
 % \hline
-% \multicolumn3{>{\columncolor{tableheadcolor}}l}{\Option{pdftex} driver}\\
+% \multicolumn3{>{\columncolor{tableheadcolor}}l}{Pilote \Option{pdftex}}\\
 % \hline
 % |\\color@Plum=macro:| & |\definecolor{Plum}{rgb}{.5,0,1}|& \LC\\
 % |->.5 0 1 rg .5 0 1 RG.|\X
@@ -3123,7 +3137,7 @@
 % \hline
 % |\col@Plum=macro:| & |\DefineNamedColor{Plum}{rgb}{.5,0,1}|& \LC\\
 % |->.5 0 1 rg .5 0 1 RG.|\X
-% |\\color@Plum=macro:| & with option \oOption{usenames}\\
+% |\\color@Plum=macro:| & avec l'option  \oOption{usenames}\\
 % |->.5 0 1 rg .5 0 1 RG.|\X
 % \hline
 % |\\color@Plum=macro:| & |\definecolor[named]{Plum}{rgb}{.5,0,1}|& \XC\\
@@ -3134,9 +3148,10 @@
 %
 %
 %
-% \subsection{A remark on accuracy}
+% \subsection{Remarque sur la précision}
 %
-% Since the macros presented here require some computation, special efforts were made to ensure a maximum of accuracy for conversion and mixing formulas --- all within \TeX's limited numerical capabilities.\footnote{For example, applying the `transformation' \cs{dimen0=0.}\Meta{int}\texttt{pt} \cs{the\string\dimen0} to all 5-digit numbers \Meta{int} of the range 00000\dots 99999, exactly 34464 of these 100000 numbers don't survive unchanged. We are not talking about gobbled final zeros here \dots}
+% Comme les commandes présentées ici requièrent des calculs, des efforts particuliers ont été faits pour assurer un maximum de précision pour les formules de conversion et de mélange -- tout cela avec les capacités limitées de \TeX pour le calcul\footnote{Par exemple, en appliquant la \og transformation \fg{} \cs{dimen0=0.}\Meta{int}\texttt{pt} \cs{the\string\dimen0} pour tous les entiers à 5 chiffres de la plage [00000,99999], exactement 34464 entiers sur les 100000 ne survivent pas sans être modifiés. Et nous ne parlons ici des zéros finaux élagés\dots} 
+% \tradini
 % We decided to develop and include a small set of commands to improve the quality of division and multiplication results, instead of loading one of the packages that provide multi-digit arithmetic and a lot more, like \Package{realcalc} or \Package{fp}.
 % The marginal contribution of the latter packages seems not to justify their usage for our purposes.
 % Thus, we stay within a sort of fixed-point arithmetic framework, providing at most 5~decimal digits via \TeX's dimension registers.
