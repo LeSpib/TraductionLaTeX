@@ -25,10 +25,10 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 Section                       | Avancée                | Pages traduites | Commentaires 
 ----------------------------- | :--------------------: | :-------------: | -------------------------
 En-tête du document tex       | :new_moon:             |                 |
-Page d'avant-propos           | :new_moon:             | 0               | 
-1. Introduction               | :first_quarter_moon:   | 1               |
-2. Le pilote de documentation | :first_quarter_moon:   | 0               |  
-3. Les fichiers               | :new_moon:             | 2               |
+Page d'avant-propos           | :waxing_gibbous_moon:  | 0               | 
+1. Introduction               | :waxing_gibbous_moon:  | 1               |
+2. Le pilote de documentation | :waxing_gibbous_moon:  | 0               |  
+3. Les fichiers               | :waxing_gibbous_moon:  | 2               |
 
 
 ### Glossaire pour la traduction

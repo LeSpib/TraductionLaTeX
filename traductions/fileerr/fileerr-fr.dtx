@@ -44,7 +44,7 @@
 %    indiquant la fin d'un fichier, ce qui permet de sortir de cette boucle, 
 %    par exemple Contrôle-D sur UNIX ou Contrôle-Z sur DOS.}. Beaucoup 
 %    d'utilisateurs essayent de répondre comme à l'accoutumée lors de messages
-%    d'erreurs en appuyant sur les touches \meta{return}, |s| ou |x| mais 
+%    d'erreurs en appuyant sur les touches \meta{entrée}, |s| ou |x| mais 
 %    \TeX{} va interprêter cela comme un nom de fichier et persistera à reposer 
 %    la question.
 %    \par Pour proposer une sortie élégante de cette boucle, nous définissons
@@ -52,15 +52,15 @@
 %    cette boucle aussi précisément que possible.
 %    \par Après avoir installé ces fichiers, l'utilisateur peut répondre à la
 %    question du fichier manquant de \TeX{} avec les touches |h|, |q|, |r|, 
-%    |s|, |e|, |x| et sur certains systèmes avec \meta{return}.   
+%    |s|, |e|, |x| et sur certains systèmes avec \meta{entrée}.   
 % \StopEventually{}
 %
 % \section{Le pilote de documentation}
-%    Ce code génère la documentation\footnote{NDT: en l'occurrence, la 
+%    Ce code génère la documentation\footnote{N.D.T. : en l'occurrence, la 
 %    documentation française. Le code original ne contient pas la ligne 3 et 
 %    renvoit au fichier |fileerr.dtx| en ligne 4.}. Dans la mesure où il s'agit
 %    du premier bloc de code du fichier, la documentation peut être obtenue en 
-%    faisant exécuter \LaTeXe\ sur ce fichier.
+%    compilant ce fichier avec \LaTeXe.
 %    \begin{macrocode}
 %<*driver>
 \documentclass{ltxdoc}
@@ -71,13 +71,18 @@
 % \section{Les fichiers}
 %
 % \subsection{Demande d'aide avec {\tt h}}
-%    Quand l'utilisateur saisit |h|\footnote{N.D.T.: pour \emph{help}, qui 
-%    signifie aide.} dans la boucle d'erreur de fichier, \TeX{} recherche le 
-%    fichier |h.tex|. Dans ce fichier nous mettons un message informant 
-%    l'utilisateur de la situation (nous utilisons |^^J| pour commencer de
-%    nouvelles lignes dans le message) et nous finissons alors avec la 
-%    commande classique |\errmessage| nous renvoyant au mécanisme d'erreur
-%    usuel de \TeX.
+%    Quand l'utilisateur saisit |h|\footnote{N.D.T.: les touches choisies 
+%    correspondent au début du verbe anglais ou d'un terme associable à 
+%    l'option. En français, la correspondance est perdue.} dans la boucle 
+%    d'erreur de fichier, \TeX{} recherche le fichier |h.tex|. Dans ce fichier
+%    nous mettons un message\footnote{N.D.T. : la traduction de ce message est
+%    \og ! Le fichier indiqué ne peut être trouvé. Utilisez `<entrée>' pour 
+%    continuer le traitement. `S' pour faire défiler les erreurs suivantes, `R'
+%    pour compiler sans aucun arrêt, `Q' pour compiler silencieusement, `X' 
+%    pour mettre fin à la compilation de \TeX\ \fg{}.} informant l'utilisateur
+%    de la situation (nous utilisons |^^J| pour commencer de nouvelles lignes 
+%    dans le message) et nous finissons alors avec la commande classique 
+%    |\errmessage| nous renvoyant au mécanisme d'erreur usuel de \TeX.
 %    \begin{macrocode}
 %<*help>
 \newlinechar=`\^^J
@@ -92,12 +97,12 @@ or `X' to terminate TeX}
 %    \end{macrocode}
 %
 % \subsection{Défilement des autres erreurs avec {\tt s}}
-%    Pour la réponse |s|\footnote{N.D.T.: pour \emph{scroll}, qui signifie 
-%    défilement.}, nous affichons un message dans le fichier |s.tex| et passons
-%    en mode |\scrollmode| pour faire défiler les différents autres messages 
-%    d'erreur de la compilation. Sur les systèmes autorisant |.tex| comme nom
-%    de fichier, nous pouvons également repérer l'utilisation de la touche 
-%    \meta{entrée}.
+%    Pour la réponse |s|, nous affichons un message\footnote{N.D.T. : la 
+%    traduction du message est \og fichier ignoré \fg{}.} dans le fichier 
+%    |s.tex| et passons en mode |\scrollmode| pour faire défiler les différents
+%    autres messages d'erreur de la compilation. Sur les systèmes autorisant 
+%    |.tex| comme nom de fichier, nous pouvons également repérer l'utilisation 
+%    de la touche \meta{entrée}.
 %    \begin{macrocode}
 %<+scroll|return|run,batch> \message{File ignored}
 %<+scroll>            \scrollmode
@@ -107,17 +112,16 @@ or `X' to terminate TeX}
 %
 % \subsection{Sortie de la compilation avec {\tt x} ou {\tt e}}
 %
-%    Si l'utilisateur saisit |x| ou |e|\footnote{N.D.T. : pour \emph{exit}, qui 
-%    signifie sortie.} pour arrêter \TeX{}, nous devons mettre quelque chose 
-%    dans le fichier correspondant qui force \TeX{} à abandonner.
+%    Si l'utilisateur saisit |x| ou |e| pour arrêter \TeX{}, nous devons mettre
+%    quelque chose dans le fichier correspondant qui force \TeX{} à abandonner.
 %    Nous y arrivons en fermant la sortie du terminal et en demandant à \TeX{}
 %    de s'arrêter: d'abord en se servant la commande |\@@end| puis, si cela ne
-%    fonctionne pas parce que quelque chose que \LaTeX{} est utilisé, en se
-%    servant de la primitive \TeX{} |\end|. La commande |\errmessage| est là 
-%    pour garantir que la variable d'historisation interne de \TeX vaut bien
-%    |error_message_issued| (message d'erreur émis). Ceci va normalement lancer
-%    le code de sortie sur les systèmes d'exploitation qui implémentent les
-%    codes de retour (bien qu'il n'y ait pas là de garantie). 
+%    fonctionne pas parce que quelque chose d'autre que \LaTeX{} est utilisé, 
+%    en se servant de la primitive \TeX{} |\end|. La commande |\errmessage| est
+%    là pour garantir que la variable d'historisation interne de \TeX\ vaut 
+%    bien |error_message_issued| (message d'erreur émis). Ceci va normalement
+%    lancer le code de sortie sur les systèmes d'exploitation qui implémentent
+%    les codes de retour (bien qu'il n'y ait pas là de garantie). 
 % \changes{v1.1a}{2003/12/28}{Attempt to set exit code (pr/3538).}
 %    \begin{macrocode}
 %<+edit|exit>  \batchmode \errmessage{}\csname @@end\endcsname \end
