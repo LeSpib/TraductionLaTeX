@@ -3150,21 +3150,34 @@
 %
 % \subsection{Remarque sur la précision}
 %
-% Comme les commandes présentées ici requièrent des calculs, des efforts particuliers ont été faits pour assurer un maximum de précision pour les formules de conversion et de mélange -- tout cela avec les capacités limitées de \TeX pour le calcul\footnote{Par exemple, en appliquant la \og transformation \fg{} \cs{dimen0=0.}\Meta{int}\texttt{pt} \cs{the\string\dimen0} pour tous les entiers à 5 chiffres de la plage [00000,99999], exactement 34464 entiers sur les 100000 ne survivent pas sans être modifiés. Et nous ne parlons ici des zéros finaux élagés\dots} 
-% \tradini
-% We decided to develop and include a small set of commands to improve the quality of division and multiplication results, instead of loading one of the packages that provide multi-digit arithmetic and a lot more, like \Package{realcalc} or \Package{fp}.
-% The marginal contribution of the latter packages seems not to justify their usage for our purposes.
-% Thus, we stay within a sort of fixed-point arithmetic framework, providing at most 5~decimal digits via \TeX's dimension registers.
+% Comme les commandes présentées ici requièrent des calculs, des efforts
+% particuliers ont été faits pour assurer un maximum de précision pour les
+% formules de conversion et de mélange -- tout cela avec les capacités limitées
+% de \TeX pour le calcul\footnote{Par exemple, en appliquant la \og 
+% transformation \fg{} \cs{dimen0=0.}\Meta{int}\texttt{pt}
+% \cs{the\string\dimen0} pour tous les entiers à 5 chiffres de la plage 
+% [00000,99999], exactement 34464 entiers sur les 100000 ne survivent pas sans
+% être modifiés. Et nous ne parlons ici des zéros finaux élagés\dots} 
+% Nous avons décidé de développer et d'inclure un petit ensemble de commandes
+% pour améliorer la qualité des résultats de division et de multiplication,
+% au lieu de charger une des extensions qui fournit une arithmétique à plusieurs
+% chiffres significatifs et bien plus, comme les extensions \Package{realcalc} 
+% ou \Package{fp}.
+% La contribution marginale de ces dernières extensions semble ne pas justifier
+% leur usage pour nos objectifs. Aussi, nous restons dans une sorte de cadre 
+% d'arithmétique à virgule fixe, fournissant au plus cinq décimales par le 
+% biais des registres de dimension.
 %
 %
 %
 %
 % \clearpage
-% \section{The Formulas}
+% \section{Les formules}
 %
-% \subsection{Color mixing}
+% \subsection{Le mélange des couleurs}
 %
-% In general, we use linear interpolation for color mixing:
+% En général, nous utilisons l'interpolation linéaire pour les mélanges de couleur :
+% \tradini
 % \begin{align}
 % \mix(C, C', p) = p \cdot C + (1-p) \cdot C'\label{eq.mix}
 % \end{align}
