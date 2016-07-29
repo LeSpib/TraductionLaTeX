@@ -3176,26 +3176,31 @@
 %
 % \subsection{Le mélange des couleurs}
 %
-% En général, nous utilisons l'interpolation linéaire pour les mélanges de couleur :
-% \tradini
+% En général, nous utilisons l'interpolation linéaire pour les mélanges de 
+% couleur :
 % \begin{align}
 % \mix(C, C', p) = p \cdot C + (1-p) \cdot C'\label{eq.mix}
 % \end{align}
-% Note that there is a special situation in the \Model{hsb} case:
-% if $\emph{saturation}=0$ then the color equals a gray color of level \emph{brightness}, independently of the \emph{hue} value.
-% Therefore, to achieve smooth transitions of an arbitrary color to a specific gray (like white or black), we actually use the formulas
+% Notez qu'il existe une situation particulière dans le cas de \Model{hsb} :
+% si  $\emph{saturation}=0$ alors la couleur est un gris de niveau 
+% \emph{luminosité}, indépendamment de la valeur de la \emph{teinte}. C'est 
+% pourquoi, pour obtenir des transitions hormonieuses une couleur arbitraire et
+% un gris particulier (comme le blanc ou le noir), nous utilisons les formules 
 % \begin{align}
-% \Op\tint{hsb}(C, p) &= p \cdot C + (1-p) \cdot \bigl(\emph{hue},0,1\bigr)\\
-% \Op\shade{hsb}(C, p) &= p \cdot C + (1-p) \cdot \bigl(\emph{hue},0,0\bigr)\\
-% \Op\tone{hsb}(C, p) &\textstyle= p \cdot C + (1-p) \cdot \bigl(\emph{hue},0,\frac12\bigr)
+% \Op\tint{hsb}(C, p) &= p \cdot C + (1-p) \cdot \bigl(\emph{teinte},0,1\bigr)\\
+% \Op\shade{hsb}(C, p) &= p \cdot C + (1-p) \cdot \bigl(\emph{teinte},0,0\bigr)\\
+% \Op\tone{hsb}(C, p) &\textstyle= p \cdot C + (1-p) \cdot \bigl(\emph{teinte},0,\frac12\bigr)
 % \end{align}
-% where $C=(\emph{hue},\emph{saturation},\emph{brightness})$.
+% where $C=(\emph{teinte},\emph{saturation},\emph{luminosité})$.
 %
-% From equation (\ref{eq.mix}) and the way how color expressions are being interpreted, as described in section \vref{sec.term}, it is an easy proof by induction to verify that a color expression
+% À partir de l'équation (\ref{eq.mix}) et de la manière dont les expressions
+% de couleur sont interprêtées, comme décrit en section \vref{sec.term}, une
+%  simple preuve par induction permet de vérifier qu'une expression de couleur
 % \begin{gather}
 % C_0!P_1!C_1!P_2!\dots!P_n!C_n
 % \end{gather}
-% with $n\in\{0,1,2,\dots\}$, colors $C_0,C_1,\dots,C_n$, and percentages $P_1,\dots,P_n\in [0,100]$ will result in a parameter vector
+% avec $n\in\{0,1,2,\dots\}$, les couleurs $C_0,C_1,\dots,C_n$, et les 
+% pourcentages $P_1,\dots,P_n\in [0,100]$ va générer un vecteur de paramètre
 % \begin{equation}
 % \begin{split}
 % C &= \sum_{\nu=0}^n \Biggl(\prod_{\mu=\nu+1}^n p_\mu \Biggr) (1-p_\nu)\cdot C_\nu\\
@@ -3207,8 +3212,8 @@
 %   &\quad + (1-p_n)\cdot C_n
 % \end{split}
 % \end{equation}
-% where $p_0 := 0$ and $p_\nu := P_\nu/100$ for $\nu=1,\dots,n$.
-% We note also a split formula:
+% où $p_0 := 0$ et $p_\nu := P_\nu/100$ pour $\nu=1,\dots,n$.
+% Nous notons également une formule fractionnée :
 % \begin{equation}
 % \begin{split}
 % C_0!P_1!C_1!\dots!P_{n+k}!C_{n+k}
@@ -3219,15 +3224,15 @@
 % \end{equation}
 %
 %
-% \begin{table}[p]\caption{Color constants}\label{tab.const}
+% \begin{table}[p]\caption{Constantes de couleur}\label{tab.const}
 % \centering
 % \extrarowheight2pt
 % \rowcolors{3}{tablerowcolor}{}
 % \begin{tabular}{*4{c}}
 % \hline
 % \rowcolor{tableheadcolor}
-% \emph{model/constant} &
-%       \ttfamily white  &  \ttfamily black & \ttfamily gray\\[2pt]
+% \emph{modèle/constante} &
+%       {\ttfamily white}(blanc)  &  {\ttfamily black}(noir) & {\ttfamily gray}(blanc)\\[2pt]
 % \Model{rgb}&  $(1,1,1)$   & $(0,0,0)$   & $(\frac12,\frac12,\frac12)$ \\[2pt]
 % \Model{cmy}&  $(0,0,0)$   & $(1,1,1)$   & $(\frac12,\frac12,\frac12)$ \\[2pt]
 % \Model{cmyk}& $(0,0,0,0)$ & $(0,0,0,1)$ & $(0,0,0,\frac12)$ \\[2pt]
@@ -3244,7 +3249,7 @@
 % \end{table}
 %
 %
-% \begin{table}[p]\caption{Color conversion pairs}\label{tab.cnv}
+% \begin{table}[p]\caption{Paires de conversion de couleur}\label{tab.cnv}
 % \begin{adjustwidth}{-2.5cm}{}
 % \small\raggedleft
 % \def\Em#1{\Model{#1}}
@@ -3256,7 +3261,7 @@
 % \begin{tabular}{c*{11}{>{\sffamily}c}}
 % \rowcolor{tableheadcolor}
 % \hline
-% \emph{from/to}&
+% \emph{de/à}&
 %            \Em{rgb}& \Em{cmy}& \Em{cmyk}& \Em{hsb}& \Em{Hsb} & \Em{tHsb} & \Em{gray}& \Em{RGB}& \Em{HTML}& \Em{HSB}& \Em{Gray}\\
 % \Em{rgb}&  \id     & \sp     & (cmy)    & \sp     & (hsb)    & (hsb)     & \sp      & \sp     & \sp      & (hsb)   & (gray)\\
 % \Em{cmy}&  \sp     & \id     & \sp      & (rgb)   & (rgb)    & (rgb)     & \sp      & (rgb)   & (rgb)    & (rgb)   & (gray)\\
@@ -3271,8 +3276,8 @@
 % \Em{Gray}& (gray)  & (gray)  & (gray)   & (gray)  & (gray)   & (gray)    & \sp      & (gray)  & (gray)   & (gray)  & \id\\
 % \Em{wave}& (hsb)   & (hsb)   & (hsb)    & \sp     & (hsb)    & (hsb)     & (hsb)    & (hsb)   & (hsb)    & (hsb)   & (hsb)\\
 % \hline\hline
-% \multicolumn{12}{c}{\id{} = identity function; $\ast$ = specific conversion function;}\\
-% \multicolumn{12}{c}{\textsf{(model)} = conversion via specified model}\\
+% \multicolumn{12}{c}{\id{} = fonction identité; $\ast$ = fonction de conversion spécifique;}\\
+% \multicolumn{12}{c}{\textsf{(modèle)} = conversion par le biais du modèle indiqué}\\
 % \hline
 % \end{tabular}
 % \end{adjustwidth}
@@ -3280,13 +3285,16 @@
 %
 %
 %
-% \subsection{Conversion between integer and real models}
+% \subsection{Conversion entre les modèles entiers et réels}
 %
-% We fix a positive integer $n$ and define the sets $\mathcal I_n:=\{0,1,\dots,n\}$ and $\mathcal R:= [0,1]$.
-% The complement of $\nu\in\mathcal I_n$ is $n-\nu$, the complement of $x\in\mathcal R$ is $1-x$.
+% Nous posons un entier positif $n$ et définissons les ensembles 
+% $\mathcal I_n:=\{0,1,\dots,n\}$ et $\mathcal R:= [0,1]$. Le complémentaire
+% de $\nu\in\mathcal I_n$ est $n-\nu$, le complémentaire de $x\in\mathcal R$
+% est $1-x$.
 %
-% \subsubsection{Real to integer conversion}\label{sec.real2int}
+% \subsubsection{Conversion réel vers entier}\label{sec.real2int}
 %
+% \tradini
 % The straightforward mapping for this case is
 % \begin{gather}
 % \textstyle\RtoI n : \mathcal R \to \mathcal I_n,\ x \mapsto \rd(n\cdot x,0) = \left\lfloor \frac12+n\cdot x\right\rfloor
