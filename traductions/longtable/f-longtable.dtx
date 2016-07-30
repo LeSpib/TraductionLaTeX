@@ -1,0 +1,2358 @@
+% \iffalse meta-comment
+%
+% Copyright 1993 1994 1995 1996 1997 1998 1999
+% The LaTeX3 Project and any individual authors listed elsewhere
+% in this file.
+%
+% This file is part of the Standard LaTeX `Tools Bundle'.
+% -------------------------------------------------------
+%
+% It may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.1
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%    http://www.latex-project.org/lppl.txt
+% and version 1.1 or later is part of all distributions of LaTeX
+% version 1999/06/01 or later.
+%
+% The list of all files belonging to the LaTeX `Tools Bundle' is
+% given in the file `manifest.txt'.
+%
+% \fi
+% \iffalse
+%% File: longtable.dtx Copyright (C) 1990-1998 David Carlisle
+%
+%<*dtx>
+          \ProvidesFile{f-longtable.dtx}
+%</dtx>
+%<package>\NeedsTeXFormat{LaTeX2e}[1995/06/01]
+%<package>\ProvidesPackage{longtable}
+%<driver> \ProvidesFile{longtable.drv}
+% \fi
+%         \ProvidesFile{f-longtable.dtx}
+          [1998/05/13 v4.09 Multi-page Table package (DPC)]
+%
+% \iffalse
+%<*driver>
+\def\traductionchanges{oui}
+\documentclass{ltxdoc}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage[frenchb]{babel}
+\usepackage{longtable}
+\begin{document}
+\DocInput{f-longtable.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \GetFileInfo{f-longtable.dtx}
+% \title{Le package \textsf{longtable} \thanks{Ce fichier
+%        a le num\'ero de version \fileversion, r\'evis\'e
+%        le \filedate.}}
+% \author{David Carlisle\thanks{Le nouvel algorithme pour aligner les morceaux (<<~chunks~>>)
+% d'une table, utilis\'e dans la version 4 de ce package a \'et\'e
+% r\'evis\'e, impl\'ement\'e et document\'e par David Kastrup,
+% \texttt{dak@neuroinformatik.ruhr-uni-bochum.de}.}\\ traduction de Jean-Pierre Drucbert
+% \thanks{Traductions additionnelles : Fran\c{c}oise Marre-Fournier
+% <marre-fournier@unilim.fr> ; relecture Benjamin Bayart <bayartb@edgard.fdn.fr>}}
+% \date{\filedate}
+%
+% \let\package\textsf
+% \let\env\textsf
+% \providecommand\finalclearpage{\clearpage}
+%
+%  \maketitle
+%
+% \begin{abstract}
+% Ce package d\'efinit l'environnement \env{longtable}, une version
+% <<~multi-page~>> de \env{tabular}.
+% \end{abstract}
+%
+% \DeleteShortVerb{\|}
+% \MakeShortVerb{\"}
+%
+% \changes{v0.00}{1989/11/06}
+%    {`Version 0' distribu\'ee en longtab.sty
+%      utilisant toujours un seul morceau pour la table enti\`ere}
+%
+% \changes{v1.00}{1990/12/20}
+%    {Version initiale}
+%
+% \changes{v2.00}{1991/06/17}
+%    {Prise en compte de NFSS et array.sty}
+%
+% \changes{v3.00}{1992/03/16}
+%    {Nouvelle impl\'ementation. Les tables peuvent maintenant commencer n'importe
+%     o\`u dans la page.}
+%
+% \changes{v3.01}{1992/04/06}
+%    {(Michel Goossens) Si un morceau finit une ligne dans
+%     laquelle la premi\`ere entr\'ee est vide, il appara\^\i\ des
+%     erreurs. Ajout d\'ebut et fin de groupe <<~bizarres~>>, 
+%     (\cs{ifnum}0 ) comme expliqu\'e dans l'Annexe D.}
+%
+% \changes{v3.02}{1992/04/09}
+%    {(Michel Goossens) Longtable \'echoue si le compteur de table
+%     est remis \`a z\'ero durant la compilation. Maintenant utilise
+%     un compteur interne, mais tout de m\^eme incr\'ement de \texttt{table}
+%     pour que \cs{caption} et \cs{label} fonctionnent correctement.}
+%
+% \changes{v3.03}{1992/06/25}
+%    {Ajout de \cs{@ifundefined\{reset@font\}} pour que la
+%     documentation puisse être r\'ealis\'ee avec d'anciennes versions de
+%     \LaTeX.}
+%
+% \changes{v3.03}{1992/06/25}
+%    {Modification du traitement de \cs{d@llar} pour correspondre
+%     aux nouvelles versions de array.sty de Mittelbach(array.sty
+%     v2.0h)}
+%
+% \changes{v3.04}{1992/11/12}
+%    {(Jean-Pierre Drucbert) Longtable \'echoue quand est utilis\'ee avec
+%     \cs{includeonly}.}
+%
+% \changes{v3.04}{1992/11/12}
+%    {Correction du bug qui emp\`echa\^it le fonctionnement correct de
+%     \cs{kill} dans les en-têtes.}
+%
+% \changes{v3.04}{1992/11/12}
+%    {(Graham Gough) \'Ecrire \cs{setlongtables} provoque un
+%      message d'alerte.}
+%
+% \changes{v3.04}{1992/11/12}
+%    {(Sebastian Rahtz) Longtable d\'epasse les capacit\'es
+%     m\'emoire pour les tables extr\`emement longues. Un autre bug
+%     introduit dans la V3.}
+%
+% \changes{v3.05}{1992/11/20}
+%   {(Juergen Peus) Les tables sont correctement cod\'ees
+%    quant aux l\'egendes, maintenant la l\'egende utilise
+%    \cs{fnum@table}, donc \cs{tablename} sera utilis\'e.}
+%
+% \changes{v3.06}{1993/01/21}
+%    {(Ingo Hoffmann) Longtable \'echoue avec la classe
+%     letter. Le compteur de table n'est pas d\'efini, et de la
+%     même façon, le fichier .aux n'est pas utilis\'e. Cette
+%     version utilisera un fichier a .lta pour le style letter.}
+%
+% \changes{v3.07}{1993/06/09}
+%    {Autorise la syntaxe \LaTeX\ \cs{setcounter}\{LTchunksize\}\{10\}}
+%
+% \changes{v3.08}{1993/06/09}
+%     {Mise \`a jour pour \LaTeXe}
+%
+% \changes{v3.09}{1994/03/15}
+%     {Nouveau style ltxdoc}
+%
+% \changes{v3.11}{1994/05/22}
+%      {Ajout d'option de traitement, nouveaux styles de
+%      messages d'erreur et d'alerte}
+%
+% \changes{v3.12}{1994/06/30}
+%      {Suppression du traitement sp\'ecial de la classe
+%      letter de la v3.06, inutile pour la nouvelle classe letter}
+%
+% \changes{v4.00}{1996/04/08}
+%      {(DK) Nouvel algorithme pour aligner les morceaux de
+%       table s\'epar\'es et cod\'e par David Kastrup}
+%
+% \changes{v4.02}{1996/04/16}
+%      {(DPC/DK) Am\'elioration de la documentation}
+%
+% \changes{v4.06}{1997/06/28}
+%      {(DK) nouvelle adresse e-mail}
+%
+% \CheckSum{1037}
+%
+%
+% \makeatletter
+% \def\@oddfoot{\normalfont\rmfamily\dotfill Page \thepage\dotfill}
+% \def\@oddhead{\dotfill{\normalfont\ttfamily longtable.sty}\dotfill}
+% \def\ps@titlepage{\let\@oddhead\@empty}
+% \makeatother
+%
+%
+% \setlength\LTleft\parindent
+% \setlength\LTright\fill
+% \setcounter{LTchunksize}{10}
+%
+% \def\v{\char`}
+%
+% ^^A \vbox to 100pt makes the page breaks the same on the first run.
+% \changes{v3.08}{1993/06/09}
+%     {Inutile d'utiliser \cs{vbox} avec les minipages \LaTeXe\ }
+% \noindent\begin{minipage}[t][130pt]{\textwidth}
+% \listoftables
+% \end{minipage}
+%
+% \section{Introduction}
+%
+% Ce package d\'efinit un nouvel environnement, \DescribeEnv{longtable}
+% \env{longtable}, qui
+% poss\`ede la plupart des possibilit\'es de l'environnement
+% \env{tabular}, mais produit des tables pouvant d\'epasser
+% la hauteur d'une page, c'est-\`a-dire qui peuvent \^etre
+% coup\'ees par l'algorithme standard de rupture de page de
+% \TeX. Il partage aussi certaines possibilit\'es de
+% l'environnement \env{table}. En particulier, il utilise le
+% m\^eme compteur, {\tt table}, et a une commande
+% "\caption" similaire. La commande "\listoftables"
+% liste les tables produites par les environnements \env{table} et \env{longtable}.
+%
+% L'exemple suivant utilise la plupart des caract\'eristiques
+% de l'environnement \env{longtable}. Un listing source de
+% cet exemple est donn\'e dans la Section~\ref{listing}.
+%
+% \textbf{Note :} Plusieurs parties de la table suivante
+% \emph{ne} seront \emph{pas} align\'ees correctement
+% jusqu'\`a ce que ce document soit compil\'e plusieurs fois
+% par \LaTeX{}. C'est un trait caract\'eristique de ce
+% package, comme d\'ecrit ci-dessous.
+
+
+
+% \begin{longtable}{@{*}r||p{1in}@{*}}
+% KILLED & LINE!!!! \kill
+% \caption
+% [Un caption optionnel (pour la liste des tables)]
+% {Une longue table\label{long}}\\
+% \hline\hline
+% \multicolumn{2}{@{*}c@{*}}%
+% {Cette partie appara\^{\i}t au sommet de la table}\\
+% \textsc{Premi\`ere}&\textsc{Seconde}\\
+% \hline\hline
+% \endfirsthead
+% \caption[]{(suite)}\\
+% \hline\hline
+% \multicolumn{2}{@{*}c@{*}}%
+%       {Cette partie appara\^{\i}t en haut de chacune des autres pages}\\
+% \textbf{Premi\`ere}&\textbf{Seconde}\\
+% \hline\hline
+% \endhead
+% \hline
+% Ceci va en&bas.\\
+% \hline
+% \endfoot
+% \hline
+% Ces lignes&appara\^{\i}tront\\
+% \`a la place du&bas habituel\\
+% \`a la fin&de la table\\
+% \hline
+% \endlastfoot
+% Les colonnes de \env{longtable} sont sp\'ecifi\'ees& de la\\
+% m\^eme mani\`ere que dans l'environnement& \env{tabular}.\\
+% "@{*}r||p{1in}@{*}"& dans ce cas.\\
+% Chaque ligne se termine par une& commande "\\".\\
+% La commande "\\"  a un& argument\\
+% optionnel, tout comme dans l'environnement& \env{tabular}.\\[10pt]
+% Voyez vous l'effet de "\\[10pt]"&?\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% De m\^eme "\hline" peut \^etre utilis\'ee,& comme dans \env{tabular}.\\
+% \hline
+% Ceci \'etait une "\hline"&.\\
+% \hline\hline
+% Ceci \'etait une "\hline\hline"&.\\
+% \multicolumn{2}{||c||}%
+% {Ceci est une \ttfamily\v\\multicolumn\v{2\v}\v{||c||\v}}\\
+% Si une rupture de page a lieu sur une "\hline" alors& une ligne est trac\'ee\\
+% au bas d'une page et au& sommet de la suivante.\\
+% \hline
+% L'argument "[t] [b] [c]" de \env{tabular}& ne peut pas \^etre utilis\'e.\\
+% L'argument optionnel doit \^etre choisi parmi& "[l] [r] [c]"\\
+% pour sp\'ecifier si la table doit \^etre& ajust\'ee\\
+% sur la gauche, sur la droite& ou centr\'ee.\\
+% \hline\hline
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+%   Certaines lignes prennent beaucoup de place, comme celle-ci: &
+%    \raggedleft Cette derni\`ere colonne est une colonne <<~p~>> si bien que cette
+%   <<~ligne~>> de la table peut occuper plusieurs lignes. Notez cependant que \TeX\ ne coupera
+%   jamais une page \`a l'int\'erieur d'une telle ligne. Les ruptures de page ne se produisent
+%   qu'entre les rang\'ees de la table ou sur des commandes "\hline".\\
+%    \tabularnewline
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% \hline
+% Des tas\footnote{Ceci est une note} de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci\footnote{\env{longtable} prend des pr\'ecautions sp\'eciales
+% et des notes de bas de page peuvent aussi \^etre uti\-li\-s\'ees (sans abus!) dans les colonnes `p'.}\\
+% \hline
+% Des tas de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci.\\
+% \end{longtable}
+%
+%
+\section{Taille du pas ou <<~chunk size~>>}
+%
+% \DescribeMacro{LTchunksize}
+% Pour pouvoir traiter par \TeX\ des tables faisant plusieurs pages, il
+% est n\'eces\-saire de partager la table en plus petits
+% morceaux (les <<~chunks~>>, litt\'e\-ra\-le\-ment
+% <<~bouch\'ees~>>, NdT), pour que \TeX\ ne soit pas oblig\'e de
+% tout garder \`a la fois. Par d\'efaut, \env{longtable}
+% utilise 20 lignes par pas, mais l'usager peut choisir la
+% valeur qu'il d\'esire, avec par exemple,
+% "\setcounter{LTchunksize}={10}".\footnote{On peut aussi
+% utiliser la syntaxe plain \TeX\ {\ttfamily\v\\LTchunksize=10.}}
+% Ces pas ou <<~chunks~>> n'affectent pas la rupture des pages,
+% donc si vous utilisez \TeX\ avec beaucoup de m\'emoire,
+% vous pouvez donner \`a "LTchunksize" l'\'equivalent
+% de plusieurs pages de la table. \TeX\ s'ex\'ecutera plus
+% rapidement avec un grand "LTchunksize". Cependant si
+% cela est n\'eces\-saire \env{longtable} peut travailler
+% avec "LTchunksize=1", auquel cas la m\'emoire
+% utilis\'ee sera n\'egligeable.
+% Notez que si vous utilisez les commandes pour placer un
+% en-t\^ete en haut de la page (voir plus loin), la valeur de
+% "LTchunksize" doit \^etre au moins \'egale au nombre
+% de lignes de l'en-t\^ete ou du pied. (En pratique, une
+% valeur entre~10 et~50 semble raisonnable. NdT).
+
+% Ce document sp\'ecifie "\setcounter{LTchunksize}{10}". Si
+% vous pouviez regarder la table pr\'ec\'edente apr\`es la
+% {\em premi\`ere\/} ex\'ecution de \LaTeX\, vous verriez que
+% les deux moiti\'es ne collent pas\,\footnote{En fait, vous
+% ne voyez rien d'\'etrange ici, car au second passage de
+% \LaTeX, tout est remis en place. Et ce document ne s'est
+% pas fait en un seul passage (ni m\^eme en seul un
+% jour). NdT}. De plus \LaTeX\ a imprim\'e un avertissement
+% comme quoi la largeur des colonnes a chang\'e.
+% \env{longtable} \'ecrit des informations dans le fichier
+% ".aux", pour pouvoir aligner les diff\'erents pas ou
+% << chunks >>. Avant la version~4, il n'utilise ces informations
+% que si une commande "\setlongtables" est donn\'ee avant que
+% la table commence. Cependant, maintenant, ces informations
+% sont toujours utilis\'ees, grace \`a un nouvel
+% algorithme\footnote{D\^u \`a David Kastrup} et donc
+% "\setlongtables" n'est plus utile. Il est d\'efini (mais ne
+% fait rien) pour que les anciens documents qui l'emploient
+% puissent \^etre utilis\'e.
+
+% \iffalse
+% [Il est pr\'ef\'erable de ne pas
+% utiliser cette commande avant que le document soit presque
+% achev\'e, car sinon {\tt longtable} laissera assez de place
+% dans chaque colonne pour l'entr\'ee la plus large {\em dans
+% toutes les versions pr\'ec\'edentes}. (Au moins depuis la
+% derni\`ere destruction du fichier {\tt.aux}). Par exemple
+% vous pouvez mettre une ligne \verb|%\setlongtables| dans le
+% pr\'eambule du document. Pour les derniers essais et
+% l'\'epreuve finale, supprimez le \verb|%|: les tables
+% s'alignent parfaitement apr\`es une nouvelle ex\'ecution de
+% \LaTeX\ (deux si le fichier {\tt.aux} a \'et\'e
+% d\'etruit).NdT]
+% \fi
+%
+% \begin{table}
+% \centering
+% \begin{tabular}{||l|l|l||}
+% \hline\hline
+% Un &environnement& \env{tabular}\\
+% \hline
+% dans & une \env{table}&flottante\\
+% \hline\hline
+% \end{tabular}
+% \caption{Une table flottante}
+% \end{table}
+%
+% \section{L\'egendes et en-t\^etes}
+%
+% Au d\'ebut de la table vous pouvez sp\'ecifier des lignes
+% qui devront appara\^{\i}tre en haut de chaque page (en
+% dessous de la ligne de t\^ete, mais avant les autres lignes
+% de la table).
+%
+% \DescribeMacro{\endhead}
+% Ces lignes sont entr\'ees normalement, mais la derni\`ere
+% commande "\\" est remplac\'ee par une commande "\endhead".
+%
+% \DescribeMacro{\endfirsthead}
+% Si la premi\`ere page doit avoir une en-t\^ete
+% diff\'erente, alors celle-ci doit \^etre donn\'ee en
+% premier, et termin\'ee par la commande "\endfirsthead".
+% \iffalse
+% [Dans ce cas les deux en-t\^etes devraient avoir des
+% hauteurs \`a peu pr\`es \'egales, car \env{longtable}
+% laisse la m\^eme quantit\'e d'espace sur chaque page pour
+% l'en-t\^ete. NdT]
+% \fi
+% La valeur de "\LTchunksize" doit \^etre
+% choisie au moins \'egale au nombre de lignes de
+% l'en-t\^ete.
+% \DescribeMacro{\endfoot}
+% Il y a aussi des commandes "\endfoot" et "\endlastfoot"
+% \DescribeMacro{\endlastfoot}
+% qui sont utilis\'ees de la m\^eme fa\c{c}on (au {\em
+% d\'ebut\/} de la table) pour sp\'ecifier des lignes (ou une
+% "\hline") devant appara\^{\i}tre en bas de chaque page.
+% Dans certaines situations, vous pourrez vouloir placer des
+% lignes qui appartiennent logiquement au corps de la table
+% \`a la fin de \env{firsthead}, ou au d\'ebut de
+% \env{lastfoot}. Ceci peut aider \`a contr\^oler quelles
+% lignes apparaissent sur la premi\`ere  et la derni\`ere
+% page de la table.
+%
+% \DescribeMacro{\caption}
+% La commande "\caption{...}" est essentiellement
+% \'equivalente \`a\\
+% "\multicolumn{n}{c}{\parbox{\LTcapwidth}{...}}"  o\`u {\tt
+% n} est le nombre de colonnes de la table. Vous pouvez
+% forcer la largeur de la l\'egende avec une commande telle que
+% "\setlength{LTcapwidth}{2in}" dans le pr\'eambule de votre
+% document. La valeur par d\'efaut est de quatre pouces.
+% "\caption" \'ecrit aussi les informations pour produire une
+% entr\'ee dans la liste des tables. Comme pour la commande
+% "\caption" des environnements \env{figure} et \env{table},
+% un argument optionnel sp\'ecifie le texte devant
+% appara\^{\i}tre dans la liste des tables si ce texte est
+% diff\'erent de celui apparaissant dans la l\'egende
+% elle-m\^eme. Donc la l\'egende pour la table~\ref{long} a
+% \'et\'e sp\'ecifi\'es par {\ttfamily  "\caption"[Une l\'egende
+% optionnelle (pour la liste des tables)]\v{Une longue
+% table"\label{long}"\v}}
+% Vous pouvez d\'esirer que la l\'egende sur les pages
+% suivantes soit diff\'erente de celle de la premi\`ere page.
+% Dans ce cas placez la commande "\caption" dans le premier
+% en-t\^ete, et une autre l\'egende dans une commande
+% "\caption[]" dans l'en-t\^ete principal. Si l'argument
+% optionnel de la commande "\caption" est vide, aucune
+% entr\'ee n'est ajout\'ee dans la liste des tables. De plus,
+% si vous ne voulez pas que le num\'ero de table soit
+% imprim\'e chaque fois, utilisez la commande "\caption*".
+%
+% Le l\'egendes sont formatt\'es suivant le code de la classe
+% \package{article}. Si vous avez red\'efini la commande
+% standard "\@makecaption" pour produire un format
+% diff\'erent de l\'egende, vous serez peut-\^etre amen\'e
+% \`a r\'ealiser des changements similaires pour le
+% "\LT@makecaption" de la version de \package{longtable}.
+% Voir le code pour plus de d\'etails. Une m\'etode plus
+% pratique pour personnaliser les l\'egendes donn\'ee par le
+% package \package{caption2}, qui fournit des commandes de
+% l\'egendes personnalis\'es, et qui adapte les l\'egendes
+% dans les environnements standards. De nombreux autres
+% environnements fournis par des packages (incluant le
+% package \package{longtable}) sont modifi\'es de fa\c{c}on
+% compatible.
+%
+%
+% Vous pouvez utiliser la commande "\label" pour faire des
+% r\'ef\'erences crois\'es aux longues tables avec "\ref" (ou
+% "\pageref", NdT). Notez dependant que la commande "\label"
+% ne doit pas \^etre utilis\'ee dans un en-t\^ete qui peut
+% appara\^\i{}tre plus d'une fois. Placez la, soit dans le
+% \env{fisrthead} ou dans le corps de la table. Elle ne doit
+% \^etre la \emph{premi\`ere} commande de n'importe quelle
+% entr\'ee. [Les r\`egles exactes sur les endroits o\`u il
+% est possible de placer la commande "\label" sont assez
+% \TeX{}niques, mais il est toujours possible et inoffensif
+% de la placer {\em \`a l'int\'erieur\/} de l'argument d'une
+% commande "\caption". NdT].
+%
+% \section{Entr\'ees multicolonnes}
+%
+% La commande "\multicolumn" peut \^etre utlis\'ee exactement
+% de la m\^eme mani\`ere que dans \env{tabular}. Vous pouvez
+% vouloir sauter cette section, qui est plut\^ot technique,
+% cependant prendre en compte "\multicolumn" est un des
+% principaux probl\`emes pour un environnement tel que
+% \env{longtable}. Le principal effet que l'utilisateur verra
+% est que certaines combinaisons des entr\'ees "\multicolumn"
+% auront comme r\'esultat que le document devra \^etre
+% plusieurs fois compil\'e par \LaTeX\ avant que les
+% diff\'erents morceaux (<<~chunks~>>) d'une table ne soient
+% align\'es.
+%
+% Les exemples de cette section sont r\'ealis\'es en
+% utilisant un "LTchunksize" fix\'e \`a la valeur minimum,
+% pour montrer les effects lorsque les entr\'es
+% "\multicolumn" se produisent dans diff\'erents morceaux.
+
+% \begin{table}[!htp]
+% \begin{center}
+% \LTchunksize=1
+%  \makeatletter
+%
+%  \global\let\LT@save@row\relax
+%  \let\LT@warn\@gobble
+%  \let\LT@final@warn\relax
+%
+%  \newcommand\ltexample[1]{
+%  \stepcounter{LT@tables}
+%  \expandafter\let\csname LT@\romannumeral\c@LT@tables\endcsname
+%                   \LT@save@row
+%  \addtocounter{LT@tables}{-1}
+%  \begin{longtable}{|c|c|c|}
+%  \caption{Une combinaison difficile de {\cs{multicolumn}} :
+%                                pass #1\label{pass#1}}\\
+%    \hline
+%    1&2&3\\
+%    \multicolumn{3}{|c|}{une multicolonne tr\'es large 1--3}\\
+%    \multicolumn{2}{|c|}{une multicolonne 1--2}&3\\
+%    wide 1&2&3\\
+%    \hline
+% \end{longtable}
+% }
+%
+% \ltexample{1}
+%
+% \ltexample{2}
+%
+% \ltexample{3}
+%
+% \ltexample{4}
+%
+% \end{center}
+% \end{table}
+%
+% Consid\'erons la Table~\ref{pass1}. Dans le deuxi\`eme
+% morceau, \env{longtable} voit l'entr\'e large de la
+% multicolonne. \`A ce point, il consid\`ere que les deux
+% premi\`eres colonnes sont tr\'es \'etroites. Toute la
+% largeur de l'entr\'ee multicolonne est suppos\'ee \^etre
+% dans la troisi\`eme colonne (c'est une
+% <<~caract\'eristique~>> de la commande originelle "\halign"
+% de \TeX). Ensuite \env{longtable} prend en compte
+% l'information selon laquelle il y a une troisi\`eme colonne
+% large pour le dernier morceau. Le r\'esultat est que la
+% premi\`ere <<~passe~>> est trop <<~large~>>. Si les
+% <<~lignes sauv\'ees~>> \`a partir de cette premi\`ere passe
+% sont r\'eins\'er\'ees dans la table \`a la passe suivante,
+% la table sera align\'ee en deux passes mais pourra \^etre
+% beaucoup trop large.
+%
+% \DescribeMacro{\kill}%
+% La solution de ce probl\`eme, employ\'ee dans les versions
+% 1~et~2, est d'utiliser une <<~"\kill" line~>>
+% (litt\'eralement, une ligne tu\'ee, NdT). Si une ligne est
+% tu\'ee ("\kill"ed), par l'utilisation de "\kill", au lieu
+% de "\\", \`a la fin de la ligne, cela est utilis\'e dans le
+% calcul des largeurs de colonne, mais enlev\'e de la table
+% finale. Donc, l'entr\'ee de copies tu\'ees ("\kill"ed
+% copies) des deux derni\`eres lignes, avant l'entr\'ee
+% enti\`ere de la colonne, devrait signifier que "\halign"
+% <<~voyait~>> l'entr\'ee compl\`ete dans les deux premi\`eres
+% colonnes, et donc, \'elargissait la troisi\`eme colonne de
+% fa\c{c}on \`a faire la place \`a l'entr\'ee multicolonne.
+%
+% Dans la version~3, une nouvelle solution a \'et\'e
+% introduite. Si la ligne sauv\'ee dans le fichier ".aux" n'a
+% pas \'et\'e utilis\'ee, \env{longtable} utilisait une forme
+% <<~brouillon~>> de "\multicolumn"~; cela modifiait la
+% d\'efinition, de fa\c{c}on \`a ce que l'entr\'ee \'etendue ne
+% soit pas plus large que la colonne \'elargie.
+% Donc, apr\`es la premi\`ere passe, le fichier ".aux"
+% stockait la plus large entr\'ee normale pour chaque
+% colonne, aucune colonne n'\'etant \'elargie \`a cause des
+% colonnes "\span"\'ees. Par d\'efaut, \env{longtable}
+% ignorait le fichier ".aux", et donc chaque compilation par
+% \LaTeX\ \'etait consid\'er\'ee comme la premi\`ere passe.
+% Une fois la d\'eclaration de "\setlongtables" faite, la
+% ligne sauv\'ee dans le fichier ".aux" et la d\'efinition
+% correcte de "\multicolumn" \'etait utilis\'ees.
+% Si une entr\'ee "\multicolumn" entra\^\i{}nait l'\'elargissement
+% d'une colonne, cette information ne pouvait \^etre
+% ignor\'ee pour le morceau suivant, et donc la table ne
+% pouvait pas \^etre correctement align\'ee jusqu'\`a la
+% troisi\`eme passe. Cette algorithme convergeait toujours en
+% trois passes, comme d\'ecrit ci-dessus, mais dans les
+% exemples tels qu'un de ceux des tables
+% \ref{pass1}--\ref{pass4}, les largeurs finales n'\'etaient
+% pas optimales pour celle de la colonne~2 : en effet, cette
+% largeur est d\'etermin\'ee par une entr\'ee "\multicolumn"
+% qui n'est pas connue quand la largeur finale de la
+% colonne~3 a \'et\'e d\'etermin\'ee car les \emph{deux}
+% commandes "\multicolumn" sont interverties entre les modes
+% <<~brouillon~>> et <<~normal~>> en m\^eme temps.
+%
+% La version~4 all\`ege consid\'erablement le probl\`eme. La
+% premi\`ere compilation de la table aura en effet une
+% troisi\`eme colonne beaucoup trop large. Cependant, \`a la
+% passe suivante, \env{longtable} prendra en compte l'erreur
+% et r\'eduira la largeur de colonne de fa\c{c}on conforme.
+% Si cela doit d\'eplacer le morceau avant celui de
+% "\multicolumn", une passe additionnelle, bien s\^ur, sera
+% n\'ecessaire.
+%
+% Il est possible de construire des tables dans lesquelles
+% cette d\'etermination en cascade des bonnes largeurs
+% n\'ecessite plusieurs compilation pour <<~converger~>> et
+% produire une table avec tous ses morceaux align\'es.
+% Cependant, pour avoir besoin de plusieurs compilations, il
+% faut construire une table avec de nombreuses entr\'ees
+% "\multicolumn" se chevauchant, toutes \'etant plus larges
+% que la largeur naturelle des colonnes \`a \'etendre et
+% toutes se produisant dans des parties de table
+% diff\'erentes.
+%
+% Dans le cas le plus courant, l'algorithme convergera
+% apr\`es deux ou trois passes ; on aura l'avantage de ne pas
+% r\'e\'editer le document avant la compilation finale pour
+% ajouter "\setlongtables" et le meilleur choix de la largeur
+% finale des colonnes, en cas de plusieurs entr\'ees
+% "\multicolumn" sera, heureusement, plus ais\'e que les
+% passes suppl\'ementaires qui seraient n\'ecessaires.
+%
+% Donc, la table~\ref{pass1} converge apr\`es 4~passes comme
+% on peut le voir table~\ref{pass4}.
+%
+% Vous pouvez encore acc\'el\'erer la convergence en
+% introduisant judicieusement des lignes "\kill"\'ees, s'il
+% vous arrive d'avoir des tables morcell\'ees, comme
+% ci-dessus.
+%
+% Et si vous ne d\'esirez pas compiler un fichier deux fois,
+% vous devez, \`a la premi\`ere ligne de chaque
+% \env{longtable}, saisir une ligne "\kill"\'ee qui contient
+% l'entr\'ee la plus large qui sera utilis\'ee dans chaque
+% colonne. Tous les morceaux seront align\'es \`a la
+% premi\`ere compilation.
+%
+% \section{Ajustement}
+%
+% L'argument optionnel de \env{longtable} contr\^ole
+% l'alignement horizontal de la table. Les options possibles
+% sont "[c]", % "[r]" et "[l]", pour centrer, aligner \`a
+% droite et aligner \`a gauche, respectivement.
+% \DescribeMacro{\LTleft}
+% Normalement, le centrage est l'option par d\'efaut, mais ce
+% document sp\'ecifie
+% \DescribeMacro{\LTright}
+% \begin{verbatim}
+% \setlenght\LTleft\parindent
+% \setlenght\LTright\fill
+% \end{verbatim}
+% dans son pr\'eambule, ce qui signifie que les tables sont
+% cadr\'ees \`a gauche, mais indent\'ees comme pour un
+% paragraphe normal. Des longueurs quelconques peuvent \^etre
+% sp\'ecifi\'ees pour ces param\`etres, mais au moins l'une
+% d'elles devrait \^etre \'elastique pour pouvoir remplir la
+% largeur de la page, \`a moins que des longueurs
+% \'elastiques soient ajout\'ees entre les colonnes en
+% utilisant la commande "\extracolumnsep".
+% Par exemple
+% \begin{verbatim}
+% \begin{tabular*}
+% {\textwidth}{@{\extracolsep{...}}...}
+% \end{verbatim}
+% produit un table de pleine largeur, pour produire un effet
+% similaire avec "longtable":
+% \begin{verbatim}
+% \setlength\LTleft{0pt}
+% \setlength\LTright{0pt}
+% \begin{longtable}{@{\extracolsep{...}}...}
+% \end{verbatim}
+%
+% \section{Changements}
+%
+% Cette section pr\'esente les principaux changements depuis
+% la version~2. Un \'etat plus d\'etaill\'e des changements
+% peut \^etre produit \`a la fin du listing source si le
+% fichier "ltxdoc.cfg" sp\'ecifie
+% \begin{verbatim}
+% \AtBeginDocument{\RecordChanges}
+% \AtEndDocument{\PrintChanges}
+% \end{verbatim}
+%
+% Changements effectu\'es entre les versions 2 et 3 :
+%
+% \begin{itemize} %
+% \item Le m\'ecanisme d'ajout des en-t\^ete et pied de table a
+% \'et\'e compl\`etement r\'e\'ecrit. Avec ce nouveau code,
+% \env{longtable} ne n\'ecessite pas de "\clearpage" au
+% d\'ebut de la page, ainsi une table peut commencer au
+% milieu d'une page. De plus, la commande "\endlastfoot", qui
+% n'\'etait pas impl\'ement\'ee de fa\c{c}on solide dans
+% l'ancien code, a \'et\'e ajout\'ee ;
+% \item \env{longtable} provoque maintenant une erreur s'il
+% d\'emarre dans un contexte "\twocolumn" ou dans
+% l'environnement \env{multicols} ;
+% \item le fichier s\'epar\'e de documentation "longtable.tex"
+% a \'et\'e fusionn\'e avec le fichier d'extension,
+% "longtable.dtx" en utilisant le package \package{doc} de
+% Mittelbach ;
+% \item la prise en compte des notes de bas de page a \'et\'e
+% ajout\'ee. Cependant, il est \`a noter que "\footnote" ne
+% fonctionnera pas dans les sections d'<<~en-t\^ete~>> ou de
+% <<~pied~>> de table. Pour pouvoir utiliser une note de bas
+% de page dans ces sections (par exemple, dans une
+% l\'egende), il faut utiliser "\footnotemark" au point
+% d'insertion et "\footnotetext", n'importe o\`u dans le
+% \emph{corps} de la table, qui appara\^\i{}tra sur la m\^eme
+% page ;
+% \item le traitement de "\multicolumn" a \'et\'e modifi\'e,
+% rendant inutile de <<~tuer~>> ("\kill") les lignes, au
+% prix, quelquefois, de r\'ealiser une troisi\'eme
+% compilation par \LaTeX\ ;
+% \item la commande "\newpage" fonctionne maintenant dans
+% l'environnement \env{longtable}.
+% \end{itemize}
+%
+% Changements effectu\'es entre les versions 3 et 4 :
+%
+% \begin{itemize}
+% \item Un nouvel algorithme est utilis\'e pour aligner les
+% morceaux. En plus de la plus grande largeur de chaque
+% colonne, \package{longtable} se souvient de quel morceau
+% produisait ce maximum. Cela lui permet de v\'erifier que le
+% maximum est encore atteint dans les derni\'eres
+% compilations. Comme \package{longtable} peut maintenant
+% traiter les colonnes retr\'ecies pendant que le fichier est
+% \'edit\'e, la commande "\setlongtables" n'est plus
+% n\'ecessaire et est d\'esactiv\'ee.
+% \item Un b\'en\'efice suppl\'ementaire de la nouvelle
+% capacit\'e de l'algorithme \`a traiter les colonnes
+% r\'etr\'ecies est qu'il produit de meilleures (par rapport
+% l'algorithme pr\'ec\'edent) largeurs de colonne (plus
+% \'etroites) dans le cas d'entr\'ees de "\multicolumn" se
+% chevauchant dans diff\'erents morceaux ;
+% \item le mode <<~brouillon~>> de "\multicolumn" a \'et\'e
+% enlev\'e suivant les commandes asoci\'ees telles que
+% "\LTmulticolumn" ;
+% \item l'inconv\'enient du nouvel algorithme est qu'il peut
+% faire plus de passes. Le maximum th\'eorique est
+% approximativement deux fois la longueur d'un
+% <<~encha\^\i{}nement~>> de colonnes avec des entr\'ees
+% "\multicolumn" se chevauchant, bien qu'en pratique il
+% converge habituellement plus vite que l'ancienne version
+% (qui converge toujours en trois passes une fois la commande
+% "\setlongtables" activ\'ee) ;
+% \item les commandes "\\*" et "\nopagebreak" peuvent \^etre
+% utilis\'ees pour contr\^oler les sauts de page.
+% \end{itemize}
+%
+%
+% \section{R\'esum\'e}
+%
+% ^^A Allow the table to stick into the left margin.
+% \setlength{\LTleft}{0pt plus 1fill minus 1fill}
+% \setlength{\LTright}{0pt}
+%
+% \begin{longtable}{@{}l@{\hspace{10pt}}p{.8\linewidth}@{}}
+% \caption[R\'esum\'e des commandes \env{longtable}]%
+%         {\normalsize R\'esum\'e des commandes \env{longtable}}\\
+% \multicolumn{2}{c}{\textbf{Param\`etres}}\\*
+% \hline
+% "\LTleft"&
+%     Glu sur la gauche de la table.           \hfill("\fill")\\
+% "\LTright"&
+%     Glu sur la droite de la table.          \hfill("\fill")\\
+% "\LTpre"&
+%     Glu avant la table.             \hfill("\bigskipamount")\\
+% "\LTpost"&
+%     Glu apr\`es la table.       \hfill("\bigskipamount")\\
+% "\LTcapwidth"&
+%     La largeur de la <<~parbox~>> contenant la l\'egende.\hfill(4in)\\
+% "LTchunksize"&
+%     Le nombre de ligne par pas ou <<~chunk~>>.                 \hfill(20)\\[5pt]
+% \multicolumn{2}{c}{\textbf{Arguments
+%      optionnels de} \ttfamily\v\\begin\v{longtable\v}}\\*
+% \hline
+% \it aucun& Position sp\'ecifi\'es par "\LTleft" et "\LTright".\\
+% "[c]"&   Centre la table.\\
+% "[l]"&   Place la table sur la gauche.\\
+% "[r]"&   Place la table sur la droite.\\[5pt]
+% \pagebreak[2]
+% \multicolumn{2}{c}{\textbf{Commandes
+%                     \`a la fin des lignes de la table}}\\*
+% \hline
+% "\\"&
+%     Sp\'ecifie la fin d'une ligne\\
+% "\\"\oarg{dim}& Finit la ligne, puis ajoute un espace vertical
+%     (comme dans l'environnement \env{tabular}).\\
+% "\\*"&
+%     Identique \`a "\\" mais interdit un saut de page apr\`es la ligne.\\
+% "\tabularnewline"&
+%     \'Equivalent \`a "\\". \`A utiliser dans un contexte "\raggedright" (ou
+%     similaire) qui red\'efinit "\\".\\
+% "\kill"&
+%     La ligne est effac\'ee mais est utilis\'ee dans le calcul des largeurs.\\
+% "\endhead"&
+%     Sp\'ecifie les lignes qui doivent appara\^\i{}tre en haut de chaque page.\\
+% "\endfirsthead"&
+%     Sp\'ecifie les lignes qui doivent appara\^\i{}tre en haut de la premi\`ere page.\\
+% "\endfoot"&
+%     Sp\'ecifie les lignes qui doivent appara\^\i{}tre en bas de chaque page.\\
+% "\endlastfoot"&
+%     Sp\'ecifie les lignes qui doivent appara\^\i{}tre en bas de la derni\`ere page.\\[5pt]
+% \multicolumn{2}{c}{Les commandes de l\'egende de \textbf{\env{longtable}}}\\*
+% \hline
+% "\caption"\marg{caption}&
+%     L\'egende `Table ?: \meta{caption}', et une entr\'ee `\meta{caption}'
+%     dans la liste des tables.\\
+% "\caption"\oarg{lot}\marg{caption}&
+%     L\'egende `Table ?: \meta{caption}', et une entr\'ee `\meta{lot}'
+%     dans la liste des tables.\\
+% "\caption[]"\marg{caption}&
+%     L\'egende `Table ?: \meta{caption}',
+%     mais pas d'entr\'ee dans la liste des tables.\\
+% "\caption*"\marg{caption}&
+%     L\'egende `\meta{caption}', mais pas d'entr\'ee dans la liste des tables.\\[5pt]
+% \multicolumn{2}{c}{%^^A
+%        \textbf{Commandes disponibles au d\'ebut d'une ligne}}\\*
+% \hline
+% "\pagebreak"&
+%     Force un saut de page.\\*
+% "\pagebreak"\oarg{val}& Un poids (<<~hint~>>) entre 0 et 4
+%  pour autoriser un saut.\\
+% "\nopagebreak"& Interdit un saut de page .\\*
+% "\nopagebreak"\oarg{val}& Un poids (<<~hint~>>) entre 0 et 4 pour interdire
+%    un saut.\\
+% "\newpage"&
+%     Force un saut de page.\\[5pt]
+% \multicolumn{2}{c}{\textbf{Commandes de note de bas de page
+%                      disponible dans \env{longtable}}}\\*
+% \hline
+% "\footnote"&
+%     Note de bas de page, mais qui ne doit pa \^etre utilis\'ee dans les t\^etes et pieds de tables.\\*
+% "\footnotemark"&
+%     Marque de la note de bas de page, peut \^etre utilis\'ee dans les t\^etes et pieds de tables.\\*
+% "\footnotetext"&
+%     Texte de la note de bas de page, \`a utiliser dans le corps de la page.\\[5pt]
+% \multicolumn{2}{c}{\textbf{Setlongtables}}\\
+% \hline
+% "\setlongtables"&  Commande obsol\`ete. Ne fait plus rien.
+% \end{longtable}
+%
+%
+% \finalclearpage
+% \section{Source de la Table \protect\ref{long}}
+% \label{listing}
+% \begingroup\catcode`\/=0
+% \begin{verbatim}
+% \begin{longtable}{@{*}r||p{1in}@{*}}
+% KILLED & LINE!!!! \kill
+% \caption
+% [Un caption optionnel (pour la liste des tables)]
+% {Une longue table\label{long}}\\
+% \hline\hline
+% \multicolumn{2}{@{*}c@{*}}%
+% {Cette partie appara\^{\i}t au sommet de la table}}\\
+% \textsc{Premi\`ere}&\textsc{Seconde}\\
+% \hline\hline
+% \endfirsthead
+% \caption[]{(suite)}\\
+% \hline\hline
+% \multicolumn{2}{@{*}c@{*}}%
+%       {Cette partie appara\^{\i}t en haut de chacune des autres pages}\\
+% \textbf{Premi\`ere}&\textbf{Seconde}\\
+% \hline\hline
+% \endhead
+% \hline
+% Ceci va en&bas.\\
+% \hline
+% \endfoot
+% \hline
+% Ces lignes&appara\^{\i}tront\\
+% \`a la place du&bas habituel\\
+% \`a la fin&de la table\\
+% \hline
+% \endlastfoot
+% Les colonnes de \env{longtable} sont sp\'ecifi\'ees& de la\\
+% m\^eme mani\`ere que dans l'environnement& \env{tabular}.\\
+% ...
+% \multicolumn{2}{||c||}%
+% {Ceci est une ...}\\
+% ...
+%   Certaines lignes prennent beaucoup de place, comme celle-ci: &
+%    \raggedleft Cette derni\`ere colonne est une colonne <<~p~>> \\
+%    si bien que cette <<~ligne~>> de la table peut occuper \\
+%    plusieurs lignes. Notez cependant que \TeX\ ne coupera \\
+%    jamais une page \`a l'int\'erieur d'une telle ligne. \\
+%    Les ruptures de page ne se produisent qu'entre les rang\'ees \\
+%    de la table ou sur des commandes "\hline".\\
+%    \tabularnewline
+% ...
+% Des tas de lignes& comme celle-ci.\\
+% ...
+% \hline
+% Des tas\footnote{...} de lignes& comme celle-ci.\\
+% Des tas de lignes& comme celle-ci\footnote{...}\\
+% \hline
+% Des tas de lignes& comme celle-ci.\\
+% ...
+% \end{longtable}
+% \end{verbatim}
+% \endgroup
+%
+% \StopEventually{}
+%
+% \finalclearpage
+% \section{Les macrocommandes}
+%
+%    \begin{macrocode}
+%<*package>
+%    \end{macrocode}
+%
+% \subsection{Code initial}
+%
+% Avant de d\'eclarer les options du package, nous devons
+% d\'efinir les valeurs par d\'efaut ici.
+%
+% \begin{macro}{\LT@err}
+% La commande de g\'en\'eration d'erreur
+%    \begin{macrocode}
+\def\LT@err{\PackageError{longtable}}
+%    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{\LT@warn}
+% La commande de g\'en\'eration des alertes
+%    \begin{macrocode}
+\def\LT@warn{\PackageWarning{longtable}}
+%    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{\LT@final@warn}
+% \changes{v4.04}{1996/05/24}
+%      {Ajout de macro}
+% Si des \env{longtable}s ne sont pas align\'ees, g\'en\`ere une alerte
+% \`a la fin de la compilation, "\AtEndDocument".
+%    \begin{macrocode}
+\def\LT@final@warn{%
+  \AtEndDocument{%
+    \LT@warn{Table \@width s have changed. Rerun LaTeX.\@gobbletwo}}%
+  \global\let\LT@final@warn\relax}
+%    \end{macrocode}
+%  \end{macro}
+%
+% \subsection{Options}
+%
+% Les deux premi\`res options traitent le maniement des erreurs.
+% Elles sont compatibles avec les options du package \texttt{tracefnt}
+%
+%  \begin{macro}{errorshow}
+% Affiche \emph{seulement} les erreurs  \`a l'\'ecran. Les
+% messages d'alertes apparaissent uniquement dans le fichier log.
+% \changes{v3.14}{1995/04/25}
+%      {Changement de la cha\^\i{}ne de LT \`a longtable}
+%    \begin{macrocode}
+\DeclareOption{errorshow}{%
+  \def\LT@warn{\PackageInfo{longtable}}}
+%    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{pausing}
+% \changes{v3.14}{1995/04/25}
+%      {Changement de la cha\^\i{}ne de LT \`a longtable}
+% \changes{v3.15}{1995/06/15}
+%      {Utilisation d'un seul hash, corrige latex/1557}
+% Dans une erreur, tous les messages d'alerte stoppent la compilation par \TeX{}.
+% Peut \^etre utile pour le debuggage.
+%    \begin{macrocode}
+\DeclareOption{pausing}{%
+  \def\LT@warn#1{%
+    \LT@err{#1}{This is not really an error}}}
+%    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{set}
+%  \begin{macro}{final}
+% \changes{v4.01}{1996/04/11}
+%      {(DPC) make set and final options no op}
+% Les options suivantes pr\'esentent seulement une syntaxe
+% alternative pour la d\'eclaration de "\setlongtables".
+%    \begin{macrocode}
+\DeclareOption{set}{}
+\DeclareOption{final}{}
+%    \end{macrocode}
+%  \end{macro}
+%  \end{macro}
+%
+%
+%    \begin{macrocode}
+\ProcessOptions
+%    \end{macrocode}
+%
+% \subsection{Param\`etres utilisateur}
+%
+% \begin{macro}{\LTleft}
+% \begin{macro}{\LTright}
+% Glu sur la gauche ou la droite de la table, "\fill" par
+d\'efaut (\emph{i.e.} centr\'ee).
+%    \begin{macrocode}
+\newskip\LTleft       \LTleft=\fill
+\newskip\LTright      \LTright=\fill
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\LTpre}
+% \begin{macro}{\LTpost}
+% Glu avant et apr\`es \env{longtable}. Par d\'efaut, "\bigskip".
+%    \begin{macrocode}
+\newskip\LTpre        \LTpre=\bigskipamount
+\newskip\LTpost       \LTpost=\bigskipamount
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\LTchunksize}
+% Taille du pas (<<~chunk~>>) : le nombre de ligne donn\'e par "\halign", 20 par d\'efaut.
+%    \begin{macrocode}
+\newcount\LTchunksize \LTchunksize=20
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@LTchunksize}
+% Ajout\'e dans la V3.07 pour autoriser la syntaxe \LaTeX\
+% "\setcounter{LTchunksize}{10}".
+%    \begin{macrocode}
+\let\c@LTchunksize\LTchunksize
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LTcapwidth}
+% Largeur de la "\parbox" contenant la l\'egende, 4in par d\'efaut.
+%    \begin{macrocode}
+\newdimen\LTcapwidth  \LTcapwidth=4in
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Param\`etres internes}
+%
+% \begin{macro}{\LT@head}
+% \begin{macro}{\LT@firsthead}
+% \begin{macro}{\LT@foot}
+% \begin{macro}{\LT@lastfoot}
+% Bo\^\i{}tes pour les t\^ete et pied de table.
+%    \begin{macrocode}
+\newbox\LT@head
+\newbox\LT@firsthead
+\newbox\LT@foot
+\newbox\LT@lastfoot
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\LT@cols}
+% Compteur de num\'ero des colonnes.
+%    \begin{macrocode}
+\newcount\LT@cols
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@rows}
+% Compteur du pas (<<~chunksize~>>)
+%    \begin{macrocode}
+\newcount\LT@rows
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@LT@tables}
+% Compteur de table, ajout\'e dans la V3.02. Les versions
+% pr\'ec\'edentes utilisaient seulement de compteur "table"
+% de \LaTeX\, mais cela \'echouait si "table" \'etait remis
+% \`a z\'ero pendant la compilation ; par exemple, la classe
+% \package{report} le remet \`a z\'ero dans chaque chapitre.
+%
+% Cela a \'et\'e modifi\'e, dans la V3.04, par l'utilisation de
+% "\newcount\LT@tables". Les compteurs \LaTeX\ sont
+% correctement pr\'eserv\'es lorsque "\includeonly" est
+% utilis\'e. Dans le reste du fichier, "\LT@tables" a \'et\'e
+% remplac\'e par "\c@LT@tables" sans autre commentaire
+% suppl\'ementaire.
+%    \begin{macrocode}
+\newcounter{LT@tables}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@LT@chunks}
+% \changes{v4.00}{1996/04/08}
+%      {(DK) Ajout de compteur de pas}
+% Nous avons besoin de compter les pas d'une table depuis la Version~4.
+%    \begin{macrocode}
+\newcounter{LT@chunks}[LT@tables]
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@table}
+% \begin{macro}{\fnum@table}
+% \begin{macro}{\tablename}
+% Si le compteur "table" n'est pas d\'efini (par exemple dans le style "letter"),
+% cette macro le d\'efinit (Ajout\'e dans la V3.06).
+%    \begin{macrocode}
+\ifx\c@table\undefined
+  \newcounter{table}
+  \def\fnum@table{\tablename~\thetable}
+\fi
+\ifx\tablename\undefined
+  \def\tablename{Table}
+\fi
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\LT@out}
+% Dans les styles standards, "longtable" utilise le fichier
+% ".aux" pour enregistrer les largeurs de colonne. Avec
+% "letter.sty", le package utilise un fichier s\'epar\'e
+% ".lta". (Ajout\'e dans la V3.06).
+%
+% Inutile pour la nouvelle classe "letter".
+% \begin{verbatim}
+%\ifx\startlabels\undefined
+%  \let\@auxout\@auxout
+%\else
+%  {\@input{\jobname.lta}}%
+%  \newwrite\@auxout
+%  \immediate\openout\@auxout=\jobname.lta
+%\fi
+%\end{verbatim}
+% \end{macro}
+%
+% \begin{macro}{\LT@p@ftn}
+% Stockage temporaire du texte de la note de bas de page dans un colonne <<~p~>>.
+%    \begin{macrocode}
+\newtoks\LT@p@ftn
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@end@pen}
+% Poids (<<~penalty~>>) sp\'ecial pour la fin de la table.
+% R\'ealis\'e comme \c{c}a pour \'epargner un compteur.
+%    \begin{macrocode}
+\mathchardef\LT@end@pen=30000
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{L'environnement \env{longtable}}
+%
+% \begin{macro}{\longtable}
+% Appel\'e par "\begin{longtable}". Cette impl\'ementation
+% ne fonctionne pas dans un format \`a colonnes multiples. "\par" ajout\'e dans la V3.04.
+%    \begin{macrocode}
+\def\longtable{%
+  \par
+  \ifx\multicols\@undefined
+  \else
+     \ifnum\col@number>\@ne
+       \@twocolumntrue
+     \fi
+  \fi
+  \if@twocolumn
+    \LT@err{longtable not in 1-column mode}\@ehc
+  \fi
+  \begingroup
+%    \end{macrocode}
+% V\'erifie la pr\'esence d'un argument optionnel.
+%    \begin{macrocode}
+  \@ifnextchar[\LT@array{\LT@array[x]}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@array}
+% Commence l'ajustement de l'alignement. Bas\'e sur
+%"\@array" du noyau \LaTeX\ et sur le package \package{array}
+%
+% Depuis la Version 3.02, \package{longtable} utilise le
+% compteur interne "\c@LT@tables". Le compteur "table" de
+% \LaTeX\ est encore incr\'ement\'e pour que "\caption"
+% fonctionne correctement.
+%    \begin{macrocode}
+\def\LT@array[#1]#2{%
+  \refstepcounter{table}\stepcounter{LT@tables}%
+%    \end{macrocode}
+% Cr\'ee la justification (<<~glu~>>) autour de la table,
+% si un argument optionnel est donn\'e.
+%    \begin{macrocode}
+  \if l#1%
+    \LTleft\z@ \LTright\fill
+  \else\if r#1%
+    \LTleft\fill \LTright\z@
+  \else\if c#1%
+    \LTleft\fill \LTright\fill
+  \fi\fi\fi
+%    \end{macrocode}
+% Fixe ces commandes internes pour \env{longtable}.
+% \changes{v3.13}{1994/12/08}
+%      {ajout \cs{tabularnewline}}
+% \changes{v3.14}{1995/04/25}
+%      {(Mike Van Geest) renommage de  \cs{LT@mc} en
+%         \cs{LT@mcol} pour autoriser 1100 tables}
+% \changes{v4.01}{1996/04/11}
+%      {(DPC) message d'alerte multicolumn inutile}
+%\begin{verbatim}
+%  \global\let\LT@mcw@rn\relax
+%\end{verbatim}
+%    \begin{macrocode}
+  \let\LT@mcol\multicolumn
+%    \end{macrocode}
+% \changes{v3.17}{1996/01/31}
+%      {Remise \`a z\'ero de \cs{hline} et \cs{multicolumn}
+%      dans les environnements \env{tabular} et \env{array}
+%      encapsul\'es, corrige tools/2068}
+% Maintenant red\'efinit "\@tabarray", pour r\'etablir "\hline" et
+% "\multicolumn", pour que array et tabular
+% encapsul\'es dans longtable (ou dans l'en-t\^ete de
+% page d'un longtable) donnent le r\'esultat
+% escompt\'e. Les d\'efinitions originales sont ici
+% sauvegard\'ees pour que vous puissiez charger le package
+% \package{array} avant ou apr\`es \package{longtable}.
+%    \begin{macrocode}
+  \let\LT@@tabarray\@tabarray
+  \let\LT@@hl\hline
+  \def\@tabarray{%
+    \let\hline\LT@@hl
+%    \end{macrocode}
+%\begin{verbatim}
+%    \let\multicolumn\LT@mcol
+%\end{verbatim}
+%    \begin{macrocode}
+    \LT@@tabarray}%
+  \let\\\LT@tabularcr\let\tabularnewline\\%
+  \def\newpage{\noalign{\break}}%
+%    \end{macrocode}
+% \changes{v4.05}{1996/11/12}
+%      {Ajout de \cs{nopagebreak} et \cs{pagebreak}}
+% D\'efinitions plus ou moins standards, mais commencent d'abord un "\noalign".
+%    \begin{macrocode}
+  \def\pagebreak{\noalign{\ifnum`}=0\fi\@testopt{\LT@no@pgbk-}4}%
+  \def\nopagebreak{\noalign{\ifnum`}=0\fi\@testopt\LT@no@pgbk4}%
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+  \let\hline\LT@hline \let\kill\LT@kill\let\caption\LT@caption
+  \@tempdima\ht\strutbox
+%    \end{macrocode}
+%
+% \changes{v4.08}{1998/01/20}
+%      {Placement plus pr\'ecoce de la d\'efinition de \cs{@endpbox} et d\'efinition de \cs{@@endpbox}
+%      et \cs{@@startpbox} pour le mode non-array. tools/2736}
+%    \begin{macrocode}
+  \let\@endpbox\LT@endpbox
+%    \end{macrocode}
+
+% Commandes internes \'etablies en accord avec celles de Lamport ou
+% celles de Mittelbach.
+%    \begin{macrocode}
+  \ifx\extrarowheight\@undefined
+%    \end{macrocode}
+% Initialise ces commandes comme dans \env{tabular} du noyau \LaTeX.
+%    \begin{macrocode}
+    \let\@acol\@tabacol
+    \let\@classz\@tabclassz \let\@classiv\@tabclassiv
+    \def\@startpbox{\vtop\LT@startpbox}%
+    \let\@@startpbox\@startpbox
+    \let\@@endpbox\@endpbox
+    \let\LT@LL@FM@cr\@tabularcr
+  \else
+%    \end{macrocode}
+% Initialise ces commandes comme dans \package{array}.
+% "\d@llar"remplac\'e par "\d@llarbegin" "\d@llarend"  dans
+% la V3.03 pour correspondre \`a \package{array} V2.0h. Nous
+% n'avons pas besoin de fixer la valeur de "\d@llarbegin" et
+% "\d@llarend" puisque le package \package{array} leur
+% donne leurs valeurs correctes au premier niveau.
+%    \begin{macrocode}
+    \advance\@tempdima\extrarowheight
+    \col@sep\tabcolsep
+    \let\@startpbox\LT@startpbox\let\LT@LL@FM@cr\@arraycr
+  \fi
+%    \end{macrocode}
+% La reste de cette macro est principalement bas\'e sur le
+% package \package{array}, mais devrait aussi fonctionner
+% pour l'environnement \env{tabular} standard.
+%    \begin{macrocode}
+  \setbox\@arstrutbox\hbox{\vrule
+    \@height \arraystretch \@tempdima
+    \@depth \arraystretch \dp \strutbox
+    \@width \z@}%
+  \let\@sharp##\let\protect\relax
+%    \end{macrocode}
+% Interpr\'ete l'argument du pr\'eambule.
+%    \begin{macrocode}
+   \begingroup
+    \@mkpream{#2}%
+%    \end{macrocode}
+% Nous avons besoin de renommer ici "\@preamble" puisque le
+% syst\`eme de F. M. utilise "\global", et nous avons peut
+% \^etre besoin d'encapsuler "\@mkpream", par exemple pour
+% "\multicolumn" ou pour un \env{array}. Nous n'avons pas
+% besoin de nous pr\'eoccuper des \env{longtable}s
+% encapsul\'ees.
+%    \begin{macrocode}
+    \xdef\LT@bchunk{%
+%    \end{macrocode}
+% \changes{v4.00}{1996/04/08}
+%      {(DK) Incr\'ementation du compteur de pas}
+%    \begin{macrocode}
+       \global\advance\c@LT@chunks\@ne
+       \global\LT@rows\z@\setbox\z@\vbox\bgroup
+%    \end{macrocode}
+% \changes{v4.05}{1996/11/12}
+%      {Ajout de \cs{LT@setprevdepth}}
+% La ligne suivante a \'et\'e ajout\'ee dans la v4.05.
+% Pour que "\penalties" soit pris en compte aux limites des
+% morceaux, il est n\'ecessaire de se soucier de o\`u et
+% quand "\lineskip" est ajout\'e. La commande suivante ne
+% fait rien en haut de la table, ni dans les pas d'en-t\^ete,
+% mais dans les morceaux du corps de la table, cela fixe
+% "\prevdepth" (\`a 0pt, mais n'importe quelle valeur
+% convient) pour que "\lineskip" soit ajout\'ee. La chose
+% importante \`a noter est que la glu sera ajout\'ee
+% \emph{apr\`es} n'importe quelle donn\'ee verticale
+% provenant de "\noalign".
+%    \begin{macrocode}
+       \LT@setprevdepth
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+       \tabskip\LTleft\halign to\hsize\bgroup
+      \tabskip\z@ \@arstrut \@preamble \tabskip\LTright \cr}%
+  \endgroup
+%    \end{macrocode}
+% D\'ecouvre combien nous avons de colonnes (stock\'e dans "\LT@cols").
+%    \begin{macrocode}
+  \expandafter\LT@nofcols\LT@bchunk&\LT@nofcols
+%    \end{macrocode}
+% Obtient les lignes sauv\'ees \`a partir de "\LT@i"\ldots"\LT@ix"
+% (\`a partir du fichier".aux"), ou ins\`ere une nouvelle ligne vide.
+%    \begin{macrocode}
+  \LT@make@row
+%    \end{macrocode}
+% Quelques commandes internes suppl\'ementaires pour \env{longtable}.
+%    \begin{macrocode}
+  \m@th\let\par\@empty
+  \everycr{}\lineskip\z@\baselineskip\z@
+%    \end{macrocode}
+% D\'ebute le premier morceau.
+%    \begin{macrocode}
+  \LT@bchunk}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@no@pgbk}
+% \changes{v4.05}{1996/11/12}
+%      {Ajout d'une macro}
+% Peut simplifier le "\@no@pgbk" standard puisqu'il est
+% seulement en vmode, mais n\'ecessite alors de terminer "\noalign".
+%    \begin{macrocode}
+\def\LT@no@pgbk#1[#2]{\penalty #1\@getpen{#2}\ifnum`{=0\fi}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@start}
+% Cette macro d\'ebute le proc\'ed\'e de placement de la
+% table dans la page courante. Il n'est pas appel\'e
+% jusqu'\`a ce qu'une commande "\\" ou "\endlongtable"
+% termine un morceau, puisque nous ne connaissons pas encore
+% laquelle des quatre sections possibles d'en-t\^ete
+% ou de pied a \'et\'e d\'efinie.
+%
+% Elle commence par se red\'efinir elle-m\^eme, de
+% fa\c{c}on \`a ce que la table soit commenc\'ee une seule
+% fois ! Dans la V3.04, elle \'etait red\'efinie en "\relax",
+% maintenant, elle utilise "\endgraf" pour forcer
+% l'activation de saut de page.
+%    \begin{macrocode}
+\def\LT@start{%
+  \let\LT@start\endgraf
+  \endgraf\penalty\z@\vskip\LTpre
+%    \end{macrocode}
+% Commence une nouvelle page s'il n'y a pas assez de place
+% pour l'en-t\^ete et le pied de page et pour une ligne
+% suppl\'ementaire.
+%    \begin{macrocode}
+  \dimen@\pagetotal
+  \advance\dimen@ \ht\ifvoid\LT@firsthead\LT@head\else\LT@firsthead\fi
+  \advance\dimen@ \dp\ifvoid\LT@firsthead\LT@head\else\LT@firsthead\fi
+  \advance\dimen@ \ht\LT@foot
+%    \end{macrocode}
+% \changes{v3.16}{1995/11/09}
+%      {Mesure de la premi\`ere ligne de la table}
+% \`A ce point, j'avais l'habitude d'ajouter "\ht\@arstrutbox" et
+% "\dp\@arstrutbox" pour mesurer la taille d'une ligne.
+% Cependant, cela peut \'echouer de fa\c{c}on spectaculaire
+% pour une colonne "p" qui peut \^etre beaucoup plus large.
+% Les versions pr\'ec\'edentes pouvaient finir par cr\'eer une table
+% commen\c{c}ant par un pied de table, puis un saut de page
+% puis un en-t\^ete puis, \emph{enfin} le <<~premier
+% en-t\^ete~>> ! Donc, maintenant, on mesure la premi\`ere
+% ligne de la table, pr\'ecis\'ement, en la s\'eparant
+% verticalement ("\vsplit"ting) du premier morceau.
+%    \begin{macrocode}
+  \dimen@ii\vfuzz
+  \vfuzz\maxdimen
+    \setbox\tw@\copy\z@
+    \setbox\tw@\vsplit\tw@ to \ht\@arstrutbox
+    \setbox\tw@\vbox{\unvbox\tw@}%
+  \vfuzz\dimen@ii
+  \advance\dimen@ \ht
+        \ifdim\ht\@arstrutbox>\ht\tw@\@arstrutbox\else\tw@\fi
+  \advance\dimen@\dp
+        \ifdim\dp\@arstrutbox>\dp\tw@\@arstrutbox\else\tw@\fi
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+  \advance\dimen@ -\pagegoal
+  \ifdim \dimen@>\z@\vfil\break\fi
+%    \end{macrocode}
+% Stockage de la hauteur de la page moins le pied de table dans "\@colroom".
+% \changes{v3.14}{1995/05/02}
+%      {D\'efinition de \cs{@colroom}, pour tools/1584}
+%    \begin{macrocode}
+      \global\@colroom\@colht
+%    \end{macrocode}
+% Si le pied n'est pas vide, r\'eduction de fa\c{c}on
+% homog\`ene de "\vsize" et "\@colroom".
+%    \begin{macrocode}
+  \ifvoid\LT@foot\else
+    \advance\vsize-\ht\LT@foot
+    \global\advance\@colroom-\ht\LT@foot
+    \dimen@\pagegoal\advance\dimen@-\ht\LT@foot\pagegoal\dimen@
+    \maxdepth\z@
+  \fi
+%    \end{macrocode}
+% Place l'en-t\^ete de table sur la page puis passe \`a le
+% nouvelle routine de sortie.
+%    \begin{macrocode}
+  \ifvoid\LT@firsthead\copy\LT@head\else\box\LT@firsthead\fi
+  \output{\LT@output}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\endlongtable}
+% Appel\'e par "\end{longtable}".
+%    \begin{macrocode}
+\def\endlongtable{%
+%    \end{macrocode}
+% Ajoute essentiellement un "\\" final. Mais comme nous
+% connaissons le nombre r\'eel de morceaux, nous pouvons
+% enlever toutes les entr\'ees se r\'ef\'erant \`a une entr\'ee
+% maximale hors de la table (cela se produit seulement si la
+% table a \'et\'e raccourcie ou que la num\'erotation de
+% table a disparu). Dans ce cas, nous devons, au moins,
+% commencer par r\'ecup\'erer la nouvelle information
+% correcte pour le dernier morceau de cette table, en
+% enlevant la contrainte de largeur.
+% \changes{v4.01}{1996/04/11}
+%      {(DPC) utilisation de \cs{noalign} pour l'ins\'erer dans \cs{LT@entry@chop}}
+%    \begin{macrocode}
+  \crcr
+  \noalign{%
+    \let\LT@entry\LT@entry@chop
+    \xdef\LT@save@row{\LT@save@row}}%
+  \LT@echunk
+  \LT@start
+  \unvbox\z@
+  \LT@get@widths
+%    \end{macrocode}
+% \'Ecrit la colonne mod\`ele dans le fichier".aux".
+% Depuis la V3.06, utilisation de fichier ".lta" pour "letter.sty".
+% \changes{v3.12}{1994/06/30}
+%      {N'\'ecrit pas si \cs{nofiles} est activ\'e.}
+%    \begin{macrocode}
+  \if@filesw
+    {\let\LT@entry\LT@entry@write\immediate\write\@auxout{%
+%    \end{macrocode}
+% Depuis la Version 3.02, \package{longtable} utilise le
+% compteur interne "\c@LT@tables" plut\^ot que le compteur
+% \textsf{table} de \LaTeX{}. Cette information semble
+% totalement diff\'erente de celle de la version 3.
+% Cependant, nous n'avons pas besoin de renommer la macro car
+% le code le plus r\'ecent consid\`erera qu'il n'y a pas de
+% colonne et donc effacera les anciennes donn\'ees.
+%    \begin{macrocode}
+      \gdef\expandafter\noexpand
+        \csname LT@\romannumeral\c@LT@tables\endcsname
+          {\LT@save@row}}}%
+  \fi
+%    \end{macrocode}
+% \`A ce point, \'emission d'un message d'alerte si une "\multicolumn"
+% a \'et\'e fix\'ee en mode brouillon.
+% \changes{v4.01}{1996/04/11}
+%      {(DPC) Alertes multicolumn inutiles}
+%\begin{verbatim}
+%  \LT@mcw@rn
+%\end{verbatim}
+% Si le dernier morceau a des largeurs diff\'erentes par rapport au premier,
+% alerte de l'utilisateur. De plus d\'eclenchement d'une alerte pour recompiler avec \LaTeX\
+% \`a la fin du document.
+% \changes{v4.04}{1996/05/24}
+%      {Utilisation de \cs{LT@final@warn}}
+%    \begin{macrocode}
+  \ifx\LT@save@row\LT@@save@row
+  \else
+    \LT@warn{Column \@width s have changed\MessageBreak
+             in table \thetable}%
+    \LT@final@warn
+  \fi
+%    \end{macrocode}
+% Force one more go with the \env{longtable} output routine.
+%    \begin{macrocode}
+  \endgraf\penalty -\LT@end@pen
+%    \end{macrocode}
+% Maintenant, oblige le groupe \`a revenir \`a une routine standard.
+%    \begin{macrocode}
+  \endgroup
+%    \end{macrocode}
+% Remise \`a z\'ero de "\@mparbottom" pour que les marges
+% de paragraphes soient proches de la fin de la
+% table.\footnote{Cela peut ne pas \^etre correct. Cependant,
+% si c'est oubli\'e, il y a un probl\`eme avec les marges de
+% paragraphe, [par exemple, page 3 de la documentation en V.
+% O., NdT]. Y a-t'il des gourous des routine de sortie dans
+% la salle ?}
+%    \begin{macrocode}
+  \global\@mparbottom\z@
+  \pagegoal\vsize
+  \endgraf\penalty\z@\addvspace\LTpost
+%    \end{macrocode}
+% Note de bas de page, comme cela est r\'ealis\'e dans le package \package{multicol}.
+%    \begin{macrocode}
+  \ifvoid\footins\else\insert\footins{}\fi}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Comptage des colonnes}
+%
+% Les colonnes sont compt\'ees par l'inspection de "\@preamble",
+% plut\^ot que, simplement, par l'obtention de
+% "\@mkpream", pour incr\'ementer le compteur. De cette
+% fa\c{c}on, le pr\'eambule est construit pour que le package
+% soit compatible avec la plupart de ceux qui ajoutent une
+% d\'efinition suppl\'ementaire de colonne au standard \LaTeX.
+%
+% La version 1 comptait les "\@sharp" pour calculer le
+% nombre de colonnes, cela a \'et\'e chang\'e dans la
+% version~2 puisque cela ne fonctionnait pas avec NFSS.
+% Maintenant, comptage des "&" ["lfonts.new" (et maintenant
+% la d\'efinition selon le Standard \LaTeX) d\'efinit
+% "\@tabclassz" pour que "\@sharp" soit \`a l'int\`erieur
+% d'un groupe.]
+%
+% \begin{macro}{\LT@nofcols}
+% Trouve le "&" suivant, puis regarde plus avant pour voir quel est le suivant.
+%    \begin{macrocode}
+\def\LT@nofcols#1&{%
+  \futurelet\@let@token\LT@n@fcols}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@n@fcols}
+% Ajoute un, puis stoppe au niveau d'un "\LT@nofcols" ou
+% cherche le "&" suivant. L'astuce "\expandafter" a \'et\'e
+% ajout\'ee et le nom de "\@LT@nofcols" a \'et\'e modifi\'e
+% pour conserver la convention d'appellation, "\LT@".
+%    \begin{macrocode}
+\def\LT@n@fcols{%
+  \advance\LT@cols\@ne
+  \ifx\@let@token\LT@nofcols
+    \expandafter\@gobble
+  \else
+    \expandafter\LT@nofcols
+  \fi}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Les commandes {\ttfamily\bslash\bslash} et \cs{kill}}
+%
+% \begin{macro}{\LT@tabularcr}
+% \changes{v4.05}{1996/11/12}
+%      {Code r\'e-organis\'e pour le traitement de la forme *.}
+% La d\'efinition interne de "\\".
+% Dans la forme "*", ins\`ere un "\nobreak" apr\`es le "\cr" (ou "\crcr") suivant.
+%
+% Le traitement de la forme <<~\'etoile~>> a finalement
+% \'et\'e ajout\'e dans la v4.05. Durant les six ou sept
+% derni\`eres ann\'ees, le commentaire de ce point disait
+% \begin{quote}\small
+% Cette d\'efinition accepte aussi "\\*" qui agit de le
+% m\^eme fa\c{c}on que "\\". \env{tabular} fait cela mais
+% \env{longtable} devra probablement d\'efinir "\\*" pour
+% pr\'evenir les sauts de page.
+% \end{quote}
+%
+% "{\ifnum0=`}\fi" ajout\'e dans la version 3.01, requis
+% si la premi\`ere entr\'ee est vide.
+% En fait, c'est insuffisant, puisque avec le package
+% \package{array}, un groupe "{}" peut \^etre introduit en
+% mode math\'ematique.
+% Donc, utilise la modification suivante. Ajout\'ee dans la v3.14
+% \changes{v3.14}{1995/04/25}
+%      {Meilleur r\'esultat avec \cs{ifnum} cf tools/1571}
+%    \begin{macrocode}
+\def\LT@tabularcr{%
+  \relax\iffalse{\fi\ifnum0=`}\fi
+  \@ifstar
+    {\def\crcr{\LT@crcr\noalign{\nobreak}}\let\cr\crcr
+     \LT@t@bularcr}%
+    {\LT@t@bularcr}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@crcr}
+% \changes{v4.05}{1996/11/12}
+%      {Macro ajout\'ee}
+%    \begin{macrocode}
+\let\LT@crcr\crcr
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@setprevdepth}
+% \changes{v4.05}{1996/11/12}
+%      {Macro ajout\'ee}
+% Cela sera red\'efini pour fixer "\prevdepth" au d\'ebut
+% d'un morceau.
+%    \begin{macrocode}
+\let\LT@setprevdepth\relax
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@t@bularcr}
+%    \begin{macrocode}
+\def\LT@t@bularcr{%
+%    \end{macrocode}
+% Incr\'emente le compteur et ins\`ere le "\\" de
+% \env{tabular} ou termine le morceau.\\ L'astuce
+% "\expandafter" a \'et\'e ajout\'e dans la version~3. Fixe "\prevdepth"
+% au d\'ebut d'un nouveau morceau. (C'est fait ici et pas
+% dans le morceau en t\^ete).
+%    \begin{macrocode}
+  \global\advance\LT@rows\@ne
+  \ifnum\LT@rows=\LTchunksize
+    \gdef\LT@setprevdepth{%
+      \prevdepth\z@\global
+      \global\let\LT@setprevdepth\relax}%
+    \expandafter\LT@xtabularcr
+  \else
+    \ifnum0=`{}\fi
+    \expandafter\LT@LL@FM@cr
+  \fi}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@xtabularcr}
+% Cela cherche juste un argument optionnel.
+%    \begin{macrocode}
+\def\LT@xtabularcr{%
+  \@ifnextchar[\LT@argtabularcr\LT@ntabularcr}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@ntabularcr}
+% La version sans argument optionnel.
+% Ajout\'ee dans la version 3.01. Modifi\'ee dans la v3.14.
+%    \begin{macrocode}
+\def\LT@ntabularcr{%
+  \ifnum0=`{}\fi
+  \LT@echunk
+  \LT@start
+  \unvbox\z@
+  \LT@get@widths
+  \LT@bchunk}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@argtabularcr}
+% La version avec un argument optionnel.
+% "\ifnum0=`{\fi}" dans la version 3.01. Modifi\'e dans la  v3.14.
+%    \begin{macrocode}
+\def\LT@argtabularcr[#1]{%
+  \ifnum0=`{}\fi
+  \ifdim #1>\z@
+    \unskip\@xargarraycr{#1}%
+  \else
+    \@yargarraycr{#1}%
+  \fi
+%    \end{macrocode}
+% Ajoute la ligne mod\`ele et termine "\halign".
+%    \begin{macrocode}
+  \LT@echunk
+  \LT@start
+  \unvbox\z@
+  \LT@get@widths
+  \LT@bchunk}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@echunk}
+% \changes{v4.05}{1996/11/12}
+%      {\cs{unskip} ajout\'e pour prendre en compte les sauts de page}
+% Cela finit le morceau en cours et efface la ligne mod\`ele.
+%    \begin{macrocode}
+\def\LT@echunk{%
+  \crcr\LT@save@row\cr\egroup
+  \global\setbox\@ne\lastbox
+%    \end{macrocode}
+% La ligne suivante a \'et\'e ajout\'ee dans la v4.05. \package{longtable}
+% d\'epend du param\`etre "\lineskip" (qui est 0pt) pour
+% fournir des points de saut entre chaque ligne pour que la
+% table puisse \^etre divis\'ee en plusieurs pages.
+%
+% Les versions pr\'ec\'edentes laissaient le param\`etre
+% "\lineskip" \`a la fin de chaque morceau ajout\'e quand la
+% ligne mod\`ele est ajout\'ee. Il n'y avait pas de glu au
+% d\'ebut du morceau suivant puisque normalement \TeX\ ne met
+% pas de glu "\lineskip" en haut d'une bo\^\i{}te. Cela
+% signifiait que les morceaux \'etaient parfaitement
+% ajust\'es, cependant "\noalign" \`a la limite d'un morceau
+% venait avant la premi\`ere ligne du morceau suivant ou
+% apr\`es l'interligne \`a la fin de ce morceau. C'est une
+% mauvaise place, par exemple, cela signifie m\^eme que "\penalty10000"
+% n'interdit pas un saut puisque la glu "\lineskip", dans
+% l'item pr\'ec\'edent de la liste, donne un point de saut
+% autoris\'e. Donc, maintenant, on enl\`eve la glu "\lineskip"
+% qui \'etait avant la ligne mod\`ele et on introduit "\LT@setprevdepth"
+% pour fixer "\prevdepth" au d\'ebut du prochain morceau,
+% pour s'assurer que la glu "\lineskip" est ajout\'ee plus tard.
+%    \begin{macrocode}
+    \unskip
+  \egroup}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@entry}
+% \changes{v4.00}{1996/04/08}
+%      {(DK) Ajout de macro}
+% \changes{v4.01}{1996/04/11}
+%      {(DPC) Utilisation de l'astuce \cs{ifhmode} pour d\'eterminer la premi\`ere entr\'ee}
+% Nous donnons ici la d\'efinition \'el\'ementaire de "\LT@entry",
+% c'est \`a dire celle utilis\'ee dans les mod\`eles
+% d'alignement. Il ajoute un "\kern" seulement si le maximum est
+% impos\'e par un morceau diff\'erent.
+%
+% Le test "\ifhmode" donne la premi\`ere entr\'ee quand nous
+% ne voulons pas ajouter un "&".
+%    \begin{macrocode}
+\def\LT@entry#1#2{%
+  \ifhmode\@firstofone{&}\fi\omit
+  \ifnum#1=\c@LT@chunks
+  \else
+    \kern#2\relax
+  \fi}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@entry@chop}
+% \changes{v4.00}{1996/04/08}
+%      {(DK) Ajout de macro}
+% Cette d\'efinition pour l'argument de "\LT@save@row" est
+% utilis\'ee pour mettre de c\^ot\'e tous ces maxima qui ne
+% peuvent \^etre v\'erifi\'es parce qu'ils apparaissent
+% apr\`es la fin de la table. Cela peut se produire seulement
+% si une table a \'et\'e raccourcie (ou si l'ordre des lignes
+% a \'et\'e bouscul\'e depuis la compilation pr\'ec\'edente).
+% Il est \`a noter que cela est pr\'ematur\'e : le dernier
+% morceau est toujours \`a fixer et avec les limites
+% tronqu\'ees.
+%    \begin{macrocode}
+\def\LT@entry@chop#1#2{%
+  \noexpand\LT@entry
+    {\ifnum#1>\c@LT@chunks
+       1}{0pt%
+     \else
+       #1}{#2%
+     \fi}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@entry@write}
+% \changes{v4.07}{1997/10/16}
+%      {\'Evite l'utilisation de percent. tools/2631}
+% Pour \'ecrire une entr\'ee dans le fichier "aux", nous
+% utilisons une d\'efinition, l\'eg\`erement surprenante, qui
+% a pour seul but d'\'eviter des lignes d\'ebordantes (qui
+% pourraient d\'epasser les limites de \TeX\ lors de la
+% lecture du fichier "aux" ; vous aurez probablement besoin
+% de quelques centaines de colonnes avant que cela ne se
+% produise, mais\ldots).
+%    \begin{macrocode}
+\def\LT@entry@write{%
+  \noexpand\LT@entry^^J%
+  \@spaces}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@kill}
+% Cela termine le morceau courant comme ci-dessus, mais
+% supprime deux lignes, la ligne mod\`ele et la ligne tu\'ee,
+% avant de prendre en compte le morceau suivant. Depuis la
+% V3.04, l'ancien morceau est <<~remis en bo\^\i{}te~>> au
+% d\'ebut de la bo\^\i{}te contenant le morceau suivant. Cela
+% permet d'utiliser "\kill" dans les en-t\^ete (de table)
+% puisque cette commande doit \^etre trait\'ee dans une seule
+% bo\^\i{}te.
+%    \begin{macrocode}
+\def\LT@kill{%
+  \LT@echunk
+  \LT@get@widths
+  \expandafter\LT@rebox\LT@bchunk}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@rebox}
+% Renvoie l'ancien morceau (box0) au d\'ebut du nouveau
+% morceau, ce qui supprime la ligne tu\'ee. Cette macro a
+% \'et\'e ajout\'ee dans la V3.04.
+%    \begin{macrocode}
+\def\LT@rebox#1\bgroup{%
+  #1\bgroup
+  \unvbox\z@
+  \unskip
+  \setbox\z@\lastbox}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{La Ligne mod\`ele}
+%
+% La ligne mod\`ele est prise en compte par "\LT@save@row".
+%
+% \begin{macro}{\LT@blank@row}
+% \begin{macro}{\LT@build@blank}
+% \changes{v4.00}{1996/04/08}
+%      {(DK) Macro ajout\'ee}
+% \changes{v4.01}{1996/04/11}
+%      {(DPC) Ne m\'elange pas \cs{multicolumn} dans les passes brouillon}
+% Cr\'ee une ligne blanche si nous n'avons pas utililis\'e les informations
+% du fichier ".aux".
+%    \begin{macrocode}
+\def\LT@blank@row{%
+  \xdef\LT@save@row{\expandafter\LT@build@blank
+    \romannumeral\number\LT@cols 001 }}
+%    \end{macrocode}
+% Oups ! Qu'est-ce que c'est suppos\'e \^etre ? Un
+% remplacement de la premi\`ere tache de l'Appendice~D du \TeX book.
+% "\romannumeral" affecte \`a "\LT@cols" un "m" par unit\'e suivi de
+% "i"\footnote{NdT: si le compteur vaut 12,
+% \texttt{\char92number\char92LT@cols~001} vaut 12001, qui en chiffres
+% romains donne \texttt{mmmmmmmmmmmmi}, soit un \texttt{m} par unit\'e.}.
+% La macro ci-dessous remplace donc les "m" par les entr\'ees ad\'equates.
+%    \begin{macrocode}
+\def\LT@build@blank#1{%
+  \if#1m%
+    \noexpand\LT@entry{1}{0pt}%
+    \expandafter\LT@build@blank
+  \fi}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\LT@make@row}
+% \changes{v4.00}{1996/04/08}
+%      {(DK) Nouvelle impl\'ementation}
+% \changes{v4.01}{1996/04/11}
+%      {(DPC) Rend ce comportement automatique, ne n\'essitant pas  \cs{setlongtables}}
+%
+% Avant la version 4, par d\'efaut on n'utilisait pas
+% l'information du fichier ".aux" mais maintenant nous
+% pouvons d\'efinir "\LT@make@row" pour que la commande
+% utilise le fichier ".aux", m\^eme pour les passes brouillon.
+%    \begin{macrocode}
+\def\LT@make@row{%
+  \global\expandafter\let\expandafter\LT@save@row
+    \csname LT@\romannumeral\c@LT@tables\endcsname
+  \ifx\LT@save@row\relax
+    \LT@blank@row
+%    \end{macrocode}
+% L\`a, c'est un cas l\'eg\`erement difficile. Avant de
+% d\'ecider de faire un mod\`ele \`a partir du fichier
+% ".aux", nous v\'erifions que le nombre de champs est
+% toujours le m\^eme. Si ce n'est pas le cas, soit le format
+% de la table a chang\'e, soit nous avons une table
+% totalement mauvaise. Dans les deux cas, nous avons
+% d\'ecid\'e de supprimer toutes informations accumul\'ees et de red\'emarrer.
+% \changes{v4.01}{1996/04/11}
+%      {(DPC) Utilisation du test \cs{if} test au lieu de \cs{ifx}\cs{@empty}}
+%
+% Le d\'eveloppement entre les"!"\ldots"!" ci-dessous sera
+% vide si le nombre de macros "\LT@entry" incluant les
+% arguments dans "\LT@save@row" est \'egal \`a "\LT@cols".
+% S'il n'est pas vide, nous supprimons la ligne et nous repartons de z\'ero.
+%    \begin{macrocode}
+  \else
+    {\let\LT@entry\or
+     \if!%
+         \ifcase\expandafter\expandafter\expandafter\LT@cols
+         \expandafter\@gobble\LT@save@row
+         \or
+         \else
+           \relax
+         \fi
+        !%
+     \else
+       \aftergroup\LT@blank@row
+     \fi}%
+  \fi}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\setlongtables}
+% Red\'efinit la macro "\LT@make@row" pour utiliser
+% l'information du fichier ".aux", s'il y a une ligne
+% sauvegard\'ee pour cette table avec le bon nombre de colonne.
+%
+% Depuis la Version 3.02 \package{longtable} utilise le
+% compteur interne "\c@LT@tables" au lieu du compteur
+% \textsf{table} de \LaTeX\ . Le message d'alerte a \'et\'e
+% ajout\'e dans la V3.04, ainsi que le "\global", pour \'eviter
+% de faire d\'eborder la pile.
+%
+% Depuis la version 4.01, "\setlongtables" ne fait rien
+% puisqu'il n'est plus n\'ecessaire, mais est d\'efini comme "\relax"
+% au b\'en\'efice des anciens documents.
+% \changes{v3.12}{1994/06/30}
+%      {Modification des messages d'alerte pour faire une ligne \`a l'\'ecran.}
+% \changes{v4.01}{1996/04/11}
+%      {(DPC) make into no op}
+%    \begin{macrocode}
+\let\setlongtables\relax
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@get@widths}
+% C'est le c\oe{}ur de \package{longtable}. S'il n'y a pas
+% de t\^ete et pied de table, cette macro, associ\'ee avec la
+% commande "\\" modifi\'ee, pourrait tout \`a fait constituer
+% une base pour un petit package simple pour les tables
+% longues. Cette macro est tr\'es inspir\'ee de la macro "\endvrulealign"
+% pr\'esent\'ee en annexe D du \TeX book.
+%    \begin{macrocode}
+\def\LT@get@widths{%
+%    \end{macrocode}
+% "\global" ajout\'e par V3.04, pour \'eviter de faire d\'eborder la
+% pile.
+%    \begin{macrocode}
+%    \end{macrocode}
+% Fait une boucle \`a travers la derni\`ere ligne, supprimant
+% la justification et sauvegardant les largeurs de bo\^\i{}te.
+% Pour la V3.04, changement de la scratch box \`a 2 puisque
+% la nouvelle commande "\kill" demande que "\box0" soit conserv\'e.
+%    \begin{macrocode}
+  \setbox\tw@\hbox{%
+    \unhbox\@ne
+    \let\LT@old@row\LT@save@row
+    \global\let\LT@save@row\@empty
+    \count@\LT@cols
+    \loop
+      \unskip
+      \setbox\tw@\lastbox
+    \ifhbox\tw@
+      \LT@def@row
+      \advance\count@\m@ne
+    \repeat}%
+%    \end{macrocode}
+% Rappelle la largeur si nous sommes dans le premier morceau.
+%    \begin{macrocode}
+  \ifx\LT@@save@row\@undefined
+    \let\LT@@save@row\LT@save@row
+  \fi}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@def@row}
+% \changes{v4.00}{1996/04/08}
+%      {(DK) Nouvelle impl\'ementation}
+% Ajoute une colonne \`a la ligne mod\`ele. Nom chang\'e
+% (\'etait "\defLT@save@row") dans la Version~3, pour
+% conserver la convention de d\'enommination "\LT@".
+%    \begin{macrocode}
+\def\LT@def@row{%
+%    \end{macrocode}
+% Nous commen\c{c}ons par choisir les entr\'ees respectives
+% de nos anciennes lignes. Ces red\'efinitions de "\LT@entry"
+% sont limit\'ees au groupe d\'ebut\'e en "\LT@get@widths".
+%    \begin{macrocode}
+  \let\LT@entry\or
+  \edef\@tempa{%
+    \ifcase\expandafter\count@\LT@old@row
+    \else
+      {1}{0pt}%
+    \fi}%
+%    \end{macrocode}
+% Maintenant, nous attachons la bonne d\'efinition devant "\LT@save@row" :
+%    \begin{macrocode}
+  \let\LT@entry\relax
+  \xdef\LT@save@row{%
+    \LT@entry
+    \expandafter\LT@max@sel\@tempa
+    \LT@save@row}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@max@sel}
+% \changes{v4.00}{1996/04/08}
+%      {(DK) macro ajout\'ee}
+% \changes{v4.01}{1996/04/11}
+%      {(DPC) Modifications mineures}
+% Comment s\'electionner la bonne combinaison. Noter que nous
+% donnons l'information de l'ancien maximum, seulement si la
+% taille ne change dans \emph{aucune} direction. Si la taille
+% a augment\'e, nous aurons, bien s\^ur, un nouveau maximum.
+% Si la taille a diminu\'e, l'ancien maximum (qui \'etait
+% explicitement impos\'e \`a cause de l'existence du morceau
+% courant) est non valide, et nous commen\c{c}ons avec ce
+% morceau comme \'etant la nouvelle taille. Noter que m\^eme
+% en cas d'\'egalit\'e, nous \emph{devons} utiliser la
+% construction "\the\wd\tw@" au lieu de "#2", parce que "#2"
+% pourrait \^etre lu \`a partir du fichier, et donc il
+% pourrait exister des versions "\catcode"~11 de "p" et "t"
+% dans lesquelles nous voulons les remplacer par leur
+% versions "\catcode"~12 correctes.
+%    \begin{macrocode}
+\def\LT@max@sel#1#2{%
+  {\ifdim#2=\wd\tw@
+     #1%
+   \else
+     \number\c@LT@chunks
+   \fi}%
+  {\the\wd\tw@}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{La commande \cs{hline}}
+%
+% \begin{macro}{\LT@hline}
+% "\hline" et "\hline\hline" produisent tous deux
+% \emph{deux} lignes, la seule diff\'erence \'etant la
+% justification et les <<~penalties~>>. C'est pourquoi un
+% saut de page au niveau d'une "\hline" produit une ligne sur
+% les deux pages \`a la fois.\footnote{\env{longtable} a
+% toujours r\'ealis\'e cela, mais peut-\^etre ce serait
+% mieux si les hlines \'etaient \emph{omises} au niveau du
+% saut de page, puisque habituellement, les t\^ete et pied de table
+% mettent une hline ici, de toutes fa\c{c}ns}. De plus, cette
+% "\hline" est plus comparable \`a "\cline{1-\LT@cols}". Les "\hline"
+% de \env{tabular} devraient tracer des lignes de la largeur
+% totale de la page.
+%    \begin{macrocode}
+\def\LT@hline{%
+  \noalign{\ifnum0=`}\fi
+    \penalty\@M
+    \futurelet\@let@token\LT@@hline}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@@hline}
+% Ce code est bas\'e sur celui de "\cline". Deux copies de la
+% ligne sont produites, comme d\'ecrit ci-dessus.
+%    \begin{macrocode}
+\def\LT@@hline{%
+  \ifx\@let@token\hline
+    \global\let\@gtempa\@gobble
+    \gdef\LT@sep{\penalty-\@medpenalty\vskip\doublerulesep}%
+  \else
+    \global\let\@gtempa\@empty
+    \gdef\LT@sep{\penalty-\@lowpenalty\vskip-\arrayrulewidth}%
+  \fi
+  \ifnum0=`{\fi}%
+  \multispan\LT@cols
+     \unskip\leaders\hrule\@height\arrayrulewidth\hfill\cr
+  \noalign{\LT@sep}%
+  \multispan\LT@cols
+     \unskip\leaders\hrule\@height\arrayrulewidth\hfill\cr
+  \noalign{\penalty\@M}%
+  \@gtempa}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{L\'egendes}
+%
+% \begin{macro}{\LT@caption}
+% La l\'egende est donn\'ee par "\multicolumn{\LT@cols}{c}{"\meta{une parbox avec la
+% l\'egende de la table}"}"
+%    \begin{macrocode}
+\def\LT@caption{%
+  \noalign\bgroup
+    \@ifnextchar[{\egroup\LT@c@ption\@firstofone}\LT@capti@n}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@c@ption}
+% Commande de l\'egende (avec [argument optionnel]). "\protect"
+% ajout\'e dans la version 3. "\fnum@table" ajout\'e dans la V3.05.
+% \changes{v3.14}{1995/05/02}
+%      {Appel de \cs{LT@makecaption} et non de \cs{LT@mkcaption}}
+% \changes{v3.14}{1995/05/24}
+%      {Ajout d'un nouvel argument de contr\^ole}
+%    \begin{macrocode}
+\def\LT@c@ption#1[#2]#3{%
+  \LT@makecaption#1\fnum@table{#3}%
+  \def\@tempa{#2}%
+  \ifx\@tempa\@empty\else
+     {\let\\\space
+     \addcontentsline{lot}{table}{\protect\numberline{\thetable}{#2}}}%
+  \fi}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@capti@n}
+% Commande de l\'egende (sans [argument optionnel])
+% \changes{v3.14}{1995/05/02}
+%      {Appel de \cs{LT@makecaptionx} et non de \cs{LT@mkcaption}}
+% \changes{v3.14}{1995/05/24}
+%      {Appel de \cs{LT@makecaption} avec \cs{@gobble} ou \cs{@firstofone}}
+%    \begin{macrocode}
+\def\LT@capti@n{%
+  \@ifstar
+    {\egroup\LT@c@ption\@gobble[]}%
+    {\egroup\@xdblarg{\LT@c@ption\@firstofone}}}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\LT@makecaption}
+% Met la l\'egende dans une bo\^\i{}te de largeur 0pt, pour
+% que \c{c}a n'affecte jamais les largeurs de colonne.
+% La l\'egende comprend une "\parbox" de largeut "\LTcapwidth".
+% \changes{v3.14}{1995/05/02}
+%      {renomm\'ee \`a partir de \cs{LT@mkcaption}, et
+% modifi\'ee pour appeler \cs{@makecaption}}
+% \changes{v3.14}{1995/05/02}
+%      {Utilise le premier argument pour enlever le compteur de la forme "*"}
+%    \begin{macrocode}
+\def\LT@makecaption#1#2#3{%
+  \LT@mcol\LT@cols c{\hbox to\z@{\hss\parbox[t]\LTcapwidth{%
+%    \end{macrocode}
+% Bas\'ee sur "\@makecaption" de la classe article, "#1" est "\@gobble"
+% dans la forme "*", et "\@firstofone" autrement.
+%    \begin{macrocode}
+    \sbox\@tempboxa{#1{#2: }#3}%
+    \ifdim\wd\@tempboxa>\hsize
+      #1{#2: }#3%
+    \else
+      \hbox to\hsize{\hfil\box\@tempboxa\hfil}%
+    \fi
+    \endgraf\vskip\baselineskip}%
+  \hss}}}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \subsection{La routine de sortie}
+%
+% La m\'ethode utilis\'ee ici pour relier une routine
+% de sortie, utilis\'ee dans un but sp\'ecial, \`a la routine standard de
+% \LaTeX\ provient en droite ligne du package \package{multicol} de F.~Mittelbach
+%
+% \begin{macro}{\LT@output}
+% De fait, ce n'est pas si terrible, FM ayant d\'ej\`a d\'egag\'e le terrain.
+%    \begin{macrocode}
+\def\LT@output{%
+  \ifnum\outputpenalty <-\@Mi
+    \ifnum\outputpenalty > -\LT@end@pen
+%    \end{macrocode}
+%     Si c'\'etait un flottant ou une marge de paragraphe que nous r\'eclamons.
+%    \begin{macrocode}
+      \LT@err{floats and marginpars not allowed in a longtable}\@ehc
+    \else
+%    \end{macrocode}
+% Nous atteignons la fin de la table, au moins par d\'efilement,
+%    \begin{macrocode}
+      \setbox\z@\vbox{\unvbox\@cclv}%
+      \ifdim \ht\LT@lastfoot>\ht\LT@foot
+%    \end{macrocode}
+% Le dernier pied peut ne pas correspondre, donc :
+% \footnote{Une alternative pourra\^\i{}t \^etre la suppression d'un petit
+% bout du dernier morceau, de fa\c{c}on \`a ce que la derni\`ere page n'ait
+% pas de sections de t\^ete et de pied, mais il est difficile de r\'ealiser
+% cela d'une mani\`ere robuste.}
+%    \begin{macrocode}
+        \dimen@\pagegoal
+        \advance\dimen@-\ht\LT@lastfoot
+        \ifdim\dimen@<\ht\z@
+          \setbox\@cclv\vbox{\unvbox\z@\copy\LT@foot\vss}%
+          \@makecol
+          \@outputpage
+          \setbox\z@\vbox{\box\LT@head}%
+%    \end{macrocode}
+% Fin de "\ifdim\dimen@<\ht\z@"\footnote{NdT: La documentation originale
+% dit ici <<~End of \texttt{\char92ifdim\char92dimen@<\char92ht\char92@cclc}~>>
+% qui semble \^etre une faute, puisque le \texttt{\char92if} effectivement
+% ferm\'e porte sur la hauteur de la bo\^ite 0 et non pas 255.}.
+%    \begin{macrocode}
+        \fi
+%    \end{macrocode}
+% Fin de "\ifdim \ht\LT@lastfoot > \ht\LT@foot".
+%    \begin{macrocode}
+      \fi
+%    \end{macrocode}
+% R\'einitialisation de "\@colroom".
+% \changes{v3.14}{1995/05/02}
+%      {R\'einitialisation de \cs{@colroom}, corrige tools/1584}
+%    \begin{macrocode}
+      \global\@colroom\@colht
+      \global\vsize\@colht
+%    \end{macrocode}
+% Met la derni\`ere page de la table dans la liste verticale principale.
+%    \begin{macrocode}
+      \vbox
+        {\unvbox\z@\box\ifvoid\LT@lastfoot\LT@foot\else\LT@lastfoot\fi}%
+%    \end{macrocode}
+% Fin de "\ifnum\outputpenalty > -\LT@end@pen".
+%    \begin{macrocode}
+    \fi
+%    \end{macrocode}
+% Fin de "\outputpenalty > -\@Mi".
+%    \begin{macrocode}
+  \else
+%    \end{macrocode}
+% Si nous n'avons pas atteint la fin de la table,
+%    \begin{macrocode}
+    \setbox\@cclv\vbox{\unvbox\@cclv\copy\LT@foot\vss}%
+    \@makecol
+    \@outputpage
+%    \end{macrocode}
+% R\'einitialisation de "\vsize".
+% \changes{v3.14}{1995/05/02}
+%      {R\'einitialisation de "\vsize", corrige tools/1584}
+%    \begin{macrocode}
+      \global\vsize\@colroom
+%    \end{macrocode}
+% Met la t\^ete de table en haut de la page suivante.
+%    \begin{macrocode}
+    \copy\LT@head
+%    \end{macrocode}
+% Fin de "\ifnum\outputpenalty <-\@Mi".
+%    \begin{macrocode}
+  \fi}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Commande pour les en-t\^ete et pied de table}
+%
+% \begin{macro}{\LT@end@hd@ft}
+% Le c\oe{}ur de "\endhead" et compagnie. Stocke le morceau courant
+% dans la bo\^\i{}te sp\'ecifi\'ee par "#1". Produit une erreur si
+% la table est d\'ej\`a commenc\'ee. Puis, commence un nouveau morceau.
+%    \begin{macrocode}
+\def\LT@end@hd@ft#1{%
+  \LT@echunk
+%    \end{macrocode}
+% Changement de "\relax" en "\endgraf" pour V3.04, \emph{cf} "\LT@start".
+%    \begin{macrocode}
+  \ifx\LT@start\endgraf
+    \LT@err
+     {Longtable head or foot not at start of table}%
+     {Increase LTchunksize}%
+  \fi
+  \setbox#1\box\z@
+  \LT@get@widths
+  \LT@bchunk}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\endfirsthead}
+% \begin{macro}{\endhead}
+% \begin{macro}{\endfoot}
+% \begin{macro}{\endlastfoot}
+% Appelle "\LT@end@hd@ft" avec la bo\^\i{}te ad\'equate.
+%    \begin{macrocode}
+\def\endfirsthead{\LT@end@hd@ft\LT@firsthead}
+\def\endhead{\LT@end@hd@ft\LT@head}
+\def\endfoot{\LT@end@hd@ft\LT@foot}
+\def\endlastfoot{\LT@end@hd@ft\LT@lastfoot}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \subsection{La commande \cs{multicolumn}}
+%
+% Les plus anciennes versions n\'ecessitaient une forme brouillon
+% sp\'eciale de "\multicolumn". Cela n'est plus n\'ecessaire dans
+% la version 4, et donc ces commandes ont \'et\'e supprim\'ees.
+%
+% \begin{macro}{\LTmulticolumn}
+% \changes{v4.01}{1996/04/11}
+%      {(DPC) macro supprim\'ee}
+% \end{macro}
+%
+% \begin{macro}{\LT@mcwarn}
+% \changes{v4.01}{1996/04/11}
+%      {(DPC) macro supprim\'ee}
+% \end{macro}
+%
+% \subsection{Notes de bas de page}
+%
+% La commande "\footnote" standard fonctionne dans une colonne "c",
+% mais nous avons besoin de modifier cette d\'efinition pour une
+% colonne "p", pour passer outre le niveau suppl\'ementaire
+% d'embo\^\i{}tement. Ces macros sont bas\'ees sur le package
+% \package{array}, mais devraient \^etre OK pour l'environnement \env{tabular}
+% standard.
+%
+% \begin{macro}{\LT@startpbox}
+% \changes{v4.09}{1998/05/13}
+%      {Utilise \cs{setlength} pour que les extensions de
+%      calcul soient applicables. tools/2793}
+% Ajoute un code suppl\'ementaire pour changer la
+% d\'efinition de "\@footnotetext".
+%    \begin{macrocode}
+\def\LT@startpbox#1{%
+  \bgroup
+    \let\@footnotetext\LT@p@ftntext
+    \setlength\hsize{#1}%
+    \@arrayparboxrestore
+    \vrule \@height \ht\@arstrutbox \@width \z@}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@endpbox}
+% Apr\`es la fermeture de la parbox, d\'eveloppement de "\LT@p@ftn"
+%qui ex\'ecutera une s\'erie de\\
+% "\footnotetext["\meta{num}"]{"\meta{note}"}"\\
+% Apr\`es avoir \'et\'e enlev\'ees de la parbox, elles
+% peuvent aller \`a leur place \`a partir d'ici.
+% \changes{v3.10}{1994/05/15}
+%     {Utilise \cs{@finalstrut}}
+% \changes{v4.03}{1996/05/07}
+%     {Utilise \cs{hfil} pour tools/2120}
+%    \begin{macrocode}
+\def\LT@endpbox{%
+  \@finalstrut\@arstrutbox
+  \egroup
+  \the\LT@p@ftn
+  \global\LT@p@ftn{}%
+  \hfil}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LT@p@ftntext}
+% Dans la colonne "p", sauvegarde juste le texte de la note
+% de bas de page dans registre \`a jeton.
+%    \begin{macrocode}
+\def\LT@p@ftntext#1{%
+  \edef\@tempa{\the\LT@p@ftn\noexpand\footnotetext[\the\c@footnote]}%
+  \global\LT@p@ftn\expandafter{\@tempa{#1}}}%
+%    \end{macrocode}
+% \end{macro}
+%
+%    \begin{macrocode}
+%</package>
+%    \end{macrocode}
+%
+% \Finale
+\endinput
