@@ -54,7 +54,7 @@ Traduction       | Source              | Avancée                | Pages traduit
                  | [hyperref] v6.83q   |                        | *. / 31*        |
                  | [ifthen] v1.1c      |                        | *. / 6*         |
 [indentfirst-fr] | [indentfirst] v1.03 | :full_moon:            | 1               | Traduction préexistante ([FT-tools]).
-                 | [layout] v1.02c     |                        | *. / 13*        | Traduction préexistante ([FT-tools]).
+[layout-fr]      | [layout] v1.02c     | :new_moon:             | 0 / 14          | Traduction préexistante ([FT-tools]).
 [lipsum-fr]      | [lipsum] v1.3       | :full_moon:            | 41              |
 [listings-fr]    | [listings] v1.6     | :new_moon:             | 1 / 61          |
                  | [longtable] v4.11   |                        | *. / 26*        | Traduction préexistante ([FT-tools]).
