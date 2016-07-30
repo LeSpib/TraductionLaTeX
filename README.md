@@ -50,7 +50,7 @@ Traduction       | Source              | Avancée                | Pages traduit
 [geometry-fr]    | [geometry] v5.6     | :full_moon:            | 42              | Auteur contacté et intéressé.
                  | [glossaries] v4.25  |                        | *. / 248*       |
                  | [graphicx] v1.0g    |                        | *. / 15*        |
-                 | [hhline] v2.03      |                        | *. / 4*         | Traduction préexistante ([FT-tools]).
+[hhline-fr]      | [hhline] v2.03      | :new_moon:             | 0 / 4           | Traduction préexistante ([FT-tools]).
                  | [hyperref] v6.83q   |                        | *. / 31*        |
                  | [ifthen] v1.1c      |                        | *. / 6*         |
 [indentfirst-fr] | [indentfirst] v1.03 | :full_moon:            | 1               | Traduction préexistante ([FT-tools]).

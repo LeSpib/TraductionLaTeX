@@ -1,0 +1,312 @@
+% \iffalse
+%% File: hhline.dtx Copyright (C) 1991-1994 David Carlisle
+%
+%<package>\NeedsTeXFormat{LaTeX2e}
+%<package>\ProvidesPackage{hhline}
+%<package>         [1994/05/23 v2.03 Table rule package (DPC)]
+%
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage{hhline}
+\AtBeginDocument{\DeleteShortVerb{\|}}
+\usepackage[english,frenchb]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\GetFileInfo{hhline.sty}
+\makeatletter
+\let\selectlanguage\@gobble
+\begin{document}
+\title{Le package \textsf{hhline}\thanks{Ce fichier
+        a le num\'ero de version \fileversion, derni\`ere
+        mise \`a jour le \filedate.}}
+\author{David Carlisle\\carlisle@cs.man.ac.uk\and
+        Traduit de l'anglais par:\\Jean-Pierre Drucbert}
+\date{\filedate}
+ \maketitle
+ \DocInput{f-hhline.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+%\selectlanguage{english}
+%
+% \changes{v1.00}{1991/06/04}{Initial Version}
+% \changes{v2.00}{1991/11/06}
+%     {Add tilde which allows \cmd\cline-like constructions.}
+% \changes{v2.01}{1992/06/26}
+%    {Re-issue for the new  doc and docstrip.}
+% \changes{v2.02}{1994/03/14}
+%    {Update for LaTeX2e.}
+% \changes{v2.03}{1994/05/23}
+%    {New style warning.}
+%
+%\selectlanguage{frenchb}
+%
+% \CheckSum{244}
+%
+% \MakeShortVerb{\"}
+%
+% \begin{abstract}
+% Ce package \'etend les possibilit\'es de lignes horizontales et verticales
+% dans un environnement {\tt array} ou {\tt tabular}. Il introduit la 
+% nouvelle commande "\hhline" qui produit une ligne comme "\hline" ou une 
+% double ligne comme "\hline\hline", sauf pour leur interaction avec les lignes 
+% verticales.
+% \end{abstract}
+%
+% \arrayrulewidth=1pt
+% \doublerulesep=3pt
+%
+% \section{Introduction}
+% L'argument de "\hhline" est similaire au pr\'eambule d'un environnement
+% {\tt array} ou {\tt tabular}.
+% Il consiste en une liste d'\'el\'ements (tokens) ayant les significations 
+% suivantes:
+% \[
+%   \begin{tabular}{cp{9cm}}
+%     "="   & Une double hline sur la largeur d'une colonne.\\
+%     "-"   & Une simple hline sur la largeur d'une colonne.\\[10pt]
+%     "~"   & Une colonne sans hline.\\[10pt]
+%     
+%     "|"   & Une vline qui `coupe' une hline simple ou double.\\
+%     ":"   & Une vline qui est bris\'ee par une double hline.\\[10pt]
+% 
+%     "#"   & Un double segment hline entre deux vlines.\\
+%     "t"   & La moiti\'e sup\'erieure d'un double segment hline.\\
+%     "b"   & La moiti\'e inf\'erieure d'un double segment hline.\\
+% 
+%     "*"   & \verb|*{3}{==#}| s'expanse en \verb|==#==#==#|,
+%                   comme dans la {\tt*}-forme pour le pr\'eambule.
+%   \end{tabular}
+% \]
+% Si une double vline est sp\'ecifi\'ee ("||" ou "::") alors les hlines 
+% produites par "\hhline" sont bris\'ees. Pour obtenir l'effet d'une hline 
+% `passant \`a travers' la double vline, utilisez un "#" ou omettez les 
+% sp\'ecificateurs de vline, selon que vous vouliez ou non que la double 
+% vline soit bris\'ee.
+%
+% Les tokens {\tt t} et {\tt b} doivent \^etre utilis\'es entre deux traits 
+% verticaux. "|tb|" produit les m\^emes lignes que "#", mais est moins 
+% efficace. L'utilisation principale pour ceci est de faire des constructions 
+% telles que "|t:" (coin sup\'erieur gauche) et ":b|" (coin inf\'erieur droit).
+%
+% Si "\hhline" est utilis\'ee pour faire une simple hline, alors l'argument 
+% ne doit contenir que des tokens "-", "~" et "|" (et des {\tt*}-expressions).
+%
+% Voici un exemple utilisant la plupart de ces possibilit\'es:
+% \[\selectlanguage{english}
+% \vcenter{\hsize=2in\begin{verbatim}
+% \begin{tabular}{||cc||c|c||}
+% \hhline{|t:==:t:==:t|}
+% a&b&c&d\\
+% \hhline{|:==:|~|~||}
+% 1&2&3&4\\
+% \hhline{#==#~|=#}
+% i&j&k&l\\
+% \hhline{||--||--||}
+% w&x&y&z\\
+% \hhline{|b:==:b:==:b|}
+% \end{tabular}
+%\end{verbatim}
+% }
+% \qquad
+% \begin{tabular}{||cc||c|c||}
+% \hhline{|t:==:t:==:t|}
+% a&b&c&d\\
+% \hhline{|:==:|~|~||}
+% 1&2&3&4\\
+% \hhline{#==#~|=#}
+% i&j&k&l\\
+% \hhline{||--||--||}
+% w&x&y&z\\
+% \hhline{|b:==:b:==:b|}
+% \end{tabular}
+% \selectlanguage{frenchb}\]
+% 
+% Les lignes produites par la commande "\hline" de \LaTeX\ sont form\'ees 
+% d'une seule primitive "\hrule" de \TeX. Les lignes produites par "\hhline"
+% sont faites d'une quantit\'e de petits segments de ligne. \TeX\ les placera 
+% tr\`es pr\'ecis\'ement dans le fichier {\tt.dvi}, mais le programme que vous 
+% utilisez pour imprimer le fichier {\tt.dvi} peut ne pas les aligner 
+% exactement. (Un probl\`eme similaire peut survenir avec les lignes
+% obliques dans l'environnement {\tt picture}). 
+%
+% Si ceci pose un probl\`eme, 
+% vous pouvez soit essayer un autre programme d'impression, si cela est possible, 
+% ou alors augmenter "\arrayrulewidth" pour essayer d'en r\'eduire les effets.
+%
+% \StopEventually{}
+%
+% \section{Les macros (section non traduite)}
+%\selectlanguage{english}
+%
+%    \begin{macrocode}
+%<*package>
+%    \end{macrocode}
+%
+% \begin{macro}{\HH@box}
+% Makes a box containing a double hline segment. The most common case,
+% both rules of length "\doublerulesep" will be stored in "\box1", this
+% is not initialised until "\hhline" is called as the user may change
+% the parameters "\doublerulesep" and "\arrayrulewidth". The two
+% arguments to "\HH@box" are the widths (ie lengths) of the top and
+% bottom rules.
+%    \begin{macrocode}
+\def\HH@box#1#2{\vbox{%
+  \hrule \@height \arrayrulewidth \@width #1
+  \vskip \doublerulesep
+  \hrule \@height \arrayrulewidth \@width #2}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\HH@add}
+% Build up the preamble in the register "\toks@".
+%    \begin{macrocode}
+\def\HH@add#1{\toks@\expandafter{\the\toks@#1}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\HH@xexpast}
+% \begin{macro}{\HH@xexnoop}
+% We `borrow' the version of "\@xexpast" from Mittelbach's array.sty,
+% as this allows "#" to appear in the argument list.
+%    \begin{macrocode}
+\def\HH@xexpast#1*#2#3#4\@@{%
+   \@tempcnta #2
+   \toks@={#1}\@temptokena={#3}%
+   \let\the@toksz\relax \let\the@toks\relax
+   \def\@tempa{\the@toksz}%
+   \ifnum\@tempcnta >0 \@whilenum\@tempcnta >0\do
+     {\edef\@tempa{\@tempa\the@toks}\advance \@tempcnta \m@ne}%
+       \let \@tempb \HH@xexpast \else
+       \let \@tempb \HH@xexnoop \fi
+   \def\the@toksz{\the\toks@}\def\the@toks{\the\@temptokena}%
+   \edef\@tempa{\@tempa}%
+   \expandafter \@tempb \@tempa #4\@@}
+
+\def\HH@xexnoop#1\@@{}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\hhline}
+% Use a simplified version of "\@mkpream" to break apart the argument
+% to "\hhline". Actually it is oversimplified, It assumes that the
+% vertical rules are at the end of the column. If you were to specify
+% "c|@{xx}|" in the array argument, then "\hhline" would not be
+% able to access the first vertical rule. (It ought to have an "@"
+% option, and add "\leaders" up to the width of a box containing the
+% "@"-expression. We use a loop made with "\futurelet" rather
+% than "\@tfor" so that we can use "#" to denote the crossing of
+% a double hline with a double vline.\\
+% "\if@firstamp" is true in the first column and false otherwise.\\
+% "\if@tempswa"  is true if the previous entry was a vline
+%                     (":", "|" or "#").
+%    \begin{macrocode}
+\def\hhline#1{\omit\@firstamptrue\@tempswafalse
+%    \end{macrocode}
+% Put two rules of width "\doublerulesep" in "\box1"
+%    \begin{macrocode}
+\global\setbox\@ne\HH@box\doublerulesep\doublerulesep
+%    \end{macrocode}
+% If Mittelbach's {\tt array.sty} is loaded, we do not need the negative
+% "\hskip"'s around vertical rules.
+%    \begin{macrocode}
+  \xdef\@tempc{\ifx\extrarowheight\HH@undef\hskip-.5\arrayrulewidth\fi}%
+%    \end{macrocode}
+% Now expand the {\tt*}-forms and add dummy tokens ( "\relax" and
+% "`" ) to either end of the token list. Call "\HH@let" to start
+% processing the token list.
+%    \begin{macrocode}
+    \HH@xexpast\relax#1*0x\@@\toks@{}\expandafter\HH@let\@tempa`}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\HH@let}
+% Discard the last token, look at the next one.
+%    \begin{macrocode}
+\def\HH@let#1{\futurelet\@tempb\HH@loop}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\HH@loop}
+% The main loop. Note we use "\ifx" rather than "\if" in
+% version~2 as the new token "~" is active.
+%    \begin{macrocode}
+\def\HH@loop{%
+%    \end{macrocode}
+% If next token is "`", stop the loop and put the lines into this row
+% of the alignment.
+%    \begin{macrocode}
+  \ifx\@tempb`\def\next##1{\the\toks@\cr}\else\let\next\HH@let
+%    \end{macrocode}
+% "|", add a vertical rule (across either a double or
+% single hline).
+%    \begin{macrocode}
+  \ifx\@tempb|\if@tempswa\HH@add{\hskip\doublerulesep}\fi\@tempswatrue
+          \HH@add{\@tempc\vline\@tempc}\else
+%    \end{macrocode}
+% ":", add a broken vertical rule (across a double hline).
+%    \begin{macrocode}
+  \ifx\@tempb:\if@tempswa\HH@add{\hskip\doublerulesep}\fi\@tempswatrue
+      \HH@add{\@tempc\HH@box\arrayrulewidth\arrayrulewidth\@tempc}\else
+%    \end{macrocode}
+% "#", add a double hline segment between two vlines.
+%    \begin{macrocode}
+  \ifx\@tempb##\if@tempswa\HH@add{\hskip\doublerulesep}\fi\@tempswatrue
+         \HH@add{\@tempc\vline\@tempc\copy\@ne\@tempc\vline\@tempc}\else
+%    \end{macrocode}
+% "~", A column with no hline (this gives an effect similar to
+% \verb+\cline+).
+%    \begin{macrocode}
+  \ifx\@tempb~\@tempswafalse
+           \if@firstamp\@firstampfalse\else\HH@add{&\omit}\fi
+              \HH@add{\hfil}\else
+%    \end{macrocode}
+% "-", add a single hline across the column.
+%    \begin{macrocode}
+  \ifx\@tempb-\@tempswafalse
+           \if@firstamp\@firstampfalse\else\HH@add{&\omit}\fi
+              \HH@add{\leaders\hrule\@height\arrayrulewidth\hfil}\else
+%    \end{macrocode}
+% "=", add a double hline across the column.
+%    \begin{macrocode}
+  \ifx\@tempb=\@tempswafalse
+       \if@firstamp\@firstampfalse\else\HH@add{&\omit}\fi
+%    \end{macrocode}
+%     Put in as many copies of "\box1" as possible with
+%     "\leaders", this may leave gaps at the ends, so put an extra box
+%     at each end, overlapping the "\leaders".
+%    \begin{macrocode}
+       \HH@add
+          {\rlap{\copy\@ne}\leaders\copy\@ne\hfil\llap{\copy\@ne}}\else
+%    \end{macrocode}
+% "t", add the top half of a double hline segment, in a "\rlap"
+% so that it may be used with {\tt b}.
+%    \begin{macrocode}
+  \ifx\@tempb t\HH@add{\rlap{\HH@box\doublerulesep\z@}}\else
+%    \end{macrocode}
+% "b", add the bottom half of a double hline segment in a "\rlap"
+% so that it may be used with {\tt t}.
+%    \begin{macrocode}
+  \ifx\@tempb b\HH@add{\rlap{\HH@box\z@\doublerulesep}}\else
+%    \end{macrocode}
+% Otherwise ignore the token, with a warning.
+%    \begin{macrocode}
+  \PackageWarning{hhline}%
+      {\meaning\@tempb\space ignored in \noexpand\hhline argument%
+       \MessageBreak}%
+  \fi\fi\fi\fi\fi\fi\fi\fi\fi
+%    \end{macrocode}
+% Go around the loop again.
+%    \begin{macrocode}
+  \next}
+%    \end{macrocode}
+% \end{macro}
+%
+%    \begin{macrocode}
+%</package>
+%    \end{macrocode}
+%
+% \Finale
+\endinput
