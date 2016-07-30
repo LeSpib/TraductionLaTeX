@@ -194,9 +194,9 @@
 % \def\File#1{\texttt{#1}\index{fichiers\levelchar\texttt{#1}\string|usage}}
 % \def\Function#1{\textit{#1}\index{fonctions de couleur\levelchar\textit{#1}\string|usage}}
 % \def\Op#1#2{#1\nolimits_{\,\Model{#2}}}
-% \def\med{\mathop{\textrm{med}}}
+% \def\med{\mathop{\textrm{méd}}}
 % \def\mix{\mathop{\textrm{mélange}}}
-% \def\rd{\mathop{\textrm{round}}}
+% \def\rd{\mathop{\textrm{arrondi}}}
 % \def\tint{\mathop{\textrm{éclaicie}}}
 % \def\shade{\mathop{\textrm{assombrie}}}
 % \def\tone{\mathop{\textrm{assourdie}}}
@@ -207,7 +207,7 @@
 % \def\XCW{\texttt{\href{http://www.ukern.de/tex/xcolor.html}{www.ukern.de/tex/xcolor.html}}}
 % \def\URL#1{\texttt{\url{#1}}}
 % \def\CTAN#1#2{\texttt{\href{http://www.ctan.org/tex-archive/#1}{CTAN/#1#2}}}
-% \newtheorem{lemma}{Lemma}
+% \newtheorem{lemma}{Lemme}
 % \def\RtoI#1{\Gamma_{\!#1}}
 % \def\ItoR#1{\Delta_{#1}}
 % \def\bbbN{\textrm{I\kern-.333ex N}}
@@ -3294,21 +3294,25 @@
 %
 % \subsubsection{Conversion réel vers entier}\label{sec.real2int}
 %
-% \tradini
-% The straightforward mapping for this case is
+% L'application la plus directe pour ce cas est
 % \begin{gather}
-% \textstyle\RtoI n : \mathcal R \to \mathcal I_n,\ x \mapsto \rd(n\cdot x,0) = \left\lfloor \frac12+n\cdot x\right\rfloor
+% \textstyle\RtoI n : \mathcal R \to \mathcal I_n,\ x \mapsto \rd(n\cdot x,0)
+% = \left\lfloor \frac12+n\cdot x\right\rfloor
 % \end{gather}
-% where $\rd(r,d)$ rounds the real number $r$ to $d\ge0$ decimal digits.
-% This mapping nearly always preserves complements, as shown in the next lemma.
-% \begin{lemma}[Preservation of complements]
-% For $x\in\mathcal R$,
+% où $\rd(r,d)$ arrondit le nombre réel $r$ à $d\ge0$ décimales. 
+% Cette application préserve presque toujours la relation entre 
+% complémentaires, comme le montre le lemme suivant.
+% \begin{lemma}[Préservation des complémentaires]
+% Pour tout $x\in\mathcal R$,
 % \begin{gather}
-% \textstyle\RtoI n(x) + \RtoI n(1-x) = n \iff x \notin \mathcal R_n^\circ := \left\{ \frac1n\bigl(\nu - \frac12\bigr) \bigm\vert \nu=1,2,\dots,n\right\}.
+% \textstyle\RtoI n(x) + \RtoI n(1-x) = n \iff x \notin \mathcal R_n^\circ 
+%  := \left\{ \frac1n\bigl(\nu - \frac12\bigr) \bigm\vert 
+%  \nu=1,2,\dots,n\right\}.
 % \end{gather}
 % \end{lemma}
 % \begin{proof}
-% Let $\nu:=\RtoI n(x)$, then from $-\frac12 \le \eta := n\cdot x - \nu < \frac12$ we conclude
+% Soit $\nu:=\RtoI n(x)$, ayant $-\frac12 \le \eta := n\cdot x - \nu 
+%  < \frac12$, nous concluons
 % \begin{gather*}
 % \textstyle \RtoI n(1-x) = \rd(n(1-x),0) = \rd(n-\nu-\eta,0) =
 % \begin{cases}
@@ -3316,40 +3320,48 @@
 %  n-\nu+1 & \text{if $\eta=-\frac12$}
 % \end{cases}
 % \end{gather*}
-% Now, $\eta = -\frac12 \iff x = \frac1n\bigl(\nu-\frac12\bigr) \iff x\in\mathcal I_n'$.
+% Dès lors, $\eta = -\frac12 \iff x = \frac1n\bigl(\nu-\frac12\bigr) \iff 
+% x\in\mathcal I_n'$.
 % \end{proof}
-% Remark: the set $\mathcal R_n^\circ$ is obviously identical to the set of points where $\RtoI n$ is not continuous.
+% Remarque: l'ensemble $\mathcal R_n^\circ$ est à l'évidence identique à 
+% l'ensemble des points où $\RtoI n$ n'est pas continu.
 %
 %
-% \subsubsection{Integer to real conversion}\label{sec.int2real}
+% \subsubsection{Conversion entier vers réel}\label{sec.int2real}
 %
-% The straightforward way in this case is the function
+% La manière directe dans ce cas est la fonction
 % \begin{gather}
 % \ItoR n^*: \mathcal I_n \to \mathcal R,\ \nu \mapsto \frac \nu n.
 % \end{gather}
-% This is, however, only one out of a variety of solutions: every function $\ItoR n:\mathcal I_n\to\mathcal R$ that obeys the condition
+% Ce n'est cependant qu'une solution parmi une grande variété d'autres : 
+% chaque fonction $\ItoR n:\mathcal I_n\to\mathcal R$ qui respecte la condition
 % \begin{gather}
 % \nu\in\mathcal I_n \Rightarrow \Gamma_n\bigl(\ItoR n(\nu)\bigr) = \nu
 % \end{gather}
-% which is equivalent to
+% équivalente à 
 % \begin{gather}
-% \nu\in\mathcal I_n \Rightarrow \nu + \frac12 > n\cdot\ItoR n(\nu) \ge \nu - \frac12\label{eq.round}
+% \nu\in\mathcal I_n \Rightarrow \nu + \frac12 > n\cdot\ItoR n(\nu) 
+%  \ge \nu - \frac12\label{eq.round}
 % \end{gather}
-% does at least guarantee that all integers $\nu$ may be reconstructed from $\ItoR n(\nu)$ via multiplication by $n$ and rounding to the nearest integer.
-% Preservation of complements means now
+% garantit au moins que chaque entier $\nu$ peut être reconstruit à partir de 
+% $\ItoR n(\nu)$ par le biais de la multiplication de $n$ puis en arrondissant
+% à l'entier le plus proche.
+% La préservation des complémentaires signifie maintenant 
 % \begin{gather}
 % \nu\in\mathcal I_n \Rightarrow \ItoR n(\nu) + \ItoR n(n-\nu) = 1
 % \end{gather}
-% which is obviously the case for $\ItoR n = \ItoR n^*$.
-% If we consider, more generally, a transformation
+% Ce qui est évidemment le cas pour $\ItoR n = \ItoR n^*$.
+
+% Si nous considérons, plus généralement, une transformation
 % \begin{gather}
 % \ItoR n(\nu) = \frac{\nu + \alpha}{n + \beta}
 % \end{gather}
-% with $\beta\neq-n$, then the magic inequality (\ref{eq.round}) is equivalent to
+% avec $\beta\neq-n$, alors l'inégalité (\ref{eq.round}) est 
+% équivalente à 
 % \begin{gather}
 % \frac12 > \frac{\alpha n - \beta\nu}{n + \beta} \ge -\frac12
 % \end{gather}
-% which is obeyed by the function
+% ce qui est respecté par la fonction
 % \begin{gather}
 % \ItoR n':\mathcal I_n\to\mathcal R,\ \nu \mapsto
 % \begin{cases}
@@ -3357,92 +3369,114 @@
 % \frac{\nu+1}{n+1}& \text{if $\nu>\frac{n+1}2$}
 % \end{cases}
 % \end{gather}
-% that has the nice feature $\ItoR n'\bigl(\frac{n+1}2\bigr) = \frac12$ for odd $n$.
-% \begin{lemma}[Preservation of complements]
-% For odd $n$ and each $\nu\in\mathcal I_n$,
+% qui présente la belle fonctionnalité 
+% $\ItoR n'\bigl(\frac{n+1}2\bigr) = \frac12$ pour les $n$ impairs.
+% \begin{lemma}[Préservation des complémentaires]
+% Pour tout $n$ impair et tout $\nu\in\mathcal I_n$,
 % \begin{gather}
-% \textstyle\ItoR n'(\nu) + \ItoR n'(n-\nu) = 1 \iff \nu \notin \mathcal I_n^\circ := \left\{ \frac{n-1}2, \frac{n+1}2 \right\}.
+% \textstyle\ItoR n'(\nu) + \ItoR n'(n-\nu) = 1 \iff \nu \notin 
+% \mathcal I_n^\circ := \left\{ \frac{n-1}2, \frac{n+1}2 \right\}.
 % \end{gather}
 % \end{lemma}
 % \begin{proof}
-% The assertion is a consequence of the following arguments:
+% Cette assertion est une conséquence des arguments suivants :
 % \begin{itemize}
-% \item $\nu<\frac{n-1}2 \iff n-\nu>\frac{n+1}2$ \ and \ $\frac{n-1}2 + \frac{n+1}2 = n$;
-% \item $\nu<\frac{n-1}2 \,\Rightarrow\, \ItoR n'(\nu) + \ItoR n'(n-\nu) = \frac\nu{n+1} + \frac{n-\nu+1}{n+1} = 1$;
-% \item $\nu=\frac{n-1}2 \,\Rightarrow\, \ItoR n'(\nu) + \ItoR n'(n-\nu) = \frac{n-1}{2(n+1)} + \frac12 = \frac n{n+1} \neq1$.\qedhere
+% \item $\nu<\frac{n-1}2 \iff n-\nu>\frac{n+1}2$ \ and \ $\frac{n-1}2 
+%  + \frac{n+1}2 = n$;
+% \item $\nu<\frac{n-1}2 \,\Rightarrow\, \ItoR n'(\nu) + \ItoR n'(n-\nu) 
+%  = \frac\nu{n+1} + \frac{n-\nu+1}{n+1} = 1$;
+% \item $\nu=\frac{n-1}2 \,\Rightarrow\, \ItoR n'(\nu) + \ItoR n'(n-\nu)
+%  = \frac{n-1}{2(n+1)} + \frac12 = \frac n{n+1} \neq1$.\qedhere
 % \end{itemize}
 % \end{proof}
 %
-% For the time being, we choose \fbox{$\ItoR n := \ItoR n^*$} as default transformation function.
+% Pour le moment, nous choisissons \fbox{$\ItoR n := \ItoR n^*$} comme fonction
+% de transformation par défaut. 
 %
 % \medskip
-% Another variant --- which is probably too slow for large-scale on-the-fly calculations --- may be used for constructing sets of predefined colors.
-% The basic idea is to minimize the number of decimal digits in the representation while keeping some invariance with respect to the original resolution:
+% Une autre variante --- probablement trop lente pour des calculs à la volée à
+% grande échelle --- peut être utilisée pour construire des ensembles de
+% couleurs prédéfinies.
+% L'idée de base est de réduire le nombre de décimales dans la représentation 
+% tout en gardant une certaine invariance par rapport à la solution 
+% originale :
 % \begin{gather}
 % \textstyle\ItoR n'':\mathcal I_n\to\mathcal R,\ \nu \mapsto \rd\bigl(\frac\nu n, d_n(\frac\nu n)\bigr)
 % \end{gather}
-% where
+% où
 % \begin{gather}
 % d_n:[0,1]\to\bbbN,\ x \mapsto \min\bigl\{ d\in\bbbN \bigm\vert \RtoI n\bigl(\rd(\ItoR n^*(\RtoI n(x)),d)\bigr) = \RtoI n(x)\bigr\}
 % \end{gather}
-% In the most common case $n=255$ it turns out that we end up with at most 3 decimal digits; preservation of complements is only violated for $\nu\in\{25,26,76,77,127,128,178,179,229,230\}$ where the corresponding set of decimal numbers is $\{0.098,0.1,0.298,0.3,0.498,0.5,0.698,0.7,0.898,0.9\}$.
+% Dans la plupart des cas $n=255$, il s'avère que nous arrivons à trois 
+% décimales au plus : la préservation des complémentaires n'est pas 
+% respectée pour $\nu\in\{25,26,76,77,127,128,178,179,229,230\}$ pour 
+% l'ensemble de nombre décimaux correspondant est 
+% $\{0.098,0.1,0.298,0.3,0.498,0.5,0.698,0.7,0.898,0.9\}$.
 %
 %
 %
-% \subsection{Color conversion and complements}\label{sec.cnv}
+% \subsection{Conversion de couleur et complémentaires}\label{sec.cnv}
 %
-% We collect here the specific conversion formulas between the supported color models.
-% Table \vref{tab.cnv} gives an overwiew of how each conversion pair is handled.
-% In general, \Index{PostScript} (as described in \cite{plrm}) is used as a basis for most of the calculations, since it supports the color models \Model{rgb}, \Model{cmyk}, \Model{hsb}, and \Model{gray} natively.
-% Furthermore, \People{Alvy Ray}{Smith}'s paper \cite{smith} is cited in \cite{plrm} as reference for \Model{hsb}-related formulas.
+% Nous regroupons ici les formules de conversion spécifiques entre les
+% différents modèles colorimétriques supportés. La table \vref{tab.cnv} donne
+% un aperçu de la manière dont la conversion pour chaque paire de modèle
+% est traitée. 
+% En général, \Index{PostScript} (comme décrit dans \cite{plrm}) est utilisé
+% comme base pour la plupart des calculs puisqu'il supporte nativement les
+% modèles colorimétriques \Model{rgb}, \Model{cmyk}, \Model{hsb} et 
+% \Model{gray}.
+% De plus, l'article d'\People{Alvy Ray}{Smith} \cite{smith} est cité dans
+% \cite{plrm} comme référence pour les formules liées au modèle \Model{hsb}.
 %
-% First, we define a constant which is being used throughout the conversion formulas:
+% Tout d'abord, nous définissons une constante qui est utilisée dans les 
+% formules de conversion :
 % \begin{gather}
 % E := (1,1,1)
 % \end{gather}
 %
 %
-% \subsubsection{The \Model{rgb} model}
+% \subsubsection{Le modèle \Model{rgb}}
 %
-% \paragraph{Conversion \Model{rgb} to \Model{cmy}}\label{sec.rgb2cmy}
+% \paragraph{Conversion de \Model{rgb} vers \Model{cmy}}\label{sec.rgb2cmy}
 % Source: \cite{plrm}, p. 475.
 % \begin{gather}
-% (\emph{cyan}, \emph{magenta}, \emph{yellow}) := E-(\emph{red}, \emph{green}, \emph{blue})
+% (\emph{cyan}, \emph{magenta}, \emph{jaune}) := E-(\emph{rouge}, \emph{vert}, \emph{bleu})
 % \end{gather}
 %
 %
-% \paragraph{Conversion \Model{rgb} to \Model{hsb} (1)}
-% We set
+% \paragraph{Conversion de \Model{rgb} vers \Model{hsb} (1)}
+% Nous définissons
 % \begin{align}
-% x & := \max\{\emph{red}, \emph{green}, \emph{blue}\}\\
-% y & := \med\{\emph{red}, \emph{green}, \emph{blue}\}\\
-% z & := \min\{\emph{red}, \emph{green}, \emph{blue}\}%\\
+% x & := \max\{\emph{rouge}, \emph{vert}, \emph{bleu}\}\\
+% y & := \med\{\emph{rouge}, \emph{vert}, \emph{bleu}\}\\
+% z & := \min\{\emph{rouge}, \emph{vert}, \emph{bleu}\}%\\
 % \end{align}
-% where `$\med$' denotes the median of the values.
-% Then,
+% où \og $\med$ \fg{} restitue la valeur médiane entre les trois valeurs.
+% Alors,
 % \begin{align}
-% \emph{brightness} & := x\\
-% \intertext{Case $x=z$:}
+% \emph{luminosité} & := x\\
+% \intertext{Cas où $x=z$:}
 % \emph{saturation} & := 0\\
-% \emph{hue} & := 0\\
-% \intertext{Case $x\neq z$:}
+% \emph{teinte} & := 0\\
+% \intertext{Cas où $x\neq z$:}
 % \emph{saturation} & := \frac{x - z}x\\
 % f & := \frac{x - y}{x - z}
 % \end{align}
 % \begin{gather}
-% \emph{hue} := \frac 16\cdot
+% \emph{teinte} := \frac 16\cdot
 %  \begin{cases}
-%  1-f & \text{if $x=\emph{red}\ge\emph{green}\ge\emph{blue}=z$}\\
-%  1+f & \text{if $x=\emph{green}\ge\emph{red}\ge\emph{blue}=z$}\\
-%  3-f & \text{if $x=\emph{green}\ge\emph{blue}\ge\emph{red}=z$}\\
-%  3+f & \text{if $x=\emph{blue}\ge\emph{green}\ge\emph{red}=z$}\\
-%  5-f & \text{if $x=\emph{blue}\ge\emph{red}\ge\emph{green}=z$}\\
-%  5+f & \text{if $x=\emph{red}\ge\emph{blue}>\emph{green}=z$}
+%  1-f & \text{if $x=\emph{rouge}\ge\emph{vert}\ge\emph{bleu}=z$}\\
+%  1+f & \text{if $x=\emph{vert}\ge\emph{rouge}\ge\emph{bleu}=z$}\\
+%  3-f & \text{if $x=\emph{vert}\ge\emph{bleu}\ge\emph{rouge}=z$}\\
+%  3+f & \text{if $x=\emph{bleu}\ge\emph{vert}\ge\emph{rouge}=z$}\\
+%  5-f & \text{if $x=\emph{bleu}\ge\emph{rouge}\ge\emph{vert}=z$}\\
+%  5+f & \text{if $x=\emph{rouge}\ge\emph{bleu}>\emph{vert}=z$}
 %  \end{cases}\label{eq.rgb2hsb1}
 % \end{gather}
 %
 % \medskip
 %
+% \tradini
 % This is based on \cite{smith}, \emph{RGB to HSV Algorithm (Hexcone Model)}, which reads (slightly reformulated):
 % \begin{gather}
 % r := \frac{x - \emph{red}}{x - z},\qquad

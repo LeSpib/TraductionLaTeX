@@ -35,8 +35,8 @@ Pages d'avant-propos          | :waxing_crescent_moon: | 3 / 4           |
 3. Exemples                   | :first_quarter_moon:   | 7               | 
 4. Couleurs nommées           | :first_quarter_moon:   | 3               | 
 5. Compléments techniques     | :first_quarter_moon:   | 3               | 
-6. Les formules               | :new_moon:             | 2 / 13          | Section 6.2 en cours
-Références                    | :first_quarter_moon:   | 1 / 1           | 
+6. Les formules               | :new_moon:             | 5 / 13          | Section 6.3 en cours
+Références                    | :first_quarter_moon:   | 1               | 
 Annexes                       | :new_moon:             | 2 / 6           |
 Index                         | :new_moon:             | 0 / 4           |
 
