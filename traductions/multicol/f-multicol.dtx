@@ -1,0 +1,3686 @@
+% \iffalse meta-comment
+%
+% Copyright 1993 1994 1995 1996 1997 1998 1999
+% The LaTeX3 Project and any individual authors listed elsewhere
+% in this file.
+%
+% This file is part of the Standard LaTeX `Tools Bundle'.
+% -------------------------------------------------------
+%
+% It may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.2
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%    http://www.latex-project.org/lppl.txt
+% and version 1.2 or later is part of all distributions of LaTeX
+% version 1999/12/01 or later.
+%
+% The list of all files belonging to the LaTeX `Tools Bundle' is
+% given in the file `manifest.txt'.
+%
+% \fi
+%
+% \iffalse    This is a METACOMMENT
+%
+%% Package `multicol' to use with LaTeX2e
+%% Copyright 1989-1999 Frank Mittelbach
+%%
+%%  In addition to the terms of LPPL any distributed version
+%%  (unchanged or modified) of multicol has to keep the statement
+%%  about the moral obligation for using multicol. In case of major
+%%  changes where this would not be appropriate the author of the
+%%  changed version should contact the copyright holder.
+%%
+%%
+%%  Moral obligation for using multicol:
+%%  ------------------------------------
+%%
+%%  Users of multicol who wish to include or use multicol or a modified
+%%  version in a proprietary and commercially market product are asked
+%%  under certain conditions (see below) for the payment of a license
+%%  fee.  The size of this fee is to be determined, in each instance,
+%%  by the commercial user, depending on his/her judgment of the value of
+%%  multicol for his/her product.
+%%
+%%
+%%  The conditions for this are as follows:
+%%
+%%   The producer of a proprietary and commercially market product
+%%   that involves typesetting using multicol is asked to determine
+%%   the value of a license fee for using multicol if
+%%
+%%   - the product is a document and the producer has decided to
+%%     include multicol to typeset (parts of) the document or has
+%%     directed the author of the document to include multicol (for
+%%     example, by providing a class file to be used by the author)
+%%
+%%   - the product is a LaTeX class or package that includes multicol
+%%
+%%
+%%   There is no moral obligation in case
+%%
+%%   - the product is a document but producer has not directed
+%%     the author to include multicol (in that case the moral obligation
+%%     lies with the author of the document)
+%%
+%%   - the product does not involve typesetting, e.g., consists, for
+%%     example, of distributing multicol and its documentation.
+%%
+%%   - the product is not proprietary, i.e., is made available as free
+%%     software itself (which doesn't prohibit its commercial marketing)
+%%
+%%   - multicol is used for non-commercial purposes
+%%
+%%
+%% Determinating a license fee might result in a license fee of zero
+%% (i.e., no payment) in case a producer has determined that the use
+%% of multicol has no enhancing effect on the product. This is a
+%% plausible scenario, i.e., in the above two cases the producer is
+%% only asked to evaluate the value of multicol for the product
+%% not for the payment of a license fee per se (which might or might
+%% not follow from this evaluation).
+%%
+%% The license fee, if any, can be payed either to the LaTeX3 fund
+%% (see ltx3info.txt in the base LaTeX distribution) or to the author of
+%% the program who can be contacted at
+%%
+%%     Frank.Mittelbach@latex-project.org
+%%
+%<*dtx>
+          \ProvidesFile{f-multicol.dtx}
+%</dtx>
+%<package>\NeedsTeXFormat{LaTeX2e}[1997/12/01]
+%<package>\ProvidesPackage{multicol}
+%<driver> \ProvidesFile{multicol.drv}
+% \fi
+%         \ProvidesFile{f-multicol.dtx}
+          [1999/10/21 v1.5w  multicolumn formatting (FMi)]
+%
+%
+%% \CheckSum{1439}
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+%%
+%
+%
+% \changes{v1.5n}{1997/06/05}{Int\'egration de
+%                            l'am\'elioration de la documentation,
+%                            gr\^acieusement fournie par Robin~\bsc{Fairbairns}}
+% \changes{v1.4h}{1992/06/04}{Ajout des marques de
+%                            tra\c{c}age par tracingmulticols$\ge2$}
+% \changes{v1.4a}{1992/02/11}{Ajout du traitement des
+%                            multi-colonnes en mode imbriqu\'e}
+% \changes{v1.0d}{1989/05/17}{Toutes les lignes sont
+%                            raccourcies \`a 72 ou moins}
+% \changes{v1.0e}{1989/06/21}{Red\'efinition de l'env.
+%                            description pour utiliser
+%                            \cs{descriptionmargin}\quotechar=5pt dans la
+%                             documentation}
+% \changes{v1.0f}{1989/07/11}{\cs{z@} fix\'e \`a 0~pt pour
+%                             la red\'efinition de description}
+% \changes{v1.1a}{1989/09/20}{\cs{multicolssep} chang\'e en \cs{multicolsep}.}
+%
+% \def\description{\list{}{\labelwidth 0pt \leftmargin\descriptionmargin
+%    \itemindent-\leftmargin \let\makelabel\descriptionlabel}}
+% \newdimen\descriptionmargin \descriptionmargin=5pt
+%
+% \DoNotIndex{\@M,\@Mi,\@bsphack,\@cclv,\@colht,\@currlist,\@deferlist}
+% \DoNotIndex{\@elt,\@esphack,\@floatplacement}
+% \DoNotIndex{\@ifundefined,\@ifnextchar,\@makecol}
+% \DoNotIndex{\@ne,\@outputpage,\@scolelt,\@spaces,\@tempb,\@tempcnta}
+% \DoNotIndex{\@width}
+% \DoNotIndex{\addvspace,\advance,\allowbreak}
+% \DoNotIndex{\baselineskip,\begingroup,\box,\columnsep,\copy,\count}
+% \DoNotIndex{\count@,\def,\dimen@,\divide,\docdate}
+% \DoNotIndex{\edef,\eject,\egroup,\else,\endgroup,\endinput}
+% \DoNotIndex{\fi,\fileversion,\filedate}
+% \DoNotIndex{\gdef,\global}
+% \DoNotIndex{\hbox,\hfil,\hrule,\ht,\hss}
+% \DoNotIndex{\ifdim,\ifnum,\ifvoid,\ignorespaces,\insert,\immediate}
+% \DoNotIndex{\let,\loop}
+% \DoNotIndex{\maxdepth,\message,\multiply}
+% \DoNotIndex{\newbox,\newcount,\newdimen,\newskip,\number,\newpage}
+% \DoNotIndex{\outputpenalty,\p@,\penalty}
+% \DoNotIndex{\relax,\repeat,\setbox,\skip,\space,\splitmaxdepth}
+% \DoNotIndex{\splittopskip,\string,\sixt@@n}
+% \DoNotIndex{\the,\thepage,\thr@@,\topskip,\tw@,\typeout}
+% \DoNotIndex{\unvbox,\vbox,\vfill,\vsplit,\voidb@x,\vrule}
+% \DoNotIndex{\write,\wd}
+% \DoNotIndex{\z@}
+%
+% \MakeShortVerb{\|}
+% \newcommand{\mc}{{\sf multicols}}
+% \newcommand{\TUB}{{\sl TUGboat\/}}
+% \newcommand{\TB}{{\sl\TeX book\/}}
+%
+%
+% \setcounter{StandardModuleDepth}{2}
+% \setcounter{collectmore}{3}
+%
+% \GetFileInfo{f-multicol.dtx}
+% \title{Un environnement pour composer du texte \\ sur
+% plusieurs colonnes.\thanks{Version~:~\fileversion, derni\`ere
+% r\'evision~:~\filedate}%
+% \thanks{Note~:~Ce package est distribu\'e sous des
+% conditions qui influent sur son utilisation dans un
+% contexte commercial. Cf. les d\'etails au d\'ebut du
+% fichier source.}%
+% \thanks{Titre original~: An environment for multicolumn
+% output}}
+%
+% \author{Frank~\bsc{Mittelbach}\thanks{Traduction fran\c{c}aise par Jean-Pierre~\bsc{Drucbert}
+% et Fran\c{c}oise~\bsc{Marre}-\bsc{Fournier}, du 06/03/2000.}\\
+%       {\rm m\'el~:~} cf. au d\'ebut du fichier source}
+% \date{Imprim\'e le \today}
+% \maketitle
+%
+% \begin{abstract}
+% Ce document d\'ecrit l'utilisation et l'impl\'ementation de
+% l'environnement \mc{}. Cet environnement permet de passer
+% d'un format sur une colonne \`a un format sur plusieurs
+% colonnes et inversement, sur la m\^eme page. Les notes de bas
+% de page sont trait\'ees correctement (dans la plupart des
+% cas), mais seront plac\'ees en bas de la page et non en bas
+% de chaque colonne. Le m\'ecanisme des flottants de
+% \LaTeX\ est cependant partiellement d\'esactiv\'e dans la
+% r\'ealisation actuelle. et sera ajout\'e dans une version
+% future. Pour le moment, seuls les flottants portant
+% sur toute la largeur de la page (c'est-\`a-dire les formes~$*$)
+% peuvent \^etre utilis\'es \`a l'int\'erieur de la port\'ee
+% de l'environnement.
+% \end{abstract}
+%
+%
+% \begin{multicols}{3}[\section*{Pr\'eface pour la version 1.5}]
+%   \hbadness=10000
+% Cette nouvelle version contient deux modifications
+% principales~:~\mc{} prendra maintenant en compte jusqu'\`a 10
+% colonnes et deux possibilit\'es suppl\'ementaires de
+% r\'eglage ont \'et\'e ajout\'ees \`a la routine
+% d'\'equilibrage. Cette routine v\'erifie maintenant la
+% mauvaise qualit\'e des colonnes r\'esultantes et rejette
+% les r\'esultats des calculs qui sont sup\'erieurs \`a un
+% seuil donn\'e.
+%
+% En m\^eme temps, \mc{} a \'et\'e mis \`a jour pour
+% fonctionner avec \LaTeXe{}.
+%
+% \columnbreak
+%
+% Je\footnote{Frank~\bsc{Mittelbach}} vous pr\'esente mes
+% excuses pour le niveau de documentation du code, mais mes
+% responsabilit\'es envers \LaTeXe{} m'occupent trop pour faire
+% du bon travail. J'esp\`ere que cela sera corrig\'e dans un
+% proche avenir.
+% \end{multicols}
+%
+%
+% \setcounter{collectmore}{2}
+% \begin{multicols}{3}[\section{Introduction}]
+%   \hbadness=10000
+% Passer d'une \`a deux colonnes et inversement est possible
+% en \LaTeX, mais chaque utilisation de |\twocolumn|
+% ou de |\onecolumn| d\'ebute une nouvelle page. De plus, la
+% toute derni\`ere page compos\'ee en deux colonnes n'est pas
+% \'equilibr\'ee et cela donne souvent une colonne de droite vide
+% ou presque vide. Quand j'ai commenc\'e \`a \'ecrire des
+% macros pour {\sf doc.sty} (cf. <<~The {\tt
+% doc}--Option~>>, \TUB\ volume 10~\#2, pp.~245--273), je
+% pensais qu'il serait mieux de placer l'index sur la m\^eme
+% page que la bibliographie. L'\'equilibrage de cette
+% derni\`ere page n'est pas seulement une simple question
+% d'esth\'etique, cela gagne aussi de la place, \`a condition,
+% bien s\^ur, qu'il soit possible de commencer la section
+% suivante sur la m\^eme page. Comparativement, r\'e\'ecrire
+% l'environnement d'index est facile, mais le but \'etant de
+% construire un environnement qui prenne en compte les notes
+% de bas de page, les flottants..., c'\'etait une t\^ache plus
+% ardue. Cela m'a pris un week-end entier\,\footnote{J'avais
+% commenc\'e avec l'algorithme pr\'esent\'e page~417 du \TeX
+% book. Sans cette aide, un week-end n'aurait pas \'et\'e
+% suffisant.} pour r\'eunir les quelques lignes de code
+% ci-dessous et il y a encore de grandes chances que j'aie
+% malgr\'e tout oubli\'e quelque chose.
+%
+%
+% Essayez-le et adoptez-le et, \emph{s'il
+% vous pla\^it}, envoyez vos suggestions et signalez
+% les bugs directement \`a Mainz.
+% \end{multicols}
+%
+%
+% \setcounter{collectmore}{0}
+% \begin{multicols}{3}[\section{Interface utilisateur}]
+%   \hbadness=10000
+% Pour utiliser cet environnement, il suffit de dire
+% simplement\\*[2mm]
+% \hspace*{2mm}|\begin{multicols}{|\meta{number}|}|
+% \hspace*{12mm}\meta{multicolumn text}\\
+% \hspace*{2mm}|\end{multicols}|\\[2mm]
+% o\`u \meta{number} est le nombre demand\'e de colonnes et
+% \meta{multicolumn text} peut contenir des commandes
+% \LaTeX\ arbitraires, sauf que les flottants et les
+% notes marginales ne sont pas autoris\'es dans la version
+% actuelle\,\footnote{Ceci est impos\'e par un manque de temps.
+% Pour autoriser les flottants, il faudra r\'e\'ecrire toute
+% la routine de sortie de \LaTeX.}.
+%
+%
+% \DescribeMacro\premulticols
+% Comme premi\`ere action, l'environnement {\sf multicols}
+% mesure la page courante pour d\'eterminer s'il y a assez de
+% place pour une certaine portion de sortie sur plusieurs
+% colonnes. Ceci est contr\^ol\'e par la variable \meta{dimen}
+% |\premulticols| dont la valeur peut \^etre modifi\'ee par les
+% commandes \LaTeX.
+%
+% \DescribeMacro\multicolsep
+% Si l'espace est inf\'erieur \`a |\premulticols|, une nouvelle
+% page est commenc\'ee. Sinon, un saut vertical |\vskip| de
+% hauteur |\multicolsep| est ajout\'e\,\footnote{En fait
+% l'espace ajout\'e peut \^etre plus petit car la commande
+% \cs{addvspace} est utilis\'ee. (cf. le manuel \LaTeX{}
+% pour plus d'informations sur cette commande)}.
+%
+% \DescribeMacro\postmulticols
+% Lorsque la fin de l'environnement \mc{} est atteint, un
+% m\'ecanisme analogue est employ\'e, mais nous testons
+% alors si un espace sup\'erieur \`a |\postmulticols| est
+% disponible. De nouveau nous ajoutons l'espace
+% |\multicolsep| ou commençons une nouvelle page.
+%
+% Il est souvent pratique de placer du texte en chapeau au-dessus
+% de toutes les colonnes, avant la sortie en
+% multi-colonnes, sans qu'une rupture de page ne puisse se
+% produire entre ce chapeau et ces colonnes. Pour r\'ealiser
+% cela, l'environnement \mc{} a un second argument optionnel
+% qui peut \^etre utilis\'e dans ce but. Par exemple, le texte
+% que vous lisez actuellement a commenc\'e par :
+% \begin{verbatim}
+% \begin{multicols}{3}
+% [\section{Interface
+%         utilisateur}]...
+% \end{verbatim}
+%
+% Si un tel texte est inhabituellement long (ou court) la
+% valeur de |\premulticols| peut avoir besoin d'\^etre ajust\'ee
+% pour \'eviter une mauvaise rupture de page. Nous offrons donc
+% un troisi\`eme argument qui peut \^etre utilis\'e pour
+% outrepasser la valeur par d\'efaut de |\premulticols| seulement
+% pour cette occasion. Donc si vous voulez combiner un long
+% texte sur une seule colonne avec un environnement
+% multicols, vous pourriez \'ecrire~:
+% \begin{verbatim}
+% \begin{multicols}{3}
+%     [\section{Index}
+%      Cet index contient ...]
+%     [6cm]
+%  ...
+% \end{verbatim}
+%
+% \DescribeMacro\columnsep
+% L'espace entre les colonnes est contr\^ol\'e par le param\`etre
+% de longueur |\columnsep|. La largeur des colonnes
+% individuelles est calcul\'ee automatiquement \`a partir de ce
+% param\`etre et de la valeur courante de |\linewidth|. Ici une
+% valeur de \textsf{\the\columnsep} a \'et\'e utilis\'ee.
+%
+% \DescribeMacro\columnseprule
+% La s\'eparation des colonnes par des filets verticaux est
+% obtenue en forçant le param\`etre |\columnseprule| \`a une
+% longueur positive. Si cette longueur est nulle ou n\'egative,
+% le filet est invisible. Ici elle vaut {\sf 0.4~pt}.
+%
+% \DescribeMacro\multicolbaselineskip
+% Puisque l'espacement des lignes dans des colonnes \'etroites
+% a tendance \`a devoir \^etre ajust\'e, nous fournissons aussi un
+% param\`etre \meta{skip} (longueur \'elastique) nomm\'e
+% |\multicolbaselineskip| qui sera ajout\'e au param\`etre
+% |\baselineskip| \`a l'int\'erieur de chaque environnement
+% \mc{}. Il est prudent d'utiliser ce param\`etre avec
+% pr\'ecaution ou de ne pas y toucher~;~il n'est destin\'e qu'aux
+% concepteurs de packages car m\^eme de toutes petites
+% modifications peuvent produire des bouleversements
+% inattendus dans votre document.
+%
+%
+%    \subsection{\'Equilibrage des colonnes}
+%
+% Outre les param\`etres mentionn\'es ci-dessus, d'autres sont
+% disponibles pour influencer la mise en forme des colonnes
+% produites.
+%
+% Le traitement des paragraphes en \TeX{} est contr\^ol\'e par
+% plusieurs param\`etres. L'un des plus importants est appel\'e
+% |\tolerance|~:~il contr\^ole la «~\emph{looseness}~» (c'est-\`a-dire
+% la quantit\'e d'espace blanc entre les mots). Sa valeur par
+% d\'efaut est 200 (la commande |\fussy| de \LaTeX), qui est
+% trop faible pour des colonnes \'etroites. D'autre part, la
+% d\'eclaration |\sloppy| (qui force |\tolerance| \`a
+% $10000=\infty$) est trop grande, permettant des espacements
+% vraiment trop laids\,\footnote{Regardez le paragraphe
+% suivant, qui a \'et\'e compos\'e avec la d\'eclaration
+% \cs{sloppy}}.
+%
+% \begin{sloppypar}
+% \DescribeMacro\multicoltolerance \DescribeMacro\multicolpretolerance
+% Nous utilisons donc un autre param\`etre
+% |\multicolstolerance| pour la valeur de |\tolerance| \`a
+% l'int\'erieur de l'environnement \mc{}. Sa valeur par d\'efaut
+% est 9999, qui est inf\'erieure \`a l'infini mais assez
+% «~mauvaise~» pour la plupart des paragraphes dans un
+% environnement multicolonne. Changer sa valeur doit \^etre
+% fait \emph{en dehors} de l'environnement \mc{}. Puisque
+% |\tolerance| est forc\'ee \`a |\multicolstolerance| au d\'ebut de
+% chaque environnement {\sf multicols}, on peut localement
+% outrepasser cette valeur par d\'efaut en imposant
+% \verb*+\tolerance = +\meta{valeur d\'esir\'ee}. Il existe
+% \'egalement un param\`etre |\multicolpretolerance| conservant la
+% valeur de |\pretolerance| \`a l'int\'erieur d'un environnement
+% \mc{}. Ces deux param\`etres ne sont habituellement utilis\'es
+% que par les concepteurs de packages.
+% \end{sloppypar}
+%
+% La g\'en\'eration de la sortie sur plusieurs colonnes peut \^etre
+% divis\'ee en deux parties. Dans la premi\`ere partie, nous
+% rassemblons du mat\'eriel pour la page, l'envoyons vers la
+% sortie, collectons du mat\'eriel pour la page suivante, et
+% ainsi de suite. Dans une seconde \'etape, l'\'equilibrage sera
+% fait lorsque la fin de l'environnement \mc{} sera atteint.
+% Dans la premi\`ere \'etape \TeX{} pourrait consid\'erer davantage
+% de mat\'eriel en trouvant les colonnes finales qu'il n'en
+% utilise effectivement lors de l'\'emission de la page. Ceci
+% peut provoquer un probl\`eme si une note en bas de page est
+% trouv\'ee dans la partie consid\'er\'ee, mais non utilis\'ee
+% sur la page courante.
+% Dans ce cas la note peut appara\^\i{}tre sur la page courante,
+% tandis que l'appel de note correspondant peut se trouver
+% sur la page suivante\,\footnote{La raison qui se cache
+% derri\`ere ce comportement est le caract\`ere asynchrone du
+% \textit{page\_builder} de \TeX. Cependant ceci
+% pourrait \^etre \'evit\'e en d\'efinissant des routines de sortie
+% tr\`es compliqu\'ees qui n'utilisent pas des primitives \TeX{},
+% telles que \cs{insert}, mais font tout \`a la main. Ceci n'a h\'elas
+% pas  \'et\'e fait par manque de temps. Cela d\'epasse
+% vraiment les limites d'un week-end.}
+% Donc l'environnement \mc{} donne un message
+% d'avertissement\,\footnote{et ce message sera \'emis m\^eme s'il
+% n'y a pas de notes dans cette partie du texte} chaque fois
+% qu'il est incapable d'utiliser en totalit\'e le mat\'eriel
+% consid\'er\'e jusque l\`a.
+%
+% Si vous n'utilisez pas de notes trop souvent, les risques
+% que quelque chose se passe mal sont tr\`es faibles, mais si
+% cela arrive, vous pouvez aider \TeX{} en plaçant une
+% commande |\pagebreak| dans le document final. Un autre
+% moyen pour influencer le comportement de \TeX{} \`a ce sujet
+% est offert par la variable compteur «~{\sf collectmore}~».
+% Si vous utilisez la d\'eclaration |\setcounter| pour forcer
+% ce compteur \`a un \meta{nombre}, \TeX{} consid\`erera
+% \meta{nombre} lignes en plus (ou en moins) avant de prendre
+% sa d\'ecision finale. La valeur $-1$ pourra donc r\'esoudre
+% tous vos probl\`emes au prix de colonnes un peu moins
+% optimales.
+%
+% Dans la seconde \'etape (\'equilibrage des colonnes) nous avons
+% d'autres gadgets. D'abord, vous pouvez dire |\raggedcolumns|
+% si vous n'avez pas besoin que les lignes du bas des
+% colonnes soient align\'ees. L'option |\flushcolumns| est
+% prise par d\'efaut, donc \TeX{} essaiera d'aligner les lignes
+% de base du haut et du bas de toutes les colonnes.
+%
+% De plus, vous pouvez utiliser un autre compteur, <<~{\sf
+% unbalance}~>>, en lui donnant une valeur positive
+% \meta{nombre}. Ceci rendra toutes les colonnes, sauf celle
+% la plus \`a droite, plus longues de \meta{nombre} lignes
+% qu'elles ne l'auraient \'et\'e normalement. Les «~lignes~» dans
+% ce contexte sont des lignes de texte normal (c'est-\`a-dire
+% \'ecart\'ees de |\baselineskip|)~;~ainsi, si votre colonne
+% contient des hors-texte, par exemple, vous aurez besoin
+% d'un \meta{nombre} plus grand pour d\'ecaler quelque chose
+% d'une colonne vers une autre.
+%
+% Contrairement \`a «~{\sf collectmore}~», le compteur «~{\sf
+% unbalance}~» est remis \`a z\'ero \`a la fin de l'environnement
+% afin qu'il ne s'applique qu'\`a un seul environnement \mc{}.
+%
+% Les deux m\'ethodes peuvent \^etre combin\'ees mais je conseille
+% de n'utiliser ces possibilit\'es que pour mettre la derni\`ere
+% touche \`a d'importantes publications.
+%
+% Deux nouvelles possibilit\'es de r\'eglage ont \'et\'e ajout\'ees
+% dans la version~1.5. \TeX{} permet de mesurer la
+% mauvaise qualit\'e~--~la laideur~--~d'une colonne sous forme d'une valeur
+% enti\`ere, o\`u 0 signifie optimal et toute autre valeur plus
+% haute d\'enote la pr\'esence d'une certaine quantit\'e d'espace
+% blanc en trop. 10000 est consid\'er\'e comme infiniment mauvais
+% (\TeX{} ne fait plus de distinction au-dessus de cette
+% valeur). De plus, la valeur sp\'eciale 100000 signifie un
+% d\'ebordement (c'est-\`a-dire que la colonne contient plus de
+% texte qu'il n'est possible d'y mettre).
+%
+% La nouvelle version mesure d\'esormais chaque colonne
+% engendr\'ee et ignore les solutions pour lesquelles au moins
+% une colonne a une laideur sup\'erieure \`a la valeur du compteur
+% {\sf columnbadness}. La valeur par d\'efaut pour ce compteur
+% est 10000, donc \TeX{} acceptera toutes les solutions sauf
+% celles avec d\'ebordement.
+% En donnant \`a ce ce compteur une valeur plus petite, vous
+% pouvez forcer l'algorithme \`a rechercher des solutions qui
+% n'auront pas de colonnes contenant beaucoup d'espace blanc.
+%
+% Cependant, si la valeur choisie est trop basse,
+% l'algorithme peut ne trouver aucune solution acceptable et
+% finalement il choisira la solution extr\^eme qui consiste \`a
+% placer tout le texte dans la premi\`ere colonne.
+%
+% Souvent, lorsque les colonnes sont \'equilibr\'ees, il est
+% impossible de trouver une solution qui distribue le texte
+% \'equitablement entre toutes les colonnes. Si c'est le cas,
+% habituellement la derni\`ere colonne a moins de texte que les
+% autres. Dans les premi\`eres versions, ce texte \'etait \'etir\'e
+% pour produire une colonne de m\^eme hauteur que toutes les
+% autres, donnant parfois des colonnes vraiment horribles \`a
+% voir.
+%
+% Dans la nouvelle version, cet \'etirement n'est effectu\'e que
+% si la laideur de la derni\`ere colonne n'est pas plus grande
+% que la valeur du compteur {\sf finalcolumnbadness}. Sa
+% valeur par d\'efaut est 9999, ce qui emp\^eche l'\'etirement pour
+% toutes les colonnes que \TeX{} consid\'ererait comme
+% infiniment laides. Dans ce cas, la colonne finale
+% peut \^etre plus courte, ce qui donne un bien meilleur
+% r\'esultat.
+%
+% Il y a deux autres param\`etres qui sont encore un peu
+% exp\'erimentaux~:~l'un s'appelle |\multicolovershoot| et
+% l'autre |\multicolundershoot|. Ils contr\^olent la quantit\'e
+% d'espace dont une colonne est autoris\'ee \`a \^etre «~trop
+% pleine~» ou «~trop courte~» sans affecter la laideur de la
+% colonne. Ils valent 2pt par d\'efaut.
+%
+% \subsection{Non \'equilibrage des colonnes}
+%
+% Bien que ce package ait \'et\'e \'ecrit pour r\'esoudre le probl\`eme
+% de l'\'equilibrage des colonnes, il m'a souvent \'et\'e demand\'e
+% une version dans laquelle tout l'espace blanc est
+% automatiquement plac\'e dans la (les) derni\`ere(s) colonne(s).
+% Depuis la version v1.5q ceci existe d\'esormais~: si vous
+% utilisez \texttt{multicols*} au lieu de l'environnement
+% habituel, les colonnes sur la derni\`ere page ne sont pas
+% \'equilibr\'ees. Bien s\^ur, cet environnement ne fonctionne
+% qu'au niveau le plus haut, c'est-\`a-dire \`a l'int\'erieur d'une
+% bo\^\i{}te qu'il faut \'equilibrer afin de d\'eterminer une hauteur
+% de colonne en l'absence de valeur fix\'ee.
+%
+% \subsection{Coupure manuelle des colonnes}
+%
+% Un autre demande souvent entendue \'etait: «~Comment
+% puis-je dire \`a \LaTeX{} qu'il doit couper la premi\`ere
+% colonne apr\`es cette ligne-l\`a~?~». La commande
+% |\pagebreak| (qui fonctionne avec l'option
+% \texttt{twocolumn} de \LaTeX) ne sert \`a rien ici car elle
+% terminerait la phase de collecte de \mc{} et donc toutes
+% les colonnes sur cette page. Dans la version 1.5u la
+% commande |\columnbreak| a donc \'et\'e ajout\'ee. Si elle est
+% utilis\'ee \`a l'int\'erieur d'un paragraphe, elle marque
+% la fin de la ligne courante comme point de coupure de
+% colonne souhait\'e. Vous pouvez observer son effet sur la
+% premi\`ere page\,\footnote{Dans le fichier original, la
+% rupture de colonne \'etait r\'ealis\'ee \`a la fin de la
+% premi\`ere colonne de la page 3. Cependant, pour respecter
+% l'esprit du package \mc{}, cette rupture de page \`a
+% \'et\'e d\'eplac\'ee dans le § de pr\'eface. NdT} la page
+% o\`u quelques lignes de texte ont \'et\'e artificiellement
+% forc\'ees dans la troisi\`eme colonne (ce qui a donn\'e un
+% peu d'espace blanc entre les paragraphes dans la deuxi\`eme
+% colonne).
+%
+% \subsection{\'El\'ements flottants \`a l'int\'erieur d'un environnement \mc{}}
+%
+% \`A l'int\'erieur de l'environnement \mc{}, les commandes
+% habituelles d'\'el\'ements flottants sont disponibles (sous
+% leur forme $*$) mais leur fonction est assez diff\'erente de
+% celle qu'elles avaient dans le mode deux colonnes du
+% \LaTeX{} standard. Les flottants $*$, comme {\tt figure*},
+% indiquent des \'el\'ements flottants sur toute la largeur de la
+% page qui sont trait\'es d'une mani\`ere analogue \`a celle des
+% flottants normaux en dehors de l'environnement \mc{}.
+% Cependant, il ne seront jamais imprim\'es sur la page o\`u ils
+% sont rencontr\'es. En d'autres termes, on peut influencer
+% leur positionnement en sp\'ecifiant une combinaison de {\tt
+% t}, {\tt b} et/ou {\tt p} dans leur argument optionnel,
+% mais {\tt h} ne fonctionne pas car le premier endroit
+% possible est le haut de la page suivante. Il faut aussi
+% noter que ceci signifie que le comportement de leur
+% placement est d\'etermin\'e par les valeurs de |\topfraction|,
+% etc. et non par |\dbl|...
+%
+% \subsection{Avertissements}
+%
+% Dans certaines circonstances, l'utilisation de
+% l'environnement \mc{} peut provoquer quelques
+% avertissements de la part de \TeX{} ou \LaTeX{}. Voici une
+% liste des plus importants et des causes possibles~
+% \begin{description}
+%
+% \item[] {\hspace*{-\labelsep}\tt Underfull \string\hbox\space
+%  (badness ...)}
+%
+% Comme les colonnes sont souvent tr\`es \'etroites, \TeX{} n'a
+% pas \'et\'e capable de trouver un bonne façon de couper le
+% paragraphe en lignes. «~Underfull~» signale une ligne
+% creuse mais tant que la laideur est en dessous de $10000$
+% le r\'esultat est probablement acceptable.
+%
+% \item[]
+% {\hspace*{-\labelsep}\tt Underfull \string\vbox\space ...  while
+%  \string\output\space is active}
+%
+% Si une colonne contient un caract\`ere ayant une profondeur
+% inhabituelle, par exemple une «~(~», dans la ligne du bas,
+% alors ce message peut appara\^\i{}tre. Il n'est en g\'en\'eral pas
+% significatif tant que la valeur ne d\'epasse pas quelques
+% points.
+%
+% \item[] {\hspace*{-\labelsep}\tt LaTeX Warning: I moved some lines
+%  to the next page}
+%
+% Comme cela a \'et\'e dit plus haut, \mc{} perturbe parfois la
+% num\'erotation des notes infrapaginales. Par pr\'ecaution,
+% chaque fois qu'il y a une note sur une page pour laquelle
+% \mc{} a d\^u laisser un reste pour la page suivante, cet
+% avertissement appara\^\i{}t. V\'erifiez la num\'erotation des notes
+% infrapaginales sur cette page. S'il se trouve qu'elle est
+% incorrecte, il vous faudra couper manuellement la page en
+% utilisant |\newpage| ou |\pagebreak[...]|.
+%
+% \item[] {\hspace*{-\labelsep}\tt Floats and marginpars not allowed
+%  inside `multicols' environment!}
+%
+% Ce message appara\^\i{}t si vous essayez d'utiliser une commande
+% |\marginpar| ou une forme sans \'etoile d'un environnement
+% {\sf figure} ou {\sf table}. De tels \'el\'ements flottants
+% dispara\^\i{}tront~!
+%
+% \end{description}
+%
+%
+% \subsection{Tracer la sortie}
+%
+% Pour comprendre le raisonnement qu'il y a derri\`ere les
+% d\'ecisions que prend \TeX{} lors du traitement d'un
+% environnement \mc{}, un m\'ecanisme de tra\c{c}age est offert. Si
+% vous donnez une valeur positive \meta{nombre} au compteur
+% <<~\mc{}~>>, vous obtiendrez des informations de tra\c{c}age \`a la
+% fois sur votre terminal et dans le fichier \texttt{.log}~
+% \begin{description}
+% \item [$\meta{nombre}=1$.] \TeX{} vous dira, chaque fois qu'il
+% entre ou sort de l'environnement \mc{}, le nombre de
+% colonnes sur lequel il travaille et sa d\'ecision s'il faut
+% faire une nouvelle page avant ou apr\`es l'environnement~;
+% \item [$\meta{nombre}=2$.] Dans ce cas, vous aurez en plus des
+% informations issues de la routine d'\'equilibrage~:~les
+% hauteurs essay\'ees pour les colonnes les plus \`a gauche et \`a
+% droite, des informations sur le r\'etr\'ecissement si la
+% d\'eclaration |\raggedcolumns| est effective ainsi que la
+% valeur du compteur «~{\sf unbalance}~» si elle est
+% positive.
+% \item [$\meta{nombre}= 3$.] En donnant cette valeur au
+% \meta{nombre}, l'algorithme de gestion de marques sera aussi
+% trac\'e. Cela montrera quelles marques sont trouv\'ees, quelles
+% marques sont prises en consid\'eration, etc. Pour comprendre
+% pleinement ces informations, vous aurez probablement besoin
+% de lire avec soin l'impl\'ementation.
+% \item [$\meta{number}\geq 4$.] Donner une valeur aussi \'elev\'ee
+% fera qu'en plus une |\hrule| sera plac\'ee dans la sortie,
+% pour s\'eparer la partie de texte qui a d\'ej\`a \'et\'e consid\'er\'ee
+% sur la page pr\'ec\'edente du reste. \'Evidemment cette valeur
+% \emph{ne doit pas} \^etre utilis\'ee pour l'impression
+% d\'efinitive. Elle activera aussi beaucoup plus de code de
+% correction des erreurs pour la prise en compte des marques.
+% \end{description}
+%
+%
+% \end{multicols}
+%
+% \begin{multicols}{3}[\section{Pr\'eface des anciennes versions}
+%                      \subsection{Preface de la version 1.4}]
+%   \hbadness=10000
+% \`A c\^ot\'e de la correction de bugs, comme indiqu\'e dans
+% le fichier {\sf multicol.bug}, cette nouvelle version
+% am\'eliore l'environnement en autorisant l'\'equilibrage
+% dans des contextes arbitraires. Il est maintenant possible,
+% par exemple, d'\'equilibrer un texte \`a l'int\'erieur d'un
+% \mc{} ou d'une {\sf minipage} comme montr\'e en
+% \ref{tab:newcmds}, o\`u un environnement \mc{} est
+% utilis\'e \`a l'int\'erieur d'un environnement {\sf quote}.
+% Maintenant, il est m\^eme possible d'imbriquer des
+% environnements \mc{}.
+%
+% La seule restriction pour un tel environnement \mc{} int\'erieur
+% (imbriqu\'e ou dans le mode vertical interne de \TeX{}) est
+% que de telles variations produiront une bo\^\i{}te dont le
+% mat\'eriel y sera \'equilibr\'e, et donc ne pourront \^etre
+% \`a cheval sur plusieurs pages ou colonnes.
+%
+% De plus, j'ai r\'e\'ecrit l'algorithme d'\'equilibrage pour
+% qu'il produise maintenant des r\'esultats l\'eg\`erement
+% meilleurs.
+%
+% J'ai mis \`a jour la documentation mais excusez-moi par
+% avance pour les parties <<~laiss\'ees de c\^ot\'e~>> qui
+% sont pass\'ees \`a travers les corrections.
+%
+% Une note pour les utilisateurs qui d\'esirent am\'eliorer
+% l'algorithme d'\'equilibrage de \mc{}~: la routine
+% d'\'equilibrage est maintenant constitu\'ee par une seule
+% macro appel\'ee |\balance@columns|. Cela signifie que l'on
+% peut ais\'ement essayer diff\'erentes routine
+% d'\'equilibrage en r\'e\'ecrivant cette macro. L'interface
+% d'utilisation est expliqu\'ee dans le tableau
+% \ref{tab:balance}. Il y a plusieurs am\'eliorations
+% possibles, on peut penser \`a l'int\'egration de la
+% fonction |\badness| de \TeX3, d\'efinir un algorithme plus
+% rapide de recherche de la bonne hauteur de colonne, etc. Si
+% quelqu'un pense qu'il/elle a un solution d'am\'elioration,
+% je serais heureux de le savoir. Mais, s'il vous plait,
+% respectez le copyright et de changez pas {\sf multicol.dtx}
+% directement~!
+%   \begin{table*}
+%    \begin{quote}
+%    \begin{multicols}{2}
+%     \raggedcolumns
+% La macro |\balance@columns| qui contient le code pour
+% \'equilibrer le mat\'eriel rassembl\'e, est une macro sans
+% param\`etres. Elle suppose que le mat\`eriel \`a \'equilibrer
+% est stock\'e dans la bo\^\i{}te |\mult@box| qui est une
+% |\vbox|. Elle <<~connait~>> aussi tous les param\`etres
+% fix\'es par l'environnement \mc{}, comme |\col@number|,
+% etc. Elle peut aussi supposer que |\@colroom| est
+% l'espace encore disponible dans la page en cours.
+%
+% Quand elle a fini, elle doit retourner les colonnes
+% individuelles dans des bo\^\i{}tes appropri\'ees pour la
+% suite du traitement par |\page@sofar|. Cela signifie que la
+% colonne gauche devra \^etre stock\'ee dans la bo\^\i{}te
+% registre |\mult@gfirstbox|, la suivante dans le registre
+% |\mult@firstbox|${}+2$, \ldots, seule la derni\`ere, par
+% exception, dans le registre |\mult@grightbox|. En outre,
+% elle doit fixer les deux macros |\kept@firstmark| et
+% |\kept@botmark| pour r\'ecup\'erer les valeurs des marques
+% initiales et du bas comme trouv\'ees dans les colonnes
+% individuelles. Il y a quelques fonctions d'aide dans la
+% section~\ref{sec:v14} qui peuvent \^etre utilis\'ees pour
+% cela. Donner les marques correctes <<~\`a la main~>> n'est
+% pas trivial et il peut \^etre n\'ecessaire de jeter un coup
+% d'\oe{}il \`a la documentation et \`a l'impl\'ementation de
+% |\balance@columns| avant d'essayer \`a nouveau.
+%    \end{multicols}
+%    \end{quote}
+%    \vspace*{-3ex}
+%    \vspace*{-0ex}
+%    \caption{Description de l'interface de \cs{balance@columns}}
+%    \label{tab:balance}
+%   \end{table*}
+% \end{multicols}
+%
+% \begin{multicols}{3}[\subsection{Pr\'eface de la version 1.2}]
+%   \hbadness=10000
+% Apr\`es que l'article sur l'environnement \mc{} a \'et\'e
+% publi\'e dans \TUB\ 10\#3, j'ai re\c{c}u de nombreuses
+% demandes pour ces macros. Quoi qu'il en soit, j'ai aussi
+% re\c{c}u une version modifi\'ee de mon fichier style, en
+% m\^eme temps qu'une lettre me demandant si je voulais
+% inclure les changements pour donner de meilleurs
+% r\'esultats de mise en forme des paragraphes dans les cas
+% de lignes \'etroites. Les principales diff\'erences avec
+% mon fichier style original \'etaient des param\`etres
+% additionnels (comme |\multicoladjdemerits| \`a utiliser pour
+% |\adjdemerits|, etc) qui pouvaient influencer l'algorithme
+% de rupture de lignes.
+%
+% Mais, en fait, remettre \`a z\'ero de tels param\`etres, ou
+% m\^eme pire leur donner une valeur n\'egative, ne donnera
+% pas de meilleures coupures de lignes dans l'environnement
+% \mc{}. L'algorithme de rupture de ligne de \TeX{} n'envisagera
+% que les coupures de lignes potentielles qui peuvent
+% \^etre r\'ealis\'ees sans induire une laideur sup\'erieure \`a la
+% valeur courante de |\tolerance| (ou |\pretolerance| pour la
+% premi\`ere passe). Si ce n'est pas possible, alors, en
+% dernier ressort, \TeX{} produira des bo\^\i{}tes
+% d\'ebordantes. Tous ces points de rupture possibles (et
+% seulement ceux-la) seront pris en compte et, finalement,
+% la s\'equence qui sera la moins p\'enalisante sera choisie.
+% Cela signifie qu'une valeur de $-1000$ pour |\adjdemerits|
+% enjoint \`a \TeX{} de pr\'ef\'erer des lignes visiblement
+% incompatibles plut\^ot que de produire de meilleures
+% ruptures de lignes.
+%
+% Cependant, avec \TeX{}~3.0, il est possible de produire des
+% ruptures de lignes convenables m\^eme dans de petites
+% colonnes, en fixant |\emergencystretch| \`a une valeur
+% appropri\'ee. J'ai impl\'ement\'e une version qui est
+% capable de fonctionner \`a la fois pour l'ancien et le
+% nouveau \TeX{} (en fait, elle ignorera simplement la
+% nouvelle caract\'eristique si elle n'est pas disponible).
+% Le calcul de |\emergencystretch| est probablement
+% incorrect. J'ai fait quelques tests, mais, bien s\^ur, on
+% aura beaucoup plus d'exp\'erience avec les nouvelles
+% possibilit\'es pour atteindre la qualit\'e maximum.
+%
+% La version~1.1a a une charmante <<~caract\'eristique~>>~:
+% la punition pour l'utilisation des flottants interdits
+% \'etait leur suppression d\'efinitive \`a partir de la
+% |\@freelist| de \LaTeX{}, de telle sorte qu'apr\`es quelques
+% |\marginpar| dans l'environnement \mc{}, les
+% flottants \'etaient d\'esactiv\'es pour toujours (Merci \`a
+% Chris~\bsc{Rowley} pour l'avoir remarqu\'e). J'ai
+% enlev\'e ce dysfonctionnement et, en m\^eme temps,
+% d\'ecid\'e de permettre qu'au moins les flottants
+% puissent \^etre \`a cheval sur toutes les colonnes,
+% c'est-\`a-dire, produits par l'environnement
+% |figure*|. Vous pouvez voir cette nouvelle fonctionnalit\'e
+% dans le tableau~\ref{tab:newcmds} qui a \'et\'e ins\'er\'e
+% ici m\^eme.
+%    \begin{table*}
+%     \small
+%     \setlength{\multicolsep}{0pt}
+%     \begin{quote}
+%      \begin{multicols}{2}
+%         |\setemergencystretch|~: C'est un point d'entr\'ee pour
+%         les utilisateurs qui aiment jouer finement avec les r\'eglages.
+%         Il est suppos\'e
+%         fixer le registre |\emergencystretch| \meta{dimen}
+%         fourni par \TeX{}~3.0. Le premier argument est le
+%         nombre de colonnes et le second la |\hsize|
+%         courante. Pour l'instant, la d\'efinition par
+%         d\'efaut est $4~\mbox{\tt pt} \times |#1|$,
+%         c'est-\`a-dire que |\hsize| n'est pas utilis\'e
+%         du tout. Mais, il y a peut-\^etre de meilleures
+%         formules.
+%
+%         \setlength{\emergencystretch}{20pt}
+%         |\set@floatcmds|~: C'est le point d'entr\'ee pour les experts
+%         qui aiment impl\'ementer un m\'ecanisme complet de
+%         traitement des flottants pour l'environnement
+%         \mc{}. Le |@| dans le nom devrait signaler que ce
+%         ne sera pas tr\`es facile.
+%     \end{multicols}
+%    \end{quote}
+%    \vspace*{-1ex}
+%    \vspace*{-0ex}
+%    \caption[]{Les nouvelles commandes pour {\sf
+%               multicol.sty}, version~1.2.
+%               Les deux commandes pourraient \^etre
+%               supprim\'ees si de bonnes solutions \`a ces
+%               probl\`emes non r\'esolus sont trouv\'ees.
+%               J'esp\`ere que ces commandes emp\^echeront que
+%               des styles semblables d\'eriv\'es de celui-l\`a
+%               ne se prom\`enent dans la nature.}
+%    \label{tab:newcmds}
+%    \end{table*}
+% Cependant, des flottants dans les colonnes uniques
+% sont toujours interdits et je ne pense pas que j'aurai le
+% temps de m'attaquer \`a ce probl\`eme dans un proche
+% avenir. \`A tous ceux qui veulent essayer~: attendez
+% \TeX{}~3.0. Il a quelques caract\'eristiques qui rendront
+% la vie plus facile dans un environnement multi-colonne.
+% Toutefois, nous travaillons ici \`a la pointe des
+% possibilit\'es de \TeX{}, et
+% des solutions vraiment parfaites n\'ecessiteraient une
+% approche diff\'erente de celle qui \'etait r\'ealis\'ee dans le
+% {\it page\_builder}\,\footnote{c'est la partie de \TeX{} qui
+% d\'ecoupe le texte courant en pages, se charge de
+% l'insertion des flottants, des notes, de la composition des
+% en-t\^etes, ...} de \TeX{}.
+%
+% Le texte ci-dessous est presque inchang\'e, j'ai seulement
+% ajout\'e de la documentation aux endroits o\`u le nouveau code
+% a \'et\'e ins\'er\'e.
+% \end{multicols}
+%
+% \changes{v1.5l}{1996/01/13}{Fait de gros efforts pour
+% expliquer les r\'ef\'erences irr\'esolues si
+% \cs{OnlyDescription} est utilis\'e}
+%
+% \StopEventually{\PrintIndex \PrintChanges
+%   \ifx\Finale\relax
+%    \typeout{**********************************}
+%    \typeout{* Info: Typesetting this document with
+%                     \protect\OnlyDescription\space will}
+%    \typeout{* Info: result in one unresolved
+%                     reference to `sec:v14'.}
+%    \typeout{* Info: --- tough, it's just not there in this case!}
+%    \typeout{**********************************}
+%   \fi
+%  }
+%
+%
+% \begin{multicols}{2}[\section{L'impl\'ementation}
+%         Nous sortons maintenant du mode multi-colonne pour
+%         montrer les capacit\'es de cet environnement (et
+%         les mauvaises d\'ecisions de mise en page)
+%      \subsection{Le fichier pilote de documentation}
+%         ][10\baselineskip]
+%
+%   \hbadness=10000
+%
+%
+% Le petit bout de code suivant contient le fichier pilote de
+% documentation de \TeX{}, \emph{i.e.} le fichier qui
+% produira la documentation que vous \^etes en train de lire.
+% Il sera extrait de ce fichier par le programme {\tt
+% docstrip}.
+% Puisque c'est le premier code dans ce fichier, on peut
+% produire la documentation simplement en ex\'ecutant
+% \LaTeX{} sur le fichier \texttt{.dtx}.
+%    \begin{macrocode}
+%<*driver>
+\documentclass{ltxdoc}
+%    \end{macrocode}
+% Nous utilisons l'option \texttt{balancingshow} quand nous
+% chargeons \mc{} pour que le tra\c{c}age complet soit
+% produit. Cela doit \^etre fait avant que le package \texttt{doc} ne
+% soit charg\'e, puisque \texttt{doc} exige \mc{} sans aucune
+% option.
+%    \begin{macrocode}
+\usepackage{multicol}[1999/05/25]
+\usepackage{doc}
+%    \end{macrocode}
+% Tout d'abord, nous fixons la mise en page convenable pour
+% cet article.
+%    \begin{macrocode}
+\setlength{\textwidth}{39pc}
+\setlength{\textheight}{54pc}
+\setlength{\parindent}{1em}
+\setlength{\parskip}{0pt plus 1pt}
+\setlength{\oddsidemargin}{0pc}
+\setlength{\marginparwidth}{0pc}
+\setlength{\topmargin}{-2.5pc}
+\setlength{\headsep}{20pt}
+\setlength{\columnsep}{1.5pc}
+%    \end{macrocode}
+% Nous voulons un filet entre les colonnes.
+%    \begin{macrocode}
+\setlength\columnseprule{.4pt}
+%    \end{macrocode}
+% Nous voulons aussi nous assurer que le nouvel environnement
+% \mc{} trouve assez de place \`a la fin de la page.
+%    \begin{macrocode}
+\setlength\premulticols{6\baselineskip}
+%    \end{macrocode}
+% Lors de l'\'equilibrage des colonnes, nous ne tenons aucun compte
+% des solutions trop mauvaises. De plus, si la derni\`ere
+% colonne est trop mauvaise, nous la composons sans
+% \'etirement.
+%    \begin{macrocode}
+\setcounter{columnbadness}{7000}
+\setcounter{finalcolumnbadness}{7000}
+%    \end{macrocode}
+% L'index est cens\'e appara\^\i{}tre sur quatre colonnes. Et
+% nous ne montrons pas les noms des macros dans la marges.
+%    \begin{macrocode}
+\setcounter{IndexColumns}{4}
+\let\DescribeMacro\SpecialUsageIndex
+\let\DescribeEnv\SpecialEnvIndex
+\renewcommand\PrintMacroName[1]{}
+\CodelineIndex
+%\DisableCrossrefs           % Partial index
+\RecordChanges               % Change log
+%    \end{macrocode}
+% Les num\'eros de lignes sont tr\`es petites pour cet
+% article.
+%    \begin{macrocode}
+\renewcommand{\theCodelineNo}
+  {\scriptsize\rm\arabic{CodelineNo}}
+\settowidth\MacroIndent{\scriptsize\rm 00\ }
+%</driver>
+%    \end{macrocode}
+% \iffalse
+% Ajout pour la traduction:
+%    \begin{macrocode}
+%<*driver>
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage[frenchb]{babel}
+%</driver>
+%    \end{macrocode}
+% \fi
+%    \begin{macrocode}
+%<*driver>
+\begin{document}
+  \typeout
+   {****************************************
+ ^^J* Expect some Under- and overfull boxes.
+ ^^J****************************************}
+   \DocInput{f-multicol.dtx}
+\end{document}
+%</driver>
+%    \end{macrocode}
+%
+%
+% \end{multicols}
+%
+% \begin{multicols}{2}[\subsection{Identification et
+%                      ex\'ecution des options}]
+%
+%
+% Nous commen\c{c}ons par identifier le package. Puisque son
+% utilisation requiert des caract\'eristiques seulement
+% disponibles dans \LaTeXe{}, nous nous assurons que ce format
+% est disponible (maintenant, cela est fait plus t\^ot dans
+% le fichier).
+%    \begin{macrocode}
+%<*package>
+% \NeedsTeXFormat{LaTeX2e}
+% \ProvidesPackage{multicol}[..../../..
+%    v... multicolum formatting]
+%    \end{macrocode}
+%
+%^^A \subsection{Ex\'ecution des options}
+%
+% Ensuite, nous d\'eclarons les options prises en charge par
+% \mc{}. Le mode \texttt{twocolumn} et \mc{} ne fonctionnent
+% pas ensemble, donc nous mettons en garde contre des
+% probl\`emes possibles. Quoi qu'il en soit, puisque nous
+% pouvons revenir au mode |\onecolumn| dans lequel \mc{}
+% fonctionne, nous n'entra\^\i{}nons pas d'erreur.
+%    \begin{macrocode}
+\DeclareOption{twocolumn}
+   {\PackageWarning{multicol}{May not work
+             with the twocolumn option}}
+%    \end{macrocode}
+% Le tra\c{c}age est fait grace \`a un compteur. Cependant,
+% il est \'egalement possible d'appeler le tra\c{c}age en
+% utilisant les options d\'eclar\'ees ci-dessous.
+%    \begin{macrocode}
+\newcount\c@tracingmulticols
+\DeclareOption{errorshow}
+    {\c@tracingmulticols\z@}
+\DeclareOption{infoshow}
+    {\c@tracingmulticols\@ne}
+\DeclareOption{balancingshow}
+    {\c@tracingmulticols\tw@}
+\DeclareOption{markshow}
+    {\c@tracingmulticols\thr@@}
+\DeclareOption{debugshow}
+    {\c@tracingmulticols5\relax}
+\ProcessOptions
+%    \end{macrocode}
+%
+%
+% \end{multicols}
+%
+% \begin{multicols}{2}[\subsection{Ouvrir et
+%                      fermer l'environnement \mc{} }]
+%
+% \begin{macro}{\multicols}
+% Comme pr\'ecis\'e pr\'ec\'edemment, l'environnement \mc{} a
+% un argument obligatoire (le nombre de colonnes) et jusqu'\`a
+% deux arguments optionnels. Nous commen\c{c}ons par lire le
+% nombre de colonnes dans le registre |\col@number|.
+%    \begin{macrocode}
+\def\multicols#1{\col@number#1\relax
+%    \end{macrocode}
+% Si l'utilisateur oublie l'argument, \TeX{} se plaindra de
+% l'absence d'un nombre \`a ce point. Le m\'ecanisme de
+% r\'eparation d'erreur utilisera ensuite z\'ero, qui n'est
+% pas un bon choix dans ce cas. Donc, nous devons maintenant
+% tester si tout est correct. Le minimum est de deux colonnes
+% pour le moment.
+% \changes{v1.3b}{1990/10/09}{Minimum de deux colonnes}
+%    \begin{macrocode}
+  \ifnum\col@number<\tw@
+     \PackageWarning{multicol}%
+      {Using `\number\col@number'
+       columns doesn't seem a good idea.^^J
+       I therefore use two columns instead}%
+     \col@number\tw@ \fi
+%    \end{macrocode}
+% Nous avons seulement assez de registres de bo\^\i{}te pour
+% dix colonnes, donc nous avons besoin de v\'erifier que
+% l'utilisateur n'en demande pas plus.
+% \changes{v1.4k}{1992/06/27}{Maximum de 5 colonnes (temporaire)}
+% \changes{v1.5a}{1992/11/04}{Permet \`a nouveau 10 colonnes}
+%    \begin{macrocode}
+  \ifnum\col@number>10
+     \PackageError{multicol}%
+      {Too many columns}%
+      {Current implementation doesn't
+       support more than 10 columns.%
+       \MessageBreak
+       I therefore use 10 columns instead}%
+     \col@number10 \fi
+%    \end{macrocode}
+% \`A l'int\'erieur de l'environnement, nous avons besoin
+% d'une version sp\'eciale de la commande fondamentale |\@footnotetext|
+% puisque l'original d\'efinit |\hsize| pour |\columnwidth|
+% ce qui n'est pas correct dans l'environnement \mc.
+% Ici, |\columnwidth| se r\'ef\`ere \`a la largeur d'une
+% colonne unique et la note de bas de page doit \^etre de
+% longueur |\textwidth|. Puisque |\@footnotetext| a une
+% d\'efinition diff\'erente dans l'environnement minipage,
+% nous ne le red\'efinissons pas directement. \`A la
+% place, nous fixons localement |\columnwidth| \`a |\textwidth|
+% et appelons la d\'efinition originale (courante) stock\'ee
+% dans |\orig@footnotetext|.
+% \changes{v1.5p}{1997/12/14}{Red\'efinition de \cs{@footnotetext}
+%                           seulement \`a l'int\'erieur de l'env. rapport pr/2689.}
+% \changes{v1.5r}{1998/08/17}{Utilisation de \cs{@footnotetext}
+%                            mais avec un changement local
+%                            de \cs{columnwidth}.}
+% \changes{v1.5w}{1999/10/21}{\cs{@footnotetext} rendu plus
+%                             long pour permettre des notes de bas de page
+%                             multi-paragraphe.}
+%    \begin{macrocode}
+     \let\orig@footnotetext\@footnotetext
+     \long\def\@footnotetext##1{\begingroup
+         \columnwidth\textwidth
+         \orig@footnotetext{##1}\endgroup}%
+%    \end{macrocode}
+% Maintenant, nous pouvons rechercher, en toute s\'ecurit\'e,
+% les arguments optionnels.
+%    \begin{macrocode}
+  \@ifnextchar[\mult@cols{\mult@cols[]}}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\mult@cols}
+% La macro |\mult@cols| saisit le premier argument optionnel
+% (s'il existe) et recherche le second.
+%    \begin{macrocode}
+\def\mult@cols[#1]{\@ifnextchar[%
+%    \end{macrocode}
+% Cet argument doit \^etre une \meta{dimen} indiquant
+% l'espace libre minimum n\'ecessaire sur la page courante
+% pour commencer l'environnement. Si l'utilisateur n'en
+% fournit pas, nous utilisons |\premulticols| par d\'efaut.
+%    \begin{macrocode}
+  {\mult@@cols{#1}}%
+  {\mult@@cols{#1}[\premulticols]}}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\mult@@cols}
+% Apr\`es avoir enlev\'e tous les arguments de l'entr\'ee, nous
+% sommes capables de commencer avec |\mult@@cols|.
+%    \begin{macrocode}
+\def\mult@@cols#1[#2]{%
+%    \end{macrocode}
+% La premi\`ere chose que nous faisons est de d\'ecider si,
+% oui ou non, il y a un environnement multicol non li\'e,
+% \emph{i.e.} \`a cheval sur plusieurs pages ou compos\'e
+% dans une bo\^\i{}te. Si nous sommes en mode
+% <<~int\'erieur~>> de \TeX{} (par exemple, d\'ej\`a dans une
+% bo\^\i{}te), alors nous avons une version embo\^\i{}t\'ee
+% de multicol et par cons\'equent, nous fixons
+% |@boxedmulticols| \`a vrai. \mc{} doit d\'emarrer en mode
+% vertical. Si nous n'y sommes pas d\'ej\`a, nous le
+% for\c{c}ons maintenant avec |\par| puisque, autrement, le
+% test de mode <<~int\'erieur~>> ne sera pas fait pas si nous
+% sommes dans une bo\^\i{}te.
+% \changes{v1.4f}{1992/04/28}{\cs{par} ajout\'e pour
+%                            autoriser correctement les tests internes}
+%    \begin{macrocode}
+  \par
+  \ifinner \@boxedmulticolstrue
+%    \end{macrocode}
+% Autrement, nous v\'erifions |\doublecol@number|. Ce compteur est
+% \`a z\'ero \`a l'ext\'erieur de l'environnement
+% multicol mais positif \`a l'int\'erieur (cela arrive un
+% petit peu plus tard). Dans le second cas, nous avons besoin
+% de composer les multicolonnes courantes aussi en <<~mode
+% embo\^\i{}t\'e~>> et donc de changer le commutateur en
+% cons\'equence.
+%    \begin{macrocode}
+  \else
+    \ifnum \doublecol@number>\z@
+       \@boxedmulticolstrue
+    \fi
+  \fi
+%    \end{macrocode}
+% Puis nous regardons si des statistiques sont demand\'ees~:
+%    \begin{macrocode}
+  \mult@info\z@
+      {Starting environment with
+       \the\col@number\space columns%
+%    \end{macrocode}
+% En mode embo\^\i{}t\'e, nous ajoutons quelques info.
+% suppl\'ementaires.
+% \changes{v1.4f}{1992/04/28}{\cs{on@line} ajout\'e pour les info. de tra\c{c}age}
+%    \begin{macrocode}
+        \if@boxedmulticols\MessageBreak
+           (boxed mode)\fi
+      }%
+%    \end{macrocode}
+% Puis nous mesurons la page courante pour voir si une partie
+% utilisable de l'environnement multicol peut \^etre
+% compos\'ee. Cette routine peut \'ventuellement commencer
+% une nouvelle page.
+% \changes{v1.4a}{1992/02/14}{Ajout des accolades oubli\'ees}
+%    \begin{macrocode}
+   \enough@room{#2}%
+%    \end{macrocode}
+% Maintenant nous sortons le premier argument et produisons
+% un espace vertical au-dessus des colonnes (Notez que cet
+% argument correspond au premier argument optionnel de
+% l'environnement {\sf multicols}). Dans plusieurs versions,
+% cet argument \'etait compos\'e dans un groupe pour donner
+% un effet similaire \`a celui de |\twocolumn[..]| dans
+% lequel l'argument est aussi implicitement entour\'e de
+% crochets. Cependant, ceci entre en conflit avec des changements
+% locaux r\'ealis\'es par des instructions comme les commandes de
+% sectionnement (qui rendent compte de la plupart des commandes
+% utilis\'ees dans cet argument), g\^achant l'espacement
+% vertical, etc., plus tard dans le document, de telle sorte qu'\`a partir
+% de la version v1.5q, cet argument est de nouveau compos\'e dans un
+% niveau ext\`erieur.
+% \changes{v1.4e}{1992/03/16}{Arg. optionnel compos\'e dans le groupe}
+% \changes{v1.5q}{1998/01/19}{Et, de nouveau, suppression du groupe six ans plus tard}
+%    \begin{macrocode}
+   #1\par\addvspace\multicolsep
+%    \end{macrocode}
+% Nous commen\c{c}ons un nouveau niveau de groupement pour
+% cacher tous les changements suivants (r\'ealis\'es dans |\prepare@multicols|
+% par exemple).
+%    \begin{macrocode}
+   \begingroup
+     \prepare@multicols
+%    \end{macrocode}
+% Si nous sommes en mode embo\^\i{}t\'e, nous ouvrons
+% maintenant une bo\^\i{}te pour y composer tout le mat\'eriel
+% \`a partir du corps multicolonne, sinon nous poursuivons
+% simplement.
+% \changes{v1.4g}{1992/05/07}{\cs{global} est probablement mauvais mais au
+%                             moins inutile}
+%    \begin{macrocode}
+     \if@boxedmulticols
+       \setbox\mult@box\vbox\bgroup
+%    \end{macrocode}
+% \changes{v1.5?}{1994/?/?}{Penalit\'e d\'eplac\'ee plus loin}
+% Ici, nous avons peut-\^etre \`a r\'einitialiser des
+% param\`etres ; peut-\^etre |\@parboxrestore| serait la bonne
+% action, mais nous le laissons, pour le moment.
+% \changes{v1.4l}{1992/08/17}{\cs{@totalleftmargin} maintenant dans \cs{prepare@multicols}}
+%    \begin{macrocode}
+     \fi
+%    \end{macrocode}
+% Nous finissons par supprimer les espaces initiaux.
+%    \begin{macrocode}
+     \ignorespaces}
+%    \end{macrocode}
+% \end{macro}
+%
+%  \begin{macro}{\if@boxedmulticols}
+% Ici est le commutateur et la bo\^\i{}te pour le code des
+% multicolonnes <<~embo\^\i{}t\'ees~>>.
+%    \begin{macrocode}
+\newif\if@boxedmulticols
+\@boxedmulticolsfalse
+\newbox\mult@box
+%    \end{macrocode}
+%  \end{macro}
+%
+% \begin{macro}{\enough@room}
+% \changes{v1.0c}{1989/05/12}{Penalit\'e 0 ajout\'ee pour vider la liste de
+%                            contribution.}
+% La macro |\enough@room| utilis\'ee ci-dessous n'est pas
+% parfaite mais fonctionne raisonnablement bien dans ce
+% contexte. Nous mesurons l'espace libre sur la page courante
+% en soustrayant |\pagetotal| de |\pagegoal|. Ce n'est pas
+% totalement correct puisque il ne prend pas en compte le
+% <<~retr\'ecissement~>> (\emph{i.e.} |\pageshrink|). La
+% <<~r\'ecente liste de contribution~>> pourrait \^etre
+% non-vide, donc nous commen\c{c}ons avec |\par| et une
+% p\'enalit\'e implicite\,\footnote{cf. la documentation
+% de \cs{endmulticols} pour plus de d\'etails}.
+% En fait, nous utilisons |\addpenalty| pour nous assurer
+% qu'un  |\addvspace| suivant <<~verra~>> l'espace vertical
+% qui pourrait \^etre pr\'esent.
+% L'utilisation de |\addpenalty| aura pour cons\'equence que
+% tous les items, provenant des contributions r\'ecentes,
+% seront d\'eplac\'es dans la liste verticale principale et
+% la valeur de |\pagetotal| sera correctement mise \`a jour.
+% Cependant, la p\'enalit\'e sera plac\'ee devant tout morceau
+% de glue avec pour r\'esultat que la liste verticale
+% principale sera d\'ej\`a d\'ebordante m\^eme si \TeX{}
+% n'appelle pas la routine de sortie.
+% \changes{v1.3b}{1990/10/09}{R\'ealise \cs{penalty} avec \cs{addpenalty}}
+% \changes{v1.4e}{1992/03/16}{Mais ignore \cs{@nobreak} dans \cs{addpenalty}}
+%    \begin{macrocode}
+\def\enough@room#1{%
+%    \end{macrocode}
+% Mesurer a uniquement un sens quand nous ne sommes pas en
+% <<~mode embo\^\i{}t\'e~>>, donc la routine ne fait rien si
+% le commutateur est \`a vrai.
+%    \begin{macrocode}
+   \if@boxedmulticols\else
+   \par
+%    \end{macrocode}
+%    \label{mac:enoughroom}
+% Pour vider la liste de contribution, la premi\`ere version
+% contenait une p\'enalit\'e z\'ero, mais cela avait pour
+% cons\'equence que |\addvspace| ne pouvait d\'etecter la
+% glue pr\'ec\'edente. Donc, ceci a \'et\'e chang\'e en |\addpenalty|.
+% Cela s'est av\'er\'e cependant insuffisant puisque |\addpenalty|
+% n'ajoutera pas de p\'enalit\'e quand |@nobreak| est vrai.
+% Donc, nous for\c{c}ons localement ce commutateur \`a faux.
+% Il peut en r\'esulter une rupture entre le texte
+% pr\'ec\'edent et le d\'ebut de l'environnement
+% multicol, mais cela semble acceptable puisqu'il y a un
+% argument optionnel pr\'ecis\'ement pour cette raison.
+%    \begin{macrocode}
+   \bgroup\@nobreakfalse\addpenalty\z@\egroup
+   \page@free \pagegoal
+   \advance \page@free -\pagetotal
+%    \end{macrocode}
+% Pour \^etre capable de sortir la valeur, nous avons besoin
+% de l'assigner pr\'ealablement \`a un registre puisqu'elle
+% pourra\^\i{}t \^etre un registre (par d\'efaut), auquel cas
+% il nous faudrait utiliser |\the|, ou elle
+% pourra\^\i{}t \^etre une valeur \`a part enti\`ere et alors
+% utiliser |\the| serait mauvais.
+% \changes{v1.5e}{1994/05/26}{Assigne arg. pour rendre le registre
+%                             capable de sortir la valeur}
+%    \begin{macrocode}
+     \@tempskipa#1\relax
+%    \end{macrocode}
+% Maintenant nous testons si les informations de tra\c{c}age
+% sont demand\'ees~:
+%    \begin{macrocode}
+   \mult@info\z@
+       {Current page:\MessageBreak
+        height=%
+        \the\pagegoal: used \the\pagetotal
+        \space -> free=\the\page@free
+        \MessageBreak
+        needed \the\@tempskipa
+              \space(for #1)}%
+%    \end{macrocode}
+% Notre derni\`ere action est de forcer un saut de page s'il
+% ne reste pas assez de place.
+%    \begin{macrocode}
+   \ifdim \page@free <#1\newpage \fi
+  \fi}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\prepare@multicols}
+% Lors de la pr\'eparation de la sortie multicolonne,
+% plusieurs choses sont \`a faire.
+%    \begin{macrocode}
+\def\prepare@multicols{%
+%    \end{macrocode}
+% Nous commen\c{c}ons par sauver la valeur courante de
+% |\@totalleftmargin| et puis remettons \`a z\'ero |\parshape|
+% dans le cas o\`u nous sommes \`a l'int\'erieur de quelque
+% environnement de liste. L'indentation convenable pour
+% l'environnement \mc{} dans un tel cas sera produite par le
+% d\'eplacement du r\'esultat vers la droite par la commande
+%  |\multicol@leftmargin|. Si nous voulions
+%  utiliser directement la valeur de |\@totalleftmargin|
+%  alors les listes \`a l'int\'erieur d'un environnement
+%  \mc{} pourra\^\i{}ent provoquer un d\'ecalage de la sortie.
+% \changes{v1.4l}{1992/08/17}{sauvegarde de \cs{@totalleftmargin}}
+%    \begin{macrocode}
+  \multicol@leftmargin\@totalleftmargin
+  \@totalleftmargin\z@
+  \parshape\z@
+%    \end{macrocode}
+% Nous d\'efinissons \'egalement le registre |\doublecol@number|
+% pour un usage ult\'erieur. Ce registre doit contenir $2\times |\col@number|$.
+% Il indique aussi que nous sommes dans un environnement
+% \mc{} comme pr\'ecis\'e ci-dessus.
+% \changes{v1.5a}{1992/11/04}{Ajout d'offset \`a \cs{doublecolnumber}}
+%    \begin{macrocode}
+  \doublecol@number\col@number
+  \multiply\doublecol@number\tw@
+  \advance\doublecol@number\mult@rightbox
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+  \if@boxedmulticols
+    \let\l@kept@firstmark\kept@firstmark
+    \let\l@kept@botmark\kept@botmark
+    \global\let\kept@firstmark\@empty
+    \global\let\kept@botmark\@empty
+  \else
+%    \end{macrocode}
+% Nous ajoutons une bo\^\i{}te vide \`a la liste verticale
+% principale pour nous assurer que nous prenons toutes les
+% insertions (remises plus tard ou ins\'er\'ees en haut de la
+% page). Sinon, il pourrait arriver que |\eject| soit
+% supprim\'e sans appel de la routine de sortie. Dans cette
+% routine de sortie, nous enlevons de nouveau cette
+% bo\^\i{}te. De nouveau, le code est appliqu\'e seulement si
+% nous sommes dans la liste verticale principale et non dans
+% une bo\^\i{}te.
+% Cependant, ce n'est pas suffisant pour annuler
+% l'interligne, nous devons aussi effacer |\topskip| avant
+% d'ajouter cette bo\^\i{}te, puisque |\topskip| est toujours
+% ins\'er\'e avant la premi\`ere bo\^\i{}te d'une page, ce qui
+% pourrait nous laisser avec un espace suppl\'ementaire de |\topskip|
+% si \mc{} commence sur une nouvelle feuille.
+% \changes{v1.3c}{1991/03/03}{\cs{null} ins\'er\'e et enlev\'e pour la sortie}
+% \changes{v1.4a}{1992/02/11}{Code conditionnel pour l'ajout du mode d'embo\^\i{}tage.}
+% \changes{v1.4o}{1992/11/22}{\cs{topskip} remis localement \`a z\'ero.}
+%    \begin{macrocode}
+    \nointerlineskip {\topskip\z@\null}%
+    \output{%
+      \global\setbox\partial@page\vbox
+        {%
+%    \end{macrocode}
+% Maintenant, nous devons nous assurer que nous prenons en
+% compte une situation particuli\`ere qui pourrait causer de
+% la perte de texte~! Si l'utilisateur a une \'enorme
+% quantit\'e de mat\'eriel vertical dans le premier argument
+% optionnel, qui est plus grand que |\premulticols| et que
+% nous sommes pr\`es du bas de page, alors il peut arriver
+% que ce ne soit pas |\eject| qui d\'eclenche cette routine
+% sp\'eciale de sortie, mais plut\^ot la liste verticale
+% principale d\'ebordante. Dans ce cas, nous donnons un autre
+% point de rupture \`a travers la p\'enalit\'e de |\eject|.
+% Par cons\'equent, cette routine sp\'eciale de sortie peut
+% \^etre appel\'ee deux fois et le contenu de |\partial@page|,
+% \emph{i.e.} le mat\'eriel avant l'environnement \mc{},
+% est perdu. Il y a plusieurs solutions pour
+% contourner ce probl\`eme, mais pour l'instant, nous
+% le d\'etecterons simplement et informerons l'utilisateur
+% qu'il/elle doit \'elargir |\premulticols| en utilisant une
+% valeur appropri\'ee pour le second argument.
+% \changes{v1.4a}{1992/02/11}{V\'erification des pertes de texte.}
+%    \begin{macrocode}
+%<*check>
+         \ifvoid\partial@page\else
+           \PackageError{multicol}%
+            {Error saving partial page}%
+            {The part of the page before
+             the multicols environment was
+             nearly full with^^Jthe result
+             that starting the environment
+             will produce an overfull
+             page.  Some^^Jtext may be lost!
+             Please increase \premulticols
+             either generally or for this%
+             ^^Jenvironment by specifying a
+             suitable value in the second
+             optional argument to^^Jthe
+             multicols environment.}
+           \unvbox\partial@page
+           \box\last@line
+         \fi
+%</check>
+         \unvbox\@cclv
+         \global\setbox\last@line\lastbox
+        }%
+%    \end{macrocode}
+% Finalement, nous avons besoin d'enregistrer les balises qui
+% sont toujours pr\'esentes \`a l'int\'erieur de |\partial@page|
+% afin de pouvoir construire plus tard des balises
+% correctes de d\'ebut et de fin. Cela est r\'ealis\'e par
+% le code suivant.
+% \changes{v1.4a}{1992/02/14}{Initialisation des marques conserv\'ees}
+%    \begin{macrocode}
+           \prep@keptmarks
+%    \end{macrocode}
+% Finalement, nous devons initialiser |\kept@topmark| qui,
+% dans l'id\'eal, devrait \^etre initialis\'e avec la balise
+% qui est en cours en <<~haut~>> de la page. Malheureusement,
+% nous ne pouvons utiliser |\topmark| parce que ce registre
+% ne contiendra pas toujours ce que son nom veut dire, parce
+% que, parfois, \LaTeX{} appelle la routine de sortie pour la
+% gestion des flottants\,\footnote{pendant un tel appel,
+% \cs{botmark} est copi\'e globalement dans \cs{topmark} par
+% le programme \TeX{}}. Donc, nous utilisons le deuxi\`eme
+% meilleure solution, l'initialisant avec |\firstmark|.
+% En fait, dans notre optique, cela n'a vraiment pas
+% d'importance, puisque nous utilisons |\kept@topmark|
+% uniquement pour initialiser |\firstmark| et |\botmark| pour
+% la page suivante, si nous n'avons pas trouv\'e de balise
+% pour la page en cours.
+% \changes{v1.4i}{1992/06/18}{\cs{kept@topmark} initialis\'e.}
+%    \begin{macrocode}
+           \global\let\kept@topmark\firstmark
+          }\eject
+%    \end{macrocode}
+% La chose suivante \`a faire est d'assigner une nouvelle
+% valeur \`a |\vsize|. \LaTeX{} conserve la place libre de la
+% page (\emph{i.e.} la hauteur de page sans l'espace pour les
+% flottants d\'ej\`a pris en compte) dans le registre |\@colroom|.
+% Nous devons soustraire la hauteur de |\partial@page| pour
+% mettre la v\'eritable place libre dans cette variable.
+%    \begin{macrocode}
+    \advance\@colroom-\ht\partial@page
+%    \end{macrocode}
+% Puis, nous devons calculer la valeur de |\vsize| \`a
+% utiliser pendant l'assemblage des colonnes. |\set@mult@vsize|
+% prend un argument qui permet les d\'efinitions locales (|\relax|)
+% ou globales (|\global|). La derni\`ere possibilit\'e est
+% utilis\'ee \`a l'int\'erieur de la routine de sortie
+% ci-dessous. \`A cet instant, nous devons r\'ealiser
+% un changement local pour |\vsize| parce que nous voulons
+% restaurer la valeur originale de |\vsize| dans le
+% cas o\`u l'environnement \mc{} finit sur la m\^eme page que
+% celle sur laquelle il a commenc\'e.
+% \changes{v1.4p}{1992/11/26}{Utilisation de diff\'erentes valeurs de \cs{vsize}}
+% \changes{v1.4p}{1992/11/26}{Code d\'eplac\'e pour \cs{set@mult@vsize}}
+%    \begin{macrocode}
+    \set@mult@vsize\relax
+%    \end{macrocode}
+% Maintenant nous passons \`a une nouvelle routine |\output|
+% qui sera utilis\'ee pour rassembler le contenu des
+% colonnes.
+%    \begin{macrocode}
+    \output{\multi@column@out}%
+%    \end{macrocode}
+% Finalement, nous g\'erons les insertions des notes de bas
+% de page. Nous devons multiplier le facteur
+% d'agrandissement et le saut suppl\'ementaire par le
+% nombre de colonnes puisque chaque note de bas de page
+% r\'eduit l'espace de chaque colonne (rappelez-vous que
+% les notes de bas de page s'\'etendent sur toute la largeur
+% de la page).
+% Si, d'autre part, les notes sont compos\'ees tout \`a la
+% fin du document, notre sch\'ema fonctionnera encore,
+% puisque |\count\footins| est \'egal \`a z\'ero et, donc, il
+% ne changera pas.
+% Pour permettre une personnalisation avanc\'ee, la
+% d\'efinition des param\`etres |\footins| est r\'ealis\'ee
+% dans une macro s\'epar\'ee.
+% \changes{v1.5?}{1994/?/?}{Utilisation de \cs{init@mult@footins}}
+%    \begin{macrocode}
+    \init@mult@footins
+%    \end{macrocode}
+% Pour la m\^eme raison (notes de la largeur de la page), le
+% registre \meta{dimen} contr\^olant l'espace maximum
+% utilis\'e pour les notes de bas de page n'est pas modifi\'e.
+% Ayant fait cela, nous
+% devons r\'e-ins\'erer toutes les notes de bas de page qui
+% sont d\'ej\`a pr\'esentes (\emph{i.e.} celles rencontr\'ees
+% quand le mat\'eriel sauv\'e dans |\partial@page| a \'et\'e
+% trait\'e en premier). Cela r\'eduira l'espace libre
+% (\emph{i.e.} |\pagetotal|) de la quantit\'e appropri\'ee
+% puisque nous avons chang\'e le facteur d'agrandissement,
+% etc., ci-dessus.
+%    \begin{macrocode}
+    \reinsert@footnotes
+%    \end{macrocode}
+% Tout le code ci-dessus \'etait seulement n\'ecessaire pour
+% la version de \mc{} non-restreinte, \emph{i.e.} celle qui
+% permet les ruptures de page. Si nous sommes \`a
+% l'int\'erieur d'une bo\^\i{}te, il n'y a pas de raison de
+% d\'efinir les routines sp\'eciales de sortie, ou  |\vsize|, etc.
+%    \begin{macrocode}
+  \fi
+%    \end{macrocode}
+% Mais maintenant, nous en venons au code qui est
+% n\'ecessaire dans tous les cas. Nous assignons de nouvelles
+% valeurs \`a |\vbadness|, |\hbadness| et |\tolerance|
+% puisque il est assez dur pour \TeX{} de produire de
+% <<~bons~>> paragraphes \`a l'int\'erieur de colonnes
+% \'etroites.
+% \changes{v1.2a}{1990/02/05}{\cs{vbadness} 10001 maintenant.}
+%    \begin{macrocode}
+  \vbadness\@Mi \hbadness5000
+  \tolerance\multicoltolerance
+%    \end{macrocode}
+% Puisque la premi\`ere passe \'echouera presque toujours,
+% nous l'ignorons et demandons \`a
+% \TeX{} de r\'ealiser les c\'esures directement. En fait,
+% maintenant nous utilisons un autre registre pour garder la
+% valeur pour la pr\'e-tol\'erance de multicol, afin qu'un
+% concepteur puisse utiliser |\pretolerance|.
+% \changes{v1.2a}{1990/02/05}{\cs{pretolerance} -1 car \c{c}a ne r\'eussit
+%                            presque jamais.}
+% \changes{v1.4e}{1992/03/20}{Using}
+%    \begin{macrocode}
+  \pretolerance\multicolpretolerance
+%    \end{macrocode}
+% Pour l'utilisation avec le nouveau \TeX{}, nous
+% fixons |\emergencystretch| \`a  $|\col@number| \times$ 4~pt.
+% Cependant, c'est seulement une estimation, donc pour
+% l'instant cela est r\'ealis\'e dans une macro,
+% |\setemergencystretch| qui prend la valeur courante de
+% |\hsize| et le nombre de colonnes comme argument. Donc, les
+% utilisateurs sont capables de construire leur propre
+% formule.
+% \changes{v1.2a}{1990/02/05}{\cs{setemergencystretch} ajout\'e.}
+%    \begin{macrocode}
+  \setemergencystretch\col@number\hsize
+%    \end{macrocode}
+% Un autre point d'entr\'ee, pour permettre aux utilisateurs
+% d'ajouter leurs propres extensions sans faire un nouveau
+% package, est |\set@floatcmds| qui g\`erent toutes les
+% red\'efinitions des commandes de flottant internes \`a
+% \LaTeX{} pour fonctionner avec l'environnement \mc{}. Pour
+% le moment, c'est seulement utilis\'e pour red\'efinir |\@dblfloat|
+% et |\end@dblfloat|.
+% \changes{v1.2a}{1990/02/05}{\cs{set@floatcmds} ajout\'e.}
+%    \begin{macrocode}
+  \set@floatcmds
+%    \end{macrocode}
+% De plus, nous augmentons |\baselineskip| de |\multicolbaselineskip|
+% pour permettre les corrections des colonnes \'etroites.
+%    \begin{macrocode}
+  \advance\baselineskip\multicolbaselineskip
+%    \end{macrocode}
+% \changes{v1.0e}{1989/06/21}{\cs{textwidth} chang\'e en \cs{linewidth}.}
+% \changes{v1.0e}{1989/06/21}{Pour que ce fichier puisse fonctionner avec la
+%                              commande <<~twocolumn~>>.}
+%    La valeur |\hsize| des colonnes est donn\'ee par la formule~:
+%    \[
+%       { |\linewidth| - (|\col@number|-1)
+%                             \times
+%                             |\columnsep|
+%        \over
+%        |\col@number|}
+%    \]
+% La formule ci-dessus a chang\'e de version en version.
+% Maintenant, nous commen\c{c}ons avec la valeur courante de |\linewidth|
+% afin que la largeur de la colonne soit correctement
+% calcul\'ee quand nous sommes dans une minipage, dans une
+% liste ou dans tout autre environnement.
+% Cela sera accompli par~:
+%    \begin{macrocode}
+  \hsize\linewidth \advance\hsize\columnsep
+  \advance\hsize-\col@number\columnsep
+  \divide\hsize\col@number
+%    \end{macrocode}
+% Nous fixons \'egalement |\linewidth| et |\columnwidth| \`a
+% |\hsize|. Dans le pass\'e,  |\columnwidth| avait \'et\'e
+% laiss\'e tel quel. C'est incohérent mais |\columnwidth| est utilis\'e
+% seulement par les flottants (qui ne sont pas permis dans
+% leur impl\'ementation courante) et par la macro
+% |\footnote|. Puisque nous voulons des notes de bas de page
+% de la largeur de la page\,\footnote{Je ne suis pas s\^ur de
+% vouloir des notes de la largeur de la page, mais
+% l'\'equilibrage de la derni\`ere page ne peut \^etre
+% accompli qu'avec cette approche ou avec un algorithme
+% <<~multi-path~>> qui est compliqu\'e et lent. C'est toutefois un
+% d\'efi pour qui veut me d\'emontrer que c'est mauvais~!
+% Une autre possibilit\'e est de r\'eimpl\'ementer une petite partie
+% de la proc\'edure {\it fire\_up\/} de \TeX{} (le
+% programme). Je pense que c'est la meilleure solution si
+% vous \^etes int\'eress\'es par la composition complexe de pages,
+% mais cela a pour inconv\'enient que le programme
+% r\'esultant ne peut plus \^etre appel\'e \TeX.}, cette
+% simple astuce nous \'evite de r\'e-\'ecrire les macros
+% |\footnote|. Cependant, certaines applications se
+% r\'ef\`erent \`a |\columnwidth| comme <<~la largeur de la
+% colonne courante~>> pour composer les affichages (le
+% package \texttt{amsmath}, par exemple), et pour permettre
+% l'utilisation de telles applications en m\^eme temps que
+% \texttt{multicol}, cela a \'et\'e maintenant modifi\'e.
+%
+% Avant de remplacer |\linewidth| par sa nouvelle valeur, nous
+% enregistrons son ancienne valeur dans un registre
+% appel\'e |\full@width|. Cette valeur est utilis\'ee plus
+% tard, quand nous rassemblons toutes les colonnes.
+% \changes{v1.0e}{1989/06/21}{Fixation de \cs{columnwidth} supprim\'ee.}
+% \changes{v1.5o}{1997/11/16}{Fixation de \cs{columnwidth}
+%                             ajout\'ee de nouveau. Rapport pr/2664.}
+%    \begin{macrocode}
+  \full@width\linewidth
+  \linewidth\hsize
+  \columnwidth\hsize
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%  \begin{macro}{\init@mult@footins}
+% Cette macro est utilis\'ee pour fixer les param\`etres
+% associ\'es avec les notes (de bas de page) flottantes. Elle
+% peut \^etre red\'efinie par des applications qui demandent
+% des quantit\'es d'espace diff\'erentes lors de la composition
+% des notes.
+%    \begin{macrocode}
+\def\init@mult@footins{%
+    \multiply\count\footins\col@number
+    \multiply\skip \footins\col@number
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%  \begin{macro}{\set@mult@vsize}
+%
+% Puisque nous avons fix\'e les colonnes |\col@umber| sur une
+% page, chacune avec une hauteur de |\@colroom|, nous devons
+% assigner
+%    $
+%      |\vsize|  = |\col@number| \times |\@colroom|
+%    $
+%     pour rassembler assez de mat\'eriel avant d'entrer de
+%     nouveau dans la routine |\output|. En fait, nous devons
+%     encore ajouter
+%    $
+%       (|\col@number|-1) \times (|\baselineskip|-|\topskip|)
+%    $
+%     si vous y r\'efl\'echissez s\'erieusement.
+% \changes{v1.4p}{1992/11/26}{Macro ajout\'ee.}
+%    \begin{macrocode}
+\def\set@mult@vsize#1{%
+    \vsize\@colroom
+    \@tempdima\baselineskip
+    \advance\@tempdima-\topskip
+    \advance\vsize\@tempdima
+    \vsize\col@number\vsize
+    \advance\vsize-\@tempdima
+%    \end{macrocode}
+% Mais cela pourrait \^etre insuffisant puisque nous
+% utilisons plus tard |\vsplit| pour extraire les colonnes du
+% mat\'eriel r\'euni. C'est pourquoi nous ajoutons des <<~lignes
+% suppl\'ementaires~>>, leur nombre d\'ependant de la valeur
+% du compteur <<~\mc{}~>>. La valeur finale est assign\'ee
+% globalement si |#1| est |\global| parce ce que nous voulons
+% utiliser cette macro, plus tard, aussi \`a l'int\'erieur de
+% la routine de sortie.
+%    \begin{macrocode}
+    #1\advance\vsize
+        \c@collectmore\baselineskip}
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%  \begin{macro}{\multicol@leftmargin}
+% Voici le registre \meta{dimen} dont nous avons besoin pour
+% sauvegarder la valeur externe de |\@totalleftmargin|.
+%    \begin{macrocode}
+\newdimen\multicol@leftmargin
+%    \end{macrocode}
+%  \end{macro}
+%
+% \begin{macro}{\endmulticols}
+% Quand la fin de l'environnement \mc{} est d\'etect\'ee,
+% nous devons \'equilibrer le mat\'eriel r\'euni. Que
+% nous soyons ou non \`a l'int\'erieur d'une multicol
+% embo\^\i{}t\'ee, diff\'erentes choses peuvent survenir.
+% Mais, d'abord, nous terminons le paragraphe courant avec
+% une commande |\par|.
+%    \begin{macrocode}
+\def\endmulticols{\par
+  \if@boxedmulticols
+%    \end{macrocode}
+% En mode embo\^\i{}t\'e, nous devons fermer la bo\^\i{}te
+% dans laquelle nous avons rassembl\'e tout le mat\'eriel
+% pour les colonnes.
+%    \begin{macrocode}
+    \egroup
+%    \end{macrocode}
+% Maintenant, nous appelons |\balance@columns|, la routine
+% qui \'equilibre le mat\'eriel stock\'e dans la bo\^\i{}te |\mult@box|.
+% \changes{v1.5?}{1994/?/?}{S\'eparation des bo\^\i{}tes z\'ero d\'eplac\'ee
+%                           \`a \cs{balance@columns}}
+%    \begin{macrocode}
+    \balance@columns
+%    \end{macrocode}
+% Apr\`es \'equilibrage, le r\'esultat doit \^etre retourn\'e
+% par la commande |\page@sofar|. Mais avant de le faire, nous
+% r\'eins\'erons toutes les balises trouv\'ees dans la
+% bo\^\i{}te |\mult@box|.
+%    \begin{macrocode}
+    \return@nonemptymark{first}%
+                 \kept@firstmark
+    \return@nonemptymark{bot}%
+                  \kept@botmark
+    \page@sofar
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+    \global\let\kept@firstmark
+               \l@kept@firstmark
+    \global\let\kept@botmark
+            \l@kept@botmark
+%<*marktrace>
+    \mult@info\tw@
+      {Restore kept marks to\MessageBreak
+       first: \meaning\kept@firstmark
+       \MessageBreak bot\space\space:
+                     \meaning\kept@botmark }%
+%</marktrace>
+%    \end{macrocode}
+% Cela finit le code pour les cas <<~embo\^\i{}t\'es~>>.
+%    \begin{macrocode}
+  \else
+%    \end{macrocode}
+% Si nous sommes dans un environnement \mc{} non-restreint,
+% nous fermons le paragraphe courant par |\par|, mais ce
+% n'est pas suffisant puisque le {\it page\_builder}
+% \TeX{} ne videra pas totalement la liste de
+% contribution\,\footnote{Cela causait auparavant un bug
+% fort intriguant dans lequel du mat\'eriel \'etait \'equilibr\'e deux
+% fois, ce qui causait des superpositions. La raison \'etait
+% que \cs{eject} \'etait plac\'e \`a la fin de la liste de
+% contribution. Le {\it page\_builder} \'etait alors appel\'e
+% (un \cs{penalty} explicite videra la liste de
+% contribution), mais la ligne avec \cs{eject} ne tenait pas
+% sur la page courante. Il \'etait ensuite repris en
+% compte apr\'es la fin de la routine de sortie,
+% entra\^\i{}nant une seconde rupture apr\`es une ligne}.
+% Donc, nous devons aussi ajouter un |\penalty| explicite.
+% La liste de contribution sera d\'esormais vid\'ee et, si son
+% mat\'eriel ne tient pas enti\`erement dans la page
+% courante, alors la routine de sortie sera appel\'ee avant
+% que nous la changions.
+% \changes{v1.3b}{1990/10/09}{R\'ealise \cs{penalty} avec \cs{addpenalty}}
+% \changes{v1.4e}{1992/03/16}{Mais ignore \cs{@nobreak} dans \cs{addpenalty}}
+% \changes{v1.5c}{1993/04/18}{De nouveau utilisation de \cs{penalty}}
+% \`A ce moment, nous avons besoin d'utiliser |\penalty| et non
+% |\addpenalty| pour nous assurer que a) les r\'ecentes
+% contributions sont vid\'ees et b) le tout dernier item de
+% la liste verticale principale est un point de rupture
+% valide et donc que \TeX{} coupera la page dans le cas o\`u
+% elle est d\'ebordante.
+%    \begin{macrocode}
+   \penalty\z@
+%    \end{macrocode}
+% Maintenant, il n'est pas dangereux de modifier la routine de
+% sortie pour \'equilibrer les colonnes.
+%    \begin{macrocode}
+    \output{\balance@columns@out}\eject
+%    \end{macrocode}
+% Si le corps de l'environnement \mc{} est compl\`etement
+% vide, ou si un \mc{} multi-page finit juste \`a une liaison
+% entre page, nous avons le cas inhabituel o\`u |\eject| n'aura
+% aucun effet (puisque la liste verticale principale est vide)
+% -- donc, aucune routine de sortie ne sera jamais appel\'ee.
+% En cons\'equence, le mat\'eriel pr\'ec\'edant \mc{}
+% (stock\'e dans |\partial@page|) sera perdu si on ne g\`ere pas
+% \c{c}a \`a la main.
+% \changes{v1.4m}{1992/09/04}{V\'erification du vidage de \cs{partial@page}}
+%    \begin{macrocode}
+    \ifvbox\partial@page
+         \unvbox\partial@page\fi
+%    \end{macrocode}
+% Apr\`es l'action de la routine de sortie, nous restaurons
+% les balises sauvegard\'ees \`a leur valeur initiale.
+%    \begin{macrocode}
+     \global\let\kept@firstmark\@empty
+     \global\let\kept@botmark\@empty
+%<*marktrace>
+     \mult@info\tw@
+       {Make kept marks empty}%
+%</marktrace>
+  \fi
+%    \end{macrocode}
+% La routine de sortie ci-dessus s'occupera de |\vsize| et
+% r\'eins\`erera les colonnes \'equilibr\'ees, etc. Mais
+% elle ne pourra r\'eins\'erer |\footnotes| parce que nous
+% devons d'abord restaurer le param\`etre |\footins|,
+% puisque nous sommes revenus en mode une colonne. Cela sera
+% r\'ealis\'e dans la prochaine ligne de code~; nous fermons
+% simplement le groupe commenc\'e dans |\multicols|.
+%
+% Pour corriger un sombre bug qui est le r\'esultat de la
+% d\'efinition courante des macros |\begin| \ldots\ |\end|,
+% nous v\'erifions que nous sommes encore (logiquement
+% parlant) dans l'environnement \mc{}. Si, par exemple, nous
+% oublions de fermer quelque environnement \`a l'int\'erieur
+% de l'environnement \mc{}, le |\endgroup| suivant devrait
+% \^etre consid\'er\'e de fa\c{c}on incorrecte pour la
+% fermeture de cet environnement.
+% \changes{v1.3c}{1991/03/14}{V\'erification de la fermeture de l'env.}
+%    \begin{macrocode}
+  \@checkend{multicols}%
+  \endgroup
+%    \end{macrocode}
+% Maintenant, il est temps de retourner toutes les notes de
+% bas de page, si nous sommes en mode non-restreint~:
+%    \begin{macrocode}
+  \if@boxedmulticols\else
+    \reinsert@footnotes
+  \fi
+%    \end{macrocode}
+% Nous fixons \'egalement le compteur <<~{\sf unbalance}~>>
+% \`a sa valeur par d\'efaut. Cela est r\'ealis\'e
+% globalement puisque les compteurs \LaTeX{} sont toujours
+% modifi\'es de cette mani\`ere\,\footnote{En fait, nous sommes
+% toujours dans un groupe commenc\'e par la macro \cs{begin}
+% et donc \cs{global} doit \^etre utilis\'e de toute
+% fa\c{c}on}.
+%    \begin{macrocode}
+  \global\c@unbalance\z@
+%    \end{macrocode}
+% Nous jetons aussi un coup d'\oe{}il \`a la quantit\'e
+% d'espace libre dans la page courante, pour voir s'il est
+% temps de faire un saut de page. L'espace vertical ajout\'e
+% par la suite dispara\^\i{}tra si |\enough@room| commence
+% une nouvelle page.
+%    \begin{macrocode}
+  \enough@room\postmulticols
+  \addvspace\multicolsep
+%    \end{macrocode}
+% Si des statistiques sont demand\'ees, nous annon\c{c}ons
+% finalement que nous avons tout termin\'e.
+%    \begin{macrocode}
+  \mult@info\z@
+     {Ending environment
+             \if@boxedmulticols
+                \space(boxed mode)\fi
+              }}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\c@unbalance}
+% \SpecialMainIndex{\c@collectmore}
+% \SpecialMainIndex{\col@number}
+% \SpecialMainIndex{\doublecol@number}
+% \SpecialMainIndex{\premulticols}
+% \SpecialMainIndex{\multicoltolerance}
+% \SpecialMainIndex{\multicolpretolerance}
+% \SpecialMainIndex{\page@free}
+% \SpecialMainIndex{\premulticols}
+% \SpecialMainIndex{\postmulticols}
+% \SpecialMainIndex{\multicolsep}
+% \SpecialMainIndex{\multicolbaselineskip}
+% \SpecialMainIndex{\partial@page}
+% Finissons cette section en allouant tous les registres
+% d\'ej\`a utilis\'es.
+%    \begin{macrocode}
+\newcount\c@unbalance
+\newcount\c@collectmore
+%    \end{macrocode}
+% Dans la nouvelle version de \LaTeX{}, |\col@number| est
+% d\'ej\`a allou\'e par le noyau, donc nous ne l'allouons pas
+% de nouveau.
+%    \begin{macrocode}
+%\newcount\col@number
+\newcount\doublecol@number
+\newcount\multicoltolerance
+\newcount\multicolpretolerance
+\newdimen\full@width
+\newdimen\page@free
+\newdimen\premulticols
+\newdimen\postmulticols
+\newskip\multicolsep
+\newskip\multicolbaselineskip
+\newbox\partial@page
+\newbox\last@line
+%    \end{macrocode}
+% Et voil\`a leurs valeurs par d\'efaut~:
+%    \begin{macrocode}
+\c@unbalance   = 0
+\c@collectmore = 0
+%    \end{macrocode}
+% Pour permettre de v\'erifier si quelque macro est
+% utilis\'ee \`a l'int\'erieur de l'environnement \mc{}, le
+% compteur |\col@number| prend par d\'efaut la valeur |1| \`a
+% l'ext\'erieur de l'environnement.
+% \changes{v1.3d}{1991/10/23}{\cs{col@number} fix\'e \`a un}
+%    \begin{macrocode}
+\col@number = 1
+\multicoltolerance = 9999
+\multicolpretolerance = -1
+\premulticols = 50pt
+\postmulticols= 20pt
+\multicolsep = 12pt plus 4pt minus 3pt
+\multicolbaselineskip=0pt
+%    \end{macrocode}
+% \end{macro}
+%
+% \end{multicols}
+%
+% \begin{multicols}{2}[\subsection{Les routines de sortie}]
+%
+% Tout d'abord, nous commen\c{c}ons par quelques macros
+% simples. Lors de la composition de la page, nous
+% sauvegardons les colonnes soit dans les registres de
+% bo\^\i{}te 0, 2, 4,... (localement) soit 1, 3, 5,...
+% (globalement). C'est la r\`egle de \PlainTeX{} pour
+% \'eviter un d\'ebordement des piles stock\'ees.
+%
+% \begin{macro}{\process@cols}
+% Donc, nous d\'efinissons une macro |\process@cols| pour
+% nous aider \`a utiliser ces registres dans les routines de
+% sortie ci-dessous. Elle a deux arguments~: le premier est
+% un nombre~; le second est l'information d'ex\'ecution. Elle
+% commence la boucle avec |\count@=#1| (|\count@| est un
+% registre temporaire d\'efini en \PlainTeX), ex\'ecute
+% l'argument |#2|, ajoute deux \`a |\count@|, ex\'ecute de
+% nouveau l'argument |#2|, etc. jusqu'\`a ce que |\count@|
+% soit plus grand que |\doublecol@number|. Il pourrait \^etre
+% plus facile de comprendre gr\^ace \`a un exemple, donc
+% nous la d\'efinissons maintenant et expliquons son
+% utilisation plus tard.
+%    \begin{macrocode}
+\def\process@cols#1#2{\count@#1\relax
+     \loop
+%<*debug>
+     \typeout{Looking at box \the\count@}
+%</debug>
+      #2%
+     \advance\count@\tw@
+     \ifnum\count@<\doublecol@number
+   \repeat}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\page@sofar}
+% Nous d\'efinissons maintenant |\page@sofar| pour donner un
+% exemple de la macro |\process@cols|. |\page@sofar| devrait
+% sortir tout ce qui est pr\'epar\'e par la routine
+% d'\'equilibrage, |\balance@columns|.
+%    \begin{macrocode}
+\def\page@sofar{%
+%    \end{macrocode}
+% |\balance@columns| pr\'epare sa sortie dans les
+% registres temporaires de bo\^\i{}te num\'erot\'es pairs.
+% Maintenant, nous sortons les colonnes r\'eunies en
+% supposant qu'elles sont sauv\'ees dans les registres de
+% bo\^\i{}te 2 (colonne de gauche), 4 (seconde colonne)
+% ... Cependant, la derni\`ere colonne (\emph{i.e.} la
+% plus \`a droite) devrait \^etre sauv\'ee dans le registre
+% de bo\^\i{}te 0\,\footnote{Vous verrez la raison ce cette
+% num\'erotation, quand nous regarderons les routines de
+% sortie \cs{multi@column@out} et \cs{balance@columns@out}.}.
+% D'abord, nous nous assurons que les colonnes ont des
+% largeurs identiques. Nous utilisons |\process@cols| dans ce
+% but, commen\c{c}ant avec $|\count@|=|\mult@rightbox|$. Donc
+% |\count@| boucle suivant |\mult@rightbox|, $|\mult@rightbox| + 2$,...
+% (jusqu'\`a |\doublecol@number|).
+% \changes{v1.5a}{1992/11/04}{Nouveau m\'ecanisme d'embo\^\i{}tement}
+%    \begin{macrocode}
+   \process@cols\mult@rightbox
+%    \end{macrocode}
+% Nous devons v\'erifier si la bo\^\i{}te en question est
+% vide, parce que l'op\'eration |\wd|\meta{number} sur une
+% bo\^\i{}te vide \emph{ne} changera \emph{pas} ses
+% dimensions (*soupir*).
+% \changes{v1.5h}{1994/08/26}{V\'erification des bo\^\i{}tes vides}
+% \changes{v1.5i}{1994/10/02}{Mais n'enl\`eve pas le code original.}
+%    \begin{macrocode}
+       {\ifvoid\count@
+          \setbox\count@\hbox to\hsize{}%
+        \else
+          \wd\count@\hsize
+        \fi}%
+%    \end{macrocode}
+% Maintenant, nous donnons des informations de tra\c{c}age.
+% \changes{v1.4l}{1992/08/17}{Utilisation de  \cs{multicol@leftmargin}
+%                            \`a la place de \cs{@totalleftmargin}}
+%    \begin{macrocode}
+   \mult@info\z@
+    {Column spec:\MessageBreak
+       (\the\multicol@leftmargin\space -->
+        \the\full@width\space = \the\hsize
+        \space x \the\col@number)%
+     }%
+%    \end{macrocode}
+% Pour le moment, nous devons toujours \^etre en mode
+% vertical.
+%    \begin{macrocode}
+\ifvmode\else\errmessage{Multicol Error}\fi
+%    \end{macrocode}
+% Maintenant, nous mettons ensemble toutes les colonnes dans |\hbox|
+% de largeur |\full@width| (la modifiant par |\multicol@leftmargin|
+% \`a droite afin qu'elle soit plac\'ee correctement si nous
+% sommes dans un environnement de liste).
+% \changes{v1.4l}{1992/08/17}{Utilisation de \cs{multicol@leftmargin}
+%                             \`a la place de \cs{@totalleftmargin}}
+%    \begin{macrocode}
+   \moveright\multicol@leftmargin
+    \hbox to\full@width{%
+%    \end{macrocode}
+% et s\'eparons les colonnes par un filet, si on le d\'esire.
+% \changes{v1.5a}{1992/11/04}{Nouveau m\'ecanisme d'embo\^\i{}tement}
+%    \begin{macrocode}
+     \process@cols\mult@gfirstbox{\box\count@
+       \hss\vrule\@width\columnseprule\hss}%
+%    \end{macrocode}
+% Comme vous le remarquerez, nous commen\c{c}ons avec le
+% registre de bo\^\i{}te |\mult@gfirstbox| (\emph{i.e.} la
+% colonne de gauche). Alors, cette fois, |\count@| boucle \`a
+% travers 2, 4, ... (plus le d\'ecalage appropri\'e).
+% Finalement, nous ajoutons la bo\^\i{}te 0 et fermons |\hbox|.
+% \changes{v1.5a}{1992/11/04}{Nouveau m\'ecanisme d'embo\^\i{}tement}
+%    \begin{macrocode}
+     \box\mult@rightbox
+%    \end{macrocode}
+% Les profondeurs des colonnes d\'ependent de leurs derni\`eres
+% lignes. Pour nous assurer que nous aurons toujours la
+% m\^eme apparence en ce qui concerne les filets, nous
+% for\c{c}ons la profondeur \`a \^etre au moins celle de la
+% lettre~<<~p~>>.
+%    \begin{macrocode}
+%     \strut
+      \rlap{\phantom p}%
+}%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\reinsert@footnotes}
+% Avant d'attaquer les plus grosses routines de sortie, nous
+% d\'efinissons juste une macro de plus qui nous aidera \`a
+% trouver notre chemin \`a travers les myst\`eres plus tard.
+% |\reinsert@footnotes| fera ce que son nom indique~: elle
+% r\'eins\`ere les notes de bas de page pr\'esentes dans |\footinbox|
+% et donc elles seront r\'e-ex\'ecut\'ees par le {\it
+% page\_builder} de \TeX.
+%
+% Au lieu de vraiment r\'eins\'erer les notes de bas de
+% page, nous ins\'erons une note vide. Cela d\'eclenchera le
+% m\'ecanisme d'insertion et, puisque les anciennes notes
+% sont encore dans leur bo\^\i{}te et que nous sommes sur une
+% nouvelle page, |\skip| |footins| sera correctement pris en
+% compte.
+% \changes{v1.3c}{1990/03/03}{\cs{unbox}ing \'evit\'e.}
+%    \begin{macrocode}
+\def\reinsert@footnotes{\ifvoid\footins\else
+         \insert\footins{}\fi}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\multi@column@out}
+% Maintenant, nous ne pouvons plus repousser les difficult\'es
+% plus loin. La routine |\multi@column@out| sera appel\'ee
+% dans deux situations. Soit la page est pleine (\emph{i.e.}
+% nous avons accumul\'e assez de mat\'eriel pour construire
+% toutes les colonnes d\'esir\'ees) ou un flottant ou la
+% note de marge (ou bien encore un |\clearpage|) est d\'etect\'e. Dans le
+% dernier cas, |\outputpenalty| est inf\'erieur \`a $-10000$,
+% sinon la p\'enalit\'e qui d\'eclenche la routine de sortie
+% est plus grande. Donc, il est facile de faire la
+% distinction entre les deux cas~: nous testons simplement ce
+% registre.
+% \changes{v1.5c}{1993/04/18}{Prise en charge de \cs{clearpage}}
+%    \begin{macrocode}
+\def\multi@column@out{%
+   \ifnum\outputpenalty <-\@M
+%    \end{macrocode}
+% Si c'\'etait un |\clearpage|, un flottant ou une note de
+% marge, nous appelons |\speci@ls|.
+%    \begin{macrocode}
+   \speci@ls \else
+%    \end{macrocode}
+% sinon, nous construisons la page d\'efinitive.
+% \changes{v1.5u}{1999/05/25}{Prise en charge de \cs{columnbreak}}
+% \changes{v1.5v}{1999/07/18}{Ajout des rapports de
+%                             d\'ebuggage pour la prise en compte
+%                             des ruptures de colonne}
+%
+% Pour la partie du code qui suit, voir les commentaires dans
+% la section~\ref{sec:colbreak}.
+%    \begin{macrocode}
+%<*colbreak>
+   \ifvoid\colbreak@box\else
+     \mult@info\@ne{Re-adding forced
+               break(s) for splitting}%
+     \setbox\@cclv\vbox{%
+        \unvbox\colbreak@box
+        \penalty-\@Mv\unvbox\@cclv}%
+   \fi
+%</colbreak>
+%    \end{macrocode}
+% Consid\'erons le cas normal. Nous avons \`a |\vsplit|er les
+% colonnes \`a partir du mat\'eriel accumul\'e dans la
+% bo\^\i{}te 255. Donc, nous assignons d'abord les valeurs
+% appropri\'ees \`a |\splittopskip| et |\splitmaxdepth|.
+%    \begin{macrocode}
+   \splittopskip\topskip
+   \splitmaxdepth\maxdepth
+%    \end{macrocode}
+% Puis nous calculons la hauteur de la colonne courante (dans
+% |\dimen@|). Notez que la hauteur de |\partial@page| est
+% d\'ej\`a soustraite de |\@colroom|, donc, nous pouvons
+% utiliser sa valeur comme point de d\'epart.
+%    \begin{macrocode}
+   \dimen@\@colroom
+%    \end{macrocode}
+% Mais nous devons aussi soustraire l'espace occup\'e par les
+% notes de bas de page sur la page courante. Notez que,
+% d'abord, nous avons \`a remettre le registre de saut \`a sa
+% valeur initiale.
+% Encore une fois, la v\'eritable action est de transposer
+% dans une macro utilitaire, afin que d'autres applications
+% puissent la modifier.
+% \changes{v1.5?}{1994/?/?}{Utilisation de \cs{leave@mult@footins}}
+%    \begin{macrocode}
+   \divide\skip\footins\col@number
+   \ifvoid\footins \else
+      \leave@mult@footins
+   \fi
+%    \end{macrocode}
+% Maintenant, nous sommes capables de |\vsplit|er toutes les
+% colonnes, sauf la derni\`ere. Rappelez-vous que ces
+% colonnes doivent \^etre sauv\'ees dans les registres de
+% bo\^\i{}te 2, 4, ... (plus le d\'ecalage).
+% \changes{v1.5a}{1992/11/04}{Nouveau m\'ecanisme d'embo\^\i{}tement}
+%    \begin{macrocode}
+   \process@cols\mult@gfirstbox{%
+        \setbox\count@
+            \vsplit\@cclv to\dimen@
+%    \end{macrocode}
+% Apr\`es s\'eparation, nous mettons \`a jour les balises
+% conserv\'ees.
+%    \begin{macrocode}
+            \set@keptmarks
+%    \end{macrocode}
+% Si |\raggedcolumns| est forc\'e, nous ajoutons |vfill| au
+% bas en d\'esembo\^\i{}tant la bo\^\i{}te s\'epar\'ee.
+% \changes{v1.3c}{1990/03/03}{\cs{unbox}ing \'evit\'e.}
+%    \begin{macrocode}
+            \ifshr@nking
+              \setbox\count@
+                 \vbox to\dimen@
+                  {\unvbox\count@\vfill}%
+            \fi
+           }%
+%    \end{macrocode}
+% Puis la derni\`ere colonne suit.
+% \changes{v1.5a}{1992/11/04}{Nouveau m\'ecanisme d'embo\^\i{}tement}
+%    \begin{macrocode}
+   \setbox\mult@rightbox
+       \vsplit\@cclv to\dimen@
+   \set@keptmarks
+   \ifshr@nking
+      \setbox\mult@rightbox\vbox to\dimen@
+          {\unvbox\mult@rightbox\vfill}%
+   \fi
+%    \end{macrocode}
+% Ayant fait cela, nous esp\'erons que la bo\^\i{}te 255 est
+% vid\'ee. Si elle ne l'est pas, nous r\'eins\'erons son
+% contenu.
+%    \begin{macrocode}
+   \ifvoid\@cclv \else
+       \unvbox\@cclv
+       \penalty\outputpenalty
+%    \end{macrocode}
+% Dans ce cas, une note de bas de page, qui peut \^etre
+% ins\'er\'ee dans le petit espace restant, sera compos\'ee
+% sur la mauvaise page. Donc, nous avertissons l'utilisateur
+% si la page courante contient des notes. Les anciennes
+% versions de \mc{} produisaient cet avertissement qu'il y
+% ait ou non des notes, ce qui entra\^\i{}nait beaucoup
+% d'avertissements inutiles.
+% \changes{v1.3c}{1991/02/17}{V\'erification de la
+%                             pr\'esence effective des notes de
+%                             bas de page avant d'envoyer un message d'alerte}
+%    \begin{macrocode}
+       \ifvoid\footins\else
+         \PackageWarning{multicol}%
+          {I moved some lines to
+           the next page.\MessageBreak
+           Footnotes on page
+           \thepage\space might be wrong}%
+       \fi
+%    \end{macrocode}
+% Si le compteur <<~{\sf tracingmulticols}~>> est \`a 4 ou
+% plus, nous ajoutons \'egalement un filet.
+%    \begin{macrocode}
+       \ifnum \c@tracingmulticols>\thr@@
+                    \hrule\allowbreak \fi
+   \fi
+%    \end{macrocode}
+% Pour donner des balises correctes pour la page courante,
+% nous devons \`red\'efinir (localement) |\firstmark| and |\botmark|.
+% Si |\kept@firstmark| n'est pas vide, alors |\kept@botmark|
+% ne doit pas \^etre vide non plus, donc nous pouvons utiliser
+% leurs valeurs, Sinon, nous utilisons la valeur de |\kept@topmark|
+% qui a d'abord \'et\'e initialis\'e quand nous avons r\'euni
+% |\partical@page| et plus tard, a \'et\'e mise \`a jour au
+% |\botmark| pour la page pr\'ec\'edente.
+%
+% \changes{v1.4a}{1992/02/14}{\cs{botmark} fix\'e \`a \cs{splitbotmark}}
+%    \begin{macrocode}
+   \ifx\@empty\kept@firstmark
+      \let\firstmark\kept@topmark
+      \let\botmark\kept@topmark
+   \else
+      \let\firstmark\kept@firstmark
+      \let\botmark\kept@botmark
+   \fi
+%    \end{macrocode}
+% Nous initialisons \'egalement |\topmark| avec
+% |\kept@topmark|. Cela rendra cette balise correcte pour
+% toutes les pages m\'edianes de l'environnement \mc{}.
+% \changes{v1.5d}{1993/09/15}{r\'einitialisation de \cs{topmark}}
+%    \begin{macrocode}
+   \let\topmark\kept@topmark
+%<*marktrace>
+   \mult@info\tw@
+        {Use kept top mark:\MessageBreak
+          \meaning\kept@topmark
+         \MessageBreak
+         Use kept first mark:\MessageBreak
+          \meaning\kept@firstmark
+        \MessageBreak
+         Use kept bot mark:\MessageBreak
+          \meaning\kept@botmark
+        \MessageBreak
+         Produce first mark:\MessageBreak
+          \meaning\firstmark
+        \MessageBreak
+        Produce bot mark:\MessageBreak
+          \meaning\botmark
+         \@gobbletwo}%
+%</marktrace>
+%    \end{macrocode}
+% Avec un petit peu plus d'effort, nous aurions pu faire
+% mieux. Si nous avions, par exemple, enregistr\'e le
+% retr\'ecissement du mat\'eriel dans |\partial@page|, il
+% serait maintenant possible d'essayer les valeurs
+% sup\'erieures pour |\dimen@| (\emph{i.e.} la hauteur des
+% colonnes) pour passer outre le probl\`eme de la bo\^\i{}te
+% 255 non vide. Mais cela aurait rendu le code beaucoup plus
+% complexe, donc je l'ai ignor\'e (le probl\`eme) dans
+% l'impl\'ementation actuelle.
+%
+% Maintenant, nous utilisons le m\'ecanisme standard de
+% sortie de \LaTeX\,\footnote{Cela est extr\^emement
+% co\^uteux car les deux routines de sortie sont gard\'ees
+% en m\'emoire. La bonne solution aurait \'et\'e de refaire
+% enti\`erement la routine de sortie utilis\'ee dans \LaTeX}.
+% C'est vrai que c'est une fa\c{c}on de faire amusante.
+%
+%    \begin{macrocode}
+   \setbox\@cclv\vbox{\unvbox\partial@page
+                      \page@sofar}%
+%    \end{macrocode}
+% La macro |\@makecol| ajoute \`a la page courante tous les flottants
+% assign\'es \`a cette page. |\@outputpage| d\'ebarque la
+% bo\^\i{}te r\'esultante. Notez qu'il est seulement possible
+% que de tels flottants soient pr\'esents m\^eme si nous n'en
+% permettons aucun dans un environnement \mc{}.
+%    \begin{macrocode}
+   \@makecol\@outputpage
+%    \end{macrocode}
+% Apr\'es la sortie de la page, nous devons pr\'eparer les
+% marques conserv\'ees pour la page suivante. |\kept@firstmark| et
+% |\kept@botmark| sont r\'einitialis\'ees en les fixant \`a
+% |\@empty|. La valeur de |\botmark| est ensuite assign\'ee
+% \`a |\kept@topmark|.
+% \changes{v1.4g}{1992/06/03}{Change seulement \cs{kept@topmark}
+%                             si \cs{kept@botmark} n'est pas vide}
+% \changes{v1.4i}{1992/06/18}{Fixation de \cs{kept@topmark} \`a \cs{botmark}}
+%    \begin{macrocode}
+     \global\let\kept@topmark\botmark
+     \global\let\kept@firstmark\@empty
+     \global\let\kept@botmark\@empty
+%<*marktrace>
+     \mult@info\tw@
+        {(Re)Init top mark:\MessageBreak
+         \meaning\kept@topmark
+         \@gobbletwo}%
+%</marktrace>
+%    \end{macrocode}
+% Maintenant nous fixons |\@colroom| \`a |\@colht|, qui est
+% la valeur \LaTeX{} sauvegard\'ee pour |\textheight|.
+%    \begin{macrocode}
+   \global\@colroom\@colht
+%    \end{macrocode}
+% Puis, nous traitons les flottants en suspens attendant leur
+% tour pour \^etre plac\'es sur la page suivante.
+%    \begin{macrocode}
+   \process@deferreds
+   \@whilesw\if@fcolmade\fi{\@outputpage
+      \global\@colroom\@colht
+      \process@deferreds}%
+%    \end{macrocode}
+% Si l'utilisateur demande des statistiques, nous
+% l'informons sur la quantit\'e d'espace r\'eserv\'ee aux
+% flottants.
+%    \begin{macrocode}
+   \mult@info\@ne
+     {Colroom:\MessageBreak
+      \the\@colht\space
+              after float space removed
+              = \the\@colroom \@gobble}%
+%    \end{macrocode}
+% Ayant fait tout cela, nous devons pr\'eparer la prise en
+% compte de la page suivante. Donc, nous assignons une
+% nouvelle valeur \`a |\vsize|. Nouvelle, parce que |\partial@page|
+% est maintenant vide et que |\@colroom| pourrait \^etre
+% diminu\'e de l'espace r\'eserv\'e aux flottants.
+% \changes{v1.4p}{1992/11/26}{Utilisation de diff\'erentes valeurs de\cs{vsize}}
+%    \begin{macrocode}
+    \set@mult@vsize \global
+%    \end{macrocode}
+% Le registre de saut |\footins| sera ajust\'e quand le groupe de sortie
+% sera ferm\'e.
+% \changes{v1.3c}{1991/03/03}{Suppression du code inutile}
+%    \begin{macrocode}
+  \fi}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+%
+% \begin{macro}{\leave@mult@footins}
+% Cette macro est utilis\'ee pour soustraire la quantit\'e
+% d'espace, occup\'ee par les notes de bas de page, de
+% l'espace courant disponible pour la colonne courante.
+% L'espace de la colonne courante est stock\'e dans |\dimen@|.
+% Voir ci-dessus la description de l'action par d\'efaut.
+% \changes{v1.5?}{1994/?/?}{Macro ajout\'ee}
+%    \begin{macrocode}
+\def\leave@mult@footins{%
+   \advance\dimen@-\skip\footins
+   \advance\dimen@-\ht\footins
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+%
+% \begin{macro}{\speci@ls}
+% Nous avons laiss\'e de c\^ot\'e deux macros~: |\process@deferreds|
+% et |\speci@ls|.
+% \changes{v1.5c}{1993/04/18}{Prise en charge de \cs{clearpage}}
+%    \begin{macrocode}
+\def\speci@ls{%
+ \ifnum\outputpenalty <-\@Mi
+%    \end{macrocode}
+% Si le document finit au milieu d'un environnement
+% multicolonne, par exemple si l'utilisateur a oubli\'e
+% |\end{multicols}|, \TeX{} ajoute une p\'enalit\'e tr\`es
+% n\'egative \`au texte en cours de traitement qui est cens\'ee signaler \`a la
+% routine de sortie qu'il est temps de se pr\'eparer \`a
+% exp\'edier tout ce qui reste. Puisqu'\`a l'int\'erieur de
+% multicol, la routine de sortie de \LaTeX{} est
+% quelquefois d\'esactiv\'ee, il est mieux pour nous de
+% v\'erifier ce cas~: si nous trouvons une p\'enalit\'e tr\`es
+% n\'egative, nous produisons un message d'erreur et
+% ex\'ecutons la routine de sortie standard dans ce cas.
+% \changes{v1.5s}{1998/09/10}{V\'erification de la p\'enalit\'e \cs{stop}. rapport pr/2873}
+%    \begin{macrocode}
+  \ifnum \outputpenalty<-\@MM
+   \PackageError{multicol}{Document end
+           inside multicols environment}\@ehd
+   \@specialoutput
+  \else
+%    \end{macrocode}
+% \changes{v1.5u}{1999/05/25}{Prise en charge de \cs{columnbreak}}
+% \changes{v1.5v}{1999/07/18}{Ajout des rapports de
+%                             d\'ebugage pour la prise en compte
+%                             des ruptures de colonne}
+% Pour la prochaine partie du code, voir les commentaires
+% dans la section~\ref{sec:colbreak}.
+%    \begin{macrocode}
+%<*colbreak>
+     \ifnum\outputpenalty = -\@Mv
+         \mult@info\@ne{Forced column
+                        break seen}%
+         \global\advance\vsize-\pagetotal
+         \global\setbox\colbreak@box
+                \vbox{\ifvoid\colbreak@box
+                      \else
+                        \unvbox\colbreak@box
+                        \penalty-\@Mv
+                      \fi
+                      \unvbox\@cclv}
+         \reinsert@footnotes
+     \else
+%</colbreak>
+%    \end{macrocode}
+% Si nous rencontrons un flottant ou une note de marge dans
+% l'impl\'ementation actuelle, nous avertissons simplement
+% l'utilisateur que cela n'est pas permis. Puis, nous
+% r\'eins\'erons la page et ses notes de bas de page.
+%    \begin{macrocode}
+        \PackageWarning{multicol}%
+           {Floats and marginpars not
+            allowed inside `multicols'
+            environment!
+           \@gobble}%
+        \unvbox\@cclv\reinsert@footnotes
+%    \end{macrocode}
+% De plus, nous vidons |\@currlist| pour \'eviter des
+% messages d'erreur futurs quand la routine de sortie de
+% \LaTeX{} sera forc\'ee de nouveau. Mais d'abord, nous devons
+% replacer les bo\^\i{}tes dans |\@freelist| (la valeur par d\'efaut de
+% |\@elt| est |\relax| donc cela est possible avec |\xdef|).
+% \changes{v1.2a}{1990/02/05}{Bo\^\i{}tes flottantes lib\'er\'ees.}
+%    \begin{macrocode}
+       \xdef\@freelist{\@freelist\@currlist}%
+       \gdef\@currlist{}%
+%<*colbreak>
+     \fi
+%</colbreak>
+  \fi
+%    \end{macrocode}
+% Si la p\'enalit\'e est $-1000$, elle proviendra de |\clearpage|
+% et nous ex\'ecuterons |\@doclearpage| pour nous d\'ebarrasser de tous
+% les flottants en attente.
+%    \begin{macrocode}
+ \else \@doclearpage \fi
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\process@deferreds}
+% |\process@deferreds| est une version simplifi\'ee de la
+% commande |\@startpage| de \LaTeX. Nous appelons d'abord |\@floatplacement|
+% pour sauvegarder les param\`etres utilisateurs courants dans
+% les registres internes. Puis nous commen\c{c}ons un nouveau
+% groupe et sauvegardons temporairement |\@deferlist| dans la
+% macro |\@tempb|.
+%    \begin{macrocode}
+\def\process@deferreds{%
+   \@floatplacement
+   \@tryfcolumn\@deferlist
+   \if@fcolmade\else
+     \begingroup
+    \let\@tempb\@deferlist
+%    \end{macrocode}
+% Notre prochaine action est de vider (globalement) |\@deferlist|
+% et assigner une nouvelle signification \`a |\@elt|. Ici, |\@scolelt|
+% est une macro qui regarde les bo\^\i{}tes dans une liste
+% pour d\'ecider si elles doivent \^etre plac\'ees sur une
+% nouvelle page (\emph{i.e.} dans |\@toplist| ou |\@botlist|)
+% ou si elles doivent attendre un autre traitement.
+%    \begin{macrocode}
+      \gdef\@deferlist{}%
+      \let\@elt\@scolelt
+%    \end{macrocode}
+% Maintenant, nous appelons |\@tempb| qui est de la forme
+%    \begin{center}
+%      |\@elt|\meta{box register}|\@elt|^^A
+%                        \meta{box register}\ldots{}
+%    \end{center}
+% Donc |\@elt| (\emph{i.e.} |\@scolelt|) distribuera les
+% bo\^\i{}tes aux trois listes.
+%    \begin{macrocode}
+        \@tempb \endgroup
+   \fi}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+%
+% \begin{macro}{ifshr@nking}
+% \begin{macro}{\raggedcolumns}
+% \begin{macro}{\flushcolumns}
+% \changes{v1.1a}{1989/09/20}{\cs{flushedcolumns} renomm\'e en \cs{flushcolumns}.}
+% Les d\'eclarations de |\raggedcolumns| et |\flushcolumns|
+% sont d\'efinies \`a l'aide d'une nouvelle macro |\if...|.
+%    \begin{macrocode}
+\newif\ifshr@nking
+%    \end{macrocode}
+% Les d\'efinitions r\'eelles sont simples~: nous commutons
+% juste \`a {\sf true} ou {\sf false} en fonction de l'action
+% d\'esir\'ee. Pour \'eviter des espaces suppl\'ementaires en
+% sortie, nous encapsulons ces changements dans |\@bsphack|\ldots{}\allowbreak|\@esphack|.
+%    \begin{macrocode}
+\def\raggedcolumns{%
+   \@bsphack\shr@nkingtrue\@esphack}
+\def\flushcolumns{%
+   \@bsphack\shr@nkingfalse\@esphack}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\balance@columns@out}
+% Maintenant, la derni\`ere partie du spectacle~: la
+% routine de sortie d'\'equilibrage des colonnes. Puisque ce
+% code est appel\'e par une p\'enalit\'e explicite
+% (|\eject|), il n'est pas besoin de v\'erifier des trucs
+% sp\'eciaux (par exemple, les flottants). Nous commen\c{c}ons
+% par \'equilibrer le mat\'eriel r\'euni.
+%    \begin{macrocode}
+\def\balance@columns@out{%
+%    \end{macrocode}
+% Pour cela, nous avons besoin de mettre de contenu de la
+% bo\^\i{}te 255 dans |\mult@box|.
+%    \begin{macrocode}
+%<-colbreak> \setbox\mult@box
+%<-colbreak>   \vbox{\unvbox\@cclv}%
+%    \end{macrocode}
+% \changes{v1.5u}{1999/05/25}{Prise en charge de \cs{columnbreak}}
+% \changes{v1.5v}{1999/07/18}{Ajout des rapports de
+%                             d\'ebugage pour la prise en compte
+%                             des ruptures de colonne}
+% Pour la partie suivante du code, voir les commentaires dans
+% la section~\ref{sec:colbreak}.
+%    \begin{macrocode}
+%<*colbreak>
+   \setbox\mult@box\vbox{%
+       \ifvoid\colbreak@box\else
+         \unvbox\colbreak@box\break
+         \mult@info\@ne{Re-adding
+           forced break(s) in balancing}%
+       \fi
+       \unvbox\@cclv}%
+%</colbreak>
+   \balance@columns
+%    \end{macrocode}
+% Cela nous am\`enera dans la position dans laquelle nous
+% appliquerons |\page@sofar|. Mais d'abord, nous devons
+% fixer |\vsize| \`a une valeur idoine pour la sortie d'une
+% colonne.
+%    \begin{macrocode}
+   \global\vsize\@colroom
+   \global\advance\vsize\ht\partial@page
+%    \end{macrocode}
+% Puis nous |\unvbox|ons |\partial@page| (qui peut \^etre
+% vide si nous n'avons pas trait\'e la premi\`ere page de cet
+% environnement \mc).
+%    \begin{macrocode}
+   \unvbox\partial@page
+%    \end{macrocode}
+% Puis nous retournons les marques, premi\`ere et du bas,
+% et le mat\'eriel r\'euni, dans la liste verticale
+% principale.
+%    \begin{macrocode}
+   \return@nonemptymark{first}\kept@firstmark
+   \return@nonemptymark{bot}\kept@botmark
+   \page@sofar
+%    \end{macrocode}
+% Nous avons besoin d'ajouter une p\'enalit\'e \`a cet
+% endroit, ce qui nous permettra de couper en ce point
+% puisque l'appel de la routine de sortie peut avoir
+% supprim\'e l'unique point de rupture possible, <<~collant~>>
+% ainsi tout saut suivant \`a la bo\^\i{}te \'equilibr\'ee.
+% Dans le cas o\`u il y a des r\'eglages bizarres de
+% |\multicolsep|, etc., cela pourrait produire des
+% r\'esultats amusants.
+%  \changes{v1.5c}{1993/04/18}{Ajout de p\'enalit\'e en sortie de routine de sortie}
+%    \begin{macrocode}
+   \penalty\z@
+}
+%    \end{macrocode}
+% Comme nous le savons d\'ej\`a, la r\'einsertion des notes
+% de bas de page se fait par la macro |\endmulticols|.
+% \end{macro}
+%
+%
+%  \begin{macro}{\balance@columns}
+% La macro r\'ealise maintenant le v\'eritable \'equilibrage.
+%    \begin{macrocode}
+\def\balance@columns{%
+%    \end{macrocode}
+% Nous commen\c{c}ons par r\'egler les marques conserv\'ees
+% en les mettant \`a jour avec les marques de cette
+% bo\^\i{}te. Cela doit \^etre r\'ealis\'e \emph{avant} d'ajouter la
+% p\'enalit\'e de $-10000$ en haut de la bo\^\i{}te, sinon
+% seule une bo\^\i{}te vide sera prise en compte.
+% \changes{v1.5h}{1994/08/26}{Prendre les marques sauvegard\'ees d'abord}
+%    \begin{macrocode}
+   \get@keptmarks\mult@box
+%    \end{macrocode}
+% Nous continuons ensuite par la remise \`a z\'ero des essais
+% pour enlever tout le mat\'eriel effa\c{c}able \`a la fin de
+% |\mult@box|. Ceci est plut\^ot exp\'erimental. Nous
+% ajoutons aussi un point de rupture forc\'e au tout d\'ebut,
+% et nous pouvons donc diviser la bo\^\i{}te de hauteur
+% z\'ero plus tard, ajoutant ainsi une glue connue |\splittopskip|
+% au d\'ebut.
+%    \begin{macrocode}
+   \setbox\mult@box\vbox{%
+        \penalty-\@M
+        \unvbox\mult@box
+        \remove@discardable@items
+        }%
+%    \end{macrocode}
+% Puis suivent des assignements de valeurs pour rendre
+% |\vsplit| correct. Nous utilisons la partie naturelle de |\topskip|
+% comme la partie naturelle de |\splittopskip| et permettons
+% un peu de retrait et de d\'epassement par l'ajout
+% d'\'elargissement et de retr\'ecissement.
+% \changes{v1.5?}{1994/?/?}{Autorise les colonnes \`a
+%                            \^etre un peu trop longues ou courtes}
+%    \begin{macrocode}
+   \@tempdima\topskip
+   \splittopskip\@tempdima
+       \@plus\multicolundershoot
+       \@minus\multicolovershoot
+   \splitmaxdepth\maxdepth
+%    \end{macrocode}
+% L'\'etape suivante est un peu d\'elicate~: quand \TeX{}
+% assemble le mat\'eriel dans une bo\^\i{}te, la premi\`ere
+% ligne n'est pas pr\'ec\'ed\'ee par la glue d'interligne,
+% \emph{i.e.} il n'y a pas de parem\`etre tel que |\boxtopskip|
+% dans \TeX{}. Cela signifie que la ligne de base de la
+% premi\`ere ligne de notre bo\^\i{}te est situ\'ee en un
+% point impr\'evisible qui d\'epend de la hauteur du
+% caract\`ere le plus large de cette ligne. Mais, bien s\^ur,
+% nous voulons que toutes les colonnes soient correctement
+% align\'ees sur la ligne de base de leur premi\`ere ligne.
+% Pour cette raison, nous avons ouvert |\mult@box| avec un
+% |\penalty| de {\sf -10000}. Cela nous permettra alors
+% de d\'etacher un petit morceau de |\mult@box| (en fait,
+% rien, puisque le premier point de rupture possible est le
+% premier item dans la bo\^\i{}te). En cons\'equence, |\splittopskip|
+% est ins\'er\'e au d\'ebut de |\mult@box| ce qui est
+% exactement ce que nous voulons faire.
+% \changes{v1.5?}{1994/?/?}{Faire la séparation à zéro ici}
+%    \begin{macrocode}
+   \setbox\@tempboxa\vsplit\mult@box to\z@
+%    \end{macrocode}
+% Ensuite nous essayons de trouver un point de d\'epart
+% convenable pour le calcul de hauteur de colonne. Il doit
+% \^etre inf\'erieur \`a la hauteur finale d\'esir\'ee mais
+% suffisant pour atteindre cette valeur finale en quelques
+% it\'erations seulement. La formule qui est maintenant
+% impl\'ement\'ee essaiera de commencer avec la valeur la
+% plus proche d'un multiple de |\baselineskip|. Le codage est
+% l\'eg\`erement subtil dans \TeX{} et il y a peut-\^etre
+% un meilleur moyen...
+% \changes{v1.4d}{1992/03/04}{Nouvel algorithme pour commencer la hauteur}
+%    \begin{macrocode}
+   \@tempdima\ht\mult@box
+   \advance\@tempdima\dp\mult@box
+   \divide\@tempdima\col@number
+%    \end{macrocode}
+% Le code ci-dessus r\`egle |\@tempdima| \`a la longueur
+% d'une colonne si nous divisons simplement la bo\^\i{}te
+% enti\`ere en parties \'egales. Pour donner le plus petit
+% multiple suivant de |\baselineskip|, nous convertissons
+% cette dimension en un nombre (le nombre de points
+% d'\'echelle) et puis, nous multiplions ce r\'esultat par |\baselineskip|
+% assignant cette valeur \`a |\dimen@|.
+% Cela rend |\dimen@| $\leq$ \`a |\@tempdimena|.
+%    \begin{macrocode}
+   \count@\@tempdima
+   \divide\count@\baselineskip
+   \dimen@\count@\baselineskip
+%    \end{macrocode}
+% L'\'etape suivante est de corriger notre r\'esultat en
+% prenant en compte la diff\'erence entre |\topskip| et
+% |\baselineskip|. Nous commen\c{c}ons par ajouter
+% |\topskip|~; si cela donne un r\'esultat trop grand, alors
+% il nous faut soustraire une |\baselineskip|.
+%    \begin{macrocode}
+   \advance\dimen@\topskip
+   \ifdim \dimen@ >\@tempdima
+     \advance\dimen@-\baselineskip
+   \fi
+%    \end{macrocode}
+% \`A la demande de l'utilisateur, nous commen\c{c}ons avec
+% la valeur la plus haute (ou la plus faible, mais, d'habitude, cela
+% augmente le nombre d'essais).
+%    \begin{macrocode}
+   \advance\dimen@\c@unbalance\baselineskip
+%    \end{macrocode}
+% Nous visualisons les statistiques si cela a \'et\'e
+% demand\'e.
+% \changes{v1.4f}{1992/04/28}{\cs{on@line} ajout\'e pour les info. de tra\c{c}age}
+%    \begin{macrocode}
+   \mult@info\@ne
+      {Balance columns\on@line:
+        \ifnum\c@unbalance=\z@\else
+       (off balance=\number\c@unbalance)\fi
+      \@gobbletwo}%
+%    \end{macrocode}
+% Mais nous ne permettons pas de valeurs absurdes pour commencer.
+%    \begin{macrocode}
+   \ifnum\dimen@<\topskip
+     \mult@info\@ne
+       {Start value
+          \the\dimen@  \space ->
+          \the\topskip \space (corrected)}%
+     \dimen@\topskip
+   \fi
+%    \end{macrocode}
+% Maintenant, nous essayons de trouver la hauteur finale des
+% colonnes. Nous commen\c{c}ons par r\'egler |\vbadness| \`a
+% l'infini (\emph{i.e.} $10000$) pour supprimer les
+% bo\^\i{}tes insuffisamment remplies pendant que nous sommes
+% en train de trouver une solution acceptable. Nous n'avons
+% pas besoin de faire cela dans un groupe puisqu'\`a la fin
+% de la routine de sortie, tout est restaur\'e. Le r\'eglage
+% des colonnes finales produira toujours des bo\^\i{}tes peu
+% remplies, avec une <<~laideur~>> de $10000$ et donc il n'y
+% a pas lieu d'en avertir l'utilisateur.
+% \changes{v1.2a}{1990/02/05}{Suppression du groupe autour
+%                             de la boucle principale.}
+%    \begin{macrocode}
+   \vbadness\@M
+%    \end{macrocode}
+% Nous permettons aussi les bo\^\i{}tes d\'ebordantes pendant
+% que nous essayons de s\'eparer les colonnes.
+%    \begin{macrocode}
+   \vfuzz \col@number\baselineskip
+%    \end{macrocode}
+% La variable |\last@try| prendra la dimension utilis\'ee
+% dans le pr\'ec\'edent test de s\'eparation. Nous
+% l'initialisons avec une valeur n\'egative.
+% \changes{v1.5?}{1994/?/?}{Initialisation de \cs{last@try}}
+%    \begin{macrocode}
+   \last@try-\p@
+   \loop
+%    \end{macrocode}
+% Afin de ne pas encombrer la pr\'ecieuse m\'emoire
+% principale de \TeX{} avec des choses dont nous n'avons pas
+% besoin, nous vidons tous les registres de bo\^\i{}te
+% utilis\'es globalement. C'est n\'ecessaire si nous revenons
+% \`a ce point apr\`es un essai infructueux. Nous utilisons
+% |\process@cols| dans ce but, commen\c{c}ant avec
+% |\mult@grightbox|. Notez les accolades
+% suppl\'ementaires autour de l'appel de macro : elles sont
+% n\'ecessaires puisque le m\'ecanisme |\loop|\ldots{}\allowbreak|\repeat|
+% de \PlainTeX{} ne peut \^etre encapsul\'e au m\^eme niveau
+% de groupement.
+% \changes{v1.5a}{1992/11/04}{Nouveau m\'ecanisme d'embo\^\i{}tement}
+%    \begin{macrocode}
+    {\process@cols\mult@grightbox
+           {\global\setbox\count@
+                   \box\voidb@x}}%
+%    \end{macrocode}
+% Le contenu de la bo\^\i{}te |\mult@box| est maintenant
+% copi\'e globalement dans la bo\^\i{}te |\mult@grightbox|
+% (ce sera la colonne la plus \`a droite, comme nous devrions
+% le voir plus loin).
+%    \begin{macrocode}
+    \global\setbox\mult@grightbox
+           \copy\mult@box
+%    \end{macrocode}
+% Nous commen\c{c}ons par supposer que l'essai sera
+% fructueux. Si nous finissons avec une trop mauvaise
+% solution, nous r\'eglons |too@bad| \`a \texttt{true}.
+% \changes{v1.5b}{1992/11/05}{Nouveau m\'ecanisme de <<~laideur~>>}
+%    \begin{macrocode}
+%<*badness>
+   \global\too@badfalse
+%</badness>
+%    \end{macrocode}
+% En utilisant |\vsplit|, nous extrayons les autres colonnes
+% du registre de bo\^\i{}te |\mult@grightbox|. Cela laisse le
+% registre de bo\^\i{}te |\mult@box| intact afin de pouvoir
+% recommencer si cet essai a \'et\'e infructueux.
+%    \begin{macrocode}
+   {\process@cols\mult@firstbox{%
+         \global\setbox\count@
+         \vsplit\mult@grightbox to\dimen@
+%    \end{macrocode}
+% Apr\`es toutes les s\'eparations, nous v\'erifions la
+% laideur des colonnes r\'esultantes : normalement, c'est la
+% quantit\'e de blanc suppl\'ementaire dans la colonne.
+%    \begin{macrocode}
+%<*badness>
+         \ifnum\c@tracingmulticols>\@ne
+           \@tempcnta\count@
+           \advance\@tempcnta-\mult@grightbox
+           \divide\@tempcnta \tw@
+           \message{^^JColumn
+              \number\@tempcnta\space
+               badness: \the\badness\space}%
+         \fi
+%    \end{macrocode}
+% Si la laideur est plus grande que celle autoris\'ee par la
+% laideur des colonnes, nous rejetons cette solution en
+% fixant |too@bad| \`a \texttt{true}.
+%    \begin{macrocode}
+         \ifnum\badness>\c@columnbadness
+           \ifnum\c@tracingmulticols>\@ne
+             \message{too bad
+                  (>\the\c@columnbadness)}%
+           \fi
+           \global\too@badtrue
+         \fi
+%</badness>
+                        }}%
+%    \end{macrocode}
+% Il y a ici une subtilit\'e~: alors que toute les autres
+% bo\^\i{}tes construites ont une profondeur d\'etermin\'ee
+% par |\splitmaxdepth|, la derni\`ere bo\^\i{}te aura une
+% profondeur naturelle ne tenant pas compte du r\'eglage
+% original et de la valeur de |\splitmaxdepth| ou
+% |\boxmaxdepth|. Cela signifie que nous pouvons terminer
+% avec une profondeur tr\`es grande dans la bo\^\i{}te
+% |\mult@grightbox|, ce qui pourrait donner un r\'esultat de
+% test incorrect. Donc, nous modifions la valeur en vidant la
+% bo\^\i{}te dans elle-m\^eme.
+%    \begin{macrocode}
+   \boxmaxdepth\maxdepth
+   \global\setbox\mult@grightbox
+      \vbox{\unvbox\mult@grightbox}%
+%    \end{macrocode}
+% Nous sauvegardons aussi une copie de la valeur <<~naturelle~>>
+% |\mult@firstbox| pour un usage ult\'erieur.
+%    \begin{macrocode}
+   \setbox\mult@nat@firstbox
+      \vbox{\unvcopy\mult@firstbox}%
+%    \end{macrocode}
+% Apr\`es que |\process@cols| a fait son travail, nous sommes
+% dans la situation suivante~:
+%    \begin{center}
+%      \begin{tabular}{r@{$\:\:\longleftarrow\:\:$}l}
+%        bo\^\i{}te |\mult@rightbox| & tout le mat\'eriel \\
+%        bo\^\i{}te |\mult@gfirstbox| & premi\`ere colonne \\
+%        bo\^\i{}te |\mult@gfirstbox|${}+2$ & seconde colonne \\
+%        \multicolumn{1}{c}{$\vdots$} &
+%        \multicolumn{1}{c}{$\vdots$} \\
+%        bo\^\i{}te |\mult@grightbox| & derni\`ere colonne
+%      \end{tabular}
+%    \end{center}
+% Nous rapportons la hauteur de la premi\`ere colonne, la
+% taille naturelle \'etant donn\'ee entre crochets.
+% \changes{v1.5?}{1994/?/?}{Montre la taille primitive}
+%    \begin{macrocode}
+    \ifnum\c@tracingmulticols>\@ne
+       \message{^^JFirst column
+           = \the\dimen@\space
+           (\the\ht\mult@nat@firstbox)}\fi
+%    \end{macrocode}
+% Si |\raggedcolumns| est forc\'e, les anciennes versions de
+% ce fichier retr\'ecissent aussi la premi\`ere colonne
+% jusqu'\`a sa valeur naturelle \`a cet endroit. Cela \'etait
+% r\'ealis\'e de telle sorte que la premi\`ere colonne ne soit pas plus
+% petite compar\'ee \`a la derni\`ere, mais cela produisait en
+% fait des r\'esultats incorrects (superposition de texte)
+% dans les cas li\'es. C'est pourquoi depuis la v1.5q, |\raggedcolumns|
+% permettent \`a toutes les colonnes d'\^etre l\'eg\`erement courtes.
+% \changes{v1.5q}{1998/01/19}{Pas de remise \`a z\'ero de \cs{mult@firstbox} (rapport pr2739)}
+%    \begin{macrocode}
+%    \ifshr@nking
+%      \global\setbox\mult@firstbox
+%             \copy\mult@nat@firstbox
+%    \fi
+%    \end{macrocode}
+% Puis, nous donnons des informations sur la derni\`ere
+% colonne\,\footnote{Avec \TeX{} version~3.141, il est
+% maintenant possible d'utiliser \cs{newlinechar}
+% de \LaTeX{} dans la commande \cs{message}, mais les
+% utilisateurs d'anciennes versions de \TeX{} obtiendront
+% d\'esormais \texttt{\string^\string^J} plut\^ot
+% qu'une nouvelle ligne \`a l'\'ecran}.
+% \changes{v1.4a}{1992/02/12}{Modification du bon \cs{endlinechar} dans \cs{message}}
+%    \begin{macrocode}
+    \ifnum\c@tracingmulticols>\@ne
+      \message{<> last column =
+               \the\ht\mult@grightbox^^J}%
+%    \end{macrocode}
+% Du code de tra\c{c}age que nous ne compilons pas dans la
+% version de production \`a moins qu'il ne soit demand\'e.
+% Il produira d'\'enormes listes de bo\^\i{}tes impliqu\'ees
+% dans l'\'equilibrage dans le fichier log.
+%    \begin{macrocode}
+%<*debug>
+      \ifnum\c@tracingmulticols>4
+         {\showoutput
+          \batchmode
+          \process@cols\@ne
+           {\showbox\count@}}%
+          \errorstopmode
+      \fi
+%</debug>
+     \fi
+%    \end{macrocode}
+% Nous v\'erifions que notre essai est r\'eussi. Le test
+% utilis\'e est tr\`es simple : nous comparons simplement la
+% premi\`ere et la derni\`ere colonne. Ainsi, les colonnes
+% interm\'ediaires peuvent \^etre plus longues que la
+% premi\`ere si |\raggedcolumns| est utilis\'e. Si la colonne
+% la plus \`a droite est plus longue que la prem\`ere, alors
+% nous recommen\c{c}ons avec une plus grande valeur de |\dimen@|.
+% \changes{v1.3c}{1991/03/03}{\cs{global}\cs{advance} remis \`a partir de l'ancien code}
+%    \begin{macrocode}
+    \ifdim\ht\mult@grightbox >\dimen@
+%    \end{macrocode}
+% Si la hauteur de la derni\`ere bo\^\i{}te est trop grande,
+% nous signalons cet essai comme infructueux.
+% \changes{v1.5v}{1999/07/18}{Ajout de rapport de
+%                             tra\c{c}age pour les essais infructueux}
+%    \begin{macrocode}
+%<*badness>
+      \too@badtrue
+      \ifnum\c@tracingmulticols>\@ne
+         \typeout{Rejected: last
+                 column too large!}%
+      \fi
+    \else
+%    \end{macrocode}
+% \changes{v1.5v}{1999/07/18}{V\'erification de la
+%                             derni\`ere colonne : si elle contient une
+%                             rupture forc\'ee, l'essai est rejet\'e}
+%
+% Pour nous assurer qu'il n'y a pas de rupture forc\'ee dans
+% la derni\`ere colonne, nous essayons d'extraire une
+% bo\^\i{}te de dimension |\maxdimen| de |\mult@grightbox|
+% (ou mieux, d'une de ses copies). Cela devrait produire une
+% bo\^\i{}te vide apr\`es l'extraction, \`a moins qu'il n'y
+% eut une rupture forc\'ee quelque part dans la colonne, dans
+% la cas o\`u le mat\'eriel apr\`es la rupture serait rest\'e
+% dans la bo\^\i{}te.
+%    \begin{macrocode}
+%<*colbreak>
+      \setbox\@tempboxa
+           \copy\mult@grightbox
+      \setbox\z@\vsplit\@tempboxa to\maxdimen
+      \ifvoid\@tempboxa
+%</colbreak>
+%    \end{macrocode}
+% Donc, si |\@tempboxa| est vide nous avons une solution
+% valide. Dans ce cas, nous pr\^etons un regard attentif \`a
+% la derni\`ere colonne pour d\'ecider si cette colonne doit
+% \^etre aussi longue que les autres ou si elle peut se
+% permettre d\^etre plus courte.
+% Pour cela, nous devons tout d'abord remettre en
+% bo\^\i{}te la colonne dans une bo\^\i{}te de hauteur
+% ad\'equate. Si le tra\c{c}age est activ\'e, nous montrons
+% alors la laideur de cette bo\^\i{}te.
+%    \begin{macrocode}
+        \global\setbox\mult@grightbox
+           \vbox to\dimen@
+              {\unvbox\mult@grightbox}%
+        \ifnum\c@tracingmulticols>\@ne
+          \message{Final badness:
+                   \the\badness}%
+        \fi
+%    \end{macrocode}
+% Nous comparons ensuite cette laideur avec la m\'ediocrit\'e
+% autoris\'ee pour la colonne finale. Si elle n'exc\`ede pas
+% cette valeur, nous utilisons la bo\^\i{}te, sinon nous
+% remettons en bo\^\i{}te une fois de plus et ajoutons de la
+% glue au d\'ebut.
+%    \begin{macrocode}
+        \ifnum\badness>\c@finalcolumnbadness
+          \global\setbox\mult@grightbox
+           \vbox to\dimen@
+              {\unvbox\mult@grightbox\vfill}%
+           \ifnum\c@tracingmulticols>\@ne
+             \message{ setting natural
+              (> \the\c@finalcolumnbadness)}%
+           \fi
+        \fi
+%    \end{macrocode}
+% Si |\@tempboxa| ci-dessus n'est pas vide, notre essai est
+% infructueux, nous rapportons donc ce fait et r\'eessayons.
+%    \begin{macrocode}
+%<*colbreak>
+      \else
+        \too@badtrue
+        \ifnum\c@tracingmulticols>\@ne
+          \typeout{Rejected: unprocessed
+            forced break(s) in last column!}%
+        \fi
+      \fi
+    \fi
+%</colbreak>
+%    \end{macrocode}
+% Si la hauteur naturelle de la premi\`ere bo\^\i{}te est
+% plus petite que la taille donn\'ee par l'essai en cours,
+% mais plus grande que celle donn\'ee par l'essai
+% pr\'ec\'edent, il est probable que nous avons oubli\'e une
+% solution potentiellement meilleure (cela peut arriver si,
+% pour quelque raison, la taille obtenue apr\`es notre
+% premier essai \'etait trop grande). Dans ce cas, nous
+% \'ecartons cet essai et red\'emarrons un nouvel essai avec la taille
+% naturelle.
+%    \begin{macrocode}
+    \ifdim\ht\mult@nat@firstbox<\dimen@
+      \ifdim\ht\mult@nat@firstbox>\last@try
+        \too@badtrue
+        \ifnum\c@tracingmulticols>\@ne
+           \typeout{Retry: using natural
+                    height of first column!}%
+        \fi
+        \dimen@\ht\mult@nat@firstbox
+        \last@try\dimen@
+        \advance\dimen@-\p@
+      \fi
+    \fi
+%    \end{macrocode}
+% Finalement, le commutateur |too@bad| est test\'e. S'il a
+% \'et\'e fix\'e \`a vrai, soit plus t\^ot, soit \`a cause
+% d'une colonne de droite trop grande, nous essayons de
+% nouveau avec une valeur de |\dimen@| l\'eg\`erement plus
+% grande.
+%    \begin{macrocode}
+    \iftoo@bad
+%</badness>
+      \advance\dimen@\p@
+    \repeat
+%    \end{macrocode}
+% \`A ce moment, |\dimen@| prend la hauteur qui a \'et\'e
+% d\'etermin\'ee par la boucle d'\'equilibrage.
+% Si cette hauteur de colonne devient plus grande que
+% l'espace disponible (qui est |\@colroom|) nous faisons
+% entrer de force les colonnes dans l'espace, en supposant
+% qu'elles auront assez de contractibilit\'e pour le
+% faire\,\footnote{Ce sera peut \^etre mauvais, puisque la
+% contractibilit\'e prise en compte pour la quantit\'e de
+% mat\'eriel ne pourrait \^etre disponible que pour certaines
+% colonnes. Mais il est mieux de le tester que de le faire
+% directement}.
+% \changes{v1.3c}{1991/03/03}{Limitation de la hauteur de colonne \`a \cs{@colroom}}
+% \changes{v1.5q}{1998/01/19}{Suppression de la fixation de \cs{dimen@} (rapport pr2739)}
+%    \begin{macrocode}
+   \ifdim\dimen@>\@colroom
+      \dimen@\@colroom
+   \fi
+%    \end{macrocode}
+% Puis, nous d\'epla\c{c}ons le contenu des registres de
+% bo\^\i{}te impairs vers les registres pairs, en
+% l'\'etr\'ecissant s'il le faut. Nous devons utiliser |\vbox|
+% et non |\vtop| (comme c'\'etait fait dans les premi\`eres
+% versions) puisque, sinon, les bo\^\i{}tes r\'esultantes
+% n'auront pas de hauteur (\TB\/ page 81). Cela devrait dire
+% que le |\topskip| suppl\'ementaire est ajout\'e quand les
+% bo\^\i{}tes sont rendues au {\it page\_builder} via |\page@sofar|.
+% \changes{v1.3a}{1990/05/20}{Changement de \cs{vtop} en \cs{vbox}.}
+%    \begin{macrocode}
+   \process@cols\mult@rightbox
+       {\@tempcnta\count@
+        \advance\@tempcnta\@ne
+        \setbox\count@\vbox to\dimen@
+           {%
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+            \vskip \z@
+              \@plus-\multicolundershoot
+              \@minus-\multicolovershoot
+            \unvbox\@tempcnta
+            \ifshr@nking\vfill\fi}}%
+}
+%    \end{macrocode}
+%  \end{macro}
+%
+% \end{multicols}
+%
+% \begin{multicols}{2}[\subsection{Les allocations de bo\^\i{}tes}]
+%
+% \begin{macro}{\mult@rightbox}
+% \begin{macro}{\mult@grightbox}
+% \begin{macro}{\mult@firstbox}
+% \begin{macro}{\mult@gfirstbox}
+% Les pr\'ec\'edentes versions de ces macros utilisaient les
+% premiers registres de bo\^\i{}te 0, 2, 4, ... pour les
+% bo\^\i{}tes globales et 1, 3, 5, ... pour les
+% bo\^\i{}tes locales correspondantes (Vous pourriez encore
+% trouver des traces de ce setup dans la documentation.
+% *soupir*). Cela pose un probl\`eme \`a partir du moment
+% o\`u nous avons plus de 5 colonnes puisque les bo\^\i{}tes
+% officiellement allou\'ees seront r\'e\'ecrites par
+% l'algorithme. La nouvelle version utilise maintenant des
+% registres de bo\^\i{}te priv\'es.
+%    \begin{macrocode}
+\newbox\mult@rightbox
+\newbox\mult@grightbox
+\newbox\mult@gfirstbox
+\newbox\mult@firstbox
+\newbox\@tempa\newbox\@tempa
+\newbox\@tempa\newbox\@tempa
+\newbox\@tempa\newbox\@tempa
+\newbox\@tempa\newbox\@tempa
+\newbox\@tempa\newbox\@tempa
+\newbox\@tempa\newbox\@tempa
+\newbox\@tempa\newbox\@tempa
+\newbox\@tempa\newbox\@tempa
+\newbox\@tempa
+\let\@tempa\relax
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \end{multicols}
+%
+%
+% \begin{multicols}{2}[\section{Nouvelles macros et bidouilles pour la version 1.2}]
+%
+% \begin{macro}{\emergencystretch}
+% \begin{macro}{\setemergencystretch}
+% Si nous n'utilisons pas \TeX{}~3.0, |\emergencystretch|
+% n'est pas d\'efini, donc, dans ce cas, nous ajoutons
+% simplement un registre \meta{dimen} non utilis\'e.
+% \changes{v1.4j}{1992/06/25}{Insertion de \cs{emergencystretch} en haut
+%                  retiré.}
+%    \begin{macrocode}
+\@ifundefined{emergencystretch}
+     {\newdimen\emergencystretch}{}
+%    \end{macrocode}
+% \changes{v1.2a}{1990/02/05}{Macro ajout\'ee.}
+% Mes tests montrent que la formule suivante fonctionne assez
+% bien. N\'eanmoins, la macro |\setemergencystretch| prend
+% aussi |\hsize| en second argument pour permettre \`a
+% l'utilisateur d'essayer diff\'erentes formules.
+%    \begin{macrocode}
+\def\setemergencystretch#1#2{%
+   \emergencystretch 4pt
+   \multiply\emergencystretch#1}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+
+
+% \begin{macro}{\set@floatcmds}
+% \changes{v1.2a}{1990/02/05}{Macro ajout\'ee.}
+% \changes{v1.5g}{1994/06/07}{Mise \`a jour, puisque les flottants ont chang\'e}
+% \changes{v1.5j}{1994/06/07}{Mise \`a jour, puisque les flottants ont encore chang\'e}
+% \changes{v1.5l}{1995/10/19}{Ajout de \cmd{@largefloatcheck}}
+% M\^eme si cela doit \^etre utilis\'e comme point
+% d'entr\'ee, nous utilisons |@| dans le nom, puisque c'est
+% plus pour des experts.
+%    \begin{macrocode}
+\def\set@floatcmds{%
+ \let\@dblfloat\@dbflt
+ \def\end@dblfloat{\par
+   \vskip\z@
+   \egroup
+   \color@endbox
+   \@largefloatcheck
+   \outer@nobreak
+%    \end{macrocode}
+% C'est facile (de diff\'erer les flottants jusqu'apr\`es la
+% page courante) mais toute autre solution obligerait \`a
+% s'enfoncer dans la routine de sortie de \LaTeX{}, et je
+% n'aime pas y travailler tant que je ne sais pas quelle
+% partie de la routine de sortie devra \^etre
+% r\'eimpl\'ement\'ee pour \LaTeX3.
+%    \begin{macrocode}
+   \ifnum\@floatpenalty<\z@
+%    \end{macrocode}
+% Nous devons ajouter le flottant \`a |\@deferlist| parce que
+% nous supposons qu'en dehors de l'environnement \mc{}, nous
+% sommes en mode simple colonne. Ce n'est pas totalement
+% correct, j'ai d\'ej\`a utilis\'e l'environnement \mc{} dans
+% une d\'eclaration |\twocolumn| de \LaTeX{}, mais cela ira
+% pour beaucoup d'applications.
+%    \begin{macrocode}
+     \@cons\@deferlist\@currbox
+   \fi
+   \ifnum\@floatpenalty=-\@Mii
+     \@Esphack
+   \fi}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \end{multicols}
+%
+% \begin{multicols}{2}[\subsection{Maintenance des registres de marque}]
+% \label{sec:v14}
+%
+% Cette section contient les routines qui fixent les marques
+% pour qu'elles soient prises correctement en compte. Elles
+% ont \'et\'e introduites avec la version~1.4.
+%
+%  \begin{macro}{\kept@topmark}
+% \changes{v1.4h}{1992/06/04}{Initialisation des paires de doubles accolades}
+%  \begin{macro}{\kept@firstmark}
+%  \begin{macro}{\kept@botmark}
+% La premi\`ere chose que nous faisons est de r\'eserver
+% trois noms de macro, pour prendre le texte de remplacement,
+% pour les primitives de \TeX{}, |\firstmark|, |\botmark| et
+% |\topmark|. Nous initialisons les deux premi\`eres pour
+% qu'elles soient vides, et |\kept@topmark| qui contient deux
+% paires d'accolades vides. C'est n\'ecessaire puisque |\kept@topmark|
+% est suppos\'e contenir la derni\`ere marque provenant d'une
+% page pr\'ec\'edente, et, dans \LaTeX{}, toute marque
+% <<~r\'eelle~>> doit contenir deux parties, repr\'esentant
+% les informations des marques droites et gauches.
+%    \begin{macrocode}
+\def\kept@topmark{{}{}}
+\let\kept@firstmark\@empty
+\let\kept@botmark\@empty
+%    \end{macrocode}
+%  \end{macro}
+%  \end{macro}
+%  \end{macro}
+%
+%
+%  \begin{macro}{\return@nonemptymark}
+% Quelquefois, nous voulons retourner la valeur d'une marque
+% <<~conserv\'ee~>> dans un n\oe{}ud |\mark| de la liste
+% verticale principale. C'est r\'ealis\'e par la fonction
+% |\return@nonemptymark|. Comme le nom le sugg\`ere, elle
+% agit seulement si le texte de remplacement de la marque
+% conserv\'ee n'est pas vide. C'est fait pour \'eviter
+% d'ajouter une marque vide, quand aucune marque n'est
+% effectivement pr\'esente. Si, n\'eanmoins, nous voulons
+% ajouter une telle marque, elle doit \^etre consid\'er\'ee
+% plus tard comme une |\firstmark| valide.
+%    \begin{macrocode}
+\def\return@nonemptymark#1#2{%
+  \ifx#2\@empty
+  \else
+%    \end{macrocode}
+% Dans un but de d\'ebuggage, nous jetons un coup d'\oe{}il
+% \`a la valeur de la marque conserv\'ee que nous voulons
+% retourner. Ce code le fera.
+%    \begin{macrocode}
+%<*marktrace>
+    \mult@info\tw@
+      {Returned #1 mark:\MessageBreak
+       \meaning#2}%
+%      \nobreak
+%    \fi
+%</marktrace>
+%    \end{macrocode}
+% Puisque le contenu de la marque peut \^etre un code
+% \LaTeX{} arbitraire, nous nous assurons mieux de son
+% incapacit\'e \`a entra\^\i{}ner une expansion quelconque (des
+% expansions ont \'et\'e d\'ej\`a r\'ealis\'ees pendant
+% l'ex\'ecution de |\markright| ou |\markboth|). Nous
+% utilisons donc le m\'ecanisme habituel d'un registre de
+% token pour interdire l'expansion\,\footnote{\`A cause de la
+% d\'efinition courante de \cs{markright}, etc., ce ne serait
+% pas utile de d\'efinir la commande \cs{protect} pour
+% interdire l'expansion, puisque tout \cs{protect} a
+% d\'ej\`a disparu \`a cause des expansions pr\'ec\'edentes}.
+% \changes{v1.4n}{1992/09/10}{Consolidation des marques}
+% \changes{v1.5t}{1999/03/22}{Rajout de la commande \cs{mark} qui avait
+%                             \'et\'e comment\'ee ici par erreur en 1998
+%                             (rapport pr/2978)}
+%    \begin{macrocode}
+    \toks@\expandafter{#2}%
+    \mark{\the\toks@}%
+%    \end{macrocode}
+% Nous ne voulons aucun point de rupture entre une telle
+% marque retourn\'ee et le mat\'eriel suivant (qui, habituellement, est
+% juste la bo\^\i{}te d'o\`u venait la marque).
+%    \begin{macrocode}
+    \nobreak
+  \fi}
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%  \begin{macro}{\get@keptmarks}
+% Si nous avons du mat\'eriel dans un registre de bo\^\i{}te,
+% nous voulons, peut-\^etre, mettre la premi\`ere et la
+% derni\`ere marques hors de cette bo\^\i{}te. Cela peut
+% \^etre r\'ealis\'e par |\get@keptmarks| qui prend un
+% argument : le num\'ero du registre de bo\^\i{}te ou son
+% alias, d\'efini par |\newbox|.
+%    \begin{macrocode}
+\def\get@keptmarks#1{%
+%    \end{macrocode}
+% Dans un but de d\'ebuggage, nous regardons les dimensions
+% courantes de la bo\^\i{}te car dans les anciennes
+% versions du code, j'ai fait quelque erreurs dans ce
+% domaine.
+%    \begin{macrocode}
+%<*debug>
+      \typeout{Mark box #1 before:
+               ht \the\ht#1, dp \the\dp#1}%
+%</debug>
+%    \end{macrocode}
+% Maintenant, nous ouvrons un nouveau groupe et, localement,
+% nous y copions la bo\^\i{}te. En cons\'equence, toute
+% op\'eration, \emph{i. e.} |\vsplit|, auront seulement un
+% effet local. Sans cette astuce, le contenu de la bo\^\i{}te
+% perdrait le niveau auquel le dernier assignement du
+% registre de bo\^\i{}te a \'et\'e r\'ealis\'e.
+%    \begin{macrocode}
+  \begingroup
+   \vbadness\@M
+   \setbox#1\copy#1%
+%    \end{macrocode}
+% Maintenant, nous \'etendons la bo\^\i{}te jusqu'\`a la
+% dimension maximale possible. Cela doit s\'eparer le contenu
+% entier de la bo\^\i{}te donc, tout est r\'eellement
+% s\'epar\'e. Par cons\'equent, |\splitfirstmark| et |\splitbotmark|
+% contiendront respectivement la premi\`ere et la derni\`ere
+% marque.
+%    \begin{macrocode}
+   \setbox#1\vsplit#1to\maxdimen
+%    \end{macrocode}
+% Donc, nous pouvons maintenant fixer les marques
+% conserv\'ees, ce qui est une op\'eration globale, et,
+% ensuite, fermer le groupe. Cela restaurera le contenu
+% original de la bo\^\i{}te.
+%    \begin{macrocode}
+   \set@keptmarks
+ \endgroup
+%    \end{macrocode}
+% Pour d\'ebugger, nous regardons encore la dimension de la
+% bo\^\i{}te qui ne doit pas avoir chang\'e.
+%    \begin{macrocode}
+%<*debug>
+    \typeout{Mark box #1 \space after:
+             ht \the\ht#1, dp \the\dp#1}%
+%</debug>
+}
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%  \begin{macro}{\set@keptmarks}
+% La macro |\set@keptmarks| est responsable du r\'eglage de
+% |\kept@firstmark| et |\kept@botmark|, en v\'erifiant la
+% valeur courante de |\splitfirstmark| et |\splitbotmark|.
+%    \begin{macrocode}
+\def\set@keptmarks{%
+%    \end{macrocode}
+% Si |\kept@firstmark| est vide, nous supposons qu'elle n'est pas
+% configur\'ee. Strictement parlant, cela n'est pas correct
+% puisque nous avons perdu la capacit\'e d'avoir des marques
+% explicitement vides, mais pour les applications normales de
+% \LaTeX{}, cela est suffisant. Si elle n'est pas vide, nous
+% ne changeons pas la valeur -- ensuite, dans les routines de sortie,
+% elle sera restaur\'ee comme |\@empty|.
+%    \begin{macrocode}
+   \ifx\kept@firstmark\@empty
+%    \end{macrocode}
+% Nous mettons maintenant le contenu de |\splitfirstmark|
+% dans |\kept@firstmark|. Dans le cas o\`u il n'y avait pas du
+% tout de marque, |\kept@firstmark| ne sera pas modifi\'ee
+% par cette op\'eration.
+%    \begin{macrocode}
+     \expandafter\gdef\expandafter
+        \kept@firstmark
+        \expandafter{\splitfirstmark}%
+%    \end{macrocode}
+% Au cours du d\'ebuggage, nous montrons les assignements
+% mais seulement si quelque chose se produit r\'eellement.
+%    \begin{macrocode}
+%<*marktrace>
+     \ifx\kept@firstmark\@empty\else
+       \mult@info\tw@
+         {Set kept first mark:\MessageBreak
+          \meaning\kept@firstmark%
+          \@gobbletwo}%
+     \fi
+%</marktrace>
+   \fi
+%    \end{macrocode}
+% Nous essayons toujours de fixer la marque du bas \`a |\splitbotmark|
+% mais, bien s\^ur, seulement quand il y a
+% |\splitbotmark|. De nouveau, nous supposons que si |\splitbotmark|
+% est vide, cela signifie que la partie s\'epar\'ee de la
+% bo\^\i{}te ne contient plus de marque.
+%    \begin{macrocode}
+   \expandafter\def\expandafter\@tempa
+      \expandafter{\splitbotmark}%
+   \ifx\@tempa\@empty\else
+      \global\let\kept@botmark\@tempa
+%<*marktrace>
+      \mult@info\tw@
+        {Set kept bot mark:\MessageBreak
+         \meaning\kept@botmark%
+         \@gobbletwo}%
+%</marktrace>
+   \fi}%
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%  \begin{macro}{\prep@keptmarks}
+% La fonction |\prep@keptmarks| est utilis\'ee pour
+% initialiser les marques conserv\'ees \`a partir du contenu
+% de |\partial@page|, \emph{i. e.} la bo\^\i{}te qui prend
+% tout \`a partir du haut de la page courante avant de
+% d\'emarrer l'environnement \mc{}. Cependant, une telle
+% bo\^\i{}te est valable seulement si nous ne produisons pas
+% de \mc{} embo\^\i{}t\'e.
+%    \begin{macrocode}
+\def\prep@keptmarks{%
+   \if@boxedmulticols \else
+     \get@keptmarks\partial@page
+   \fi}
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%  \begin{macro}{\remove@discardable@items}
+%
+%    \begin{macrocode}
+\def\remove@discardable@items{%
+%<*debug>
+   \edef\@tempa{s=\the\lastskip,
+                p=\the\lastpenalty,
+                k=\the\lastkern}%
+   \typeout\@tempa
+%</debug>
+        \unskip\unpenalty\unkern
+%<*debug>
+   \edef\@tempa{s=\the\lastskip,
+                p=\the\lastpenalty,
+                k=\the\lastkern}%
+   \typeout\@tempa
+%</debug>
+        \unskip\unpenalty\unkern
+%<*debug>
+   \edef\@tempa{s=\the\lastskip,
+                p=\the\lastpenalty,
+                k=\the\lastkern}%
+   \typeout\@tempa
+%</debug>
+        \unskip\unpenalty\unkern
+%<*debug>
+   \edef\@tempa{s=\the\lastskip,
+                p=\the\lastpenalty,
+                k=\the\lastkern}%
+   \typeout\@tempa
+%</debug>
+        \unskip\unpenalty\unkern
+}
+%    \end{macrocode}
+%  \end{macro}
+%
+%    \begin{macrocode}
+%<*badness>
+\newif\iftoo@bad
+%    \end{macrocode}
+%
+% \begin{macro}{\c@columnbadness}
+% \begin{macro}{\c@finalcolumnbadness}
+%    \begin{macrocode}
+\newcount\c@columnbadness
+\c@columnbadness=10000
+\newcount\c@finalcolumnbadness
+\c@finalcolumnbadness=9999
+
+\newdimen\last@try
+
+\newdimen\multicolovershoot
+\multicolovershoot=2pt
+\newdimen\multicolundershoot
+\multicolundershoot=2pt
+\newbox\mult@nat@firstbox
+%</badness>
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%  \begin{macro}{\mult@info}
+% Une aide pour produire les messages d'information.
+%    \begin{macrocode}
+\def\mult@info#1#2{%
+  \ifnum\c@tracingmulticols>#1%
+   \GenericWarning
+       {(multicol)\@spaces\@spaces}%
+       {Package multicol: #2}%
+  \fi
+}
+%    \end{macrocode}
+%  \end{macro}
+%
+% \end{multicols}
+%
+%
+% \begin{multicols}{2}[\section{R\'eglage de
+%                        \cs{columnwidth}}]
+%
+%  \begin{macro}{\@footnotetext}
+% \changes{v1.5o}{1997/11/16}{Red\'efinition ajout\'ee. rapport pr/2664.}
+% \changes{v1.5r}{1998/08/17}{Utilisation de \cs{@footnotetext}
+%                             mais avec un changement local de \cs{columnwidth}.}
+%  \begin{macro}{\mult@footnotetext}
+% \changes{v1.5r}{1998/08/17}{Macro de nouveau supprim\'ee.}
+% Si nous stockons la largeur de la colonne courante dans
+% |\columnwidth|, nous devons red\'efinir la macro interne
+% |\@footnotetext| pour qu'elle utilise la largeur des notes
+% de bas de page, plut\^ot que la d\'efinition originale.
+%
+% Depuis la v1.5r, cela est maintenant r\'ealis\'e de telle
+% fa\c{c}on que la d\'efinition originale soit toujours
+% utilis\'ee, sauf que, localement, |\columnwidth| est fix\'e
+% \`a |\textwidth|.
+%
+% Cela r\'esoud deux probl\`emes : premi\`erement, les
+% red\'efinitions de |\@footnotetext| r\'ealis\'ees par une
+% classe seront toujours valides ; deuxi\`emement, si
+% \mc{} est utilis\'e dans un environnement minipage, la
+% d\'efinition sp\'eciale de |\@footnotetext| dans cet
+% environnement sera prise et non celle du texte
+% principal en cours de traitement (ce dernier devrait entra\^\i{}ner
+% la perte de toutes les notes de bas de page dans ce cas).
+%
+% Voir la d\'efinition de la commande |\multicols| pour le
+% code exact.
+%  \end{macro}
+%  \end{macro}
+% \end{multicols}
+%
+%
+% \begin{multicols*}{2}[\section{Extensions suppl\'ementaires}]
+%
+% Cette section contient le code pour les extensions
+% ajout\'ees \`a ce package. Toutes peuvent \^etre
+% actives, certaines peuvent \^etre dormantes et en
+% attente de leur activation dans de futures versions.
+%
+% \subsection{Non-\'equilibrage des colonnes}
+%
+% C'est assez facile \`a impl\'ementer. Nous avons juste \`a
+% inactiver la routine de sortie d'\'equilibrage et \`a la
+% remplacer par celle qui exp\'edie les autres pages.
+%
+%  \begin{macro}{\multicols*}
+% \changes{v1.5q}{1998/01/19}{Macro ajout\'e}
+% Le code pour cet environnement a \'et\'e propos\'e par Matthias~\bsc{Clasen}.
+%    \begin{macrocode}
+%<*nobalance>
+ \@namedef{multicols*}{%
+%    \end{macrocode}
+% Si nous sommes dans le texte principal en cours de traitement,
+% \emph{i. e.} dans une bo\^\i{}te de cette sorte, cette
+% approche ne fonctionnera pas, puisque nous n'avons pas de
+% dimension verticale, il est donc pr\'ef\'erable d'avertir
+% l'utilisateur plut\^ot que de r\'ealiser l'\'equilibrage.
+%    \begin{macrocode}
+   \ifinner
+     \PackageWarning{multicol}%
+       {multicols* inside a box does
+        not make sense.\MessageBreak
+        Going to balance anyway}%
+   \else
+     \let\balance@columns@out
+         \multi@column@out
+   \fi
+   \begin{multicols}
+}
+%    \end{macrocode}
+%  \end{macro}
+%
+%  \begin{macro}{\endmulticols*}
+% Quand l'environnement est fini, nous fermons simplement
+% l'environnement \texttt{multicols} int\'erieur, sauf qu'il
+% vaut mieux, \'egalement, \^etre dans un glue \'etirable
+% verticalement, pour que la derni\`ere colonne, qui contient
+% toujours le texte, ne soit pas \'etir\'ee verticalement de
+% mani\`ere exag\'er\'ee.
+% \changes{v1.5q}{1998/01/19}{Macro ajout\'ee}
+%    \begin{macrocode}
+ \@namedef{endmulticols*}{\vfill
+   \end{multicols}}
+%</nobalance>
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+% \subsection{Rupture manuelle des colonnes} \label{sec:colbreak}
+%
+% Le probl\`eme, avec les ruptures manuelles de page dans
+% \mc{} est que, pendant la collecte du mat\'eriel pour
+% toutes les colonnes, une p\'enalit\'e de <<~for\c{c}age de
+% page~>> (\emph{i. e.} -10000 ou plus) pourrait arr\^eter la
+% passe de collecte, ce qui n'est pas tout \`a fait ce qui est
+% d\'esir\'e. D'un autre c\^ot\'e, l'utilisation d'une
+% p\'enalit\'e telle que -9999 signifierait qu'il y aurait
+% des cas pour lesquels les op\'erations |\vsplit| dans
+% \mc{} ignorerait une telle p\'enalit\'e et choisirait
+% encore un point de rupture diff\'erent.
+%
+% Pour cela, l'impl\'ementation actuelle utilise une approche
+% totalement diff\'erente. En un mot, elle \'etend le
+% traitement de la routine de sortie de \LaTeX{} en
+% introduisant un drapeau de p\'enalit\'e suppl\'ementaire
+% (\emph{i. e.} un p\'enalit\'e qui est forc\'ee mais
+% sup\'erieure \`a -10000, pour que la routine de sortie
+% puisse consid\'erer cette valeur et donc, savoir pourquoi
+% elle a \'et\'e appel\'ee).
+%
+% \`A l'int\'erieur de la routine de sortie, nous testons
+% cette valeur et si elle appara\^\i{}t, nous faisons deux
+% choses : sauvegarde du texte en cours de traitement \`a partir de ce point
+% dans une bo\^\i{}te sp\'eciale pour une utilisation
+% ult\'erieure et r\'eduction de |\vsize| de la hauteur du
+% mat\'eriel vu. De cette fa\c{c}on, la p\'enalit\'e est
+% maintenant cach\'ee dans cette bo\^\i{}te et nous pouvons
+% red\'emarrer le processus de collecte pour les colonnes
+% restantes (cela est r\'ealis\'e par |\speci@ls| ci-dessus).
+%
+% Dans les routines de sortie qui appliquent |\vsplit| soit
+% pour l'\'equilibrage soit pour une page enti\`ere, nous
+% combinons simplement la bo\^\i{}te~255 et la bo\^\i{}te
+% sauvegard\'ee, ce qui donne donc une bo\^\i{}te unique de
+% s\'eparation, qui contient maintenant les ruptures
+% forc\'ees \`a la bonne place.
+%
+%
+%  \begin{macro}{\columnbreak}
+% \changes{v1.5u}{1999/05/25}{Macro ajout\'ee}
+% |\columnbreak| est construit d'apr\`es |\pagebreak|, sauf
+% que nous produisons une p\'enalit\'e de -10005.
+%    \begin{macrocode}
+%<*colbreak>
+\mathchardef\@Mv=10005
+\def\columnbreak{%
+%    \end{macrocode}
+% Nous devons nous assurer qu'elle est utilis\'ee
+% seulement \`a l'int\'erieur d'un environnement \mc{}
+% car si nous avons une p\'enalit\'e pouvant \^etre
+% consid\'er\'ee par la routine de sortie inchang\'ee de
+% \LaTeX{}, des choses \'etranges pourraient appara\^\i{}tre.
+%    \begin{macrocode}
+ \ifnum\col@number<\tw@
+  \PackageError{multicol}%
+   {\noexpand\columnbreak outside multicols}%
+   {This command can only be used within
+    a multicols or multicols* environment.}%
+ \else
+  \ifvmode
+    \penalty -\@Mv\relax
+  \else
+    \@bsphack
+    \vadjust{\penalty -\@Mv\relax}%
+    \@esphack
+  \fi
+ \fi}
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%  \begin{macro}{\colbreak@box}
+% \changes{v1.5u}{1999/05/25}{Macro ajout\'ee}
+% N\'ecessite une bo\^\i{}te pour collecter le texte en cours de traitement \`a
+% partir de la rupture de colonne.
+%    \begin{macrocode}
+\newbox\colbreak@box
+%</colbreak>
+%</package>
+%    \end{macrocode}
+%  \end{macro}
+%
+% \end{multicols*}
+%
+% \Finale
+%
+\endinput
