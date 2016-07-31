@@ -52,7 +52,7 @@ Traduction       | Source              | Avancée                | Pages traduit
                  | [graphicx] v1.0g    |                        | *. / 15*        |
 [hhline-fr]      | [hhline] v2.03      | :new_moon:             | 0 / 4           | Traduction préexistante ([FT-tools]).
                  | [hyperref] v6.83q   |                        | *. / 31*        |
-                 | [ifthen] v1.1c      |                        | *. / 6*         |
+[ifthen-fr]      | [ifthen] v1.1c      | :new_moon:             | 0 / 6           |
 [indentfirst-fr] | [indentfirst] v1.03 | :full_moon:            | 1               | Traduction préexistante ([FT-tools]).
 [layout-fr]      | [layout] v1.02c     | :new_moon:             | 0 / 14          | Traduction préexistante ([FT-tools]).
 [lipsum-fr]      | [lipsum] v1.3       | :full_moon:            | 41              |
