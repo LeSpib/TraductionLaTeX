@@ -39,7 +39,7 @@ Traduction       | Source              | Avancée                | Pages traduit
 [dcolumn-fr]     | [dcolumn] v1.06     | :new_moon:             | 0 / 4           | Traduction préexistante ([FT-tools]).
 [delarray-fr]    | [delarray] v1.01    | :first_quarter_moon:   | 3               | Traduction préexistante ([FT-tools]).
 [enumerate-fr]   | [enumerate] v3.00   | :new_moon:             | 1 / 4           | Traduction préexistante ([FT-tools]).
-                 | [enumitem] v3.5.2   |                        | *. / 17*        | 
+[enumitem-fr]    | [enumitem] v3.5.2   | :new_moon:             | 0 / 17          | 
                  | [etoc] v1.08g       |                        | *. / 114*       |
 [fancyhdr-fr]    | [fancyhdr] v3.1     | :new_moon:             | 0 / 26          |
 [fileerr-fr]     | [fileerr] v1.1a     | :full_moon:            | 3               | 
