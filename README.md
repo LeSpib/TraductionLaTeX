@@ -49,7 +49,7 @@ Traduction       | Source              | Avancée                | Pages traduit
 [ftnright-fr]    | [ftnright] v1.1f    | :new_moon:             | 0 / 11          | Traduction préexistante ([FT-tools]).
 [geometry-fr]    | [geometry] v5.6     | :full_moon:            | 42              | Auteur contacté et intéressé.
                  | [glossaries] v4.25  |                        | *. / 248*       |
-                 | [graphicx] v1.0g    |                        | *. / 15*        |
+[graphicx-fr]    | [graphicx] v1.0g    | :new_moon:             | 0 / 11          |
 [hhline-fr]      | [hhline] v2.03      | :new_moon:             | 0 / 4           | Traduction préexistante ([FT-tools]).
                  | [hyperref] v6.83q   |                        | *. / 31*        |
 [ifthen-fr]      | [ifthen] v1.1c      | :new_moon:             | 0 / 6           |
