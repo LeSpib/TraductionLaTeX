@@ -62,7 +62,7 @@ Traduction       | Source              | Avancée                | Pages traduit
                  | [pgfplots] v1.13    |                        | *. / 544*       |
 [rawfonts-fr]    | [rawfonts] v0.01    | :new_moon:             | 0 / 4           | Traduction préexistante ([FT-tools]).
 [shellesc-fr]    | [shellesc] v0.02a   | :new_moon:             | 0 / 3           | 
-                 | [showkeys] v3.17    |                        | *. / 10*        | Traduction préexistante ([FT-tools]).
+[showkeys-fr]    | [showkeys] v3.17    | :new_moon:             | 0 / 10          | Traduction préexistante ([FT-tools]).
                  | [siunitx] v2.6q     |                        | *. / 102*       |
                  | [somedefs] v0.03    |                        | *. / 3*         | Traduction préexistante ([FT-tools]).
                  | [tabularx] v2.11    |                        | *. / 12*        | Traduction préexistante ([FT-tools]).
