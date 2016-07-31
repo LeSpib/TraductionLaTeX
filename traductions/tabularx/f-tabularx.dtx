@@ -1,0 +1,1024 @@
+% \iffalse meta-comment
+%
+% Copyright 1993 1994 1995 1996 1997 1998 1999
+% The LaTeX3 Project and any individual authors listed elsewhere
+% in this file.
+%
+% This file is part of the Standard LaTeX `Tools Bundle'.
+% -------------------------------------------------------
+%
+% It may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.1
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%    http://www.latex-project.org/lppl.txt
+% and version 1.1 or later is part of all distributions of LaTeX
+% version 1999/06/01 or later.
+%
+% The list of all files belonging to the LaTeX `Tools Bundle' is
+% given in the file `manifest.txt'.
+%
+% \fi
+% \iffalse
+%% File: tabularx.dtx Copyright (C) 1991-1999 David Carlisle
+%
+%<*dtx>
+          \ProvidesFile{f-tabularx.dtx}
+%</dtx>
+%<package>\NeedsTeXFormat{LaTeX2e}
+%<package>\ProvidesPackage{tabularx}
+%<driver> \ProvidesFile{tabularx.drv}
+% \fi
+%         \ProvidesFile{f-tabularx.dtx}
+          [1999/01/07 v2.07 `tabularx' package (DPC)]
+% \iffalse
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage[frenchb]{babel}
+\usepackage[infoshow]{tabularx}
+\begin{document}
+ \DocInput{f-tabularx.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \changes{v1.00}{1992/01/30}{Version initiale}
+% \changes{v1.01}{1992/07/07}{R\'e-\'edition pour la nouvelle doc et <<~docstrip~>>.}
+% \changes{v1.02}{1992/07/17}{Ajout de support pour \cmd\verb}
+% \changes{v1.03}{1992/08/17}
+%    {Ajout des crochets \cs{ifnum0}!=`\{\cs{fi}\} brackets apr\`es rapport de
+%     Andreas Maassen}
+% \changes{v1.04}{1992/09/02}
+%    {fixation de \cmd\verb, et prise en compte des <<~footnotes~>>.}
+% \changes{v1.05}{1992/11/06}
+%    {conservation de tous les compteurs \LaTeX{}}
+% \changes{v1.06}{1993/08/02}
+%    {(Martin Schroeder) Prise en compte de l'argument optionnel [t] ou [b].
+%     Donc fonctionne maintenent avec delarray.sty.}
+% \changes{v1.07}{1993/08/27}
+%    {Modifications pour rendre the style compatible avec calc.sty.}
+% \changes{v2.00}{1994/03/14}
+%    {Mise \`a jour pour \LaTeX2e}
+% \changes{v2.01}{1994/05/22}
+%    {Nouveau format de tra\c{c}age.}
+%
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+% \CheckSum{456}
+%
+% \GetFileInfo{f-tabularx.dtx}
+% \title{Le package \textsf{tabularx}\thanks{version \fileversion, date
+% \filedate.}}
+% \author{David~\bsc{Carlisle}\thanks{traduction fran\c{c}aise du
+\ 3~D\'ecembre~1999 par Jean-Pierre~\bsc{Drucbert} <Jean-Pierre.Drucbert@onecert.fr>.
+% Titre original <<~The \textsf{tabularx} package~>>.}}
+% \date{\filedate}
+% \maketitle
+% \DeleteShortVerb{\|}
+% \MakeShortVerb{\"}
+%
+% \begin{abstract}
+% Ce package d\'efinit un nouvel environnement, {\tt
+% tabularx}, qui accepte les m\^emes arguments que {\tt
+% tabular*}, mais modifie les largeurs de certaines colonnes,
+% plut\^ot que l'espacement entre les colonnes, pour composer
+% une table avec la largeur totale demand\'ee. Les colonnes
+% qui peuvent s'\'etirer sont marqu\'ees par le nouvel
+% indicateur \verb|X| dans l'argument-pr\'eambule.
+%
+% Ce package utilise (automatiquement) le package {\tt
+% array}.
+% \end{abstract}
+%
+%
+% \section{Introduction}
+% Ce package d\'efinit une version de l'environnement {\tt
+% tabular} dans laquelle les largeurs de certaines colonnes
+% sont calcul\'ees pour que la table ait une largeur
+% sp\'ecifi\'ee. Il semble qu'un tel environnement soit
+% souvent demand\'e sur \texttt{comp.text.tex}.
+
+% \DescribeEnv{tabularx}
+% "\begin{tabularx}{"\meta{width}"}{"\meta{preamble}"}"\\
+% Les arguments de "tabularx" sont essentiellement les
+% m\^emes que ceux de l'environnement "tabular*" classique.
+% Cependant, plut\^ot que d'ajouter un espace entre les
+% colonnes pour atteindre la largeur d\'esir\'ee, il ajuste
+% la largeur de certaines colonnes. Les colonnes qui sont
+% affect\'ees par l'environnement {\tt tabularx} doivent
+% \^etre marqu\'ees par la lettre {\tt X} dans l'argument
+% pr\'eambule. La sp\'ecification de colonne {\tt X} sera
+% convertie en "p{"\meta{dimension}"}" une fois que la
+% largeur correcte pour la colonne aura \'et\'e calcul\'ee.
+%
+% \section{Exemples}
+%
+% La table suivante est compos\'ee avec
+%
+% "\begin{tabularx}{250pt}{|c|X|c|X|} ...".
+%
+% \begin{center}
+% \begin{tabularx}{250pt}{|c|X|c|X|}
+% \hline
+% \multicolumn{2}{|c|}{Entr\'ee multicolonne !}&
+% TROIS&
+% QUATRE\\
+% \hline
+% un&
+% \raggedright\arraybackslash La largeur de cette colonne
+% d\'epend de la largeur de la table.\footnote{Vous pouvez
+% maintenant utiliser {\ttfamily \bslash footnote} dans
+% l'environnement {\ttfamily tabularx}!}&
+% trois&
+% \raggedright\arraybackslash La colonne quatre sera trait\'ee comme
+% la colonne deux, avec la m\^eme largeur.\\
+% \hline
+% \end{tabularx}
+% \end{center}
+%
+% Si nous changeons la premi\`ere ligne en "\begin{tabularx}{300pt}{|c|X|c|X|}"
+% nous obtenons :
+% \begin{center}
+% \begin{tabularx}{300pt}{|c|X|c|X|}
+% \hline
+% \multicolumn{2}{|c|}{Entr\'ee multicolonne !}&
+% TROIS&
+% QUATRE\\
+% \hline
+% un&
+% \raggedright\arraybackslash La largeur de cette colonne
+% d\'epend de la largeur de la table.&
+% trois&
+% \raggedright\arraybackslash La colonne quatre sera trait\'ee comme
+% la colonne deux, avec la m\^eme largeur.\\
+% \hline
+% \end{tabularx}
+% \end{center}
+%
+% \edef\mytt{\expandafter\noexpand\csname
+%             mdseries\endcsname\noexpand\ttfamily}
+% \section{Diff\'erences entre {\tt tabularx} et {\tt tabular*}}
+% Ces deux environnements acceptent les m\^emes arguments,
+% pour produire une table de la largeur sp\'ecifi\'ee. Les
+% principales diff\'erences entre elles sont :
+% \begin{itemize}
+% \item {\tt tabularx} modifie  les largeurs des {\em colonnes},
+% tandis que {\tt tabular*} modifie les largeurs des {\em
+% espaces\/} entre les colonnes ;
+% \item les environnements {\tt tabular} et {\tt tabular*} peuvent
+% \^etre imbriqu\'es sans restriction, mais si un
+% environnement {\tt tabularx} se trouve \`a l'int\'erieur
+% d'un autre, alors celui \`a l'int\'erieur de l'autre {\em
+% doit\/} \^etre plac\'e entre \verb|{ }| ;
+% \item le corps de l'environnement {\tt tabularx} est utilis\'e en
+% r\'ealit\'e comme argument d'une commande, et donc
+% certaines constructions qui ne sont pas permises dans les
+% arguments de commandes (comme \verb|\verb|) ne peuvent pas
+% \^etre utilis\'ees\footnote{en fait, depuis la version
+% 1.02, {\tt $\backslash$verb} peut \^etre utilis\'ee, mais d'une part
+% les espaces ne seront pas correctement repr\'e\-sen\-t\'es,
+% d'autre part, il {\bf faut} que les accolades soient
+% appa\-ri\'ees \`a l'int\'erieur de son argument, ce qui en
+% limite vraiment l'int\'er\^et} ;
+% \item {\tt tabular*} utilise une possibilit\'e primitive de \TeX\
+% pour modifier l'espacement entre les colonnes d'un
+% alignement. {\tt tabularx} doit composer plusieurs fois la
+% table dans sa recherche des meilleures largeurs de
+% colonnes, et est donc bien plus lent. De plus, le fait que
+% le corps soit expans\'e plusieurs fois peut mettre en
+% d\'efaut certaines constructions~\TeX.
+% \end{itemize}
+
+
+
+% \section{Adaptation du comportement de {\tt tabularx}}
+%
+% \subsection{Sorties au terminal}
+% \DescribeMacro{\tracingtabularx}
+% Si la d\'eclaration est faite, par exemple dans le
+% pr\'eambule du document, alors tous les environnements {\tt
+% tabularx} ult\'e\-rieurs afficheront des informations sur
+% les largeurs de colonnes lors des essais pour trouver les
+% largeurs correctes.
+%
+% Comme alternative, on peut utiliser la d\'eclaration de
+% "\tracingtabularx", soit pour les options "infoshow" ou
+% "debugshow" qui peuvent \^etre donn\'ees, soit dans la
+% commande "\usepackage" qui charge "tabularx", ou comme
+% option globale de la commande "\documentclass".
+%
+%
+% \subsection{Environnement utilis\'e pour composer les
+% colonnes~{\tt X}}
+% Par d\'efaut, la sp\'ecification {\tt X} est transform\'ee
+% en "p{"\meta{une valeur}"}". De telles colonnes
+% \'etroites exigent souvent un format sp\'ecial, ce qui peut
+% \^etre obtenu en utilisant la syntaxe \verb|>| du package
+% {\tt array.sty}. Ainsi par exemple vous pouvez sp\'ecifier
+% \verb|>{\small}X|. Un autre format utile dans les colonnes
+% \'etroites est le <<~d\'echiquet\'e \`a droite~>> (ou
+% <<~fer \`a gauche~>>), mais la commande \verb|\raggedright|
+% de \LaTeX\ red\'efinit la commande \verb|\\| d'une
+% mani\`ere incompatible avec son utilisation dans les
+% environnements \verb|array| et \verb|tabular|.
+% \DescribeMacro{\arraybackslash}
+% Pour cette raison, ce package introduit la commande
+% \verb|\arraybackslash|, qui peut \^etre utilis\'ee apr\`es
+% une d\'ecla\-ra\-tion \verb|\raggedright|,
+% \verb|\raggedleft| ou \verb|\centering|. Donc un
+% pr\'eambule de {\tt tabularx} peut sp\'ecifier\\
+% \verb|>{\raggedright\arraybackslash}X|.
+%
+% \DescribeMacro{\newcolumntype}
+% Ces sp\'ecifications de pr\'eambule peuvent \'evidemment
+% \^etre conserv\'ees en utilisant la commande
+% \verb|\newcolumntype| d\'efinie par le package
+% \verb|array.sty|. Donc nous pouvons dire\\
+% "\newcolumntype{Y}{>{\small\raggedright\arraybackslash}X}"\\
+% puis utiliser \verb|Y| dans l'argument pr\'eambule de
+% \verb|tabularx|.
+%
+% \DescribeMacro{\tabularxcolumn}
+% Les colonnes {\tt X} sont compos\'ees en utilisant le type
+% {\tt p} de colonne qui correspond \`a \verb|\parbox[t]|.
+% Vous pouvez vouloir qu'elles soient compos\'ees avec, par
+% exemple, le type {\tt m} de colonne, qui correspond \`a
+% \verb|\parbox[c]|. Il n'est pas possible de changer le type
+% de colonne en utilisant la syntaxe \verb|>|, donc une autre
+% m\'ethode est fournie. \verb|\tabularxcolumn| doit \^etre
+% d\'efinie comme une commande \`a un seul argument, qui
+% s'expanse en la sp\'ecification de pr\'eambule {\tt
+% tabular} que vous voulez faire correspondre \`a {\tt X}.
+% L'argument sera remplac\'e par la largeur calcul\'ee d'une
+% colonne.
+%
+% Par d\'efaut, c'est
+% "\newcommand{\tabularxcolumn}[1]{p{#1}}". Nous pouvons donc
+% changer ceci en une commande telle que :\\
+% "\renewcommand{\tabularxcolumn}[1]{>{\small}m{#1}}"
+%
+% \subsection{Largeurs des colonnes}
+% Normalement toutes les colonnes {\tt X} dans une m\^eme
+% table auront finalement la m\^eme largeur ; cependant il
+% est possible de forcer {\tt tabularx} \`a leur donner des
+% largeurs diff\'erentes.
+% Un argument de pr\'eambule tel que\\
+% "{>{\hsize=.5\hsize}X>{\hsize=1.5\hsize}X}" sp\'ecifie deux
+% colonnes, la seconde \'etant trois fois plus large que la
+% premi\`ere. Mais si vous voulez vous amuser (et vous
+% risquer) \`a de telles choses il vous faudra suivre les
+% deux r\`egles suivantes :
+% \begin{itemize}
+% \item Assurez vous que la somme des largeurs de toutes les
+% colonnes {\tt X} reste inchang\'ee. (Dans l'exemple
+% pr\'ec\'edent, les nouvelles largeurs faisaient un total de
+% deux fois la largeur par d\'efaut, comme deux colonnes {\tt
+% X} normales) ;
+% \item N'utilisez pas d'entr\'ees \verb|\multicolumn| qui
+% englobe une ou plusieurs colonnes {\tt X}.
+% \end{itemize}
+% Comme la plupart des r\`egles, il est possible de passer
+% outre, si vous savez ce que vous faites.
+%
+% \subsection{Si l'algorithme \'echoue\ldots}
+% C'est peut-\^etre par ce que les largeurs des colonnes
+% <<~normales~>> de la table sont d\'ej\`a plus grandes que la
+% largeur totale demand\'ee. \textsf{tabularx} refuse de
+% composer des colonnes \texttt{X} de largeur n\'egative,
+% alors, dans ce cas, vous aurez un message d'alerte <<~X
+% Columns too narrow (table too wide)~>>\footnote{<<~Colonnes
+% X trop \'etroites (table trop large)~>>}.
+%
+% Dans ce cas, les colonnes \texttt{X} devront \^etre
+% compos\'ees avec une largeur de 1~em et donc la table
+% elle-m\^eme sera plus large que la largeur totale
+% demand\'ee et donn\'ee par l'argument d'environnement.
+% Ce comportement du package peut \^etre l\'eg\`erement
+% modifi\'e, comme d\'ecrit dans le commentaire du code.
+%
+% \StopEventually{}
+%
+% \section{Les Macros}
+%
+%    \begin{macrocode}
+%<*package>
+%    \end{macrocode}
+%
+% \changes{v2.00}{1994/02/07}
+%    {Traitement de nouvelles options}
+%    \begin{macrocode}
+\DeclareOption{infoshow}{\AtEndOfPackage\tracingtabularx}
+\DeclareOption{debugshow}{\AtEndOfPackage\tracingtabularx}
+\ProcessOptions
+%    \end{macrocode}
+%
+% Cela n\'ecessite le package {\ttfamily array.sty}.
+% \changes{v2.00}{1994/02/07}
+%    {Utilisation de la commande \cmd{\RequirePackage} \LaTeX2e{} pour charger array}
+%    \begin{macrocode}
+\RequirePackage{array}[1994/02/03]
+%    \end{macrocode}
+%
+% D'abord, quelques registres, etc., dont nous avons besoin.
+%    \begin{macrocode}
+\newdimen\TX@col@width
+\newdimen\TX@old@table
+\newdimen\TX@old@col
+\newdimen\TX@target
+\newdimen\TX@delta
+\newcount\TX@cols
+\newif\ifTX@
+%    \end{macrocode}
+%
+% Maintenant une astuce pour construire le corps d'un
+% environnement dans un identificateur de registre, sans
+% faire aucune expansion. Cela ne v\'erifie pas vraiment les
+% environnements imbriqu\'es, donc, si vous aviez besoin
+% d'imbriquer un environnement {\ttfamily tabularx} dans un
+% autre, l'environnement imbriqu\'e \`a l'int\'erieur de
+% l'autre doit \^etre entour\'e par "{ }".
+%
+% \begin{macro}{\tabularx}
+% Avant la v1.06, cette macro prenait deux arguments, qui
+% \'etaient sauvegard\'es dans des registres s\'epar\'es,
+% avant que le corps de la table ne soit sauvegard\'e par
+% "\TX@get@body". Malheureusement, cela d\'esactivait
+% l'argument optionnel "[t]". Maintenant, on sauvegarde
+% seulement et de fa\c{c}on s\'epar\'ee la sp\'ecification de
+% largeur, puis on efface l'identificateur de registre "\toks@".
+% Finalement, on appelle "\TX@get@body" pour commencer \`a
+% sauvegarder le corps de la table. "{\ifnum0=`}\fi" a
+% \'et\'e rajout\'e dans la v1.03 pour permettre \`a "tabularx"
+% d'appara\^\i{}tre dans un "\halign".
+% \setbox0=\hbox{\footnotesize"\iffalse{\fi\ifnum0=`}\fi"}^^A
+% \setbox2=\hbox{\footnotesize"\ifnum0=`{}\fi"}^^A
+% \footnote{Cela ajoute un niveau suppl\'ementaire de
+% groupement qui n'est pas vraiment n\'ecessaire. \`A la
+% place, je (D. \bsc{Carlisle}, NdT) pourrais utiliser \box0\ ici, et \box2\
+% en-dessous, cependant ici le code devrait \^etre
+% d\'eplac\'e apr\`es la premi\`ere ligne, \`a cause de la
+% note du bas de la page 386 du \TeX{}Book, et je ne sais pas
+% si je devrais \'ecrire du code si obscur puisque comment\'e
+% dans une note de bas de page d'un appendice appel\'e
+% <<~Dirty Tricks~>> !}
+%
+% Ce mecanisme de saisie du corps d'un environnement a
+% l'inconv\'enient (partag\'e avec les environnements
+% d'alignement de l'AMS) d'emp\^echer de faire des
+% environnement d'extension comme
+%\begin{verbatim}
+%\newenvironment{foo}{\begin{tabularx}{XX}}{\end{tabularx}}
+%\end{verbatim}
+% puisque le code cherche une cha\^\i{}ne litt\'erale "\end{tabularx}"
+% pour s'arr\^eter de scruter. Depuis la version 2.02, on
+% peut \'eviter ce probl\`eme en utilisant "\tabularx" et
+% "\endtabularx" directement dans la d\'efinition :
+%\begin{verbatim}
+%\newenvironment{foo}{\tabularx{XX}}{\endtabularx}
+%\end{verbatim}
+% Maintenant, le scruteur cherche la fin de l'environnement
+% courant ("foo" dans cet exemple). Il y a quelques
+% limitations \`a cette utilisation, la principale \'etant que
+% "\endtabularx" est le \emph{premier} identificateur de la
+% <<~fin du code~>> de l'environnement.
+%    \begin{macrocode}
+\def\tabularx#1{%
+%    \end{macrocode}
+% \changes{v2.02}{1995/03/20}
+%    {Nouvelle d\'efinition locale de \cs{TX@}}
+% \changes{v4.09}{1998/05/13}
+%      {Utilisation \cs{setlength}, pour pouvoir appliquer les extensions
+%      calc extensions. rapport : tools/2793}
+% Permet d'utiliser "\tabularx" "\endtabularx" (mais pas\\
+% "\begin{tabularx}" "\end{tabularx}") dans les d\'efinitions
+% "\newenvironment".
+%    \begin{macrocode}
+\edef\TX@{\@currenvir}%
+  {\ifnum0=`}\fi
+%    \end{macrocode}
+% "\relax" a \'et\'e ajout\'e dans la v1.05 pour que les
+% identificateurs de longueur non-expansibles, comme
+% "\textwidth", ne g\'en\`erent pas d'espace
+% suppl\'ementaire et un d\'ebordement de bo\^\i{}te.
+% "\relax" a \'et\'e de nouveau supprim\'e dans la
+% v4.09\footnote{Il s'agit d'une mise \`a jour majeure de la s\'erie
+% tools et non de la version en cours de tabularx. NtD}
+% remplac\'e par "\setlength" pour que vous puissiez
+% utiliser une largeur de "(\textwidth-12pt)/2" si vous
+% employez le package calc.
+%    \begin{macrocode}
+  \setlength\TX@target{#1}%
+  \TX@typeout{Target width: #1 = \the\TX@target.}%
+  \toks@{}\TX@get@body}
+%    \end{macrocode}
+% \end{macro}
+%
+%  \begin{macro}{\endtabularx}
+% Ne fait vraiment pas grand chose\ldots
+% \changes{v2.02}{1995/03/20}
+%    {Ajout de macro}
+%    \begin{macrocode}
+\let\endtabularx\relax
+%    \end{macrocode}
+%  \end{macro}
+%
+% \begin{macro}{\TX@get@body}
+% Place tous les identificateurs aussi loin que possible de "\end"
+% dans un registre d'identificateur. Puis appelle "\TX@find@end"
+% pour voir si nous sommes au "\end{tabularx}".
+%    \begin{macrocode}
+\long\def\TX@get@body#1\end
+  {\toks@\expandafter{\the\toks@#1}\TX@find@end}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\TX@find@end}
+% Si nous sommes au "\end{tabularx}", appelle "\TX@endtabularx",
+% sinon ajoute "\end{...}" \`a l'identificateur et appelle
+% une nouvelle fois "\TX@get@body".
+%    \begin{macrocode}
+\def\TX@find@end#1{%
+  \def\@tempa{#1}%
+  \ifx\@tempa\TX@\expandafter\TX@endtabularx
+  \else\toks@\expandafter
+    {\the\toks@\end{#1}}\expandafter\TX@get@body\fi}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\TX@}
+% La cha\^\i{}ne {\ttfamily tabularx} est consid\'er\'ee
+% comme une macro pour \^etre test\'ee avec "\ifx".
+%    \begin{macrocode}
+\def\TX@{tabularx}
+%    \end{macrocode}
+% \end{macro}
+%
+% Maintenant, toutes les parties de sp\'ecification de
+% table sont stock\'ees dans les registres, nous pouvons
+% commencer le travail de composition de la table.
+%
+% L'algorithme de d\'ecouverte des bonnes largeurs de
+% colonne est le suivant. Tout d'abord, composition de la
+% table avec chaque largeur de colonne {\ttfamily X}
+% identique \`a la largeur de la table finale. En supposant
+% qu'il y a au moins une colonne {\ttfamily X}, cela produira
+% une table trop large. Puis, divise la largeur en exc\`es
+% par le nombre de colonnes {\ttfamily X} et r\'eduit la
+% largeur de colonne de cette valeur. Puis recompose la
+% table. Si la table n'a pas encore la bonne largeur, une
+% entr\'ee "\multicolumn" doit <<~cacher~>> une des colonnes {\ttfamily
+% X} et donc, il y a une colonne {\ttfamily X} de moins qui
+% affecte la largeur de la table. Donc, nous r\'eduisons de 1
+% le nombre de colonnes X et recommen\c{c}ons le processus.
+%
+% \begin{macro}{\TX@endtabularx}
+% Bien que j'aie\footnote{D. \bsc{Carlisle}, NdT} essay\'e de
+% construire un environnement {\ttfamily
+% tabularx}, c'est en r\'ealit\'e une commande et tout le
+% travail est fait par cette macro.
+%    \begin{macrocode}
+\def\TX@endtabularx{%
+%    \end{macrocode}
+% D\'efinit la colonne {\ttfamily X} avec une version
+% interne de la commande "\newcolumntype". Les commandes "\expandafter"
+% activent "\NC@newcol" pour consid\'erer l'{\em expansion}
+% de "\tabularxcolumn{\TX@col@width}" comme son argument. Ce
+% sera la d\'efinition d'une colonne {\ttfamily X}, comme
+% \'evoqu\'e dans la section 4.
+%    \begin{macrocode}
+  \expandafter\TX@newcol\expandafter{\tabularxcolumn{\TX@col@width}}%
+%    \end{macrocode}
+% Initialise la largeur de colonne et le nombre de colonnes {\ttfamily
+% X}. Le nombre de colonnes {\ttfamily X} est fix\'e \`a un,
+% ce qui signifie que le d\'ecompte initial sera trop haut de
+% un, mais cette valeur est d\'ecr\'ement\'ee avant son
+% utilisation dans la boucle principale.
+%
+% Depuis la v1.02, modifie la d\'efinition de "\verb".
+%    \begin{macrocode}
+  \let\verb\TX@verb
+%    \end{macrocode}
+% Depuis la v1.05, sauve les valeurs de tous les compteurs
+% \LaTeX{}, la liste "\cl@@ckpt" contenant le nom pour tous
+% les compteurs \LaTeX\ qui ont d\'ej\`a \'et\'e d\'efinis.
+% Nous expansons "\setcounter" \`a ce moment-l\`a, puisqu'il
+% r\'esulte de moins d'identificateurs stock\'es dans"\TX@ckpt",
+% mais la v\'eritable r\'e-initialisation des compteurs a
+% lieu quand "\TX@ckpt" est expans\'e apr\`es chaque passe
+% d'essai.
+% R\'eellement, depuis la v1.07, on utilise quelque chose
+% d'\'equivalent \`a la d\'efinition originale de
+% "\setcounter", pour que "tabularx" soit compatible avec "calc.sty".
+%    \begin{macrocode}
+  \def\@elt##1{\global\value{##1}\the\value{##1}\relax}%
+  \edef\TX@ckpt{\cl@@ckpt}%
+  \let\@elt\relax
+  \TX@old@table\maxdimen
+  \TX@col@width\TX@target
+  \global\TX@cols\@ne
+%    \end{macrocode}
+% Sortie de certains en-t\^etes (\`a moins qu'ils ne soient
+% d\'esactiv\'es).
+%    \begin{macrocode}
+  \TX@typeout@
+    {\@spaces Table Width\@spaces Column Width\@spaces X Columns}%
+%    \end{macrocode}%
+% Pemier essai. Modifie la d\'efinition de {\ttfamily X} pour
+% compter les colonnes {\ttfamily X}.
+%    \begin{macrocode}
+  \TX@trial{\def\NC@rewrite@X{%
+          \global\advance\TX@cols\@ne\NC@find p{\TX@col@width}}}%
+%    \end{macrocode}
+% Diminution r\'ep\'etitive de la largeur de colonne
+% jusqu'\`a ce que la table ait la bonne largeur, ou stoppe la
+% diminution sinon la colonne devient trop \'etroite. S'il
+% n'y a pas d'entrée multicolonne, il n'y aura qu'un essai.
+%    \begin{macrocode}
+  \loop
+    \TX@arith
+    \ifTX@
+    \TX@trial{}%
+  \repeat
+%    \end{macrocode}
+% Une derni\`ere fois, avec des messages d'alerte (voir
+% Appendice D), utilise {\ttfamily tabular*} pour le mettre
+% dans une bo\^\i{}te de dimension correcte, dans le cas ou
+% l'algorithme ne r\'eussit pas \`a trouver la bonne
+% dimension.
+%
+% Depuis la v1.04, sauvegarde localement l'argument de "\footnotetext"
+% dans un identificateur de registre.
+% Depuis la v1.06, "\toks@" contient la sp\'ecification de
+% pr\'eambule et l'argument optionnel possible, ainsi que la
+% corps de la table.
+%    \begin{macrocode}
+  {\let\@footnotetext\TX@ftntext\let\@xfootnotenext\TX@xftntext
+    \csname tabular*\expandafter\endcsname\expandafter\TX@target
+      \the\toks@
+    \csname endtabular*\endcsname}%
+%    \end{macrocode}
+% Maintenant, l'alignement est termin\'e et "}" a
+% restaur\'e la signification originale de "\@footnotetext"
+% qui expanse le registre "\TX@ftn" qui ex\'ecutera une
+% s\'erie de commandes\\
+% "\footnotetext["\meta{num}"]{"\meta{note}"}".\\
+% Nous avons besoin de faire attention \`a l'effacement du
+% registre car nous pouvons \^etre dans un {\ttfamily
+% tabularx} imbriqu\'e.
+%    \begin{macrocode}
+  \global\TX@ftn\expandafter{\expandafter}\the\TX@ftn
+%    \end{macrocode}
+% Maintenant, finit l'environnement {\ttfamily tabularx}. Il
+% est \`a noter que nous avons besoin ici de "\end{tabularx}"
+% puisque "\end{tabularx}" dans le fichier utilisateur n'est
+% jamais expans\'e. Maintenant utilise "\TX@" plut\^ot que
+% "tabularx".
+% \changes{v2.02}{1995/03/20}
+%    {Fermeture de l'environnement \cs{TX@} plut\^ot que <<~tabularx~>>}
+%
+% Nous avons \'egalement besoin de terminer le groupe
+% commenc\'e par \\ "{\ifnum0=`}\fi" dans la macro "\tabularx".
+%    \begin{macrocode}
+  \ifnum0=`{\fi}%
+  \expandafter\end\expandafter{\TX@}}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\TX@arith}
+% Calcule la largeur de colonne pour l'essai suivant, fixant
+% l'indicateur "\ifTX@" pour qu'il \'echoue si la boucle doit
+% \^etre interrompue.
+%    \begin{macrocode}
+\def\TX@arith{%
+  \TX@false
+  \ifdim\TX@old@table=\wd\@tempboxa
+%    \end{macrocode}
+% Si nous avons r\'eduit la largeur de colonne, mais si la
+% largeur de la table n'a pas \'et\'e modifi\'ee, nous
+% arr\^etons la boucle et composons la table (ce qui causera
+% un alignement d\'ebordant) avec la valeur pr\'ec\'edente de
+% "\TX@col@width".
+%    \begin{macrocode}
+    \TX@col@width\TX@old@col
+    \TX@typeout@{Reached minimum width, backing up.}%
+  \else
+%    \end{macrocode}
+% Autrement, calcule le d\'epassement de largeur de la table
+% courante.
+%    \begin{macrocode}
+    \dimen@\wd\@tempboxa
+    \advance\dimen@ -\TX@target
+    \ifdim\dimen@<\TX@delta
+%    \end{macrocode}
+% Si le d\'epassement est inf\'erieur \`a "\TX@delta", stoppe.
+% ("\TX@delta" doit \^etre diff\'erent de z\'ero, sinon nous
+% pouvons oublier la cible, \`a cause de l'erreur d'arrondi).
+%    \begin{macrocode}
+      \TX@typeout@{Reached target.}%
+    \else
+%    \end{macrocode}
+% Diminue de 1 le nombre de colonnes {\ttfamily X} valides.
+% (v\'erifiant que nous n'avons pas un 0, ce qui pourrait
+% produire une future erreur). Puis divise la largeur en
+% exc\`es par le nombre de colonnes valides, et calcule la
+% nouvelle largeur de colonne. Stocke temporairement cette
+% valeur (multipli\'ee par $-1$) dans "\dimen@".
+%    \begin{macrocode}
+      \ifnum\TX@cols>\@ne
+        \advance\TX@cols\m@ne
+      \fi
+      \divide\dimen@\TX@cols
+      \advance\dimen@ -\TX@col@width
+      \ifdim \dimen@ >\z@
+%    \end{macrocode}
+% Si la nouvelle largeur devait \^etre trop \'etroite, la
+% boucle est interrompue. Actuellement, trop \'etroite
+% signifie moins de 0\,pt !
+%
+% Avant la v2.03, si la boucle s'arr\^etait ici, les colonnes
+% X \'etaient laiss\'ees avec la largeur de la passe
+% pr\'ec\'edente, mais cela peut construire une table beaucoup trop
+% large puisque les estimations initiales sont toujours trop
+% grossi\`eres. Maintenant, force "\TX@error@width" \`a avoir
+% la valeur par d\'efaut de 1~em. Si vous voulez conserver
+% l'ancien comportement, mettez\\
+%  "\renewcommand\TX@error@width{\TX@col@width}"\\
+% dans un package charg\'e apr\`es \textsf{tabularx}.
+% \changes{v2.03}{1997/02/20}{Am\'elioration des messages d'alerte
+%                            et force la valeur par d\'efaut \`a 1em.}
+%    \begin{macrocode}
+        \PackageWarning{tabularx}%
+           {X Columns too narrow (table too wide)\MessageBreak}%
+        \TX@col@width\TX@error@width\relax
+      \else
+%    \end{macrocode}
+% Autrement, sauvegarde les anciens r\'eglages et fixe la
+% nouvelle largeur de colonne. Fixe l'indicateur à vrai pour
+% que la table soit fix\'ee et que la boucle puisse de
+% nouveau s'ex\'ecuter.
+%    \begin{macrocode}
+        \TX@old@col\TX@col@width
+        \TX@old@table\wd\@tempboxa
+        \TX@col@width-\dimen@
+        \TX@true
+      \fi
+    \fi
+  \fi}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\TX@error@width}
+% \changes{v2.03}{1997/02/20}{Ajout de macro.}
+% \changes{v2.04}{1997/02/26}{suppression des fausses entretoises.}
+% Si le calcul de largeur donne un r\'esultat n\'egatif, on
+% utilise cela, \`a la place.
+%    \begin{macrocode}
+\def\TX@error@width{1em}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\TX@delta}
+% Accepte une table qui est dans un "\hfuzz" avec une largeur
+% correcte.
+%    \begin{macrocode}
+\TX@delta\hfuzz
+%    \end{macrocode}
+% \end{macro}
+%
+% Initialise la colonne {\ttfamily X}. Ici, la d\'efinition
+% peut \^etre vide puisqu'elle est fix\'ee par chaque
+% environnement {\ttfamily tabularx}.
+%    \begin{macrocode}
+\newcolumntype{X}{}
+%    \end{macrocode}
+%
+% \begin{macro}{\tabularxcolumn}
+% La d\'efinition par d\'efaut de {\ttfamily X} est "p{#1}".
+%    \begin{macrocode}
+\def\tabularxcolumn#1{p{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\TX@newcol}
+% Une petite macro juste utilis\'ee pour limiter le nombre de
+% commandes "\expandafter" n\'ecessaires.
+%    \begin{macrocode}
+\def\TX@newcol{\newcol@{X}[0]}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\TX@trial}
+% Fait un test.
+%    \begin{macrocode}
+\def\TX@trial#1{%
+  \setbox\@tempboxa\hbox{%
+%    \end{macrocode}
+% Toute commande suppl\'ementaire. Cela est utilis\'e au
+% premier passage pour compter le nombre de colonnes {\ttfamily
+%  X}.
+%    \begin{macrocode}
+    #1\relax
+%    \end{macrocode}
+% Depuis la v1.04, "\footnotetext" englobe ses arguments.
+% Nettoie aussi localement "\TX@vwarn" pour que le message
+% d'alerte soit g\'en\'er\'e par la passe {\ttfamily finale}
+% et n'appara\^\i{}sse pas au milieu de la table si "\tracingtabularx"
+% est utilis\'e.
+%
+%    \begin{macrocode}
+  \let\@footnotetext\TX@trial@ftn
+  \let\TX@vwarn\@empty
+%    \end{macrocode}
+% N'imbrique pas les environnements {\ttfamily tabularx}
+% pendant les passes d'essai. Cela peut gaspiller du temps et
+% la fixation globale de "\TX@cols" peut arr\^eter
+% l'algorithme.
+%    \begin{macrocode}
+   \expandafter\let\expandafter\tabularx\csname tabular*\endcsname
+   \expandafter\let\expandafter\endtabularx\csname endtabular*\endcsname
+%    \end{macrocode}
+% Ajout\'e dans la v1.05 : d\'esactive "\write" pendant une
+% passe d'essai. Cette astuce provient du
+% \TeX{}Book.\footnote{L'astuce du \TeX{}Book ne fonctionne
+% pas correctement, donc cela a \'et\'e modifi\'e dans la
+% v2.05}
+% \changes{v2.05}{1997/09/18}
+%    {Nouvelle astuce \cs{write}. rapport : tools/2607}
+% \changes{v2.07}{1999/01/07}
+%    {Astuce \cs{write} plus r\'ecente. rapport : tools/2792}
+%    \begin{macrocode}
+   \def\write{\begingroup
+     \def\let{\afterassignment\endgroup\toks@}%
+        \afterassignment\let\count@}%
+%    \end{macrocode}
+% D\'esactive les messages d'alerte (\emph{cf} appendice D).
+% \'Egalement, previent leur activation intempestive, en
+% imposant l'enregistrement des noms de param\`etres.
+%    \begin{macrocode}
+    \hbadness\@M
+    \hfuzz\maxdimen
+    \let\hbadness\@tempcnta
+    \let\hfuzz\@tempdima
+%    \end{macrocode}
+% R\'ealise la table et termine la <<~hbox~>>. Depuis la
+% v1.06, "\toks@" contient la sp\'ecification de pr\'eambule
+% et son argument optionnel possible, ainsi que le corps de
+% la table.
+%    \begin{macrocode}
+    \expandafter\tabular\the\toks@
+    \endtabular}%
+%    \end{macrocode}
+% Depuis la v1.05, r\'e-initialise tous les compteurs \LaTeX\
+% en ex\'ecutant "\TX@ckpt".
+%    \begin{macrocode}
+  \TX@ckpt
+%    \end{macrocode}
+% Imprime certaines statistiques.
+% Ajout de "\TX@align" dans la v1.05, pour aligner les
+% colonnes.
+%    \begin{macrocode}
+  \TX@typeout@{\@spaces
+     \expandafter\TX@align
+        \the\wd\@tempboxa\space\space\space\space\space\@@
+     \expandafter\TX@align
+        \the\TX@col@width\space\space\space\space\space\@@
+     \@spaces\the\TX@cols}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\TX@align}
+% Macro ajout\'ee dans la v1.05 pour am\'eliorer l'impression
+% des informations de tra\c{c}age.
+%    \begin{macrocode}
+\def\TX@align#1.#2#3#4#5#6#7#8#9\@@{%
+  \ifnum#1<10 \space\fi
+  \ifnum#1<100 \space\fi
+  \ifnum#1<\@m\space\fi
+  \ifnum#1<\@M\space\fi
+  #1.#2#3#4#5#6#7#8\space\space}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\arraybackslash}
+% Rupture "\\".
+%    \begin{macrocode}
+\def\arraybackslash{\let\\\@arraycr}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\tracingtabularx}
+% Imprime des statistiques pour les largeurs de colonne et de
+% table.
+%    \begin{macrocode}
+\def\tracingtabularx{%
+  \def\TX@typeout{\PackageWarningNoLine{tabularx}}%
+  \def\TX@typeout@##1{\typeout{(tabularx) ##1}}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\TX@typeout}
+% Par d\'efaut, est silencieux.
+%    \begin{macrocode}
+\let\TX@typeout\@gobble
+\let\TX@typeout@\@gobble
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\TX@ftn}
+% Un identificateur de registre pour le texte des notes de
+% bas de page.
+%    \begin{macrocode}
+\newtoks\TX@ftn
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\TX@ftntext}
+% \begin{macro}{\TX@xftntext}
+% \`A l'int\'erieur, sauvegarde juste le texte de note de
+% bas de page dans un identificateur de registre.
+%    \begin{macrocode}
+\long\def\TX@ftntext#1{%
+  \edef\@tempa{\the\TX@ftn\noexpand\footnotetext
+                    [\the\csname c@\@mpfn\endcsname]}%
+  \global\TX@ftn\expandafter{\@tempa{#1}}}%
+\long\def\TX@xftntext[#1]#2{%
+  \global\TX@ftn\expandafter{\the\TX@ftn\footnotetext[#1]{#2}}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\TX@trial@ftn}
+% Dans les passes d'essai, englobe les textes des notes de
+% bas de page.
+%    \begin{macrocode}
+\long\def\TX@trial@ftn#1{}
+%    \end{macrocode}
+% \end{macro}
+%
+% Cette derni\`ere section a \'et\'e ajout\'e dans la Version
+% 1.02. Les versions pr\'ec\'edentes indiquaient que "\verb"
+% ne fonctionnait pas \`a l'int\'erieur de {\ttfamily
+% tabularx}, mais \c{c}a n'emp\^echait pas les gens de
+% l'utiliser ! Cela entra\^\i{}ne \LaTeX\ dans une erreur
+% irr\'ecup\'erable, avec un message d'erreur qui ne
+% mentionne pas la cause de l'erreur. Le "\verb" <<~du
+% pauvre~>> (et "\verb*") d\'efini ici, est bas\'e sur les
+% indications de la page 382 du \TeX{}Book. Comme il est
+% expliqu\'e, faire un verbatim de cette fa\c{c}on signifie
+% que les espaces ne sont pas trait\'es correctement et donc
+% que "\verb*" serait bien inutile ; cependant, je
+% consid\`ere que cette section du code est une correction
+% d'erreur, plut\^ot qu'une v\'eritable impl\'ementation de
+% verbatim.
+%
+% Le m\'ecanisme est totalement global et toute macro qui
+% veut autoriser l'utilisation d'une forme de "\verb" \`a
+% l'int\'erieur de son argument peut \^etre \\ "\let\verb=\TX@verb"
+% (tout en s'assurant de restaurer la vraie d\'efinition
+% ensuite !).
+%
+% "\verb" et "\verb*" ont les restrictions suivantes :
+% \begin{enumerate}
+% \item Les espaces dans l'argument ne sont pas lus tels que,
+% mais peuvent \^etre ignor\'es, en accord avec les r\`egles
+% habituelles de \TeX ;
+% \item les espaces doivent \^etre ajout\'es en sortie
+% apr\`es le contr\^ole des mots, m\^eme s'ils sont absents
+% en entr\'ee ;
+% \item sauf si l'argument est un espace isol\'e, tout espace
+% tra\^\i{}nant, s'il est dans l'argument original, ou
+% ajout\'e comme en (2), sera omit ;
+% \item l'argument ne doit pas finir par un "\", puisque
+% "\verb|\|" n'est pas permis, et, de toute fa\c{c}on, \`a
+% cause de (3), "\verb|\ |" donne "\" ;
+% \item l'argument doit \^etre \'equilibr\'e par "{" et "}".
+% Donc, "\verb|{|" n'est pas permis ;
+% \item un caract\`ere de commentaire comme "%"
+% n'appara\^\i{}tra pas tel quel. Il agira comme d'habitude,
+% commentant le reste de la ligne en entr\'ee !
+% \item les combinaisons "?`" et "!`" appa\^\i{}tront comme
+% {\ttfamily?`} et {\ttfamily!`} si la fonte {\ttfamily cmtt} est utilis\'ee.
+% \end{enumerate}
+%
+% \begin{macro}{\TX@verb}
+% La d\'efinition interne de "\verb". Les espaces seront
+% remplac\'es par "~", pour que dans la forme <<~\'etoile~>>,
+% "\let" "~" soit \verb*| |, que nous obtenons par "\uppercase{*}".
+% L'utilisation de "{\ifnum0=`}\fi" plut\^ot que "\bgroup"
+% permet que "&" appara\^\i{}sse dans l'argument.
+%    \begin{macrocode}
+{\uccode`\*=`\ %
+\uppercase{\gdef\TX@verb{%
+  \leavevmode\null\TX@vwarn
+  {\ifnum0=`}\fi\ttfamily\let\\\ignorespaces
+  \@ifstar{\let~*\TX@vb}{\TX@vb}}}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\TX@vb}
+% Donne le <<~presque verbatim~>> par "\meaning". <<~"!"~>>
+% est ajout\'e au d\'ebut du texte fourni, pour s'assurer que
+% l'argument entier ne consiste pas en un groupe "{ }"
+% isol\'e. \TeX\ enl\`evera les accolades ext\'erieures d'un
+% tel groupe. <<~"!"~>> sera enlev\'e plus tard.
+%
+% \`A l'origine, je suivais \bsc{Knuth} et j'avais "\def\@tempa{##1}",
+% cependant cela ne permettait pas \`a "#" d'appara\^\i{}tre
+% dans l'argument. Donc, dans la v1.04, j'ai chang\'e \c{c}a
+% et utilis\'e un identificateur de registre et "\edef". Cela
+% permet \`a "#" d'appara\^\i{}tre mais chacun appara\^\i{}t
+% deux fois !, donc plus tard je fais passer une boucle
+% rempla\c{c}ant "##" par "#".
+%
+%    \begin{macrocode}
+\def\TX@vb#1{\def\@tempa##1#1{\toks@{##1}\edef\@tempa{\the\toks@}%
+    \expandafter\TX@v\meaning\@tempa\\ \\\ifnum0=`{\fi}}\@tempa!}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\TX@v}
+% Enl\`eve le segment initial de "\meaning", incluant
+% <<~"!"~>> ajout\'e plus t\^ot.
+%    \begin{macrocode}
+\def\TX@v#1!{\afterassignment\TX@vfirst\let\@tempa= }
+%    \end{macrocode}
+% \end{macro}
+%
+% Comme expliqu\'e ci-dessus, nous allons remplacer les
+% paires "##" par "#". Pour faire cela, nous avons besoin
+% d'un identificateur "#" non sp\'ecifique. Fait un "*" dans
+% un identificateur de param\`etre pour que nous puissions
+% d\'efinir des macro avec des arguments. La signification
+% normale sera restaur\'ee par le dernier "\endgroup".
+%    \begin{macrocode}
+\begingroup
+\catcode`\*=\catcode`\#
+\catcode`\#=12
+%    \end{macrocode}
+%
+% \begin{macro}{\TX@vfirst}
+% Comme un cas sp\'ecial, emp\^eche que le premier
+% caract\`ere soit \'elimin\'e. Alors "\verb*| |" produit \verb*| |.
+% Puis, appelle "\TX@v@". Cela est l\'eg\`erement astucieux
+% depuis la v1.04, puisque je me suis assur\'e qu'un vrai "#"
+% plut\^ot qu'une commande "\let" to "#" est pris en compte
+% si le premier caract\`ere est "#".
+%    \begin{macrocode}
+\gdef\TX@vfirst{%
+  \if\@tempa#%
+    \def\@tempb{\TX@v@#}%
+  \else
+    \let\@tempb\TX@v@
+    \if\@tempa\space~\else\@tempa\fi
+  \fi
+  \@tempb}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\TX@v@}
+% Boucle \`a travers "\meaning", rempla\c{c}ant tous les
+% espaces par "~". Si le dernier caract\`ere est un espace,
+% il sera \'elimin\'e, puisque "\verb*|\LaTeX|" produit
+% "\LaTeX" et non \verb*|\LaTeX |. Les identificateurs
+% r\'e-\'ecrits sont ensuite trait\'es pour remplacer les
+% paires "##".
+%    \begin{macrocode}
+\gdef\TX@v@*1 *2{%
+  \TX@v@hash*1##\relax\if*2\\\else~\expandafter\TX@v@\fi*2}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\TX@v@hash}
+% La boucle interne, rempla\c{c}ant "##" par "#".
+%    \begin{macrocode}
+\gdef\TX@v@hash*1##*2{*1\ifx*2\relax\else#\expandafter\TX@v@hash\fi*2}
+%    \end{macrocode}
+% \end{macro}
+%
+% Comme promis, nous restaurons la signification normale de
+% "#" et "*".
+%    \begin{macrocode}
+\endgroup
+%    \end{macrocode}
+%
+% \begin{macro}{\TX@vwarn}
+Avertit l'utilisateur la premi\`ere fois que "\verb" est
+utilis\'e.
+%    \begin{macrocode}
+\def\TX@vwarn{%
+  \@warning{\noexpand\verb may be unreliable inside tabularx}%
+  \global\let\TX@vwarn\@empty}
+%    \end{macrocode}
+% \end{macro}
+%
+%    \begin{macrocode}
+%</package>
+%    \end{macrocode}
+%
+% \Finale
+\endinput

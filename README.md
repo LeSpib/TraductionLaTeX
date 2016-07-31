@@ -65,7 +65,7 @@ Traduction       | Source              | Avancée                | Pages traduit
 [showkeys-fr]    | [showkeys] v3.17    | :new_moon:             | 0 / 10          | Traduction préexistante ([FT-tools]).
                  | [siunitx] v2.6q     |                        | *. / 102*       |
 [somedefs-fr]    | [somedefs] v0.03    | :new_moon:             | 0 / 3           | Traduction préexistante ([FT-tools]).
-                 | [tabularx] v2.11    |                        | *. / 12*        | Traduction préexistante ([FT-tools]).
+[tabularx-fr]    | [tabularx] v2.11    | :new_moon:             | 0 / 13          | Traduction préexistante ([FT-tools]).
                  | [theorem] v2.2c     |                        | *. / 15*        | Traduction préexistante ([FT-tools]).
                  | [tikz+pgf] v3.0.1a  |                        | *. / 1161*      |
 [titlesec-fr]    | [titlesec] 2.10.2   | :full_moon:            | 25              | 
