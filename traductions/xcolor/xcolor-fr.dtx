@@ -3042,8 +3042,7 @@
 %
 %
 %
-% \subsection{Comment \XC{} gère les modèles colorimétriques spécifiques aux 
-%   pilotes}
+% \subsection{Gestion des modèles colorimétriques spécifiques aux pilotes par \XC}
 %
 % Bien qu'il y a une grande variété de pilotes qui implémentent différentes
 % approches à la visualisation des couleurs, ils ont tous des fonctionnalités
@@ -3465,140 +3464,155 @@
 % \begin{gather}
 % \emph{teinte} := \frac 16\cdot
 %  \begin{cases}
-%  1-f & \text{if $x=\emph{rouge}\ge\emph{vert}\ge\emph{bleu}=z$}\\
-%  1+f & \text{if $x=\emph{vert}\ge\emph{rouge}\ge\emph{bleu}=z$}\\
-%  3-f & \text{if $x=\emph{vert}\ge\emph{bleu}\ge\emph{rouge}=z$}\\
-%  3+f & \text{if $x=\emph{bleu}\ge\emph{vert}\ge\emph{rouge}=z$}\\
-%  5-f & \text{if $x=\emph{bleu}\ge\emph{rouge}\ge\emph{vert}=z$}\\
-%  5+f & \text{if $x=\emph{rouge}\ge\emph{bleu}>\emph{vert}=z$}
+%  1-f & \text{si $x=\emph{rouge}\ge\emph{vert}\ge\emph{bleu}=z$}\\
+%  1+f & \text{si $x=\emph{vert}\ge\emph{rouge}\ge\emph{bleu}=z$}\\
+%  3-f & \text{si $x=\emph{vert}\ge\emph{bleu}\ge\emph{rouge}=z$}\\
+%  3+f & \text{si $x=\emph{bleu}\ge\emph{vert}\ge\emph{rouge}=z$}\\
+%  5-f & \text{si $x=\emph{bleu}\ge\emph{rouge}\ge\emph{vert}=z$}\\
+%  5+f & \text{si $x=\emph{rouge}\ge\emph{bleu}>\emph{vert}=z$}
 %  \end{cases}\label{eq.rgb2hsb1}
 % \end{gather}
 %
 % \medskip
 %
-% \tradini
-% This is based on \cite{smith}, \emph{RGB to HSV Algorithm (Hexcone Model)}, which reads (slightly reformulated):
+% Ceci est basé sur \cite{smith}, \emph{RGB to HSV Algorithm (Hexcone Model)},
+% qui donne (légèrement reformulé):
 % \begin{gather}
-% r := \frac{x - \emph{red}}{x - z},\qquad
-% g := \frac{x - \emph{green}}{x - z},\qquad
-% b := \frac{x - \emph{blue}}{x - z}\\
-% \emph{hue} := \frac 16\cdot
+% r := \frac{x - \emph{rouge}}{x - z},\qquad
+% g := \frac{x - \emph{vert}}{x - z},\qquad
+% b := \frac{x - \emph{bleu}}{x - z}\\
+% \emph{teinte} := \frac 16\cdot
 %  \begin{cases}
-%  5+b & \text{if $\emph{red}=x$ and $\emph{green}=z$}\\
-%  1-g & \text{if $\emph{red}=x$ and $\emph{green}>z$}\\
-%  1+r & \text{if $\emph{green}=x$ and $\emph{blue}=z$}\\
-%  3-b & \text{if $\emph{green}=x$ and $\emph{blue}>z$}\\
-%  3+g & \text{if $\emph{blue}=x$ and $\emph{red}=z$}\\
-%  5-r & \text{if $\emph{blue}=x$ and $\emph{red}>z$}
+%  5+b & \text{si $\emph{rouge}=x$ et $\emph{vert}=z$}\\
+%  1-g & \text{si $\emph{rouge}=x$ et $\emph{vert}>z$}\\
+%  1+r & \text{si $\emph{vert}=x$ et $\emph{bleu}=z$}\\
+%  3-b & \text{si $\emph{vert}=x$ et $\emph{bleu}>z$}\\
+%  3+g & \text{si $\emph{bleu}=x$ et $\emph{rouge}=z$}\\
+%  5-r & \text{si $\emph{bleu}=x$ et $\emph{rouge}>z$}
 %  \end{cases}
 % \end{gather}
-% Note that the singular case $x=z$ is not covered completely in Smith's original algorithm; we stick here to \Index{PostScript}'s behaviour in real life.
+% Notez que le cas particulier $x=z$ n'est pas totalement couvert par
+% l'algorithme original de Smith; nous conservons ici le comportement de
+% \Index{PostScript} dans la vraie vie.
 %
-% Because we need to sort three numbers in order to calculate $x,y,z$, several comparisons are involved in the algorithm.
-% We present now a second method which is more suited for \TeX.
+% Parce que nous avons besoin de tirer trois nombres afin de calculer $x,y,z$,
+% plusieurs comparaisons sont à l'\oe uvre dans l'algorithme. Nous présentons
+% maintenant une seconde méthode bien plus adaptée à \TeX.
 %
 %
-% \paragraph{Conversion \Model{rgb} to \Model{hsb} (2)}
-% Let $\beta$ be a function that takes a Boolean expression as argument and returns 1 if the expression is true, 0 otherwise; set
+% \paragraph{Conversion de \Model{rgb} vers \Model{hsb} (2)}
+% Soit $\beta$ une fonction qui prend une expression booléenne comme argument
+% et restitue 1 si l'expression est vraie et 0 sinon; définissons 
 % \begin{gather}
-% i := 4\cdot\beta(\emph{red}\ge\emph{green}) + 2\cdot\beta(\emph{green}\ge\emph{blue}) + \beta(\emph{blue}\ge\emph{red}),
-% \intertext{and}
-% (\emph{hue},\emph{saturation},\emph{brightness}) :=
+% i := 4\cdot\beta(\emph{rouge}\ge\emph{vert}) + 2\cdot\beta(\emph{vert}\ge\emph{bleu}) + \beta(\emph{bleu}\ge\emph{rouge}),
+% \intertext{et}
+% (\emph{teinte},\emph{saturation},\emph{luminosité}) :=
 % \begin{cases}
-% \Phi(\emph{blue},\emph{green},\emph{red},3,1) & \text{if $i=1$}\\
-% \Phi(\emph{green},\emph{red},\emph{blue},1,1) & \text{if $i=2$}\\
-% \Phi(\emph{green},\emph{blue},\emph{red},3,-1) & \text{if $i=3$}\\
-% \Phi(\emph{red},\emph{blue},\emph{green},5,1) & \text{if $i=4$}\\
-% \Phi(\emph{blue},\emph{red},\emph{green},5,-1) & \text{if $i=5$}\\
-% \Phi(\emph{red},\emph{green},\emph{blue},1,-1) & \text{if $i=6$}\\
-% (0,0,\emph{blue}) &  \text{if $i=7$}
+% \Phi(\emph{bleu},\emph{vert},\emph{rouge},3,1) & \text{si $i=1$}\\
+% \Phi(\emph{vert},\emph{rouge},\emph{bleu},1,1) & \text{si $i=2$}\\
+% \Phi(\emph{vert},\emph{bleu},\emph{rouge},3,-1) & \text{si $i=3$}\\
+% \Phi(\emph{rouge},\emph{bleu},\emph{vert},5,1) & \text{si $i=4$}\\
+% \Phi(\emph{bleu},\emph{rouge},\emph{vert},5,-1) & \text{si $i=5$}\\
+% \Phi(\emph{rouge},\emph{vert},\emph{bleu},1,-1) & \text{si $i=6$}\\
+% (0,0,\emph{bleu}) &  \text{si $i=7$}
 % \end{cases}\label{eq.rgb2hsb2}
-% \intertext{where}
+% \intertext{où}
 % \Phi(x,y,z,u,v) := \Bigl( \frac{u\cdot(x-z)+v\cdot(x-y)}{6(x-z)}, \frac{x-z}x, x\Bigr)
 % \end{gather}
 %
-% The singular case $x=z$, which is equivalent to $\emph{red}=\emph{green}=\emph{blue}$, is covered here by $i=7$.
+% Le cas particulier $x=z$, qui est équivalent à 
+% $\emph{rouge}=\emph{vert}=\emph{bleu}$, est couvert ici par $i=7$.
 %
 % \medskip
 %
-% It is not difficult to see that this algorithm is a reformulation of the previous method.
-% The following table explains how the transition from equation (\ref{eq.rgb2hsb1}) to equation (\ref{eq.rgb2hsb2}) works:
+% Il n'est pas difficile de voir que cet algorithme est une reformulation
+% de la méthode précédente. La table suivante explique comment la transition
+% de l'équation (\ref{eq.rgb2hsb1}) à l'équation (\ref{eq.rgb2hsb2})
+% fonctionne :
 %
 % \medskip
 %
 % \begin{tabular*}{\textwidth}{@{\extracolsep\fill}*5{>{$}c<{$}}l@{}}
-% 6\cdot\emph{hue}& \emph{Condition}& \emph{red}\ge\emph{green}& \emph{green}\ge\emph{blue}& \emph{blue}\ge\emph{red}& $i$\\\hline
-%  1-f & \emph{red}\ge\emph{green}\ge\emph{blue}& 1& 1& *& \textbf6/7\\
-%  1+f & \emph{green}\ge\emph{red}\ge\emph{blue}& *& 1& *& \textbf2/3/6/7\\
-%  3-f & \emph{green}\ge\emph{blue}\ge\emph{red}& *& 1& 1& \textbf3/7\\
-%  3+f & \emph{blue}\ge\emph{green}\ge\emph{red}& *& *& 1& \textbf1/3/5/7\\
-%  5-f & \emph{blue}\ge\emph{red}\ge\emph{green}& 1& *& 1& \textbf5/7\\
-%  5+f & \emph{red}\ge\emph{blue}\ge\emph{green}& 1& *& *& \textbf4/5/6/7\\
+% 6\cdot\emph{teinte}& \emph{Condition}& \emph{rouge}\ge\emph{vert}& \emph{vert}\ge\emph{bleu}& \emph{bleu}\ge\emph{rouge}& $i$\\\hline
+%  1-f & \emph{rouge}\ge\emph{vert}\ge\emph{bleu}& 1& 1& *& \textbf6/7\\
+%  1+f & \emph{vert}\ge\emph{rouge}\ge\emph{bleu}& *& 1& *& \textbf2/3/6/7\\
+%  3-f & \emph{vert}\ge\emph{bleu}\ge\emph{rouge}& *& 1& 1& \textbf3/7\\
+%  3+f & \emph{bleu}\ge\emph{vert}\ge\emph{rouge}& *& *& 1& \textbf1/3/5/7\\
+%  5-f & \emph{bleu}\ge\emph{rouge}\ge\emph{vert}& 1& *& 1& \textbf5/7\\
+%  5+f & \emph{rouge}\ge\emph{bleu}\ge\emph{vert}& 1& *& *& \textbf4/5/6/7\\
 % \end{tabular*}
 %
 % \medskip
 %
-% Here, $*$ denotes possible 0 or 1 values.
-% Bold $i$~values mark the main cases where all $*$~values of a row are zero.
-% The slight difference to equation (\ref{eq.rgb2hsb1}) in the last inequality is intentional and does no harm.
+% Ici, $*$ indique des valeurs valant 0 ou 1.
+% Les valeurs de $i$ en gras indiquent les cas principaux quand toutes les 
+% valeurs des $*$ d'une rangée sont des zéros.
+% La légère différence avec l'équation (\ref{eq.rgb2hsb1}) dans la dernière
+% inégalité est intentionnelle et ne fait pas de mal.
 %
 %
-% \paragraph{Conversion \Model{rgb} to \Model{gray}}
+% \paragraph{Conversion de \Model{rgb} vers \Model{gray}}
 % Source: \cite{plrm}, p. 474.
 % \begin{align}
-% \emph{gray} & := 0.3\cdot\emph{red} + 0.59\cdot\emph{green} + 0.11\cdot\emph{blue}
+% \emph{gris} & := 0.3\cdot\emph{rouge} + 0.59\cdot\emph{vert} + 0.11\cdot\emph{bleu}
 % \end{align}
 %
 %
-% \paragraph{Conversion \Model{rgb} to \Model{RGB}}
-% As described in section \vref{sec.real2int}.
+% \paragraph{Conversion de \Model{rgb} vers \Model{RGB}}
+% Comme décrit en section \vref{sec.real2int}.
 % \begin{gather}
-% (\emph{Red},\emph{Green},\emph{Blue}) := \bigl(\RtoI L(\emph{red}), \RtoI L(\emph{green}), \RtoI L(\emph{blue})\bigr)
+% (\emph{Rouge},\emph{Vert},\emph{Bleu}) := \bigl(\RtoI L(\emph{rouge}), \RtoI L(\emph{vert}), \RtoI L(\emph{bleu})\bigr)
 % \end{gather}
 %
 %
-% \paragraph{Conversion \Model{rgb} to \Model{HTML}}
-% As described in section \vref{sec.real2int}.
-% Convert to 6-digit hexadecimal afterwards.
-% Certainly, multiplication and summation can be replaced by simple text concatenation of 2-digit hexadecimals.
+% \paragraph{Conversion de \Model{rgb} vers \Model{HTML}}
+% Comme décrit en section \vref{sec.real2int}.
+% La conversion en un héxadecimal à 6 chiffres est faite ensuite.
+% La multiplication et la sommation peuvent être remplacées par une simple
+% concaténation de texte d'héxadecimaux à 2 chiffres.
 % \begin{gather}
-% \emph{RRGGBB} := \bigl( 65536\cdot\RtoI L(\emph{red}) + 256\cdot \RtoI L(\emph{green}) + \RtoI L(\emph{blue}) \bigr)_{\emph{hex}}
+% \emph{RRGGBB} := \bigl( 65536\cdot\RtoI L(\emph{rouge}) + 256\cdot \RtoI L(\emph{vert}) + \RtoI L(\emph{bleu}) \bigr)_{\emph{hex}}
 % \end{gather}
 %
 %
-% \paragraph{Complement of \Model{rgb} color}
-% We simply take the complementary vector:
+% \paragraph{Complémentaire d'une couleur de \Model{rgb}}
+% Nous prenons simplement le vecteur complémentaire :
 % \begin{gather}
-% (\emph{red}^*, \emph{green}^*, \emph{blue}^*) := E - (\emph{red}, \emph{green}, \emph{blue})
+% (\emph{rouge}^*, \emph{vert}^*, \emph{bleu}^*) := E - (\emph{rouge}, \emph{vert}, \emph{bleu})
 % \end{gather}
 %
 %
-% \subsubsection{The \Model{cmy} model}
+% \subsubsection{Le modèle \Model{cmy}}
 %
-% \paragraph{Conversion \Model{cmy} to \Model{rgb}}
-% This is simply a reversion of the $\Model{rgb}\to\Model{cmy}$ case, cf. section \vref{sec.rgb2cmy}.
+% \paragraph{Conversion de \Model{cmy} vers \Model{rgb}}
+% Il s'agit d'une simple inversion du cas $\Model{rgb}\to\Model{cmy}$, cf. section \vref{sec.rgb2cmy}.
 % \begin{gather}
-% (\emph{red}, \emph{green}, \emph{blue}) := E - (\emph{cyan}, \emph{magenta}, \emph{yellow})
+% (\emph{rouge}, \emph{vert}, \emph{bleu}) := E - (\emph{cyan}, \emph{magenta}, \emph{jaune})
 % \end{gather}
 %
 %
-% \paragraph{Conversion \Model{cmy} to \Model{cmyk}}\label{sec.cmy2cmyk}
-% This is probably the hardest of our conversion tasks: many sources emphasize that there does not exist any universal conversion algorithm for this case because of device-dependence.
-% The following algorithm is an extended version of the one given in \cite{plrm}, p. 476.
+% \paragraph{Conversion de \Model{cmy} vers \Model{cmyk}}\label{sec.cmy2cmyk}
+% Cette tâche de conversion est probablement la plus difficile : de nombreuses
+% sources insistent sur le fait qu'il n'existe pas d'algorithme de conversion
+% universel pour ce cas du fait de la dépendance au pilote. 
+% L'algorithme qui suit est une version étendue de celle donnée dans
+% \cite{plrm}, p. 476.
 % \begin{align}
-% k & := \min\{\emph{cyan},\emph{magenta},\emph{yellow}\}\\
+% k & := \min\{\emph{cyan},\emph{magenta},\emph{jaune}\}\\
 % \emph{cyan} & := \min\{1,\max\{0,\emph{cyan} - \emph{UCR}_c(k)\}\}\\
 % \emph{magenta} & := \min\{1,\max\{0,\emph{magenta} - \emph{UCR}_m(k)\}\}\\
-% \emph{yellow} & := \min\{1,\max\{0,\emph{yellow} - \emph{UCR}_y(k)\}\}\\
-% \emph{black} & := \emph{BG}(k)
+% \emph{jaune} & := \min\{1,\max\{0,\emph{jaune} - \emph{UCR}_y(k)\}\}\\
+% \emph{noir} & := \emph{BG}(k)
 % \end{align}
-% Here, four additional functions are required:
+% Ici, quatre fonctions additionnelles sont requises :
 % \begin{align}
-% \emph{UCR}_c, \emph{UCR}_m, \emph{UCR}_y & : [0,1] \to [-1,1]\tag*{\em undercolor-removal}\\
-% \emph{BG} & : [0,1] \to [0,1]\tag*{\em black-generation}
+% \emph{UCR}_c, \emph{UCR}_m, \emph{UCR}_y & : [0,1] \to [-1,1]\tag*{\em \trad{undercolor-removal}}\\
+% \emph{BG} & : [0,1] \to [0,1]\tag*{\em \trad{black-generation}}
 % \end{align}
-% These functions are device-dependent, see the remarks in \cite{plrm}.
-% Although there are some indications that they should be chosen as nonlinear functions, as long as we have no further knowledge about the target device we define them linearly:
+% Ces fonctions sont dépendantes du pilote, voir la remarque dans \cite{plrm}.
+% Bien qu'il y ait des indications comme quoi elles devraient être choisies
+% parmi des fonctions non linéaires, tant que nous n'avons pas connaissance
+% sur le matériel cible, nous les définissons linérairement :
 % \begin{align}
 % \emph{UCR}_c(k) &:= \beta_c\cdot k\\
 % \emph{UCR}_m(k) &:= \beta_m\cdot k\\
@@ -3606,372 +3620,456 @@
 % \emph{BG}(k) &:= \beta_k\cdot k
 % \end{align}
 % \DescribeMacro\adjustUCRBG
-% where the parameters are given by |\def\adjustUCRBG{|\Meta{$\beta_c$},\Meta{$\beta_m$},\Meta{$\beta_y$},\Meta{$\beta_k$}|}| at any point in a document, defaulting to |{|$\adjustUCRBG$|}|.
+% où les paramètres sont donnés par
+% |\def\adjustUCRBG{|\Meta{$\beta_c$},\Meta{$\beta_m$},\Meta{$\beta_y$},\Meta{$\beta_k$}|}|
+% à n'importe quel endroit dans un document, avec pour valeur par défaut
+% |{|$\adjustUCRBG$|}|.
 %
 %
-% \paragraph{Conversion \Model{cmy} to \Model{gray}}
-% This is derived from the conversion chain $\Model{cmy}\to\Model{rgb}\to\Model{gray}$.
+% \paragraph{Conversion de \Model{cmy} vers \Model{gray}}
+% Cette conversion est dérivée de la chaîne de conversion 
+% $\Model{cmy}\to\Model{rgb}\to\Model{gray}$.
 % \begin{align}
-% \emph{gray} & := 1 - (0.3\cdot\emph{cyan} + 0.59\cdot\emph{magenta} + 0.11\cdot\emph{yellow})
+% \emph{gray} & := 1 - (0.3\cdot\emph{cyan} + 0.59\cdot\emph{magenta} 
+% + 0.11\cdot\emph{jaune})
 % \end{align}
 %
 %
-% \paragraph{Complement of \Model{cmy} color}
-% We simply take the complementary vector:
+% \paragraph{Complémentaire d'une couleur de \Model{cmy}}
+% Nous prenons simplement le vecteur complémentaire :
 % \begin{gather}
-% (\emph{cyan}^*, \emph{magenta}^*, \emph{yellow}^*) := E - (\emph{cyan}, \emph{magenta}, \emph{yellow})
+% (\emph{cyan}^*, \emph{magenta}^*, \emph{jaune}^*) := E - (\emph{cyan}, \emph{magenta}, \emph{jaune})
 % \end{gather}
 %
 %
-% \subsubsection{The \Model{cmyk} model}
+% \subsubsection{Le modèle \Model{cmyk}}
 %
-% \paragraph{Conversion \Model{cmyk} to \Model{cmy}}\label{sec.cmyk2cmy}
-% Based on \cite{plrm}, p. 477, in connection with $\Model{rgb}\to\Model{cmy}$ conversion.
+% \paragraph{Conversion de \Model{cmyk} vers \Model{cmy}}\label{sec.cmyk2cmy}
+% Elle se base sur \cite{plrm}, p. 477, en lien avec la conversion 
+% $\Model{rgb}\to\Model{cmy}$.
 % \begin{align}
-% \emph{cyan} & := \min\{1,\emph{cyan} + \emph{black}\}\\
-% \emph{magenta} & := \min\{1,\emph{magenta} + \emph{black}\}\\
-% \emph{yellow} & := \min\{1,\emph{yellow} + \emph{black}\}
+% \emph{cyan} & := \min\{1,\emph{cyan} + \emph{noir}\}\\
+% \emph{magenta} & := \min\{1,\emph{magenta} + \emph{noir}\}\\
+% \emph{jaune} & := \min\{1,\emph{jaune} + \emph{noir}\}
 % \end{align}
 %
 %
-% \paragraph{Conversion \Model{cmyk} to \Model{gray}}
+% \paragraph{Conversion de \Model{cmyk} vers \Model{gray}}
 % Source: \cite{plrm}, p. 475.
 % \begin{align}
-% \emph{gray} & := 1 - \min\{1,0.3\cdot\emph{cyan} + 0.59\cdot\emph{magenta} + 0.11\cdot\emph{yellow} + black\}
+% \emph{gris} & := 1 - \min\{1,0.3\cdot\emph{cyan} + 0.59\cdot\emph{magenta} + 0.11\cdot\emph{jaune} + \emph{noir}\}
 % \end{align}
 %
 %
-% \paragraph{Complement of \Model{cmyk} color}
-% The simple vector complement does not yield useful results.
-% Therefore, we first convert %$C=(\emph{cyan}, \emph{magenta}, \emph{yellow}, \emph{black})$
-% to the \Model{cmy} model, calculate the complement there, and convert back to \Model{cmyk}.
+% \paragraph{Complémentaire d'une couleur de \Model{cmyk}}
+% Le simple vecteur complémentaire ne mène pas à des résultats fructueux.
+% C'est pourquoi nous convertissons d'abord %$C=(\emph{cyan}, \emph{magenta},
+% \emph{jaune}, \emph{noit})$ en modèle \Model{cmy}, calculons là la couleur
+% complémentaire et revenons ensuite dans le modèle \Model{cmyk}.
 %
 %
-% \subsubsection{The \Model{hsb} model}
+% \subsubsection{Le modèle \Model{hsb}}
 %
-% \paragraph{Conversion \Model{hsb} to \Model{rgb}}
+% \paragraph{Conversion de \Model{hsb} vers \Model{rgb}}
 % \begin{gather}
-% (\emph{red},\emph{green},\emph{blue}) :=
-%  \emph{brightness}\cdot( E - \emph{saturation}\cdot F)\\
-% \intertext{with}
-% i := \left\lfloor 6\cdot\emph{hue}\right\rfloor,\qquad f := 6\cdot\emph{hue} - i\\
-% \intertext{and}
+% (\emph{rouge},\emph{vert},\emph{bleu}) :=
+%  \emph{luminosité}\cdot( E - \emph{saturation}\cdot F)\\
+% \intertext{avec}
+% i := \left\lfloor 6\cdot\emph{teinte}\right\rfloor,\qquad f := 
+% 6\cdot\emph{teinte} - i\\
+% \intertext{et}
 % F :=
 %  \begin{cases}
-%   (0,1-f,1) & \text{if $i=0$}\\
-%   (f,0,1) & \text{if $i=1$}\\
-%   (1,0,1-f) & \text{if $i=2$}\\
-%   (1,f,0) & \text{if $i=3$}\\
-%   (1-f,1,0) & \text{if $i=4$}\\
-%   (0,1,f) & \text{if $i=5$}\\
-%   (0,1,1) & \text{if $i=6$}
+%   (0,1-f,1) & \text{si $i=0$}\\
+%   (f,0,1) & \text{si $i=1$}\\
+%   (1,0,1-f) & \text{si $i=2$}\\
+%   (1,f,0) & \text{si $i=3$}\\
+%   (1-f,1,0) & \text{si $i=4$}\\
+%   (0,1,f) & \text{si $i=5$}\\
+%   (0,1,1) & \text{si $i=6$}
 %  \end{cases}\label{eq.hsb2rgb2}
 % \end{gather}
 %
 % \medskip
 %
-% This is based on \cite{smith}, \emph{HSV to RGB Algorithm (Hexcone Model)}, which reads (slightly reformulated):
+% Ceci se base sur \cite{smith}, \emph{HSV to RGB Algorithm (Hexcone Model)},
+% qui donne (légèrement reformulé) :
 % \begin{align}
 % m & := 1-\emph{saturation}\\
 % n & := 1-f\cdot\emph{saturation}\\
 % k & := 1-(1-f)\cdot\emph{saturation}\\
-% (\emph{red},\emph{green},\emph{blue}) & := \emph{brightness}\cdot
+% (\emph{rouge},\emph{vert},\emph{bleu}) & := \emph{luminosité}\cdot
 %  \begin{cases}
-%   (1,k,m) & \text{if $i=0,6$}\\
-%   (n,1,m) & \text{if $i=1$}\\
-%   (m,1,k) & \text{if $i=2$}\\
-%   (m,n,1) & \text{if $i=3$}\\
-%   (k,m,1) & \text{if $i=4$}\\
-%   (1,m,n) & \text{if $i=5$}
+%   (1,k,m) & \text{si $i=0,6$}\\
+%   (n,1,m) & \text{si $i=1$}\\
+%   (m,1,k) & \text{si $i=2$}\\
+%   (m,n,1) & \text{si $i=3$}\\
+%   (k,m,1) & \text{si $i=4$}\\
+%   (1,m,n) & \text{si $i=5$}
 %  \end{cases}\label{eq.hsb2rgb1}
 % \end{align}
-% Note that the case $i=6$ (which results from $\emph{hue}=1$) is missing in Smith's algorithm.
-% Because of
+% Notez que le cas $i=6$ (qui s'obtient si $\emph{teinte}=1$) est manquant
+% dans l'algorithme de Smith.
+% À cause de 
 % \begin{align}
 % \lim_{f\to1} (0,1,f) = (0,1,1) = \lim_{f\to0} (0,1-f,1)
 % \end{align}
-% it is clear that there is only one way to define $F$ for $i=6$ in order to get a continuous function, as shown in equation (\ref{eq.hsb2rgb2}).
-% This has been transformed back to equation (\ref{eq.hsb2rgb1}).
-% A similar argument shows that $F$ indeed is a continuous function of \emph{hue} over the whole range $[0,1]$.
+% il est clair qu'il n'y a qu'une façon de définir $F$ pour $i=6$ afin
+% d'obtenir une fonction continue, comme indiqué en équation (\ref{eq.hsb2rgb2}).
+% Ceci a été \trad{ramené} à l'équation (\ref{eq.hsb2rgb1}).
+% Un argument similaire montre en effet que $F$ est une fonction continue de
+% la \emph{teinte} sur l'intervalle $[0,1]$.
 %
 %
-% \paragraph{Conversion \Model{hsb} to \Model{Hsb}}
-% Only the first component has to be changed.
+% \paragraph{Conversion de \Model{hsb} vers \Model{Hsb}}
+% Seule la première composante doit être changée.
 % \begin{gather}
-% (\emph{hue\Circ}, \emph{saturation}, \emph{brightness}) := (H\cdot\emph{hue}, \emph{saturation}, \emph{brightness})
+% (\emph{teinte\Circ}, \emph{saturation}, \emph{luminosité}) := 
+% (H\cdot\emph{teinte}, \emph{saturation}, \emph{luminosité})
 % \end{gather}
 %
 %
-% \paragraph{Conversion \Model{hsb} to \Model{HSB}}
-% As described in section \vref{sec.real2int}.
+% \paragraph{Conversion de \Model{hsb} vers \Model{HSB}}
+% Comme décrit en section \vref{sec.real2int}.
 % \begin{gather}
-% (\emph{Hue}, \emph{Saturation}, \emph{Brightness}) := \bigl(\RtoI M(\emph{hue}), \RtoI M(\emph{saturation}), \RtoI M(\emph{brightness})\bigr)
+% (\emph{Teinte}, \emph{Saturation}, \emph{Luminosité}) := 
+% \bigl(\RtoI M(\emph{teinte}), \RtoI M(\emph{saturation}), 
+% \RtoI M(\emph{luminosité})\bigr)
 % \end{gather}
 %
 %
-% \paragraph{Complement of \Model{hsb} color}
-% We have not found a formula in the literature, therefore we give a short proof afterwards.
+% \paragraph{Complémentaire d'une couleur de \Model{hsb}}
+% Nous n'avons pas trouvé de formule dans la littérature, c'est pourquoi nous
+% donnons une courte preuve par la suite.
 % \begin{lemma}
-% The \textup{\Model{hsb}}-complement can be calculated by the following formulas:\em
+% La couleur complémentaire en modèle \textup{\Model{hsb}} peut être calculée
+% par les formules suivantes:\em
 % \begin{align}
-% \emph{hue}^* & :=
+% \emph{teinte}^* & :=
 % \begin{cases}
-% \emph{hue} + \frac12 & \text{if $\emph{hue}<\frac12$}\\[1ex]
-% \emph{hue} - \frac12 & \text{if $\emph{hue}\ge\frac12$}\\
+% \emph{teinte} + \frac12 & \text{si $\emph{teinte}<\frac12$}\\[1ex]
+% \emph{teinte} - \frac12 & \text{si $\emph{teinte}\ge\frac12$}\\
 % \end{cases}\\[1ex]
-% \emph{brightness}^* & := 1 - \emph{brightness}\cdot(1-\emph{saturation})\\[1ex]
+% \emph{luminosité}^* & := 1 - \emph{luminosité}\cdot(1-\emph{saturation})\\[1ex]
 % \emph{saturation}^* & :=
 % \begin{cases}
-% 0 & \text{if $\emph{brightness}^*=0$}\\[1ex]
-% \displaystyle\frac{\emph{brightness}\cdot\emph{saturation}}{\emph{brightness}^*} & \text{if $\emph{brightness}^*\ne0$}
+% 0 & \text{si $\emph{luminosité}^*=0$}\\[1ex]
+% \displaystyle\frac{\emph{luminosité}\cdot\emph{saturation}}{\emph{luminosité}^*} & \text{si $\emph{luminosité}^*\ne0$}
 % \end{cases}
 % \end{align}
 % \end{lemma}
 %
 % \begin{proof}
-% Starting with the original color $C=(h,s,b)$, we define color $C^*=(h^*,s^*,b^*)$ by the given formulas, convert both $C$ and $C^*$ to the \Model{rgb} model and show that
+% En partant de la couleur originale $C=(h,s,b)$, nous définissons la couleur 
+% $C^*=(h^*,s^*,b^*)$ par les formules suivantes, convertissons $C$ et $C^*$ en
+% modèle \Model{rgb} et montrons que 
 % \begin{gather}
 % C_{\Model{rgb}} + C_{\Model{rgb}}^* = b\cdot(E - s\cdot F) + b^*\cdot(E - s'\cdot F^*) \stackrel!= E,\label{eq.hsbcompl1}
 % \end{gather}
-% which means that $C_{\Model{rgb}}$ is the complement of $C_{\Model{rgb}}^*$.
-% First we note that the parameters of $C^*$ are in the legal range $[0,1]$.
-% This is obvious for $h^*,b^*$.
-% From
+% ce qui signifie que $C_{\Model{rgb}}$ est la couleur complémentaire de
+% $C_{\Model{rgb}}^*$.
+% Tout d'abord nous notons que les paramètres de $C^*$ sont dans l'intervalle
+% autorisé $[0,1]$.
+% Ceci est évident pour $h^*,b^*$.
+% De
 % $b^* = 1-b\cdot(1-s) = 1 - b + b\cdot s$
-% we derive $b\cdot s = b^* - (1-b) \le b^*$, therefore $s^*\in[0,1]$, and
+% nous tirons $b\cdot s = b^* - (1-b) \le b^*$, c'est pourquoi $s^*\in[0,1]$ et
 % \begin{gather*}
-% b^* = 0 \Leftrightarrow s=0 \text{ and } b=1.
+% b^* = 0 \Leftrightarrow s=0 \text{ et } b=1.
 % \end{gather*}
-% Thus, equation (\ref{eq.hsbcompl1}) holds in the case $b^*=0$.
-% Now we assume $b^*\ne0$, hence
+% Ainsi, l'équation (\ref{eq.hsbcompl1}) fonctionne dans le cas $b^*=0$.
+% Maintenant, supposons que $b^*\ne0$, alors
 % \begin{align*}
 % C_{\Model{rgb}} + C_{\Model{rgb}}^*
 % &= b\cdot(E - s\cdot F) + b^*\cdot\Bigl(E - \frac{b\cdot s}{b^*}\cdot F^*\Bigr) \\
 % &= b\cdot E - b\cdot s\cdot F + b^*\cdot E - b\cdot s\cdot F^*\\[1ex]
 % &= E - b\cdot s\cdot(F+F^*-E)
 % \end{align*}
-% since $b^*=1-b+bs$.
-% Therefore, it is sufficient to show that
+% puisque $b^*=1-b+bs$.
+% C'est pourquoi il suffit de montrer que
 % \begin{gather}
 % F+F^*=E.\label{eq.hsbcompl2}
 % \end{gather}
-% From
+% Partant de 
 % \begin{gather*}\textstyle
-% h<\frac12 \Rightarrow h^*=h+\frac12 \Rightarrow 6h^* = 6h+3 \Rightarrow i^*=i+3 \text{ and } f^*=f
+% h<\frac12 \Rightarrow h^*=h+\frac12 \Rightarrow 6h^* = 6h+3 \Rightarrow 
+%  i^*=i+3 \text{ et } f^*=f
 % \end{gather*}
-% it is easy to see from (\ref{eq.hsb2rgb2}) that equation (\ref{eq.hsbcompl2}) holds for the cases $i=0,1,2$.
-% Similarly,
+% il est simple de montrer avec (\ref{eq.hsb2rgb2}) que l'équation 
+% (\ref{eq.hsbcompl2}) fonctionne pour les cas $i=0,1,2$.
+% De façon similaire, 
 % \begin{gather*}\textstyle
-% h\ge\frac12 \Rightarrow h^*=h-\frac12 \Rightarrow 6h^* = 6h-3 \Rightarrow i^*=i-3 \text{ and } f^*=f
+% h\ge\frac12 \Rightarrow h^*=h-\frac12 \Rightarrow 6h^* = 6h-3 \Rightarrow
+   i^*=i-3 \text{ et } f^*=f
 % \end{gather*}
-% and again from (\ref{eq.hsb2rgb2}) we derive (\ref{eq.hsbcompl2}) for the cases $i=3,4,5$.
-% Finally, if $i=6$ then $f=0$ and $F+F^* = (0,1,1) + (1,0,0) = E$.
+% et, une nouvelle fois, à partir de (\ref{eq.hsb2rgb2}) nous obtenons 
+% (\ref{eq.hsbcompl2}) pour les cases $i=3,4,5$.
+% Enfin, si $i=6$ alors $f=0$ et $F+F^* = (0,1,1) + (1,0,0) = E$.
 % \end{proof}
 %
 %
-% \subsubsection{The \Model{Hsb} model}
+% \subsubsection{Le modèle \Model{Hsb}}
 %
-% \paragraph{Conversion \Model{Hsb} to \Model{hsb}}
-% Only the first component has to be changed.
+% \paragraph{Conversion de \Model{Hsb} vers \Model{hsb}}
+% Seule la première composante doit être changée.
 % \begin{gather}
-% (\emph{hue}, \emph{saturation}, \emph{brightness}) := (\emph{hue\Circ}/H, \emph{saturation}, \emph{brightness})
+% (\emph{teinte}, \emph{saturation}, \emph{luminosité}) :=
+%  (\emph{teinte\Circ}/H, \emph{saturation}, \emph{luminosité})
 % \end{gather}
 %
 %
-% \paragraph{Conversion \Model{Hsb} to \Model{tHsb}}
-% Under the settings of (\ref{eq.tHsb1})--(\ref{eq.tHsb3}) we simply have to exchange the letters $x$ and $y$ in equation (\ref{eq.tHsb4}) to get the inverse transformation:
+% \paragraph{Conversion de \Model{Hsb} vers \Model{tHsb}}
+% Sur la base de (\ref{eq.tHsb1})--(\ref{eq.tHsb3}), nous avons simplement à
+% échanger les lettres $x$ et $y$ dans l'équation (\ref{eq.tHsb4}) pour
+% obtenir la transformation inverse :
 % \begin{gather}
-% \displaystyle \emph{hue\Circ}\in\left[y_{\eta-1},y_\eta\right] \Rightarrow
-% \emph{hue\Circ} := x_{\eta-1} + \frac{x_\eta - x_{\eta-1}}{y_\eta - y_{\eta-1}}\cdot(\emph{hue\Circ} - y_{\eta-1})
+% \displaystyle \emph{teinte\Circ}\in\left[y_{\eta-1},y_\eta\right] \Rightarrow
+% \emph{teinte\Circ} := x_{\eta-1} + \frac{x_\eta - x_{\eta-1}}{y_\eta -
+%   y_{\eta-1}}\cdot(\emph{teinte\Circ} - y_{\eta-1})
 % \end{gather}
-% while \emph{saturation} and \emph{brightness} are left unchanged.
+% où \emph{saturation} et \emph{luminosité} sont laissées inchangées.
 %
 %
-% \subsubsection{The \Model{tHsb} model}
+% \subsubsection{Le modèle \Model{tHsb}}
 %
-% \paragraph{Conversion \Model{tHsb} to \Model{Hsb}}\label{sec.tHsb2Hsb}
+% \paragraph{Conversion de \Model{tHsb} vers \Model{Hsb}}\label{sec.tHsb2Hsb}
 % \DescribeMacro\rangeHsb
 % \DescribeMacro\rangetHsb
-% We assume that $\texttt{\string\rangeHsb}=H$ and |\rangetHsb| expands to
+% Supposons que $\texttt{\string\rangeHsb}=H$ et |\rangetHsb| se développe en 
 % \begin{gather}
 % x_1,y_1;x_2,y_2;\dots;x_{h-1},y_{h-1}\label{eq.tHsb1}
-% \intertext{where}
+% \intertext{où}
 % x_0:=0<x_1<x_2<\dots<x_{h-1}<x_h:=H\label{eq.tHsb2}\\
 % y_0:=0<y_1<y_2<\dots<y_{h-1}<y_h:=H\label{eq.tHsb3}
 % \end{gather}
-% with an integer $h>0$.
-% Now the $x$ and $y$ values determine a piecewise linear transformation:
+% avec un entier $h>0$.
+% Maintenant les valeurs de $x$ et $y$ détermine une transformation linéaire
+% par morceau :
 % \begin{gather}
-% \displaystyle \emph{hue\Circ}\in\left[x_{\eta-1},x_\eta\right] \Rightarrow
-% \emph{hue\Circ} := y_{\eta-1} + \frac{y_\eta - y_{\eta-1}}{x_\eta - x_{\eta-1}}\cdot(\emph{hue\Circ} - x_{\eta-1})
+% \displaystyle \emph{teinte\Circ}\in\left[x_{\eta-1},x_\eta\right] \Rightarrow
+% \emph{teinte\Circ} := y_{\eta-1} + \frac{y_\eta - y_{\eta-1}}{x_\eta
+%  - x_{\eta-1}}\cdot(\emph{teinte\Circ} - x_{\eta-1})
 % \label{eq.tHsb4}
 % \end{gather}
-% while \emph{saturation} and \emph{brightness} are left unchanged.
+% tandis que \emph{saturation} et \emph{luminosité} sont laissées inchangées.
 %
 %
-% \subsubsection{The \Model{gray} model}
+% \subsubsection{Le modèle \Model{gray}}
 %
-% \paragraph{Conversion \Model{gray} to \Model{rgb}}
+% \paragraph{Conversion de \Model{gray} vers \Model{rgb}}
 % Source: \cite{plrm}, p. 474.
 % \begin{gather}
-% (\emph{red}, \emph{green}, \emph{blue}) := \emph{gray}\cdot E
+% (\emph{rouge}, \emph{vert}, \emph{bleu}) := \emph{gris}\cdot E
 % \end{gather}
 %
 %
-% \paragraph{Conversion \Model{gray} to \Model{cmy}}
-% This is derived from the conversion chain $\Model{gray}\to\Model{rgb}\to\Model{cmy}$.
+% \paragraph{Conversion de \Model{gray} vers \Model{cmy}}
+% La conversion est dérivée de la chaîne de conversion 
+% $\Model{gray}\to\Model{rgb}\to\Model{cmy}$.
 % \begin{gather}
-% (\emph{cyan}, \emph{magenta}, \emph{yellow}) := (1-\emph{gray})\cdot E
+% (\emph{cyan}, \emph{magenta}, \emph{jaune}) := (1-\emph{gris})\cdot E
 % \end{gather}
 %
 %
-% \paragraph{Conversion \Model{gray} to \Model{cmyk}}
+% \paragraph{Conversion de \Model{gray} vers \Model{cmyk}}
 % Source: \cite{plrm}, p. 475.
 % \begin{gather}
-% (\emph{cyan}, \emph{magenta}, \emph{yellow}, \emph{black}) := (0,0,0,1-\emph{gray})
+% (\emph{cyan}, \emph{magenta}, \emph{jaune}, \emph{noir}) := (0,0,0,1-\emph{gris})
 % \end{gather}
 %
 %
-% \paragraph{Conversion \Model{gray} to \Model{hsb}}
-% This is derived from the conversion chain $\Model{gray}\to\Model{rgb}\to\Model{hsb}$.
+% \paragraph{Conversion de \Model{gray} vers \Model{hsb}}
+% La conversion est dérivée de la chaîne de conversion 
+% $\Model{gray}\to\Model{rgb}\to\Model{hsb}$.
 % \begin{gather}
-% (\emph{hue}, \emph{saturation}, \emph{brightness}) := (0,0,\emph{gray})
+% (\emph{teinte}, \emph{saturation}, \emph{luminosité}) := (0,0,\emph{gris})
 % \end{gather}
 %
 %
-% \paragraph{Conversion \Model{gray} to \Model{Hsb}/\Model{tHsb}}
-% This is derived from the conversion chain $\Model{gray}\to\Model{hsb}\to\Model{Hsb}$, followed by $\Model{Hsb}\to\Model{tHsb}$ if applicable.
+% \paragraph{Conversion de \Model{gray} vers \Model{Hsb}/\Model{tHsb}}
+% La conversion est dérivée de la chaîne de conversion 
+% $\Model{gray}\to\Model{hsb}\to\Model{Hsb}$, suivie par 
+% $\Model{Hsb}\to\Model{tHsb}$ si possible.
 % \begin{gather}
-% (\emph{hue\Circ}, \emph{saturation}, \emph{brightness}) := (0,0,\emph{gray})
+% (\emph{teinte\Circ}, \emph{saturation}, \emph{luminosité}) := (0,0,\emph{gris})
 % \end{gather}
 %
 %
-% \paragraph{Conversion \Model{gray} to \Model{Gray}}
-% As described in section \vref{sec.real2int}.
+% \paragraph{Conversion de \Model{gray} vers \Model{Gray}}
+% Comme décrit en section \vref{sec.real2int}.
 % \begin{gather}
-% \emph{Gray} := \RtoI N(\emph{gray})
+% \emph{Gris} := \RtoI N(\emph{gris})
 % \end{gather}
 %
 %
-% \paragraph{Complement of \Model{gray} color}
-% This is similar to the \Model{rgb} case:
+% \paragraph{Complémentaire d'une couleur de \Model{gray}}
+% Ceci est similaire au cas \Model{rgb} :
 % \begin{gather}
-% \emph{gray}^* := 1 - \emph{gray}
+% \emph{gris}^* := 1 - \emph{gris}
 % \end{gather}
 %
 %
-% \subsubsection{The \Model{RGB} model}
+% \subsubsection{Le modèle \Model{RGB}}
 %
-% \paragraph{Conversion \Model{RGB} to \Model{rgb}}
-% As described in section \vref{sec.int2real}.
+% \paragraph{Conversion de \Model{RGB} vers \Model{rgb}}
+% Comme décrit en section \vref{sec.int2real}.
 % \begin{gather}
-% (\emph{red}, \emph{green}, \emph{blue}) := \bigl(\ItoR L(\emph{Red}), \ItoR L(\emph{Green}), \ItoR L(\emph{Blue})\bigr)
+% (\emph{rouge}, \emph{vert}, \emph{bleu}) := \bigl(\ItoR L(\emph{Rouge}),
+%  \ItoR L(\emph{Vert}), \ItoR L(\emph{Bleu})\bigr)
 % \end{gather}
 %
 %
-% \subsubsection{The \Model{HTML} model}
+% \subsubsection{Le modèle \Model{HTML}}
 %
-% \paragraph{Conversion \Model{HTML} to \Model{rgb}}
-% As described in section \vref{sec.int2real}: starting with \emph{RRGGBB} set
+% \paragraph{Conversion de \Model{HTML} vers \Model{rgb}}
+% Comme décrit en section \vref{sec.int2real}: en commençant avec 
+% \emph{RRGGBB}, nous définissons
 % \begin{gather}
-% (\emph{red}, \emph{green}, \emph{blue}) := \bigl(\ItoR{255}(\emph{RR}_{\emph{dec}}), \ItoR{255}(\emph{GG}_{\emph{dec}}), \ItoR{255}(\emph{BB}_{\emph{dec}})\bigr)
+% (\emph{rouge}, \emph{vert}, \emph{bleu}) := 
+% \bigl(\ItoR{255}(\emph{RR}_{\emph{dec}}), \ItoR{255}(\emph{GG}_{\emph{dec}}),
+% \ItoR{255}(\emph{BB}_{\emph{dec}})\bigr)
 % \end{gather}
 %
 %
-% \subsubsection{The \Model{HSB} model}
+% \subsubsection{Le modèle \Model{HSB}}
 %
-% \paragraph{Conversion \Model{HSB} to \Model{hsb}}
-% As described in section \vref{sec.int2real}.
+% \paragraph{Conversion de \Model{HSB} vers \Model{hsb}}
+% Comme décrit en section \vref{sec.int2real}.
 % \begin{gather}
-% (\emph{hue}, \emph{saturation}, \emph{brightness}) := \bigl(\ItoR M(\emph{Hue}), \ItoR M(\emph{Saturation}), \ItoR M(\emph{Brightness})\bigr)
+% (\emph{teinte}, \emph{saturation}, \emph{luminosité}) := 
+%  \bigl(\ItoR M(\emph{Teinte}), \ItoR M(\emph{Saturation}), 
+%  \ItoR M(\emph{Luminosité})\bigr)
 % \end{gather}
 %
 %
-% \subsubsection{The \Model{Gray} model}
+% \subsubsection{Le modèle \Model{Gray}}
 %
-% \paragraph{Conversion \Model{Gray} to \Model{gray}}
-% As described in section \vref{sec.int2real}.
+% \paragraph{Conversion de \Model{Gray} vers \Model{gray}}
+% Comme décrit en section \vref{sec.int2real}.
 % \begin{gather}
 % \emph{gray} := \ItoR N(\emph{Gray})
 % \end{gather}
 %
 %
-% \subsubsection{The \Model{wave} model}
+% \subsubsection{Le modèle \Model{wave}}
 %
 % \paragraph{Conversion \Model{wave} to \Model{rgb}}
-% Source: based on \People{Dan}{Bruton}'s algorithm \cite{Bruton}.
-% Let $\lambda$ be a visible wavelength, given in nanometers (nm), i.e., $\lambda\in\left[380,780\right]$.
-% We assume further that $\gamma>0$ is a fixed number ($\gamma=0.8$ in \cite{Bruton}).
-% First set
+% Source: méthode basée sur l'algorithme de \People{Dan}{Bruton} \cite{Bruton}.
+% Soit $\lambda$ une longueur d'onde visible, exprimée en nanomètres (nm), 
+% autrement dit, $\lambda\in\left[380,780\right]$.
+% Nous supposons également que $\gamma>0$ est un nombre fixé ($\gamma=0.8$ dans
+% \cite{Bruton}).
+% Posons d'abord
 % \begin{align}
-% (r,g,b) & :=
+% (r,v,b) & :=
 %  \begin{cases}
-%   \displaystyle \Bigl(\frac{440-\lambda}{440-380},0,1\Bigr) & \text{if $\lambda\in[380,440[$}\\[1.75ex]
-%   \displaystyle \Bigl(0,\frac{\lambda-440}{490-440},1\Bigr) & \text{if $\lambda\in[440,490[$}\\[1.75ex]
-%   \displaystyle \Bigl(0,1,\frac{510-\lambda}{510-490}\Bigr) & \text{if $\lambda\in[490,510[$}\\[1.75ex]
-%   \displaystyle \Bigl(\frac{\lambda-510}{580-510},1,0\Bigr) & \text{if $\lambda\in[510,580[$}\\[1.75ex]
-%   \displaystyle \Bigl(1,\frac{645-\lambda}{645-580},0\Bigr) & \text{if $\lambda\in[580,645[$}\\[2.5ex]
-%   \displaystyle (1,0,0) & \text{if $\lambda\in[645,780]$}\\
+%   \displaystyle \Bigl(\frac{440-\lambda}{440-380},0,1\Bigr) & 
+%    \text{si $\lambda\in[380,440[$}\\[1.75ex]
+%   \displaystyle \Bigl(0,\frac{\lambda-440}{490-440},1\Bigr) &
+%    \text{si $\lambda\in[440,490[$}\\[1.75ex]
+%   \displaystyle \Bigl(0,1,\frac{510-\lambda}{510-490}\Bigr) & 
+%    \text{si $\lambda\in[490,510[$}\\[1.75ex]
+%   \displaystyle \Bigl(\frac{\lambda-510}{580-510},1,0\Bigr) &
+%    \text{si $\lambda\in[510,580[$}\\[1.75ex]
+%   \displaystyle \Bigl(1,\frac{645-\lambda}{645-580},0\Bigr) &
+%    \text{si $\lambda\in[580,645[$}\\[2.5ex]
+%   \displaystyle (1,0,0) & \text{si $\lambda\in[645,780]$}\\
 %  \end{cases}\label{eq.gamma2rgb1}\\
-% \intertext{then, in order to let the intensity fall off near the vision limits,}
+% \intertext{alors, afin de faire chuter l'intensité aux limites des zones
+% du spectre visible,}
 % f & :=
 %  \begin{cases}
-%   \displaystyle 0.3 + 0.7\cdot\frac{\lambda-380}{420-380} & \text{if $\lambda\in\left[380,420\right[$}\\[1.25ex]
-%   \displaystyle 1 & \text{if $\lambda\in[420,700]$}\\[1ex]
-%   \displaystyle 0.3 + 0.7\cdot\frac{780-\lambda}{780-700} & \text{if $\lambda\in\left]700,780\right]$}\\
+%   \displaystyle 0.3 + 0.7\cdot\frac{\lambda-380}{420-380} & 
+%    \text{si $\lambda\in\left[380,420\right[$}\\[1.25ex]
+%   \displaystyle 1 & \text{si $\lambda\in[420,700]$}\\[1ex]
+%   \displaystyle 0.3 + 0.7\cdot\frac{780-\lambda}{780-700} & 
+%    \text{si $\lambda\in\left]700,780\right]$}\\
 %  \end{cases}\label{eq.gamma2rgb2}\\
-% \intertext{and finally}
-% (\emph{red},\emph{green},\emph{blue}) & := \bigl((f\cdot r)^\gamma, (f\cdot g)^\gamma, (f\cdot b)^\gamma\bigr)
+% \intertext{et finalement}
+% (\emph{rouge},\emph{vert},\emph{bleu}) & := \bigl((f\cdot r)^\gamma, 
+%  (f\cdot v)^\gamma, (f\cdot b)^\gamma\bigr)
 % \end{align}
-% The intermediate colors $(r,g,b)$ at the interval borders of equation (\ref{eq.gamma2rgb1}) are well-known:
-% for $\lambda=380,440,490,510,580,645$ we get \Color{}{magenta}, \Color{}{blue}, \Color{}{cyan}, \Color{}{green}, \Color{}{yellow}, \Color{}{red}, respectively.
-% These turn out to be represented in the \Model{hsb} model by $\emph{hue}=\frac56,\frac46,\frac36,\frac26,\frac16,\frac06$, whereas $\emph{saturation}=\emph{brightness}=1$ throughout the 6~colors.
-% Furthermore, these \Model{hsb} representations are independent of the actual $\gamma$ value.
-% Staying within this model framework, we observe that the intensity fall off near the vision limits --- as represented by equation (\ref{eq.gamma2rgb2}) --- translates into decreasing \emph{brightness} parameters towards the margins.
-% A simple calculation shows that the edges $\lambda=380,780$ of the algorithm yield the colors |magenta!|$0.3^\gamma$|!black|, |red!|$0.3^\gamma$|!black|, respectively.
-% We see no reason why we should not extend these edges in a similar fashion to end-up with true \Color{}{black} on either side.
-% Now we are prepared to translate everything into another, more natural algorithm.
+% Les couleurs intermédiaires $(r,v,b)$ aux bords de l'intervalle de
+% l'équation (\ref{eq.gamma2rgb1}) sont bien connues :
+% pour $\lambda=380,440,490,510,580,645$ nous obtenons les couleurs 
+% \Color{magenta}{magenta}, \Color{bleu}{blue}, \Color{cyan}{cyan}, 
+% \Color{vert}{green}, \Color{jaune}{yellow}, \Color{rouge}{red}
+% respectivement.
+% Celles-ci s'avèrent être représentées dans le modèle \Model{hsb} par 
+% $\emph{teinte}=\frac56,\frac46,\frac36,\frac26,\frac16,\frac06$, 
+% tandis que $\emph{saturation}=\emph{luminosité}=1$ pour les 6~couleurs.
+% De plus, ces représentations en \Model{hsb} sont indépendantes de la
+% valeur $\gamma$.
+% En restant dans le cadre de ce modèle, nous observons que la décroissance
+% de l'intensité aux limites de la vision --- comme convenu avec l'équation 
+% (\ref{eq.gamma2rgb2}) --- se manifeste par la décroissance du paramètre
+% d'\emph{luminosité} vers ces limites.
+% Un simple calcul montre que les bords $\lambda=380,780$ de l'algorithme
+% restituent respectivement les couleurs |magenta!|$0.3^\gamma$|!black|, 
+% |red!|$0.3^\gamma$|!black|.
+% Nous ne voyons pas de raison pour lesquelles nous ne devrions pas étendre ces
+% limites de façon similaire pour aboutir à un vert \Color{noir}{black} de
+% chaque côté du spectre.
+% Maintenant nous sommes prêts à placer le tout dans un autre algorithme plus
+% naturel.
 %
 %
-% \paragraph{Conversion \Model{wave} to \Model{hsb}}
-% Let $\lambda>0$ be a wavelength, given in nanometers (nm), and let
+% \paragraph{Conversion de \Model{wave} vers \Model{hsb}}
+% Soit $\lambda$ une longueur d'onde visible, exprimée en nanomètres (nm), et
+% soit
 % \begin{gather}
-% \varrho : \bbbR \to \left[0,1\right],\ x \mapsto \bigl( \min\{ 1, \max\{ 0,x\} \} )^\gamma
+% \varrho : \bbbR \to \left[0,1\right],\ x \mapsto 
+%  \bigl( \min\{ 1, \max\{ 0,x\} \} )^\gamma
 % \end{gather}
-% with a fixed correction number $\gamma>0$.
-% Then
+% avec un nombre fixé de correction $\gamma>0$.
+% Alors
 % \begin{align}
-% \emph{hue} & := \displaystyle \frac16\cdot
+% \emph{teinte} & := \displaystyle \frac16\cdot
 %  \begin{cases}
-%   \displaystyle 4 + \varrho\Bigl(\frac{\lambda-440}{380-440}\Bigr) & \text{if $\lambda<440$}\\[1.75ex]
-%   \displaystyle 4 - \varrho\Bigl(\frac{\lambda-440}{490-440}\Bigr) & \text{if $\lambda\in[440,490[$}\\[1.75ex]
-%   \displaystyle 2 + \varrho\Bigl(\frac{\lambda-510}{490-510}\Bigr) & \text{if $\lambda\in[490,510[$}\\[1.75ex]
-%   \displaystyle 2 - \varrho\Bigl(\frac{\lambda-510}{580-510}\Bigr) & \text{if $\lambda\in[510,580[$}\\[1.75ex]
-%   \displaystyle 0 + \varrho\Bigl(\frac{\lambda-645}{580-645}\Bigr) & \text{if $\lambda\in[580,645[$}\\[2.5ex]
-%   \displaystyle 0 & \text{if $\lambda\ge645$}\\
+%   \displaystyle 4 + \varrho\Bigl(\frac{\lambda-440}{380-440}\Bigr) &
+%    \text{si $\lambda<440$}\\[1.75ex]
+%   \displaystyle 4 - \varrho\Bigl(\frac{\lambda-440}{490-440}\Bigr) &
+%    \text{si $\lambda\in[440,490[$}\\[1.75ex]
+%   \displaystyle 2 + \varrho\Bigl(\frac{\lambda-510}{490-510}\Bigr) &
+%    \text{si $\lambda\in[490,510[$}\\[1.75ex]
+%   \displaystyle 2 - \varrho\Bigl(\frac{\lambda-510}{580-510}\Bigr) &
+%    \text{si $\lambda\in[510,580[$}\\[1.75ex]
+%   \displaystyle 0 + \varrho\Bigl(\frac{\lambda-645}{580-645}\Bigr) &
+%    \text{si $\lambda\in[580,645[$}\\[2.5ex]
+%   \displaystyle 0 & \text{si $\lambda\ge645$}\\
 %  \end{cases}\label{eq.gamma2hsb1}\\[1ex]
 % \emph{saturation} & := 1\\[1ex]
-% \emph{brightness} & :=
+% \emph{luminosité} & :=
 %  \begin{cases}
-%   \displaystyle \varrho\Bigl(0.3 + 0.7\cdot\frac{\lambda-380}{420-380}\Bigr) & \text{if $\lambda<420$}\\[1.5ex]
-%   \displaystyle 1 & \text{if $\lambda\in[420,700]$}\\[1ex]
-%   \displaystyle \varrho\Bigl(0.3 + 0.7\cdot\frac{\lambda-780}{700-780}\Bigr) & \text{if $\lambda>700$}\\
+%   \displaystyle \varrho\Bigl(0.3 + 
+%    0.7\cdot\frac{\lambda-380}{420-380}\Bigr) &
+%    \text{si $\lambda<420$}\\[1.5ex]
+%   \displaystyle 1 & \text{si $\lambda\in[420,700]$}\\[1ex]
+%   \displaystyle \varrho\Bigl(0.3 + 
+%    0.7\cdot\frac{\lambda-780}{700-780}\Bigr) &
+%    \text{si $\lambda>700$}\\
 %  \end{cases}\label{eq.gamma2hsb2}
 % \end{align}
-% For the sake of completeness we note that, independent of $\gamma$,
+% 
+% Par souci d'exhaustivité, nous notons que, indépendamment de $\gamma$,
 % \begin{gather*}
-% (\emph{hue},\emph{saturation},\emph{brightness}) =
+% (\emph{teinte},\emph{saturation},\emph{luminosité}) =
 %  \begin{cases}
-%   \bigl(\frac56,1,0\bigr) & \text{if $\lambda\le 380 - \frac{3\cdot(420-380)}7 = 362.857\dots$}\\[1.5ex]
-%   \bigl(0,1,0\bigr) & \text{if $\lambda\ge 780 + \frac{3\cdot(780-700)}7 = 814.285\dots$}\\
+%   \bigl(\frac56,1,0\bigr) & \text{si $\lambda\le 380 - 
+%    \frac{3\cdot(420-380)}7 = 362.857\dots$}\\[1.5ex]
+%   \bigl(0,1,0\bigr) & \text{si $\lambda\ge 780 + 
+%    \frac{3\cdot(780-700)}7 = 814.285\dots$}\\
 %  \end{cases}\label{eq.gamma2hsb3}
 % \end{gather*}
-% What is the best (or, at least, a good) value for $\gamma$?
-% In the original algorithm \cite{Bruton}, $\gamma=0.8$ is chosen.
-% However, we could not detect significant visible difference between the cases $\gamma=0.8$ and $\gamma=1$.
-% Thus, for the time being, \XC's implementation uses the latter value which implies a pure linear approach.
-% In the \Package{pstricks} examples file \href{xcolor2.pdf}{\File{xcolor2.tex}}, there is a demonstration of different $\gamma$ values.
-% \tradfin
+% Quelle est la meilleure (ou, au moins une bonne) valeur pour $\gamma$?
+% Dans l'algorithme original \cite{Bruton}, $\gamma=0.8$ a été retenu.
+% Cependant, nous n'avons pas pu détecter de différence visuelle significative
+% entre les cas $\gamma=0.8$ et $\gamma=1$.
+% Aussi, pour le moment, l'implémentation de \XC retient cette dernière qui 
+% implique une pure approche linéaire.
+% Dans les fichiers d'exemple \Package{pstricks} 
+% \href{xcolor2.pdf}{\File{xcolor2.tex}}, il est fait démonstration de 
+% différentes valeurs de $\gamma$.
 %
 % \clearpage
 %
@@ -4210,9 +4308,9 @@
 % \begin{itemize}
 % \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item color model \Model{Hsb} allows to specify \emph{hue} in degrees;
+%   \item color model \Model{Hsb} allows to specify \emph{teinte} in degrees;
 %   \item color model \Model{tHsb} (\pModel{tuned} \Model{Hsb}) for 
-%    user-defined \emph{hue} configuration on color wheels;
+%    user-defined \emph{teinte} configuration on color wheels;
 %   \item easy generation of color harmonies derived from \Model{Hsb} or 
 %    \Model{tHsb} color wheels, e.g., |\color{red>wheel,1,12}| yields an
 %    `analogous' color to \Color{}{red} on a 12-spoke wheel;
