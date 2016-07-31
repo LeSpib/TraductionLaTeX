@@ -64,7 +64,7 @@ Traduction       | Source              | Avancée                | Pages traduit
 [shellesc-fr]    | [shellesc] v0.02a   | :new_moon:             | 0 / 3           | 
 [showkeys-fr]    | [showkeys] v3.17    | :new_moon:             | 0 / 10          | Traduction préexistante ([FT-tools]).
                  | [siunitx] v2.6q     |                        | *. / 102*       |
-                 | [somedefs] v0.03    |                        | *. / 3*         | Traduction préexistante ([FT-tools]).
+[somedefs-fr]    | [somedefs] v0.03    | :new_moon:             | 0 / 3           | Traduction préexistante ([FT-tools]).
                  | [tabularx] v2.11    |                        | *. / 12*        | Traduction préexistante ([FT-tools]).
                  | [theorem] v2.2c     |                        | *. / 15*        | Traduction préexistante ([FT-tools]).
                  | [tikz+pgf] v3.0.1a  |                        | *. / 1161*      |
