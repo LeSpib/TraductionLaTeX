@@ -62,6 +62,7 @@ Temporary Items
 *.log
 *.lot
 *.lua
+*.ods
 *.out
 *.ps
 *.tmp
