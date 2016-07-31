@@ -72,7 +72,7 @@ Traduction       | Source              | Avancée                | Pages traduit
 [tocbibind-fr]   | [tocbibind] v1.5k   | :waxing_crescent_moon: | 9 / 18          | 
                  | [trace] v1.1d       |                        | *. / 9*         | 
 [varioref-fr]    | [varioref] v1.5c    | :new_moon:             | 0 / 35          | Traduction préexistante ([FT-tools]).
-                 | [verbatim] v1.5q    |                        | *. / 21*        | Traduction préexistante ([FT-tools]).
+[verbatim-fr]    | [verbatim] v1.5q    | :new_moon:             | 0 / 23          | Traduction préexistante ([FT-tools]).
 [xcolor-fr]      | [xcolor] v2.12      | :waxing_crescent_moon: | 56 / 74         | 
 [xkeyval-fr]     | [xkeyval] v2.7      | :new_moon:             | 2 / 73          |
 [xr-fr]          | [xr] v5.02          | :full_moon:            | 2               | Traduction préexistante ([FT-tools]).
