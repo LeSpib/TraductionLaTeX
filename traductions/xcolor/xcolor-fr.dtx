@@ -4225,8 +4225,9 @@
 % \begin{itemize}
 % \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item les noms de couleur \Color{}{lime} et \Color{}{teal} sont ajoutés à
-%   l'ensemble des couleurs prédéfinies.
+%   \item les noms de couleur \Color{citron vert}{lime} et 
+%     \Color{bleu sarcelle}{teal} sont ajoutés à l'ensemble des couleurs
+%     prédéfinies.
 %   \end{itemize}
 % \item Correction d'erreur :
 %   \begin{itemize}
@@ -4304,157 +4305,155 @@
 % \end{itemize}
 %
 % \subsubsection*{12/11/2005 v2.07}
-% \tradini
 % \begin{itemize}
 % \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item color model \Model{Hsb} allows to specify \emph{teinte} in degrees;
-%   \item color model \Model{tHsb} (\pModel{tuned} \Model{Hsb}) for 
-%    user-defined \emph{teinte} configuration on color wheels;
-%   \item easy generation of color harmonies derived from \Model{Hsb} or 
-%    \Model{tHsb} color wheels, e.g., |\color{red>wheel,1,12}| yields an
-%    `analogous' color to \Color{}{red} on a 12-spoke wheel;
-%   \item additional 317 predefined color names according to \File{rgb.txt},
-%    which is part of \Index{Unix}/\Index{X11} distributions;
-%   \item \Option{svgnames} option extended by~4~colors taken from 
-%    \File{rgb.txt};
-%   \item enhanced syntax for immediate conversion, e.g., |\definecolor| 
-%    |{foo}{rgb:gray}{0.3}| or |\color| |[rgb:wave]{478}|;
-%   \item |\@ifundefinedcolor| and |\@ifundefinedmodel| commands;
+%   \item le modèle colorimétrique \Model{Hsb} permet de spécifier la 
+%    \emph{teinte} en degrés ;
+%   \item le modèle colorimétrique \Model{tHsb} (\Model{Hsb} 
+%    \pModel{transformé}) permet la configuration personnalisée de la
+%    \emph{teinte} sur des cercles colorimétriques ;
+%   \item génération simple d'harmonies de couleur dérivées des cercles
+%    colorimétriques en modèle \Model{Hsb} ou \Model{tHsb}, par exemple, 
+%    |\color{red>wheel,1,12}| donne la couleur analogue au \Color{rouge}{red}
+%    sur un cercle colorimétrique à 12 secteurs ;
+%   \item 317 noms prédéfinis additionnels issus de \File{rgb.txt},
+%    qui fait partie des distributions \Index{Unix}/\Index{X11} ;
+%   \item l'option \Option{svgnames} est augmentée avec 4 nouvelles couleurs
+%    tirées de \File{rgb.txt} ;
+%   \item une syntaxe améliorée pour la conversion immédiate, par exemple
+%    |\definecolor||{test}{rgb:gray}{0.3}| ou |\color| |[rgb:wave]{478}| ;
+%   \item les commandes |\@ifundefinedcolor| et |\@ifundefinedmodel| ;
 %   \end{itemize}
 % \item Changements :
 %   \begin{itemize}
-%   \item enhanced documentation;
-%   \item several changes to internal macros.
+%   \item documentation améliorée ;
+%   \item plusieurs changements aux commandes internes.
 %   \end{itemize}
 % \item Corrections d'erreur :
 %   \begin{itemize}
-%   \item wrong calculation of color series components in some cases of
-%    negative step parameters.
+%   \item mauvais calcul des composantes d'une série de couleur dans 
+%    certains cas de paramètres de pas négatifs.
 %   \end{itemize}
 % \end{itemize}
 %
-% \tradfin
 % \subsubsection*{15/10/2005 v2.06}
-% \tradini
 % \begin{itemize}
 % \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item color model \Model{wave} for (approximate) visualisation of light
-%    wavelengths, still somewhat experimental;
-%   \item pseudo-model \nModel{ps} for colors defined by literal 
-%    \Index{PostScript} code in conjunction with \Package{pstricks} and 
-%    \Option{dvips}; an illustrative example for a $\gamma$-correction
-%    approach is given in \href{xcolor2.pdf}{\File{xcolor2.tex}};
-%   \item |\substitutecolormodel| command for replacement of missing or 
-%    faulty driver-specific color models;
-%   \item improved detection and handling of driver-specific color models;
-%   \item \Option{dvipdfmx} and \Option{xetex} options to support these 
-%    drivers;
-%   \item generic driver test file \File{xcolor4.tex}.
+%   \item le modèle colorimétrique \Model{wave} pour une visualisation
+%    (approximée) des longueurs d'onde visible reste toujours experimental ;
+%   \item le pseudo-modèle \nModel{ps} pour les couleurs définies par un 
+%    code \Index{PostScript} littéral en conjonction avec \Package{pstricks} et
+%    \Option{dvips}; une illustration d'une approche de correction $\gamma$
+%    est donnée avec \href{xcolor2.pdf}{\File{xcolor2.tex}} ;
+%   \item la commande |\substitutecolormodel| pour le remplacement d'un modèle
+%    colorimétrique dépendant du pilote manquant ou erroné ;  
+%   \item détection améliorée et gestion des modèles colorimétriques dépendant 
+%    du pilote ;
+%   \item les options \Option{dvipdfmx} et \Option{xetex} pour supporter ces
+%    pilotes ;
+%   \item fichier générique de test de pilote : \File{xcolor4.tex}.
 %   \end{itemize}
 % \item Changements :
 %   \begin{itemize}
-%   \item |\XC@strip@comma| doesn't generate a trailing space anymore, which
-%    improves also the output of the |testcolors| environment.
+%   \item |\XC@strip@comma| ne génère plus d'espace résiduel, ce qui améliore
+%    également la restitution de l'environnement |testcolors|.
 %   \end{itemize}
 % \end{itemize}
 %
-% \tradfin
 % \subsubsection*{30/09/2005 v2.05}
-% \tradini
 % \begin{itemize}
 % \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item |testcolors| environment helps to test colors in different models,
-%    showing both the visual result and the model-specific parameters;
-%   \item |\extractcolorspecs| puts model/color specification into two
-%    separate commands, as opposed to |\extractcolorspec|;
-%   \item color names \Color{}{pink} and \Color{}{olive} added to the set of
-%    predefined colors.
+%   \item l'environnement |testcolors| aide à tester les couleurs dans 
+%    différents modèles, ce qui montre à la fois le résultat visuel et les
+%    paramètres spécifiques du modèle ;
+%   \item |\extractcolorspecs| met les spécifications du modèle et des 
+%    couleurs dans deux commandes séparées, par opposition à
+%    |\extractcolorspec|;
+%   \item les noms de couleurs \Color{rose}{pink} et \Color{olive}{olive} sont
+%    ajoutées à l'ensemble des couleurs prédéfinies.
 %   \end{itemize}
 % \item Corrections d'erreur :
 %   \begin{itemize}
-%   \item |\definecolor{foo}{named}{bar}| did not work in v2.04.
+%   \item |\definecolor{test}{named}{truc}| ne fonctionne pas en v2.04.
 %   \end{itemize}
 % \end{itemize}
 %
-% \tradfin
 % \subsubsection*{23/09/2005 v2.04}
-% \tradini
 % \begin{itemize}
 % \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item preparation for usage of additional -- driver-provided -- color
-%    models;
-%   \item \Package{pstricks} users may now specify explicit color parameters
-%    within |\psset| and related commands, e.g., 
-%    |\psset{linecolor=[rgb]{1,0,0}}|; an illustrative example is given in
-%    \href{xcolor2.pdf}{\File{xcolor2.tex}}.
+%   \item préparation pour l'utilisation de modèles additionnels (fournis par
+%    les pilotes) ;
+%   \item les utilisateurs de \Package{pstricks} peuvent maintenant spécifier
+%    explicitement les paramètres de couleur dans |\psset| et les commandes 
+%    liées, par exemple, |\psset{linecolor=[rgb]{1,0,0}}|; une illustration de
+%    de ce point est donnée dans \href{xcolor2.pdf}{\File{xcolor2.tex}}.
 %   \end{itemize}
 % \item Changements :
 %   \begin{itemize}
-%   \item color model names sanitized (i.e., turned to catcode~12) throughout
-%    the package;
-%   \item |\@namelet| command deprecated because of name clash with 
-%    \Package{memoir} --- please use |\XC@let@cc| instead (more |\XC@let@..|
-%    commands are available as well);
-%   \item simplified color conversion code by using the new |\XC@ifxcase|
-%    command;
-%   \item some minor changes to internal macros.
+%   \item noms des modèles colorimétriques assainis (autrement dit, mis en code
+%     de catégorie~12) dans toute l'extension ;
+%   \item la commande |\@namelet| est rendue obsolète du fait d'un conflit de 
+%     nom avec \Package{memoir} --- utilisez |\XC@let@cc| en lieu et place
+%     (de nombreuses commandes |\XC@let@..| sont également disponibles) ;
+%   \item les codes de conversion de couleur sont simplifiés en utilisant la
+%     nouvelle commande |\XC@ifxcase| ;
+%   \item quelques changements mineurs aux commandes internes.
 %   \end{itemize}
 % \end{itemize}
 %
-% \tradfin
 % \subsubsection*{06/06/2005 v2.03}
-% \tradini
 % \begin{itemize}
 % \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item \Option{fixpdftex} option loads \Package{pdfcolmk} package in order
-%    to improve pdf\TeX's color behaviour during page breaks.
+%   \item l'option \Option{fixpdftex} charge l'extension \Package{pdfcolmk} 
+%     afin d'améliorer le traitement des couleurs de pdf\TeX\ lors de saut
+%     de page.
 %   \end{itemize}
 % \item Changements :
 %   \begin{itemize}
-%   \item some minor changes to internal macros.
+%   \item quelques changements mineurs aux commandes internes.
 %   \end{itemize}
 % \item Corrections d'erreur :
 %   \begin{itemize}
-%   \item due to an incorrect |\if| statement within |\XC@info|, |\colorlet|
-%    caused trouble whenever its second argument started with two identical
-%    letters, e.g., |\colorlet{rab}{oof}|;
-%   \item argument processing of |\XC@getcolor| caused incompatibility with
-%    \Package{msc} package;
-%   \item \Option{prologue} option caused incompatibility with 
-%    \Package{preview} package.
+%   \item du fait d'une condition incorrecte dans un |\if| de |\XC@info|, 
+%     |\colorlet| causait un problème à chaque fois que le second argument
+%     commençait avec deux lettres identiques, par exemple, 
+%     |\colorlet{test}{oooh}| ;
+%   \item le traitement de l'argument de |\XC@getcolor| cause des
+%     incompatibilités incompatibility avec l'extension \Package{msc} ;
+%   \item l'option \Option{prologue} causait des incompatibilités avec 
+%     l'extension \Package{preview}.
 %   \end{itemize}
 % \end{itemize}
 %
-% \tradfin
 % \subsubsection*{24/03/2005 v2.02}
-% \tradini
 % \begin{itemize}
 % \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item |\aftergroupedef| command to reproduce |\aftergroupdef|'s behaviour
-%    prior to v2.01;
-%   \item \XC's homepage \XCW{} now provides also a ready-to-run TDS-compliant
-%    archive containing all required files.
+%   \item la commande|\aftergroupedef| reproduit le comportement de 
+%     |\aftergroupdef| avant la version v2.01 ;
+%   \item le site web de \XC, \XCW, fournit maintenant un fichier compressé
+%     contenant tous les fichiers nécessaires organisés en une arborescence
+%     cohérente avec celle de \TeX.
 %   \end{itemize}
 % \item Changements :
 %   \begin{itemize}
-%   \item |\rowcolors| and friends are solely enabled by the \Option{table}
-%    option;
-%   \item |\@ifxempty| changed back to more robust variant of v2.00.
+%   \item |\rowcolors| et assimilés sont accessibles uniquement avec 
+%     l'option \Option{table} ;
+%   \item |\@ifxempty| changé à nouveau pour revenir à la version plus
+%     robuste de la version v2.00.
 %   \end{itemize}
 % \item Corrections d'erreur :
 %   \begin{itemize}
-%   \item |\psset{linecolor=\ifcase\foo| |red\or green\or blue\fi}| did not
-%    work with \Package{pstricks} (error introduced in v2.01).
+%   \item |\psset{linecolor=\ifcase\test| |red\or green\or blue\fi}| ne 
+%     fonctionnait pas avec \Package{pstricks} (erreur introduite en v2.01).
 %   \end{itemize}
 % \end{itemize}
 %
-% \tradfin
 % \subsubsection*{15/03/2005 v2.01}
 % \tradini
 % \begin{itemize}

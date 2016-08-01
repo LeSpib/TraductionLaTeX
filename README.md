@@ -73,7 +73,7 @@ Traduction       | Source              | Avancée                | Pages traduit
 [trace-fr]       | [trace] v1.1d       | :new_moon:             | 0 / 10          | 
 [varioref-fr]    | [varioref] v1.5c    | :new_moon:             | 0 / 35          | Traduction préexistante ([FT-tools]).
 [verbatim-fr]    | [verbatim] v1.5q    | :new_moon:             | 0 / 23          | Traduction préexistante ([FT-tools]).
-[xcolor-fr]      | [xcolor] v2.12      | :waxing_crescent_moon: | 67 / 75         | 
+[xcolor-fr]      | [xcolor] v2.12      | :waxing_crescent_moon: | 70 / 75         | 
 [xkeyval-fr]     | [xkeyval] v2.7      | :new_moon:             | 2 / 73          |
 [xr-fr]          | [xr] v5.02          | :full_moon:            | 2               | Traduction préexistante ([FT-tools]).
 [xspace-fr]      | [xspace] v1.13      | :waxing_gibbous_moon:  | 7               | Traduction préexistante ([FT-tools]).
