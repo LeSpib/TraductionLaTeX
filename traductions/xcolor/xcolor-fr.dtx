@@ -4455,55 +4455,56 @@
 % \end{itemize}
 %
 % \subsubsection*{15/03/2005 v2.01}
-% \tradini
 % \begin{itemize}
 % \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item \Option{prologue} option for comprehensive `named' color support in
-%    conjunction with \Option{dvips}: on-the-fly generation of 
-%    \Index{PostScript} prologue files with all color definitions, ready for
-%    \Program{dvips} inclusion and/or post-processing with device-specific
-%    parameters (e.g., spot colors);
-%   \item \Program{dvips} prologue file \File{xcolor.pro} to support
-%    additional `named' colors;
-%   \item |\colorlet| may now also be used to create named colors from
-%    arbitrary color expressions;
-%   \item enhanced color definition syntax to allow for target-model specific
-%    color parameters, e.g., |\definecolor| |{red}{rgb/cmyk}{1,0,0/0,1,1,0}|,
-%    facilitating the usage of tailor-made colors both for displays and
-%    printers;
-%   \item `deferred definition' of colors: |\preparecolor| and |\definecolors|
-%    enable decoupling of color specification and control sequence generation,
-%    especially useful (= memory saving) for large lists of colors, of which
-%    only a few names are actually used;
-%   \item \Option{dvipsnames*} and \Option{svgnames*} options to support
-%    deferred definition.
+%   \item l'option \Option{prologue} pour un support complet des couleurs
+%     nommées en conjonction avec l'option \Option{dvips}: génération à la 
+%     volée de fichiers de prologue \Index{PostScript} avec les définitions
+%     de toutes les couleurs, prêt pour l'inclusion de \Program{dvips} et/ou 
+%     le traitement ultérieur avec des paramètres spécifiques au pilote
+%     (par exemple les tons directs) ;
+%   \item le fichier de prologue de \Program{dvips} \File{xcolor.pro} pour
+%     supporter les couleurs nommées additionnelles ;
+%   \item |\colorlet| peut être maintenant utilisé pour créer des couleurs
+%     nommées à partir d'expressions de couleur arbitraires ;
+%   \item syntaxe des définitions des couleurs améliorée pour permettre des 
+%     paramètres de couleur spécifiques au modèle cible, par exemple 
+%     |\definecolor| |{red}{rgb/cmyk}{1,0,0/0,1,1,0}|, facilitant l'usage de
+%     couleurs sur mesure à la fois pour l'affichage et l'impression ;
+%   \item \og définition différée \fg{} de couleur : |\preparecolor| et
+%     |\definecolors| permettent de découpler la spécification des couleurs et
+%     la génération de la séquence de contrôle, ce qui est particulier utile 
+%     (en économisant de la mémoire) pour de larges listes de couleurs dans
+%     lesquelles peu de couleurs servent réellement ;
+%   \item les options \Option{dvipsnames*} et \Option{svgnames*} pour supporter
+%     la définition différée.
 %   \end{itemize}
 % \item Changements :
 %   \begin{itemize}
-%   \item higher accuracy: most complement calculations are now exact for all
-%    5-digit decimals;
-%   \item |\rangeRGB| and similar variables may now be changed at any point 
-%    in a document;
-%   \item |\aftergroupdef| now performs only a first-level expansion of its
-%    code argument;
-%   \item |\XCfileversion| and similar internal constants removed from 
-%    \File{.sty} and \File{.def} files;
-%   \item improved memory management (reduced generation of `multiletter
-%    control sequences' by |\@ifundefined| tests);
-%   \item several internal macros improved and/or renamed.
+%   \item plus grande précision : la plupart des calculs de couleur
+%     complémentaire sont maintenant exact sur les 5 chiffres décimaux ;
+%   \item |\rangeRGB| et les variables similaires peut maintenant être
+%     changées n'importe où dans un document ;
+%   \item |\aftergroupdef| exécute maintenant un développement d'un niveau
+%     uniquement du code de son argument ;
+%   \item |\XCfileversion| et les constantes internes similaires sont
+%     retirées des fichiers \File{.sty} et \File{.def} ;
+%   \item gestion de la mémoire améliorée (génération réduite de \og séquences
+%     de contrôle à plusieurs lettres \fg{} par les tests |\@ifundefined|);
+%   \item plusieurs commandes internes améliorées et/ou renommées.
 %   \end{itemize}
 % \item Corrections d'erreur :
 %   \begin{itemize}
-%   \item |\XC@getcolor| could cause unwanted spaces when |\psset| was used
-%    inside |pspicture| environments (\Package{pstricks});
-%   \item arithmetic overflow could happen when too many decimal digits were
-%    used within color parameters, e.g., as a result of \Package{fp}
-%    calculations.
+%   \item |\XC@getcolor| pouvait causer des espaces non souhaitées quand 
+%     |\psset| était utilisé dans des environnements |pspicture|
+%     (\Package{pstricks});
+%   \item un débordement arithmétique pouvait survenir quand trop de chiffres
+%     décimaux étaient utilisés dans des paramètres de couleur, par exemple,
+%     en conséquence de calculs fait par l'extension \Package{fp}.
 %   \end{itemize}
 % \end{itemize}
 %
-% \tradfin
 % \subsubsection*{04/07/2004 v2.00}
 % \tradini
 % \begin{itemize}
@@ -4573,33 +4574,33 @@
 %
 % \tradfin
 % \subsubsection*{27/03/2004 v1.10}
-% \tradini
 % \begin{itemize}
 % \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item support for \nModel{named} model;
-%   \item support for \Program{dvips} colors (may now be used within color
-%    expressions);
-%   \item internal representation of `ordinary' and `named' colors merged into
-%    unified data structure;
-%   \item allow multiple `-' signs at the beginning of color expressions.
+%   \item support du modèle \nModel{named} ;
+%   \item support des couleurs \Program{dvips} (peuvent être maintenant
+%     utilisées dans des expressions de couleur);
+%   \item représentations internes des couleurs \og ordinaires \fg{} et \og
+%     nommées \fg{} regroupées en une structure de données unifiée ;
+%   \item autorisation de signes \og - \fg{} multiples au début d'expressions
+%     de couleur.
 %   \end{itemize}
 % \item Corrections d'erreur :
 %   \begin{itemize}
-%   \item commands like |\color[named]{foo}| caused errors when color masking
-%    or target model conversion were active;
-%   \item incompatibility with \Package{soul} package: commands |\hl|, |\ul|,
-%    etc. could yield unexpected results.
+%   \item les commandes comme |\color[named]{test}| causaient des erreurs quand
+%     le masque de couleur ou la conversaion de modèle cible étaient actives ;
+%   \item incompatibilité avec l'extension \Package{soul} : les commandes 
+%     |\hl|, |\ul|, etc. pouvaient mener à des résultats inattendus.
 %   \end{itemize}
 % \item Documentation :
 %   \begin{itemize}
-%   \item added formula for general color expressions;
-%   \item enhanced text and index;
-%   \item removed dependence of index generation on local configuration file.
+%   \item ajout de formule pour les expressions de couleur générales ;
+%   \item texte et index amélioré ;
+%   \item retrait de la dépendance de la génération de l'index sur un fichier
+%     local de configuration.
 %   \end{itemize}
 % \end{itemize}
 %
-% \tradfin
 % \subsubsection*{16/02/2004 v1.09}
 % \begin{itemize}
 % \item Nouvelles fonctionnalités :
