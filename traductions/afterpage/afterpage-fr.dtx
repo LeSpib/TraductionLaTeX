@@ -67,39 +67,41 @@
 % et peut être \og perturbée \fg{} par les environnements flottants de 
 % \LaTeX.}.
 %
-% \tradini
 % \begin{enumerate}
-% \item Sometimes \LaTeX's float positioning mechanism gets overloaded,
-% and all floating |figure|s and |table|s drift to the end of the
-% document. One may flush out all the unprocessed floats by issuing a
-% |\clearpage| command, but this has the effect of making the current
-% page end prematurely. Now you can issue |\afterpage{\clearpage}| and
-% the current page will be filled up with text as usual, but then a
-% |\clearpage| command will flush out all the floats before the next
-% text page begins.
-% \item An earlier mechanism to help with float placement was the
-% optional argument |[H]| (meaning {\bf HERE!}) which was originally
-% added to the standard floating environments by |here.sty|, and is now
-% provided by |float.sty|. However some |[H]| users have commented that
-% they did not really mean `Here!' They actually wanted `Somewhere
-% close'. This can now be achieved by\\
+% \item Parfois, le mécanisme de positionnement de flottants de \LaTeX se
+% retrouve surchargé et chaque |figure| et |table| flottante est alors placée
+% en fin de document. Il est possible de forcer la mise en place des flottants
+% non encore traités en utilisant la commande |\clearpage|, mais ceci impose
+% une fin prématurée de la page courante. Maintenant, vous pouvez saisir 
+% |\afterpage{\clearpage}| : la page courante sera remplie de texte
+% normalement et une commande |\clearpage| forcera la mise en place des
+% flottants dès la page suivante, avant que du texte ne soit disposé.
+% \item Il existe un mécanisme plus ancien pour aider au placement des 
+% flottants, à savoir l'argument optionnel |[H]| (pour \emph{HERE!}, \og ici
+% \fg{}) ajouté à l'origine aux environnements standards de flottants par 
+% |here.sty|, et maintenant proposé par |float.sty|. Toutefois, des 
+% utilisateurs de ce |[H]| ont indiqué qu'ils ne souhaitaient pas vraiment
+% placer le flottant \og ici \fg{} : ils le voulaient juste placé \og dans 
+% les parages \fg{}. Ceci peut maintenant être obtenu par \\
 %  |\afterpage{\clearpage\begin{figure}[H] |\ldots
 %  |\end{figure}}|\\
-% This ensures that the figure is at the top of the next page. (The
-% |\clearpage| stops any other figures drifting past the |[H]| figure.)
-% \item Floating longtables. |longtable.sty| provides the |longtable|
-% environment, a multi-page version of |tabular|. Many |longtable| users
-% have told me that it is difficult to set the text surrounding the long
-% table, and that they wanted a `floating' version. As, presumably,
-% |longtable|s are long, they are probably too large to hold in memory,
-% and float in the way that the |table| environment is floated, however
-% if the table is in a separate file, say |ltfile.tex|, you can now
-% use one of:\\
-% |\afterpage{\clearpage\input{ltfile}}|\\
-% |\afterpage{\clearpage\input{ltfile}\clearpage}|.\\
-% The first form lets text appear on the same page as the end of the
-% longtable, the second ensures that the surrounding text starts again
-% on a new page.
+% Ceci garantit que la figure est en haut de la page suivante. (La commande
+% |\clearpage| empêche toute autre figure de dériver après la figure associée
+% au |H|.)
+% \item les tables \textsf{longtable} flottantes. L'extension 
+% \textsf{longtable} fournit un environnement |longtable|, une version sur
+% plusieurs pages de |tabular|. De nombreux utilisateurs de |longtable| m'ont
+% dit rencontrer des difficultés pour gérer le texte autour de ce type de table
+% et qu'ils voulaient disposer d'une version flottante. Comme, par principe
+% même, ces tables sont longues, elles sont probablement trop grandes pour
+% tenir en mémoire et être gérées comme des |table| flottantes. Cependant,
+% si la table est dans un fichier séparé, par exemple |ltable.tex|, vous 
+% pouvez utiliser une des deux lignes suivantes :\\
+% |\afterpage{\clearpage\input{ltable}}|\\
+% |\afterpage{\clearpage\input{ltable}\clearpage}|.\\
+% La première forme fait apparaître du texte sur la même page que la fin de
+% la |longtable|, la seconde garantit que le texte encadrant commence aussi 
+% sur une nouvelle page.
 % \end{enumerate}
 %
 % \StopEventually{}
@@ -109,30 +111,32 @@
 %    \end{macrocode}
 %
 % \begin{macro}{\afterpage}
-% The token register used to save the old output routine.
+% Le registre d'unités lexicales (\emph{token}) utilisé pour sauvegarder 
+% l'ancienne routine \trad{de sortie}.
 %    \begin{macrocode}
 \newtoks\AP@output
 \global\AP@output\expandafter{\the\output}
 %    \end{macrocode}
 %
-% A box register used to save any part of the next page which has
-% already been processed.
+% Un registre de boîte utilisé pour sauvegarder toute partie de la page
+% suivante qui a déjà été traitée.
 %    \begin{macrocode}
 \newbox\AP@partial
 %    \end{macrocode}
 %
-% A box register used to save any footnote texts that are `tied' to
-% the text that gets saved in |\AP@partial|.
+% Un registre de boîte utilisé pour sauvegarder tout texte de note de bas de
+% page qui est lité au texte qui est sauvegardé dans |\AP@partial|.
 %    \begin{macrocode}
 \newbox\AP@footins
 %    \end{macrocode}
 %
-% The following macro attempts to get safely into vertical mode, and
-% then invokes a special output routine to grab the current page into
-% |\AP@partial|.
+% La commande suivante essaye d'entrer proprement en mode vertical et d'appeler
+% alors une routine \trad{de sortie} spéciale pour placer la page courante 
+% dans |\AP@partial|.
 %    \begin{macrocode}
 \def\AP@savetop{%
 %    \end{macrocode}
+% \tradini
 % Now begins a test to see what state we are in. |\AP@noindent|  will
 % be defined so as to return to this state (well, almost!) after
 % afterpage has finished.
@@ -311,6 +315,7 @@
 % \end{macro}
 %
 % \begin{macro}{\addboxcontents}
+% \tradini
 % Given a vbox |#1|, add to the current vertical list such that the end
 % result is equivalent to the list that \TeX\ would have built had the
 % contents of |#1| (apart from any initial glue) been added individually

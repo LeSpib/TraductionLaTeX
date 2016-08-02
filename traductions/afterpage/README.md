@@ -27,8 +27,8 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 Section                       | Avancée                | Pages traduites | Commentaires 
 ----------------------------- | :--------------------: | :-------------: | -------------------------
 En-tête du document tex       | :new_moon:             |                 |
-Page d'avant-propos           | :new_moon:             | 0 / 1           | 
-Implémentation                | :new_moon:             | 0 / 4           |
+Page d'avant-propos           | :new_moon:             | 1               | 
+Implémentation                | :new_moon:             | 0 / 5           |
 
 
 
