@@ -186,7 +186,8 @@
 % \def\nModel#1{`#1'\index{modèles colorimétriques\levelchar`#1'\string|usage}}
 % \def\pModel#1{\textbf{\itshape #1}}
 % \def\People#1#2{#1 #2\index{personnes\levelchar#2, #1\string|usage}}
-% \newcommand*\Color[3][+]{#2 (\emph{#3})\ifx#1+\index{noms de couleur\levelchar#2 (\emph{#3})\string|usage}\fi}
+% \newcommand*\Color[3][+]{#2 (\emph{#3})\ifx#1+\index{noms de couleur\levelchar#2 (\emph{#3})\string|usage}\index{noms de couleur\levelchar#3\actualchar{}\emph{#3} (#2)\string|usage}\fi}
+% \newcommand*\Coloruk[3][+]{\emph{#3} (#2)\ifx#1+\index{noms de couleur\levelchar#2 (\emph{#3})\string|usage}\index{noms de couleur\levelchar#3\actualchar{}\emph{#3} (#2)\string|usage}\fi}
 % \newcommand*\Colorfr[2][+]{\textsl{#2}\ifx#1+\index{noms de couleur\levelchar#2\string|usage}\fi}
 % \def\Option#1{\texttt{#1}\index{options d'extension\levelchar\texttt{#1}\string|usage}}
 % \def\oOption#1{\texttt{#1}\index{options d'extension (obsolètes)\levelchar\texttt{#1}\string|usage}}
@@ -1284,13 +1285,15 @@
 %
 % \subsubsection{Couleurs qui sont toujours disponibles}
 %
-% \def\test#1{\testclr{#1}~\Color{#1}}
+% \def\test#1#2{\testclr{#1}~\Coloruk{#2}{#1}}
 % Dans le fichier \File{xcolor.sty}, les noms de couleur suivants sont 
 % définis :
-% \test{red}, \test{green}, \test{blue}, \test{cyan}, \test{magenta}, 
-% \test{yellow}, \test{black}, \test{gray}, \test{white}, \test{darkgray},
-% \test{lightgray}, \test{brown}, \test{lime}, \test{olive}, \test{orange},
-% \test{pink}, \test{purple}, \test{teal}, \test{violet}.
+% \test{red}{rouge}, \test{green}{vert}, \test{blue}{bleu}, \test{cyan}{cyan},
+% \test{magenta}{magenta}, \test{yellow}{jaune}, \test{black}{noir},
+% \test{gray}{gris}, \test{white}{blanc}, \test{darkgray}{gris sombre},
+% \test{lightgray}{gris clair}, \test{brown}{brun}, \test{lime}{citron vert},
+% \test{olive}{olive}, \test{orange}{orange}, \test{pink}{rose}, 
+% \test{purple}{pourpre}, \test{teal}{bleu sarcelle}, \test{violet}{violet}.
 %
 % Cet ensemble de base de couleurs peut être utilisé sans aucune restriction
 % dans tout type d'expression de couleur, comme expliqué en section~\vref{sec.term}.
@@ -1339,12 +1342,15 @@
 %   exemple ;
 % \item les noms \Index{X11} sans les nombres sont identiques aux couleurs
 %   \Index{SVG} sauf dans 5~cas :
-%   utilisez \Color{Gray0}{}, \Color{Grey0}{}, \Color{Green0}{}, \Color{Maroon0}{},
-%   \Color{Purple0}{} au lieu de \Color[-]{Gray}{}, \Color[-]{Grey}{}, 
-%   \Color[-]{Green}{}, \Color[-]{Maroon}{}, \Color[-]{Purple}{} pour obtenir les
+%   utilisez \Coloruk[-]{gris}{Gray0}, \Coloruk[-]{gris}{Grey0}, 
+%   \Coloruk[-]{vert}{Green0}, \Coloruk[-]{marron}{Maroon0}, 
+%   \Coloruk[-]{pourpre}{Purple0} au lieu de \Coloruk[-]{gris}{Gray}, 
+%   \Coloruk[-]{gris}{Grey}, \Coloruk[-]{vert}{Green}, 
+%   \Coloruk[-]{marron}{Maroon}, \Coloruk[-]{pourpre}{Purple} pour obtenir les
 %   couleurs \Index{X11} d'origine ;
 % \item pour $N=0,1,\dots,100$, utilisez `|[gray]{|$N/100$|}|' ou 
-%  `|black!|$100-N$' au lieu de \Color[-]{grayN}{} ou \Color[-]{greyN}{}.
+%   `|black!|$100-N$' au lieu de \Coloruk[-]{gris}{grayN} ou 
+%   \Coloruk[-]{gris}{greyN}.
 % \end{itemize}
 % \end{itemize}
 %

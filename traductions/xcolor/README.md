@@ -29,7 +29,7 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 Section                       | Avancée                | Pages traduites | Commentaires 
 ----------------------------- | :--------------------: | :-------------: | -------------------------
 En-tête du document tex       | :waxing_crescent_moon: |                 |
-Pages d'avant-propos          | :waxing_crescent_moon: | 4               | 
+Pages d'avant-propos          | :first_quarter_moon:   | 4               | 
 1. Introduction               | :waxing_gibbous_moon:  | 4               |
 2. L'interface utilisateur    | :first_quarter_moon:   | 28              | 
 3. Exemples                   | :first_quarter_moon:   | 7               | 
@@ -37,8 +37,8 @@ Pages d'avant-propos          | :waxing_crescent_moon: | 4               |
 5. Compléments techniques     | :first_quarter_moon:   | 3               | 
 6. Les formules               | :first_quarter_moon:   | 15              | 
 Références                    | :first_quarter_moon:   | 1               | 
-Annexes                       | :new_moon:             | 6 / 7           | En cours
-Index                         | :new_moon:             | 0 / 3           |
+Annexes                       | :waxing_crescent_moon: | 6 / 7           | En cours
+Index                         | :first_quarter_moon:   | 3               |
 
 ### Quelques termes récurrents dans la traduction de ce document
 
