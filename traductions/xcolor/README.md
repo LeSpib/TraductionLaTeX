@@ -37,7 +37,7 @@ Pages d'avant-propos          | :first_quarter_moon:   | 4               |
 5. Compléments techniques     | :first_quarter_moon:   | 3               | 
 6. Les formules               | :first_quarter_moon:   | 15              | 
 Références                    | :first_quarter_moon:   | 1               | 
-Annexes                       | :waxing_crescent_moon: | 6 / 7           | En cours
+Annexes                       | :first_quarter_moon:   | 7               | 
 Index                         | :first_quarter_moon:   | 3               |
 
 ### Quelques termes récurrents dans la traduction de ce document

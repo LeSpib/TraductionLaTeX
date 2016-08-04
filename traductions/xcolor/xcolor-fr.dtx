@@ -4512,73 +4512,76 @@
 % \end{itemize}
 %
 % \subsubsection*{04/07/2004 v2.00}
-% \tradini
 % \begin{itemize}
 % \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item extended functionality for color expressions: mix colors like a
-%    painter;
-%   \item support for color blending: specify color mix expressions that are
-%    being blended with every displayed color;
-%   \item |\xglobal| command for selective control of globality for color
-%    definitions, blends, and masks;
-%   \item multiple step operations (e.g., |\color{foo!!+++}|) and access to
-%    individual members (e.g., |\color{foo!![7]}|) in color series;
-%   \item |\providecolor| command to define only non-existent colors;
-%   \item |\definecolorset| and |\providecolorset| commands to facilitate the
-%    construction of color sets with common underlying color model;
-%   \item additional 147 predefined color names according to \Index{SVG}~1.1
-%    specification;
-%   \item \Key{xpdfborder} key for setting the width of hyperlink borders in a
-%    more driver-independent way if \Program{dvips} is used.
+%   \item fonctionnalité étendue pour les mélanges de couleur : ils se font 
+%     comme le ferait un peintre ;
+%   \item support du glissement de couleur : spécification d'expressions 
+%     de couleur qui sont ajoutées à chaque couleur affichée ;
+%   \item commande |\xglobal| pour un contrôle sélectif de la portée des
+%     définitions, glissements et masques ;
+%   \item opérations à étapes multiples (par exemple, |\color{test!!+++}|)
+%     et accès à des éléments individuels (par exemple |\color{test!![7]}|)
+%     dans une série de couleur ;
+%   \item commande |\providecolor| pour définir uniquement des couleurs
+%     qui n'existent pas ;
+%   \item commandes |\definecolorset| et |\providecolorset| pour faciliter
+%     la construction d'ensembles de couleur avec un modèle colorimétrique
+%     sous-jacent commun ;
+%   \item 147 noms de couleurs additionnelles prédéfinies tirés de la  
+%     spécification \Index{SVG}~1.1 ;
+%   \item clé \Key{xpdfborder} pour définir l'épaisseur de l'encadrement des
+%     liens hypertextes de façon plus indépendante des pilotes si 
+%     \Program{dvips} est utilisé.
 %   \end{itemize}
 % \item Changements :
 %   \begin{itemize}
-%   \item \LCP{} now completely integrated within \XC;
-%   \item \oOption{override}, \oOption{usenames}, \oOption{nodvipsnames}
-%    options and |\xdefinecolor| command no longer needed;
-%   \item \Option{dvips} and \Option{dvipsnames} options now independent of
-%    each other;
-%   \item |\tracingcolors|'s behaviour changed to make it more versatile and
-%    reduce log file size in standard cases;
-%   \item |\rdivide|'s syntax made more flexible (divide by numbers and/or
-%    dimensions);
-%   \item code restructured, some internal commands renamed;
-%   \item documentation rearranged and enhanced.
+%   \item \LCP{} maintenant complétement intégrée dans \XC ;
+%   \item les options \oOption{override}, \oOption{usenames}, 
+%     \oOption{nodvipsnames} et la commande |\xdefinecolor| ne sont plus
+%     nécessaires ;
+%   \item les options \Option{dvips} et \Option{dvipsnames} sont maintenant
+%     indépendantes l'une de l'autre ;
+%   \item le comportement de |\tracingcolors| est changé pour le rendre plus
+%     versatile et réduire la taille du fichier journal dans les cas 
+%     standards ;
+%   \item la syntaxe de |\rdivide| est rendue bien plus flexible (division
+%     par des nombres et/ou des dimensions);
+%   \item code restructuré, quelques commandes internes renommées ;
+%   \item documentation réarrangée et améliorée.
 %   \end{itemize}
 % \item Corrections d'erreur :
 %   \begin{itemize}
-%   \item |\definecolor{foo}{named}{bar}| did not work (error introduced in
-%    v1.11);
-%   \item more robust behaviour of conditionals within \Package{pstricks} 
-%    key-values.
+%   \item |\definecolor{test}{named}{truc}| ne fonctionnait pas (erreur 
+%     introduite en v1.11);
+%   \item comportement plus robuste des éléments conditionnels avec le système
+%     clé-valeur de \Package{pstricks}.
 %   \end{itemize}
 % \end{itemize}
 %
-% \tradfin
 % \subsubsection*{09/05/2004 v1.11}
-% \tradini
 % \begin{itemize}
 % \item Nouvelles fonctionnalités :
 %   \begin{itemize}
-%   \item switch |\ifglobalcolors| to control whether color definitions are
-%    global or local;
-%   \item option \Option{hyperref} provides color expression support for the
-%    border colors of hyperlinks, e.g., |\hypersetup| 
-%    |{xurlbordercolor=red!50!yellow}|;
-%   \item internal hooks |\XC@bcolor|, |\XC@mcolor|, and |\XC@ecolor| for
-%    additional code that has to be executed immediately before/after the
-%    current color is being displayed.
+%   \item variable |\ifglobalcolors| pour contrôler si les définitions sont
+%     globales ou locales ;
+%   \item l'option \Option{hyperref} apporte le support des expressions de 
+%     couleur pour les encadrements des liens hypertextes, par exemple
+%     |\hypersetup| |{xurlbordercolor=red!50!yellow}|;
+%   \item points d'entrée internes |\XC@bcolor|, |\XC@mcolor| et |\XC@ecolor|
+%     pour du code additionnel qui doit être exécuté immédiatement avant que
+%     la couleur ne soit affichée ou immédiatement après.
 %   \end{itemize}
 % \item Changements :
 %   \begin{itemize}
-%   \item |\XC@logcolor| renamed to |\XC@display|, which is now the core color
-%    display command;
-%   \item improved interface to \Package{pstricks}.
+%   \item |\XC@logcolor| renommée en |\XC@display|, qui est maintenant la
+%    commande d'affichage centrale ;
+%   \item interface améliorée avec \Package{pstricks}.
 %   \end{itemize}
 % \end{itemize}
 %
-% \tradfin
+
 % \subsubsection*{27/03/2004 v1.10}
 % \begin{itemize}
 % \item Nouvelles fonctionnalités :
