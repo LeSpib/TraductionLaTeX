@@ -28,7 +28,7 @@ Section                       | Avancée                | Pages traduites | Comm
 ----------------------------- | :--------------------: | :-------------: | -------------------------
 En-tête du document tex       | :new_moon:             |                 |
 Page d'avant-propos           | :first_quarter_moon:   | 0               | 
-1. Introduction               | :new_moon:             | 0 / 0           |
+1. Introduction               | :first_quarter_moon:   | 0               |
 2. Interface \og clé=valeur...| :new_moon:             | 0 / 1           |
 3. L'interface utilisateur    | :new_moon:             | 0 / 2           |
 4. Implémentation             | :new_moon:             | 0 / 6           |
