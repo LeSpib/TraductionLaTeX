@@ -3,7 +3,7 @@
 \usepackage{multicol}
 \usepackage{float}
 \usepackage{makeidx}
-\usepackage{layout}
+\usepackage[french]{layout}
 \usepackage{array}
 \usepackage{a4wide}
 \usepackage{boxedminipage}
@@ -74,61 +74,65 @@
 \section{Introduction}
 \label{sec:intro}
 
-\tradini
-A page in a \LaTeX{} document is built from various elements as shown in
-figure \ref{fig:layout}. 
+Une page dans un document \LaTeX{} est construite à partir de divers éléments
+comme montré en figure \ref{fig:layout}. 
 \begin{figure}[htbp]
   \begin{center}
     \leavevmode
     \layout
     \vspace{3cm}
-    \caption{Page elements. The values shown are those in effect in the current document, not the defaults.}
+    \caption{\'{E}léments d'une page. Les valeurs montrées sont celles qui 
+             s'appliquent à ce document, pas les valeurs par défaut.}
     \label{fig:layout}
   \end{center}
 \end{figure}
 %\thispagestyle{fancy}
 \thispagestyle{plain}
-The body contains the main text of the document
-together with the so called floats (tables and figures). 
+Le corps contient le texte principal du document ainsi que les \og flottants
+\fg{} (tables et figures).
 
-The pages are constructed by \LaTeX's output routine, which is quite
-complicated and should therefore not be modified. Some of the packages
-described in this paper contains small modifications to the output routine
-to accomplish things that cannot be done in another way. You should use
-these packages to get the desired result rather than fiddling with the
-output routine yourself.
+Les pages sont construites par la routine de sortie de \LaTeX\ que, du fait de
+sa relative complexité, nous ne chercherons pas à modifier. Certaines des
+extensions décrites dans cet article intégrent de légères modifications de la 
+routine de sortie pour accomplir des choses impossibles autrement. Vous devriez
+utiliser ces extensions pour obtenir le résultat désiré plutôt que de
+bidouiller avec la routine de sortie vous-même.
 
-There a a number of things that you must be aware of:
+Il y a un certain nombre de choses dont vous devez être bien conscient :
 \begin{enumerate}
-\item The margins on the left are not called \Cmd{leftmargin}, but
-  \Cmd{evensidemargin} (on even-numbered pages) and \Cmd{oddsidemargin}
-  (on odd-numbered pages). In one-sided documents 
-  \Cmd{oddsidemargin} is used for either.  \Cmd{leftmargin} is also a valid
-  \latex/ parameter but it has a different use (namely the indentation of
-  lists). 
-\item Most of the parameters should not be changed in the middle of a
-  document. Some changes might work at a pagebreak. If you want to change
-  the height of a single page, you can use the \Cmd{enlargethispage}
-  command. 
+\item les marges à gauche ne sont pas appelées \Cmd{leftmargin}\footnote{N.D.T.
+  : \emph{leftmargin} signifie \og marge de gauche \fg{}, tandis que 
+  \emph{evensidemargin} signifie \og marge de côté pair \fg{} et 
+  \emph{evensidemargin} \og marge de côté impair \fg{}.} mais 
+  \Cmd{evensidemargin} (pour les pages paires) et \Cmd{oddsidemargin} (pour les
+  pages impaires). Dans les documents en recto uniquement, il s'agit de 
+  \Cmd{oddsidemargin}. \Cmd{leftmargin} est également un paramètre de \LaTeX\ 
+  valide mais a un usage différent (en l'occurrence, l'indentation des listes).
+\item La plupart des paramètres ne devraient pas être changés au cours du
+  document. Certains changements peuvent fonctionner lors d'un saut de page. Si
+  vous souhaitez changer la taille d'une seule page, vous pouvez utiliser la
+  commande \Cmd{enlargethispage}. 
 \end{enumerate}
 
-The margin notes
-area contains small pieces of information created by the \Cmd{marginpar}
-command. On twosided documents the margin notes appear on the left and right
-alternatively. The margin notes are not on fixed places with respect to the
-paper but at approximately the same height as the paragraph in which they
-appear. Due to the algorithm used to decide the placement of margin notes,
-in a twosided document unfortunately 
-they may appear on the wrong side if they are close
-to a page break.
-If you want to put information on fixed places in the margins you may use
-the technique described in sections \ref{sec:movie} and \ref{sec:thumb}.
+Les zones de notes marginales contiennent de petits éléments d'information
+créés par la commande \Cmd{marginpar}. Dans les documents recto-verso, les 
+notes marginales apparaissent alternativement à gauche et à droite. Les
+notes marginales ne sont pas à des places fixes dépendant du papier mais
+approximativement à la même hauteur que les paragraphes dans lesquelles
+elles apparaissent. Du fait de l'algorithme retenu pour décider du placement
+des notes marginales, elles peuvent apparaître dans un document recto-verso
+du mauvais côté si elles sont proches d'un saut de page. Si vous souhaitez
+placer de l'information à des endroits fixes dans les marges, vous pouvez
+vous servir de la technique décrite dans les sections \ref{sec:movie} et
+\ref{sec:thumb}.
 
-The first part of this paper describes how to change the header and footer
-areas. The last part describes how to get your floats at the desired place.
+La première partie de cet article décrit comment changer les zones d'entête et
+de pied de page.  La seconde partie décrit comment placer vos flottants à
+l'endroit désiré.
 
-\section{Page headers and footers}
+\section{Entêtes et pieds de page}
 
+\tradini
 The page headers and footers in \LaTeX{} are defined by the
 \Cmd{pagestyle} and \Cmd{pagenumbering} commands. \Cmd{pagestyle}
 defines the general contents of the headers and footers (e.g. where the
