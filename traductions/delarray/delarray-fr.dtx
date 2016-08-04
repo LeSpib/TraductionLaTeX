@@ -33,12 +33,10 @@
 \usepackage{delarray}
 \GetFileInfo{delarray.sty}
 \begin{document}
-\title{The \textsf{delarray} package\thanks{This file
-        has version number \fileversion, last
-        revised \filedate.}}
-\title{L'extension \texttt{delarray}\thanks{Ce fichier a pour numéro de
-        version \fileversion\ et a été mis à jour le \filedatefr. La
-        première traduction, basée la version v1.01, a été publiée par 
+\title{L'extension \textsf{delarray}\thanks{Ce fichier a pour numéro de
+        version \fileversion\ et a été mis à jour le \filedatefr. Son 
+        titre original est \og \emph{The \textsf{delarray} package} \fg{}.
+        La première traduction, basée la version v1.01, a été publiée par 
         Jean-Pierre Drucbert en 2000.}}
 \author{David Carlisle}
 \date{\filedatefr}
@@ -60,13 +58,13 @@
 % \section{Exemples}
 %
 %
-% Cette extension ajoute à l'extension \texttt{array} un système de paires
+% Cette extension ajoute à l'extension \textsf{array} un système de paires
 % implicites |\left| |\right|. Si vous souhaitez obtenir un tableau entouré
 % de parenthèses, vous pouvez alors saisir : \\
 % |\begin{array}({cc})| \ldots
 % \[  \begin{array}({cc})a&b\\c&d\end{array}   \]
 %
-% De la même manière, un environnement équivalent à |\cases| de \PlainTeX peut
+% De la même manière, un environnement équivalent à |\cases| de \PlainTeX\ peut
 % être défini avec :\\
 % |\begin{array}\{{lL}.| \ldots
 %
@@ -76,11 +74,11 @@
 %           \sin(x)/x&sinon
 %           \end{array}  \]
 % Ici, |L| désigne une colonne de texte sinistroverse\footnote{N.D.T. : il 
-% s'agit d'un mode où le texte est écrit de gauche à droite.} alignée à gauche.
-% Il peut être défini comme suit : |\newcolumntype{L}{>{$}l<{$}}|, comme 
-% expliqué dans \texttt{array.sty}. Notez que les délimiteurs doivent toujours
-% être utilisés par paires, le \og |.| \fg{} doit être utilisé pour indiquer un
-% \og délimiteur nul \fg{}.
+% s'agit d'un mode où le texte est écrit de gauche à droite.} alignée à gauche,
+% qui peut être définie comme suit : |\newcolumntype{L}{>{$}l<{$}}|, comme 
+% expliqué dans l'extension \textsf{array}. Notez que les délimiteurs doivent
+% toujours être utilisés par paires et que le \og |.| \fg{} doit être utilisé
+% pour indiquer un \og délimiteur nul \fg{}.
 %
 % Ce dispositif est particulièrement utile si les arguments |[t]| ou |[b]| sont
 % aussi utilisés. Dans ces cas le résultat n'est pas équivalent à celui obtenu
@@ -129,7 +127,7 @@
 %    Cette commande teste la présense d'un délimiteur optionnel avant
 %    l'accolade gauche débutant le préambule de la table. S'il n'y a pas de
 %    délimiteur, |\@arrayleft| et |\@arrayright| ne sont associés à aucune
-%    action et |\@array| est appelé avec l'argument positionnel (entre 
+%    action et |\@array| est appelé avec l'argument de position (entre 
 %    crochets). Sinon, |\@del@array| est appelé.
 %    \begin{macrocode}
 \def\@@array[#1]{\@ifnextchar\bgroup
@@ -146,7 +144,7 @@
 % La ligne suivante est complétement redondante mais elle permet de capter
 % des erreurs associées aux délimiteurs avant que le traitement de 
 % l'alignement ne commence. Une erreur courante est ici l'oubli d'un
-% \og . \fg{} dans une construction à l'image de l'environnement |\cases|.
+% \og . \fg{} dans une construction similaire à l'environnement |\cases|.
 % Ceci provoque l'engloutissement de la première unité lexicale, ce qui conduit
 % généralement à de nombreux messages d'erreurs infondés masquant 
 % la vraie source de l'erreur, le délimiteur manquant, d'autant que 
@@ -169,8 +167,8 @@
 %    \begin{macrocode}
   \def\@arrayright{%
 %    \end{macrocode}
-% Est calculé l'abaissement que doit subir la boîte (cette mesure est négative
-% dans le cas de |[b]|). Il s'agit là d'un peu d'arithmétique, telle que 
+% L'abaissement que doit subir la boîte (cette mesure est négative dans le cas
+% de |[b]|) est calculé ici. Il s'agit là d'un peu d'arithmétique, telle que 
 % décrite dans le \TeX{}Book, annexe G, règle 8. Nous effectuons le calcul de
 % cette manière plutôt qu'en prenant la différence entre la profondeur de la 
 % boîte box0 et la profondeur de la boîte définie ci-dessous dans la mesure où 
@@ -202,9 +200,9 @@
 %    \end{macrocode}
 %
 %
-% \subsection{newarray.sty}
-% Toutes les fonctionnalités de l'ancienne extension \texttt{newarray} ont été
-% basculées dans les extensions \texttt{array} ou \texttt{delarray}.
+% \subsection{L'extension newarray}
+% Toutes les fonctionnalités de l'ancienne extension \textsf{newarray} ont été
+% basculées dans les extensions \textsf{array} ou \textsf{delarray}.
 % \changes{v1.00}{1992/07/06}
 %    {Stop generating a `shell' newarray.sty}
 %
