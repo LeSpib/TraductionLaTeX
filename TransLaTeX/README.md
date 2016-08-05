@@ -53,13 +53,13 @@ Dans les classes `doc` et `ltxdoc`, les entrées d'index associées à des envir
                                       {\string\ttfamily\space#1}
                                          (environnement)%
                                       \encapchar main}%
-    \special@index{environnements:\levelchar#1\actualchar{%
+    \special@index{environnements\levelchar#1\actualchar{%
                    \string\ttfamily\space#1}\encapchar
            main}\@esphack}
 \def\SpecialEnvIndex#1{\@bsphack
     \index{#1\actualchar{\protect\ttfamily#1}
            (environnement)\encapchar usage}%
-    \index{environnements:\levelchar#1\actualchar
+    \index{environnements\levelchar#1\actualchar
           {\protect\ttfamily#1}\encapchar usage}\@esphack}
 \makeatother
 ```
