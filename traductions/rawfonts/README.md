@@ -31,12 +31,11 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 Section                       | Avancée                | Pages traduites | Commentaires 
 ----------------------------- | :--------------------: | :-------------: | -------------------------
 En-tête du document tex       | :new_moon:             |                 |
-Page[********] d'avant-propos | :first_quarter_moon:   | 0               | 
-Généralités                   | :new_moon:             | 0 / 1           |
-Implémentation                | :new_moon:             | 0 / 3           |
+Page d'avant-propos           | :first_quarter_moon:   | 0               | 
+Généralités                   | :first_quarter_moon:   | 1               |
+Implémentation                | :first_quarter_moon:   | 3               |
 
 
 ### Glossaire pour la traduction
 
-Anglais                | Français                                       | Commentaires 
----------------------- | ---------------------------------------------- | -------------------------------
+Il n'y a pas eu besoin d'un glossaire pour cette traduction.
