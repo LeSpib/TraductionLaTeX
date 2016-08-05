@@ -32,8 +32,8 @@ Section                       | Avancée                | Pages traduites | Comm
 ----------------------------- | :--------------------: | :-------------: | -------------------------
 En-tête du document tex       | :new_moon:             |                 |
 Page d'avant-propos           | :first_quarter_moon:   | 0               | 
-Présentation générale         | :new_moon:             | 0 / 1           |
-Implémentation                | :new_moon:             | 0 / 2           |
+Présentation générale         | :first_quarter_moon:   | 1               |
+Implémentation                | :first_quarter_moon:   | 2               |
 
 
 ### Glossaire pour la traduction

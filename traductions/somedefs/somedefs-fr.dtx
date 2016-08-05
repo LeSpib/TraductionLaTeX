@@ -39,64 +39,66 @@
 %
 % \section*{Présentation générale}
 %
-% \tradini
-% This is an example `programmers toolkit' package, for use by package
-% writers.  It allows package writers to provide options which switch
-% definitions on and off.  For example, a package |fred| might define a
-% large number of commands, including |\foo| and |\baz|, so:
+% Cette extension est un exemple de \og boîte à outils pour programmeurs \fg{},
+% à l'intention des auteurs d'extension. Elle leur fournit des options qui
+% activent ou désactivent des définitions. Par exemple, une extension
+% \textsf{fred} pourrait définir un grand nombre de commandes, parmi lesquelles
+% |\test| et |\truc|. Charger alors
 % \begin{verbatim}
 %    \usepackage{fred}
 % \end{verbatim}
-% would use a lot of memory, even if |\foo| and |\baz| were the only
-% commands needed.  However, if the author of |fred| used the |somedefs|
-% package, then the user would be able to say:
+% utiliserait beaucoup de mémoire, même si |\test| et |\truc| sont les
+% seules commandes utilisées. Cependant, si l'auteur de \textsf{fred} utilisait
+% l'extension \textsf{somedefs}, alors l'utilisateur pourrait écrire :
 % \begin{verbatim}
-%    \usepackage[only,foo,baz]{fred}
+%    \usepackage[only,test,truc]{fred}
 % \end{verbatim}
-% and only the commands |\foo| and |\baz| would be defined.
+% et seules les commandes |\test| et |\truc| seront définies.
 %
-% To use the |somedefs| package in your own packages or classes, you
-%  say:
+% Pour utiliser l'extension \textsf{somedefs} dans vos propres extensions et
+% classes, il faut y saisir :
 % \begin{verbatim}
 %    \RequirePackage{somedefs}
 % \end{verbatim}
-% You can then use four new commands:
+% Vous pouvez alors utiliser quatre nouvelles commandes qui déterminent quelles
+% définitions de commandes doivent être prises en compte.
+% :
 % \begin{flushleft}\begin{itemize}
-% \item |\UseAllDefinitions| which says that all the commands in the
-%    file should be defined.
-% \item |\UseSomeDefinitions| which says that only the commands
-%    specified by |\UseDefinition| should be defined.
-% \item |\UseDefinition{|\meta{name}|}| which says that the command
-%    |\name| should be defined.
-% \item |\ProvidesDefinition{|\meta{definition}|}| which provides one
-%    definition, of the form |\definingcommand{\command}...|
+% \item |\UseAllDefinitions| : toutes les commandes du fichier doivent être 
+%   définies ;
+% \item |\UseSomeDefinitions| : seules les commandes spécifiées par 
+%   |\UseDefinition| doivent être définies ;
+% \item |\UseDefinition{|\meta{nom}|}| : la commande |\nom| doit être définie ;
+% \item |\ProvidesDefinition{|\meta{définition}|}|: la commande ajoute une 
+%   définition, de la forme |\commandededefinition{\commande}...|.
 % \end{itemize}\end{flushleft}
-% For example, the package |fred| could say:
+% Par exemple, l'extension |fred| pourrait indiquer :
 % \begin{verbatim}
 %    \RequirePackage{somedefs}
 %    \UseAllDefinitions
 %    \DeclareOption{only}{\UseSomeDefinitions}
 %    \DeclareOption*{\UseDefinition{\CurrentOption}}
 %    \ProcessOptions
-%    \ProvidesDefinition{\newcommand{\foo}{...}}
-%    \ProvidesDefinition{\newcommand{\baz}{...}}
+%    \ProvidesDefinition{\newcommand{\test}{...}}
+%    \ProvidesDefinition{\newcommand{\truc}{...}}
 % \end{verbatim}
-% One of the commands |\UseAllDefinitions| or |\UseSomeDefinitions|
-% should always be used.  You may have some commands which need other
-% commands, in which case you have to declare the options by hand.  For
-% example, if the command |\bar| needs the command |\foo|, you could
-% say:
+% Une des commandes |\UseAllDefinitions| ou |\UseSomeDefinitions| doit toujours
+% être utilisée. Vous pouvez avoir des commandes qui ont besoin d'autres 
+% commandes, auquel cas vous devez déclarer les options manuellement. Par
+% exemple, si la commande |\test| a besoin de la commande |\truc|, vous devriez
+% écrire:
 % \begin{verbatim}
-%    \DeclareOption{bar}{\UseDefinition{bar}\UseDefinition{foo}}
+%    \DeclareOption{hop}{\UseDefinition{hop}\UseDefinition{laboum}}
 % \end{verbatim}
-% For a longer example of the use of the |somedefs| package, look at the
-% |rawfonts| package.
+% Pour un exemple plus complet de l'utilisation du package \textsf{somedefs},
+% regardez le package \textsf{rawfonts}.
 %
 % \StopEventually{}
 %
-% \section*{Implementation}
+% \section*{Implémentation}
 %
-% The driver for the documentation you're now reading.
+% Le pilote de la documentation que vous êtes en train de lire est défini par
+% les quelques lignes suivantes.
 %    \begin{macrocode}
 %<*driver>
 \documentclass{ltxdoc}
@@ -106,7 +108,7 @@
 \end{document}
 %</driver>
 %    \end{macrocode}
-% This is a \LaTeXe{} package.
+% Il s'agit ici d'une extension \LaTeXe.
 %    \begin{macrocode}
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
@@ -119,14 +121,14 @@
 % \begin{macro}{\@providesdefinition}
 % \begin{macro}{\@provides@definition}
 % \begin{macro}{\@unprovided@definition}
-%    The package works by having |\UseDefinition{|\meta{name}|}| define
-%    |\name| to be |\@unprovided@definition|.
-%    If |\UseSomeDefinitions| has been called,
-%    then |\ProvidesDefinition| looks to see if |\name|
-%    is |\@unprovided@definition|.  If
-%    |\UseAllDefinitions| has been called, then |\ProvidesDefinition|
-%    does nothing.  If neither has been called, then
-%    |\ProvidesDefinition| produces an error message.
+%    L'extension fonctionne ainsi : |\UseDefinition{|\meta{nom}|}| définit
+%    la commande |\nom| comme étant |\@unprovided@definition| (une \og 
+%    définition non fournie \fg{}). Si |\UseSomeDefinitions| est appelé, alors
+%    la commande |\ProvidesDefinition| vérifie si |\nom| est 
+%    |\@unprovided@definition|. Si |\UseAllDefinitions| est appelée, alors la
+%    commande |\ProvidesDefinition| ne fait
+%    rien. Si aucune des deux commandes n'est appelé, alors
+%    |\ProvidesDefinition| génère un message d'erreur.
 %    \begin{macrocode}
 \def\UseSomeDefinitions{%
    \let\ProvidesDefinition\@providesdefinition
@@ -137,6 +139,13 @@
 \def\UseDefinition#1{%
    \expandafter\let\csname#1\endcsname\@unprovided@definition
 }
+%    \end{macrocode}
+%    Le message d'erreur est la valeur par défaut de la commande 
+%    |ProvidesDefinition|, apparaissant si rien n'a été fait : \og Aucune
+%    utilisation de |\UseSomeDefinitions| ou de |\UseAllDefinitions|. 
+%    L'extension qui a utilisé l'extension ``somedefs'' contient une erreur.
+%    \fg{}
+%    \begin{macrocode}
 \def\ProvidesDefinition#1{%
    \PackageError{somedefs}%
      {No \noexpand\UseSomeDefinitions or \string\UseAllDefinitions}%
@@ -149,6 +158,11 @@
       #1#2#3%
    \fi
 }
+%    \end{macrocode}
+%    L'autre message d'erreur de l'extension : \og Erreur de l'extension
+%    ``somedefs'' : cette commande n'a jamais été définie. Vous avez
+%    demandé une commande qui n'existe pas. \fg{}.
+%    \begin{macrocode}
 \def\@unprovided@definition{%
    \PackageError{somedefs}%
      {Package `somedefs' error: this command was never defined}%
@@ -168,7 +182,7 @@
 % \end{macro}
 % \end{macro}
 % \end{macro}
-% That's it!
+% Et c'est tout !
 %    \begin{macrocode}
 %</package>
 %    \end{macrocode}
