@@ -30,10 +30,10 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 
 Section                       | Avancée                | Pages traduites | Commentaires 
 ----------------------------- | :--------------------: | :-------------: | -------------------------
-En-tête du document tex       | :new_moon:             |                 |
-Page d'avant-propos           | :waxing_gibbous_moon:  | 0               | 
-1. Introduction               | :waxing_gibbous_moon:  | 3               |
-2. Les commandes              | :waxing_gibbous_moon:  | 4               | 
+En-tête du document tex       | :full_moon:            |                 |
+Page d'avant-propos           | :full_moon:            | 0               | 
+1. Introduction               | :full_moon:            | 3               |
+2. Les commandes              | :full_moon:            | 4               | 
 
 
 ### Glossaire pour la traduction

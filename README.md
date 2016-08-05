@@ -76,7 +76,7 @@ Traduction       | Source              | Avancée                | Pages traduit
 [xcolor-fr]      | [xcolor] v2.12      | :first_quarter_moon:   | 75              | 
 [xkeyval-fr]     | [xkeyval] v2.7      | :new_moon:             | 2 / 73          |
 [xr-fr]          | [xr] v5.02          | :full_moon:            | 2               | Traduction préexistante ([FT-tools]).
-[xspace-fr]      | [xspace] v1.13      | :waxing_gibbous_moon:  | 7               | Traduction préexistante ([FT-tools]).
+[xspace-fr]      | [xspace] v1.13      | :full_moon:            | 7               | Traduction préexistante ([FT-tools]).
 
 ### Traduction des documents 
 

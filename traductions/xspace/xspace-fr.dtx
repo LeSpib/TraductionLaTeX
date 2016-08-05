@@ -1,23 +1,23 @@
 % \iffalse meta-comment
 %
-% Copyright 1993-2014
+% Copyright (c) 1993-2016
+% Le LaTeX3 Project et tout auteur listé dans ce fichier.
 %
-% The LaTeX3 Project and any individual authors listed elsewhere
-% in this file.
+% Ce fichier est la traduction en français du fichier xspace.dtx
+% --------------------------------------------------------------
 %
-% This file is part of the Standard LaTeX `Tools Bundle'.
-% -------------------------------------------------------
+% Ce document appartient à la "boîte à outils" du LaTeX standard.
+% 
+% Il peut être distribué et/ou modifié sous les conditions définies par la
+% LaTeX Project Public License, soit en version 1.3c, soit (à votre choix)
+% en toute version ultérieure.
+% La dernière version de cette license est à l'adresse :
+%   http://www.latex-project.org/lppl.txt
+% et la version 1.3c et les suivantes se retrouvent dans toutes les
+% distributions de LaTeX dès la version 2005/12/01.
 %
-% It may be distributed and/or modified under the
-% conditions of the LaTeX Project Public License, either version 1.3c
-% of this license or (at your option) any later version.
-% The latest version of this license is in
-%    http://www.latex-project.org/lppl.txt
-% and version 1.3c or later is part of all distributions of LaTeX
-% version 2005/12/01 or later.
-%
-% The list of all files belonging to the LaTeX `Tools Bundle' is
-% given in the file `manifest.txt'.
+% La liste de tous les fichiers appartenant à la "Boîte à outils" est donnée
+% dans le fichier "manifest.txt".
 %
 % \fi
 % \iffalse
@@ -29,11 +29,11 @@
           \ProvidesFile{xspace.dtx}
 %</dtx>
 %<package>\NeedsTeXFormat{LaTeX2e}
-%<package>\ProvidesPackage{xspace}
+%<package>\ProvidesPackage{xspace-fr}
 %<driver>\ProvidesFile{xspace.drv}
 % \fi
-%         \ProvidesFile{xspace.dtx}
-          [28/10/2014 v1.13 Space after command names (DPC,MH)]
+%         \ProvidesFile{xspace-fr.dtx}
+          [2014/10/28 v1.13 Espace après les noms de commandes (DPC,MH)]
 %
 % \iffalse
 %<*driver>
@@ -54,8 +54,9 @@
 %
 % \GetFileInfo{xspace.dtx}
 % \title{L'extension \textsf{xspace}\thanks{Ce fichier a pour numéro de 
-%        version \fileversion\ et a été mis à jour le \filedatefr. La première
-%        traduction, basée sur la version 1.06 a été publiée par 
+%        version \fileversion\ et a été mis à jour le \filedatefr. Son 
+%        titre original est \og \emph{The \textsf{xspace} package} \fg{}.
+%        La première traduction, basée sur la version 1.06 a été publiée par
 %        Jean-Drucbert en 2001.}}
 % \author{David Carlisle \and Morten H\o gholm}
 % \date{\filedatefr}
@@ -66,29 +67,28 @@
 %
 %
 % \changes{v1.00}{1991/08/30}{Version initiale}
-% \changes{v1.01}{1992/06/26}{Re-issue for the new doc and docstrip}
-% \changes{v1.02}{1994/01/31}{Re-issue for LaTeX2e (no change to
-%   code)}
-% \changes{v1.07}{2004/12/07}{Make extensible. tools/3712}
-% \changes{v1.07}{2004/12/07}{Fix active characters. tools/3747}
-% \changes{v1.07}{2004/12/07}{Update documentation}
-% \changes{v1.08}{2005/05/07}{Better fix for active characters}
-% \changes{v1.09}{2005/07/26}{Improve test by exiting if
-%   \cs{@let@token} is a letter}
-% \changes{v1.10}{2005/10/04}{Use higher level functions for
-% conditional processing}
-% \changes{v1.10}{2005/10/04}{Improve expansion method}
+% \changes{v1.01}{1992/06/26}{Version pour les nouveaux doc et docstrip}
+% \changes{v1.02}{1994/01/31}{Version pour LaTeX2e (pas de changement au code)}
+% \changes{v1.07}{2004/12/07}{Version extensible. tools/3712}
+% \changes{v1.07}{2004/12/07}{Gestion des caractères actifs. tools/3747}
+% \changes{v1.07}{2004/12/07}{Mise à jour de la documentation}
+% \changes{v1.08}{2005/05/07}{Meilleure gestion des caractères actifs}
+% \changes{v1.09}{2005/07/26}{Amélioration du test par sortie anticipée si 
+%   \cs{@let@token} est une lettre}
+% \changes{v1.10}{2005/10/04}{Utilisation de fonctions de plus haut niveau
+% pour le traitement conditionnel}
+% \changes{v1.10}{2005/10/04}{Amélioration de la méthode de développement}
 %
 
 % \begin{abstract}
 % La commande |\xspace| s'utilise à la fin de commandes pensées pour être
-% intégrées principalement dans du texte. Elle ajoute une espace à moins que
+% intégrées principalement dans du texte. Elle ajoute là une espace à moins que
 % la commande ne soit suivie par certains signes de ponctuation. 
 % \end{abstract}
 %
 % \section{Introduction}
 % \newcommand{\gb}{La Grande Bretagne\xspace}\DescribeMacro{\xspace}
-% Après avoir défini |\newcommand{\gb}{Grande Bretagne\xspace}|, la commande 
+% Après avoir défini |\newcommand{\gb}{La Grande Bretagne\xspace}|, la commande 
 % |\gb| détermine si une espace doit être insérée après elle ou pas. Ainsi, 
 % la saisie
 % \begin{quote}
@@ -110,7 +110,7 @@
 % qu'il est possible d'ajouter |\xspace| à la fin de commandes déjà présentes 
 % sans risques et sans faire trop de changements dans votre document. En 
 % particulier, |\xspace| insérera toujours une espace si l'élément qui le suit
-% est une lettre normale, ce qui est cas classique.
+% est une lettre normale, ce qui est le cas classique.
 %
 % Parfois, |\xspace| peut prendre une mauvaise décision en ajoutant une
 % espace non souhaitée. Il y a différentes raisons à ce comportement mais ce 
@@ -120,18 +120,18 @@
 %
 % \subsection{Ajout de nouvelles exceptions}
 %
-% Une des raisons les plus courantes pour |\xspace| d'insérer une espace non
+% Une des raisons les plus courantes pour que |\xspace| insère une espace non
 % souhaitée survient quand il est suivi d'une commande qui n'est pas dans sa
-% liste des exceptions. 
+% liste d'exceptions. 
 % \DescribeMacro{\xspaceaddexceptions}%
-% Avec |\xspaceaddexceptions|, vous pouvez ajouter de nouveaux caractères ou 
-% commandes pour qu'ils soient reconnus par le mécanisme d'analyse de 
-% |\xspace|. Les utilisateurs d'extensions avancées sur les notes en bas de
-% page comme \textsf{manyfoot} vont souvent définir de nouvelles commandes de
-% notes de bas de page qui ne devraient pas impliquer l'ajout d'une espace à la
-% suite d'une commande \og améliorée \fg{} par |\xspace|. Si vous définissez 
-% les commandes de note de page |\footnoteA| et |\footnoteB|, ajoutez la ligne
-% suivante à votre préambule.
+% Avec |\xspaceaddexceptions|, vous pouvez ajouter (\emph{add}) de nouveaux 
+% caractères ou commandes pour qu'ils soient reconnus par le mécanisme
+% d'analyse de |\xspace|. Les utilisateurs d'extensions avancées sur les notes
+% de bas de page comme \textsf{manyfoot} définissent souvent de nouvelles
+% commandes de notes de bas de page : elles ne devraient pas impliquer l'ajout
+% d'une espace à la suite d'une commande \og améliorée \fg{} par |\xspace|. 
+% Aussi, Si vous définissez les commandes de note de page |\footnoteA| et 
+% |\footnoteB|, ajoutez la ligne suivante à votre préambule.
 % \begin{quote}
 % |\xspaceaddexceptions{\footnoteA \footnoteB}|
 % \end{quote}
@@ -140,12 +140,12 @@
 % \subsection{Support des caractères actifs}
 %
 %
-% L'autre exemple courant que |\xspace| ne traite pas bien se produit en 
-% présence de caractères actifs. Généralement, cette extension doit être
-% chargée \emph{après} toute extension linguistique (ou autre) qui rend la
-% ponctuation \og active \fg{}. Ceci complexifie la tâche pour \textsf{xspace} 
-% lors de travaux avec l'extension populaire \textsf{babel} tout 
-% particulièrement parce que les signes de ponctuation peuvent basculer du 
+% L'autre exemple courant que |\xspace| ne traite pas bien est lié aux 
+% caractères actifs. Généralement, cette extension doit être chargée
+% \emph{après} toute extension linguistique (ou autre) qui rend la
+% ponctuation \og active \fg{}. La tâche se complexifie tout particulièrement
+% pour \textsf{xspace} lors de travaux avec l'extension populaire
+% \textsf{babel} car les signes de ponctuation peuvent alors basculer du 
 % statut \og actif \fg{} à \og autre \fg{} et inversement. À partir de la 
 % version~1.08 de \textsf{xspace}, deux manières de gérer ce point sont 
 % disponibles en fonction du moteur utilisé par votre format \LaTeX : 
@@ -165,15 +165,16 @@
 % bien se passer. S'il se trouve que vous utilisez le \TeX\ standard et que
 % |\xspace| semble prendre la mauvaise décision, alors vous pouvez soit 
 % utiliser |{}| comme décrit ci-dessus pour le corriger, soit ajouter le
-% caractère à la liste mais avec le code de catégorie souhaité. Voir 
-% l'implémentation pour un exemple de ce qu'il faut alors faire.
+% caractère à la liste mais avec le code de catégorie souhaité. Voir le
+% détail de l'implémentation pour un exemple de ce qu'il faut alors faire.
 %
 % \subsection{Toujours pas satisfait ?}
 %
-% Certaines personnes n'aiment pas la liste des exceptions, aussi peuvent-ils
-% retrancher un élément à la fois de cette liste avec une commande dédiée 
+% Certaines personnes n'aiment pas la liste d'exceptions, aussi peuvent-elles
+% retrancher (\emph{remove}) un par un des éléments de cette liste avec la
+% commande dédiée 
 % \DescribeMacro{\xspaceremoveexception}^^A
-% \cs{xspaceremoveexception}\marg{unité-lexicale}.  De plus, la commande 
+% \cs{xspaceremoveexception}\marg{unité-lexicale}. Par ailleurs, la commande 
 % \DescribeMacro{\@xspace@hook}\cs{@xspace@hook} peut être définie pour 
 % analyser plus avant la suite du texte dans le cas où vous souhaiteriez
 % vérifier plus d'unités lexicales. Elle est appelée une fois que \cs{xspace}
@@ -182,7 +183,7 @@
 % vous pouvez utiliser \cs{unskip} pour retirer l'espace insérée si 
 % \cs{@let@token} rencontre quelque chose de spécial. L'exemple ci-dessous 
 % montre comment garantir qu'un tiret demi-quadratin\footnote{Ce tiret est codé
-% par |-{}-| en \LaTeX.}placé après un \cs{xspace} obtienne une espace mais
+% par |-{}-| en \LaTeX.} placé après un \cs{xspace} obtienne une espace mais
 % que ce ne soit pas le cas avec un trait d'union.
 % \begin{verbatim}
 % \xspaceremoveexception{-}
@@ -211,8 +212,8 @@
 % |\xspace| jette un coup d'\oe il à l'unité lexicale qui suit. Si elle 
 % appartient à notre liste d'exception, |\xspace| sort de la boucle d'analyse
 % et ne fait rien; sinon il essaye de développer l'unité lexicale et 
-% recommence son analyse. Si ceci conduit à une unité lexicale non développable
-% sans qu'une exception ait été trouvée, une espace est insérée.
+% recommence ensuite son analyse. Si ceci conduit à une unité lexicale non 
+% développable sans qu'une exception ait été trouvée, une espace est insérée.
 %
 %    \begin{macrocode}
 %<*package>
@@ -220,7 +221,7 @@
 %
 % \begin{macro}{\xspace}
 % |\xspace| regarde juste un cran en avant et appelle alors |\@xspace|.
-% \changes{v1.03}{1994/11/15}{Make robust}
+% \changes{v1.03}{1994/11/15}{Commande rendue robuste}
 %    \begin{macrocode}
 \DeclareRobustCommand\xspace{\@xspace@firsttrue
   \futurelet\@let@token\@xspace}
@@ -228,9 +229,9 @@
 % \end{macro}
 %
 % \begin{macro}{\if@xspace@first}
-% \changes{v1.11}{2006/02/12}{Added macro}
+% \changes{v1.11}{2006/02/12}{Commande ajoutée}
 % \begin{macro}{\@xspace@simple}
-% \changes{v1.11}{2006/02/12}{Added macro}
+% \changes{v1.11}{2006/02/12}{Commande ajoutée}
 % Quelques aides pour éviter des appels multiples de |\@xspace@eTeX@setup|.
 %    \begin{macrocode}
 \newif\if@xspace@first
@@ -240,11 +241,11 @@
 % \end{macro}
 %
 % \begin{macro}{\@xspace@exceptions@tlp}
-% \changes{v1.07}{2004/12/07}{Added macro}
-% La liste d'exception. Si le mécanisme d'analyse trouve une de ces exceptions,
-% il n'y a pas insertion d'une espace après la commande. Le \texttt{tlp} dans 
-% le nom signifie \og \emph{token list pointer} \fg{} (pointeur de liste 
-% d'unité lexicale).
+% \changes{v1.07}{2004/12/07}{Commande ajoutée}
+% La liste d'exceptions. Si le mécanisme d'analyse trouve une de ces
+% exceptions, il n'y a pas insertion d'une espace après la commande. Le 
+% \texttt{tlp} dans le nom de la commande signifie \og pointeur de liste
+% d'unité lexicale \fg{} (\emph{token list pointer}).
 %    \begin{macrocode}
 \def\@xspace@exceptions@tlp{%
   ,.'/?;:!~-)\ \/\bgroup\egroup\@sptoken\space\@xobeysp
@@ -252,8 +253,9 @@
   \xspace@check@icr
 }
 %    \end{macrocode}
-% Et ici nous avons la définition non vide de \cs{check@icr}. 
-% \changes{v1.13}{2009/10/20}{fix for "tools/3895": `text font commands fool xspace'}
+% Ici, nous avons la définition non vide de \cs{check@icr}. 
+% \changes{v1.13}{2009/10/20}{Correction de "tools/3895": "espace faussé
+%   pour les commandes de fontes".}
 %    \begin{macrocode}
 \begingroup
   \text@command\relax
@@ -263,7 +265,7 @@
 % \end{macro}
 %
 % \begin{macro}{\xspaceaddexceptions}
-% \changes{v1.07}{2004/12/07}{Added macro}
+% \changes{v1.07}{2004/12/07}{Commande ajoutée}
 % La commande utilisateur qui permet d'ajouter (\emph{add}) des unités 
 % lexicales à la liste.
 %    \begin{macrocode}
@@ -273,8 +275,8 @@
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\xspaceremoveexception}
-% \changes{v1.10}{2005/10/04}{Use higher level functions for
-% conditional processing}
+% \changes{v1.10}{2005/10/04}{Utilisation de fonctions de plus haut niveau
+% pour le traitement conditionnel}
 % Cette commande retire (\emph{remove}) une exception globalement.
 %    \begin{macrocode}
 \newcommand*\xspaceremoveexception[1]{%
@@ -297,8 +299,8 @@
 % \end{macro}
 %
 % \begin{macro}{\@xspace@break@loop}
-% \changes{v1.08}{2005/04/28}{Added macro}
-% \changes{v1.10}{2005/10/04}{Use quark instead}
+% \changes{v1.08}{2005/04/28}{Commande ajoutée}
+% \changes{v1.10}{2005/10/04}{Utilisation de quart à la place}
 % Pour arrêter (\emph{break}) la boucle (\emph{loop}).
 %    \begin{macrocode}
 \def\@xspace@break@loop#1\@nil{}
@@ -306,7 +308,7 @@
 % \end{macro}
 %
 % \begin{macro}{\@xspace@hook}
-% \changes{v1.09}{2005/07/26}{Added macro}
+% \changes{v1.09}{2005/07/26}{Commande ajoutée}
 % Un point d'entrée (\emph{hook}) pour les utilisateurs avec des besoins
 % spéciaux.
 %    \begin{macrocode}
@@ -315,11 +317,11 @@
 % \end{macro}
 %
 % Ici, nous vérifions si nous utilisons \eTeX. Nous ne pouvons utiliser la
-% commande \cs{@ifundefined} car elle bloque les codes de catégorie et nous 
-% avons besoin de les modifier. Comme il existe un risque que quelqu'un ait
-% défini par accident \cs{eTeXversion} comme valant \cs{relax}, nous vérifions
-% ce cas précis mais sans définir pour autant la commande en tant que 
-% \cs{relax} si elle ne l'était pas.
+% commande \cs{@ifundefined} car elle bloque les codes de catégorie alors que
+% nous avons besoin de les modifier. Comme il y a un risque que quelqu'un
+% ait défini par accident \cs{eTeXversion} comme valant \cs{relax}, nous
+% vérifions ce cas précis sans pour autant définir la commande en tant que
+% \cs{relax} si ce n'était pas le cas.
 %    \begin{macrocode}
 \begingroup\expandafter\expandafter\expandafter\endgroup
   \expandafter\ifx\csname eTeXversion\endcsname\relax
@@ -341,14 +343,15 @@
   \let\@xspace@eTeX@setup\relax
 %    \end{macrocode}
 % \begin{macro}{\@xspace@eTeX@setup}
-% \changes{v1.10}{2005/10/04}{Added macro}
-% \changes{v1.12}{2006/05/08}{Bug fix for verbatim in output routine}
+% \changes{v1.10}{2005/10/04}{Commande ajoutée}
+% \changes{v1.12}{2006/05/08}{Correction de l'erreur pour du verbatim dans la
+%   routine de sortie}
 % Quand nous utilisons \eTeX, nous avons l'avantage de disposer de la commande
 % \cs{scantokens} qui va ici repasser en revue les codes de catégorie courants.
 % Cette petite astuce pour le développement des unités lexicales garantit que 
-% la liste des exceptions est redéfinie avec son contenu en tenant compte de
+% la liste d'exceptions est redéfinie avec son contenu en tenant compte de
 % la valeur présente des codes de catégorie. C'est pourquoi nous faisons en 
-% sorte que le code de catégorie de l'espace soit 10, car nous avons un 
+% sorte que le code de catégorie de l'espace soit 10 : nous avons en effet un 
 % \verb*|\ | dans la liste.
 %    \begin{macrocode}
 \else
@@ -359,8 +362,8 @@
       \catcode`\ =10\relax
       \makeatletter
 %    \end{macrocode}
-% Nous pouvons aussi avoir la malchance que la relecture de la liste se passe
-% au moment où les codes de catégorie de |\|, |{| et |}| sont \og autres 
+% Nous pouvons aussi avoir la malchance de procéder à la relecture de la liste
+% % au moment où les codes de catégorie de |\|, |{| et |}| sont \og autres 
 % \fg{}, par exemple quand, dans un en-tête, la routine de sortie est 
 % appelée au milieu d'un environnement \texttt{verbatim}.
 %    \begin{macrocode}
@@ -376,38 +379,41 @@
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\@xspace}
-% \changes{v1.03}{1994/11/15}{Add exclamation mark}
-% \changes{v1.04}{1996/05/17}{Add slash}
-% \changes{v1.05}{1996/12/06}{Add space for alltt etc. tools/2322}
-% \changes{v1.06}{1997/10/13}{Add normal space. tools/2632}
-% \changes{v1.07}{2004/12/07}{Now runs through a list of exceptions}
-% \changes{v1.07}{2004/12/07}{Added \cs{footnote} and
+% \changes{v1.03}{1994/11/15}{Ajout du point d'exclamation}
+% \changes{v1.04}{1996/05/17}{Ajout de l'oblique}
+% \changes{v1.05}{1996/12/06}{Ajout de l'espace pour alltt et autres. 
+%   tools/2322}
+% \changes{v1.06}{1997/10/13}{Ajout de l'espace normal. tools/2632}
+% \changes{v1.07}{2004/12/07}{Utilisation d'une liste d'exceptions}
+% \changes{v1.07}{2004/12/07}{Ajout de \cs{footnote} et
 % \cs{footnotemark}}
-% \changes{v1.08}{2005/05/07}{Use recursive loop instead of \cs{@tfor}}
-% \changes{v1.09}{2005/07/26}{Only check non-letters and add hook}
-% \changes{v1.10}{2005/10/04}{Use higher level functions for
-% conditional processing}
-% \changes{v1.10}{2005/10/04}{Improve expansion method} 
-% Si l'unité lexicale suivante est une de celles appartenant à une liste de
-% caractères, rien n'est fait, sinon une espace est ajoutée. Avec la 
-% version~1.07, l'approche a été modifiée radicalement pour passer à travers
-% la liste d'exception |\@xspace@exceptions@tlp| et vérifier chaque unité
-% lexicale une par une.
+% \changes{v1.08}{2005/05/07}{Utilisation d'une boucle récursive plutôt que
+%   \cs{@tfor}}
+% \changes{v1.09}{2005/07/26}{Vérification uniquement des non-lettres et ajout
+%   point d'entrée}
+% \changes{v1.10}{2005/10/04}{Utilisation de fonctions de plus haut niveau
+%   pour le traitement conditionnel}
+% \changes{v1.10}{2005/10/04}{Amélioration de la méthode de développement}
+
+% Si l'unité lexicale suivante appartient à une liste de caractères, rien
+% n'est fait, sinon une espace est ajoutée. Avec la version~1.07, l'approche a
+% été modifiée radicalement pour passer à travers la liste d'exception 
+% |\@xspace@exceptions@tlp| et vérifier chaque unité lexicale une par une.
 %    \begin{macrocode}
 \def\@xspace{%
 %    \end{macrocode}
-% Avant de commencer à vérifier la liste des exceptions, il est intéressant
+% Avant de commencer à vérifier la liste d'exceptions, il est intéressant
 % de procéder à une vérification rapide de l'unité lexicale en question.
 % La plupart du temps, \cs{xspace} se trouve dans du texte normal et 
 % \cs{@let@token} est une lettre. Dans ce cas, il ne sert à rien de vérifier
-% la liste des exceptions car elle ne contiendra pas d'unité lexicale de
+% la liste d'exceptions car elle ne contiendra pas d'unité lexicale de
 % catégorie~11. 
 %
 % Vous pourriez ici vous demander pourquoi il y a ici des fonctions spéciales
-% plutôt que de simples \cs{ifx} conditionnels. La raison pour cela est que
+% plutôt que de simples \cs{ifx} conditionnels. Les raisons à cela sont que
 % a)~de cette façon, nous n'avons pas à ajouter une multitude 
 % d'\cs{expandafter} pour obtenir le bon regroupement et b)~nous ne 
-% rencontrerons pas de problème quand \cs{@let@token} sera égale à \cs{if}.
+% rencontrons pas de problème quand \cs{@let@token} est égale à \cs{if}.
 %    \begin{macrocode}
   \@xspace@lettoken@if@letter@TF \space{%
 %    \end{macrocode}
@@ -444,13 +450,13 @@
 % \end{macro}
 %
 % \begin{macro}{\@xspace@check@token}
-% \changes{v1.07}{2004/12/07}{Added macro}
-% \changes{v1.08}{2005/05/07}{Made function recursive}
-% \changes{v1.10}{2005/10/04}{Use higher level functions for
-% conditional processing}
-% \changes{v1.11}{2006/02/12}{Modified so the \cs{@let@token} can be
+% \changes{v1.07}{2004/12/07}{Commande ajoutée}
+% \changes{v1.08}{2005/05/07}{Fonction rendue récursive}
+% \changes{v1.10}{2005/10/04}{Utilisation de fonctions de plus haut niveau
+%   pour le traitement conditionnel}
+% \changes{v1.11}{2006/02/12}{Modification pour que le \cs{@let@token} soit
 %   \cs{outer}}
-% La commande compare juste l'élément courant dans la liste des exceptions
+% La commande compare juste l'élément courant dans la liste d'exceptions
 % avec \cs{@let@token}. S'ils sont égaux, nous faisons en sorte qu'aucune
 % espace ne soit insérée et nous sortons de la boucle.
 %    \begin{macrocode}
