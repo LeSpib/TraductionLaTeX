@@ -1,5 +1,5 @@
 # Variables pour le codage 
-latex = pdflatex
+latex = xelatex
 doc = delarray-fr
 
 # Déclaration des actions (et dépendances) 

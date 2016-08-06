@@ -38,7 +38,7 @@ Traduction            | Source                     | Avancée                | P
 [datetime2-fr]        | [datetime2] v1.5.2         | :new_moon:             | 2 / 179         |
 [datetime2-french-fr] | [datetime2-french] v1.5.2  | :new_moon:             | 1 / 12          |
 [dcolumn-fr]          | [dcolumn] v1.06            | :new_moon:             | 0 / 4           | Traduction préexistante ([FT-tools]).
-[delarray-fr]         | [delarray] v1.01           | :waxing_gibbous_moon:  | 3               | Traduction préexistante ([FT-tools]).
+[delarray-fr]         | [delarray] v1.01           | :full_moon:            | 3               | Traduction préexistante ([FT-tools]).
 [enumerate-fr]        | [enumerate] v3.00          | :new_moon:             | 1 / 4           | Traduction préexistante ([FT-tools]).
 [enumitem-fr]         | [enumitem] v3.5.2          | :new_moon:             | 0 / 17          | 
                       | [etoc] v1.08g              |                        | *. / 114*       |

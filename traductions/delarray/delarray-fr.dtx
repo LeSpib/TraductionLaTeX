@@ -1,23 +1,23 @@
 % \iffalse meta-comment
 %
-% Copyright 1993-2014
+% Copyright (c) 1993-2016
+% Le LaTeX3 Project et tout auteur listé dans ce fichier.
 %
-% The LaTeX3 Project and any individual authors listed elsewhere
-% in this file.
+% Ce fichier est la traduction en français du fichier delarray.dtx
+% -------------------------------------------------------------------
 %
-% This file is part of the Standard LaTeX `Tools Bundle'.
-% -------------------------------------------------------
+% Ce document appartient à la "boîte à outils" du LaTeX standard.
+% 
+% Il peut être distribué et/ou modifié sous les conditions définies par la
+% LaTeX Project Public License, soit en version 1.3c, soit (à votre choix)
+% en toute version ultérieure.
+% La dernière version de cette licence est à l'adresse :
+%   http://www.latex-project.org/lppl.txt
+% et la version 1.3c et les suivantes se retrouvent dans toutes les
+% distributions de LaTeX dès la version 2005/12/01.
 %
-% It may be distributed and/or modified under the
-% conditions of the LaTeX Project Public License, either version 1.3c
-% of this license or (at your option) any later version.
-% The latest version of this license is in
-%    http://www.latex-project.org/lppl.txt
-% and version 1.3c or later is part of all distributions of LaTeX
-% version 2005/12/01 or later.
-%
-% The list of all files belonging to the LaTeX `Tools Bundle' is
-% given in the file `manifest.txt'.
+% La liste de tous les fichiers appartenant à la "Boîte à outils" est donnée
+% dans le fichier "manifest.txt".
 %
 % \fi
 % \iffalse
@@ -32,10 +32,11 @@
 \usepackage[ltxdoc,inputenc,fontenc,babel]{translatex-fr}
 \usepackage{delarray}
 \GetFileInfo{delarray.sty}
+\usepackage[colorlinks=true]{hyperref}
 \begin{document}
 \title{L'extension \textsf{delarray}\thanks{Ce fichier a pour numéro de
         version \fileversion\ et a été mis à jour le \filedatefr. Son 
-        titre original est \og \emph{The \textsf{delarray} package} \fg{}.
+        titre original est \og \emph{The \textsf{delarray} package} \fg.
         La première traduction, basée la version v1.01, a été publiée par 
         Jean-Pierre Drucbert en 2000.}}
 \author{David Carlisle}
@@ -49,10 +50,10 @@
 %
 %
 % \changes{v1.00}{1992/07/06}
-%    {Initial version after merging of newarray.sty to array.sty}
+%    {Version initiale après fusion de newarray.sty et de array.sty}
 %
 % \changes{v1.01}{1994/03/14}
-%    {Update to LaTeX2e}
+%    {Mise à jour pour LaTeX2e}
 %
 %
 % \section{Exemples}
@@ -73,15 +74,15 @@
 %           0        &si $x=0$\\
 %           \sin(x)/x&sinon
 %           \end{array}  \]
-% Ici, |L| désigne une colonne de texte sinistroverse\footnote{N.D.T. : il 
-% s'agit d'un mode où le texte est écrit de gauche à droite.} alignée à gauche,
-% qui peut être définie comme suit : |\newcolumntype{L}{>{$}l<{$}}|, comme 
-% expliqué dans l'extension \textsf{array}. Notez que les délimiteurs doivent
-% toujours être utilisés par paires et que le \og |.| \fg{} doit être utilisé
-% pour indiquer un \og délimiteur nul \fg{}.
+% Ici, |L| désigne une colonne de texte dextroverse\footnote{N.D.T. : le texte
+% y est écrit de gauche à droite.} alignée à gauche, qui peut être définie 
+% comme suit : |\newcolumntype{L}{>{$}l<{$}}|, comme expliqué dans l'extension
+% \textsf{array}. Notez que les délimiteurs doivent toujours être utilisés par
+% paires et que le \og |.| \fg doit être utilisé pour indiquer un  
+% délimiteur \og nul \fg.
 %
 % Ce dispositif est particulièrement utile si les arguments |[t]| ou |[b]| sont
-% aussi utilisés. Dans ces cas le résultat n'est pas équivalent à celui obtenu
+% aussi utilisés. Dans ce cas, le résultat n'est pas équivalent à celui obtenu
 % en entourant l'environnement par |\left|\ldots|\right|, comme vous pouvez le
 % voir dans les exemples suivants:
 % \[
@@ -124,7 +125,7 @@
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\@@array}
-%    Cette commande teste la présense d'un délimiteur optionnel avant
+%    Cette commande teste la présence d'un délimiteur optionnel avant
 %    l'accolade gauche débutant le préambule de la table. S'il n'y a pas de
 %    délimiteur, |\@arrayleft| et |\@arrayright| ne sont associés à aucune
 %    action et |\@array| est appelé avec l'argument de position (entre 
@@ -141,10 +142,10 @@
 %    \begin{macrocode}
 \def\@del@array[#1]#2#3#4{%
 %    \end{macrocode}
-% La ligne suivante est complétement redondante mais elle permet de capter
+% La ligne suivante est complètement redondante mais elle permet de capter
 % des erreurs associées aux délimiteurs avant que le traitement de 
 % l'alignement ne commence. Une erreur courante est ici l'oubli d'un
-% \og . \fg{} dans une construction similaire à l'environnement |\cases|.
+% \og . \fg dans une construction similaire à l'environnement |\cases|.
 % Ceci provoque l'engloutissement de la première unité lexicale, ce qui conduit
 % généralement à de nombreux messages d'erreurs infondés masquant 
 % la vraie source de l'erreur, le délimiteur manquant, d'autant que 
@@ -152,14 +153,14 @@
 %    \begin{macrocode}
   \setbox\z@\hbox{$\left#2\right#4$}%
 %    \end{macrocode}
-% Dans le cas de l'argument \og c \fg{}, nous n'avons pas besoin de remettre 
+% Dans le cas de l'argument \og c \fg, nous n'avons pas besoin de remettre 
 % en boîte l'alignement, ce qui fait que nous pouvons définir |\@arrayleft| et
 % |\@arrayright| juste en y insérant les délimiteurs.
 %    \begin{macrocode}
   \if#1c\def\@arrayleft{\left#2}\def\@arrayright{\right#4}%
 %    \end{macrocode}
 % Sinon, nous avons (sauf erreur) un argument {\tt[t]} ou {\tt[b]} et nous
-% stockons alors l'alignement sans les délimiteurs dans box0.
+% stockons alors l'alignement sans les délimiteurs dans |\z0|.
 %    \begin{macrocode}
   \else\def\@arrayleft{\setbox\z@}%
 %    \end{macrocode}
@@ -171,7 +172,7 @@
 % de |[b]|) est calculé ici. Il s'agit là d'un peu d'arithmétique, telle que 
 % décrite dans le \TeX{}Book, annexe G, règle 8. Nous effectuons le calcul de
 % cette manière plutôt qu'en prenant la différence entre la profondeur de la 
-% boîte box0 et la profondeur de la boîte définie ci-dessous dans la mesure où 
+% boîte |\z0| et la profondeur de la boîte définie ci-dessous dans la mesure où 
 % la profondeur de cette boîte peut être affectée par les délimiteurs si 
 % |\delimitershortfall| ou |\delimiterfactor| ont des valeurs non standards.
 %    \begin{macrocode}
@@ -200,11 +201,11 @@
 %    \end{macrocode}
 %
 %
-% \subsection{L'extension newarray}
+% \subsection{L'extension \textsf{newarray}}
 % Toutes les fonctionnalités de l'ancienne extension \textsf{newarray} ont été
 % basculées dans les extensions \textsf{array} ou \textsf{delarray}.
 % \changes{v1.00}{1992/07/06}
-%    {Stop generating a `shell' newarray.sty}
+%    {Fin de la génération de newarray.sty}
 %
 %
 % \Finale
