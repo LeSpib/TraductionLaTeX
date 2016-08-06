@@ -38,18 +38,12 @@
 % \begin{verbatim}
 %    \usepackage{rawfonts}
 % \end{verbatim}
-% alors près de 60 fontes telles que |\tenrm| seront chargées dans \LaTeX.
-% Cette opération représente un surcoût important. Ainsi, ce document utilise 
-% selon le fichier journal :
-% \begin{verbatim}
-%    20507 words of font info for 51 fonts
-% \end{verbatim}
-% soit 20507 mots d'informations pour 51 fontes. Lorsque l'extension
-% \textsf{rawfonts} est chargée, il utilise :
-% \begin{verbatim}
-%    30987 words of font info for 93 fonts
-% \end{verbatim}
-% soit 30987 mots d'informations pour 91 fontes. Ce qui montre que
+% près de 60 fontes telles que |\tenrm| seront chargées dans \LaTeX.
+% Cette opération représente un surcoût important. Ainsi, ce document utilise, 
+% selon le fichier journal, 20~507 mots d'informations pour 51 fontes 
+% (\emph{20507 words of font info for 51 fonts}). Lorsque l'extension
+% \textsf{rawfonts} est chargée, il utilise 30~987 mots d'informations pour 93
+% fontes (\emph{30987 words of font info for 93 fonts}). Ceci montre que
 % \textsf{rawfonts} peut causer le chargement de deux fois plus de fontes pour
 % des documents simples (ce surcoût explique d'ailleurs pourquoi \LaTeXe{} ne 
 % définit pas |\tenrm| et ses semblables par défaut).
@@ -63,7 +57,7 @@
 % L'extension \textsf{rawfonts} est destinée à être principalement utilisée
 % avec des documents \LaTeX~2.09 et vous pourriez souhaiter avoir l'extension 
 % chargée à chaque fois que vous utilisez \LaTeXe{} en mode compatibilité.
-% Dans ce cas, vous devriez ajouter la ligne suivante :
+% Dans ce cas, vous devriez ajouter la ligne suivante
 % \begin{verbatim}
 %    \RequirePackage{rawfonts}
 % \end{verbatim}
@@ -73,10 +67,11 @@
 %
 % \section*{Implémentation}
 %
-% Le pilote de la documentation que vous êtes en train de 
-% lire\footnote{N.D.T. : ce document étant une traduction, le pilote est ici
-% modifié par rapport à la version originale. La ligne 3 a été ajoutée et la 
-% ligne 6 importe \texttt{rawfonts-fr.dtx} au lieu de \texttt{rawfonts.dtx}.}.
+% Le pilote de la documentation\footnote{N.D.T. : ce document étant une
+% traduction, le pilote est ici modifié par rapport à la version originale. La
+% ligne 3 a été ajoutée et la ligne 6 importe \texttt{rawfonts-fr.dtx} au lieu
+% de \texttt{rawfonts.dtx}.} que vous êtes en train de lire est défini par les
+% quelques lignes suivantes.
 %    \begin{macrocode}
 %<*driver>
 \documentclass{ltxdoc}
