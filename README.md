@@ -24,59 +24,60 @@ Ce tableau indique les différentes extensions envisagées dans le projet ainsi 
 
 > *This table shows the different extensions foreseen for this project and the progress of these translations. The visual code for the translation progress uses the phases of the moon and their order :* :new_moon: :waxing_crescent_moon: :first_quarter_moon: :waxing_gibbous_moon: :full_moon: *(the brighter, the better).*
 
-Traduction       | Source              | Avancée                | Pages traduites | Commentaires 
----------------- | ------------------- | :--------------------: | :-------------: | ---------------------------------------
-[adjustbox-fr]   | [adjustbox] v1.0    | :new_moon:             | 0 / 29          |
-[afterpage-fr]   | [afterpage] v1.08   | :new_moon:             | 1 / 6           | 
-[appendix-fr]    | [appendix] v1.2b    | :full_moon:            | 16              | Traduction préexistante ([FT-tools]).
-[array-fr]       | [array] v2.4c       | :new_moon:             | 0 / 35          | Traduction préexistante ([FT-tools]).
-[bm-fr]          | [bm] v1.2b          | :new_moon:             | 0 / 20          | 
-[booktabs-fr]    | [booktabs] 1.618033 | :waxing_crescent_moon: | 9 / 18          | Traduction préexistante ([FT-tools]).
-[calc-fr]        | [calc] v4.3         | :new_moon:             | 0 / 18          | Traduction préexistante ([FT-tools]).
-[cleveref-fr]    | [cleveref] v0.19    | :new_moon:             | 0 / 31          |
-[datatool-fr]    | [datatool] v2.27    | :new_moon:             | 1 / 233         |
-[datetime2-fr]   | [datetime2] v1.5.2  | :new_moon:             | 2 / 179         |
-[dcolumn-fr]     | [dcolumn] v1.06     | :new_moon:             | 0 / 4           | Traduction préexistante ([FT-tools]).
-[delarray-fr]    | [delarray] v1.01    | :waxing_gibbous_moon:  | 3               | Traduction préexistante ([FT-tools]).
-[enumerate-fr]   | [enumerate] v3.00   | :new_moon:             | 1 / 4           | Traduction préexistante ([FT-tools]).
-[enumitem-fr]    | [enumitem] v3.5.2   | :new_moon:             | 0 / 17          | 
-                 | [etoc] v1.08g       |                        | *. / 114*       |
-[fancyhdr-fr]    | [fancyhdr] v3.1     | :new_moon:             | 2 / 26          |
-[fileerr-fr]     | [fileerr] v1.1a     | :full_moon:            | 3               | 
-[fncychap-fr]    | [fncychap] v1.34    | :full_moon:            | 12              | Ajout d'infos dans le doc
-[fontsmpl-fr]    | [fontsmpl] v0.11    | :new_moon:             | 0 / 5           | Traduction préexistante ([FT-tools]).
-[fontspec-fr]    | [fontspec] v2.4e    | :new_moon:             | 8 / 124         | Auteur contacté et intéressé.
-[ftnright-fr]    | [ftnright] v1.1f    | :new_moon:             | 0 / 11          | Traduction préexistante ([FT-tools]).
-[geometry-fr]    | [geometry] v5.6     | :full_moon:            | 42              | Auteur contacté et intéressé.
-                 | [glossaries] v4.25  |                        | *. / 248*       |
-[graphicx-fr]    | [graphicx] v1.0g    | :new_moon:             | 0 / 11          |
-[hhline-fr]      | [hhline] v2.03      | :new_moon:             | 0 / 4           | Traduction préexistante ([FT-tools]).
-                 | [hyperref] v6.83q   |                        | *. / 31*        |
-[ifthen-fr]      | [ifthen] v1.1c      | :new_moon:             | 0 / 6           |
-[indentfirst-fr] | [indentfirst] v1.03 | :full_moon:            | 1               | Traduction préexistante ([FT-tools]).
-[layout-fr]      | [layout] v1.02c     | :new_moon:             | 0 / 14          | Traduction préexistante ([FT-tools]).
-[lipsum-fr]      | [lipsum] v1.3       | :full_moon:            | 41              |
-[listings-fr]    | [listings] v1.6     | :new_moon:             | 1 / 61          |
-[longtable-fr]   | [longtable] v4.11   | :new_moon:             | 0 / 29          | Traduction préexistante ([FT-tools]).
-[multicol-fr]    | [multicol] v1.8p    | :new_moon:             | 0 / 36          | Traduction préexistante ([FT-tools]).
-                 | [pgfplots] v1.13    |                        | *. / 544*       |
-[rawfonts-fr]    | [rawfonts] v0.01    | :first_quarter_moon:   | 4               | Traduction préexistante ([FT-tools]).
-[shellesc-fr]    | [shellesc] v0.02a   | :new_moon:             | 0 / 3           | 
-[showkeys-fr]    | [showkeys] v3.17    | :new_moon:             | 0 / 10          | Traduction préexistante ([FT-tools]).
-                 | [siunitx] v2.6q     |                        | *. / 102*       |
-[somedefs-fr]    | [somedefs] v0.03    | :first_quarter_moon:   | 3               | Traduction préexistante ([FT-tools]).
-[tabularx-fr]    | [tabularx] v2.11    | :new_moon:             | 0 / 13          | Traduction préexistante ([FT-tools]).
-[theorem-fr]     | [theorem] v2.2c     | :new_moon:             | 0 / 16          | Traduction préexistante ([FT-tools]).
-                 | [tikz+pgf] v3.0.1a  |                        | *. / 1161*      |
-[titlesec-fr]    | [titlesec] 2.10.2   | :full_moon:            | 25              | 
-[tocbibind-fr]   | [tocbibind] v1.5k   | :waxing_crescent_moon: | 9 / 18          | 
-[trace-fr]       | [trace] v1.1d       | :new_moon:             | 0 / 10          | 
-[varioref-fr]    | [varioref] v1.5c    | :new_moon:             | 0 / 35          | Traduction préexistante ([FT-tools]).
-[verbatim-fr]    | [verbatim] v1.5q    | :new_moon:             | 0 / 23          | Traduction préexistante ([FT-tools]).
-[xcolor-fr]      | [xcolor] v2.12      | :first_quarter_moon:   | 75              | 
-[xkeyval-fr]     | [xkeyval] v2.7      | :new_moon:             | 2 / 73          |
-[xr-fr]          | [xr] v5.02          | :full_moon:            | 2               | Traduction préexistante ([FT-tools]).
-[xspace-fr]      | [xspace] v1.13      | :full_moon:            | 7               | Traduction préexistante ([FT-tools]).
+Traduction            | Source                     | Avancée                | Pages traduites | Commentaires 
+--------------------- | -------------------------- | :--------------------: | :-------------: | ---------------------------------------
+[adjustbox-fr]        | [adjustbox] v1.0           | :new_moon:             | 0 / 29          |
+[afterpage-fr]        | [afterpage] v1.08          | :new_moon:             | 1 / 6           | 
+[appendix-fr]         | [appendix] v1.2b           | :full_moon:            | 16              | Traduction préexistante ([FT-tools]).
+[array-fr]            | [array] v2.4c              | :new_moon:             | 0 / 35          | Traduction préexistante ([FT-tools]).
+[bm-fr]               | [bm] v1.2b                 | :new_moon:             | 0 / 20          | 
+[booktabs-fr]         | [booktabs] 1.618033        | :waxing_crescent_moon: | 9 / 18          | Traduction préexistante ([FT-tools]).
+[calc-fr]             | [calc] v4.3                | :new_moon:             | 0 / 18          | Traduction préexistante ([FT-tools]).
+[cleveref-fr]         | [cleveref] v0.19           | :new_moon:             | 0 / 31          |
+[datatool-fr]         | [datatool] v2.27           | :new_moon:             | 1 / 233         |
+[datetime2-fr]        | [datetime2] v1.5.2         | :new_moon:             | 2 / 179         |
+[datetime2-french-fr] | [datetime2-french] v1.5.2  | :new_moon:             | 1 / 12          |
+[dcolumn-fr]          | [dcolumn] v1.06            | :new_moon:             | 0 / 4           | Traduction préexistante ([FT-tools]).
+[delarray-fr]         | [delarray] v1.01           | :waxing_gibbous_moon:  | 3               | Traduction préexistante ([FT-tools]).
+[enumerate-fr]        | [enumerate] v3.00          | :new_moon:             | 1 / 4           | Traduction préexistante ([FT-tools]).
+[enumitem-fr]         | [enumitem] v3.5.2          | :new_moon:             | 0 / 17          | 
+                      | [etoc] v1.08g              |                        | *. / 114*       |
+[fancyhdr-fr]         | [fancyhdr] v3.1            | :new_moon:             | 2 / 26          |
+[fileerr-fr]          | [fileerr] v1.1a            | :full_moon:            | 3               | 
+[fncychap-fr]         | [fncychap] v1.34           | :full_moon:            | 12              | Ajout d'infos dans le doc
+[fontsmpl-fr]         | [fontsmpl] v0.11           | :new_moon:             | 0 / 5           | Traduction préexistante ([FT-tools]).
+[fontspec-fr]         | [fontspec] v2.4e           | :new_moon:             | 8 / 124         | Auteur contacté et intéressé.
+[ftnright-fr]         | [ftnright] v1.1f           | :new_moon:             | 0 / 11          | Traduction préexistante ([FT-tools]).
+[geometry-fr]         | [geometry] v5.6            | :full_moon:            | 42              | Auteur contacté et intéressé.
+                      | [glossaries] v4.25         |                        | *. / 248*       |
+[graphicx-fr]         | [graphicx] v1.0g           | :new_moon:             | 0 / 11          |
+[hhline-fr]           | [hhline] v2.03             | :new_moon:             | 0 / 4           | Traduction préexistante ([FT-tools]).
+                      | [hyperref] v6.83q          |                        | *. / 31*        |
+[ifthen-fr]           | [ifthen] v1.1c             | :new_moon:             | 0 / 6           |
+[indentfirst-fr]      | [indentfirst] v1.03        | :full_moon:            | 1               | Traduction préexistante ([FT-tools]).
+[layout-fr]           | [layout] v1.02c            | :new_moon:             | 0 / 14          | Traduction préexistante ([FT-tools]).
+[lipsum-fr]           | [lipsum] v1.3              | :full_moon:            | 41              |
+[listings-fr]         | [listings] v1.6            | :new_moon:             | 1 / 61          |
+[longtable-fr]        | [longtable] v4.11          | :new_moon:             | 0 / 29          | Traduction préexistante ([FT-tools]).
+[multicol-fr]         | [multicol] v1.8p           | :new_moon:             | 0 / 36          | Traduction préexistante ([FT-tools]).
+                      | [pgfplots] v1.13           |                        | *. / 544*       |
+[rawfonts-fr]         | [rawfonts] v0.01           | :first_quarter_moon:   | 4               | Traduction préexistante ([FT-tools]).
+[shellesc-fr]         | [shellesc] v0.02a          | :new_moon:             | 0 / 3           | 
+[showkeys-fr]         | [showkeys] v3.17           | :new_moon:             | 0 / 10          | Traduction préexistante ([FT-tools]).
+                      | [siunitx] v2.6q            |                        | *. / 102*       |
+[somedefs-fr]         | [somedefs] v0.03           | :first_quarter_moon:   | 3               | Traduction préexistante ([FT-tools]).
+[tabularx-fr]         | [tabularx] v2.11           | :new_moon:             | 0 / 13          | Traduction préexistante ([FT-tools]).
+[theorem-fr]          | [theorem] v2.2c            | :new_moon:             | 0 / 16          | Traduction préexistante ([FT-tools]).
+                      | [tikz+pgf] v3.0.1a         |                        | *. / 1161*      |
+[titlesec-fr]         | [titlesec] 2.10.2          | :full_moon:            | 25              | 
+[tocbibind-fr]        | [tocbibind] v1.5k          | :waxing_crescent_moon: | 9 / 18          | 
+[trace-fr]            | [trace] v1.1d              | :new_moon:             | 0 / 10          | 
+[varioref-fr]         | [varioref] v1.5c           | :new_moon:             | 0 / 35          | Traduction préexistante ([FT-tools]).
+[verbatim-fr]         | [verbatim] v1.5q           | :new_moon:             | 0 / 23          | Traduction préexistante ([FT-tools]).
+[xcolor-fr]           | [xcolor] v2.12             | :first_quarter_moon:   | 75              | 
+[xkeyval-fr]          | [xkeyval] v2.7             | :new_moon:             | 2 / 73          |
+[xr-fr]               | [xr] v5.02                 | :full_moon:            | 2               | Traduction préexistante ([FT-tools]).
+[xspace-fr]           | [xspace] v1.13             | :full_moon:            | 7               | Traduction préexistante ([FT-tools]).
 
 ### Traduction des documents 
 
@@ -127,107 +128,109 @@ Anglais                | Français                                       | Comme
 
 
 [French translations]: <https://www.ctan.org/pkg/french-translations>
-[FT-tools]:      <https://www.ctan.org/tex-archive/info/french-translations/macros/latex/required/tools>
-[adjustbox]:     <https://www.ctan.org/pkg/adjustbox>
-[adjustbox-fr]:  <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/adjustbox>
-[afterpage]:     <https://www.ctan.org/pkg/afterpage>
-[afterpage-fr]:  <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/afterpage>
-[appendix]:      <https://www.ctan.org/pkg/appendix>
-[appendix-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/appendix>
-[array]:         <https://www.ctan.org/pkg/array>
-[array-fr]:      <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/array>
-[bm]:            <https://www.ctan.org/pkg/bm>
-[bm-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/bm>
-[booktabs]:      <https://www.ctan.org/pkg/booktabs>
-[booktabs-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/booktabs>
-[calc]:          <https://www.ctan.org/pkg/calc>
-[calc-fr]:       <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/calc>
-[cleveref]:      <https://www.ctan.org/pkg/cleveref>
-[cleveref-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/cleveref>
-[datatool]:      <https://www.ctan.org/pkg/datatool>
-[datatool-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/datatool>
-[datetime2]:     <https://www.ctan.org/pkg/datetime2>
-[datetime2-fr]:  <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/datetime2>
-[dcolumn]:       <https://www.ctan.org/pkg/dcolumn>
-[dcolumn-fr]:    <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/dcolumn>
-[delarray]:      <https://www.ctan.org/pkg/delarray>
-[delarray-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/delarray>
-[enumerate]:     <https://www.ctan.org/pkg/enumerate>
-[enumerate-fr]:  <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/enumerate>
-[enumitem]:      <https://www.ctan.org/pkg/enumitem>
-[enumitem-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/enumitem>
-[etoc]:          <https://www.ctan.org/pkg/etoc>
-[etoc-fr]:       <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/etoc>
-[fancyhdr]:      <https://www.ctan.org/pkg/fancyhdr>
-[fancyhdr-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/fancyhdr>
-[fileerr]:       <https://www.ctan.org/pkg/fileerr>
-[fileerr-fr]:    <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/fileerr>
-[fncychap]:      <https://www.ctan.org/pkg/fncychap>
-[fncychap-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/fncychap>
-[fontsmpl]:      <https://www.ctan.org/pkg/fontsmpl>
-[fontsmpl-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/fontsmpl>
-[fontspec]:      <https://www.ctan.org/pkg/fontspec>
-[fontspec-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/fontspec>
-[ftnright]:      <https://www.ctan.org/pkg/ftnright>
-[ftnright-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/ftnright>
-[geometry]:      <https://www.ctan.org/pkg/geometry>
-[geometry-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/geometry>
-[glossaries]:    <https://www.ctan.org/pkg/glossaries>
-[glossaries-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/glossaries>
-[graphicx]:      <https://www.ctan.org/pkg/graphicx>
-[graphicx-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/graphicx>
-[hhline]:        <https://www.ctan.org/pkg/hhline>
-[hhline-fr]:     <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/hhline>
-[hyperref]:      <https://www.ctan.org/pkg/hyperref>
-[hyperref-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/hyperref>
-[ifthen]:        <https://www.ctan.org/pkg/ifthen>
-[ifthen-fr]:     <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/ifthen>
-[indentfirst]:   <https://www.ctan.org/pkg/indentfirst>
-[indentfirst-fr]:<https://github.com/LeSpib/TransLaTeX/tree/master/traductions/indentfirst>
-[layout]:        <https://www.ctan.org/pkg/layout>
-[layout-fr]:     <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/layout>
-[lipsum]:        <https://www.ctan.org/pkg/lipsum>
-[lipsum-fr]:     <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/lipsum>
-[listings]:      <https://www.ctan.org/pkg/listings>
-[listings-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/listings>
-[longtable]:     <https://www.ctan.org/pkg/longtable>
-[longtable-fr]:  <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/longtable>
-[multicol]:      <https://www.ctan.org/pkg/multicol>
-[multicol-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/multicol>
-[pgfplots]:      <https://www.ctan.org/pkg/pgfplots>
-[pgfplots-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/pgfplots>
-[rawfonts]:      <https://www.ctan.org/pkg/rawfonts>
-[rawfonts-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/rawfonts>
-[shellesc]:      <https://www.ctan.org/pkg/shellesc>
-[shellesc-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/shellesc>
-[showkeys]:      <https://www.ctan.org/pkg/showkeys>
-[showkeys-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/showkeys>
-[siunitx]:       <https://www.ctan.org/pkg/siunitx>
-[siunitx-fr]:    <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/siunitx>
-[somedefs]:      <https://www.ctan.org/pkg/somedefs>
-[somedefs-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/somedefs>
-[tabularx]:      <https://www.ctan.org/pkg/tabularx>
-[tabularx-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/tabularx>
-[theorem]:       <https://www.ctan.org/pkg/theorem>
-[theorem-fr]:    <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/theorem>
-[titlesec]:      <https://www.ctan.org/pkg/titlesec>
-[titlesec-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/titlesec>
-[tocbibind]:     <https://www.ctan.org/pkg/tocbibind>
-[tocbibind-fr]:  <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/tocbibind>
-[tikz+pgf]:      <https://www.ctan.org/pkg/pgf>
-[tikz-fr]:       <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/tikz>
-[trace]:         <https://www.ctan.org/pkg/trace>
-[trace-fr]:      <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/trace>
-[varioref]:      <https://www.ctan.org/pkg/varioref>
-[varioref-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/varioref>
-[verbatim]:      <https://www.ctan.org/pkg/verbatim>
-[verbatim-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/verbatim>
-[xcolor]:        <https://www.ctan.org/pkg/xcolor>
-[xcolor-fr]:     <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/xcolor>
-[xkeyval]:       <https://www.ctan.org/pkg/xkeyval>
-[xkeyval-fr]:    <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/xkeyval>
-[xr]:            <https://www.ctan.org/pkg/xr>
-[xr-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/xr>
-[xspace]:        <https://www.ctan.org/pkg/xspace>
-[xspace-fr]:     <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/xspace>
-[TransLaTeX]:    <https://github.com/LeSpib/TransLaTeX/tree/master/TransLaTeX>
+[FT-tools]:            <https://www.ctan.org/tex-archive/info/french-translations/macros/latex/required/tools>
+[adjustbox]:           <https://www.ctan.org/pkg/adjustbox>
+[adjustbox-fr]:        <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/adjustbox>
+[afterpage]:           <https://www.ctan.org/pkg/afterpage>
+[afterpage-fr]:        <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/afterpage>
+[appendix]:            <https://www.ctan.org/pkg/appendix>
+[appendix-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/appendix>
+[array]:               <https://www.ctan.org/pkg/array>
+[array-fr]:            <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/array>
+[bm]:                  <https://www.ctan.org/pkg/bm>
+[bm-fr]:               <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/bm>
+[booktabs]:            <https://www.ctan.org/pkg/booktabs>
+[booktabs-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/booktabs>
+[calc]:                <https://www.ctan.org/pkg/calc>
+[calc-fr]:             <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/calc>
+[cleveref]:            <https://www.ctan.org/pkg/cleveref>
+[cleveref-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/cleveref>
+[datatool]:            <https://www.ctan.org/pkg/datatool>
+[datatool-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/datatool>
+[datetime2]:           <https://www.ctan.org/pkg/datetime2>
+[datetime2-fr]:        <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/datetime2>
+[datetime2-french]:    <https://www.ctan.org/pkg/datetime2-french>
+[datetime2-french-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/datetime2-french>
+[dcolumn]:             <https://www.ctan.org/pkg/dcolumn>
+[dcolumn-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/dcolumn>
+[delarray]:            <https://www.ctan.org/pkg/delarray>
+[delarray-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/delarray>
+[enumerate]:           <https://www.ctan.org/pkg/enumerate>
+[enumerate-fr]:        <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/enumerate>
+[enumitem]:            <https://www.ctan.org/pkg/enumitem>
+[enumitem-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/enumitem>
+[etoc]:                <https://www.ctan.org/pkg/etoc>
+[etoc-fr]:             <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/etoc>
+[fancyhdr]:            <https://www.ctan.org/pkg/fancyhdr>
+[fancyhdr-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/fancyhdr>
+[fileerr]:             <https://www.ctan.org/pkg/fileerr>
+[fileerr-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/fileerr>
+[fncychap]:            <https://www.ctan.org/pkg/fncychap>
+[fncychap-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/fncychap>
+[fontsmpl]:            <https://www.ctan.org/pkg/fontsmpl>
+[fontsmpl-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/fontsmpl>
+[fontspec]:            <https://www.ctan.org/pkg/fontspec>
+[fontspec-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/fontspec>
+[ftnright]:            <https://www.ctan.org/pkg/ftnright>
+[ftnright-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/ftnright>
+[geometry]:            <https://www.ctan.org/pkg/geometry>
+[geometry-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/geometry>
+[glossaries]:          <https://www.ctan.org/pkg/glossaries>
+[glossaries-fr]:       <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/glossaries>
+[graphicx]:            <https://www.ctan.org/pkg/graphicx>
+[graphicx-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/graphicx>
+[hhline]:              <https://www.ctan.org/pkg/hhline>
+[hhline-fr]:           <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/hhline>
+[hyperref]:            <https://www.ctan.org/pkg/hyperref>
+[hyperref-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/hyperref>
+[ifthen]:              <https://www.ctan.org/pkg/ifthen>
+[ifthen-fr]:           <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/ifthen>
+[indentfirst]:         <https://www.ctan.org/pkg/indentfirst>
+[indentfirst-fr]:      <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/indentfirst>
+[layout]:              <https://www.ctan.org/pkg/layout>
+[layout-fr]:           <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/layout>
+[lipsum]:              <https://www.ctan.org/pkg/lipsum>
+[lipsum-fr]:           <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/lipsum>
+[listings]:            <https://www.ctan.org/pkg/listings>
+[listings-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/listings>
+[longtable]:           <https://www.ctan.org/pkg/longtable>
+[longtable-fr]:        <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/longtable>
+[multicol]:            <https://www.ctan.org/pkg/multicol>
+[multicol-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/multicol>
+[pgfplots]:            <https://www.ctan.org/pkg/pgfplots>
+[pgfplots-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/pgfplots>
+[rawfonts]:            <https://www.ctan.org/pkg/rawfonts>
+[rawfonts-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/rawfonts>
+[shellesc]:            <https://www.ctan.org/pkg/shellesc>
+[shellesc-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/shellesc>
+[showkeys]:            <https://www.ctan.org/pkg/showkeys>
+[showkeys-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/showkeys>
+[siunitx]:             <https://www.ctan.org/pkg/siunitx>
+[siunitx-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/siunitx>
+[somedefs]:            <https://www.ctan.org/pkg/somedefs>
+[somedefs-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/somedefs>
+[tabularx]:            <https://www.ctan.org/pkg/tabularx>
+[tabularx-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/tabularx>
+[theorem]:             <https://www.ctan.org/pkg/theorem>
+[theorem-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/theorem>
+[titlesec]:            <https://www.ctan.org/pkg/titlesec>
+[titlesec-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/titlesec>
+[tocbibind]:           <https://www.ctan.org/pkg/tocbibind>
+[tocbibind-fr]:        <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/tocbibind>
+[tikz+pgf]:            <https://www.ctan.org/pkg/pgf>
+[tikz-fr]:             <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/tikz>
+[trace]:               <https://www.ctan.org/pkg/trace>
+[trace-fr]:            <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/trace>
+[varioref]:            <https://www.ctan.org/pkg/varioref>
+[varioref-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/varioref>
+[verbatim]:            <https://www.ctan.org/pkg/verbatim>
+[verbatim-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/verbatim>
+[xcolor]:              <https://www.ctan.org/pkg/xcolor>
+[xcolor-fr]:           <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/xcolor>
+[xkeyval]:             <https://www.ctan.org/pkg/xkeyval>
+[xkeyval-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/xkeyval>
+[xr]:                  <https://www.ctan.org/pkg/xr>
+[xr-fr]:               <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/xr>
+[xspace]:              <https://www.ctan.org/pkg/xspace>
+[xspace-fr]:           <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/xspace>
+[TransLaTeX]:          <https://github.com/LeSpib/TransLaTeX/tree/master/TransLaTeX>
