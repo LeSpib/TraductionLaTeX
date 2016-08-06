@@ -363,59 +363,56 @@ macro. \PrintChangesX\PrintIndexX
 % façon de générer la documentation complète à partir du fichier source.
 %
 % \section{Chargement de \pf{xkeyval}}\label{sec:loading}
-% \tradini
-%To load the \pf{xkeyval} package,\footnote{The \pf{xkeyval} package
-%consists of the files \texttt{xkeyval.tex}, \texttt{xkeyval.sty},
-%\texttt{keyval.tex}, \texttt{xkvtxhdr.tex}.} plain \TeX\ users do
-%|\input xkeyval|. \LaTeX\ users do one of the following:
-%|\usepackage{xkeyval}| or |\RequirePackage{xkeyval}|. The package
-%does not have options. It is mandatory for \LaTeX\ users to load
-%\pf{xkeyval} at any point after the |\documentclass| command.
-%Loading \pf{xkeyval} from the class which is the document class
-%itself is possible. The package will use the \eTeX\ engine when
-%available. In particular, |\ifcsname| is used whenever possible to
-%avoid filling \TeX's hash tables with useless entries, for instance
-%when searching for keys in families.
+% Pour charger l'extension \pf{xkeyval}\footnote{L'extension \pf{xkeyval}
+% se compose des fichiers \texttt{xkeyval.tex}, \texttt{xkeyval.sty},
+% \texttt{keyval.tex} et \texttt{xkvtxhdr.tex}.}, les utilisateurs de 
+% plain \TeX\ utilisent la commande |\input xkeyval|. Les utilisateurs de 
+% \LaTeX\ utilisent |\usepackage{xkeyval}| ou |\RequirePackage{xkeyval}|. 
+% Cette extension n'a pas d'options. Les utilisateurs de \LaTeX\ doivent 
+% impérativement charger \pf{xkeyval} n'importe où après la commande 
+% |\documentclass|. Charger \pf{xkeyval} depuis la classe servant de classe au
+% document est également possible. L'extension utilise le moteur \eTeX\ s'il 
+% est disponible. En particulier, |\ifcsname| est utilisée dès que possible
+% pour éviter de remplir les tables de hachage de \TeX avec des entrées 
+% inutiles, par exemple lors de la recherche de clés dans les familles.
 %
-%If \pf{xkeyval} is loaded by |\RequirePackage| or |\usepackage|, the
-%package performs two action immediately. These require
-%\pf{xkeyval} to be loaded at any point after |\documentclass| or by
-%the document class itself.
+% Si \pf{xkeyval} est chargé avec |\RequirePackage| ou |\usepackage|, 
+% l'extension exécute immédiatement deux actions. Celles-ci demandent à ce
+% que \pf{xkeyval} soit chargé à n'importe quel endroit après
+% |\documentclass| ou par la classe de document elle-même.
 %
-%First, it retrieves the document class of the document at hand and
-%stores that (including the class extension) into the following macro.
-%\begin{command}
-% `\cs{XKV@documentclass}'
-%\end{command}
-%\DescribeMacro{\XKV@documentclass}
-%This macro could, for instance, contain |article.cls| and can be useful
-%when using |\ProcessOptionsX*| in a class. See
-%page~\pageref{macro:poxstar}.
+% Tout d'abord, elle récupère la classe du document en cours de traitement
+% et la stocke (avec son extension de fichier) dans la commande suivante.
+% \begin{command}
+%  `\cs{XKV@documentclass}'
+% \end{command}
+% \DescribeMacro{\XKV@documentclass}
+% Cette commande peut, par exemple, contenir |article.cls| et peut être utile
+% au moment de se servir de |\ProcessOptionsX*| dans une classe. Voir
+% page~\pageref{macro:poxstar}.
 %
-%Secondly, the global options submitted to the |\documentclass| command
-%and stored by \LaTeX\ in |\@classoptionslist|
-%are copied to the following macro.
-%\begin{command}
-% `\cs{XKV@classoptionslist}'
-%\end{command}
-%\DescribeMacro{\XKV@classoptionslist}
-%This macro will be used by |\ProcessOptionsX|. Options containing
-%an equality sign are deleted from the original list in
-%|\@classoptionslist| to avoid packages, which do not use \pf{xkeyval}
-%and which are loaded later, running into problems when trying to copy
-%global options using \LaTeX's |\ProcessOptions|.
+% Ensuite, les options globales soumises dans la commande |\documentclass| et
+% stockées par \LaTeX\ dans |\@classoptionslist| sont copiées dans la commande
+% suivante.
+% \begin{command}
+%  `\cs{XKV@classoptionslist}'
+% \end{command}
+% \DescribeMacro{\XKV@classoptionslist}
+% Cette commande sera utilisée dans |\ProcessOptionsX|. Les options contenant
+% un signe égal sont supprimées de la liste original présente dans 
+% |\@classoptionslist| pour éviter que les extensions qui n'utilisent pas
+% \pf{xkeyval} et qui sont chargées par la suite ne rencontrent des problèmes
+% en essayant de copier les options en se servant de la commande 
+%|\ProcessOptions| de \LaTeX.
 %
-% \tradfin
 %\section{Définition et gestion des clés}\label{sec:define}
-% \tradini
 %\changes{v1.4}{2004/08/24}{Added prefix options to macros}
 %\changes{v1.7}{2004/11/25}{Removed optional key checking from define macros}
-%This section discusses macros to define keys and some tools to manage
-%keys. A useful extension to \pf{xkeyval} is the \pf{xkvview} package.
-%This packages defines commands to generate overviews of defined keys.
-%See section~\ref{sec:view} for more information.
+% Cette section présente les commandes pour définir les clés et quelques
+% outils pour gérer les clés. Une extension pratique avec \pf{xkeyval} est
+% \pf{xkvview} : elle définit les commandes pour générer des vues d'ensemble
+% des clés définies. Voir section~\ref{sec:view} pour plus d'informations.
 %
-% \tradfin
 %\subsection{Clés ordinaires}\label{sec:odefine}
 % \tradini
 %This section describes how to define ordinary keys.
