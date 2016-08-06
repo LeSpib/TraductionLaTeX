@@ -34,7 +34,7 @@ Traduction       | Source              | Avancée                | Pages traduit
 [booktabs-fr]    | [booktabs] 1.618033 | :waxing_crescent_moon: | 9 / 18          | Traduction préexistante ([FT-tools]).
 [calc-fr]        | [calc] v4.3         | :new_moon:             | 0 / 18          | Traduction préexistante ([FT-tools]).
 [cleveref-fr]    | [cleveref] v0.19    | :new_moon:             | 0 / 31          |
-                 | [datatool] v2.26    |                        | *. / 220*       |
+[datatool-fr]    | [datatool] v2.27    | :new_moon:             | 1 / 233         |
                  | [datetime2] v1.5.2  |                        | *. / 169*       |
 [dcolumn-fr]     | [dcolumn] v1.06     | :new_moon:             | 0 / 4           | Traduction préexistante ([FT-tools]).
 [delarray-fr]    | [delarray] v1.01    | :waxing_gibbous_moon:  | 3               | Traduction préexistante ([FT-tools]).
