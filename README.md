@@ -70,7 +70,7 @@ Traduction            | Source                     | Avancée                | P
 [theorem-fr]          | [theorem] v2.2c            | :new_moon:             | 0 / 16          | Traduction préexistante ([FT-tools]).
                       | [tikz+pgf] v3.0.1a         |                        | *. / 1161*      |
 [titlesec-fr]         | [titlesec] 2.10.2          | :full_moon:            | 25              | 
-[tocbibind-fr]        | [tocbibind] v1.5k          | :waxing_crescent_moon: | 9 / 18          | 
+[tocbibind-fr]        | [tocbibind] v1.5k          | :first_quarter_moon:   | 18              | 
 [trace-fr]            | [trace] v1.1d              | :new_moon:             | 0 / 10          | 
 [varioref-fr]         | [varioref] v1.5c           | :new_moon:             | 0 / 35          | Traduction préexistante ([FT-tools]).
 [verbatim-fr]         | [verbatim] v1.5q           | :new_moon:             | 0 / 23          | Traduction préexistante ([FT-tools]).

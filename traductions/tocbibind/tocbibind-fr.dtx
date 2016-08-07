@@ -17,39 +17,7 @@
 % 
 %<*driver>
 \documentclass{ltxdoc}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[french]{babel}
-% Bloc pour traduction
-\usepackage{xcolor}
-\usepackage{pifont}
-\definecolor{orange5}{RGB}{255,153,0} 
-\newcommand{\trad}[1]{\textbf{\textcolor{orange5}{\noindent\ding{54} #1 \ding{54}}}}
-\newcommand{\tradini}{\color{orange5}\ding{54}}
-\newcommand{\tradfin}{\ding{54}\color{black}}
-% Fin du bloc qui doit être retiré une fois le travail achevé
-% Traduction du titre de l'Index
-\IndexPrologue{\section*{Index}\markboth{Index}{Index} Les numéros en
-italique renvoient à la page où se trouve l'entrée correspondante; les
-numéros soulignés renvoient à la ligne de code de la définition; les numéros
-en romain renvoient aux lignes de code où l'entrée est utilisée.}%
-% Traduction des entrées d'index concernant les environnements (code repris
-% de doc.dtx permettant de documenter des extensions, avec modifications.)
-\makeatletter
-\def\SpecialMainEnvIndex#1{\@bsphack\special@index{%
-                                      #1\actualchar
-                                      {\string\ttfamily\space#1}
-                                         (environnement)%
-                                      \encapchar main}%
-    \special@index{environnements:\levelchar#1\actualchar{%
-                   \string\ttfamily\space#1}\encapchar
-           main}\@esphack}
-\def\SpecialEnvIndex#1{\@bsphack
-    \index{#1\actualchar{\protect\ttfamily#1}
-           (environnement)\encapchar usage}%
-    \index{environnements:\levelchar#1\actualchar
-          {\protect\ttfamily#1}\encapchar usage}\@esphack}
-\makeatother
+\usepackage[ltxdoc,inputenc,fontenc,babel]{translatex-fr}
 \EnableCrossrefs
 \CodelineIndex
 \setcounter{StandardModuleDepth}{1}
@@ -207,14 +175,15 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % \item \Lopt{nottoc} désactive l'ajout de la table des matières ;
 % \item \Lopt{notlot} désactive l'ajout de la Liste des tableaux ;
 % \item \Lopt{notlof} désactive l'ajout de la Liste des figures ;
-% \item \Lopt{chapter} fait utiliser des titres de niveau \og chapitre \fg{}, 
+% \item \Lopt{chapter} fait utiliser des titres de niveau \og chapitre \fg, 
 %   si possible ; 
-% \item \Lopt{section} fait utiliser des titres de niveau \og section \fg{}, 
+% \item \Lopt{section} fait utiliser des titres de niveau \og section \fg, 
 %   si possible ;
 % \item \Lopt{numbib} numérote le titre de la bibliographie (par défaut, il n'y
 %   a pas de numéro).
 % \item \Lopt{numindex} numérote l'index (par défaut, il n'y a pas de numéro) ;
-% \item \Lopt{other} utilise une commande de titre non usuelle. Cette option implique l'utilisation de la commande |\tocotherhead| ;
+% \item \Lopt{other} utilise une commande de titre non usuelle. Cette option
+%   implique l'utilisation de la commande |\tocotherhead| ;
 % \item \Lopt{none} désactive tout.
 % \end{itemize}
 %
@@ -272,7 +241,7 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % le nom de la bibliographie dans |\tocbibname|.
 %
 % \changes{v1.2}{17/01/1999}{Remplacement des noms de commandes \og toc\ldots 
-%   name \fg{} par les commandes \og set\ldots \fg{}.}
+%   name \fg par les commandes \og set\ldots \fg.}
 % \DescribeMacro{\setindexname}
 % \DescribeMacro{\settocname}
 % \DescribeMacro{\setlotname}
@@ -297,17 +266,17 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % \subsection{Numérotation de la liste des tableaux et autres}
 %
 % Certains auteurs apprécient ou sont contraints de numéroter les titres des
-% \og Liste de \fg{}\footnote{Cet ensemble inclut la \og Table des figures 
-% \fg{}.}. Quelques commandes sont fournies pour simplifier cet usage.
+% \og Liste de \fg\footnote{Cet ensemble inclut la \og Table des figures 
+% \fg.}. Quelques commandes sont fournies pour simplifier cet usage.
 %
 % \DescribeMacro{\simplechapter}
 % \DescribeMacro{\simplechapterdelim}
 % \DescribeMacro{\restorechapter}
-% Dans les documents avec chapitre, les titres de type \og Liste de \fg{} sont
+% Dans les documents avec chapitre, les titres de type \og Liste de \fg sont
 % composés comme des |\chapter*{}|. 
 % La manière naturelle d'obtenir des titres numérotés serait de les composer
 % comme des |\chapter{}| mais ceci a l'inconvénient potentiel que le mot
-% \og Chapitre \fg{}, ou équivalent, apparaisse devant le titre, ce qui n'est
+% \og Chapitre \fg, ou équivalent, apparaisse devant le titre, ce qui n'est
 % probablement pas souhaité.
 % La commande |\simplechapter[|\meta{nom}|]| modifie les commandes |\chapter|
 % qui suivent de telle sorte qu'elles génèrent alors un résultat ressemblant
@@ -328,15 +297,15 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 %
 % \DescribeMacro{\tocchapter}
 % \DescribeMacro{\tocsection}
-% En interne, les commandes \og Liste de \fg{} de l'extension \Lpack{tocbibind}
+% En interne, les commandes \og Liste de \fg de l'extension \Lpack{tocbibind}
 % se servent de |\toc@chapter| pour composer leur titre dans des documents avec
 % chapitre et |\toc@section| pour les documents sans chapitre. 
 % La commande |\tocchapter| modifie la commande |\toc@chapter| pour utiliser
-% un titre de \og chapitre simple \fg{}. La commande |\tocsection| modifie
+% un titre de \og chapitre simple \fg. La commande |\tocsection| modifie
 % |\toc@section| pour composer en utilisant |\section| au lieu de 
 % |\section*|.   
 %
-% Par exemple, pour obtenir un titre numéroté de \og Table des figures \fg{}
+% Par exemple, pour obtenir un titre numéroté de \og Table des figures \fg
 % dans un document avec chapitre, placez ce qui suit dans votre préambule :
 % \begin{verbatim}
 % \renewcommand{\listoffigures}{\begingroup
@@ -344,7 +313,7 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 %    \tocfile{\listfigurename}{lof}
 % \endgroup}
 % \end{verbatim}
-% tandis que pour obtenir un titre numéro de \og Liste de Tableaux \fg{} dans 
+% tandis que pour obtenir un titre numéro de \og Liste de Tableaux \fg dans 
 % un document sans chapitre : 
 % \begin{verbatim}
 % \renewcommand{\listoftables}{\begingroup
@@ -401,11 +370,11 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % 
 %
 %
-% \subsection{Les \og Listes de \fg{} définies par des extensions}
+% \subsection{Les \og Listes de \fg définies par des extensions}
 %
 % Il existe des extensions, telles que \Lpack{listings} et \Lpack{ccaption}
-% qui proposent de nouvelles \og Listes de \fg{}. Elles peuvent être gérées
-% par l'extension \Lpack{tocbibind} à l'image des \og Listes de \fg{} usuelles.
+% qui proposent de nouvelles \og Listes de \fg. Elles peuvent être gérées
+% par l'extension \Lpack{tocbibind} à l'image des \og Listes de \fg usuelles.
 % Deux exemples sont présentés ici.
 %
 % L'extension \Lpack{listings} en version 0.2 fournit une commande 
@@ -430,22 +399,23 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % \end{verbatim}
 %
 % L'extension \Lpack{ccaption} permet à l'utilisateur de définir de nouveaux
-% types de flottants (avec leurs légendes) et des \og listes de \fg{} pour
+% types de flottants (avec leurs légendes) et des \og listes de \fg pour
 % chaque type de flottant. La commande pour définir un nouveau flottant est
 % essentiellement 
-% |\newfloatlist{|\meta{env}|}{|\meta{ext}|}{|\meta{nom-liste}|}{|\meta{nom-légende}|}|, où \meta{env} est le nom de l'environnement du flottant et 
-% \meta{ext} est le nom de l'extension du fichier de la \og liste de \fg{}.
-% La composition de la \og liste de \fg{} s'obtient avec la commande 
+% |\newfloatlist{|\meta{env}|}{|\meta{ext}|}{|\meta{nom-liste}|}{|\meta{nom-légende}|}|,
+% où \meta{env} est le nom de l'environnement du flottant et 
+% \meta{ext} est le nom de l'extension du fichier de la \og liste de \fg.
+% La composition de la \og liste de \fg s'obtient avec la commande 
 % |\listofenv|, où |env| est le nom \meta{fenv}.
 % Par exemple, un nouvel environnement de flottant pour des diagrammes pourrait
 % être défini avec :
 % \begin{verbatim}
 % \newfloatlist{diagram}{dia}{Liste des diagrammes}{Diagramme}
 % \end{verbatim}
-% et la  \og liste de \fg{} est alors appelée avec |\listofdiagram|.
+% et la \og liste de \fg est alors appelée avec |\listofdiagram|.
 %
-% Dans ce cas, pour ajouter la \og liste des diagrammes \fg{} à la table des
-% matières, il faut définir une nouvelle commande de \og liste de \fg{} et 
+% Dans ce cas, pour ajouter la \og liste des diagrammes \fg à la table des
+% matières, il faut définir une nouvelle commande de \og liste de \fg et 
 % l'utiliser à la place de |\listofenv|. Pour notre exemple, ceci pourrait
 % donner (sans numérotation) : 
 % \begin{verbatim}
@@ -486,9 +456,7 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % 
 % \section{Le code de l'extension} \label{sec:code}
 %
-% \tradini
-%    Announce the name and version of the package, which requires
-% \LaTeXe.
+% Déclaration du nom et de la version de cette extension qui nécessite \LaTeXe.
 % \changes{v1.5}{2001/04/17}{Deleted requirement for stdclsdv package} 
 %    \begin{macrocode}
 %<*usc>
@@ -498,12 +466,13 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 %
 % \begin{macro}{\PRWPackageNote}
 % \begin{macro}{\PRWPackageNoteNoLine}
-% These two commands write a package Note to the terminal and log file.
-% Use as |\PRWPackageNote{|\meta{package name}|}{|\meta{note text}|}|.
-% The NoLine version does not show the line number. The commands are
-% intermediate between the kernel |\PackageWarning| and |\PackageInfo|
-% commands. I have provided them as other packages (of mine) may also
-% incorporate them. The code is based on \file{lterror.dtx}.
+% Ces deux commandes écrivent une note d'extension sur le terminal et dans le
+% fichier journal. Leur syntaxe est 
+%|\PRWPackageNote{|\meta{nom d'extension}|}{|\meta{texte de la note}|}|.
+% La version Noline n'indique pas le numéro de ligne. Ces commandes sont un
+% intermédiaire entre les commandes du noyau |\PackageWarning| et
+% |\PackageInfo|. Je les ai mises car certaines de mes autres extensions les
+% incluent également. Le code est basé sur celui de \file{lterror.dtx}. 
 % \changes{v1.3a}{1999/09/12}{Provided PRWPackageNote and PRWPackageNoteNoLine
 %                             commands}
 %    \begin{macrocode}
@@ -524,7 +493,10 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 %
 % \begin{macro}{\@bibquit}
 % \begin{macro}{\if@bibchapter}
-%  We need to know what sectional divisions are supported.
+%  Nous devons savoir quelles divisions de document sont supportées (sections
+% ou chapitres). En cas d'absence des deux, l'extension transmet une alerte :
+% \og Je ne reconnais aucune division. J'espère que vous avez utilisé l'option
+% ``other'' sinon j'ignorerai cette extension.\fg.
 % \changes{v1.5}{2001/04/17}{Major surgery to code for checking divisions}
 %    \begin{macrocode}
 \newcommand{\@bibquit}{}
@@ -546,8 +518,9 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % \end{macro}
 %
 % \begin{macro}{\if@inltxdoc}
-%    This is used as a flag for the \Lpack{ltxdoc} class. This has a
-% particular kind of index that I am not going to mess with.
+%   Cette commande est utilisée comme marqueur de la classe \Lpack{ltxdoc}.
+%   Cette dernière a un index un peu particulier que je ne souhaite pas
+%   tripatouiller. 
 %    \begin{macrocode}
 \newif\if@inltxdoc
 \@ifclassloaded{ltxdoc}{\@inltxdoctrue}{\@inltxdocfalse}
@@ -561,8 +534,8 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % \begin{macro}{\if@dotoctoc}
 % \begin{macro}{\if@dotoclot}
 % \begin{macro}{\if@dotoclof}
-%    A set of booleans for deciding what is to go into the ToC. By
-% default add everything.
+%   Un ensemble de booléens pour décider ce qui va aller en table des matières.
+%   Par défaut, tout y va.
 %    \begin{macrocode}
 \newif\if@dotocbib\@dotocbibtrue
 \newif\if@dotocind\@dotocindtrue
@@ -579,6 +552,8 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 %
 % \begin{macro}{\if@donumbib}
 % \begin{macro}{\if@donumindex}
+%   Un ensemble de booléens pour décider si les titres doivent être numérotés
+%   ou pas (par défaut, les titres ne le sont pas).
 %    A set of booleans for deciding whether or not to produce numbered
 % headings (default is to do unnumbered headings).
 %    \begin{macrocode}
@@ -589,8 +564,8 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % \end{macro}
 %
 % \begin{macro}{\if@dot@cb@bsection}
-%    If TRUE, use a section heading for the bibliography no matter what
-% the main document divisions are.
+%   Si elle vaut vrai, la bibliographie utilise un titre au format d'une section, 
+%   indépendamment des divisions retenues pour le document principal.
 % \changes{v1.5e}{2003/01/22}{Added \cs{if@dot@cb@bsection}}
 %    \begin{macrocode}
 \newif\if@dot@cb@bsection\@dot@cb@bsectionfalse
@@ -598,7 +573,7 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 %    \end{macrocode}
 % \end{macro}
 %
-%    Now we can do the options. Most of them are easy.
+%   Maintenant, nous pouvons déclarer les options. La plupart sont simples.
 %    \begin{macrocode}
 \DeclareOption{section}{\@bibchapterfalse}
 \DeclareOption{notbib}{\@dotocbibfalse}
@@ -610,9 +585,9 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 \DeclareOption{numindex}{\@donumindextrue}
 
 %    \end{macrocode}
-%  The \Lopt{chapter} option needs to check whether or not the chapter
-%  heading commands are defined. If they are not, then go with the
-%  section level headings.
+%   L'option \Lopt{chapter} doit vérifier si les commandes de chapitre sont 
+%   définies. Si elles ne le sont pas, alors ce seront les commandes de niveau
+%   section qui serviront. 
 %    \begin{macrocode}
 \DeclareOption{chapter}{%
   \if@bibchapter\else
@@ -622,15 +597,15 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 
 %    \end{macrocode}
 %
-% The \Lopt{other} option makes |\@bibquit| a no-op and cancels any 
-% chapter based processing.
+%   L'option \Lopt{other} vide la commande |\@bibquit| de tout sens et annule
+%   tout traitement basé sur les chapitres.  
 % \changes{v1.3}{1999/08/22}{Added the `other' option}
 %    \begin{macrocode}
 \DeclareOption{other}{\renewcommand{\@bibquit}{}
                       \@bibchapterfalse}
-%    \end{macrocode}
+%    \end{macrocode}%
 %
-% The \Lopt{none} option turns everything off.
+%   L'option \Lopt{none} désactive tout.
 % \changes{v1.}{2000/03/04}{Added the `none' option}
 %    \begin{macrocode}
 \DeclareOption{none}{%
@@ -644,7 +619,7 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 }
 %    \end{macrocode}
 %
-% Process the options now, and then quit if necessary.
+%   Traitement à présent des options et sortie si nécessaire.
 % \changes{v1.3}{1999/08/22}{Now quit after option processing}
 %    \begin{macrocode}
 \ProcessOptions\relax
@@ -652,7 +627,10 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 
 %    \end{macrocode}
 %
-% Issue a note about the heading style being used.
+%   \'{E}mission d'une note sur le style de titre utilisé selon la valeur de
+%   |@bibchapter| : \og utilisation de titre en style chapitre, à moins qu'il ne
+%   soit contourné \fg et \og utilisation du titre en style section ou autre
+%   \fg.
 % \changes{v1.3a}{1999/09/12}{Replaced PackageWarning here by PRWPackageNoteNoLine}
 %    \begin{macrocode}
 \if@bibchapter
@@ -662,7 +640,7 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 \fi
 %    \end{macrocode}
 %
-% Ensure that the index is not processed if it is an \Lpack{ltxdoc} class.
+%   Si la classe du document est \Lpack{ltxdoc}, l'index n'est pas traité.
 %    \begin{macrocode}
 \if@inltxdoc \@dotocindfalse \fi
 
@@ -670,10 +648,10 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 %
 % \begin{macro}{\@tocextra}
 % \begin{macro}{\tocotherhead}
-%  |\@tocextra| is the internal command to store the heading command name.
-% |\tocotherhead{|\meta{name}|}| is the user command to set the
-% heading command \meta{name} (without the backslash). 
-% The default is section.
+%   |\@tocextra| est une commande interne stockant le nom de la commande de 
+%   titre. |\tocotherhead{|\meta{nom}|}| est la commande utilisateur pour
+%   définir le \meta{name} de la commande de titre (sans la contre-oblique).
+%   La valeur par défaut est |section|.
 % \changes{v1.3}{1999/08/22}{Renamed tocextrahead command as tocotherhead}
 %    \begin{macrocode}
 \newcommand{\@tocextra}{section}
@@ -687,13 +665,12 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % \begin{macro}{\prw@mkboth}
 % \begin{macro}{\toc@section}
 % \begin{macro}{\toc@headstar}
-%    Utility macros, as the code that they represent gets
-%  used several times over. They deal with marking for page headers
-%  (code taken from \file{classes.dtx}),
-%  and adding starred sectional headings to the ToC.
-%
-% |\tocetcmark|\marg{text} is the default mark code as called by
-% sectional headings.
+%    Quelques commandes bien pratiques dans la mesure où leur code sert à de
+%    nombreuses reprises. Elles traitent les marques pour les entêtes de page
+%    (leur code est repris de \file{classes.dtx}) et ajoutent les titres de
+%    sectionnement étoilés à la table des matières.
+%    |\tocetcmark|\marg{texte} est le code de la marque par défaut, appelée par
+%    les titres de sectionnement.
 % \changes{v1.5b}{2001/11/10}{Added \cs{tocetcmark}}
 % \changes{v1.5c}{2002/03/11}{Changed \cs{@markboth} to \cs{@mkboth} in \cs{tocetcmark}}
 %    \begin{macrocode}
@@ -701,18 +678,19 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
   \@mkboth{\MakeUppercase{#1}}{\MakeUppercase{#1}}}
 %    \end{macrocode}
 %
-% |\prw@mkboth|\marg{text} is used later for the ToC headings.
+%   |\prw@mkboth|\marg{texte} est utilisé par la suite pour l'entête de la
+%   table des matières. 
 % \changes{v1.5b}{2001/11/10}{Defined \cs{prw@mkboth} in terms of
 %     \cs{tocetcmark}}
 %    \begin{macrocode}
 \newcommand{\prw@mkboth}[1]{\tocetcmark{#1}}
 %    \end{macrocode}
 %
-% |\toc@section{|\meta{sec}|}{|\meta{text}|}| is a generalised version
-% of |\sec*{|\meta{text}|}| which also makes an entry of \meta{text} into
-% the ToC, where \meta{sec} is the name of a sectional division (with no
-% backslash). |\toc@headstar{|\meta{sec}|}{|\meta{text}|}| is similar except
-% that it makes no entry into the ToC.
+%    |\toc@section{|\meta{sec}|}{|\meta{texte}|}| est une version généralisée
+%    de |\sec*{|\meta{texte}|}| qui place plus l'entrée \meta{texte} dans la
+%    table des matières ; ici, \meta{sec} est le nom de division (sans
+%    contre-oblique). |\toc@headstar{|\meta{sec}|}{|\meta{texte}|}| est
+%    similaire à ceci près qu'elle ne fait pas d'entrée en table des matières.
 % \changes{v1.5}{2001/04/17}{Added \cs{phantomsection} to \cs{toc@section}
 %          and \cs{toc@chapter}}
 % \changes{v1.5j}{2009/12/28}{Removed \cs{phantomsection}}
@@ -729,19 +707,19 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % \end{macro}
 %
 % \begin{macro}{\toc@chapter}
-% |\toc@chapter{|\meta{text}|}| is equivalent to |\chapter*{|\meta{text}|}|
-% except that it makes an entry into the ToC.
-%
-%  Until version 1.5f the chapter part of the code was |\chapter*{#1\prw@mkboth{#1}}|.
-% On 2003/03/12 James Szinger\footnote{\texttt{szinger@lanl.gov}} wrote that
-% this failed for a bibliography in a two column book; the page headings
-% for the previous chapter continued through the bibliography! James
-% suggested that the mark
-% part should be moved outside the chapter part (as is now done). I have
-% no idea why there should have been this problem. As part of looking at
-% it I even replaced the \cs{toc@chapter} as used in the |thebibliography|
-% environment with the standard book class definition, which failed as
-% well. 
+%   |\toc@chapter{|\meta{texte}|}| est équivalente à |\chapter*{|\meta{text}|}|
+%   à ceci près qu'elle fait une entrée dans la table des matières.
+%   Jusqu'à la version 1.5f, la partie du code concernant les chapitres était
+%   |\chapter*{#1\prw@mkboth{#1}}|. Le 12/03/2003, James 
+%   Szinger\footnote{\texttt{szinger@lanl.gov}} a indiqué que ceci ne marchait
+%   pas pour une bibliographie dans un livre présenté sur deux colonnes ; les
+%   titres de page du chapitre précédent la bibliographie persistait sur cette
+%   dernière ! James a suggéré que la partie marque devait être dissociée de la
+%   partie chapitre (ce qui est dorénavant le cas). Je ne sais pas pourquoi ce
+%   problème a bien pu survenir. Dans mes tentatives de résolution, j'avais
+%   même remplacé la commande \cs{toc@chapter} utilisé dans l'environnement
+%   |thebibliography| par la définition de la classe standard |book|, ce qui
+%   a échoué.
 %
 % \changes{v1.5g}{2003/03/13}{Minor, but vital, change to \cs{toc@chapter}}
 % \changes{v1.5j}{2009/12/28}{Removed \cs{phantomsection}}
@@ -753,8 +731,9 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % \end{macro}
 %
 % \begin{macro}{\tocbibname}
-%    This holds the text for the Bibliography heading. We try and
-% get the text from the class (either |\bibname| or |\refname|).
+%   Cette commande contient le texte pour le titre de la bibliographie. Nous
+%   essayons de récupérer le texte par le biais de la classe (avec la commande
+%   |\bibname| ou |\refname|).
 %    \begin{macrocode}
 \ifx\bibname\undefined
   \ifx\refname\undefined
@@ -773,11 +752,11 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % \begin{macro}{\setlotname}
 % \begin{macro}{\setlofname}
 % \begin{macro}{\settocbibname}
-%    The remaining heading texts are simpler as we only need to check
-% if their respective names are defined in the class. Note that these
-% commands in version 1.2 have been changed from version 1.1 in order to
-% integrate with the \Lpack{tocloft} package (which operates with
-% the |\contentsname| etc commands).
+%   Les autres textes de titre sont plus simples car nous n'avons qu'à vérifier
+%   si leurs noms respectifs sont définis dans la classe. Notez que ces
+%   commandes en version 1.2 ont été changées par rapport à la version 1.1 afin
+%   de s'adapter à l'extension \Lpack{tocloft} (qui opère sur les commandes
+%   |\contentsname| et autres.
 %    \begin{macrocode}
 \providecommand{\indexname}{Index}
 \newcommand{\setindexname}[1]{\renewcommand{\indexname}{#1}}
@@ -795,16 +774,16 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % \end{macro}
 % \end{macro}
 %
-%    The rest is just hacking the various environments and commands
-% from \file{classes.dtx}.
+%   Tout le reste se ramène juste à des manipulations sur les différents
+%   environnements et commandes de \file{classes.dtx}.
 %
-% Following a suggestion by Donald Arseneau (CTT, `Re: memoir, natbib, and
-% chapterbib', 9 Jan 2003), use |\bibsection| as a hook into 
-% |thebibliography| for the style of the heading.
+%   Suite à une suggestion de Donald Arseneau (CTT, \og \emph{Re: memoir, 
+%   natbib, and chapterbib} \fg, 09/01/2003), la commande |\bibsection| sert de
+%   point d'entrée dans |thebibliography| pour le style du titre.
 %
 % \begin{macro}{\t@cb@bchapsection}
 % \begin{macro}{\t@cb@bsection}
-%  Internal macros holding the heading for |thebibliography|.
+%   Commandes internes pour conserver le titre de |thebibliography|.
 % \changes{v1.5e}{2003/01/13}{Added \cs{t@cb@bchapsec} and \cs{t@cb@bsection}}
 %    \begin{macrocode}
 \newcommand{\t@cb@bchapsec}{%
@@ -833,9 +812,10 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % \end{macro}
 %
 %
-%    Redefine \Lenv{thebibliography}, but only if requested. Take care that
-% the \Lpack{natbib} package has not already modified the environment, noting
-% that \Lpack{natbib} defines and uses |\bibsection|.
+%    Redéfinition de l'environnement \Lenv{thebibliography}, mais uniquement à
+%    la demande. Faites bien attention que l'extension \Lpack{natbib} n'ait pas 
+%    déjà modifié l'environnement car \Lpack{natbib} définit et utilise
+%    |\bibsection|.
 % \changes{v1.5e}{2003/01/13}{Major changes in redefining the thebibliography environment}
 %    \begin{macrocode}
 \if@dotocbib
@@ -844,10 +824,10 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 %    \begin{macrocode} 
   \@ifpackageloaded{natbib}{}{% natbib not loaded
 %    \end{macrocode}
-% The natbib package has not been used (yet), so go ahead and change
-% the environment.
+%   L'extension \Lpack{natbib} n'a pas (déjà) été utilisée, nous pouvons donc
+%   poursuivre et changer l'environnement.
 % \begin{macro}{\bibsection}
-% Macro holding heading for |thebibliography|.
+%   Commande contenant le titre pour l'environnement |thebibliography|.
 % \changes{v1.5e}{2003/01/13}{Added \cs{bibsection}}
 %    \begin{macrocode}
     \newcommand{\bibsection}{\t@cb@bchapsec}
@@ -864,10 +844,10 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 %
 %
 % \begin{environment}{thebibitemlist}
-%    Just as a matter of style, I have extracted the list making code
-% from the definition of the \Lenv{thebibliography}. It might also
-% make it easier for someone to change the list environment.
-% The code is a straight copy from \file{classes.dtx}.
+%   En matière de style, j'ai juste extrait le code créant la liste de la 
+%   définition de \Lenv{thebibliography}. Cela pourrait faciliter pour
+%   un utilisateur la modification de l'environnement. Le code recopie 
+%   celui de \file{classes.dtx}.
 %    \begin{macrocode}
   \newenvironment{thebibitemlist}[1]{
     \list{\@biblabel{\@arabic\c@enumiv}}%
@@ -891,12 +871,11 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % \end{environment}
 %
 % \begin{macro}{\sectionbib}
-%    The \Lpack{chapterbib} package defines a macro |\sectionbib|
-% which, if its |sectionbib| option is used, it calls at the beginning 
-% of the document to fiddle with
-% the |thebibliography| environment (but it doesn't work when it
-% is renewed as above). We need to disable the macro because we do
-% our own fiddling
+%   L'extension \Lpack{chapterbib} définit une commande |\sectionbib| qui, si
+%   l'option |sectionbib| est utilisée, est appelée au début du document pour
+%   bidouiller avec l'environnement |thebibliography| (mais cela ne fonctionne
+%   pas quand il est reconstruit comme indiqué plus haut). Nous devons
+%   désactiver cette commande car nous avons à faire nos propres bidouilles.
 % \changes{v1.5e}{2003/01/22}{Killed \cs{sectionbib} from the chapterbib
 %                             package}
 %    \begin{macrocode}
@@ -906,26 +885,25 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 
 %    \end{macrocode}
 % \end{macro}
-% This is the end of |\if@dotocbib|.
+%   La commande |\if@dotocbib| s'achève ici.
 %    \begin{macrocode}
 \fi
 
 %    \end{macrocode}
 %
-%    At the end of the preamble we have to check if the \Lpack{natbib}
-% and/or \Lpack{chapterbib} packages have been loaded after the 
-% \Lpack{tocbibind} package. If this is the case, we have to make sure
-% that we have control with respect to their |sectionbib| options.
+%   À la fin du préambule, nous devons vérifier que l'extension \Lpack{natbib}
+%   et/ou l'extension \Lpack{chapterbib} ont été chargées après l'extension
+%   \Lpack{tocbibind}. Si c'est bien le cas, nous devons être sûrs que nous
+%   avons le contrôle par rapport à leur option |sectionbib|.
 % \changes{v1.5e}{2003/01/22}{Added code to cater for natbib and chapterbib
 %                             packages}
 %    \begin{macrocode}
 \AtBeginDocument{%
   \@ifpackagewith{natbib}{sectionbib}{\@dot@cb@bsectiontrue}{}
 %    \end{macrocode}
-% If the \Lpack{chapterbib} package was loaded before \Lpack{tocbibind}
-% we have already killed |\sectionbib|. If \Lpack{chapterbib} has been 
-% loaded afterwards
-% we must kill |\sectionbib| now before it gets used.
+%   Si l'extension \Lpack{chapterbib} a été chargée avant \Lpack{tocbibind},
+%   nous avons déjà détruit |\sectionbib|. Si \Lpack{chapterbib} a été chargée
+%   après, nous devons supprimer |\sectionbib| avant qu'elle ne soit utilisée. 
 %    \begin{macrocode}
   \@ifpackagewith{chapterbib}{sectionbib}%
     {\@dot@cb@bsectiontrue
@@ -933,8 +911,8 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
     {}
 
 %    \end{macrocode}
-% Lastly, use our definition of |\bibsection| for the |thebibliography|
-% environment.
+%   Enfin, nous utilisons notre définition de |\bibsection| pour
+%   l'environnement |thebibliography|.
 %    \begin{macrocode}
   \if@dotocbib
     \if@dot@cb@bsection
@@ -944,25 +922,25 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
     \fi
   \fi
 %    \end{macrocode}
-% This is the end of |\AtBeginDocument|
+% Ici s'achève le code associé à |\AtBeginDocument|
 %    \begin{macrocode}
 }
 
 %    \end{macrocode}
 %
 % \begin{environment}{theindex}
-% In an earlier version of this
-% package, for reasons that I didn't
-% understand, I had to add/remove some vertical space around the Index heading
-% to make its height match other chapter/section headings. In an unrelated
-% thread on the \texttt{comp.text.tex} newsgroup, 
-% Donald Arseneau pointed out that
-% that this effect was a known feature of the standard classes and
-% recorded as latex bug~3126, and was caused by misplaced topskips. The
-% following removes this feature for all except the \Lpack{doc} class.
+%   Dans une version précédente de cette extension, pour des raisons que je ne
+%   comprenais pas, j'avais à ajouter/retrancher de l'espace vertical autour du
+%   titre de l'index pour que sa hauteur corresponde à celles des autres titres
+%   de section/chapitre. Dans un fil de discussion sur un autre sujet dans le
+%   forum \texttt{comp.text.tex}, Donald Arseneau a souligné que cet effet
+%   était connu comme une fonctionnalité des classes standards et était 
+%   enregistré comme l'erreur \LaTeX~3126 et était due à des espaces de haut
+%   de page mal placés. Le code suivant enlève cette fonctionnalité pour toutes
+%   les classes standards à l'exception de la classe \Lpack{doc}.
 % \changes{v1.4}{2000/03/04}{Fixed index head spacing for all standard classes}
 %
-% The first bit of code is a copy from \file{classes.dtx}.
+% Le premier morceau de code recopie une part de \file{classes.dtx}.
 %    \begin{macrocode}
 \if@inltxdoc\else
   \renewenvironment{theindex}%
@@ -972,11 +950,11 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
        \@restonecoltrue
      \fi
 %    \end{macrocode}
-% This next bit is where we make the package changes. Note that in the
-% default definition the values for |\columnseprule| and |\columnsep|
-% were set at this point to be |0pt| and |35pt| respectively. They
-% are not set in this definition so that they can be adjusted by the
-% user, if necessary, before starting the environment.
+%   Le morceau suivant est celui où nous procédons à la modification. Notez
+%   que, dans la définition par défaut, les valeurs de |\columnseprule| et de
+%   |\columnsep| ont été fixées à |0pt| et |35pt| respectivement. Elles ne
+%   sont pas définies ici de façon à ce qu'elles puissent être ajustées par
+%   l'utilisateur, si nécessaire, avant de commencer l'environnement.
 % \changes{v1.3}{1999/08/22}{Assorted changes for the index}
 % \changes{v1.5}{2001/04/17}{Added \cs{phantomsection} to the theindex environment}
 % \changes{v1.5f}{2003/02/04}{Replaced \cs{MakeUppercase} code from theindex environment}
@@ -1020,7 +998,7 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
         \fi
      \fi
 %    \end{macrocode}
-% Now we are back to the original code.
+% Enfin, nous revenons au code d'origine.
 %    \begin{macrocode}
    \thispagestyle{plain}\parindent\z@
    \parskip\z@ \@plus .3\p@\relax
@@ -1033,8 +1011,9 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 %
 % \begin{macro}{\toc@start}
 % \begin{macro}{\toc@finish}
-%  These two macros deal with the start and finish of the |\tableofcontents|
-% and friends by adjusting the column settings if need be.
+%   Ce sont les deux commandes qui traitent du début et de la fin de 
+%   |\tableofcontents| et associées, en ajustant les paramétrages de colonne
+%   si besoin est.
 %    \begin{macrocode}
 \newcommand{\toc@start}{%
   \if@bibchapter
@@ -1054,22 +1033,24 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % \end{macro}
 %
 % \begin{macro}{\tocfile}
-%    The code for |\tableofcontents|, |\listoftables| and |\listoffigures|
-% is virtually identical in each case, except for the heading text.
-% |\tocfile| embodies the common code. This is virtually a parameterized copy
-% from \file{classes.dtx}, except that it handles the differences between
-% the \Lpack{article} class and the other two, and incorporates the
-% code for additions to the ToC. It is a useful hook if any other
-% package wants to extend \Lpack{tocbibind} for other kinds of listings.
+%   Le code pour |\tableofcontents|, |\listoftables| et |\listoffigures|
+%   est virtuellement identique dans chaque cas, au texte du titre près.
+%   |\tocfile| représente la part de code en commun. Il s'agit d'une copie
+%   paramétrée du code de \file{classes.dtx}, à ceci près qu'il gère les
+%   différences entre la classe \Lpack{article} et les deux autres et qu'il
+%   incorpore le code pour les additions à la table des matières. C'est là
+%   un point d'entrée utile pour toute autre extension qui souhaiterait
+%   étendre \Lpack{tocbibind} à d'autres sortes de listes.
 %
-%    The command is |\tocfile{|\meta{head-text}|}{|\meta{file-extension}|}|,
-% where \meta{head-text} is the heading (e.g., List of Figures)
-% and \meta{file-extension} is the file extension (e.g., \file{lof}).
+%   La syntaxe est |\tocfile{|\meta{text-titre}|}{|\meta{extension-fichier}|}|,
+%   où \meta{texte-titre} est le titre (par exemple \og Table des figures \fg)
+%   et \meta{extension-fichier} est l'extension du fichier contenant la liste
+%   (par exemple, \file{lof}).
 %    \begin{macrocode}
 \newcommand{\tocfile}[2]{%
   \toc@start
 %    \end{macrocode}
-% The next bit is for the heading changes.
+%   Le morceau suivant sert au changement de titre.
 %    \begin{macrocode}
   \if@bibchapter
     \toc@chapter{#1}
@@ -1077,7 +1058,8 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
     \toc@section{\@tocextra}{#1}
   \fi
 %    \end{macrocode}
-% And finish up with a parameterized call to start the listing and tidy up.
+%   Et nous finissons avec un appel paramétré pour commencer la liste et 
+%   ranger le tout.
 %    \begin{macrocode}
   \@starttoc{#2}
   \toc@finish}
@@ -1086,8 +1068,8 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % \end{macro}
 %
 % \begin{macro}{\tableofcontents}
-%    If requested, we redefine this command, using |\tocfile| to do
-% all the work for us.
+%   Sur demande, nous redéfinissons cette commande en se basant sur |\tocfile|
+%   pour faire tout le travail pour nous.
 %    \begin{macrocode}
 \if@dotoctoc
   \renewcommand{\tableofcontents}{%
@@ -1099,7 +1081,7 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % \end{macro}
 %
 % \begin{macro}{\listoftables}
-%  This is almost identical to the code for |\tableofcontents|
+%  Ce code est quasiment identique à celui de |\tableofcontents|.
 %    \begin{macrocode}
 \if@dotoclot
   \renewcommand{\listoftables}{%
@@ -1111,7 +1093,7 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % \end{macro}
 %
 % \begin{macro}{\listoffigures}
-%  This is almost identical to the code for |\tableofcontents|
+%  Ce code est quasiment identique à celui de |\tableofcontents|.
 %    \begin{macrocode}
 \if@dotoclof
   \renewcommand{\listoffigures}{%
@@ -1121,7 +1103,6 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 
 %    \end{macrocode}
 % \end{macro}
-% \tradfin
 %
 % \begin{macro}{\simplechapter}
 % \begin{macro}{\restorechapter}
@@ -1163,7 +1144,7 @@ en romain renvoient aux lignes de code où l'entrée est utilisée.}%
 % \begin{macro}{\tocchapter}
 % \begin{macro}{\tocsection}
 % Ces deux commandes modifient |\toc@chapter| et |\toc@section| pour obtenir 
-% des titres de \og listes de \fg{} numérotées.
+% des titres de \og listes de \fg numérotées.
 % \changes{v1.4}{04/03/2000}{Ajout des commandes \cs{tocchapter} et 
 %   \cs{tocsection}.}
 % \changes{v1.5d}{09/04/2002}{Ajout de \cs{@makechapterhead} dans 
