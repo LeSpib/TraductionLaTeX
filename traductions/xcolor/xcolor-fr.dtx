@@ -183,7 +183,7 @@
 % \def\Package#1{\textsf{#1}\index{extensions\levelchar\textsf{#1}\string|usage}}
 % \def\Program#1{\textsf{\itshape#1}\index{programmes\levelchar\textsf{\itshape#1}\string|usage}}
 % \def\Model#1{\textsf{\bfseries#1}\index{modèles colorimétriques\levelchar\textsf{\bfseries#1}\string|usage}}
-% \def\nModel#1{`#1'\index{modèles colorimétriques\levelchar`#1'\string|usage}}
+% \def\nModel#1{\og #1 \fg{}\index{modèles colorimétriques\levelchar#1\string|usage}}
 % \def\pModel#1{\textbf{\itshape #1}}
 % \def\People#1#2{#1 #2\index{personnes\levelchar#2, #1\string|usage}}
 % \newcommand*\Color[3][+]{#2 (\emph{#3})\ifx#1+\index{noms de couleur\levelchar#2 (\emph{#3})\string|usage}\index{noms de couleur\levelchar#3\actualchar{}\emph{#3} (#2)\string|usage}\fi}
@@ -229,7 +229,7 @@
 % \colorlet{tablerowcolor}{gray!12.5}
 %
 %
-% \title{\'{E}largissement des capacités de \LaTeX\ en matière de couleur : l'\XCP}
+% \title{L'\XCP\\ \'{E}largissement des capacités de \LaTeX\\ en matière de couleur}
 % \author{\href{mailto:xcolor@ukern.de}{\fboxrule0pt\fboxsep2pt\fbox{Dr. Uwe Kern}}}
 % \date{\XCfileversion{} (\XCfiledate)
 %       \thanks{Cette extension peut être téléchargée à partir de \CTAN{macros/latex/contrib/xcolor/}{}.
@@ -332,9 +332,9 @@
 % suivants\footnote{N.D.T. : ces termes ne sont pas l'exacte traduction des
 % termes anglais car les notions de teinte (\emph{tint}), nuance (\emph{shade})
 % et ton (\emph{tone}) utilisées par l'auteur sont bien trop polysémiques en
-% français. Nous conservons ici juste la notion de \og teinte \fg{} à laquelle
+% français. Nous conservons ici juste la notion de \og teinte \fg à laquelle
 % nous adjoignons des adjectifs bien moins sujets à discussion, en évitant ici
-% les adjectifs \og rompu \fg{}, \og rabattu \fg{} ou \og désaturé \fg{}.} :
+% les adjectifs \og rompu \fg, \og rabattu \fg ou \og désaturé \fg.} :
 % \begin{itemize}
 % \item \textbf{\Index{couleur éclaircie}} : une couleur à laquelle est ajoutée
 % du \Color{blanc}{white} ;
@@ -409,8 +409,8 @@
 % couleur de l'autre --- tendent à utiliser des termes identiques pour décrire 
 % des propriétés de la couleur bien qu'en décrivant parfois des faits très
 % différents ! Ainsi, l'apparence des cercles chromatiques diffère autant que
-% la signification de concepts comme couleurs \og primaires \fg{} ou
-% \og complémentaires \fg{}. 
+% la signification de concepts comme couleurs \og primaires \fg ou
+% \og complémentaires \fg. 
 %
 %
 % \paragraph{Construction d'un cercle chromatique typique}
@@ -656,7 +656,7 @@
 % \Model{gray} & gris & \left[0,1\right]&& \\
 % \Model{RGB} & Rouge, Vert, Bleu & \{0,1,\dots,L\}^3& $L\,=$& 
 % $\mkern-15mu\rangeRGB$\\
-% \Model{HTML} & RRGGBB & \{\texttt{000000},\dots,\texttt{FFFFFF}\}&& \\
+% \Model{HTML} & Rouge (RR), Vert (VV), Bleu (BB) & \{\texttt{000000},\dots,\texttt{FFFFFF}\}&& \\
 % \Model{HSB} & Teinte, Saturation, Luminosité & \{0,1,\dots,M\}^3& $M=$& 
 % $\mkern-15mu\rangeHSB$\\
 % \Model{Gray} & Gris & \{0,1,\dots,N\}& $N\,=$& $\mkern-15mu\rangeGray$\\
@@ -679,7 +679,7 @@
 %
 % Exemple: en supposant que |a.tex| soit un document \LaTeX{} complet, une
 % commande comme 
-% \og|latex \def\xcolorcmd{\colorlet{black}{red}}\input{a}|\fg{}
+% \og|latex \def\xcolorcmd{\colorlet{black}{red}}\input{a}|\fg
 % saisie en invite de commande génère un fichier |a.dvi| avec toutes les
 % occurences de \Color{noir}{black} remplacées par du \Color{rouge}{red}, sans
 % besoin de modifier le fichier source lui-même
@@ -701,7 +701,12 @@
 % |\textcolor[cmy]{0.7,0.5,0.3}{toto}| (\textcolor[cmy]{0.7,0.5,0.3}{toto}) ou
 % |\textcolor[HTML]{AFFE90}{toto}| (\textcolor[HTML]{AFFE90}{toto}).
 %
-% \paragraph{\Model{rgb}, \Model{cmyk}, \Model{hsb}, \Model{gray}}
+% \paragraph{\Model{rgb}, \Model{cmyk}, \Model{hsb}, 
+% \Model{gray}}\footnote{N.D.T. : ces noms sont des abréviations respectivement
+% pour \og rouge vert bleu \fg (\emph{red green blue}), \og cyan magenta jaune
+% noir \fg (\emph{cyan magenta yellow black}), \og teinte saturation luminosité
+% \fg (\emph{hue saturation brightness}) et \og gris \fg (\emph{gray}). Ces 
+% abréviations sont reprises pour d'autres noms de modèle.}
 % Ce sont les modèles supportés directement par \Index{PostScript}.
 % C'est pourquoi nous vous renvoyons à \cite{plrm} pour une description
 % de leurs propriétés et relations.
@@ -715,7 +720,8 @@
 % De ce fait, il s'agit d'un simple complément à \Model{rgb}.
 % En terme d'affichage, \Model{cmy} est traité comme \Model{cmyk} avec $k=0$.
 %
-% \paragraph{\Model{HTML}}
+% \paragraph{\Model{HTML}}\footnote{N.D.T. : ce qui signifie \og langage de
+% balisage d'hypertexte \fg (\emph{hypertext markup language}).}
 % Ce modèle est dérivé de \Model{rgb} afin de permettre l'entrée de paramètres
 % de couleurs pour les pages web ou les fichiers CSS.
 % Aussi, ce n'est pas un modèle colorimétrique en tant que tel mais plutôt une
@@ -727,7 +733,7 @@
 % nombres et des lettres \emph{majuscules}.
 %
 % \paragraph{\Model{Hsb}, \Model{tHsb}}
-% Premièrement, \Model{Hsb} est un modèle \og interface utilisateur \fg{}
+% Premièrement, \Model{Hsb} est un modèle \og interface utilisateur \fg
 % transformant $\emph{teinte}\in[0,1]$ en $\emph{teinte\Circ}\in[0,H]$, où $H$
 % est donné par |\def\rangeHsb|\marg{H}.
 % \DescribeMacro\rangeHsb
@@ -745,7 +751,7 @@
 % \Model{Hsb} (le \Color{rouge}{red} étant à 0\Circ); cependant dans la plus
 % plupart des cercles chromatiques servant aux artistes, le 
 % \Color{jaune}{yellow} est à 120\Circ.
-% Ainsi, une entrée \og |120,60| \fg{} ferait sens si nous avions décidé de
+% Ainsi, une entrée \og |120,60| \fg ferait sens si nous avions décidé de
 % répliquer un cercle chromatique d'artiste par le biais de \Model{tHsb}.
 % Voir la section \vref{sec.tHsb2Hsb} pour la formule exacte de la
 % transformation et les restrictions détaillées, et la section 
@@ -755,7 +761,8 @@
 % Exemple: `|\def\rangetHsb{|\texttt{\rangetHsb}|}|' correspond en fait au
 % paramétrage par défaut de \XC.
 %
-% \paragraph{\Model{wave}}
+% \paragraph{\Model{wave}}\footnote{N.D.T. : ce qui signifie \og onde \fg dans
+% le sens d'onde lumineuse ici.}
 % Avec ce modèle nous essayons de convertir les longueurs d'onde dans des
 % modèles colorimétrique standards afin de réaliser une approximation de
 % l'apparence visuelle des ondes lumineuses.
@@ -844,9 +851,9 @@
 % définies directement comme avec |\color[rgb]{.1,.2,.3}|) ; ceci est contrôlé
 % par |\ifconvertcolorsU|.
 % \end{itemize}
-% Les deux bascules valent \og vrai \fg{} en sélectionnant n'importe quel
+% Les deux bascules valent \og vrai \fg en sélectionnant n'importe quel
 % modèle, à l'exception de \Option{natural} qui leur donne la valeur \og faux
-% \fg{}.
+% \fg.
 % D'autres choix sont autorisés grâce à une option d'extension ou à 
 % |\selectcolormodel|.
 % Pourquoi ne convertissons-nous pas toutes les couleurs au moment de
@@ -869,12 +876,12 @@
 % \hline
 % \rowcolor{tableheadcolor}
 % \em \'{E}lement & \em Chaîne de remplacement\\
-% \Meta*{vide}& \RS chaîne vide `'\\
-% \Meta*{moins}& \RS chaîne non vide contenant un ou plusieurs signes `|-|'\\
-% \Meta*{plus}& \RS chaîne non vide contenant un ou plusieurs signes  `|+|'\\
+% \Meta*{vide}& \RS chaîne vide \og \fg \\
+% \Meta*{moins}& \RS chaîne non vide contenant un ou plusieurs signes \og |-| \fg \\
+% \Meta*{plus}& \RS chaîne non vide contenant un ou plusieurs signes  \og |+| \fg \\
 % \hline
 % \Meta*{ent}& \RS nombre entier\hfill(\emph{entier})\\
-% \Meta*{num}& \RS nombre entier positif\hfill(\emph{nombre})\\
+% \Meta*{entpos}& \RS nombre entier positif\hfill(\emph{entier positif})\\
 % \Meta*{déc}& \RS nombre réel\hfill(\emph{décimal})\\
 % \Meta*{div}& \RS nombre réel non nul\hfill(\emph{diviseur})\\
 % \Meta*{pct}& \RS nombre réel dans l'intervalle 
@@ -882,44 +889,43 @@
 % \hline
 % \Meta*{id}& \RS chaîne non vide contenant des lettres et des 
 % chiffres\hfill(\emph{identifiant})\\
-% \Meta*{id étendu}& \RS \Meta{id}\newline
+% \Meta*{id-étendu}& \RS \Meta{id}\newline
 %                 \RS \Meta[1]{id}|=|\Meta[2]{id}\\
 % \Meta*{liste-id}& \RS 
-% \Meta[1]{id étendu}|,|\Meta[2]{id étendu}|,...,|\Meta[l]{id étendu}\\
+% \Meta[1]{id-étendu}|,|\Meta[2]{id-étendu}|,...,|\Meta[l]{id-étendu}\\
 % \Meta*{nom}& \RS \Meta{id}\hfill(\emph{nom explicite})\newline
-%               \RS `|.|'\hfill(\emph{nom implicite})\\
-% \Meta*{modèle-central}& \RS `|rgb|', `|cmy|', `|cmyk|', `|hsb|', 
-% `|gray|'\hfill(\emph{modèles centraux})\\
+%               \RS \og |.|\fg \hfill(\emph{nom implicite})\\
+% \Meta*{modèle-central}& \RS \og |rgb|\fg , \og |cmy|\fg , \og |cmyk|\fg , \og |hsb|\fg , 
+% \og |gray|\fg \hfill(\emph{modèles centraux})\\
 % \Meta*{modèle-numérique}& \RS \Meta{modèle-central}\newline
-%                    \RS `|RGB|', `|HTML|', `|HSB|', 
-% `|Gray|'\hfill(\emph{modèles entiers})\newline
-%                    \RS `|Hsb|', `|tHsb|', `|wave|'\hfill(\emph{modèles
+%                    \RS \og |RGB|\fg , \og |HTML|\fg , \og |HSB|\fg , 
+% \og |Gray| \fg \hfill(\emph{modèles entiers})\newline
+%                    \RS \og |Hsb| \fg , \og |tHsb| \fg , \og |wave| \fg \hfill(\emph{modèles
 % décimaux})\\
-% \Meta*{modèle}& \RS \Meta{modèle num}\hfill(\emph{modèles 
+% \Meta*{modèle}& \RS \Meta{modèle-numérique}\hfill(\emph{modèles 
 % numériques})\newline
-%                \RS `|named|'\hfill(\emph{pseudo-modèle})\\
+%                \RS \og |named| \fg \hfill(\emph{pseudo-modèle})\\
 % \Meta*{liste-modèle}& \RS 
 % \Meta[1]{modèle}|/|\Meta[2]{modèle}|/.../|\Meta[m]{modèle} 
 % \hfill(\emph{modèles multiples})\newline
-%                     \RS \Meta{modèle 
-% central}|:|\Meta[1]{modèle}|/|\Meta[2]{modèle}|/.../|\Meta[m]{modèle}\\
+%                     \RS \Meta{modèle-central}|:|\Meta[1]{modèle}|/|\Meta[2]{modèle}|/.../|\Meta[m]{modèle}\\
 % \Meta*{spéc}& \RS liste de valeurs numériques séparées par des 
 % virgules\hfill(\emph{spécification explicite})\newline
 %               \RS liste de valeurs numériques séparées par des 
-% virgules\hfill(\emph{spécification explicite})\newline
+% espaces\hfill(\emph{spécification explicite})\newline
 %               \RS nom d'une couleur \og nommée 
-% \fg{}\hfill(\emph{spécification implicite})\\
+% \fg\hfill(\emph{spécification implicite})\\
 % \Meta*{liste-spéc}& \RS 
 % \Meta[1]{spéc}|/|\Meta[2]{spéc}|/.../|\Meta[m]{spéc} 
 % \hfill(\emph{spécifications multiples})\\
 % \Meta*{type}& \RS \Meta{vide}\newline
-%               \RS `|named|', `|ps|'\\
+%               \RS \og |named| \fg , \og |ps| \fg \\
 % \hline
-% \Meta*{expr}& \RS \Meta{préfixe}\Meta{nom}\Meta{expr de  
-% mélange}\Meta{suffixe}\hfill(\emph{expression de couleur standard})\\
+% \Meta*{expr}& \RS \Meta{préfixe}\Meta{nom}\Meta{expr-de-mélange}\Meta{suffixe}
+% \hfill(\emph{expression de couleur standard})\\
 % \Meta*{préfixe}& \RS \Meta{vide}\newline
 %                 \RS \Meta{moins}\hfill(\emph{indicateur complémentaire})\\
-% \Meta*{expr de mélange}& \RS 
+% \Meta*{expr-de-mélange}& \RS 
 % |!|\Meta[1]{pct}|!|\Meta[1]{nom}|!
 % |\Meta[2]{pct}|!|\Meta[2]{nom}|!...!|\Meta[n]{pct}|!|\Meta[n]{nom} 
 % \hfill(\emph{expression de mélange complète})\newline
@@ -928,35 +934,34 @@
 % |\Meta[2]{pct}|!|\Meta[2]{nom}|!...!|\Meta[n]{pct}
 % \hfill(\emph{expression de mélange incomplète})\\
 % \Meta*{suffixe}& \RS \Meta{vide}\newline
-%                  \RS |!!|\Meta{plus}\hfill(\trad{\emph{series step}})\newline
-%                  \RS |!![|\Meta{num}|]|\hfill(\trad{\emph{series access}})\\
+%                  \RS |!!|\Meta{plus}\hfill(\emph{avance d'un pas dans une série})\newline
+%                  \RS |!![|\Meta{entpos}|]|\hfill(\emph{accès à une couleur d'une série})\\
 % \hline
-% \Meta*{expr étendue}& \RS 
-% \Meta{modèle central}|,|\Meta{div}|:|\Meta[1]{expr}|,
+% \Meta*{expr-étendue}& \RS 
+% \Meta{modèle-central}|,|\Meta{div}|:|\Meta[1]{expr}|,
 % |\Meta[1]{déc}|;|\Meta[2]{expr}|,|\Meta[2]{déc}|;...;|\Meta[k]{expr}|,
 % |\Meta[k]{déc}\newline
-%                   \RS \Meta{modèle central}|:|\Meta[1]{expr}|,
+%                   \RS \Meta{modèle-central}|:|\Meta[1]{expr}|,
 % |\Meta[1]{déc}|;|\Meta[2]{expr}|,|\Meta[2]{déc}|;...;|\Meta[k]{expr}|,
 % |\Meta[k]{déc}\\
 % \hline
-% \Meta*{expr fonctionnelle}& \RS |>|\Meta{fonction}|,|\Meta[1]{arg}|,
+% \Meta*{expr-fonctionnelle}& \RS |>|\Meta{fonction}|,|\Meta[1]{arg}|,
 % |\Meta[2]{arg}|,...,|\Meta[j]{arg}\hfill(\emph{expression fonctionnelle de
 %  couleur})\\
-% \Meta*{fonction}& \RS `|wheel|', `|twheel|'\hfill(\emph{fonctions de 
+% \Meta*{fonction}& \RS \og |wheel| \fg , \og |twheel| \fg \hfill(\emph{fonctions de 
 % couleur})\\
 % \hline
-% \Meta*{couleur}& \RS \Meta{expr de couleur}\Meta[1]{expr 
-% fonctionnelle}\Meta[2]{expr fonctionnelle}|...|\Meta[i]{expr fonctionnelle}\\
-% \Meta*{expr de couleur}& \RS \Meta{nom}\newline
+% \Meta*{couleur}& \RS \Meta{expr-de-couleur}\Meta[1]{expr-fonctionnelle}\Meta[2]{expr-fonctionnelle}|...|\Meta[i]{expr-fonctionnelle}\\
+% \Meta*{expr-de-couleur}& \RS \Meta{nom}\newline
 %                     \RS \Meta{expr}\newline
-%                     \RS \Meta{expr étendue}\\
+%                     \RS \Meta{expr-étendue}\\
 % \hline\hline
 % \rowcolor{white}
 % Remarques:& chaque \RS indique une chaîne de remplacement possible pour un
-% élément de la colonne de gauche ; cependant, des restrictions avancées
+% élément de la colonne de gauche ; cependant, d'autres restrictions
 % dépendantes du contexte peuvent s'appliquer. Voir le texte principal pour
 % plus de détails.
-% La chaîne `toto' doit toujours être comprise sans les apostrophes.
+% La chaîne \og test \fg  doit toujours être comprise sans les guillemets.
 % $i,j,k,l,m,n$ indiquent des entiers positifs, $k,l,m,n>0$, $m\le8$.\\
 % \hline
 % \end{tabularx}
@@ -980,7 +985,7 @@
 % \DescribeArg{moins}
 % \DescribeArg{plus}
 % \DescribeArg{ent}
-% \DescribeArg{num}
+% \DescribeArg{entpos}
 % \DescribeArg{déc}
 % \DescribeArg{pct}
 % \DescribeArg{div}
@@ -994,23 +999,23 @@
 % généralement des restrictions plus larges. Comme \XC{} utilise énormément
 % les registres internes de dimension de \TeX\ pour la plupart des calculs, 
 % ce point doit être gardé à l'esprit à chaque fois que des expressions
-% \Meta{expr étendue} doivent être utilisées.
+% \Meta{expr-étendue} doivent être utilisées.
 %
 % \paragraph{Noms de couleur}
 % \DescribeArg{nom}
 % Un \Meta{nom} indique le nom déclaré (ou le nom qui va être déclaré) d'une 
-% \emph{couleur} ou d'une \trad{\emph{série de couleur}} ;
-% il peut être déclaré \emph{explicitement} par l'une des commandes suivantes :
+% \emph{couleur} ou d'une \emph{série de couleur} ;
+% il peut être déclaré \emph{explicitement} avec l'une des commandes suivantes :
 % |\definecolor|, |\providecolor|, |\colorlet|, |\definecolorset|, 
 % |\providecolorset|, |\definecolorseries|, |\definecolors|, |\providecolors|.
-% Par ailleurs, le nom de couleur réservé `|.|' est déclaré 
+% Par opposition, le nom de couleur réservé \og |.| \fg  est déclaré 
 % \emph{implicitement} et indique la \emph{couleur actuelle}.
-% En fait, au-delà des chiffres et lettres, certains autres caractères 
+% Notez que, au-delà des chiffres et lettres, certains autres caractères 
 % peuvent également être utilisés pour les déclarations de \Meta{nom} mais les
 % restrictions données évitent les incompréhensions et garantissent la
 % compatibilité avec les futures évolutions de \XC.
 %
-% Exemples: `|red|', `|MonVertSpecial1980|', `|.|'.
+% Exemples: \og |red| \fg, \og |MonVertSpecial1980| \fg, \og |.| \fg.
 %
 %
 % \paragraph{Modèles colorimétriques}
@@ -1022,10 +1027,10 @@
 % \Model{cmy}, \Model{cmyk}, \Model{hsb}, \Model{gray}), les \emph{modèles
 % entiers} (\Model{RGB}, \Model{HTML}, \Model{HSB}, \Model{Gray}), 
 % les \emph{modèles décimaux} (\Model{Hsb}, \Model{tHsb}, \Model{wave}) et
-% les \emph{pseudo-modèles} (actuellement \nModel{named}, \nModel{ps}) 
+% les \emph{pseudo-modèles} (actuellement \nModel{named} et \nModel{ps}) 
 % s'explique simplement : les modèles centraux avec leurs paramètres basés
-% sur l'intervalle unité $[0,1]$ permettent de faire plus aisément tout type
-% de calculs, tandis que le but des modèles entiers est principalement de 
+% sur l'intervalle unité $[0,1]$ permettent de faire plus aisément n'importe
+% quel calcul, tandis que le but des modèles entiers est principalement de 
 % faciliter la saisie des paramètres en entrée (transformés ensuite en ceux
 % d'un des modèles centraux).
 % Enfin, les modèles décimaux \Model{Hsb} et \Model{tHsb} sont des versions de
@@ -1048,7 +1053,8 @@
 % comme expliqué en table \vref{tab.mod}, la seconde --- idéalement --- 
 % faisant référence à des noms définis par le pilote graphique.
 %
-% Exemples: `|.1,.2,.3|', `|.1 .2 .3|', `|0.56789|', `|89ABCD|', `|ForestGreen|'.
+% Exemples: \og |.1,.2,.3| \fg, \og |.1 .2 .3| \fg, \og |0.56789| \fg,
+% \og |89ABCD| \fg, \og |ForestGreen| \fg.
 %
 %
 % \paragraph{Modèles et spécifications multiples}
@@ -1065,83 +1071,87 @@
 % \Meta{liste-spéc}, de telle façon à ce que le traitement aboutisse à une 
 % paire $(\Meta{modèle}, \Meta{spéc})$ cohérente. Ceci explique pourquoi il
 % n'y a plus d'ambiguité possible dans la définition de couleur réellement
-% suivie.
+% appliquée.
 % La forme étendue \Meta{modèle 
 % central}|:|\Meta[1]{modèle}|/|\Meta[2]{modèle}|/.../|\Meta[m]{modèle} 
 % provoque la conversion immédiate de la \Meta{spéc} adéquate au \Meta{modèle
-% central}; un modèle inconnu sera tout simplement ignoré ici, sans aucun commentaire.
+% central}; un modèle inconnu sera ici tout simplement ignoré, sans aucun
+% commentaire.
 %
-% Exemples: `|rgb/cmyk/named/gray|', `|0,0,0/0,0,0,1/Black/0|', `|rgb:cmy/hsb|'.
+% Exemples: \og |rgb/cmyk/named/gray| \fg, \og |0,0,0/0,0,0,1/Black/0| \fg,
+% \og |rgb:cmy/hsb| \fg.
 %
 %
 % \paragraph{L'argument de type}
 % \DescribeArg{type}
-% Ceci est utilisé uniquement dans le contexte de commandes de définition
+% Il est utilisé uniquement dans le contexte de commandes de définition
 % de couleur, voir la description de |\definecolor| et assimilées.
 %
 %
 % \paragraph{Expressions standards de couleur}
 % \DescribeArg{expr}
 % \DescribeArg{préfixe}
-% \DescribeArg{expr de mélange}
+% \DescribeArg{expr-de-mélange}
 % \DescribeArg{suffixe}
 % Ces expressions servent d'outils pour spécifier facilement une certaine
-% forme de mélange de couleur en cascade, par ailleurs décrit en détail en 
+% forme de mélanges de couleurs en cascade, par ailleurs décrit en détail en
 % section~\ref{sec.expr-meaning}.
 % L'argument \Meta{préfixe} détermine si la couleur à retenir est celle qui
 % suit ou sa complémentaire :
 % un nombre impair de signes négatifs indique que la couleur résultant de 
 % l'expression préfixée doit être convertie en sa couleur complémentaire.
-% Une \emph{expression de mélange incomplète} est une juste une abbréviation
-% d'une \emph{expression de mélange complère} aveec  $\Meta[n]{nom} = |white|$,
+% Une \emph{expression de mélange incomplète} est une juste une abréviation
+% d'une \emph{expression de mélange complète} avec  $\Meta[n]{nom} = |white|$,
 % afin d'éviter quelques saisies dans le cas des teintes.
 % La chaîne \Meta{suffixe} est généralement vide mais elle offre quelques
-% fonctionnalités additionnelles dans le cas de \trad{\emph{color series}} :
+% fonctionnalités additionnelles dans le cas de \emph{séries de couleurs} :
 % les cas où la chaîne n'est pas vide demandent à ce que 
 % \begin{itemize}
-% \item le \Meta{nom} indique le nom d'une \trad{\emph{color series}} ;
-% \item l'\Meta{expr de mélange} est \emph{complète}.
+% \item le \Meta{nom} indique le nom d'une \emph{série de couleurs} ;
+% \item l'\Meta{expr-de-mélange} est \emph{complète}.
 % \end{itemize}
-% Exemples: `|red|', `|-red|', `|--red!50!green!12.345|', 
-% `|red!50!green!20!blue|', `|truc!!+|', `|truc!![7]|', `|truc!25!red!!+++|', 
-% `|truc!25!red!70!green!![7]|'.
+% Exemples: \og |red| \fg, \og |-red| \fg, \og |--red!50!green!12.345| \fg, 
+% \og |red!50!green!20!blue| \fg, \og |truc!!+| \fg, \og |truc!![7]| \fg, 
+% \og |truc!25!red!!+++| \fg, \og |truc!25!red!70!green!![7]| \fg.
 %
 %
 % \paragraph{Expressions de couleur étendues}
-% \DescribeArg{expr étendue}
+% \DescribeArg{expr-étendue}
 % Ces expressions fournissent une autre méthode pour mélanger des couleurs,
 % voir section~\vref{sec.extexpr-meaning} pour plus d'informations.
 % La forme raccourcie 
 % \begin{align*}
-% \Meta{modèle central}&|:|\Meta[1]{expr}|,|\Meta[1]{déc}|;|\Meta[2]{expr}|,
+% \Meta{modèle-central}&|:|\Meta[1]{expr}|,|\Meta[1]{déc}|;|\Meta[2]{expr}|,
 % |\Meta[2]{déc}|;...;|\Meta[k]{expr}|!|\Meta[k]{déc}\\
-% \intertext{est une abbréviation pour le cas spécial (et probablement plus
+% \intertext{est une abréviation pour le cas spécial (et probablement plus
 % courant)}
-% \Meta{modèle central}|,|\Meta{div}&|:|\Meta[1]{expr}|,|\Meta[1]{déc}|;|\Meta[2]{expr}|,|\Meta[2]{déc}|;...;|\Meta[k]{expr}|!|\Meta[k]{déc}\\
+% \Meta{modèle-central}|,|\Meta{div}&|:|\Meta[1]{expr}|,|\Meta[1]{déc}|;|\Meta[2]{expr}|,|\Meta[2]{déc}|;...;|\Meta[k]{expr}|!|\Meta[k]{déc}\\
 % \intertext{avec la définition suivante (impliquant une somme non nulle 
 % de tous les coefficients \Meta[\kappa]{déc}):}
 % \Meta{div} &:= \Meta[1]{déc} + \Meta[2]{déc} + \dots + \Meta[k]{déc} \neq0.
 % \end{align*}
-% Exemples: `|rgb:red,1|', `|cmyk:red,1;-green!25!blue!60,11.25;blue,-2|'.
+% Exemples: \og |rgb:red,1| \fg, 
+% \og |cmyk:red,1;-green!25!blue!60,11.25;blue,-2| \fg.
 %
 %
 % \paragraph{Expressions fonctionnelles}
-% \DescribeArg{expr fonctionnelle}
+% \DescribeArg{expr-fonctionnelle}
 % \DescribeArg{fonction}
 % Ces expressions étendent les fonctionnalités des expressions \emph{standards}
 % ou \emph{étendues} en récupérant le résultat de ces expressions pour
 % effectuer des calculs complémentaires.
-% Le nombre d'arguments peut varier entre les différentes fonctions, voir
-% section \vref{sec.functions} pour plus d'informations.
+% Le nombre d'arguments peut varier selon la fonction, voir section 
+% \vref{sec.functions} pour plus d'informations.
 %
-% Exemples: `|>wheel,30|', `|>wheel,30,|', `|>twheel,1,12|', `|>twheel,-11,12|'.
+% Exemples: \og |>wheel,30| \fg, \og |>wheel,30,| \fg, \og |>twheel,1,12| \fg,
+% \og |>twheel,-11,12| \fg.
 %
 %
 %
 % \paragraph{Couleurs}
 % \DescribeArg{couleur}
-% \DescribeArg{expr de couleur}
-% Au final, \Meta{couleur} est un argument générique recouvrant les 
+% \DescribeArg{expr-de-couleur}
+% Au final, \Meta{couleur} est un argument \og chapeau \fg recouvrant les 
 % différents concepts de spécification des couleurs. 
 % Ceci signifie qu'à chaque fois qu'un argument \Meta{couleur} est utilisable,
 % la totalité des noms et expressions vues ci-dessus peuvent être utilisées. 
@@ -1151,16 +1161,16 @@
 % \subsubsection{Signification des expressions de couleur 
 %   standards}\label{sec.expr-meaning}
 %
-% Est expliquée maintenant comme l'expression
+% Une expression comme
 % \begin{gather*}
-% \Meta{préfixe}\Meta{name}|!|\Meta[1]{pct}|!|\Meta[1]{name}|!|\Meta[2]{pct}|!|\dots|!|\Meta[n]{pct}|!|\Meta[n]{name}\Meta{suffixe}
+% \Meta{préfixe}\Meta{nom}|!|\Meta[1]{pct}|!|\Meta[1]{nom}|!|\Meta[2]{pct}|!|\dots|!|\Meta[n]{pct}|!|\Meta[n]{nom}\Meta{suffixe}
 % \end{gather*}
-% est interprêtée et traitée :
+% est interprêtée et traitée en une série d'étapes.
 % \begin{enumerate}
 % \item Tout d'abord, le modèle et les paramètres de couleur de \Meta{nom} 
 % sont extraits pour définir une couleur temporaire \Meta{temp}.
-% Si \Meta{suffixe} est de la forme `|!![|\Meta{num}|]|', alors \Meta{temp}
-% sera la couleur correspondante \Meta{num} (en accès direct) de la série
+% Si \Meta{suffixe} est de la forme \og |!![|\Meta{entpos}|]| \fg , alors \Meta{temp}
+% sera la couleur correspondante \Meta{entpos} (en accès direct) de la série
 % de couleur \Meta{nom}.
 % \item Alors un mélange de couleur, consistant en \Meta[1]{pct}\% de la
 % couleur \Meta{temp} et $(100-\Meta[1]{pct})$\% de la couleur \Meta[1]{nom} 
@@ -1168,29 +1178,30 @@
 % \item  L'étape précédente est répétée pour toutes les paires de paramètres
 % restantes. (\Meta[2]{pct},\Meta[2]{nom}), \dots, 
 % (\Meta[n]{pct},\Meta[n]{nom}).
-% \item Si \Meta{préfixe} contient un nombre impair de signes négactifs `-',
+% \item Si \Meta{préfixe} contient un nombre impair de signes négactifs \og - \fg,
 % alors \Meta{temp} sera changée en sa couleur complémentaire.
-% \item Si \Meta{suffixe} est de la forme `|!!+|', `|!!++|', `|!!+++|', etc. 
-% un nombre de \trad{step commands} (=~nombre de signes `|+|') sont effectuées
-% sur la série de couleur sous-jacente \Meta{nom}.
-% Ceci est sans conséquence pour la couleur \Meta{temp}.
+% \item Si \Meta{suffixe} est de la forme \og |!!+| \fg, \og |!!++| \fg, 
+% \og |!!+++| \fg et ainsi de suite, un certain nombre de commandes d'avancement
+% d'un pas (=~nombre de signes \og |+| \fg ) sont effectuées sur la série de
+% couleur sous-jacente \Meta{nom}. Ceci est sans conséquence pour la couleur 
+% \Meta{temp}.
 % \item La couleur \Meta{temp} est enfin affichée ou sert comme donnée en
 % entrée pour d'autres opérations, selon la commande utilisée. 
 % \end{enumerate}
 % Notez que, dans une expression 
 % \Meta{temp}|!|\Meta[\nu]{pct}|!|\Meta[\nu]{nom} typique de l'étape 2, si
 % \Meta[\nu]{pct}=100, la couleur \Meta{temp} est directement utilisée sans
-% plus de transformation. Si \Meta[\nu]{pct}=0,, c'est alors la
-% couleur \Meta[\nu]{name} qui est utilisée.
+% plus de transformation. Si \Meta[\nu]{pct}=0, c'est alors la
+% couleur \Meta[\nu]{nom} qui est utilisée.
 % Dans les cas de véritables mélanges ($0<$\Meta[\nu]{pct}$<100$), les deux
 % couleurs impliquées peuvent être définies dans des modèles colorimétriques
 % différents, par exemple |\definecolor{foo}{rgb}{...}| et 
 % |\definecolor{bar}{cmyk}{...}|. 
-% En général, la seconde couleur, \Meta[\nu]{name}, est convertie dans le
+% En général, la seconde couleur, \Meta[\nu]{nom}, est convertie dans le
 % modèle de la première couleur, \Meta{temp}, puis le mélange est calculé dans
-% le modèle\footnote{Exception : afin d'éviter des résultats inattendus, cette
+% ce modèle\footnote{Exception : afin d'éviter des résultats inattendus, cette
 % règle est inversée si \Meta{temp} est issue du modèle \Model{gray}; dans ce
-% cas, elle est convertie dans le modèle associé à \Meta[\nu]{nom}.} 
+% cas, elle est convertie dans le modèle associé à \Meta[\nu]{nom}.}. 
 % Ainsi, \Meta{temp}|!|\Meta[\nu]{pct}|!|\Meta[\nu]{nom} et 
 % \Meta[\nu]{nom}|!|\Meta[\nu]{$100-$pct}|!|\Meta{temp} qui devraient être
 % théoriquement équivalents, peuvent ne pas avoir des résultats visuels
@@ -1208,7 +1219,7 @@
 %
 % Une \emph{expression de couleur étendue} 
 % \begin{gather*}
-% \Meta{core model}|:|\Meta[1]{expr}|,|\Meta[1]{dec}|;|\Meta[2]{expr}|,|\Meta[2]{dec}|;...;|\Meta[k]{expr}|,|\Meta[k]{dec}
+% \Meta{modèle-central}|:|\Meta[1]{expr}|,|\Meta[1]{déc}|;|\Meta[2]{expr}|,|\Meta[2]{déc}|;...;|\Meta[k]{expr}|,|\Meta[k]{déc}
 % \end{gather*}
 % imite la manière dont les peintres mélangent les couleurs : en indiquant une
 % liste de couleurs, chaque couleur étant associée à un facteur \Meta{déc}.
@@ -1220,7 +1231,7 @@
 % \end{gather*}
 % Ensuite, la somme de tous ces vecteurs est calculée.
 %
-% Exemple: mélanger 4 parts de \testclr{red} \Color{red}{rouge}, 2~parts de 
+% Exemple: mélanger 4 parts de \testclr{red} \Color{rouge}{red}, 2~parts de 
 % \testclr{green} \Color{vert}{green}, et une part de \testclr{yellow} 
 % \Color{jaune}{yellow} permet d'obtenir \testclr{rgb:red,4;green,2;yellow,1}
 % par le biais de |\color{rgb:red,4;green,2;yellow,1}|.
@@ -1231,7 +1242,7 @@
 % |\color{rgb:yellow,1}| permet une telle conversion.
 % La forme générale
 % \begin{gather*}
-% \Meta{modèle central}|,|\Meta{div}|:|\Meta[1]{expr}|,|\Meta[1]{déc}|;|\Meta[2]{expr}|,|\Meta[2]{déc}|;...;|\Meta[k]{expr}|,|\Meta[k]{déc}
+% \Meta{modèle-central}|,|\Meta{div}|:|\Meta[1]{expr}|,|\Meta[1]{déc}|;|\Meta[2]{expr}|,|\Meta[2]{déc}|;...;|\Meta[k]{expr}|,|\Meta[k]{déc}
 % \end{gather*}
 % exécute la même opération avec pour seule différence que le diviseur
 % \Meta{div} est spécifié au lieu d'être calculé. 
@@ -1239,10 +1250,10 @@
 % \testclr{rgb,9:red,4;green,2;yellow,1} par le biais de 
 % |\color{rgb,9:red,4;green,2;yellow,1}|. 
 % Notez qu'il n'est pas interdit de spécifier un argument \Meta{div} qui soit
-% plus petit que la somme de tous les \Meta[\kappa]{dec}, de telle façon à ce
-% que certains des paramètres de spécification des couleurs puissent être hors
-% de l'intervalle $[0,1]$. Le traitement de l'équation \ref{eq.U}
-% gère ce type de cas.
+% plus petit que la somme de tous les \Meta[\kappa]{déc}, de façon à ce que
+% certains des paramètres de spécification des couleurs puissent être hors de
+% l'intervalle $[0,1]$. Le traitement de l'équation \ref{eq.U} gère ce type de
+% cas.
 %
 %
 % \subsubsection{Fonctions de couleur}\label{sec.functions}
@@ -1258,7 +1269,7 @@
 % Ces fonctions permettent de déterminer des couleurs liées par des relations 
 % harmoniques basées sur les cercles chromatiques (voir section~\vref{sec.harmony}).
 % Les arguments sont ici \Meta{angle} ou \Meta{angle}|,|\Meta{cercle complet},
-% le premier servant d'abbréviation à \Meta{angle}|,\rangeHsb|.
+% le premier servant d'abréviation à \Meta{angle}|,\rangeHsb|.
 % Le second argument \Meta{cercle complet} indique de combien d'unités un 
 % cercle complet est constitué tandis que le premier argument indique de
 % combien d'unités doit être faite la rotation à appliquer à la couleur
@@ -1303,8 +1314,8 @@
 %
 % Il existe également des ensembles de noms de couleur qui peuvent être chargés
 % par le biais d'options d'extension, toujours disponibles en deux
-% variantes : une version \og normale \fg{} (par exemple, \Option{dvipsnames})
-% et une version \og étoilée \fg{} (par exemple, \Option{dvipsnames*}). La 
+% variantes : une version \og normale \fg (par exemple, \Option{dvipsnames})
+% et une version \og étoilée \fg (par exemple, \Option{dvipsnames*}). La 
 % première variante définit toutes les couleurs \emph{immédiatement}, tandis
 % que la seconde applique le mécanisme de la définition \emph{différée}.
 % Dans ce dernier cas, les noms de couleur individuels doivent être activés
@@ -1313,7 +1324,7 @@
 % document.  
 % \begin{itemize}
 % \item \Option{dvipsnames}/\Option{dvipsnames*} charge un ensemble de 68 noms
-%  de couleur \Model{cmyk} telles que définies par le pilote |dvips|.
+%  de couleur \Model{cmyk} tels que définis par le pilote |dvips|.
 %  Cependant, ces couleurs peuvent être utilisées avec tous les pilotes
 %  supportés.
 % \item \Option{svgnames}/\Option{svgnames*} charge un ensemble de 151 noms de
@@ -1338,8 +1349,8 @@
 % \begin{itemize}
 % \item chargez \Option{x11names} ainsi que \Option{svgnames} ;
 % \item mettez les initiales en majuscule et supprimez les espaces : 
-%   \Color[-]{DarkSlateGray}{} au lieu de \Color[-]{dark slate gray}{} par 
-%   exemple ;
+%   \Color[-]{DarkSlateGray}{gris ardoise foncé} au lieu de \Color[-]{dark
+%   slate gray}{gris ardoise foncé} par exemple ;
 % \item les noms \Index{X11} sans les nombres sont identiques aux couleurs
 %   \Index{SVG} sauf dans 5~cas :
 %   utilisez \Coloruk[-]{gris}{Gray0}, \Coloruk[-]{gris}{Grey0}, 
@@ -1348,8 +1359,8 @@
 %   \Coloruk[-]{gris}{Grey}, \Coloruk[-]{vert}{Green}, 
 %   \Coloruk[-]{marron}{Maroon}, \Coloruk[-]{pourpre}{Purple} pour obtenir les
 %   couleurs \Index{X11} d'origine ;
-% \item pour $N=0,1,\dots,100$, utilisez `|[gray]{|$N/100$|}|' ou 
-%   `|black!|$100-N$' au lieu de \Coloruk[-]{gris}{grayN} ou 
+% \item pour $N=0,1,\dots,100$, utilisez \og |[gray]{|$N/100$|}| \fg  ou 
+%   \og |black!|$100-N$ \fg  au lieu de \Coloruk[-]{gris}{grayN} ou 
 %   \Coloruk[-]{gris}{greyN}.
 % \end{itemize}
 % \end{itemize}
@@ -1366,34 +1377,34 @@
 % \subsection{Définition de couleur}\label{sec.def}
 %
 
-% \subsubsection{Couleurs ordinaires et nommées}\label{sec.prologue}
+% \subsubsection{Couleurs ordinaires et couleurs nommées}\label{sec.prologue}
 %
-% Dans l'\LCP{} il y a une distinction entre les \og couleurs \fg{} (définies
-% par la commande |\definecolor|) et les \og couleurs nommées \fg{} (définies
-% par |\DefineNamedColor|, ce qui est autorisé uniquement dans le préambule).
+% Dans l'\LCP{} il y a une distinction entre les \og couleurs ordinaires \fg 
+% (définies par la commande |\definecolor|) et les \og couleurs nommées \fg 
+% (définies par |\DefineNamedColor|, ce qui est autorisé uniquement dans le 
+% préambule).
 % Chaque fois qu'une couleur ordinaire est utilisée dans un document, elle
 % est déposée dans une commande |\special| qui contient une description 
 % numérique de la couleur --- dépendante du pilote --- et qui est écrite dans
 % le fichier \File{.dvi}.
 % Les couleurs nommées, elles, présentent l'opportunité de stocker les valeurs
 % numériques à une place centrale tandis que, pendant leur utilisation, les 
-% couleurs peuvent être identifiées par leur nom, ce qui permet des traitements
-% ultérieurs si nécessaire par le périphérique de sortie.
+% couleurs peuvent être identifiées par leur nom, ce qui permet d'éventuels
+% retraitements par le périphérique de sortie.
 %
 % Tous les pilotes livrés avec l'extension standard \Package{graphics} 
 % supportent le \emph{formalisme} de la définition et de l'appel de \og
-% couleurs nommées \fg{}. 
-% Cependant, le support réel du \emph{concept} derrière cela, autrement dit
-% employer des noms au lieu des paramètres, va d'\og inexistant \fg{} à \og
-% total \fg{}.
+% couleurs nommées \fg. 
+% Cependant, le support réel du \emph{concept} sous-jacent, l'emploi de noms 
+% au lieu de paramètres, va d'\og inexistant \fg à \og total \fg.
 % Voici une illustration de la situation actuelle avec trois pilotes
 % différents.
 % \begin{itemize}
 % \item \Option{dvips} traite très bien le concept de \og couleur nommée 
-%  \fg{} ; les équivalents \Index{PostScript} des noms de couleur définis par
+%  \fg ; les équivalents \Index{PostScript} des noms de couleur définis par
 %  \Option{dvipsnames} sont chargés --- à moins qu'ils ne soient désactivés ---
 %  automatiquement par \Program{dvips}. Cependant les noms additionnels doivent
-%  être défini à l'interpréteur \Index{PostScript} par une sorte de fichier de
+%  être définis à l'interpréteur \Index{PostScript} par l'équivalent d'un 
 %  préambule.  
 %  Depuis la version 2.01, \XC{} propose une solution intégrée pour effectuer
 %  cette tâche : en utilisant l'option d'extension \Option{prologue}, un
@@ -1403,11 +1414,11 @@
 %  couleur\footnote{Ceci est vrai non seulement pour le préambule du document
 %  mais aussi pour tout le corps du document.} (|\definecolor|, |\colorlet|,
 %  etc.) génère un code \Index{PostScript} enregistré dans un fichier
-%  auxiliaire d'extension \File{.xcp} (abbréviation de \og \textbf{xc}olor
-%  \textbf prologue \fg{}). 
+%  auxiliaire d'extension \File{.xcp} (abréviation de \og \textbf{xc}olor
+%  \textbf prologue \fg). 
 %  Ce fichier est également chargé par \Program{dvips} comme préambule, 
 %  rendant ainsi disponibles tous les noms de couleur à l'interpréteur 
-%  \Index{PostScript}
+%  \Index{PostScript}.
 %  Bien entendu, le fichier \File{.xcp} peut être édité avant que 
 %  \Program{dvips} ne l'utilise, ce qui permet de changer les paramètres de
 %  couleur spécifiques au pilote à un endroit central.
@@ -1417,36 +1428,36 @@
 %  définitions de couleur qui ne sont pas détruites par \XC.
 %  En contrepartie, ceci impose à l'utilisateur de prendre soin de la 
 %  redéfinition des noms de couleur.\\
-%  Exemple: |\colorlet{foo}{red}\colorlet{foo}{blue}\color{foo}| va basculer
-%  la couleur à \Color{bleu}{blue} dans la logique usuelle de \XC, bien que le 
-%  fichier \File{.ps} va afficher \Color{rouge}{red} (à moins que foo n'ait
+%  Exemple: |\colorlet{test}{red}\colorlet{test}{blue}\color{foo}| bascule la
+%  couleur à \Color{bleu}{blue} dans la logique usuelle de \XC, bien que le 
+%  fichier \File{.ps} affiche \Color{rouge}{red} (à moins que |test| n'ait
 %  été défini différemment avant).\\
 %  Il faut souligner que ce mécanisme est employé uniquement avec l'option
 %  \Option{prologue}. 
-%  Sans cela, les couleurs \og nommées \fg{} prédéfinies activées par l'option
-%  \Option{dvipsnames} (sans employer aucune teinte, nuance, expression de 
-%  couleur, etc.) peuvent être utilisées de cette manière, toutes les
-%  autres couleurs \og nommées \fg{} sont inconnues de \Index{PostScript}.
+%  Sans cela, seuls les couleurs \og nommées \fg prédéfinies activées par
+%  l'option \Option{dvipsnames} (sans employer aucune variation ou expression
+%  de couleur, etc.) peuvent être utilisées de cette manière, toutes
+%  les autres couleurs \og nommées \fg sont inconnues de \Index{PostScript}.
 % \item \Option{dvipdfm} supporte seulement les couleurs \Option{dvipsnames}
-%  standard car elles sont décrites dans le programme \Program{dvipdfm} 
-%  lui-même ; il ne semble pas y avoir de façon de charger un fichier de 
+%  standards car elles sont décrites dans le programme \Program{dvipdfm} 
+%  lui-même ; il ne semble pas y avoir de moyen de charger un fichier de 
 %  préambule défini par l'utilisateur. 
 % \item \Option{pdftex} ne permet pas le support conceptuel, toutes les
-%  couleurs \og nommées \fg{} étant converties immédiatement en leur 
+%  couleurs \og nommées \fg étant converties immédiatement en leur 
 %  représentation numérique. En conséquence, ceci permet d'utiliser des
 %  définitions et un usage des couleurs nommées sans restriction (même si 
 %  cela n'offre aucune valeur ajoutée ici).
 % \end{itemize}
 %
 % Typiquement, un visualisateur \File{.dvi} aura des difficulés à afficher 
-% les couleurs \og nommées \fg{} définies par l'utilisateur.
+% les couleurs \og nommées \fg définies par l'utilisateur.
 % Par exemple, le visualisateur de \Index{MiK\TeX}, \Program{Yap}, affiche
-% actuellement uniquement les couleurs \og nommées \fg{} de l'ensemble
+% actuellement uniquement les couleurs \og nommées \fg de l'ensemble
 % \Option{dvipsnames}.
 % Aussi, à chaque fois que l'option \Option{prologue} est utilisée en lien
 % avec l'option \Option{dvips}, \emph{toutes} les autres couleurs sont 
 % restituées en noir. Cependant, après le traitement par \Program{dvips}, 
-% un visualisateur \Index{PostScript} affichera les bonnes couleurs.  
+% un visualisateur \Index{PostScript} affiche les bonnes couleurs.  
 %
 %
 % \subsubsection{Définition de couleur dans \XC}
@@ -1459,24 +1470,24 @@
 % \Meta{nom} à une couleur spécifique.
 % La couleur est ensuite connue du système (dans le groupe où elle est
 % définie) et peut être utilisée dans toute \emph{\Index{expression de
-% expression}}, comme expliquée en section \vref{sec.term}. 
-% La commande remplace à la fois |\DefineNamedColor| et |\definecolor| de \LC.
-% Notez que la définition d'un \Meta{nom} de couleur existant déjà est écrasée.
-% La variable |\tracingcolors| contrôle si cet écrasement est indiqué dans le
-% fichier \og log \fg{} ou pas (voir section \vref{sec.info} pour plus 
-% d'informations). Les arguments sont décrits en section \vref{sec.term}.
+% couleur}}, comme expliquée en section \vref{sec.term}. 
+% Cette commande remplace à la fois |\DefineNamedColor| et |\definecolor| de
+% \LC. Notez que la définition d'un \Meta{nom} existant déjà est écrasée. La
+% variable |\tracingcolors| contrôle si cet écrasement est indiqué dans le 
+% fichier journal (\emph{log}) ou pas (voir section \vref{sec.info} pour plus
+% d'informations). Les arguments sont décrits en section \vref{sec.term}. 
 % Aussi, des expressions valides définissant des couleurs sont, par exemple :
 % \begin{itemize}
-% \item |\definecolor{red}{rgb}{1,0,0}|,
-% \item |\definecolor{red}{rgb/cmyk}{1,0,0/0,1,1,0}|,
-% \item |\definecolor{red}{hsb:rgb/cmyk}{1,0,0/0,1,1,0}|,
-% \item |\definecolor[named]{Black}{cmyk}{0,0,0,1}|,
-% \item |\definecolor{myblack}{named}{Black}|,
+% \item |\definecolor{rouge}{rgb}{1,0,0}| ;
+% \item |\definecolor{rouge}{rgb/cmyk}{1,0,0/0,1,1,0}| ;
+% \item |\definecolor{rouge}{hsb:rgb/cmyk}{1,0,0/0,1,1,0}| ;
+% \item |\definecolor[named]{Noir}{cmyk}{0,0,0,1}| ;
+% \item |\definecolor{monNoir}{named}{Noir}| ;
 % \end{itemize}
-% où la dernière commande est équivalente à |\colorlet{myblack}{Black}| (voir
+% où la dernière commande est équivalente à |\colorlet{monNoir}{Noir}| (voir
 % ci-dessous); la deuxième commande définit \Color{rouge}{red} dans le modèle 
-% \Model{rgb} ou \Model{cmyk} selon la paramètre actuel du 
-% \emph{modèle cible}, tandis que la troisième convertit la couleur au modèle
+% \Model{rgb} ou \Model{cmyk} selon le paramétrage actuel du
+% \emph{modèle-cible}, tandis que la troisième convertit la couleur au modèle
 % \Model{hsb} avant d'être enregistré. Notez qu'il existe une version spéciale
 % associée à \Package{pstricks}, comme décrit en section \vref{sec.pstricks}.
 %
@@ -1491,9 +1502,9 @@
 %
 % \DescribeMacro\colorlet
 %   \oarg{type}\marg{nom}\oarg{modèle-numérique}\marg{couleur}\\
-% Cette commande copie la couleur obtenue avec \Meta{couleur} dans \Meta{name}.
+% Cette commande copie la couleur obtenue avec \Meta{couleur} dans \Meta{nom}.
 % Si \Meta{modèle-numérique} n'est pas vide, \Meta{couleur} est tout d'abord
-% converti dans le modèle spécifié avant que \Meta{name} ne soit défini.     
+% converti dans le modèle spécifié avant que \Meta{nom} ne soit défini.     
 % Le pseudo-modèle \nModel{named} \emph{n'est pas} autorisé ici mais il peut
 % cependant être spécifié dans l'argument \Meta{type}.
 % Notez qu'une couleur nommée \Meta{nom} définie auparavant sera écrasée.
@@ -1583,7 +1594,7 @@
 %   \oarg{type}\marg{liste-modèle}\marg{tête}\marg{queue}\marg{ensemble-spéc}
 % \DescribeMacro\ifdefinecolors\\
 % Cette commande est similaire à |\definecolorset| mais dépend de la bascule
-% |\ifdefinecolors| : si elle vaut \og true \fg{}, la commande |\definecolor|
+% |\ifdefinecolors| : si elle vaut \og true \fg, la commande |\definecolor|
 % est appliquée à chaque élément de l'ensemble (ce qui revient à une définition
 % immédiate); sinon la commande |\preparecolor| est appliquée (ce qui donne une
 % définition différée).
@@ -1764,7 +1775,7 @@
 %
 % \subsubsection{Utilisation de la couleur courante}
 %
-% Dans une expression de couleur, \og . \fg{} sert de synonyme pour la couleur
+% Dans une expression de couleur, \og . \fg sert de synonyme pour la couleur
 % courante. Voir la figure \vref{fig.cc} pour un exemple.
 %
 % Il est également possible de sauvegarder la couleur courante pour un usage
@@ -1773,7 +1784,7 @@
 % Notez que, dans certains cas, la couleur courante est d'un intérêt 
 % relativement limité. Par exemple, la construction d'une boîte |\fcolorbox|
 % implique qu'au moment où la \Meta{couleur-fond} est évaluée, la couleur 
-% courante est celle de \Meta{couleur-cadre} ; dans ce cas, \og |.| \fg{} ne 
+% courante est celle de \Meta{couleur-cadre} ; dans ce cas, \og |.| \fg ne 
 % fait pas référence à la couleur courante à l'\emph{extérieur} de la boîte. 
 %
 %
@@ -1838,7 +1849,7 @@
 %|\fcolorbox| et similaires.
 % Dans l'exemple précédent, les cadres ne sont pas touchés par le glissement
 % car leur couleur est fixée par une commande interne au pilote (revenant à la
-% \og couleur courante \fg{}). Ausi, pour influencer également ces couleurs 
+% \og couleur courante \fg). Ausi, pour influencer également ces couleurs 
 % \emph{implicites}, il faut fixer la couleur courante \emph{après} le 
 % glissement :
 % |\blendcolors{!50!yellow}\color{black}| conduit à 
@@ -1869,7 +1880,7 @@
 % vecteur de couleur obtenu sera multipliée par la composante associée de 
 % \Meta{spéc-m}.
 % Par exemple, supposons que \Meta{modèle-m} soit |cmyk| et que \Meta{spéc-m}
-% soit $(\mu_c,\mu_m,\mu_y,\mu_k)$. alors la couleur arbitraire \og test \fg{}
+% soit $(\mu_c,\mu_m,\mu_y,\mu_k)$. alors la couleur arbitraire \og test \fg
 % est transformée selon la règle suivante :
 % \begin{gather}
 % test \mapsto (c,m,y,k) \mapsto 
@@ -2008,7 +2019,7 @@
 % \end{cases}\label{eq.cs}
 % \end{gather}
 % Notez qu'il est possible d'utiliser l'abréviation de la couleur courante
-% \og . \fg{} dans la définition d'une série.
+% \og . \fg dans la définition d'une série.
 % Ainsi, |\definecolorseries{test}{rgb}{last}{.}{-.}| constitue une série
 % qui commence avec la couleur courante et s'achève avec sa complémentaire.
 % Bien sûr, de façon similaire à la primitive |\let| de \TeX, la définition
@@ -2041,11 +2052,11 @@
 % quelle \emph{expression de couleur} de la section \vref{sec.term} utilisée 
 % dans une commande  |\color|, |\textcolor| ou autre affiche cette couleur 
 % selon la syntaxe usuelle de telles expressions. Cependant, dans les cas où le
-% \Meta{suffixe} vaut \og |!!+| \fg{}, par exemple |\color{|\Meta{nom}|!!+}|, 
+% \Meta{suffixe} vaut \og |!!+| \fg, par exemple |\color{|\Meta{nom}|!!+}|, 
 % la commande affiche non seulement la couleur mais incrémente la série d'un 
 % pas. Ainsi la couleur courante de la série est changée dans ce cas. Une 
-% expression |\color{|\Meta{name}|!![|\Meta{num}|]}| permet par ailleurs
-% l'accès direct à un élément de la série, avec \Meta{num} = $0,1,2\dots$, en 
+% expression |\color{|\Meta{name}|!![|\Meta{entpos}|]}| permet par ailleurs
+% l'accès direct à un élément de la série, avec \Meta{entpos} = $0,1,2\dots$, en 
 % commençant par~0 pour la couleur de base. Voir la figure \vref{fig.csx} pour
 % une démonstration des différentes méthodes.
 %
@@ -2147,11 +2158,11 @@
 % \DescribeMacro\definecolor
 %   |[ps]|\marg{nom}\marg{liste-modèle-central}\marg{code}\\
 % Cette commande stocke le \Meta{code} \Index{PostScript} --- qui ne devrait 
-% pas contenir de caractères \og |/| \fg{} --- dans une couleur.
+% pas contenir de caractères \og |/| \fg --- dans une couleur.
 % Exemple:
 % après avoir déclaré |\definecolor[ps]{tic}{rgb}{tac}|, 
 % la commande |\psline[linecolor=tic]...| de l'extension de \Package{pstricks}
-% insère \og |tac setrgbcolor| \fg{} là où l'information de |linecolor| est
+% insère \og |tac setrgbcolor| \fg là où l'information de |linecolor| est
 % requise --- au moins dans le cas du pilote \Option{dvips}.
 % Voir aussi \href{xcolor2.pdf}{\File{xcolor2.tex}} pour une illustration de
 % point.
@@ -2233,7 +2244,7 @@
 % Notez qu'à chaque fois qu'est utilisée une couleur qui a été définie par la
 % commande |\definecolor| de \LC plutôt que par celle de \XC (ou autre), un
 % message d'avertissement sur l'incompatibilité de définition de couleur 
-% \og Incompatible color definition \fg{} est émis\footnote{Ceci ne devrait pas
+% \og Incompatible color definition \fg est émis\footnote{Ceci ne devrait pas
 % survenir puisqu'il n'y a pas de raison de charger \LC{} en parallèle de 
 % \XC{}.}.
 %
@@ -2247,7 +2258,7 @@
 % \Meta{modèle}, dans le \Meta{modèle-cible} et stocke les nouvelles 
 % spécifications dans |\commande|.
 % Le \Meta{modèle-cible} doit être de type \Meta{modèle-numérique}, tandis que
-% le \Meta{modèle} peut être également \og named \fg{}, auquel cas \Meta{spéc}
+% le \Meta{modèle} peut être également \og named \fg, auquel cas \Meta{spéc}
 % correspond tout simplement au nom de la couleur.
 %
 % Exemple : |\convertcolorspec{cmyk}{0.81,1,0,0.07}{HTML}\temp| fait la même
@@ -2293,9 +2304,9 @@
 % noir\color{red}rouge1\newpage rouge2\color{black}noir
 % \end{document}
 % \end{verbatim}
-% Ceci fonctionne comme attendu avec |dvips|, autrement dit \og red1 \fg{} et 
-% \og rouge2 \fg{} apparaissent en \Color{rouge}{red}. Cependant, avec 
-% |pdftex|, \og rouge2 \fg{} est affiché en \Color{noir}{black}.
+% Ceci fonctionne comme attendu avec |dvips|, autrement dit \og red1 \fg et 
+% \og rouge2 \fg apparaissent en \Color{rouge}{red}. Cependant, avec 
+% |pdftex|, \og rouge2 \fg est affiché en \Color{noir}{black}.
 % Ce problème peut être résolu en utilisant l'option \Option{fixpdftex} qui
 % charge l'extension \Package{pdfcolmk} de Heiko Oberdiek \cite{pdfcolmk}.
 % Cependant, ce dernier liste quelques limitations :
@@ -3053,12 +3064,12 @@
 % Bien qu'il y a une grande variété de pilotes qui implémentent différentes
 % approches à la visualisation des couleurs, ils ont tous des fonctionnalités
 % en commun, comme définies par l'\LCP originale. 
-% Une des fonctionnalités est que tout modèle de couleur \og test \fg{} 
+% Une des fonctionnalités est que tout modèle de couleur \og test \fg 
 % requiert une commande |\color@test|\marg{commande}\marg{spéc} afin de 
 % traduire la couleur dépendante de test \Meta{spéc} en code spécifique
 % au pilote qui est stocké dans \Meta{commande}.
 % Ainsi, \XC{} détecte en général le support du pilote pour le modèle
-% \og test \fg{} par l'existence de |\color@test|. 
+% \og test \fg par l'existence de |\color@test|. 
 %
 % Avec ce mécanisme, \XC{} peut également changer le comportement de certains
 % modèles sans toucher au pilote lui-même. Un bon exemple est ici la commande
@@ -3159,7 +3170,7 @@
 % particuliers ont été faits pour assurer un maximum de précision pour les
 % formules de conversion et de mélange -- tout cela avec les capacités limitées
 % de \TeX pour le calcul\footnote{Par exemple, en appliquant la \og 
-% transformation \fg{} \cs{dimen0=0.}\Meta{int}\texttt{pt}
+% transformation \fg \cs{dimen0=0.}\Meta{int}\texttt{pt}
 % \cs{the\string\dimen0} pour tous les entiers à 5 chiffres de la plage 
 % [00000,99999], exactement 34464 entiers sur les 100000 ne survivent pas sans
 % être modifiés. Et nous ne parlons ici des zéros finaux élagés\dots} 
@@ -3456,7 +3467,7 @@
 % y & := \med\{\emph{rouge}, \emph{vert}, \emph{bleu}\}\\
 % z & := \min\{\emph{rouge}, \emph{vert}, \emph{bleu}\}%\\
 % \end{align}
-% où \og $\med$ \fg{} restitue la valeur médiane entre les trois valeurs.
+% où \og $\med$ \fg restitue la valeur médiane entre les trois valeurs.
 % Alors,
 % \begin{align}
 % \emph{luminosité} & := x\\
@@ -4088,26 +4099,26 @@
 %
 % \bibitem{plrm}%
 %  {Adobe Systems Incorporated: \og PostScript Language Reference Manual 
-%  \fg{}. Addison-Wesley, troisième édition, 1999.
+%  \fg. Addison-Wesley, troisième édition, 1999.
 %   \URL{http://www.adobe.com/products/postscript/pdfs/PLRM.pdf}}
 %
 % \bibitem{fbox}%
 %  {\People{Donald}{Arseneau}: \og Patch so \cmd\fbox{} draws frame on top 
-%  of text \fg{}. \LaTeX{} bug report, latex/3655, 18/03/2004.
+%  of text \fg. \LaTeX{} bug report, latex/3655, 18/03/2004.
 %   \URL{http://www.latex-project.org/cgi-bin/ltxbugs2html?pr=latex/3655}}
 %
 % \bibitem{url}%
 %  {\People{Donald}{Arseneau}: extension \Package{url}, \og 2005/06/27  ver 3.2
-%  Verb mode for urls, etc. \fg{}.
+%  Verb mode for urls, etc. \fg.
 %   \CTAN{macros/latex/contrib/misc/}{url.sty}}
 %
 % \bibitem{Bruton}%
 %  {\People{Dan}{Bruton}: \og Approximate RGB values for Visible Wavelengths
-%  \fg{}, 1996.
+%  \fg, 1996.
 %   \URL{http://www.physics.sfasu.edu/astro/color/spectra.html}}
 %
 % \bibitem{dpc}%
-%  {\People{David P.}{Carlisle}: \og Packages in the `graphics' bundle \fg{},
+%  {\People{David P.}{Carlisle}: \og Packages in the ``graphics'' bundle \fg,
 %  2014.
 %   \CTAN{macros/latex/required/graphics/}{grfguide.*}}
 %
@@ -4117,34 +4128,34 @@
 %
 % \bibitem{colortbl}%
 %  {\People{David P.}{Carlisle}: extension \Package{colortbl}, 
-%  \og 2001/02/13 v0.1j Color table columns \fg{}.
+%  \og 2001/02/13 v0.1j Color table columns \fg.
 %   \CTAN{macros/latex/contrib/colortbl/}{}}
 %
 % \bibitem{pstcol}%
 %  {\People{David P.}{Carlisle}, \People{Herbert}{Vo\ss}, 
 %  \People{Rolf}{Niepraschk}: extension \Package{pstcol}, 
-%  \og 2005/11/16 v1.2 LaTeX wrapper for `PSTricks'{} \fg{}.
+%  \og 2005/11/16 v1.2 LaTeX wrapper for ``PSTricks''{} \fg.
 %   \CTAN{macros/graphics/pstricks/latex/}{pstcol.sty}}
 %
 % \bibitem{chroma}%
-%  {\People{Uwe}{Kern}: \og Chroma: a reference book of \LaTeX{} colors \fg{}.
+%  {\People{Uwe}{Kern}: \og Chroma: a reference book of \LaTeX{} colors \fg.
 %   \CTAN{info/colour/chroma/}{} et
 %   \URL{http://www.ukern.de/tex/chroma.html}}
 %
 % \bibitem{xcolor}%
 %  {\People{Uwe}{Kern}: extension \Package{xcolor}, 
-%   \og \LaTeX{} color extensions \fg{}.
+%   \og \LaTeX{} color extensions \fg.
 %   \CTAN{macros/latex/contrib/xcolor/}{} et
 %   \URL{http://www.ukern.de/tex/xcolor.html}}
 %
 % \bibitem{colorinfo}%
 %  {\People{Rolf}{Niepraschk}: extension \Package{colorinfo}, 
-%   \og 2003/05/04 v0.3c Info from defined colors \fg{}.
+%   \og 2003/05/04 v0.3c Info from defined colors \fg.
 %   \CTAN{macros/latex/contrib/colorinfo/}{}}
 %
 % \bibitem{pdfcolmk}%
 %  {\People{Heiko}{Oberdiek}: extension \Package{pdfcolmk}, 
-%   \og 2006/02/20 v0.8 PDFtex COLor MarK \fg{}.
+%   \og 2006/02/20 v0.8 PDFtex COLor MarK \fg.
 %   \CTAN{macros/latex/contrib/oberdiek/}{pdfcolmk.*}}
 %
 % \bibitem{mik}%
@@ -4154,21 +4165,21 @@
 % \bibitem{hyperref}%
 %  {\People{Sebastian}{Rahtz}, \People{Heiko}{Oberdiek}: 
 %   extension \Package{hyperref},
-%   \og 2006/09/06 v6.75e Hypertext links for \LaTeX \fg{}.
+%   \og 2006/09/06 v6.75e Hypertext links for \LaTeX \fg.
 %   \CTAN{macros/latex/contrib/hyperref/}{}}
 %
 % \bibitem{smith}%
-%  {\People{Alvy Ray}{Smith}: \og Color Gamut Transform Pairs \fg{}. 
+%  {\People{Alvy Ray}{Smith}: \og Color Gamut Transform Pairs \fg. 
 %   \emph{Computer Graphics} (ACM SIGGRAPH), Volume 12, Numéro 3, Août 1978.
 %   \URL{http://alvyray.com/Papers/PapersCG.htm}}
 %
 % \bibitem{HTML4}%
-%  {World Wide Web Consortium: \og HTML4 color keywords \fg{}.
+%  {World Wide Web Consortium: \og HTML4 color keywords \fg.
 %   \URL{http://www.w3.org/TR/css3-color/\#html4}}
 %
 % \bibitem{svg}%
 %  {World Wide Web Consortium: \og Scalable Vector Graphics (\Index{SVG}) 1.1
-%   Specification --- Basic Data Types and Interfaces \fg{}.
+%   Specification --- Basic Data Types and Interfaces \fg.
 %   \URL{http://www.w3.org/TR/SVG11/types.html\#ColorKeywords}}
 %
 % \end{thebibliography}
@@ -4183,7 +4194,7 @@
 % \addcontentsline{toc}{subsection}{Remerciements}
 % Cette extension se base sur \cite{color} (Copyright (C) 1994--1999 
 % \People{David P.}{Carlisle}) et contient du code de cette extension, cette
-% dernière faisant partie de l'\og ensemble graphique\fg{} du standard  
+% dernière faisant partie de l'\og ensemble graphique\fg du standard  
 % \LaTeX{}.
 % Bien que de nombreuses commandes et fonctionnalités ont été ajoutées et que 
 % la plupart des commandes originales de \LC{} ont été réécrites ou adaptées
@@ -4259,7 +4270,7 @@
 %   \end{itemize}
 % \item Corrections d'erreur :
 %   \begin{itemize}
-%   \item traitement incorrect de la couleur courante \og . \fg{} de type 
+%   \item traitement incorrect de la couleur courante \og . \fg de type 
 %     \Model{cmyk}.
 %   \end{itemize}
 % \end{itemize}
@@ -4478,7 +4489,7 @@
 %     paramètres de couleur spécifiques au modèle cible, par exemple 
 %     |\definecolor| |{red}{rgb/cmyk}{1,0,0/0,1,1,0}|, facilitant l'usage de
 %     couleurs sur mesure à la fois pour l'affichage et l'impression ;
-%   \item \og définition différée \fg{} de couleur : |\preparecolor| et
+%   \item \og définition différée \fg de couleur : |\preparecolor| et
 %     |\definecolors| permettent de découpler la spécification des couleurs et
 %     la génération de la séquence de contrôle, ce qui est particulier utile 
 %     (en économisant de la mémoire) pour de larges listes de couleurs dans
@@ -4497,7 +4508,7 @@
 %   \item |\XCfileversion| et les constantes internes similaires sont
 %     retirées des fichiers \File{.sty} et \File{.def} ;
 %   \item gestion de la mémoire améliorée (génération réduite de \og séquences
-%     de contrôle à plusieurs lettres \fg{} par les tests |\@ifundefined|);
+%     de contrôle à plusieurs lettres \fg par les tests |\@ifundefined|);
 %   \item plusieurs commandes internes améliorées et/ou renommées.
 %   \end{itemize}
 % \item Corrections d'erreur :
@@ -4589,9 +4600,9 @@
 %   \item support du modèle \nModel{named} ;
 %   \item support des couleurs \Program{dvips} (peuvent être maintenant
 %     utilisées dans des expressions de couleur);
-%   \item représentations internes des couleurs \og ordinaires \fg{} et \og
-%     nommées \fg{} regroupées en une structure de données unifiée ;
-%   \item autorisation de signes \og - \fg{} multiples au début d'expressions
+%   \item représentations internes des couleurs \og ordinaires \fg et \og
+%     nommées \fg regroupées en une structure de données unifiée ;
+%   \item autorisation de signes \og - \fg multiples au début d'expressions
 %     de couleur.
 %   \end{itemize}
 % \item Corrections d'erreur :
@@ -4641,7 +4652,7 @@
 %     et le \trad{black-generation} durant la conversion en \Model{cmyk}.
 %   \end{itemize}
 % \item Correction d'erreur : les expressions de couleur ne fonctionnaient pas
-%   correctement avec le caractère actif \og ! \fg{}, par exemple, en cas 
+%   correctement avec le caractère actif \og ! \fg, par exemple, en cas 
 %   d'utilisation de |\usepackage[frenchb]{babel}|.
 % \item Réorganisation du code :
 %   \begin{itemize}
@@ -4695,7 +4706,7 @@
 %   \begin{itemize}
 %   \item l'option d'extension \Option{hideerrors} fonctionne maintenant comme
 %    attendu ;
-%   \item l'utilisation de `.' dans la première expression de couleur causait
+%   \item l'utilisation de \og . \fg dans la première expression de couleur causait
 %    une erreur du fait d'une initialisation incorrecte.
 %   \end{itemize}
 % \item Réorganisation du code : |\extractcolorspec| utilise maintenant 
