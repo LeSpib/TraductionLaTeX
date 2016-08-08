@@ -531,25 +531,25 @@ This work consists of this file fontspec.dtx
 % \subsection{Contrôle accru sur la sélection de la forme des fontes}
 % \label{sec:bfitfonts}
 %
-% \tradini 
 % \cmdbox{
-%  \feat{BoldFont} = \meta{font name} \\
-%  \feat{ItalicFont} = \meta{font name} \\
-%  \feat{~BoldItalicFont} = \meta{font name} \\
-%  \feat{SlantedFont} = \meta{font name} \\
-%  \feat{BoldSlantedFont} = \meta{font name} \\
-%  \feat{SmallCapsFont} = \meta{font name}
+%  \feat{BoldFont} = \meta{nom de fonte} \\
+%  \feat{ItalicFont} = \meta{nom de fonte} \\
+%  \feat{~BoldItalicFont} = \meta{nom de fonte} \\
+%  \feat{SlantedFont} = \meta{nom de fonte} \\
+%  \feat{BoldSlantedFont} = \meta{nom de fonte} \\
+%  \feat{SmallCapsFont} = \meta{nom de fonte}
 % }
 %
-% The automatic bold, italic, and bold italic font selections will not be
-% adequate for the needs of every font: while some fonts mayn't even
-% have bold or italic shapes, in which case a skilled (or lucky)
-% designer may be able to chose well-matching accompanying shapes from
-% a different font altogether, others can have a range of bold and
-% italic fonts to chose among.  The \feat{BoldFont} and
-% \feat{ItalicFont} features are provided for these situations. If only
-% one of these is used, the bold italic font is requested as the
-% default from the \emph{new} font. See \exref{bff}.
+% Les sélections automatiques des fontes grasses, italiques, et grasses
+% italiques ne seront pas toujours adéquates pour les besoins de chaque
+% police : tandis que certaines polices peuvent ne pas avoir de variantes
+% grasses ou italiques, auquel cas un concepteur qualifié (ou chanceux)
+% pourra choisir des variantes bien adaptées issues d'une autre police,
+% d'autres fontes disposent d'une large gamme de fontes grasses et italiques
+% parmi lesquelles choisir. Les fonctionnalités \feat{BoldFont} et
+% \feat{ItalicFont} sont pensées pour ces cas-là. Si l'une d'entre elles
+% seulement est utilisée, la fonte grasse italique est alors tirée par défaut
+% de la \emph{nouvelle} fonte. Voir \exref{bff}.
 %
 % \begin{Xexample}{bff}{Explicit selection of the bold font.}
 %   \fontspec{Helvetica Neue UltraLight}%
@@ -560,64 +560,69 @@ This work consists of this file fontspec.dtx
 %   {\bfseries\itshape       Helvetica Neue Italic} \\
 % \end{Xexample}
 %
-% If a bold italic shape is not defined, or you want to specify
-% \emph{both} custom bold and italic shapes, the \feat{BoldItalicFont}
-% feature is provided.
+% Si la variante grasse italique n'est pas définie, ou si vous souhaitez
+% \emph{à la fois} spécifier des variantes grasses \trad{et} italiques 
+% personnalisées, la fonctionnalité \feat{BoldItalicFont} est disponible.
 %
-% \subsubsection{Input shorthands}
+% \subsubsection{Raccourcis de saisie}
 %
-% For those cases that the base font name is repeated, you can
-% replace it with an asterisk. (This has been shown previously in \vref{sec:by-file-name}.)
-% For example,
-% some space can be saved instead of writing `\texttt{Baskerville SemiBold}':
+% Dans les cas où la base du nom de la fonte est répétée, vous pouvez la
+% remplacer par une astérisque (ceci a été illustré précédemment en 
+% \vref{sec:by-file-name}).
+% Par exemple, un peu de place peut être économisée si, au lieu d'écrire
+% \og \texttt{Baskerville SemiBold} \fg, est écrit :
 % \begin{Verbatim}
 %   \setmainfont{Baskerville}[BoldFont={* SemiBold}]
 % \end{Verbatim}
 %
-% As a matter of fact, this feature can also be used for the upright font too:
+% De fait, cette fonctionnalité peut aussi être utilisée pour la fonte
+% romaine également :
 % \begin{Verbatim}
 %   \setmainfont{Baskerville}[UprightFont={* SemiBold},BoldFont={* Bold}]
 % \end{Verbatim}
 %
-% \subsubsection{Small caps and slanted font shapes}
+% \subsubsection{Petites capitales et forme penchée}
 %
-% For the rare situations where a font family will have slanted \emph{and}
-% italic shapes, these may be specified separately using the analogous
-% features \feat{SlantedFont} and \feat{BoldSlantedFont}. Without these,
-% however, the \LaTeX\ font switches for slanted (\cs{textsl}, \cs{slshape})
-% will default to the italic shape.
+% Dans les rares cas où une famille de fontes dispose d'une forme 
+% penchée \emph{et} d'une forme italique, elles peuvent être spécifiées 
+% séparément en utilisant les fonctionnalités analogues \feat{SlantedFont} et
+% \feat{BoldSlantedFont}. Sans celles-ci, cependant, les commandes de \LaTeX
+% permettant de les utiliser (\cs{textsl}, \cs{slshape}) restitueront par
+% défaut de l'italique.
 %
-% Old-fashioned font families used to distribute their small caps
-% glyphs in separate fonts due to the limitations on the number
-% of glyphs allowed in the PostScript Type~1 format. Such fonts may be used
-% by declaring the \feat{SmallCapsFont} of the family you are specifying:
+% Les anciennes familles de fontes distribuaient les versions petites
+% majuscules dans des fontes séparées du fait des limitations sur le nombre
+% de glyphes autorisé dans le format PostScript Type~1. De telles fontes
+% peuvent être utilisées en les déclarant avec \feat{SmallCapsFont}.
 % \begin{Verbatim}
 %   \fontspec{Minion MM Roman}[
 %     SmallCapsFont={Minion MM Small Caps & Oldstyle Figures}
 %   ]
 %   Roman 123 \\ \textsc{Small caps 456}
 % \end{Verbatim}
-% In fact, you may specify the small caps font for each individual bold and
-% italic shape as in
+% En fait, vous pouvez indiquer la fonte petites capitales pour chaque
+% variante grasse et italique avec : 
 % \begin{Verbatim}
-%   \fontspec{ <upright> }[
-%     UprightFeatures    = { SmallCapsFont={ <sc> } } ,
-%     BoldFeatures       = { SmallCapsFont={ <bf sc> } } ,
-%     ItalicFeatures     = { SmallCapsFont={ <it sc> } } ,
-%     BoldItalicFeatures = { SmallCapsFont={ <bf it sc> } } ,
+%   \fontspec{ <romain> }[
+%     UprightFeatures    = { SmallCapsFont={ <petitescaps> } } ,
+%     BoldFeatures       = { SmallCapsFont={ <gras petitescaps> } } ,
+%     ItalicFeatures     = { SmallCapsFont={ <italique petitescaps> } } ,
+%     BoldItalicFeatures = { SmallCapsFont={ <gras italique petitescaps> } } ,
 %   ]
 %   Roman 123 \\ \textsc{Small caps 456}
 % \end{Verbatim}
 %
-% For most modern fonts that have small caps as a font feature, this level of
-% control isn't generally necessary, but you may still occasionally find font
-% families in which the small caps are in a separate font.
+% Pour la plupart des fontes modernes qui ont des petites capitales en tant que
+% fonctionnalités, ce niveau de contrôle n'est généralement pas nécessaire mais
+% vous pouvez toujours occasionnellement trouver des familles de fontes dans 
+% lesquelles les petites capitales sont présentes dans des fontes séparées.
 %
-% All of the bold, italic, and small caps fonts can be loaded with different
-% font features from the main font. See \ref{sec:bfit-feat} for details.
-% When an OpenType font is selected for |SmallCapsFont|, the small caps
-% font feature is \emph{not} automatically enabled. In this case, users
-% should write instead, if necessary,
+% Toutes les fontes grasses, italiques et petites capitales peuvent être
+% chargées avec différentes fonctionnalités à partir de la fonte principales.
+% Voir \ref{sec:bfit-feat} pour plus d'informations. Quand une fonte OpenType
+% est sélectionnée pour |SmallCapsFont|, la fonctionnalité petites capitales
+% \emph{n'est pas} automatiquement activée. Dans ce cas, l'utilisateur doit
+% écrire en lieu et place, si nécessaire,
 % \begin{Verbatim}
 %   \fontspec{...}[
 %     SmallCapsFont={...},
@@ -625,8 +630,9 @@ This work consists of this file fontspec.dtx
 %   ]
 % \end{Verbatim}
 %
-% \subsection{Specifically choosing the NFSS family}
+% \subsection{Sélection spécifique de la famille NFSS}
 %
+% \tradini
 % In \LaTeX's NFSS, font families are defined with names such as `\texttt{ppl}' (Palatino), `\texttt{cmr}' (Computer Modern Roman), and so on, which are selected with the \cs{fontfamily} command:
 % \begin{Verbatim}
 %   \fontfamily{ppl}\selectfont

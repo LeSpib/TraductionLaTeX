@@ -44,4 +44,5 @@ fontspec.cfg                  | :new_moon:             | 0 / 1           |
 Anglais                   | Français                                          | Commentaires 
 ------------------------- | ------------------------------------------------- | -------------------------------
 swash                     | ornements                                         | Source [Wikipédia](https://en.wikipedia.org/wiki/Swash_(typography)
+upright                   | romain, droit (en parlant d'une fonte)            |
 
