@@ -112,7 +112,7 @@
 %
 % \begin{macro}{\afterpage}
 % Le registre d'unités lexicales (\emph{token}) utilisé pour sauvegarder 
-% l'ancienne routine \trad{de sortie}.
+% l'ancienne routine de sortie.
 %    \begin{macrocode}
 \newtoks\AP@output
 \global\AP@output\expandafter{\the\output}
@@ -125,36 +125,36 @@
 %    \end{macrocode}
 %
 % Un registre de boîte utilisé pour sauvegarder tout texte de note de bas de
-% page qui est lité au texte qui est sauvegardé dans |\AP@partial|.
+% page qui est lié au texte qui est sauvegardé dans |\AP@partial|.
 %    \begin{macrocode}
 \newbox\AP@footins
 %    \end{macrocode}
 %
 % La commande suivante essaye d'entrer proprement en mode vertical et d'appeler
-% alors une routine \trad{de sortie} spéciale pour placer la page courante 
+% alors une routine de sortie spéciale pour placer la page courante 
 % dans |\AP@partial|.
 %    \begin{macrocode}
 \def\AP@savetop{%
 %    \end{macrocode}
-% \tradini
-% Now begins a test to see what state we are in. |\AP@noindent|  will
-% be defined so as to return to this state (well, almost!) after
-% afterpage has finished.
+% Maintenant commence un test pour voir dans quel état nous nous trouvons. 
+% |\AP@noindent| va être défini afin que revenir dans cet état (enfin, presque)
+% à la fin du traitement fait par \textsf{afterpage}.
 %    \begin{macrocode}
   \ifvmode
 %    \end{macrocode}
-% Vertical mode. This is the simplest case, do nothing.
+% Nous sommes ici en mode vertical. C'est le cas le plus simple : il n'y a rien
+% à faire.
 %    \begin{macrocode}
     \let\AP@noindent\empty
   \else\ifhmode
 %    \end{macrocode}
-% Horizontal mode.
-% `Back out' into vertical mode, removing the indentation box as we go.
-% If in fact there was no indentation box, the output routine was
-% invoked by |\noindent| (what bad luck!) so we have to remember to
-% re-insert the |\noindent| before the paragraph is seen again.
-% |\everypar| tokens have already been inserted, so don't insert them
-% again.
+% Nous sommes en mode horizontal. Nous \og repassons \fg en mode vertical, 
+% retranchant au passage la boîte d'indentation. S'il n'y a pas cette boîte
+% d'indentation, cela implique que la routine de sortie a été invoquée par
+% |\noindent| (vraiment pas de chance !), nous devons donc nous rappeler
+% par la suite que nous aurons à réinsérer un |\noindent| pour le paragraphe
+% à venir. Les unités lexicales |\everypar| ont déjà été insérées, il ne 
+% faut donc pas en insérer de nouveau.
 %    \begin{macrocode}
     \setbox\z@\lastbox
     \edef\AP@noindent
@@ -162,16 +162,18 @@
     \par
   \else
 %    \end{macrocode}
-% The remaining (even worse) possibility that the output routine
-% was triggered by the start of displaymath within a paragraph.
+% La possibilité (bien pire) qu'il reste est que la routine de sortie a été
+% déclenchée par le début de mathématiques en mode hors texte dans un 
+% paragraphe.
 %
-% Come out of displaymath with |$$|, then adjust the spacing (getting
-% into vmode at the same time). |\AP@noindent| will restart display math
-% later. |\everydisplay| tokens have already been inserted (they apply
-% to the math list that will be started by |\AP@noindent|, even though
-% they were triggered by the display math that was closed by the lines
-% below!). Save the values |\prevgraf| and |\predisplaysize| for use in
-% the re-started math list.
+% Nous sortons du mode hors texte avec |$$| puis ajustons l'espacement (entrant
+% en même temps dans le mode vertical). |\AP@noindent| relancera plus tard le
+% mode hors texte. Les unités lexicales |\everydisplay| ont déjà été insérées 
+% (elles s'appliquent à la liste mathématique qui sera entamée par 
+% |\AP@noindent|, même si la présence de ces unités lexicales a été déclenchée
+% par le mode mathématique hors texte qui a été fermé par les lignes 
+% ci-dessous !). Les valeurs de |\prevgraf| et de |\predisplaysize| sont
+% sauvegarder pour être utilisées pour la future liste mathématique. 
 %    \begin{macrocode}
     \abovedisplayshortskip\z@\abovedisplayskip\z@
     \belowdisplayshortskip\z@\belowdisplayskip\z@
@@ -181,20 +183,20 @@
     $$\vskip-\baselineskip\vskip-\parskip
     \edef\AP@noindent{%
 %    \end{macrocode}
-% Do not insert |\everydisplay| tokens again.
+% Ne pas insérer d'unites lexicales |\everydisplay| à nouveau.
 %    \begin{macrocode}
       \toks@{\the\everydisplay}\everydisplay{}%
 %    \end{macrocode}
-% Start displaymath mode with no spurious paragraph line above it.
-% Restore |\prevgraf| and |\predisplaysize|.  Use |\aftergroup| to
-% restore the correct setting for |\everydisplay| after this display
-% has finished.
+% Le mode hors texte commence sans une fausse ligne de paragraphe au-dessus de
+% lui. Les valeurs |\prevgraf| et |\predisplaysize| sont restaurées. La
+% commande |\aftergroup| est utilisée pour restaurer la bonne configuration de
+% |\everydisplay| après que ce mode hors texte se soit achevé.
 %    \begin{macrocode}
       {\everypar{}\noindent}$$\AP@disp\aftergroup\noexpand\AP@ed}%
   \fi\fi
 %    \end{macrocode}
-% Now switch the  output routine and remove everything from the current
-% page into the box |\AP@partial|.
+% Maintenant nous passons en routine de sortie et nous passons l'ensemble
+% des éléments de la page dans la boîte |\AP@partial|.
 %    \begin{macrocode}
   \begingroup
   \nointerlineskip\null
@@ -203,31 +205,33 @@
         \unvbox\@cclv
          \global\setbox\@ne\lastbox}%
 %    \end{macrocode}
-% If the text that is saved in |\AP@partial| had footnotes, we'd
-% better grab them as well otherwise they may come out on a page
-% with the `afterpage' text, before the page that has the
-% footnote mark! (Added at v1.08.)
+% Si le texte qui est sauvegardé dans |\AP@partial| a des notes de bas de page,
+% nous les prenons aussi car sinon elles pourraient revenir sur la page 
+% précédent la page qui a la marque de note de bas de page ! Cet ajout a été 
+% fait en version V1.08.
 %    \begin{macrocode}
        \global\setbox\AP@footins\box\footins}%
 %    \end{macrocode}
-% Having defined the output routine, trigger it\ldots
+% Ayant défini la routine de sortie, nous la déclenchons\ldots 
 %    \begin{macrocode}
   \eject
   \endgroup}
 %    \end{macrocode}
 %
-% |\AP@| stores all the commands that must be executed after the page
-% break.
+% |\AP@| stocke toutes les commandes qui doivent être exécutées après le
+% saut de page.
 %    \begin{macrocode}
 \let\AP@\relax
 %    \end{macrocode}
 %
-% Restore the |\everydisplay| register. |\ignorespaces| prevents a space
-% or newline after |$$| creating rogue a indentation or paragraph.
+% Le registre |\everydisplay| est restauré. La commande |\ignorespaces| empêche
+% d'avoir un espace ou une nouvelle ligne après le |$$| créant une indentation
+% ou un paragraphe scélérat.
 %    \begin{macrocode}
 \def\AP@ed{\everydisplay\expandafter{\the\toks@}\ignorespaces}
 %    \end{macrocode}
 %
+% \tradini
 % Remove the current vertical list, insert the commands |\AP@|
 % at the top of the page, and then re-insert the saved text.
 %    \begin{macrocode}
