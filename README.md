@@ -24,60 +24,62 @@ Ce tableau indique les différentes extensions envisagées dans le projet ainsi 
 
 > *This table shows the different extensions foreseen for this project and the progress of these translations. The visual code for the translation progress uses the phases of the moon and their order :* :new_moon: :waxing_crescent_moon: :first_quarter_moon: :waxing_gibbous_moon: :full_moon: *(the brighter, the better).*
 
-Traduction            | Source                     | Avancée                | Pages traduites | Commentaires 
---------------------- | -------------------------- | :--------------------: | :-------------: | ---------------------------------------
-[adjustbox-fr]        | [adjustbox] v1.0           | :new_moon:             | 0 / 29          |
-[afterpage-fr]        | [afterpage] v1.08          | :new_moon:             | 1 / 6           | 
-[appendix-fr]         | [appendix] v1.2b           | :full_moon:            | 16              | Traduction préexistante ([FT-tools]).
-[array-fr]            | [array] v2.4c              | :new_moon:             | 0 / 35          | Traduction préexistante ([FT-tools]).
-[bm-fr]               | [bm] v1.2b                 | :new_moon:             | 0 / 20          | 
-[booktabs-fr]         | [booktabs] 1.618033        | :waxing_crescent_moon: | 9 / 18          | Traduction préexistante ([FT-tools]).
-[calc-fr]             | [calc] v4.3                | :new_moon:             | 0 / 18          | Traduction préexistante ([FT-tools]).
-[cleveref-fr]         | [cleveref] v0.19           | :new_moon:             | 0 / 31          |
-[datatool-fr]         | [datatool] v2.27           | :new_moon:             | 1 / 233         |
-[datetime2-fr]        | [datetime2] v1.5.2         | :new_moon:             | 2 / 179         |
-[datetime2-french-fr] | [datetime2-french] v1.5.2  | :new_moon:             | 1 / 12          |
-[dcolumn-fr]          | [dcolumn] v1.06            | :new_moon:             | 0 / 4           | Traduction préexistante ([FT-tools]).
-[delarray-fr]         | [delarray] v1.01           | :full_moon:            | 3               | Traduction préexistante ([FT-tools]).
-[enumerate-fr]        | [enumerate] v3.00          | :new_moon:             | 1 / 4           | Traduction préexistante ([FT-tools]).
-[enumitem-fr]         | [enumitem] v3.5.2          | :new_moon:             | 0 / 17          | 
-                      | [etoc] v1.08g              |                        | *. / 114*       |
-[fancyhdr-fr]         | [fancyhdr] v3.1            | :new_moon:             | 2 / 26          |
-[fileerr-fr]          | [fileerr] v1.1a            | :full_moon:            | 3               | 
-[fncychap-fr]         | [fncychap] v1.34           | :full_moon:            | 12              | Ajout d'infos dans le doc
-[fontsmpl-fr]         | [fontsmpl] v0.11           | :new_moon:             | 0 / 5           | Traduction préexistante ([FT-tools]).
-[fontspec-fr]         | [fontspec] v2.4e           | :new_moon:             | 9 / 124         | Auteur contacté et intéressé.
-[ftnright-fr]         | [ftnright] v1.1f           | :new_moon:             | 0 / 11          | Traduction préexistante ([FT-tools]).
-[geometry-fr]         | [geometry] v5.6            | :full_moon:            | 42              | Auteur contacté et intéressé.
-[glossaries-fr]       | [glossaries] v4.25         | :new_moon:             | 2 / 240         |
-[graphicx-fr]         | [graphicx] v1.0g           | :new_moon:             | 0 / 11          |
-[hhline-fr]           | [hhline] v2.03             | :new_moon:             | 0 / 4           | Traduction préexistante ([FT-tools]).
-                      | [hyperref] v6.83q          |                        | *. / 31*        |
-[ifthen-fr]           | [ifthen] v1.1c             | :new_moon:             | 0 / 6           |
-[indentfirst-fr]      | [indentfirst] v1.03        | :full_moon:            | 1               | Traduction préexistante ([FT-tools]).
-[layout-fr]           | [layout] v1.02c            | :new_moon:             | 0 / 14          | Traduction préexistante ([FT-tools]).
-[lipsum-fr]           | [lipsum] v1.3              | :full_moon:            | 41              |
-[listings-fr]         | [listings] v1.6            | :new_moon:             | 1 / 61          |
-[longtable-fr]        | [longtable] v4.11          | :new_moon:             | 0 / 29          | Traduction préexistante ([FT-tools]).
-[multicol-fr]         | [multicol] v1.8p           | :new_moon:             | 0 / 36          | Traduction préexistante ([FT-tools]).
-                      | [pgfplots] v1.13           |                        | *. / 544*       |
-[rawfonts-fr]         | [rawfonts] v0.01           | :waxing_gibbous_moon:  | 4               | Traduction préexistante ([FT-tools]).
-[shellesc-fr]         | [shellesc] v0.02a          | :new_moon:             | 0 / 3           | 
-[showkeys-fr]         | [showkeys] v3.17           | :new_moon:             | 0 / 10          | Traduction préexistante ([FT-tools]).
-                      | [siunitx] v2.6q            |                        | *. / 102*       |
-[somedefs-fr]         | [somedefs] v0.03           | :first_quarter_moon:   | 3               | Traduction préexistante ([FT-tools]).
-[tabularx-fr]         | [tabularx] v2.11           | :new_moon:             | 0 / 13          | Traduction préexistante ([FT-tools]).
-[theorem-fr]          | [theorem] v2.2c            | :new_moon:             | 0 / 16          | Traduction préexistante ([FT-tools]).
-                      | [tikz+pgf] v3.0.1a         |                        | *. / 1161*      |
-[titlesec-fr]         | [titlesec] 2.10.2          | :full_moon:            | 25              | 
-[tocbibind-fr]        | [tocbibind] v1.5k          | :first_quarter_moon:   | 18              | 
-[trace-fr]            | [trace] v1.1d              | :new_moon:             | 0 / 10          | 
-[varioref-fr]         | [varioref] v1.5c           | :new_moon:             | 0 / 35          | Traduction préexistante ([FT-tools]).
-[verbatim-fr]         | [verbatim] v1.5q           | :new_moon:             | 0 / 23          | Traduction préexistante ([FT-tools]).
-[xcolor-fr]           | [xcolor] v2.12             | :first_quarter_moon:   | 75              | 
-[xkeyval-fr]          | [xkeyval] v2.7             | :new_moon:             | 3 / 73          |
-[xr-fr]               | [xr] v5.02                 | :full_moon:            | 2               | Traduction préexistante ([FT-tools]).
-[xspace-fr]           | [xspace] v1.13             | :full_moon:            | 7               | Traduction préexistante ([FT-tools]).
+Traduction             | Source                      | Avancée                | Pages traduites | Commentaires 
+---------------------- | --------------------------- | :--------------------: | :-------------: | ---------------------------------------
+[adjustbox-fr]         | [adjustbox] v1.0            | :new_moon:             | 0 / 29          |
+[afterpage-fr]         | [afterpage] v1.08           | :new_moon:             | 1 / 6           | 
+[appendix-fr]          | [appendix] v1.2b            | :full_moon:            | 16              | Traduction préexistante ([FT-tools]).
+[array-fr]             | [array] v2.4c               | :new_moon:             | 0 / 35          | Traduction préexistante ([FT-tools]).
+[bm-fr]                | [bm] v1.2b                  | :new_moon:             | 0 / 20          | 
+[booktabs-fr]          | [booktabs] 1.618033         | :waxing_crescent_moon: | 9 / 18          | Traduction préexistante ([FT-tools]).
+[calc-fr]              | [calc] v4.3                 | :new_moon:             | 0 / 18          | Traduction préexistante ([FT-tools]).
+[cleveref-fr]          | [cleveref] v0.19            | :new_moon:             | 0 / 31          |
+[datatool-fr]          | [datatool] v2.27            | :new_moon:             | 1 / 233         |
+[datetime2-fr]         | [datetime2] v1.5.2          | :new_moon:             | 2 / 179         |
+[datetime2-french-fr]  | [datetime2-french] v1.5.2   | :new_moon:             | 1 / 12          |
+[dcolumn-fr]           | [dcolumn] v1.06             | :new_moon:             | 0 / 4           | Traduction préexistante ([FT-tools]).
+[delarray-fr]          | [delarray] v1.01            | :full_moon:            | 3               | Traduction préexistante ([FT-tools]).
+[enumerate-fr]         | [enumerate] v3.00           | :new_moon:             | 1 / 4           | Traduction préexistante ([FT-tools]).
+[enumitem-fr]          | [enumitem] v3.5.2           | :new_moon:             | 0 / 17          | 
+                       | [etoc] v1.08g               |                        | *. / 114*       |
+[fancyhdr-fr]          | [fancyhdr] v3.1             | :new_moon:             | 2 / 26          |
+[fileerr-fr]           | [fileerr] v1.1a             | :full_moon:            | 3               | 
+[fncychap-fr]          | [fncychap] v1.34            | :full_moon:            | 12              | Ajout d'infos dans le doc
+[fontsmpl-fr]          | [fontsmpl] v0.11            | :new_moon:             | 0 / 5           | Traduction préexistante ([FT-tools]).
+[fontspec-fr]          | [fontspec] v2.4e            | :new_moon:             | 9 / 124         | Auteur contacté et intéressé.
+[ftnright-fr]          | [ftnright] v1.1f            | :new_moon:             | 0 / 11          | Traduction préexistante ([FT-tools]).
+[geometry-fr]          | [geometry] v5.6             | :full_moon:            | 42              | Auteur contacté et intéressé.
+[glossaries-fr]        | [glossaries] v4.25          | :new_moon:             | 2 / 240         |
+[glossaries-french-fr] | [glossaries-french-fr] v1.0 | :first_quarter_moon:   | 2               |
+[graphicx-fr]          | [graphicx] v1.0g            | :new_moon:             | 0 / 11          |
+[hhline-fr]            | [hhline] v2.03              | :new_moon:             | 0 / 4           | Traduction préexistante ([FT-tools]).
+                       | [hyperref] v6.83q           |                        | *. / 31*        |
+[ifthen-fr]            | [ifthen] v1.1c              | :new_moon:             | 0 / 6           |
+[indentfirst-fr]       | [indentfirst] v1.03         | :full_moon:            | 1               | Traduction préexistante ([FT-tools]).
+[layout-fr]            | [layout] v1.02c             | :new_moon:             | 0 / 14          | Traduction préexistante ([FT-tools]).
+[lipsum-fr]            | [lipsum] v1.3               | :full_moon:            | 41              |
+[listings-fr]          | [listings] v1.6             | :new_moon:             | 1 / 61          |
+[longtable-fr]         | [longtable] v4.11           | :new_moon:             | 0 / 29          | Traduction préexistante ([FT-tools]).
+[multicol-fr]          | [multicol] v1.8p            | :new_moon:             | 0 / 36          | Traduction préexistante ([FT-tools]).
+                       | [pgfplots] v1.13            |                        | *. / 544*       |
+[rawfonts-fr]          | [rawfonts] v0.01            | :waxing_gibbous_moon:  | 4               | Traduction préexistante ([FT-tools]).
+[shellesc-fr]          | [shellesc] v0.02a           | :new_moon:             | 0 / 3           | 
+[showkeys-fr]          | [showkeys] v3.17            | :new_moon:             | 0 / 10          | Traduction préexistante ([FT-tools]).
+                       | [siunitx] v2.6q             |                        | *. / 102*       |
+[somedefs-fr]          | [somedefs] v0.03            | :first_quarter_moon:   | 3               | Traduction préexistante ([FT-tools]).
+[tabularx-fr]          | [tabularx] v2.11            | :new_moon:             | 0 / 13          | Traduction préexistante ([FT-tools]).
+[theorem-fr]           | [theorem] v2.2c             | :new_moon:             | 0 / 16          | Traduction préexistante ([FT-tools]).
+                       | [tikz+pgf] v3.0.1a          |                        | *. / 1161*      |
+[titlesec-fr]          | [titlesec] 2.10.2           | :full_moon:            | 25              | 
+[tocbibind-fr]         | [tocbibind] v1.5k           | :first_quarter_moon:   | 18              | 
+[trace-fr]             | [trace] v1.1d               | :new_moon:             | 0 / 10          | 
+[varioref-fr]          | [varioref] v1.5c            | :new_moon:             | 0 / 35          | Traduction préexistante ([FT-tools]).
+[verbatim-fr]          | [verbatim] v1.5q            | :new_moon:             | 0 / 23          | Traduction préexistante ([FT-tools]).
+[xcolor-fr]            | [xcolor] v2.12              | :first_quarter_moon:   | 75              | 
+[xkeyval-fr]           | [xkeyval] v2.7              | :new_moon:             | 3 / 73          |
+[xr-fr]                | [xr] v5.02                  | :full_moon:            | 2               | Traduction préexistante ([FT-tools]).
+[xspace-fr]            | [xspace] v1.13              | :full_moon:            | 7               | Traduction préexistante ([FT-tools]).
+
 
 ### Traduction des documents 
 
