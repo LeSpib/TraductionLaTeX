@@ -1,0 +1,245 @@
+\documentclass[parskip=false, DIV=8, headings=normal, pagesize=auto]{scrartcl}
+
+\usepackage[inputenc,babel]{translatex-fr}
+\usepackage{fixltx2e}
+\usepackage{etex}
+\usepackage{xspace}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{microtype}
+\usepackage[unicode=true,colorlinks]{hyperref}
+
+\newenvironment*{noverb}{%
+  \flushleft
+  \vskip\parskip
+  \parskip=0pt\relax
+}{%
+  \endflushleft
+}
+
+\newcommand*{\mail}[1]{\href{mailto:#1}{\texttt{#1}}}
+\newcommand*{\pkg}[1]{\textsf{#1}}
+\newcommand*{\cs}[1]{\texttt{\textbackslash#1}}
+\makeatletter
+\newcommand*{\cmd}[1]{\cs{\expandafter\@gobble\string#1}}
+\makeatother
+\newcommand*{\env}[1]{\texttt{#1}}
+\newcommand*{\meta}[1]{\textlangle\textsl{#1}\textrangle}
+\newcommand*{\marg}[1]{\texttt{\{}\meta{#1}\texttt{\}}}
+
+\addtokomafont{title}{\rmfamily}
+
+\title{L'extension \pkg{comment}\thanks{Ce manuel corresponds à la version \pkg{comment}~v3.6, datée d'octobre 1999.}}
+\author{Victor Eijkhout\\\mail{victor@eijkhout.net}}
+\date{Octobre 1999}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Objectif}
+
+Cette extension inclut ou exclut de façon sélective des blocs de texte dans la
+restitution finale. L'utilisateur peut définir de nouvelles versions de 
+commandes de commentaire, chacune pouvant être contrôlée séparément.
+Des commentaires spéciaux peuvent être définis : l'utilisateur y spécifie
+l'action qui doit être faite pour chacune des lignes mises en commentaire.
+
+Cette extension peut être utilisée avec \textsc{plain} \TeX\ ou \LaTeX, comme
+avec la plupart des extensions existantes.
+
+\section{Utilisation}
+
+Tout le texte placé entre les commandes
+%
+\begin{verbatim}
+\comment ... \endcomment
+\end{verbatim}
+%
+ou
+%
+\begin{verbatim}
+\begin{comment} ... \end{comment}
+\end{verbatim}
+%
+est ignoré. 
+
+Les commandes de début et de fin doivent apparaître chacune sur une ligne à
+part. Il ne doit pas y avoir d'espace et d'éléments avant ou après la commande
+sur ces lignes. 
+Cet environnement devrait pouvoir fonctionner avec une quantité de commentaire
+arbitraire et le commentaire peut être un texte quelconque.
+
+D'autres environnements à l'image de \env{comment} peuvent être définis et
+sélectionnés et désélectionnés avec 
+%
+\begin{verbatim}
+\includecomment{versiona}
+\excludecoment{versionb}
+\end{verbatim}
+%
+Ces environnements sont utilisables avec
+%
+\begin{verbatim}
+\versiona ... \endversiona
+\end{verbatim}
+%
+ou
+%
+\begin{verbatim}
+\begin{versiona} ... \end{versiona}
+\end{verbatim}
+%
+avec, à nouveau, les commandes de commentaires de début et de fin sur des
+lignes à part.
+
+\pagebreak[1]
+
+Note pour les utilisateurs de \LaTeX\ : pour un commentaire inclus, les
+lignes \cmd{\begin} et \cmd{\end} agissent comme si elles n'existaient
+pas. En particulier, elles n'impliquent pas de groupe, aussi les 
+instanciations et autres ne sont pas locales.
+
+\pagebreak[2]
+
+Les commentaires spéciaux sont définis par
+%
+\begin{noverb}
+\cmd{\specialcomment}\marg{nom}\marg{commandes avant}\marg{commandes après}
+\end{noverb}
+%
+où le deuxième argument et le troisième argument sont exécutés respectivement
+avant et après chaque bloc de commentaire. Vous pouvez utiliser ceci pour des
+commandes de mise en forme globales.
+Pour garder ces réglages locaux, vous pouvez inclure un \cmd{\begingroup} dans
+les \og \meta{commandes avant} \fg et \cmd{\endgroup} dans les \og 
+\meta{commandes après} \fg. Par exemple :
+%
+\begin{verbatim}
+\specialcomment{smalltt}
+    {\begingroup\ttfamily\footnotesize}{\endgroup}
+\end{verbatim}
+%
+\tradini
+You do \emph{not} have to do an additional
+%
+\begin{verbatim}
+\includecomment{smalltt}
+\end{verbatim}
+%
+To remove `\env{smalltt}' blocks, give \verb+\excludecomment{smalltt}+
+after the definition.
+
+Processing comments can apply processing to each line.
+%
+\begin{noverb}
+\cmd{\processcomment}\marg{name}\marg{each-line commands}\marg{before commands}\marg{after commands}
+\end{noverb}
+%
+By defining a control sequence
+%
+\begin{verbatim}
+\def\Thiscomment##1{...}
+\end{verbatim}
+%
+in the before commands the user can
+specify what is to be done with each comment line.
+BUG this does not work quite yet BUG
+
+Trick for short in/exclude macros (such as \verb+\maybe{this snippet}+):
+%
+\begin{verbatim}
+\includecomment{cond}
+\newcommand{\maybe}[1]{}
+\begin{cond}
+\renewcommand{\maybe}[1]{#1}
+\end{cond}
+\end{verbatim}
+
+
+\section{Basic approach of the implementation:}
+
+to comment something out, scoop up  every line in verbatim mode
+as macro argument, then throw it away.
+For inclusions, in \LaTeX\ the block is written out to
+a file \cmd{\CommentCutFile} (default ``\texttt{comment.cut}''), which is
+then included.
+In plain \TeX\ (and other formats) both the opening and
+closing comands are defined as noop.
+
+
+\section{Changes in version 3.1}
+
+\begin{itemize}
+\item updated author's address
+\item cleaned up some code
+\item trailing contents on \cmd{\begin}\marg{env} line is always discarded
+    even if you've done \cmd{\includecomment}\marg{env}
+\item comments no longer define grouping!! you can even
+  % 
+\begin{verbatim}
+\includecomment{env}
+\begin{env}
+\begin{itemize}
+\end{env}
+\end{verbatim}
+  % 
+  Isn't that something\ldots
+\item included comments are written to file and input again.
+\end{itemize}
+
+
+\section{Changes in 3.2}
+
+\begin{itemize}
+\item \cmd{\specialcomment} brought up to date (thanks to Ivo Welch).
+\end{itemize}
+
+
+\section{Changes in 3.3}
+
+\begin{itemize}
+\item updated author's address again
+\item parametrised \cmd{\CommentCutFile}
+\end{itemize}
+
+
+\section{Changes in 3.4}
+
+\begin{itemize}
+\item added GNU public license
+\item added \cmd{\processcomment}, because Ivo's fix (above) brought an
+  inconsistency to light.
+\end{itemize}
+
+  
+\section{Changes in 3.5}
+
+\begin{itemize}
+\item corrected typo in header.
+\item changed author email
+\item corrected \cmd{\specialcomment} yet again.
+\item fixed excludecomment of an earlier defined environment.
+\end{itemize}
+
+
+\section{Changes in 3.6}
+
+\begin{itemize}
+\item The `cut' file is now written more verbatim, using \cmd{\meaning};
+  some people reported having trouble with ISO~latin~1, or \texttt{umlaute.sty}.
+\item removed some \cmd{\newif} statements.
+  Has this suddenly become \cmd{\outer} again?
+\end{itemize}
+
+
+\section{Known bugs:}
+
+\begin{itemize}
+\item \texttt{excludecomment} leads to one superfluous space
+\item \texttt{processcomment} leads to a superfluous line break
+\end{itemize}
+
+\end{document}
