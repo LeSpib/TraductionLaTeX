@@ -30,18 +30,17 @@ Section                       | Avancée                | Pages traduites | Comm
 En-tête du document tex       | :new_moon:             |                 |
 Page d'avant-propos           | :first_quarter_moon:   | 0               | 
 1. Objectif                   | :first_quarter_moon:   | 0               |
-2. Utilisation                | :new_moon:             | 1 / 2           |
-3. Approche simplifiée de...  | :new_moon:             | 0 / 0           |
-4. Changements en version 3.1 | :new_moon:             | 0 / 1           |
-5. Changements en version 3.2 | :new_moon:             | 0 / 0           |
-6. Changements en version 3.3 | :new_moon:             | 0 / 0           |
-7. Changements en version 3.4 | :new_moon:             | 0 / 0           |
-8. Changements en version 3.5 | :new_moon:             | 0 / 0           |
-9. Changements en version 3.6 | :new_moon:             | 0 / 1           |
-10. Anomalies connues         | :new_moon:             | 0 / 0           |
+2. Utilisation                | :first_quarter_moon:   | 2               |
+3. Approche simplifiée de...  | :first_quarter_moon:   | 0               |
+4. Changements en version 3.1 | :first_quarter_moon:   | 1               |
+5. Changements en version 3.2 | :first_quarter_moon:   | 0               |
+6. Changements en version 3.3 | :first_quarter_moon:   | 0               |
+7. Changements en version 3.4 | :first_quarter_moon:   | 0               |
+8. Changements en version 3.5 | :first_quarter_moon:   | 0               |
+9. Changements en version 3.6 | :first_quarter_moon:   | 1               |
+10. Anomalies connues         | :first_quarter_moon:   | 0               |
 
 
 ### Glossaire pour la traduction
 
-Anglais                | Français                                       | Commentaires 
----------------------- | ---------------------------------------------- | -------------------------------
+Il n'y a pas eu besoin d'un glossaire pour cette traduction.

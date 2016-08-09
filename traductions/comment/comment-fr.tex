@@ -122,62 +122,63 @@ les \og \meta{commandes avant} \fg et \cmd{\endgroup} dans les \og
     {\begingroup\ttfamily\footnotesize}{\endgroup}
 \end{verbatim}
 %
-\tradini
-You do \emph{not} have to do an additional
+Vous \emph{n'avez pas} besoin d'ajouter en complément : 
 %
 \begin{verbatim}
 \includecomment{smalltt}
 \end{verbatim}
 %
-To remove `\env{smalltt}' blocks, give \verb+\excludecomment{smalltt}+
-after the definition.
+Pour retirer les blocs \og \env{smalltt} \fg, indiquez 
+\verb+\excludecomment{smalltt}+ après la définition.
 
-Processing comments can apply processing to each line.
+Le traitement des commentaires peut appliquer un traitement à chaque ligne.
 %
 \begin{noverb}
-\cmd{\processcomment}\marg{name}\marg{each-line commands}\marg{before commands}\marg{after commands}
+\cmd{\processcomment}\marg{nom}\marg{commandes par ligne}\marg{commandes 
+avant}\marg{commandes après}
 \end{noverb}
 %
-By defining a control sequence
+En définissant la commande 
 %
 \begin{verbatim}
 \def\Thiscomment##1{...}
 \end{verbatim}
 %
-in the before commands the user can
-specify what is to be done with each comment line.
-BUG this does not work quite yet BUG
+dans les \meta{commandes avant}, l'utilisateur peut indiquer ce qui doit être
+fait pour chaque ligne de commentaire. Ceci ne fonctionne pas bien pour le 
+moment.
 
-Trick for short in/exclude macros (such as \verb+\maybe{this snippet}+):
+Voici un exemple de code pour de courtes commandes de commentaires (telle que
+\verb+\masque{ce petit texte}+):
 %
 \begin{verbatim}
 \includecomment{cond}
-\newcommand{\maybe}[1]{}
+\newcommand{\masque}[1]{}
 \begin{cond}
-\renewcommand{\maybe}[1]{#1}
+\renewcommand{\masque}[1]{#1}
 \end{cond}
 \end{verbatim}
 
 
-\section{Basic approach of the implementation:}
+\section{Approche simplifiée de l'implémentation}
 
-to comment something out, scoop up  every line in verbatim mode
-as macro argument, then throw it away.
-For inclusions, in \LaTeX\ the block is written out to
-a file \cmd{\CommentCutFile} (default ``\texttt{comment.cut}''), which is
-then included.
-In plain \TeX\ (and other formats) both the opening and
-closing comands are defined as noop.
+Pour commenter quelque chose, ramasser chaque ligne en mode verbatim comme 
+argument de commande et le jeter. 
+Pour les inclusions, avec \LaTeX, le bloc est placé dans un fichier 
+\cmd{\CommentCutFile} (par défaut \og \texttt{comment.cut} \fg) qui est alors
+inclus.
+En \textsc{plain} TeX (et d'autres formats), les commandes d'entrée et de
+sortie sont définies comme des commandes sans aucun effet.
 
-
-\section{Changes in version 3.1}
+\section{Changements en version 3.1}
 
 \begin{itemize}
-\item updated author's address
-\item cleaned up some code
-\item trailing contents on \cmd{\begin}\marg{env} line is always discarded
-    even if you've done \cmd{\includecomment}\marg{env}
-\item comments no longer define grouping!! you can even
+\item mise à jour de l'adresse de l'auteur ;
+\item nettoyage d'une partie du code ;
+\item les éléments suivants \cmd{\begin}\marg{env} sur sa ligne sont toujours 
+ignorés même si vous avez indiqué \cmd{\includecomment}\marg{env}
+\item Les commentaires ne définissent plus de groupe ! Vous pouvez même
+saisir 
   % 
 \begin{verbatim}
 \includecomment{env}
@@ -186,60 +187,61 @@ closing comands are defined as noop.
 \end{env}
 \end{verbatim}
   % 
-  Isn't that something\ldots
-\item included comments are written to file and input again.
+ Plutôt impressionnant\ldots
+\item les commentaires inclus sont écrits dans un fichier puis réinsérés.
 \end{itemize}
 
 
-\section{Changes in 3.2}
+\section{Changements en 3.2}
 
 \begin{itemize}
-\item \cmd{\specialcomment} brought up to date (thanks to Ivo Welch).
+\item mise à jour de \cmd{\specialcomment} (merci à Ivo Welch).
 \end{itemize}
 
 
-\section{Changes in 3.3}
+\section{Changements en 3.3}
 
 \begin{itemize}
-\item updated author's address again
-\item parametrised \cmd{\CommentCutFile}
+\item mise à jour de l'adresse de l'auteur une nouvelle fois ;
+\item la commande \cmd{\CommentCutFile} devient paramétrable.
 \end{itemize}
 
 
-\section{Changes in 3.4}
+\section{Changements en 3.4}
 
 \begin{itemize}
-\item added GNU public license
-\item added \cmd{\processcomment}, because Ivo's fix (above) brought an
-  inconsistency to light.
+\item ajout de la licence publique GNU ;
+\item ajout de la commande \cmd{\processcomment} car la correction d'Ivo 
+(ci-dessus) a fait ressortir un manque de cohérence.
 \end{itemize}
 
   
-\section{Changes in 3.5}
+\section{Changements en 3.5}
 
 \begin{itemize}
-\item corrected typo in header.
-\item changed author email
-\item corrected \cmd{\specialcomment} yet again.
-\item fixed excludecomment of an earlier defined environment.
+\item correction d'une erreur d'orthographe dans le titre ;
+\item mise à jour de l'adresse de l'auteur ;
+\item nouvelle correction de la commande \cmd{\specialcomment} ;
+\item correction de l'\cmd{\excludecomment} d'un environnement défini plus tôt.
+\end{itemize}
+
+\section{Changements en 3.6}
+
+\begin{itemize}
+\item le fichier \og coupé \fg est maintenant écrit un peu plus en mode
+verbatim, en utilisant \cmd{\meaning}; certaines personnes avaient indiqué
+avoir rencontré des problèmes avec l'encodage ISO~latin~1 ou l'extension 
+\textsf{umlaute}.
+\item retrait de conditions avec \cmd{\newif}. Cette dernière serait-elle 
+soudain redevenue une commande \cmd{\outer} ?
 \end{itemize}
 
 
-\section{Changes in 3.6}
+\section{Anomalies connues}
 
 \begin{itemize}
-\item The `cut' file is now written more verbatim, using \cmd{\meaning};
-  some people reported having trouble with ISO~latin~1, or \texttt{umlaute.sty}.
-\item removed some \cmd{\newif} statements.
-  Has this suddenly become \cmd{\outer} again?
-\end{itemize}
-
-
-\section{Known bugs:}
-
-\begin{itemize}
-\item \texttt{excludecomment} leads to one superfluous space
-\item \texttt{processcomment} leads to a superfluous line break
+\item la commande \cmd{\excludecomment} conduit à une espace superflue.
+\item la commande \cmd{\processcomment} conduit à un saut de ligne superflu.
 \end{itemize}
 
 \end{document}
