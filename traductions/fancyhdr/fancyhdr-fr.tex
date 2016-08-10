@@ -17,7 +17,7 @@
 \author{Piet van Oostrum\thanks{Une part considérable de cet article a été 
     écrit par George
     Gr\"atzer (Université du Manitoba) dans \emph{Notices Amer. Math. Soc.}
-    Merci, George!}\\
+    Merci, George !}\\
   Département d'informatique\\
   Université d'Utrecht}
 \def\latex/{\protect\LaTeX{}}
@@ -132,70 +132,72 @@ l'endroit désiré.
 
 \section{Entêtes et pieds de page}
 
-\tradini
-The page headers and footers in \LaTeX{} are defined by the
-\Cmd{pagestyle} and \Cmd{pagenumbering} commands. \Cmd{pagestyle}
-defines the general contents of the headers and footers (e.g. where the
-page number will be printed), while
-\Cmd{pagenumbering} defines the format of the page number.
-\LaTeX{} has four standard pagestyles:
+Les entêtes et pieds de page dans \LaTeX{} sont définis par les commandes
+\Cmd{pagestyle} et \Cmd{pagenumbering}. La première définit le contenu général
+des entêtes et pieds de page (par exemple où le numéro de page est imprimé) 
+tandis que la seconde définit le format du numéro de page. 
+\LaTeX{} a quatre styles de page standards :
 
 \begin{tabular}{>{\tt}lp{10cm}}
-empty & no headers or footers \\
-plain & no header, footer contains page number centered \\
-headings & no footer, header contains name of chapter/section and/or
-subsection and page number \\
-myheadings & no footer, header contains page number and user supplied information
+empty & pas d'entête et de pied de page \\
+plain & pas d'entête et un pied de page contenant le numéro de page centré \\
+headings & pas de pied de page et un entête contenant le titre du chapitre ou
+de la section ou de la sous-section et le numéro de page \\
+myheadings & pas de pied de page, un entête contenant le numéro de page et
+de l'information fournie par l'utilisateur
 \end{tabular}
 
-Although these are useful styles, they are quite limited. Additional page
-styles can be defined by defining commands of the form \Cmd{ps@xxx}. This
-command is executed when a \Cmd{pagestyle\{xxx\}} is given in the document.
-The  \Cmd{ps@xxx} command should define the following 
-commands for the contents of the headers and footers:
+Bien que ces styles soient utiles, ils sont assez limités. Des styles de page
+complémentaires peuvent être définis par des commandes de la forme
+\Cmd{ps@xxx}. Ce document est exécuté quand une commande 
+\Cmd{pagestyle\{xxx\}} est mise dans le document. La commande \Cmd{ps@xxx} doit
+définir les commandes suivantes associées au contenu de l'entête et du pied de
+page :
 
 \noindent
 \begin{tabular}{lp{10cm}}
-\Cmd{@oddhead} & header on odd numbered pages in two-sided documents
-(on all pages in one-sided) \\
-\Cmd{@evenhead} & header on even numbered pages in two-sided documents \\
-\Cmd{@oddfoot} & footer on odd numbered pages in two-sided documents
-(on all pages in one-sided) \\
-\Cmd{@evenfoot} & footer on even numbered pages in two-sided documents \\
+\Cmd{@oddhead} & entête des pages impaires dans un document recto-verso (sur
+toutes les pages pour un document en recto uniquement) \\
+\Cmd{@evenhead} & entête des pages paires dans un document recto-verso \\
+\Cmd{@oddfoot} & pied de page des pages impaires dans un document recto-verso
+(sur toutes les pages pour un document en recto uniquement) \\
+\Cmd{@evenfoot} & pied de page des pages impaires dans un document recto-verso 
+\\
 \end{tabular}
 
-These are not user commands, but rather ``variables'' that are used by
-\latex/'s output routine.
-As the command names contain the character '\texttt{@}', they should
-be defined in a package file, or otherwise be sandwiched between the commands
-\Cmd{makeatletter} and \Cmd{makeatother}.
+Ce ne sont pas des commandes utilisateurs mais plutôt des \og variables \fg qui
+sont utilisées par la routine de sortie de \LaTeX.
+Les noms de commandes contenant le caractère \og \texttt{@} \fg, ils doivent 
+être définis dans un fichier d'extension ou être placés entre les commandes
+\Cmd{makeatletter} et \Cmd{makeatother}.
 
-The \Cmd{pagenumbering} command defines the layout of the page number. It
-has a parameter from the following list:
+La commande \Cmd{pagenumbering} définit la mise en forme du numéro de page. 
+Elle a un paramètre tiré de la liste suivante :
 
 \begin{tabular}{>{\tt}ll}
-arabic & arabic numerals \\
-roman & lower case roman numerals \\
-Roman & upper case roman numerals \\
-alph & lower case letter \\
-Alph & upper case letter
+arabic & chiffres arabes \\
+roman & chiffres romains minuscules \\
+Roman & chiffres romains majuscules \\
+alph & lettres minuscules \\
+Alph & lettres majuscules
 \end{tabular}
 
-The  \Cmd{pagenumbering\{xxx\}} defines the command \Cmd{thepage} to be the
-expansion of the page number in the given notation \texttt{xxx}. 
-The pagestyle command
-then would include \Cmd{thepage} in the appropriate place. Additionally
-the  \Cmd{pagenumbering} command resets the page number to~1.
-The  \Cmd{pagestyle} and  \Cmd{pagenumbering} apply to the page that is
-being constructed, so they should be used at a location where it is clear
-to what page they apply (see section \ref{sec:change}).
+La commande \Cmd{pagenumbering\{xxx\}} définit la commande \Cmd{thepage} comme
+le développement du numéro de page dans le format indiqué avec \texttt{xxx}.
+La commande \Cmd{pagestyle} intègre ensuite la commande \Cmd{thepage} à la
+place souhaitée. Par ailleurs, \Cmd{pagenumbering} réinitialise le numéro de 
+page à~1.
+Les commandes \Cmd{pagestyle} et \Cmd{pagenumbering} s'appliquent à la page
+qui est en cours de construction : elles doivent donc se trouver à un endroit
+où la page qu'elles vont impacter est clairement définie (voir section 
+\ref{sec:change}).
 
 
-\section{What is \textsf{fancyhdr}}
+\section{Qu'est donc \textsf{fancyhdr} ?}
 
-The \textsf{fancyhdr} macro package allows you to customize
-in \latex/ your page headers and footers in an easy way.  You can
-define:
+L'extension \textsf{fancyhdr} vous permet de personnaliser vos entêtes et pieds
+de page dans \LaTeX\ de façon simple. Vous pouvez définir :
+\tradini
 \begin{itemize}
 \item three-part headers and footers
 \item decorative lines in headers and footers

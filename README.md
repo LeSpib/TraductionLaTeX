@@ -43,7 +43,7 @@ Traduction             | Source                      | Avancée                |
 [enumerate-fr]         | [enumerate] v3.00           | :new_moon:             | 1 / 4           | Traduction préexistante ([FT-tools]).
 [enumitem-fr]          | [enumitem] v3.5.2           | :new_moon:             | 0 / 17          | 
                        | [etoc] v1.08g               |                        | *. / 114*       |
-[fancyhdr-fr]          | [fancyhdr] v3.1             | :new_moon:             | 2 / 26          |
+[fancyhdr-fr]          | [fancyhdr] v3.1             | :new_moon:             | 3 / 26          |
 [fileerr-fr]           | [fileerr] v1.1a             | :full_moon:            | 3               | 
 [fncychap-fr]          | [fncychap] v1.34            | :full_moon:            | 12              | Ajout d'infos dans le doc
 [fontsmpl-fr]          | [fontsmpl] v0.11            | :new_moon:             | 0 / 5           | Traduction préexistante ([FT-tools]).
