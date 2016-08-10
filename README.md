@@ -51,7 +51,7 @@ Traduction             | Source                      | Avancée                |
 [ftnright-fr]          | [ftnright] v1.1f            | :new_moon:             | 0 / 11          | Traduction préexistante ([FT-tools]).
 [geometry-fr]          | [geometry] v5.6             | :full_moon:            | 42              | Auteur contacté et intéressé.
 [glossaries-fr]        | [glossaries] v4.25          | :new_moon:             | 2 / 240         |
-[glossaries-french-fr] | [glossaries-french-fr] v1.0 | :first_quarter_moon:   | 2               |
+[glossaries-french-fr] | [glossaries-french-fr] v1.0 | :waxing_gibbous_moon:  | 2               |
 [graphicx-fr]          | [graphicx] v1.0g            | :new_moon:             | 0 / 11          |
 [hhline-fr]            | [hhline] v2.03              | :new_moon:             | 0 / 4           | Traduction préexistante ([FT-tools]).
                        | [hyperref] v6.83q           |                        | *. / 31*        |
