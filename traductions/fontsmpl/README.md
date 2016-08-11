@@ -32,11 +32,11 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 Section                       | Avancée                | Pages traduites | Commentaires 
 ----------------------------- | :--------------------: | :-------------: | -------------------------
 En-tête du document tex       | :new_moon:             |                 |
-Page d'avant-propos           | :first_quarter_moon:   | 0 / 0           | 
-1. Introduction               | :new_moon:             | 0 / 0           |
-2. Documentation              | :new_moon:             | 0 / 1           |
-3. Fichier de...              | :new_moon:             | 0 / 1           |
-3. Extension d'...            | :new_moon:             | 0 / 3           |
+Page d'avant-propos           | :first_quarter_moon:   | 0               | 
+1. Introduction               | :first_quarter_moon:   | 0               |
+2. Documentation              | :first_quarter_moon:   | 1               |
+3. Document d'exemple de...   | :first_quarter_moon:   | 1               |
+4. Extension d'...            | :new_moon:             | 0 / 3           |
 
 ### Glossaire pour la traduction
 

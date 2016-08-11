@@ -62,29 +62,29 @@
 %
 % \section{Introduction}
 % 
-% \tradini
-% This document describes the font test document |fontsmpl.tex| and the
-% accompanying package |fontsmpl.sty|.  This produces a test of a font
-% family, printing a sample text, a table of accents, and a sample of
-% commands such as |\pounds|.
-%
-% It can be used in two ways.  The |fontsmpl| package provides the
-% command |\fontsample|, which produces a sample of the current font.
-%
-% The |fontsmpl| document prompts interactively for a font family (for
-% example `|cmr|') and produces a sample of that family.
+% Ce document décrit un fichier de test de fonte |fontsmpl.tex| et l'extension
+% associée |fontsmpl.sty|. Il produit un test d'une famille de fonte, imprime
+% un texte d'exemple, une table d'accents et un exemple de commandes comme
+% |\pound|.
+% 
+% Il peut être utilisé de deux façons. L'extension |fontsmpl| propose une
+% commande |\fontsample| qui produit un exemple de la fonte courante ; le 
+% fichier |fontsmpl| demande la saisie d'un nom de famille de fonte (par 
+% exemple \og |cmr| \fg) et produit alors un exemple de cette famille.
 %
 % \StopEventually{}
 %
 % \section{Documentation}
 %
-% This docstrip document has three docstrip options:
+% Le document docstrip a trois options docstrip :
 % \begin{itemize}
-% \item |document| the code for |fontsmpl.tex|.
-% \item |package| the code for |fontsmpl.sty|.
-% \item |driver| this documentation.
+% \item |document| pour le code de |fontsmpl.tex| ;
+% \item |package| pour le code de |fontsmpl.sty| ;
+% \item |driver| pour cette documentation.
 % \end{itemize}
-% The code for the driver is:
+% Le code du pilote de documentation\footnote{Il s'agit ici de la version
+% traduite. La ligne 4 n'est pas présente dans la version originale, de même
+% que cette dernière renvoit en ligne 6 au document |fontsmpl.dtx|.} est :
 %    \begin{macrocode}
 %<*driver>
 \NeedsTeXFormat{LaTeX2e}
@@ -96,10 +96,11 @@
 %</driver>
 %    \end{macrocode}
 %
-% \section{Font sample document}
+% \section{Document d'exemple de fonte}
 %
-% The sample document prompts for a family, and uses the |fontsmpl|
-% package.  If there is a file |fontsmpl.cfg|, this is loaded.
+% Le document d'exemple demande, lors de sa compilation, la saisie d'une
+% famille et utilise l'extension |fontsmpl|. Si un fichier |fontsmpl.cfg|
+% existe, il est chargé.
 % \changes{v0.9}{1995/05/07}{Removed \cs{pagestyle} empty}
 % \begin{macrocode}
 %<*document>
@@ -143,8 +144,9 @@
 %</document>
 %    \end{macrocode}
 %
-% \section{Font sample package}
+% \section{Extension d'exemple de fonte}
 %
+% \tradini
 % The |fontsmpl| package is a \LaTeXe{} package.
 %    \begin{macrocode}
 %<*package>

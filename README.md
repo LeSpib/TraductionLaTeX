@@ -46,7 +46,7 @@ Traduction             | Source                      | Avancée                |
 [fancyhdr-fr]          | [fancyhdr] v3.1             | :new_moon:             | 4 / 26          |
 [fileerr-fr]           | [fileerr] v1.1a             | :full_moon:            | 3               | 
 [fncychap-fr]          | [fncychap] v1.34            | :full_moon:            | 12              | Ajout d'infos dans le doc
-[fontsmpl-fr]          | [fontsmpl] v0.11            | :new_moon:             | 0 / 5           | Traduction préexistante ([FT-tools]).
+[fontsmpl-fr]          | [fontsmpl] v0.11            | :new_moon:             | 2 / 5           | Traduction préexistante ([FT-tools]).
 [fontspec-fr]          | [fontspec] v2.4e            | :new_moon:             | 9 / 124         | Auteur contacté et intéressé.
 [ftnright-fr]          | [ftnright] v1.1f            | :new_moon:             | 0 / 11          | Traduction préexistante ([FT-tools]).
 [geometry-fr]          | [geometry] v5.6             | :full_moon:            | 42              | Auteur contacté et intéressé.
