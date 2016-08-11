@@ -196,20 +196,20 @@ où la page qu'elles vont impacter est clairement définie (voir section
 \section{Qu'est donc \textsf{fancyhdr} ?}
 
 L'extension \textsf{fancyhdr} vous permet de personnaliser vos entêtes et pieds
-de page dans \LaTeX\ de façon simple. Vous pouvez définir :
-\tradini
+de page dans \LaTeX\ de façon simple. Vous pouvez définir des entêtes et pieds
+de page :
 \begin{itemize}
-\item three-part headers and footers
-\item decorative lines in headers and footers
-\item headers and footers wider than the width of the text
-\item multi-line headers and footers
-\item separate headers and footers for even and odd pages
-\item different headers and footers for chapter pages
-\item different headers and footer on pages with floats
+\item en trois parties ;
+\item avec des filets décoratifs ;
+\item plus larges que le corps du texte ;
+\item sur plusieurs lignes ;
+\item distincts entre pages paires et pages impaires ;
+\item particuliers pour les pages des débuts de chapitre ;
+\item particuliers pour les pages avec des flottants.
 \end{itemize}
 
-Of course, you also have complete control over fonts, uppercase
-and lowercase displays, etc.
+Bien sûr, vous avez le contrôle intégral sur les fontes, affichages en
+majuscules et minuscules, et ainsi de suite.
 
 %%% \section{Where to get it?}\label{get}
 %%% You only need the file \verb|fancyhdr.sty| which you can find at the
@@ -227,18 +227,18 @@ and lowercase displays, etc.
 %%% simplified version.)
 
 
-\section{Simple use of \textsf{fancyhdr}}  To use this package in a
-\LaTeXe\ document, place the file \verb|fancyhdr.sty| in a
-directory/folder where \tex/ can find it (normally in the input
-directory/folder), and include in the preamble of your document
-after
+\section{Utilisation simple de \textsf{fancyhdr}}
 
+Pour utiliser cette extension dans un document \LaTeXe, le fichier 
+\verb|fancyhdr.sty| doit être placé dans un répertoire où \TeX\ peut le
+trouver (par exemple dans le même répertoire que le fichier à compiler),
+et inclure dans le préambule du document après 
 \begin{verbatim}
 \documentclass{...}
 \end{verbatim}
-the commands\footnote{For LaTeX2.09 you should specify \texttt{[fancyhdr]}
-  in the \Cmd{documentstyle} instead of the \Cmd{usepackage}
-  command.}: 
+les commandes\footnote{Dans le cas de \LaTeX~2.09, vous devez indiquer 
+\texttt{[fancyhdr]} dans la commande \Cmd{documentstyle} au lieu de la
+commande \Cmd{usepackage}.}: 
 
 \PSindex{fancy}
 \begin{verbatim}
@@ -246,46 +246,47 @@ the commands\footnote{For LaTeX2.09 you should specify \texttt{[fancyhdr]}
 \pagestyle{fancy}
 \end{verbatim}
 
-We can visualize the page layout we can create with \textsf{fancyhdr}
-as follows:
+Nous pouvons visualiser la mise en page que nous pouvons obtenir avec 
+\textsf{fancyhdr} de la façon suivante :
 
 \begin{fblock}
-\noindent\makebox[\textwidth]{LeftHeader\hfill
-CenteredHeader\hfill RightHeader}
+\noindent\makebox[\textwidth]{Entête de gauche\hfill
+Entête du centre\hfill Entête de droite}
 \noindent\makebox[\textwidth]{\hrulefill}\\[\baselineskip]
-\noindent\makebox[\textwidth]{\hfill page body\hfill}\\[\baselineskip]
+\noindent\makebox[\textwidth]{\hfill corps de la page\hfill}\\[\baselineskip]
 \noindent\makebox[\textwidth]{\hrulefill}
-\noindent\makebox[\textwidth]{LeftFooter\hfill
-CenteredFooter\hfill RightFooter}
+\noindent\makebox[\textwidth]{Pied de page de gauche\hfill
+Pied de page du centre\hfill Pied de page de droite}
 \end{fblock}
 
-The LeftHeader and LeftFooter are left justified; the
-CenteredHeader and CenteredFooter are centered; the
-RightHeader and RightFooter are right justified.
+Les entêtes et pieds de page de gauche sont justifiés à gauche ; les entêtes et
+pieds de page du centre sont centrées ; les entêtes et pieds de droite sont 
+justifiés à droite.
 
-We define each of the six ``fields'' and the two decorative lines
-separately.
+Nous définissons chacun de ces six \og champs \fg et les deux filets décoratifs
+séparément.
 
-\section{A simple example}  K. Grant is writing a report to Dean
-A. Smith, on ``The performance of new graduates'' with the
-following page layout:
+\section{Un exemple simple}
+K. Grant écrit un rapport à Dean A. Smith, sur \og La performance des nouveaux
+diplômés \fg avec la mise en page suivante :
 
 \begin{fblock}
-\noindent\makebox[\textwidth]{\hfill\bfseries The performance of new
-graduates}
+\noindent\makebox[\textwidth]{\hfill\bfseries La performance des nouveaux
+diplômés}
 \noindent\makebox[\textwidth]{\hrulefill}\\[\baselineskip]
-\noindent\makebox[\textwidth]{\hfill page body\hfill}\\[\baselineskip]
+\noindent\makebox[\textwidth]{\hfill corps de la page\hfill}\\[\baselineskip]
 \noindent\makebox[\textwidth]{\hrulefill}
-\noindent\makebox[\textwidth]{From: K. Grant\phantom{3}\hfill
-To: Dean A. Smith\hfill \phantom{From: K. Grant}3}
+\noindent\makebox[\textwidth]{De : K. Grant\phantom{3}\hfill
+À : Dean A. Smith\hfill \phantom{De : K. Grant}3}
 \end{fblock}
 
-\noindent where ``3'' is the page number.  The title: ``The
-performance of new graduates'' is bold.
+\noindent où \og 3 \fg est le numéro de la page.  Le titre, \og La performance
+des nouveaux diplômés \fg est mis en gras.
 
-This is accomplished by these commands following \Cmd{pagestyle\{fancy\}}
-\footnote{Note that version 1 of fancyheadings used the
-\Cmd{setlength} command to change the \texttt{\bs...rulewidth} parameters.}:
+Ceci s'obtient avec les commandes suivantes à la suite d'un 
+\Cmd{pagestyle\{fancy\}}\footnote{Notez que la version 1 de 
+\textsf{fancyheadings} utilisait la commande \Cmd{setlength} pour changer les
+paramètres \texttt{\bs...rulewidth}.} :
 \CmdIndex{lhead}
 \CmdIndex{rhead}
 \CmdIndex{chead}
@@ -297,13 +298,14 @@ This is accomplished by these commands following \Cmd{pagestyle\{fancy\}}
 \begin{verbatim}
 \lhead{}
 \chead{}
-\rhead{\bfseries The performance of new graduates}
-\lfoot{From: K. Grant}
-\cfoot{To: Dean A. Smith}
+\rhead{\bfseries La performance des nouveaux diplômés}
+\lfoot{De: K. Grant}
+\cfoot{À: Dean A. Smith}
 \rfoot{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
 \end{verbatim}
+\tradini
 (The \Cmd{thepage} macro displays the current page number.
 \Cmd{bfseries} is the \LaTeXe's way of selecting bold face.)
 
