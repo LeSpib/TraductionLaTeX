@@ -62,25 +62,25 @@
 %
 % \section{Introduction}
 % 
-% Ce document décrit un fichier de test de fonte |fontsmpl.tex| et l'extension
-% associée |fontsmpl.sty|. Il produit un test d'une famille de fonte, imprime
-% un texte d'exemple, une table d'accents et un exemple de commandes comme
-% |\pound|.
+% Ce document décrit un fichier de test de polices |fontsmpl.tex| et
+% l'extension associée |fontsmpl.sty|. Celui-ci produit un test d'une famille
+% de polices en imprimant un texte d'exemple, une table d'accents et un 
+% échantillon de commandes comme |\dag|.
 % 
 % Il peut être utilisé de deux façons. L'extension |fontsmpl| propose une
 % commande |\fontsample| qui produit un exemple de la fonte courante ; le 
-% fichier |fontsmpl| demande la saisie d'un nom de famille de fonte (par 
+% fichier |fontsmpl| demande la saisie d'un nom de famille de fontes (par 
 % exemple \og |cmr| \fg) et produit alors un exemple de cette famille.
 %
 % \StopEventually{}
 %
 % \section{Documentation}
 %
-% Le document docstrip a trois options docstrip :
+% Le document docstrip a trois options :
 % \begin{itemize}
-% \item |document| pour le code de |fontsmpl.tex| ;
-% \item |package| pour le code de |fontsmpl.sty| ;
-% \item |driver| pour cette documentation.
+% \item |document| pour constituer le code de |fontsmpl.tex| ;
+% \item |package| pour constituer le code de |fontsmpl.sty| ;
+% \item |driver| pour constituer cette documentation.
 % \end{itemize}
 % Le code du pilote de documentation\footnote{Il s'agit ici de la version
 % traduite. La ligne 4 n'est pas présente dans la version originale, de même
@@ -96,11 +96,11 @@
 %</driver>
 %    \end{macrocode}
 %
-% \section{Document d'exemple de fonte}
+% \section{Fichier d'échantillonnage}
 %
-% Le document d'exemple demande, lors de sa compilation, la saisie d'une
-% famille et utilise l'extension |fontsmpl|. Si un fichier |fontsmpl.cfg|
-% existe, il est chargé.
+% Le fichier demande, lors de sa compilation, la saisie d'une
+% famille de fontes et utilise l'extension |fontsmpl|. Si un fichier 
+% |fontsmpl.cfg| existe, il est chargé avant cette demande.
 % \changes{v0.9}{1995/05/07}{Removed \cs{pagestyle} empty}
 % \begin{macrocode}
 %<*document>
@@ -146,8 +146,7 @@
 %
 % \section{Extension d'exemple de fonte}
 %
-% \tradini
-% The |fontsmpl| package is a \LaTeXe{} package.
+% L'extension |fontsmpl| est au format \LaTeXe.
 %    \begin{macrocode}
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
@@ -155,8 +154,9 @@
 %    \end{macrocode}
 %
 % \begin{macro}{\fontsample}
-%    The |\fontsample| command prints out a sample text, a
-%    selection of glyphs, and a table of accents.
+%    La commande |\fontsample| affiche un exemple de texte\footnote{N.D.T. : 
+%    titré \og test de fonte \fg.}, une série de symboles et une table 
+%    d'accents.
 %    \begin{macrocode}
 \newcommand{\fontsample}{%
    Test of font \f@encoding/\f@family/\f@series/\f@shape.
@@ -168,7 +168,7 @@
 % \end{macro}
 %
 % \begin{macro}{\fontsampletext}
-%    A sample text, taken from Knuth's |testfont.tex|.
+%    L'exemple de texte, tiré du fichier |testfont.tex| de Knuth.
 %    \begin{macrocode}
 \newcommand{\fontsampletext}{%
    Some text:
@@ -203,7 +203,7 @@
 %
 % \begin{macro}{\fontsampleglyphs}
 % \begin{macro}{\fontsampleglyph}
-%    A list of sample glyph commands.
+%    Des exemples de commandes de symboles.
 %    \begin{macrocode}
 \newcommand{\fontsampleglyphs}{%
    Some glyphs:
@@ -285,7 +285,7 @@
 %
 % \begin{macro}{\fontsampleaccents}
 % \begin{macro}{\fontsampleaccent}
-%    A sample of accents.
+%    Des exemples d'accents.
 %    \begin{macrocode}
 \newcommand{\fontsampleaccents}{%
    Some accents:
@@ -320,8 +320,8 @@
 % \end{macro}
 %
 % \begin{macro}{\typewriterfont}
-%    Not all sites have the T1 typewriter fonts, so we set the
-%    typewriter font to be a fixed font.
+%    Tous les installations ne disposent pas de fontes à chasse fixe en
+%    encodage T1, aussi nous définissons une.
 %    \begin{macrocode}
 \DeclareFixedFont{\typewriterfont}
    {\encodingdefault}{\ttdefault}{\mddefault}{\updefault}{10}
@@ -329,7 +329,9 @@
 % \end{macro}
 %
 % \begin{macro}{\TextSymbolUnavailable}
-%    Switch off the error message from missing glyphs.
+%    Cette commande désactive le message d'erreur pour les symboles manquants
+%    et active un message d'information d'extension \og La commande 
+%    [\emph{commande}] n'est pas définie en encodage [\emph{encodage}] \fg.
 %    \begin{macrocode}
 \def\TextSymbolUnavailable#1{%
    \textbf{?}\PackageInfo{fontsmpl}{%

@@ -35,8 +35,8 @@ En-tête du document tex       | :new_moon:             |                 |
 Page d'avant-propos           | :first_quarter_moon:   | 0               | 
 1. Introduction               | :first_quarter_moon:   | 0               |
 2. Documentation              | :first_quarter_moon:   | 1               |
-3. Document d'exemple de...   | :first_quarter_moon:   | 1               |
-4. Extension d'...            | :new_moon:             | 0 / 3           |
+3. Fichier d'échantillonnage  | :first_quarter_moon:   | 1               |
+4. Extension d'...            | :first_quarter_moon:   | 4               |
 
 ### Glossaire pour la traduction
 
