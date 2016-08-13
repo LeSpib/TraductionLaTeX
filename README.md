@@ -67,7 +67,7 @@ Traduction             | Source                      | Avancée                |
 [rawfonts-fr]          | [rawfonts] v0.01            | :waxing_gibbous_moon:  | 4               | Traduction préexistante ([FT-tools]).
 [shellesc-fr]          | [shellesc] v0.02a           | :new_moon:             | 0 / 3           | 
 [showkeys-fr]          | [showkeys] v3.17            | :new_moon:             | 0 / 10          | Traduction préexistante ([FT-tools]).
-                       | [siunitx] v2.6q             |                        | *. / 102*       |
+[siunitx-fr]           | [siunitx] v2.6q             | :new_moon:             | 0 / 98          |
 [somedefs-fr]          | [somedefs] v0.03            | :first_quarter_moon:   | 3               | Traduction préexistante ([FT-tools]).
 [tabularx-fr]          | [tabularx] v2.11            | :new_moon:             | 0 / 13          | Traduction préexistante ([FT-tools]).
 [theorem-fr]           | [theorem] v2.2c             | :new_moon:             | 0 / 16          | Traduction préexistante ([FT-tools]).
