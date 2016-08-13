@@ -62,7 +62,6 @@ Temporary Items
 *.log
 *.lot
 *.lua
-*.ods
 *.out
 *.ps
 *.tmp
@@ -71,3 +70,7 @@ Temporary Items
 
 # Fichiers de test
 test*.*
+
+# Fichiers Open Office
+*.ods
+*.ods#
