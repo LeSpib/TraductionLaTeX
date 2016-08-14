@@ -283,10 +283,12 @@ diplômés}
 \noindent où \og 3 \fg est le numéro de la page.  Le titre, \og La performance
 des nouveaux diplômés \fg est mis en gras.
 
-Ceci s'obtient avec les commandes suivantes à la suite d'un 
+Ceci s'obtient avec les commandes suivantes à la suite de 
 \Cmd{pagestyle\{fancy\}}\footnote{Notez que la version 1 de 
 \textsf{fancyheadings} utilisait la commande \Cmd{setlength} pour changer les
-paramètres \texttt{\bs...rulewidth}.} :
+paramètres \texttt{\bs...rulewidth}.} (la commande \Cmd{thepage} affiche le
+numéro de page courant. \Cmd{bfseries} est une des commandes permettant de
+sélectionner en \LaTeXe{} une \trad{police} grasse) :
 \CmdIndex{lhead}
 \CmdIndex{rhead}
 \CmdIndex{chead}
@@ -305,39 +307,31 @@ paramètres \texttt{\bs...rulewidth}.} :
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
 \end{verbatim}
-\tradini
-(The \Cmd{thepage} macro displays the current page number.
-\Cmd{bfseries} is the \LaTeXe's way of selecting bold face.)
 
-This is now fine, except that the first page does not need
-all these headers and footers.  To eliminate all but the
-centered page number, issue the command
-
-\CmdIndex{thispagestyle}
+C'est maintenant bien, à ceci près que la première page n'a pas besoin d'entête
+et pied de page. Pour éliminer ces éléments à l'exception du numéro de page
+centré près, il faut saisir \CmdIndex{thispagestyle}
 \begin{verbatim}
 \thispagestyle{plain}
 \end{verbatim}
-after the
-\Cmd{begin\{document\}}
-and the
-\CmdIndex{maketitle}
-\Cmd{maketitle}
-commands.
+après les commandes \Cmd{begin\{document\}} et 
+\CmdIndex{maketitle}\Cmd{maketitle}.
 
-Alternatively, issue
+Vous pouvez également saisir
 \begin{verbatim}
 \thispagestyle{empty}
 \end{verbatim}
-if you do not want any headers or footers.
+si vous ne voulez ni entête, ni pied de page.
 
-In fact the standard \latex/ classes have the command \Cmd{maketitle}
-defined in such a way that a \Cmd{thispagestyle\{plain\}} is automatically
-issued. So if you \emph{do} want the fancy layout on a page containing
-\Cmd{maketitle} you must issue a \Cmd{thispagestyle\{fancy\}} after the
-\Cmd{maketitle}.
+En fait, dans les classes standards \LaTeX{}, la commande \Cmd{maketitle} est
+définie de telle sorte qu'une commande \Cmd{thispagestyle\{plain\}} y est
+automatiquement placée. Aussi, si vous \emph{voulez} avoir une présentation
+personnalisée sur une page contenant \Cmd{maketitle}, vous devez saisir
+une commande \Cmd{thispagestyle\{fancy\}} après \Cmd{maketitle}.
 
-\section{An example of two-sided printing}\label{two-sided}
+\section{Un exemple d'impression recto-verso}\label{two-sided}
 
+\tradini
 \TTindex{twoside}
 Some document classes, such as \verb|book.cls|, print two-sided by default: the even
 pages and the odd pages have different layouts; other document classes

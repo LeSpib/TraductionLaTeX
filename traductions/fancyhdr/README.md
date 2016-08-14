@@ -36,7 +36,7 @@ Page d'avant-propos           | :waxing_crescent_moon: | 0 / 1           |
 2. Entêtes et pieds de page   | :first_quarter_moon:   | 1               |
 3. Qu'est donc fancyhdr ?     | :first_quarter_moon:   | 0               |
 4. Utilisation simple de...   | :first_quarter_moon:   | 1               |
-5. Exemple simple             | :new_moon:             | 0 / 1           |
+5. Exemple simple             | :first_quarter_moon:   | 1               |
 6. Exemple d'impression...    | :new_moon:             | 0 / 1           |
 7. Redéfinition du style...   | :new_moon:             | 0 / 0           |
 8. Mise en page par défaut    | :new_moon:             | 0 / 1           |
