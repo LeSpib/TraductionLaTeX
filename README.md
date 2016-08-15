@@ -34,6 +34,7 @@ Traduction             | Source                      | Avancée                |
 [booktabs-fr]          | [booktabs] 1.618033         | :waxing_crescent_moon: | 9 / 18          | Traduction préexistante ([FT-tools]).
 [calc-fr]              | [calc] v4.3                 | :new_moon:             | 0 / 18          | Traduction préexistante ([FT-tools]).
 [cleveref-fr]          | [cleveref] v0.19            | :new_moon:             | 0 / 31          |
+[colortbl-fr]          | [colortbl] v1.0a            | :new_moon:             | 0 / 18          |
 [comment-fr]           | [comment] v3.6              | :first_quarter_moon:   | 4               |
 [datatool-fr]          | [datatool] v2.27            | :new_moon:             | 1 / 233         |
 [datetime2-fr]         | [datetime2] v1.5.2          | :new_moon:             | 2 / 179         |
@@ -149,6 +150,8 @@ Anglais                | Français                                       | Comme
 [calc-fr]:              <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/calc>
 [cleveref]:             <https://www.ctan.org/pkg/cleveref>
 [cleveref-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/cleveref>
+[colortbl]:             <https://www.ctan.org/pkg/colortbl>
+[colortbl-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/colortbl>
 [comment]:              <https://www.ctan.org/pkg/comment>
 [comment-fr]:           <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/comment>
 [datatool]:             <https://www.ctan.org/pkg/datatool>
