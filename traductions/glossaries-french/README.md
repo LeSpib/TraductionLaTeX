@@ -31,9 +31,9 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 
 Section                       | Avancée                | Pages traduites | Commentaires 
 ----------------------------- | :--------------------: | :-------------: | -------------------------
-En-tête du document tex       | :new_moon:             |                 |
-Page d'avant-propos           | :waxing_gibbous_moon:  | 0               | 
-1. Implémentation             | :waxing_gibbous_moon:  | 2               |
+Entête du document tex        | :full_moon:            |                 | Entête peu important.
+Page d'avant-propos           | :full_moon:            | 0               | 
+1. Implémentation             | :full_moon:            | 2               |
 
 
 ### Glossaire pour la traduction
