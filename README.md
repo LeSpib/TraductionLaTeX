@@ -198,6 +198,8 @@ Anglais                | Français                                       | Comme
 [hhline-fr]:            <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/hhline>
 [hyperref]:             <https://www.ctan.org/pkg/hyperref>
 [hyperref-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/hyperref>
+[ifpdf]:                <https://www.ctan.org/pkg/ifpdf>
+[ifpdf-fr]:             <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/ifpdf>
 [ifthen]:               <https://www.ctan.org/pkg/ifthen>
 [ifthen-fr]:            <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/ifthen>
 [indentfirst]:          <https://www.ctan.org/pkg/indentfirst>
