@@ -30,12 +30,13 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 
 Section                       | Avancée                | Pages traduites | Commentaires 
 ----------------------------- | :--------------------: | :-------------: | -------------------------
-En-tête du document tex       | :new_moon:             |                 |
-Page d'avant-propos           | :new_moon:             | 0 / 2           | 
-1. Les commandes              | :new_moon:             | 0 / 2           |
+Entête du document tex        | :new_moon:             |                 |
+Page d'avant-propos           | :first_quarter_moon:   | 2               | 
+1. Les commandes              | :first_quarter_moon:   | 3               |
 
 
 ### Glossaire pour la traduction
 
 Anglais                | Français                                       | Commentaires 
 ---------------------- | ---------------------------------------------- | -------------------------------
+mathcode               | Code mathématique                              | Source : TeXbook.

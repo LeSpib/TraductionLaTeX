@@ -38,6 +38,7 @@
 \documentclass{ltxdoc}
  \usepackage[ltxdoc,inputenc,fontenc,babel]{translatex-fr}
  \usepackage{dcolumn}
+ \usepackage{amssymb,amsmath}
  \DeleteShortVerb{\|}
  \GetFileInfo{dcolumn.dtx}
 \begin{document}
@@ -95,7 +96,7 @@
 % \item l'argument \meta{nombre de décimales} est le nombre maximal de 
 % chiffres placés après la virgule dans la colonne. Avec un argument à valeur 
 % négative, un nombre quelconque de chiffres pourra être utilisé dans la
-% colonne, et toutes les entrées seront centrées sur le (\trad{bord gauche du}) 
+% colonne, et toutes les entrées seront centrées sur le (bord gauche du) 
 % séparateur : notez que ceci peut rendre la colonne trop
 % large, comme dans le cas pour la première colonne de l'exemple
 % ci-dessous. Avec un argument à valeur positive, la colonne utilise des
@@ -135,20 +136,20 @@
 %
 % \begin{center}
 % \begin{tabular}{|d{-1}|d{2}|.|,|}
-% 1.2   & 1.2   &1.2    &1,2    \\
-% 1.23  & 1.23  &12.5   &300,2  \\
-% 1121.2& 1121.2&861.20 &674,29 \\
-% 184   & 184   &10     &69     \\
-% .4    & .4    &       &,4     \\
-%       &       &.4     &
+% 1.2    & 1.2    & 1.2    & 1,2    \\
+% 1.23   & 1.23   & 12.5   & 300,2  \\
+% 1121.2 & 1121.2 & 861.20 & 674,29 \\
+% 184    & 184    & 10     & 69     \\
+% .4     & .4     &        & ,4     \\
+%        &        & .4     &
 % \end{tabular}
 % \end{center}
 %
 % Notez que la première colonne, qui a un \meta{nombre de décimales} négatif
 % (premier argument du spécificateur "d"), est plus large que la seconde
 % colonne. Le point décimal apparaît au milieu de la colonne.
-% Notez aussi que les entrées sans point décimal, sans partie décimale ou
-% sans partie entièren tout comme les entrées vides sont correctement
+% Notez aussi que les entrées sans virgule décimale, sans partie décimale ou
+% sans partie entière, de même que les entrées vides sont correctement
 % traitées.
 %
 %% Si vous avez des cellules avec entêtes (saisies avec 
@@ -174,7 +175,7 @@
 % \end{tabular}
 % \end{center}
 %
-% Dans chacune de ces deux tables, la première colonne est définie par 
+% Dans ces deux tables, la première colonne est définie par 
 % "D{.}{.}{-1}" pour afficher une colonne centrée sur le \og "." \fg ; 
 % la deuxième colonne est définie par "D{.}{.}{1}" pour afficher une
 % colonne alignée à droite.
@@ -216,34 +217,35 @@
 \RequirePackage{array}
 %    \end{macrocode}
 %
-% \tradini
-% The basic ideas behind these macros are explained in the documentation
-% for {\tt array.sty}. However they use three
-% tricks which may be useful in other contexts.
+% Les idées de base derrière ces commandes sont expliquées dans la
+% documentation de l'extension \textsf{array}. Toutefois, elles se servent de
+% trois astuces qui peuvent être utiles dans d'autres contextes.
 % \begin{itemize}
-% \item The separator is surrounded in extra "{ }", so that it is set
-% with "\mathord" spacing, otherwise, for instance a `,' would have
-% extra space after it.
-% \item The separator is not given its special definition by making it
-% active, as this would not work for an entry such as "& .5 &", as the
-% first token of an alignment entry is read {\em before\/} the preamble
-% part, in case it is an "\omit", in which case the preamble is to be
-% omitted. Instead we switch the mathcode to (hex) 8000, which makes the
-% token act as if it were active.
-% \item Although \verb|\mathcode`.="8000|  makes {\tt.} act as if it
-% were active, it is still not allowed in constructions such as
-% "\def.{}", even in math-mode, so we have to construct an active
-% version of the separator, this is done by making it the uppercase of
-% "~", and then using the construct\\
-% "\uppercase{\def~}{"\meta{definition}"}".\\
-% Note that the \meta{definition} is not uppercased, so the definition
-% can refer to the standard, non-active use of the separator.
+% \item le séparateur est entouré par une paire d'accolade supplémentaire
+%    afin qu'il bénéficie de l'espacement de "\mathord", sinon, par exemple,
+%    un séparateur comme la virgule aurait une espace en plus après lui. 
+% \item le séparateur ne se voit pas attribuer sa définition spéciale en 
+%    le rendant actif car cela ne fonctionnerait pas avec une entrée comme
+%    \og "& .5 &" \fg dans la mesure où la première unité lexicale d'une
+%    entrée d'alignement est lue \emph{avant} la partie en préambule dans le
+%    où ce serait "\omit", auquel cas le préambule doit être omis. En lieu
+%    et place, nous basculons le code mathématique à 8000 (en héxadécimal),
+%    ce qui fait que l'unité lexicale agit comme si elle était active.
+% \item Bien que \verb|\mathcode`.="8000|  fait agit \og "." \fg comme s'il
+%    était actif, il n'est pas autorisé dans les constructions telles que 
+%    "\def.{}", même en mode mathématique, aussi nous avons à construire
+%    une version active du séparateur, ce qui est obtenu en en faisant la
+%    version majuscule de \og "~" \fg, et en utilisant la construction 
+%    "\uppercase{\def~}{"\meta{définition}"}".\\
+%    Notez que la \meta{définition} n'est pas mise en majuscule, ce qui fait
+%    que la définition peut faire référence à la version standard non active
+%    du séparateur.
 % \end{itemize}
 %
 % \begin{macro}{\DC@}
 % \changes{v1.03}{1996/02/28}{New feature, after tools/2093}
-% Set up uppercase tables as required, and then grab the first part of
-% the numerical argument into "\count@".
+% Cette commande met à jour la table de majuscules comme souhaité et récupère
+% alors la première partie de l'argument numérique dans "\count@".
 %    \begin{macrocode}
 \def\DC@#1#2#3{%
   \uccode`\~=`#1\relax
@@ -254,13 +256,14 @@
 %
 % \begin{macro}{\DC@x}
 % \changes{v1.03}{1996/02/28}{Macro added}
-% If "\count@" is negative, centre on the decimal point. If it is
-% positive either "#1" will be empty in which case bad out decimal
-% part to the number of digits specified by "\count@" or (new feature
-% in v1.03) it is none empty in which case "\count@" contains the
-% number of digits to the left of the point, and "#1" contains a junk
-% token (probably ".") followed by the number of digits to the right
-% of the point. In either of these latter cases, "\DC@right" is used.
+% Si "\count@" est négatif, tout est centré sur la virgule décimale. S'il est
+% positif, soit "#1" est vide auquel cas la partie décimale est étendue 
+% au nombre de décimales indiqué par "\count@" ou (nouvelle fonctionnalité de
+% la version v1.03) il n'est pas vide, auquel cas "\count@" contient le
+% nombre de chiffres à gauche de la virgule et "#1" contient une unité
+% lexicale inutile (probablement \og . \fg) suivie par le nombre de décimales
+% à droite de la virgule.
+% Dans ces deux derniers cas, "\DC@right" est utilisé.
 %    \begin{macrocode}
 \def\DC@x#1\relax#2#3{%
   \ifnum\z@>\count@
@@ -273,19 +276,20 @@
 % \end{macro}
 %
 % \begin{macro}{\DC@centre}
-% If centering on the decimal point, just need to box up the two halves.
+% Si les éléments sont centrés autour de la virgule décimale, il faut
+% mettre en boîte les deux moitiés de la cellule.
 %    \begin{macrocode}
 \def\DC@centre#1#2#3{%
   \let\DC@end\DC@endcentre
   \uppercase{\def~}{$\egroup\setbox\tw@=\hbox\bgroup${#2}}%
   \setbox\tw@=\hbox{${\phantom{{#2}}}$}%
-  \setbox\z@=\hbox\bgroup$\mathcode`#1="8000 }
-%    \end{macrocode}
+  \setbox\z@=\hbox\bgroup$\mathcode`#1="8000 } 
+%    \end{macrocode} 
 % \end{macro}
 %
 % \begin{macro}{\DC@endcentre}
-% and then pad out the smaller of the two boxes so there is the same
-% amount of stuff either side of the point.
+% et la plus petite des deux boîtes est augmentée afin qu'il y ait
+% la même quantité d'éléments de deux côtés de la virgule.
 %    \begin{macrocode}
 \def\DC@endcentre{$\egroup
     \ifdim \wd\z@>\wd\tw@
@@ -298,25 +302,25 @@
 %
 % \begin{macro}{\DC@right}
 % \changes{v1.03}{1996/02/28}{Re-implemented, after tools/2093}
-% This deals with both the cases where a specified number of decimal
-% places is given.
+% Ceci traite les deux cas où un nombre de décimales est donné.
 %    \begin{macrocode}
 \def\DC@right#1#2#3{%
   \ifx\relax#3\relax
 %    \end{macrocode}
-% If "#3" is empty, add "\hfill" to right align the column, and
-% Just set "\DC@rl" to begin a group, so nothing fancy is done with
-% the whole number part.
+% Si "#3" est vide, une commande "\hfill" est ajoutée par aligner
+% la colonne à droite. La commande "\DC@rl" est mise pour débuter
+% un groupe afin que rien de farfelu ne se passe avec la partie
+% entière du nombre.
 %    \begin{macrocode}
     \hfill
     \let\DC@rl\bgroup
   \else
 %    \end{macrocode}
-% Otherwise  set "\DC@rl" so that the whole number part is put in a
-% box "\count@" times as wide as a digit.
-% In order to share code with the other branch, then move "#3" (the
-% number of decimal places) into "\count@" throwing away the `.' from
-% the user syntax.
+% Sinon "\DC@rl" est définie pour la partie entière soit mise dans 
+% une boîte large de "\count@" fois la largeur d'un chiffre.
+% Afin de partager du code avec l'autre branche possible, le 
+% paramètre "#3" (le nombre de décimales) est placé dans "\count@"
+% en se débarrassant du \og . \fg de l'utilisateur.
 % \changes{v1.04}{1996/09/23}{Add \cs{hfill} so integer part
 %               is still flush right if no decimal point used.}
 %    \begin{macrocode}
@@ -328,9 +332,10 @@
 %    \begin{macrocode}
   \let\DC@end\DC@endright
 %    \end{macrocode}
-% Box 2 contains the decimal part, set to "\dimen@" which is
-% calculated below to be "\count@" times the width of a digit, plus
-% the with of the `decimal point'.
+% La boîte 2 ("\tw@") contient la partie décimale et est définie comme 
+% étant de largeur "\dimen@"  qui est calculée ci-dessous : "\count@"
+% fois la largeur d'un chiffre plus la largeur de la \og virgule 
+% décimale \fg.
 %    \begin{macrocode}
   \uppercase{\def~}{$\egroup\setbox\tw@\hbox to\dimen@\bgroup${#2}}%
    \setbox\z@\hbox{$1$}\dimen@ii\wd\z@
@@ -338,10 +343,10 @@
    \setbox\z@\hbox{${#2}$}\advance\dimen@\wd\z@
    \setbox\tw@\hbox to\dimen@{}%
 %    \end{macrocode}
-% Box 0 contains the whole number part, either just at its natural
-% size for right aligned columns, or set to (the old value of)
-% "\count@" times the width of a digit. "\DC@rl" defined above
-% determines the two cases.
+% La boîte zéro ("\z@") contient la partie entière, soit juste à sa 
+% taille naturelle pour les colonnes alignées à droite ou soit mise à
+% (l'ancienne valeur de) "\count@" fois la largeur d'un chiffre.
+% La commande "\DC@rl" définie plus haut distingue les deux cas.
 %    \begin{macrocode}
    \setbox\z@\hbox\DC@rl$\mathcode`#1="8000 }
 %    \end{macrocode}
@@ -349,16 +354,17 @@
 %
 % \begin{macro}{\DC@endright}
 % \changes{v1.03}{1996/02/28}{Re-implemented, after tools/2093}
-% Just finish off the second box, and then put out both boxes.
+% Cette commande finit la seconde boîte et restitue les deux boîtes.
 %    \begin{macrocode}
 \def\DC@endright{$\hfil\egroup\box\z@\box\tw@}
 %    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{D}
-% The user interface, define the {\tt D} column to take three arguments.
-% For special purposes, you may need to directly access "\DC@" rather
-% than the "D" column, eg to get a bold version you could use
+% L'interface utilisateur passe par la colonne "D" qui prend les trois
+% arguments. Pour des traitements particuliers, vous pouvez utiliser 
+% directement "\DC@" plutôt que la colonne "D", par exemple pour obtenir
+% une version en gras des fonctionnalités vues ici :
 %\begin{verbatim}
 % \newcolumntype{E}[3]{>{\boldmath\DC@{#1}{#2}{#3}}c<{\DC@end}}
 %\end{verbatim}
