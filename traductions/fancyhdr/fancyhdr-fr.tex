@@ -331,80 +331,86 @@ une commande \Cmd{thispagestyle\{fancy\}} après \Cmd{maketitle}.
 
 \section{Un exemple d'impression recto-verso}\label{two-sided}
 
-\tradini
 \TTindex{twoside}
-Some document classes, such as \verb|book.cls|, print two-sided by default: the even
-pages and the odd pages have different layouts; other document classes
-use the \verb|twoside| option to print two-sided.
+Certaines classes de document, telle \verb|book.cls|, propose une mise en page
+recto-verso par défaut : les pages paires et impaires ont des présentations
+différentes, d'autres classes utilisent l'option \verb|twoside| pour proposer
+de la mise en forme recto-verso.
 
-Now let us print the report two-sided.  Let the above page
-layout be used for the odd (right-side) pages, and the
-following for the even (left-side) pages:
+Essayons maintenant de faire notre rapport en recto-verso. La présentation vue
+plus haut sera utilisée pour les pages impaires (pages de droite) et la
+présentation suivante servira pour les pages paires (pages de gauche) : 
 
 \begin{fblock}
 
-\noindent\makebox[\textwidth]{\bfseries The performance of new
-graduates\hfill}
+\noindent\makebox[\textwidth]{\bfseries La performance des nouveaux 
+diplômés\hfill}
 \noindent\makebox[\textwidth]{\hrulefill}\\[\baselineskip]
-\noindent\makebox[\textwidth]{\hfill page body\hfill}\\[\baselineskip]
+\noindent\makebox[\textwidth]{\hfill corps de la page\hfill}\\[\baselineskip]
 \noindent\makebox[\textwidth]{\hrulefill}
-\noindent\makebox[\textwidth]{4\phantom{To: Dean A. Smith}\hfill
- From: K. Grant\hfill \phantom{4}To: Dean A. Smith}
+\noindent\makebox[\textwidth]{4\phantom{À : Dean A. Smith}\hfill
+ De : K. Grant\hfill \phantom{4}À : Dean A. Smith}
 
 \end{fblock}
-\noindent where ``4'' is the page number.
+\noindent où \og 4 \fg est le numéro de page.
 
-Here are the commands:
+Voici les commandes :
 
 \begin{verbatim}
-\fancyhead{} % clear all header fields
-\fancyhead[RO,LE]{\bfseries The performance of new graduates}
-\fancyfoot{} % clear all footer fields
+\fancyhead{} % vide tous les entêtes
+\fancyhead[RO,LE]{\bfseries La performance des nouveaux diplômés}
+\fancyfoot{} % vide tous les pieds de page
 \fancyfoot[LE,RO]{\thepage}
-\fancyfoot[LO,CE]{From: K. Grant}
-\fancyfoot[CO,RE]{To: Dean A. Smith}
+\fancyfoot[LO,CE]{De : K. Grant}
+\fancyfoot[CO,RE]{À : Dean A. Smith}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
 \end{verbatim}
 
 \CmdIndex{fancyhead}
 \CmdIndex{fancyfoot}
-We use the more general commands \Cmd{fancyhead} and \Cmd{fancyfoot}.
-These have an additional parameter between square brackets that specifies
-for which pages and/or parts of the header/footer they apply. The first
-\Cmd{fancyhead} command omits this parameter, and thus applies to all
-header fields. In general this is only useful to get rid of the defaults or
-a previous definition, as is done here. Similar the \Cmd{fancyfoot} command
-without square brackets clears all footer fields. In this particular
-example it could be omitted as all footer fields are specified.
-The selectors that can be used
-between the square brackets are given in figure~\ref{fig:sel}. Selectors can be combined so
-\Cmd{fancyhead[LE,RO]\{text\}}
-will define the field for both the left header on even pages and the right
-header on odd pages. If you don't give an E or O the definition applies to
-both. Similar for LRC. So the use of \Cmd{lhead} in the previous section
-is just an abbreviation for \Cmd{fancyhead[L]}.
-The selectors may be given as uppercase or lowercase letters.
+Nous avons utilisé les commandes plus générales \Cmd{fancyhead} et
+\Cmd{fancyfoot}. Elles ont des paramètres additionnels entre crochets qui
+permettent de préciser pour quelles pages et/ou partie de l'entête ou du
+pieds de page elles s'appliquent. La première commande \Cmd{fancyhead} 
+n'a pas ce paramètre et s'applique donc à l'ensemble des champs d'entête.
+En général, ce n'est utile que pour se débarasser de tous les réglages
+par défaut ou définitions précédentes, comme dans le cas présent. De la
+même manière, la première commande \Cmd{fancyhead} sans paramètre s'applique
+sur tous les champs de pied de page et les vide donc ici tous. Dans le cas
+présent, cela aurait pu ne pas être fait car l'ensemble des champs de pied 
+de page sont redéfinis juste après.
+
+Les sélecteurs qui peuvent être utilisés entre les crochets sont indiqués
+dans la figure~\ref{fig:sel}. Ils peuvent être combinés comme dans 
+\Cmd{fancyhead[LE,RO]\{texte\}} qui définit alors le champ d'entête de
+gauche pour les pages paires et le champ d'entête de droite pour les pages
+impaires. Si vous n'indiquez pas un E ou un O, les définitions s'appliquent
+par défaut sur toutes les pages. De même pour les sélecteurs L, R et C. 
+Vous pouvez noter par ailleurs que \Cmd{lhead} dans la précédente section
+est une juste une abréviation de \Cmd{fancyhead[L]}. Les sélecteurs peuvent 
+être saisis en majuscules comme en minuscules.
 
 \CmdIndex{fancyhf}
-There is also a more general command \Cmd{fancyhf} that you can use to
-combine the specifications for headers and footers. This allows additional
-selectors H (header) and F (footer). In fact  \Cmd{fancyhead} and
-\Cmd{fancyfoot} are just  \Cmd{fancyhf} with H and F prespecified.
+Il existe aussi une commande plus générale, \Cmd{fancyhf}, que vous pouvez
+utiliser pour combiner les spécifications des entêtes et des pieds de page.
+Ceci demande d'utiliser les nouveaux sélecteurs H (entête) et F (pied de 
+page). En fait, \Cmd{fancyhead} et \Cmd{fancyfoot} ne sont que \Cmd{fancyhf}
+avec H et F présaisis.
 \begin{figure}[tb]
   \begin{center}
     \leavevmode
     \begin{tabular}{|l|l|}
       \hline
-      E & Even page         \\
-      O & Odd page          \\
+      E & page paire (\emph{even})        \\
+      O & page impaire (\emph{odd})       \\
       \hline
-      L & Left field        \\
-      C & Center field      \\
-      R & Right field       \\
+      L & champ gauche (\emph{left})      \\
+      C & champ du centre (\emph{center}) \\
+      R & champ droit (\emph{right})      \\
       \hline
-      H & Header            \\
-      F & Footer            \\
+      H & entête (\emph{header})          \\
+      F & pied de page (\emph{footer})    \\
       \hline
 %%      T & float at Top      \\
 %%      B & float at Bottom   \\
@@ -412,44 +418,46 @@ selectors H (header) and F (footer). In fact  \Cmd{fancyhead} and
 %%      \hline
     \end{tabular}
   \end{center}
-  \caption{Selectors}
+  \caption{Sélecteurs}
   \label{fig:sel}
 \end{figure}
 
-Again, you may
-use  \Cmd{thispagestyle\{plain\}} for a simple page layout for
-page~1.
+Une nouvelle fois, vous pouvez utiliser \Cmd{thispagestyle\{plain\}}
+pour une mise en page simple de la page~1.
 
-\section{Redefining \texttt{plain} style}
 
-Some \latex/ commands, like \Cmd{chapter}, use the \Cmd{thispagestyle}
-command to automatically switch to the \texttt{plain} page style, thus
-ignoring the page style currently in effect. 
-To customize even such pages you must redefine the \texttt{plain}
-pagestyle. As we indicated before you could do this by defining the
-\Cmd{ps@plain} command, but \textsf{fancyhdr} gives you an easier way
-with the \Cmd{fancypagestyle} command. This command can be used to
-redefine existing pagestyles (like \texttt{plain}) or to define new ones,
-e.g. if part of your document is to use a different pagestyle. This command
-has two parameters: one is the name of the pagestyle to be defined, the
-second consists of commands that change the headers and/or footers, i.e.
-\verb|fancyhead| etc. Also allowed are changes to \Cmd{headrulewidth} and
-\Cmd{footrulewidth}. 
-  As an example, let us
-redefine the \texttt{plain} style for the report in Section~\ref{two-sided} by
-making the page number bold. 
+\section{Redéfinition du style \texttt{plain}}
+
+Certaines commandes \LaTeX, comme \Cmd{chapter}, utilisent la commande
+\Cmd{thispagestyle} pour basculer automatiquement en style de page
+\texttt{plain}, ignorant ainsi les effets du style de page alors en cours. 
+Pour personnaliser également de telles pages, vous devez redéfinir le style
+de page \texttt{plain}. Comme indiqué précédemment, vous pourriez le faire
+en travaillant sur la commande \Cmd{ps@plain}, mais \textsf{fancyhdr} vous
+donne une façon plus simple de le faire avec la commande
+\Cmd{fancypagestyle}. Cette comande peut être utilisée pour redéfinir tout
+syle de page existant (comme \texttt{plain}) ou en définir de nouveaux, si
+par exemple une partie de votre document doit utiliser un autre style de
+page. Cette commande a deux paramètres : le premier est le nom du style de
+page à définir, le second une série de commandes changeant l'entête et le
+pied de page, autrement dit \verb|fancyhead| et autres. Sont aussi 
+autorisées les commandes changeant \Cmd{headrulewidth} et
+\Cmd{footrulewidth}.  
+Par exemple, redéfinissons le style \texttt{plain} pour le rapport de la
+section~\ref{two-sided} en mettant en gras le numéro de page. 
 \PSindex{plain}
 
 \begin{verbatim}
 \fancypagestyle{plain}{%
-\fancyhf{} % clear all header and footer fields
-\fancyfoot[C]{\bfseries \thepage} % except the center
+\fancyhf{} % vide tous les entêtes et pieds de page
+\fancyfoot[C]{\bfseries \thepage} % sauf le centre
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}}
 \end{verbatim}
 
 
-\section{The default layout}\label{default}
+\section{La mise en page par défaut}\label{default}
+\tradini
 Let us use the \verb|book.cls| documentclass and the default settings for
 \textsf{fancyhdr}; so we only issue the commands
 

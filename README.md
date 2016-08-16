@@ -44,7 +44,7 @@ Traduction             | Source                      | Avancée                |
 [enumerate-fr]         | [enumerate] v3.00           | :new_moon:             | 1 / 4           | Traduction préexistante ([FT-tools]).
 [enumitem-fr]          | [enumitem] v3.5.2           | :new_moon:             | 0 / 17          | 
 [etoc-fr]              | [etoc] v1.08g               | :new_moon:             | 0 / 114         |
-[fancyhdr-fr]          | [fancyhdr] v3.1             | :new_moon:             | 4 / 26          |
+[fancyhdr-fr]          | [fancyhdr] v3.1             | :new_moon:             | 7 / 26          |
 [fileerr-fr]           | [fileerr] v1.1a             | :full_moon:            | 3               | 
 [fncychap-fr]          | [fncychap] v1.34            | :full_moon:            | 12              | Ajout d'infos dans le doc
 [fontsmpl-fr]          | [fontsmpl] v0.11            | :first_quarter_moon:   | 6               | Traduction préexistante ([FT-tools]).
