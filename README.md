@@ -65,7 +65,7 @@ Traduction             | Source                      | Avancée                |
 [longtable-fr]         | [longtable] v4.11           | :new_moon:             | 0 / 29          | Traduction préexistante ([FT-tools]).
 [multicol-fr]          | [multicol] v1.8p            | :new_moon:             | 0 / 36          | Traduction préexistante ([FT-tools]).
                        | [pgfplots] v1.13            |                        | *. / 544*       |
-[rawfonts-fr]          | [rawfonts] v0.01            | :waxing_gibbous_moon:  | 4               | Traduction préexistante ([FT-tools]).
+[rawfonts-fr]          | [rawfonts] v0.01            | :full_moon:            | 4               | Traduction préexistante ([FT-tools]).
 [shellesc-fr]          | [shellesc] v0.02a           | :new_moon:             | 0 / 3           | 
 [showkeys-fr]          | [showkeys] v3.17            | :new_moon:             | 0 / 10          | Traduction préexistante ([FT-tools]).
 [siunitx-fr]           | [siunitx] v2.6q             | :new_moon:             | 0 / 98          |

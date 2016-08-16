@@ -31,22 +31,23 @@
 % \maketitle
 %
 %
-% \section{Généralités}
+% \section*{Généralités}
 %
-% L'extension \LaTeXe{} sert à émuler des documents \LaTeX~2.09 utilisant
-% des commandes de bas niveau comme |\tenrm|. Si vous saisissez :
+% L'extension \textsf{rawfonts} pour \LaTeXe{} sert à l'émulation de documents 
+% \LaTeX~2.09 utilisant des commandes de bas niveau comme |\tenrm|. Si vous
+% saisissez :
 % \begin{verbatim}
 %    \usepackage{rawfonts}
 % \end{verbatim}
 % près de 60 fontes telles que |\tenrm| seront chargées dans \LaTeX.
 % Cette opération représente un surcoût important. Ainsi, ce document utilise, 
 % selon le fichier journal, 20~507 mots d'informations pour 51 fontes 
-% (\emph{20507 words of font info for 51 fonts}). Lorsque l'extension
-% \textsf{rawfonts} est chargée, il utilise 30~987 mots d'informations pour 93
-% fontes (\emph{30987 words of font info for 93 fonts}). Ceci montre que
-% \textsf{rawfonts} peut causer le chargement de deux fois plus de fontes pour
-% des documents simples (ce surcoût explique d'ailleurs pourquoi \LaTeXe{} ne 
-% définit pas |\tenrm| et ses semblables par défaut).
+% (\emph{20507 words of font info for 51 fonts}). Lorsque \textsf{rawfonts} 
+% est chargée, il utilise alors 30~987 mots d'informations pour 93 fontes 
+% (\emph{30987 words of font info for 93 fonts}). L'extension \textsf{rawfonts}
+% peut donc causer le chargement de deux fois plus de fontes pour des documents 
+% simples (ce surcoût explique d'ailleurs pourquoi \LaTeXe{} ne définit pas
+% |\tenrm| et ses semblables par défaut).
 %
 % Si vous ne voulez charger qu'un petit nombre de fontes, vous pouvez utiliser
 % l'option |only| ; par exemple, pour ne charger que |\tenrm| et |\tensf|, il
