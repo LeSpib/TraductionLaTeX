@@ -78,57 +78,60 @@
 %
 % \MakeShortVerb{\"}
 %
-% \tradini
-% This package defines {\tt D} to be a column specifier with three
-% arguments.\\
-% "D{"\meta{sep.tex}"}{"\meta{sep.dvi}"}{"\meta{decimal
-% places}"}"
+% Cette extension définit un spécificateur de colonne {\tt D} ayant
+% trois arguments \\
+% "D{"\meta{sep.tex}"}{"\meta{sep.dvi}"}{"\meta{nombre de
+% décimales}"}" où :
 %
-% \meta{sep.tex} should be a single character, this is used as the
-% separator in the {\tt .tex} file. Thus it will usually be `{\tt.}' or
-% `{\tt,}'.
+% \begin{itemize}
+% \item l'argument \meta{sep.tex} doit être un unique caractère, qui sera
+% utilisé comme séparateur dans le fichier \texttt{.tex}. Ce sera en général
+% \og \texttt{.} \fg ou \og \texttt{,} \fg ;
+% \item l'argument \mbox{\meta{sep.dvi}} est utilisé comme séparateur dans
+% la sortie, il peut être identique au premier argument, comme il peut être
+% toute expression en mode mathématique, comme "\cdot".
+% Notez que \texttt{dcolumn} utilise toujours le mode mathématique pour 
+% composer les chiffres et le séparateur.
+% \item l'argument \meta{nombre de décimales} est le nombre maximal de 
+% chiffres placés après la virgule dans la colonne. Avec un argument à valeur 
+% négative, un nombre quelconque de chiffres pourra être utilisé dans la
+% colonne, et toutes les entrées seront centrées sur le (\trad{bord gauche du}) 
+% séparateur : notez que ceci peut rendre la colonne trop
+% large, comme dans le cas pour la première colonne de l'exemple
+% ci-dessous. Avec un argument à valeur positive, la colonne utilise des
+% commandes équivalentes à "\rightdots" et "\endrightdots" de l'extension
+% \textsf{array}, sinon les commandes sont essentiellement équivalentes
+% à "\centerdots" et "\endcenterdots".
+% \end{itemize}
+
+% Vous pouvez préférer ne pas préciser l'ensemble de ces trois entrées
+% dans le préambule de "array" ou "tabular", et vous pouvez ici définir
+% vos propres spécificateurs pour le préambule en utilisant "\newcolumntype".
 %
-% \mbox{\meta{sep.dvi}} is used as the separator in the output, this may
-% be the same as the first argument, but may be any math-mode
-% expression, such as "\cdot". It should be noted that \texttt{dcolumn}
-% always uses math mode for the digits as well as the separator.
-%
-% \meta{decimal places} should be the maximum number of decimal places
-% in the column. If this is negative, any number of decimal places can
-% be used in the column, and all entries will be centred on
-% (the leading edge of) the
-% separator. Note that this can cause a column to be too wide, compare
-% the first two columns in the example below. If this argument is
-% positive, the column uses macros equivalent to "\rightdots"
-% "\endrightdots" of {\tt array.sty}, otherwise the macros are
-% essentially equivalent to "\centerdots" "\endcenterdots".
-%
-% You may not want to use all three entries in the {\tt array} or {\tt
-% tabular} preamble, so you may define your own preamble specifiers
-% using "\newcolumntype".
-%
-% For example we may say:
+% Par exemple, vous pouvez écrire :
 %
 % \noindent"\newcolumntype{d}[1]{D{.}{\cdot}{#1}}"
 %
-% {\tt d} takes a single argument specifying the number of decimal
-% places, and the {\tt .tex} file should use {\tt.}, with $\cdot$ being
-% used in the output.
+% Ici, le spécificateur \og "d" \fg prend un seul argument, qui indique le
+% nombre de chiffres décimaux. Le fichier ".tex" utilisera un \og \texttt{.}
+% \fg, tandis que la sortie utilisera un \og $\cdot$ \fg.
 %
 % \noindent"\newcolumntype{.}{D{.}{.}{-1}}"
 %
-% {\tt .} specifies a column of entries to be centred on the~$.$.
+% Le spécificateur \og "." \fg indique une colonne d'entrées centrées sur le
+% point.
 %
 % \noindent"\newcolumntype{,}{D{,}{,}{2}}"
 %
-% {\tt ,} specifies takes a column of entries with at most two decimal
-% places after a~$,$.
+% Le spécificateur \og "," \fg indique une colonne d'entrée avec au plus deux
+% décimales après la virgule \og $,$ \fg.
 %
 % \newcolumntype{d}[1]{D{.}{\cdot}{#1}}
 % \newcolumntype{.}{D{.}{.}{-1}}
 % \newcolumntype{,}{D{,}{,}{2}}
 %
-% The following table begins "\begin{tabular}{|d{-1}|d{2}|.|,|}"
+% Avec cela, une table débutant par % "\begin{tabular}{|d{-1}|d{2}|.|,|}" 
+% pourra donner par exemple :
 %
 % \begin{center}
 % \begin{tabular}{|d{-1}|d{2}|.|,|}
@@ -141,74 +144,79 @@
 % \end{tabular}
 % \end{center}
 %
-% Note that the first column, which had a negative \meta{decimal places}
-% argument is wider than the second column, so that the decimal point
-% appears in the middle of the column.
-% Also note that this package deals correctly with entries with no
-% decimal part, no integer part, and blank entries.
+% Notez que la première colonne, qui a un \meta{nombre de décimales} négatif
+% (premier argument du spécificateur "d"), est plus large que la seconde
+% colonne. Le point décimal apparaît au milieu de la colonne.
+% Notez aussi que les entrées sans point décimal, sans partie décimale ou
+% sans partie entièren tout comme les entrées vides sont correctement
+% traitées.
 %
-% If you have table headings (inserted with "\multicolumn{1}{c}{..}"
-% to over-ride the "D" column type) then it may be that neither of the
-% above `centred' or `right aligned' forms is quite what you want.
+%% Si vous avez des cellules avec entêtes (saisies avec 
+% "\multicolumn{1}{c}{..}" pour remplacer le type de colonne "D"), alors il
+% se peut qu'aucune des deux formes \og centrées \fg et \og alignées à 
+% droite \fg ne soit satisfaisante.
 % \begin{center}\small
 % \begin{tabular}[t]{|D..{-1}|D..{1}|D..{5.1}|}
-%\multicolumn{1}{|c|}{head}&
-%\multicolumn{1}{c|}{head}&
-%\multicolumn{1}{c|}{head}\\[3pt]
+%\multicolumn{1}{|c|}{entête}&
+%\multicolumn{1}{c|}{entête}&
+%\multicolumn{1}{c|}{entête}\\[3pt]
 % 1.2  & 1.2  &1.2 \\
 % 11212.2& 11212.2&11212.2  \\
 % .4    & .4    &.4
 % \end{tabular}
 % \hfill
 % \begin{tabular}[t]{|D..{-1}|D..{1}|D..{1.1}|}
-%\multicolumn{1}{|c|}{wide heading}&
-%\multicolumn{1}{c|}{wide heading}&
-%\multicolumn{1}{c|}{wide heading}\\[3pt]
+%\multicolumn{1}{|c|}{entête large}&
+%\multicolumn{1}{c|}{entête large}&
+%\multicolumn{1}{c|}{entête large}\\[3pt]
 % 1.2  & 1.2  &1.2 \\
 % .4    & .4    &.4
 % \end{tabular}
 % \end{center}
 %
-% In both of these tables the first column is set with "D{.}{.}{-1}"
-% to produce a column centered on the ".", and the second column is
-% set with "D{.}{.}{1}" to produce a right aligned column.
+% Dans chacune de ces deux tables, la première colonne est définie par 
+% "D{.}{.}{-1}" pour afficher une colonne centrée sur le \og "." \fg ; 
+% la deuxième colonne est définie par "D{.}{.}{1}" pour afficher une
+% colonne alignée à droite.
 %
-% The centered column produces columns that are wider than necessary
-% to fit in the numbers under a heading as it has to ensure that the
-% decimal point is centred. The right aligned column two does not have
-% this drawback, but under a wide heading a column of small right
-% aligned figures looks a bit odd.
+% La colonne centrée produit une colonne qui plus large que nécessaire pour
+% s'assurer que le point décimal est centré dans tous les cas. La deuxième
+% colonne, qui est alignée à droite, n'a pas cet inconvénient mais, sous un
+% entête large, l'apparence visuelle est assez peu satisfaisante lorsqu'il
+% y a peu de chiffres dans les colonnes.
 %
-% In version v1.03 a third possibility is introduced. The third
-% \meta{decimal places} argument may specify \emph{both} the number of
-% digits to the left and to the right of the decimal place. The third
-% column in the first table above is set with "D{.}{.}{5.1}" and in the
-% second  table,  "D{.}{.}{1.1}", to specify
-% `five places to the left and one to the right' and `one place to the
-% left and% one to the right' respectively.  (You may use `,' or other
-% tokens, not necessarily `.' in this argument.) The column of figures
-% is then positioned such that a number with the specified numbers of
-% digits is centred in the column.
+% Dans la version v1.03, une troisième alternative a été introduite.
+% Le troisième argument, le \meta{nombre de décimales}, peut définir
+% \emph{à la fois} le nombre de chiffres à gauche et à droite de la virgule.
+% La troisième colonne ainsi est définie par "D{.}{.}{5.1}" dans la table de 
+% gauche ci-dessus et par "D{.}{.}{1.1}" dans la table de droite, pour 
+% indiquer respectivement \og cinq chiffres à gauche et un à droite \fg 
+% et \og un chiffre à gauche et un chiffre à droite \fg (le \og . \fg, lui, 
+% peut être remplacé par \og , \fg ou toute autre unité lexicale). Les 
+% colonnes de chiffres sont alors positionnées de telle sorte qu'un nombre
+% avec le format indiqué soit centré dans la colonne.
 %
-% This notation also enables columns that are centred on the mid-point
-% of the separator, rather than its leading edge; for example
-% "D{+}{\,\pm\,}{3,3}" will give nice, symmetric layout of up to three
-% digits on either side of a $\pm$ sign.
+% Cette notation permet également de centrer les colonnes sur le milieu 
+% du séparateur plutôt que sur son bord gauche ; par exemple, 
+% "D{+}{\,\pm\,}{3,3}" donnera une belle mise en forme symétrique pour des
+% nombres comportant jusqu'à trois chiffres de chaque côté d'un signe $\pm$.
 %
 % \StopEventually{}
 %
 %
-% \section{The Macros}
+% \section{Les commandes}
 %
 %    \begin{macrocode}
 %<*package>
 %    \end{macrocode}
 %
-% First we load {\tt array.sty} if it not already loaded.
+% Tout d'abord, nous chargeons l'extension \textsf{array} si ce n'est pas déjà
+% le cas.
 %    \begin{macrocode}
 \RequirePackage{array}
 %    \end{macrocode}
 %
+% \tradini
 % The basic ideas behind these macros are explained in the documentation
 % for {\tt array.sty}. However they use three
 % tricks which may be useful in other contexts.
