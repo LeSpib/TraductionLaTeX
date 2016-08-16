@@ -13,6 +13,7 @@ Les commandes suivantes doivent être exécutées :
 
 ```bash
 pdflatex somedefs-fr.dtx
+pdflatex somedefs-fr.dtx
 ```
 
 Sur ce point, un fichier Makefile est mis à disposition (voir par exemple [OpenClassrooms](https://openclassrooms.com/courses/compilez-sous-gnu-linux#/id/r-1130480) pour plus d'informations).
@@ -30,13 +31,12 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 
 Section                       | Avancée                | Pages traduites | Commentaires 
 ----------------------------- | :--------------------: | :-------------: | -------------------------
-En-tête du document tex       | :new_moon:             |                 |
-Page d'avant-propos           | :first_quarter_moon:   | 0               | 
-Présentation générale         | :first_quarter_moon:   | 1               |
-Implémentation                | :first_quarter_moon:   | 2               |
+Entête du document tex        | :new_moon:             |                 |
+Page d'avant-propos           | :waxing_gibbous_moon:  | 0               | 
+Présentation générale         | :waxing_gibbous_moon:  | 1               |
+Implémentation                | :waxing_gibbous_moon:  | 2               |
 
 
 ### Glossaire pour la traduction
 
-Anglais                | Français                                       | Commentaires 
----------------------- | ---------------------------------------------- | -------------------------------
+Il n'y a pas eu besoin d'un glossaire pour cette traduction.

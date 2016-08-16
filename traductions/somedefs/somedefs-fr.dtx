@@ -42,16 +42,16 @@
 % Cette extension est un exemple de \og boîte à outils pour programmeurs \fg{},
 % à l'intention des auteurs d'extension. Elle leur fournit des options qui
 % activent ou désactivent des définitions. Par exemple, une extension
-% \textsf{fred} pourrait définir un grand nombre de commandes, parmi lesquelles
+% \textsf{hop} pourrait définir un grand nombre de commandes, parmi lesquelles
 % |\test| et |\truc|. Charger alors
 % \begin{verbatim}
-%    \usepackage{fred}
+%    \usepackage{hop}
 % \end{verbatim}
 % utiliserait beaucoup de mémoire, même si |\test| et |\truc| sont les
-% seules commandes utilisées. Cependant, si l'auteur de \textsf{fred} utilisait
+% seules commandes utilisées. Cependant, si l'auteur de \textsf{hop} utilisait
 % l'extension \textsf{somedefs}, alors l'utilisateur pourrait écrire :
 % \begin{verbatim}
-%    \usepackage[only,test,truc]{fred}
+%    \usepackage[only,test,truc]{hop}
 % \end{verbatim}
 % et seules les commandes |\test| et |\truc| seront définies.
 %
@@ -60,19 +60,18 @@
 % \begin{verbatim}
 %    \RequirePackage{somedefs}
 % \end{verbatim}
-% Vous pouvez alors utiliser quatre nouvelles commandes qui déterminent quelles
-% définitions de commandes doivent être prises en compte.
-% :
+% Vous pouvez alors utiliser quatre nouvelles commandes :
 % \begin{flushleft}\begin{itemize}
-% \item |\UseAllDefinitions| : toutes les commandes du fichier doivent être 
-%   définies ;
-% \item |\UseSomeDefinitions| : seules les commandes spécifiées par 
-%   |\UseDefinition| doivent être définies ;
-% \item |\UseDefinition{|\meta{nom}|}| : la commande |\nom| doit être définie ;
-% \item |\ProvidesDefinition{|\meta{définition}|}|: la commande ajoute une 
-%   définition, de la forme |\commandededefinition{\commande}...|.
+% \item |\UseAllDefinitions| qui indique que toutes les commandes du fichier 
+%   doivent être définies ;
+% \item |\UseSomeDefinitions| qui indique que seules les commandes spécifiées
+%   par |\UseDefinition| doivent être définies ;
+% \item |\UseDefinition{|\meta{nom}|}| qui indique que la commande |\nom| 
+%   doit être définie ;
+% \item |\ProvidesDefinition{|\meta{définition}|}| qui apporte une 
+%   \meta{définition} de la forme |\commandededefinition{\commande}...|.
 % \end{itemize}\end{flushleft}
-% Par exemple, l'extension |fred| pourrait indiquer :
+% Par exemple, l'extension |hop| pourrait indiquer :
 % \begin{verbatim}
 %    \RequirePackage{somedefs}
 %    \UseAllDefinitions
@@ -88,7 +87,7 @@
 % exemple, si la commande |\test| a besoin de la commande |\truc|, vous devriez
 % écrire:
 % \begin{verbatim}
-%    \DeclareOption{hop}{\UseDefinition{hop}\UseDefinition{laboum}}
+%    \DeclareOption{test}{\UseDefinition{test}\UseDefinition{truc}}
 % \end{verbatim}
 % Pour un exemple plus complet de l'utilisation du package \textsf{somedefs},
 % regardez le package \textsf{rawfonts}.
@@ -97,7 +96,10 @@
 %
 % \section*{Implémentation}
 %
-% Le pilote de la documentation que vous êtes en train de lire est défini par
+% Le pilote de la documentation\footnote{N.D.T. : ce document étant une
+% traduction, le pilote est ici modifié par rapport à la version originale. La
+% ligne 3 a été ajoutée et la ligne 5 importe \texttt{somedefs-fr.dtx} au lieu
+% de \texttt{somedefs.dtx}.} que vous êtes en train de lire est défini par
 % les quelques lignes suivantes.
 %    \begin{macrocode}
 %<*driver>
@@ -122,13 +124,21 @@
 % \begin{macro}{\@provides@definition}
 % \begin{macro}{\@unprovided@definition}
 %    L'extension fonctionne ainsi : |\UseDefinition{|\meta{nom}|}| définit
-%    la commande |\nom| comme étant |\@unprovided@definition| (une \og 
-%    définition non fournie \fg{}). Si |\UseSomeDefinitions| est appelé, alors
-%    la commande |\ProvidesDefinition| vérifie si |\nom| est 
+%    la commande |\nom| comme étant |\@unprovided@definition|\footnote{N.D.T. :
+%    elle donne un des deux messages d'erreur de l'extension : \og Erreur de 
+%    l'extension ``somedefs'' : cette commande n'a jamais été définie. Vous
+%    avez demandé une commande qui n'existe pas. \fg.} (une \og définition
+%    non fournie \fg). Si |\UseSomeDefinitions| est appelée, alors la 
+%    commande |\ProvidesDefinition| vérifie si |\nom| est 
 %    |\@unprovided@definition|. Si |\UseAllDefinitions| est appelée, alors la
 %    commande |\ProvidesDefinition| ne fait
 %    rien. Si aucune des deux commandes n'est appelé, alors
-%    |\ProvidesDefinition| génère un message d'erreur.
+%    |\ProvidesDefinition| génère un message d'erreur\footnote{N.D.T. : le
+%    message d'erreur est la valeur par défaut de la commande 
+%    |\textbackslash ProvidesDefinition|, apparaissant si rien n'a été fait. Il
+%    se traduit par : \og Aucune utilisation de |\textbackslash
+%    UseSomeDefinitions| ou de |\textbackslash UseAllDefinitions|. L'extension
+%    qui a utilisé l'extension ``somedefs'' contient une erreur. \fg.}.
 %    \begin{macrocode}
 \def\UseSomeDefinitions{%
    \let\ProvidesDefinition\@providesdefinition
@@ -139,13 +149,6 @@
 \def\UseDefinition#1{%
    \expandafter\let\csname#1\endcsname\@unprovided@definition
 }
-%    \end{macrocode}
-%    Le message d'erreur est la valeur par défaut de la commande 
-%    |ProvidesDefinition|, apparaissant si rien n'a été fait : \og Aucune
-%    utilisation de |\UseSomeDefinitions| ou de |\UseAllDefinitions|. 
-%    L'extension qui a utilisé l'extension ``somedefs'' contient une erreur.
-%    \fg{}
-%    \begin{macrocode}
 \def\ProvidesDefinition#1{%
    \PackageError{somedefs}%
      {No \noexpand\UseSomeDefinitions or \string\UseAllDefinitions}%
@@ -158,11 +161,6 @@
       #1#2#3%
    \fi
 }
-%    \end{macrocode}
-%    L'autre message d'erreur de l'extension : \og Erreur de l'extension
-%    ``somedefs'' : cette commande n'a jamais été définie. Vous avez
-%    demandé une commande qui n'existe pas. \fg{}.
-%    \begin{macrocode}
 \def\@unprovided@definition{%
    \PackageError{somedefs}%
      {Package `somedefs' error: this command was never defined}%
