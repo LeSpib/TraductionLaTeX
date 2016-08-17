@@ -67,6 +67,7 @@ Traduction             | Source                      | Avancée                |
 [longtable-fr]         | [longtable] v4.11           | :new_moon:             | 0 / 29          | Traduction préexistante ([FT-tools]).
 [multicol-fr]          | [multicol] v1.8p            | :new_moon:             | 0 / 36          | Traduction préexistante ([FT-tools]).
 [multido-fr]           | [multido] v1.42             | :new_moon:             | 0 / 4           |
+[multirow-fr]          | [multirow] v1.6             | :new_moon:             | 0 / 4           |
                        | [pgfplots] v1.13            |                        | *. / 544*       |
 [rawfonts-fr]          | [rawfonts] v0.01            | :full_moon:            | 4               | Traduction préexistante ([FT-tools]).
 [shellesc-fr]          | [shellesc] v0.02a           | :new_moon:             | 0 / 3           | 
@@ -219,6 +220,8 @@ Anglais                | Français                                       | Comme
 [multicol-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/multicol>
 [multido]:              <https://www.ctan.org/pkg/multido>
 [multido-fr]:           <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/multido>
+[multirow]:             <https://www.ctan.org/pkg/multirow>
+[multirow-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/multirow>
 [pgfplots]:             <https://www.ctan.org/pkg/pgfplots>
 [pgfplots-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/pgfplots>
 [rawfonts]:             <https://www.ctan.org/pkg/rawfonts>
