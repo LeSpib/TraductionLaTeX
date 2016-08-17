@@ -80,6 +80,7 @@ Traduction             | Source                      | Avancée                |
                        | [tikz+pgf] v3.0.1a          |                        | *. / 1161*      |
 [titlesec-fr]          | [titlesec] 2.10.2           | :full_moon:            | 25              | 
 [tocbibind-fr]         | [tocbibind] v1.5k           | :first_quarter_moon:   | 18              | 
+[tocloft-fr]           | [tocloft] v1.3f             | :new_moon:             | 0 / 54          | 
 [trace-fr]             | [trace] v1.1d               | :new_moon:             | 0 / 10          | 
 [varioref-fr]          | [varioref] v1.5c            | :new_moon:             | 0 / 35          | Traduction préexistante ([FT-tools]).
 [verbatim-fr]          | [verbatim] v1.5q            | :new_moon:             | 0 / 23          | Traduction préexistante ([FT-tools]).
@@ -241,12 +242,14 @@ Anglais                | Français                                       | Comme
 [tabularx-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/tabularx>
 [theorem]:              <https://www.ctan.org/pkg/theorem>
 [theorem-fr]:           <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/theorem>
+[tikz+pgf]:             <https://www.ctan.org/pkg/pgf>
+[tikz-fr]:              <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/tikz>
 [titlesec]:             <https://www.ctan.org/pkg/titlesec>
 [titlesec-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/titlesec>
 [tocbibind]:            <https://www.ctan.org/pkg/tocbibind>
 [tocbibind-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/tocbibind>
-[tikz+pgf]:             <https://www.ctan.org/pkg/pgf>
-[tikz-fr]:              <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/tikz>
+[tocloft]:              <https://www.ctan.org/pkg/tocloft>
+[tocloft-fr]:           <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/tocloft>
 [trace]:                <https://www.ctan.org/pkg/trace>
 [trace-fr]:             <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/trace>
 [varioref]:             <https://www.ctan.org/pkg/varioref>
