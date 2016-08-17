@@ -73,6 +73,7 @@ Traduction             | Source                      | Avancée                |
 [shellesc-fr]          | [shellesc] v0.02a           | :new_moon:             | 0 / 3           | 
 [showkeys-fr]          | [showkeys] v3.17            | :new_moon:             | 0 / 10          | Traduction préexistante ([FT-tools]).
 [siunitx-fr]           | [siunitx] v2.6q             | :new_moon:             | 0 / 98          |
+[smartref-fr]          | [smartref] v1.9             | :new_moon:             | 0 / 4           |
 [somedefs-fr]          | [somedefs] v0.03            | :waxing_gibbous_moon:  | 3               | Traduction préexistante ([FT-tools]).
 [tabularx-fr]          | [tabularx] v2.11            | :new_moon:             | 0 / 13          | Traduction préexistante ([FT-tools]).
 [theorem-fr]           | [theorem] v2.2c             | :new_moon:             | 0 / 16          | Traduction préexistante ([FT-tools]).
@@ -232,6 +233,8 @@ Anglais                | Français                                       | Comme
 [showkeys-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/showkeys>
 [siunitx]:              <https://www.ctan.org/pkg/siunitx>
 [siunitx-fr]:           <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/siunitx>
+[smartref]:             <https://www.ctan.org/pkg/smartref>
+[smartref-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/smartref>
 [somedefs]:             <https://www.ctan.org/pkg/somedefs>
 [somedefs-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/somedefs>
 [tabularx]:             <https://www.ctan.org/pkg/tabularx>
