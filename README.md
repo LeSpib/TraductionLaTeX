@@ -29,6 +29,7 @@ Traduction             | Source                      | Avancée                |
 [adjustbox-fr]         | [adjustbox] v1.0            | :new_moon:             | 0 / 29          |
 [afterpage-fr]         | [afterpage] v1.08           | :waxing_crescent_moon: | 3 / 6           | 
 [algorithm2e-fr]       | [algorithm2e] v5.1          | :new_moon:             | 0 / 54          | 
+[amssymb-fr]           | [amssymb] v3.01             | :first_quarter_moon:   | 6               | 
 [appendix-fr]          | [appendix] v1.2b            | :full_moon:            | 16              | Traduction préexistante ([FT-tools]).
 [array-fr]             | [array] v2.4c               | :new_moon:             | 2 / 35          | Traduction préexistante ([FT-tools]).
 [bm-fr]                | [bm] v1.2b                  | :new_moon:             | 0 / 20          | 
@@ -146,7 +147,9 @@ Anglais                | Français                                       | Comme
 [afterpage]:            <https://www.ctan.org/pkg/afterpage>
 [afterpage-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/afterpage>
 [algorithm2e]:          <https://www.ctan.org/pkg/algorithm2e>
-[algorithm2e-fr]:       <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/algorithm2e> 
+[algorithm2e-fr]:       <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/algorithm2e>
+[amssymb]:              <https://www.ctan.org/tex-archive/fonts/amsfonts/doc>
+[amssymb-fr]:           <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/amssymb>
 [appendix]:             <https://www.ctan.org/pkg/appendix>
 [appendix-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/appendix>
 [array]:                <https://www.ctan.org/pkg/array>
