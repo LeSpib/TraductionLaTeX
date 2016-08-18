@@ -28,6 +28,7 @@ Traduction             | Source                      | Avancée                |
 ---------------------- | --------------------------- | :--------------------: | :-------------: | ---------------------------------------
 [adjustbox-fr]         | [adjustbox] v1.0            | :new_moon:             | 0 / 29          |
 [afterpage-fr]         | [afterpage] v1.08           | :waxing_crescent_moon: | 3 / 6           | 
+[algorithm2e-fr]       | [algorithm2e] v5.1          | :new_moon:             | 0 / 54          | 
 [appendix-fr]          | [appendix] v1.2b            | :full_moon:            | 16              | Traduction préexistante ([FT-tools]).
 [array-fr]             | [array] v2.4c               | :new_moon:             | 2 / 35          | Traduction préexistante ([FT-tools]).
 [bm-fr]                | [bm] v1.2b                  | :new_moon:             | 0 / 20          | 
