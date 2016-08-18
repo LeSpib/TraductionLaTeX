@@ -36,9 +36,9 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 Section                       | Avancée                | Pages traduites | Commentaires 
 ----------------------------- | :--------------------: | :-------------: | -------------------------
 En-tête du document tex       | :new_moon:             |                 |
-Pages d'avant-propos          | :new_moon:             | 0 / 1           | 
-1. Introduction               | :new_moon:             | 0 / 3           |
-2. Commentaire finaux         | :new_moon:             | 0 / 2           | 
+Pages d'avant-propos          | :first_quarter_moon:   | 1               | 
+1. Introduction               | :new_moon:             | 1 / 3           |
+2. Derniers commentaires      | :new_moon:             | 0 / 2           | 
 3. Le pilote de documentation | :new_moon:             | 0 / 1           | 
 4. La construction du...      | :new_moon:             | 0 / 3           | 
 5. L'insertion de déclarations| :new_moon:             | 0 / 4           | 

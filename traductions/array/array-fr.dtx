@@ -169,15 +169,17 @@
 % \GetFileInfo{array.sty}
 %
 % \title{L'extension \textsf{array}\thanks{Ce fichier a pour numéro de
-%        version \fileversion\ et a été mis à jour le \filedatefr.} \\
-%        Une nouvelle implémentation des environnements \textsf{tabular}
-%        et \textsf{array} de \LaTeX}
+%        version \fileversion\ et a été mis à jour le \filedatefr. Son 
+%        titre original est \og \emph{A new implementation of \LaTeX's
+%        \textsf{tabular} and \textsf{array} environment} \fg.} \\
+%        Une nouvelle implémentation\\ des environnements \texttt{tabular}
+%        et \texttt{array} de \LaTeX}
 % \author{Frank Mittelbach
 %         \and
-%         David Carlisle\thanks{David a donné gentiment donné son accord sur 
-%         l'inclusion dans cette extension de l'implémentation de 
-%         \texttt{\textbackslash{}newcolumntype}, antérieurement présente dans
-%         l'extension \texttt{newarray.sty}.}}
+%         David Carlisle\thanks{David a gracieusement donné son accord
+%         pour l'inclusion dans cette extension de l'implémentation de 
+%         \texttt{\textbackslash{}newcolumntype}, antérieurement présente 
+%         dans l'extension \textsf{newarray}.}}
 %
 % \date{\filedatefr}
 %
@@ -186,149 +188,145 @@
 % \MakeShortVerb{\=}
 %
 % \begin{abstract}
-% \tradini
-% This article describes an extended implementation of the \LaTeX\
-% \textsf{array}-- and \textsf{tabular}--environments. The special
-% merits of this implementation are further options to format columns
-% and the fact that fragile \LaTeX--commands don't have to be
-% =\protect='ed any more within those environments.
+% Ce document décrit une implémentation étendue des environnements
+% \texttt{tabular} et \texttt{array} de \LaTeX. Les principaux avantages
+% de cette implémentation se trouvent dans de nouvelles options pour mettre en
+% forme les colonnes et dans le fait que les commandes \og fragiles \fg de
+% \LaTeX\ n'ont plus besoin d'être protégées par =\protect= à l'intérieur de
+% ces environnements.
 %
-% The major part of the code for this package dates back to 1988---so
-% does some of its documentation.
+% La majeure partie du code de cette extension date de 1988 --- il en est
+% de même pour une part de sa documentation.
 % \end{abstract}
 %
 %
 %
 % \section{Introduction}
 %
-% \tradini
-% This new implementation of the \textsf{array}-- and
-% \textsf{tabular}--environments is part of a larger project in which
-% we are trying to improve the \LaTeX\--code in some aspects and to
-% make \LaTeX\ even easier to handle.
+% Cette nouvelle implémentation des environnements \texttt{tabular} et
+% \texttt{array} fait partie d'un projet plus large, dans lequel nous
+% essayons d'améliorer le code de \LaTeX\ et de le rendre encore plus
+% facile à manipuler.
 %
-% The reader should be familiar with the general structure of the
-% environments
-% mentioned above. Further information can be found in
-% \cite{bk:lamport} and \cite{bk:GMS94}.
-% The additional options which can be used in the
-% preamble as well as those which now have a slightly different meaning
-% are described in table~\ref{tab:opt}.
+% Le lecteur devrait être familier avec la structure générale des
+% environnements mentionnés ci-dessus. De plus amples informations sont
+% disponibles dans \cite{bk:lamport} et \cite{bk:GMS94}. Les options
+% supplémentaires qui peuvent être utilisées dans le préambule ainsi
+% que celles qui ont maintenant un sens légèrement différent sont
+% décrites dans la table~\ref{tab-opt}.
 %
 % \DescribeMacro\extrarowheight
-% Additionally we introduce a new
-% parameter called =\extrarowheight=. If it takes a positive
-% length, the value of the parameter is added to the normal height of
-% every row of the table, while
-% the depth will remain the same. This is important for tables
-% with horizontal lines because those lines normally touch the
-% capital letters.
-% For example, we used =\setlength{\extrarowheight}{1pt}=
-% in table~\ref{tab:opt}.
+% Un nouveau paramètre, la longueur =\extrarowheight= apparaît avec cette
+% extension. Si elle est positive, elle est ajoutée à la hauteur
+% normale de chaque ligne de la table tandis que la profondeur reste la 
+% même. Ceci est important pour les tables comportant des filets
+% horizontaux car, normalement, ces filets touchent les lettres 
+% majuscules.
+% Par exemple, nous avons utilisé =\setlength{\extrarowheight}{1pt}=
+% dans la table~\ref{tab-opt}.
 %
 % \begin{table}[t]
 % \begin{center}
 %    \setlength{\extrarowheight}{1pt}
 %    \begin{tabular}{|>{\tt}c|m{9cm}|}
 %       \hline
-%     \multicolumn{2}{|c|}{Unchanged options}\\
+%     \multicolumn{2}{|c|}{Options inchangées}\\
 %       \hline
-%       l             &  Left adjusted column. \\
-%       c             &  Centered adjusted column. \\
-%       r             &  Right adjusted column. \\
-%       p\{width\}    &  Equivalent to =\parbox[t]{width}=. \\
-%       @\{decl.\}    &  Suppresses inter-column space and inserts
-%                        \texttt{decl.}\ instead. \\
+%       l             &  Colonne alignée à gauche (\emph{left}).           \\
+%       c             &  Colonne centrée (\emph{centered}).                \\
+%       r             &  Colonne alignée à droite (\emph{right}).          \\
+%       p\{largeur\}  &  \'Equivalente à =\parbox[t]{largeur}=.            \\
+%       @\{décl.\}    &  Supprime l'espace entre les colonnes et le
+%                        remplace par la déclaration \texttt{décl.}.       \\
 %       \hline
-%     \multicolumn{2}{|c|}{New options}\\
+%     \multicolumn{2}{|c|}{Nouvelles options}\\
 %       \hline
-%       m\{width\}    &  Defines a column of width \texttt{width}.
-%                        Every entry will be centered in proportion to
-%                        the rest of the line. It is somewhat like
-%                        =\parbox{width}=. \\
+%       m\{largeur\}  &  Définit une colonne de largeur \texttt{largeur}.
+%                        Chaque entrée sera centrée en fonction du reste 
+%                        de la ligne. Ceci ressemble à =\parbox{largeur}=. \\
 %       \hline
-%       b\{width\}    &  Coincides with =\parbox[b]{width}=. \\
+%       b\{largeur\}  &  \'Equivalente à =\parbox[b]{largeur}=.            \\
 %       \hline
-%       >\{decl.\}    &  Can be used before an \texttt{l}, \texttt{r},
-%                        \texttt{c}, \texttt{p}, \texttt{m} or a
-%                        \texttt{b} option. It inserts \texttt{decl.}\
-%                        directly in front of the entry of the column.
-%                        \\
+%       >\{décl.\}    &  Peut être utilisée avant une option =l=, =r=, =c=,
+%                        =p{=\dots=}=, =m{=\dots=}= ou =b{=\dots=}=. Ceci
+%                        insère =décl.= directement en début de l'entrée
+%                        dans la colonne.                                  \\
 %       \hline
-%       <\{decl.\}    &  Can be used after an \texttt{l}, \texttt{r},
-%                        \texttt{c}, =p{..}=, =m{..}= or a =b{..}=
-%                        option.  It inserts \texttt{decl.}\ right
-%                        after the entry of the column.  \\
+%       <\{décl.\}    &  Peut être utilisée après une option =l=, =r=, =c=,
+%                        =p{=\dots=}=, =m{=\dots=}= ou =b{=\dots=}=. Ceci
+%                        insère =décl.= juste après l'entrée dans la
+%                        colonne.                                          \\
 %       \hline
-%       |             &  Inserts a vertical line. The distance between
-%                        two columns will be enlarged by the width of
-%                        the line
-%                        in contrast to the original definition of
-%                        \LaTeX.  \\
+%       |             &  Insère un filet vertical. La distance entre deux
+%                        colonnes est augmentée de l'épaisseur du filet, 
+%                        à la différence de la définition classique de 
+%                        \LaTeX.                                           \\
 %       \hline
-%       !\{decl.\}    &  Can be used anywhere and corresponds with the
-%                        \texttt{|} option. The difference is that
-%                        \texttt{decl.} is inserted instead of a
-%                        vertical line, so this option doesn't
-%                        suppress the normally inserted space between
-%                        columns in contrast to =@{...}=.\\
+%       !\{décl.\}    &  Peut être utilisée n'importe où et correspond à 
+%                        l'option =|=. La différence réside dans 
+%                        l'insertion de =décl.= au lieu d'un filet 
+%                        vertical. Cette option ne supprime donc pas 
+%                        l'espace normalement inséré entre les colonnes, 
+%                        contrairement à =@{=\dots=}=.                         \\
 %       \hline
 %    \end{tabular}
 % \end{center}
-% \caption{The  preamble options.} \label{tab:opt}
+% \caption{Les options du préambule de table} \label{tab-opt}
 % \end{table}
 %
 %
-% We will discuss a few examples using the new preamble options before
-% dealing with the implementation.
+% Nous allons présenter quelques exemples des nouvelles options du
+% préambule avant de traiter de son implémentation.
 % \begin{itemize}
 %    \item
-%       If you want to use a special font (for example =\bfseries=) in a
-%       flushed left column, this can be done with =>{\bfseries}l=. You
-%       do not have to begin every entry of the column with  =\bfseries=
-%       any more.
+%       Si vous souhaitez utiliser une fonte particulière (par exemple
+%       =\bfseries=) dans une colonne alignée à gauche, ceci peut se
+%       faire avec  =>{\bfseries}l=.  Vous n'avez plus à commencer chaque
+%       entrée par =\bfseries=.
 %    \item
-%       In columns which have been generated with \texttt{p}, \texttt{m}
-%       or \texttt{b}, the default value of =\parindent= is
-%       \textsf{0pt}.
-%       This can be changed with \\
+%       Dans les colonnes définies par =p{=\dots=}=, =m{=\dots=}= ou 
+%       =b{=\dots=}=, la valeur par défaut de =\parindent= est 0pt. Ceci 
+%       peut être modifié par : \\
 %       =>{\setlength{\parindent}{1cm}}p=.
 %    \item
-%       The \texttt{>}-- and \texttt{<}--options were originally
-%       developed for the following application:
-%       =>{$}c<{$}= generates a column in math
-%       mode in a \textsf{tabular}--environment. If you use this type
-%       of a preamble in an \textsf{array}--environment, you get a
-%       column in LR mode because the additional \$'s cancel the
-%       existing \$'s.
+%       les options =<{=\dots=}= et =>{=\dots=}= avaient été développées
+%       à l'origine pour le cas suivant : =>{$}c<{$}= engendre une colonne
+%       en mode mathématique dans un environnement \texttt{tabular}. Si 
+%       vous utilisez ce type de préambule dans un environnement 
+%       \texttt{array}, vous obtenez une colonne en mode 
+%       dextroverse\footnote{N.D.T. : se lisant de gauche à droite.} car 
+%       les \og =$= \fg supplémentaires annulent ceux déjà présents.
 %    \item
-%       One can also think of more complex applications. A problem
-%       which has
-%       been mentioned several times in \TeX{}hax can be solved with
+%       Ce système peut avoir des applications plus complexes. Un
+%       problème classique, centrer des nombres sur leur virgule 
+%       décimale, peut être résolu avec la séquence
 %       =>{\centerdots}c=\linebreak[0]=<{\endcenterdots}=.
-%       To center decimals at their
-%       decimal points you (only?) have to define the following macros:
+%       Il suffit (juste ?) de définir les commandes 
+%       suivantes\footnote{N.D.T. : les commandes retiennent ici pour 
+%       séparateur décimal la virgule. Pour avoir le point, les 5
+%       virgules de ce code sont à remplacer chacune par un point.}
 %       \begin{verbatim}
-%{\catcode`\.\active\gdef.{\egroup\setbox2\hbox\bgroup}}
-%\def\centerdots{\catcode`\.\active\setbox0\hbox\bgroup}
+%{\catcode`\,\active\gdef,{\egroup\setbox2\hbox\bgroup}}
+%\def\centerdots{\catcode`\,\active\setbox0\hbox\bgroup}
 %\def\endcenterdots{\egroup\ifvoid2 \setbox2\hbox{0}\fi
 %   \ifdim \wd0>\wd2 \setbox2\hbox to\wd0{\unhbox2\hfill}\else
 %     \setbox0\hbox to\wd2{\hfill\unhbox0}\fi
-%   \catcode`\.12 \box0.\box2}
-%\end{verbatim}
-%      Warning: The code is bad, it doesn't work with more than one
-%      dot in a cell and doesn't work when the tabular is used in the
-%      argument of some other command. A much better version is
-%      provided in the \texttt{dcolumn.sty} by David Carlisle.
+%   \catcode`\,12 \box0,\box2}
+%       \end{verbatim}
+%       Attention: ces commandes ne marchent pas si une cellule comporte
+%       plusieurs virgules décimales ou si le tableau est utilisé en 
+%       argument d'une autre commande. Une approche bien meilleure est
+%       proposée par l'extension \textsf{dcolumn} de David Carlisle.
 %    \item
-%       Using =c!{\hspace{1cm}}c= you get space between two
-%       columns which is enlarged by one centimeter, while
-%       =c@{\hspace{1cm}}c= gives you exactly one centimeter
-%       space between two columns.
+%       En utilisant =c!{\hspace{1cm}}c= vous élargissez d'un
+%       centimètre l'espace entre deux colonnes, tandis que
+%       =c@{\hspace{1cm}}c= place exactement un centimètre d'espace 
+%       entre deux colonnes.
 % \end{itemize}
 %
-% \subsection{Defining new column specifiers}
+% \subsection{Définition de nouveaux types de colonnes}
 %
+% \tradini
 % \DeleteShortVerb{\=}
 % \MakeShortVerb{\"}
 % \DescribeMacro{\newcolumntype}

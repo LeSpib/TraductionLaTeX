@@ -18,17 +18,20 @@ $(doc).pdf: $(doc).dtx
 # Nettoyage simple du répertoire
 clean:
 	rm -f  \
-		$(doc).out \
-		$(doc).lof \
-		$(doc).log \
-		$(doc).lot \
+		$(doc).aux \
+		$(doc).bbl \
+		$(doc).blg \
+		$(doc).cfg \
+		$(doc).glo \
+		$(doc).gls \
 		$(doc).idx \
 		$(doc).ind \
 		$(doc).ilg \
-		$(doc).toc \
-		$(doc).bbl \
-		$(doc).blg \
-		$(doc).aux 
+		$(doc).lof \
+		$(doc).log \
+		$(doc).lot \
+		$(doc).out \
+		$(doc).toc
 
 # Nettoyage complet
 mrproper: clean
