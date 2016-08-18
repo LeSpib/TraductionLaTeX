@@ -145,6 +145,8 @@ Anglais                | Français                                       | Comme
 [adjustbox-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/adjustbox>
 [afterpage]:            <https://www.ctan.org/pkg/afterpage>
 [afterpage-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/afterpage>
+[algorithm2e]:          <https://www.ctan.org/pkg/algorithm2e>
+[algorithm2e-fr]:       <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/algorithm2e> 
 [appendix]:             <https://www.ctan.org/pkg/appendix>
 [appendix-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/appendix>
 [array]:                <https://www.ctan.org/pkg/array>
