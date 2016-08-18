@@ -262,6 +262,8 @@ Anglais                | Français                                       | Comme
 [tocloft-fr]:           <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/tocloft>
 [trace]:                <https://www.ctan.org/pkg/trace>
 [trace-fr]:             <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/trace>
+[ulem]:                 <https://www.ctan.org/pkg/ulem>
+[ulem-fr]:              <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/ulem>
 [varioref]:             <https://www.ctan.org/pkg/varioref>
 [varioref-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/varioref>
 [verbatim]:             <https://www.ctan.org/pkg/verbatim>
