@@ -34,6 +34,7 @@ Traduction             | Source                      | Avancée                |
 [array-fr]             | [array] v2.4c               | :new_moon:             | 2 / 35          | Traduction préexistante ([FT-tools]).
 [bm-fr]                | [bm] v1.2b                  | :new_moon:             | 0 / 20          | 
 [booktabs-fr]          | [booktabs] 1.618033         | :waxing_crescent_moon: | 9 / 18          | Traduction préexistante ([FT-tools]).
+[boxedminipage2e-fr]   | [boxedminipage2e] v1.0      | :new_moon:             | 0 / 4           | 
 [calc-fr]              | [calc] v4.3                 | :new_moon:             | 0 / 18          | Traduction préexistante ([FT-tools]).
 [cleveref-fr]          | [cleveref] v0.19            | :new_moon:             | 0 / 31          |
 [colortbl-fr]          | [colortbl] v1.0a            | :new_moon:             | 0 / 18          |
@@ -158,6 +159,8 @@ Anglais                | Français                                       | Comme
 [bm-fr]:                <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/bm>
 [booktabs]:             <https://www.ctan.org/pkg/booktabs>
 [booktabs-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/booktabs>
+[boxedminipage2e]:      <https://www.ctan.org/pkg/boxedminipage2e>
+[boxedminipage2e-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/boxedminipage2e>
 [calc]:                 <https://www.ctan.org/pkg/calc>
 [calc-fr]:              <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/calc>
 [cleveref]:             <https://www.ctan.org/pkg/cleveref>
