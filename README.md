@@ -51,6 +51,7 @@ Traduction             | Source                      | Avancée                |
 [enumitem-fr]          | [enumitem] v3.5.2           | :new_moon:             | 0 / 17          |
 [epigraph-fr]          | [epigraph] v1.5c            | :new_moon:             | 0 / 12          |
 [etoc-fr]              | [etoc] v1.08g               | :new_moon:             | 0 / 114         |
+[euler-fr]             | [euler] v2.5                | :new_moon:             | 0 / 12          |
 [fancyhdr-fr]          | [fancyhdr] v3.1             | :new_moon:             | 7 / 26          |
 [fileerr-fr]           | [fileerr] v1.1a             | :full_moon:            | 3               | 
 [fncychap-fr]          | [fncychap] v1.34            | :full_moon:            | 12              | Ajout d'infos dans le doc
@@ -199,6 +200,8 @@ Anglais                | Français                                       | Comme
 [epigraph-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/epigraph>
 [etoc]:                 <https://www.ctan.org/pkg/etoc>
 [etoc-fr]:              <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/etoc>
+[euler]:                <https://www.ctan.org/pkg/euler>
+[euler-fr]:             <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/euler>
 [fancyhdr]:             <https://www.ctan.org/pkg/fancyhdr>
 [fancyhdr-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/fancyhdr>
 [fileerr]:              <https://www.ctan.org/pkg/fileerr>
