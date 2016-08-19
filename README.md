@@ -48,7 +48,8 @@ Traduction             | Source                      | Avancée                |
 [dcolumn-fr]           | [dcolumn] v1.06             | :first_quarter_moon:   | 5               | Traduction préexistante ([FT-tools]).
 [delarray-fr]          | [delarray] v1.01            | :full_moon:            | 3               | Traduction préexistante ([FT-tools]).
 [enumerate-fr]         | [enumerate] v3.00           | :new_moon:             | 1 / 4           | Traduction préexistante ([FT-tools]).
-[enumitem-fr]          | [enumitem] v3.5.2           | :new_moon:             | 0 / 17          | 
+[enumitem-fr]          | [enumitem] v3.5.2           | :new_moon:             | 0 / 17          |
+[epigraph-fr]          | [epigraph] v1.5c            | :new_moon:             | 0 / 12          |
 [etoc-fr]              | [etoc] v1.08g               | :new_moon:             | 0 / 114         |
 [fancyhdr-fr]          | [fancyhdr] v3.1             | :new_moon:             | 7 / 26          |
 [fileerr-fr]           | [fileerr] v1.1a             | :full_moon:            | 3               | 
@@ -193,6 +194,8 @@ Anglais                | Français                                       | Comme
 [enumerate-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/enumerate>
 [enumitem]:             <https://www.ctan.org/pkg/enumitem>
 [enumitem-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/enumitem>
+[epigraph]:             <https://www.ctan.org/pkg/epigraph>
+[epigraph-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/epigraph>
 [etoc]:                 <https://www.ctan.org/pkg/etoc>
 [etoc-fr]:              <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/etoc>
 [fancyhdr]:             <https://www.ctan.org/pkg/fancyhdr>
