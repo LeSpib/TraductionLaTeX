@@ -69,6 +69,7 @@ Traduction             | Source                      | Avancée                |
 [ifpdf-fr]             | [ifpdf] v3.1                | :new_moon:             | 0 / 2           |
 [ifthen-fr]            | [ifthen] v1.1c              | :new_moon:             | 0 / 6           |
 [indentfirst-fr]       | [indentfirst] v1.03         | :full_moon:            | 1               | Traduction préexistante ([FT-tools]).
+[index-fr]             | [index] v4.1beta            | :new_moon:             | 0 / 20          |
 [layout-fr]            | [layout] v1.02c             | :new_moon:             | 0 / 14          | Traduction préexistante ([FT-tools]).
 [lettrine-fr]          | [lettrine] v1.9             | :new_moon:             | 0 / 13          | 
 [lipsum-fr]            | [lipsum] v1.3               | :full_moon:            | 41              |
@@ -236,6 +237,8 @@ Anglais                | Français                                       | Comme
 [ifthen-fr]:            <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/ifthen>
 [indentfirst]:          <https://www.ctan.org/pkg/indentfirst>
 [indentfirst-fr]:       <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/indentfirst>
+[index]:               <https://www.ctan.org/pkg/index>
+[index-fr]:            <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/index>
 [layout]:               <https://www.ctan.org/pkg/layout>
 [layout-fr]:            <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/layout>
 [lettrine]:             <https://www.ctan.org/pkg/lettrine>
