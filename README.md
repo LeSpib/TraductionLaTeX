@@ -33,6 +33,7 @@ Traduction             | Source                      | Avancée                |
 [appendix-fr]          | [appendix] v1.2b            | :full_moon:            | 16              | Traduction préexistante ([FT-tools]).
 [array-fr]             | [array] v2.4c               | :new_moon:             | 2 / 35          | Traduction préexistante ([FT-tools]).
 [arydshln-fr]          | [arydshln] v1.73            | :new_moon:             | 0 / 80          | 
+[babel-fr]             | [babel] v3.9r               | :new_moon:             | 0 / 124         | 
 [bm-fr]                | [bm] v1.2b                  | :new_moon:             | 0 / 20          | 
 [booktabs-fr]          | [booktabs] 1.618033         | :waxing_crescent_moon: | 9 / 18          | Traduction préexistante ([FT-tools]).
 [boxedminipage2e-fr]   | [boxedminipage2e] v1.0      | :new_moon:             | 0 / 4           | 
@@ -159,6 +160,8 @@ Anglais                | Français                                       | Comme
 [array-fr]:             <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/array>
 [arydshln]:             <https://www.ctan.org/pkg/arydshln>
 [arydshln-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/arydshln>
+[babel]:                <https://www.ctan.org/pkg/babel>
+[babel-fr]:             <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/babel>
 [bm]:                   <https://www.ctan.org/pkg/bm>
 [bm-fr]:                <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/bm>
 [booktabs]:             <https://www.ctan.org/pkg/booktabs>
