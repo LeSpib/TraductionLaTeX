@@ -85,6 +85,7 @@ Traduction             | Source                      | Avancée                |
 [siunitx-fr]           | [siunitx] v2.6q             | :new_moon:             | 0 / 98          |
 [smartref-fr]          | [smartref] v1.9             | :new_moon:             | 0 / 4           |
 [somedefs-fr]          | [somedefs] v0.03            | :waxing_gibbous_moon:  | 3               | Traduction préexistante ([FT-tools]).
+[stmaryrd-fr]          | [stmaryrd] v2.02-tmp-CAR    | :new_moon:             | 0 / 9           |
 [tabularx-fr]          | [tabularx] v2.11            | :new_moon:             | 0 / 13          | Traduction préexistante ([FT-tools]).
 [theorem-fr]           | [theorem] v2.2c             | :new_moon:             | 0 / 16          | Traduction préexistante ([FT-tools]).
                        | [tikz+pgf] v3.0.1a          |                        | *. / 1161*      |
@@ -269,6 +270,8 @@ Anglais                | Français                                       | Comme
 [smartref-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/smartref>
 [somedefs]:             <https://www.ctan.org/pkg/somedefs>
 [somedefs-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/somedefs>
+[stmaryrd]:             <https://www.ctan.org/pkg/stmaryrd>
+[stmaryrd-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/stmaryrd>
 [tabularx]:             <https://www.ctan.org/pkg/tabularx>
 [tabularx-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/tabularx>
 [theorem]:              <https://www.ctan.org/pkg/theorem>
