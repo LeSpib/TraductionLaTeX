@@ -63,7 +63,7 @@ Traduction             | Source                      | Avancée                |
 [glossaries-french-fr] | [glossaries-french-fr] v1.0 | :full_moon:            | 2               |
 [graphicx-fr]          | [graphicx] v1.0g            | :new_moon:             | 0 / 11          |
 [hhline-fr]            | [hhline] v2.03              | :new_moon:             | 0 / 4           | Traduction préexistante ([FT-tools]).
-                       | [hyperref] v6.83q           |                        | *. / 31*        |
+[hyperref-fr]          | [hyperref] 2012-11          | :new_moon:             | 0 / 31          | Licence GNU FDL
 [ifpdf-fr]             | [ifpdf] v3.1                | :new_moon:             | 0 / 2           |
 [ifthen-fr]            | [ifthen] v1.1c              | :new_moon:             | 0 / 6           |
 [indentfirst-fr]       | [indentfirst] v1.03         | :full_moon:            | 1               | Traduction préexistante ([FT-tools]).
