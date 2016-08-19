@@ -38,6 +38,7 @@ Traduction             | Source                      | Avancée                |
 [booktabs-fr]          | [booktabs] 1.618033         | :waxing_crescent_moon: | 9 / 18          | Traduction préexistante ([FT-tools]).
 [boxedminipage2e-fr]   | [boxedminipage2e] v1.0      | :new_moon:             | 0 / 4           | 
 [calc-fr]              | [calc] v4.3                 | :new_moon:             | 0 / 18          | Traduction préexistante ([FT-tools]).
+[caption-fr]           | [caption] v3.3-144          | :new_moon:             | 0 / 57          | 
 [cleveref-fr]          | [cleveref] v0.19            | :new_moon:             | 0 / 31          |
 [colortbl-fr]          | [colortbl] v1.0a            | :new_moon:             | 0 / 18          |
 [comment-fr]           | [comment] v3.6              | :first_quarter_moon:   | 4               |
@@ -170,6 +171,8 @@ Anglais                | Français                                       | Comme
 [boxedminipage2e-fr]:   <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/boxedminipage2e>
 [calc]:                 <https://www.ctan.org/pkg/calc>
 [calc-fr]:              <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/calc>
+[caption]:              <https://www.ctan.org/pkg/caption>
+[caption-fr]:           <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/caption>
 [cleveref]:             <https://www.ctan.org/pkg/cleveref>
 [cleveref-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/cleveref>
 [colortbl]:             <https://www.ctan.org/pkg/colortbl>
