@@ -219,6 +219,8 @@ Anglais                | Français                                       | Comme
 [glossaries-fr]:        <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/glossaries>
 [glossaries-french]:    <https://www.ctan.org/pkg/glossaries-french>
 [glossaries-french-fr]: <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/glossaries-french>
+[graphics]:             <https://www.ctan.org/pkg/graphics>
+[graphics-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/graphics>
 [graphicx]:             <https://www.ctan.org/pkg/graphicx>
 [graphicx-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/graphicx>
 [hhline]:               <https://www.ctan.org/pkg/hhline>
