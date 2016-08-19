@@ -61,6 +61,7 @@ Traduction             | Source                      | Avancée                |
 [geometry-fr]          | [geometry] v5.6             | :full_moon:            | 42              | Auteur contacté et intéressé.
 [glossaries-fr]        | [glossaries] v4.25          | :new_moon:             | 2 / 240         |
 [glossaries-french-fr] | [glossaries-french-fr] v1.0 | :full_moon:            | 2               |
+[graphics-fr]          | [graphics] v1.0t            | :new_moon:             | 0 / 23          |
 [graphicx-fr]          | [graphicx] v1.0g            | :new_moon:             | 0 / 11          |
 [hhline-fr]            | [hhline] v2.03              | :new_moon:             | 0 / 4           | Traduction préexistante ([FT-tools]).
 [hyperref-fr]          | [hyperref] 2012-11          | :new_moon:             | 0 / 31          | Licence GNU FDL
