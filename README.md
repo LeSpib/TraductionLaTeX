@@ -88,6 +88,7 @@ Traduction             | Source                      | Avancée                |
 [stmaryrd-fr]          | [stmaryrd] v2.02-tmp-CAR    | :new_moon:             | 0 / 9           |
 [tabularx-fr]          | [tabularx] v2.11            | :new_moon:             | 0 / 13          | Traduction préexistante ([FT-tools]).
 [theorem-fr]           | [theorem] v2.2c             | :new_moon:             | 0 / 16          | Traduction préexistante ([FT-tools]).
+[thmbox-fr]            | [thmbox] v2.0               | :new_moon:             | 0 / 13          | 
                        | [tikz+pgf] v3.0.1a          |                        | *. / 1161*      |
 [titlesec-fr]          | [titlesec] 2.10.2           | :full_moon:            | 25              | 
 [tocbibind-fr]         | [tocbibind] v1.5k           | :first_quarter_moon:   | 18              | 
@@ -276,6 +277,8 @@ Anglais                | Français                                       | Comme
 [tabularx-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/tabularx>
 [theorem]:              <https://www.ctan.org/pkg/theorem>
 [theorem-fr]:           <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/theorem>
+[thmbox]:               <https://www.ctan.org/pkg/thmbox>
+[thmbox-fr]:            <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/thmbox>
 [tikz+pgf]:             <https://www.ctan.org/pkg/pgf>
 [tikz-fr]:              <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/tikz>
 [titlesec]:             <https://www.ctan.org/pkg/titlesec>
