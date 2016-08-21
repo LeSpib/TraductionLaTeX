@@ -93,6 +93,7 @@ Traduction             | Source                      | Avancée                |
 [titlesec-fr]          | [titlesec] 2.10.2           | :full_moon:            | 25              | 
 [tocbibind-fr]         | [tocbibind] v1.5k           | :first_quarter_moon:   | 18              | 
 [tocloft-fr]           | [tocloft] v1.3f             | :new_moon:             | 0 / 54          | 
+[todonotes-fr]         | [todonotes] v1.0.4          | :new_moon:             | 0 / 32          | 
 [trace-fr]             | [trace] v1.1d               | :new_moon:             | 0 / 10          | 
 [ulem-fr]              | [ulem] 2012-05-18           | :new_moon:             | 0 / 7           | 
 [varioref-fr]          | [varioref] v1.5c            | :new_moon:             | 0 / 35          | Traduction préexistante ([FT-tools]).
@@ -288,6 +289,8 @@ Anglais                | Français                                       | Comme
 [tocbibind-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/tocbibind>
 [tocloft]:              <https://www.ctan.org/pkg/tocloft>
 [tocloft-fr]:           <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/tocloft>
+[todonotes]:            <https://www.ctan.org/pkg/todonotes>
+[todonotes-fr]:         <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/todonotes>
 [trace]:                <https://www.ctan.org/pkg/trace>
 [trace-fr]:             <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/trace>
 [ulem]:                 <https://www.ctan.org/pkg/ulem>
