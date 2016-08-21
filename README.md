@@ -79,6 +79,7 @@ Traduction             | Source                      | Avancée                |
 [multido-fr]           | [multido] v1.42             | :new_moon:             | 0 / 4           |
 [multirow-fr]          | [multirow] v1.6             | :new_moon:             | 0 / 4           |
                        | [pgfplots] v1.13            |                        | *. / 544*       |
+[psnfss]               | [psnfss] v9.2               | :new_moon:             | 0 / 15          |
 [rawfonts-fr]          | [rawfonts] v0.01            | :full_moon:            | 4               | Traduction préexistante ([FT-tools]).
 [sectsty-fr]           | [sectsty] v2.0.2            | :new_moon:             | 0 / 16          | 
 [shellesc-fr]          | [shellesc] v0.02a           | :new_moon:             | 0 / 3           | 
