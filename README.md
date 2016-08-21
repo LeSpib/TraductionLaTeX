@@ -101,6 +101,7 @@ Traduction             | Source                      | Avancée                |
 [xkeyval-fr]           | [xkeyval] v2.7              | :new_moon:             | 3 / 73          |
 [xr-fr]                | [xr] v5.02                  | :full_moon:            | 2               | Traduction préexistante ([FT-tools]).
 [xspace-fr]            | [xspace] v1.13              | :full_moon:            | 7               | Traduction préexistante ([FT-tools]).
+[xwatermark-fr]        | [xwatermark] v1.5.2a        | :new_moon:             | 25              | Document remanié.
 
 
 ### Traduction des documents 
@@ -303,4 +304,6 @@ Anglais                | Français                                       | Comme
 [xr-fr]:                <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/xr>
 [xspace]:               <https://www.ctan.org/pkg/xspace>
 [xspace-fr]:            <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/xspace>
+[xwatermark]:           <https://www.ctan.org/pkg/xwatermark>
+[xwatermark-fr]:        <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/xwatermark>
 [TransLaTeX]:           <https://github.com/LeSpib/TransLaTeX/tree/master/TransLaTeX>
