@@ -263,6 +263,8 @@ Anglais                | Français                                       | Comme
 [multirow-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/multirow>
 [pgfplots]:             <https://www.ctan.org/pkg/pgfplots>
 [pgfplots-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/pgfplots>
+[psnfss]:               <https://www.ctan.org/pkg/psnfss>
+[psnfss-fr]:            <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/psnfss>
 [rawfonts]:             <https://www.ctan.org/pkg/rawfonts>
 [rawfonts-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/rawfonts>
 [sectsty]:              <https://www.ctan.org/pkg/sectsty>
