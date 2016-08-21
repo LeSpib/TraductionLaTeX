@@ -80,6 +80,7 @@ Traduction             | Source                      | Avancée                |
 [multirow-fr]          | [multirow] v1.6             | :new_moon:             | 0 / 4           |
                        | [pgfplots] v1.13            |                        | *. / 544*       |
 [rawfonts-fr]          | [rawfonts] v0.01            | :full_moon:            | 4               | Traduction préexistante ([FT-tools]).
+[sectsty-fr]           | [sectsty] v2.0.2            | :new_moon:             | 0 / 16          | 
 [shellesc-fr]          | [shellesc] v0.02a           | :new_moon:             | 0 / 3           | 
 [showkeys-fr]          | [showkeys] v3.17            | :new_moon:             | 0 / 10          | Traduction préexistante ([FT-tools]).
 [siunitx-fr]           | [siunitx] v2.6q             | :new_moon:             | 0 / 98          |
@@ -263,6 +264,8 @@ Anglais                | Français                                       | Comme
 [pgfplots-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/pgfplots>
 [rawfonts]:             <https://www.ctan.org/pkg/rawfonts>
 [rawfonts-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/rawfonts>
+[sectsty]:              <https://www.ctan.org/pkg/sectsty>
+[sectsty-fr]:           <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/sectsty>
 [shellesc]:             <https://www.ctan.org/pkg/shellesc>
 [shellesc-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/shellesc>
 [showkeys]:             <https://www.ctan.org/pkg/showkeys>
