@@ -71,6 +71,7 @@ Traduction             | Source                      | Avancée                |
 [indentfirst-fr]       | [indentfirst] v1.03         | :full_moon:            | 1               | Traduction préexistante ([FT-tools]).
 [index-fr]             | [index] v4.1beta            | :new_moon:             | 0 / 20          |
 [layout-fr]            | [layout] v1.02c             | :new_moon:             | 0 / 14          | Traduction préexistante ([FT-tools]).
+[layouts-fr]           | [layouts] v2004-10          | :new_moon:             | 0 / 55          | 
 [lettrine-fr]          | [lettrine] v1.9             | :new_moon:             | 0 / 13          | 
 [lipsum-fr]            | [lipsum] v1.3               | :full_moon:            | 41              |
 [listings-fr]          | [listings] v1.6             | :new_moon:             | 1 / 61          |
@@ -247,6 +248,8 @@ Anglais                | Français                                       | Comme
 [index-fr]:            <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/index>
 [layout]:               <https://www.ctan.org/pkg/layout>
 [layout-fr]:            <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/layout>
+[layouts]:               <https://www.ctan.org/pkg/layouts>
+[layouts-fr]:            <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/layouts>
 [lettrine]:             <https://www.ctan.org/pkg/lettrine>
 [lettrine-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/lettrine>
 [lipsum]:               <https://www.ctan.org/pkg/lipsum>
