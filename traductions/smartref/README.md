@@ -29,7 +29,7 @@ Section                       | Avancée                | Pages traduites | Comm
 ----------------------------- | :--------------------: | :-------------: | -------------------------
 Entête du document tex        | :new_moon:             |                 |
 Page d'avant-propos           | :first_quarter_moon:   | 0               | 
-Généralités  (non titré)      | :new_moon:             | 0 / 3           |
+Généralités  (non titré)      | :waxing_crescent_moon: | 2 / 3           |
 À faire                       | :new_moon:             | 0 / 0           |
 Historique                    | :new_moon:             | 0 / 1           |
 

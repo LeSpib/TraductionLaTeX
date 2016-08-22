@@ -25,7 +25,7 @@
 
 \title{L'extension \pkg{smartref}\thanks{Ce fichier a pour numéro de
         version v1.9 et a été mis à jour le 28/02/2002. Son 
-        titre original est \og \emph{The \textsf{smartref} package} \fg.}}
+        titre original est \og \emph{The smartref package} \fg.}}
 \author{Giuseppe Bilotta\thanks{\mail{bourbaki@bigfoot.com}}}
 \date{28/02/2002}
 
@@ -34,127 +34,134 @@
 
 \maketitle
 
-\tradini
-The purpose of this package is to extend the capability of the
-the \cmd{\ref} command; precisely, whenever a label is set, this
-package records, along with the label, the values of some other
-counters (which, can be selected by the user); then, the value of
-these counters can be recalled, with a command similar to
-\cmd{\pageref}; moreover, this package adds a command (\cmd{\s\meta{name}ref}) for
-each counter added, that displays something only if the value of
-the \meta{name} counter is changed from when the label is set. For
-example, let's say that we are using the \cls{amsbook} class, and we
-are numbering theorems within sections; when we want to refer to
-a theorem in another section, same chapter, we just say
-`\verb|as in theorem \ref{zorn}|'; but if we want to refer to a theorem in
-another chapter, we have to set a label for that chapter and then
-say `\verb|as in theorem \ref{zorn}, in chapter \ref{chapterofzorn}|';
-if we, later on, move the referenced theorem (or the referencing
-line) in some other chapter, we might need to update the
-references; with this package, there's no need for that: you say,
-at the beginning of the document:
+Le but de cette extension est d'étendre les possibilités de la commande
+\cmd{\ref} ; plus précisément, à chaque fois qu'une étiquette est placée,
+l'extension enregistre, en plus de l'étiquette, la valeur d'autres
+compteurs (qui peuvent être sélectionnés par l'utilisateur) ; par la suite, 
+la valeur de ces compteurs peut être rappelée avec une commande similaire
+de \cmd{\pageref} ; par ailleurs, cette extension ajoute une commande 
+(\cmd{\s\meta{nom}ref}), pour chaque compteur ajouté, qui affiche quelque
+chose seulement si la valeur du compteur \meta{name} a évolué depuis 
+le moment où l'étiquette a été définie. Par exemple, suppsons que nous
+utilisons la classe \cls{amsbook} et que nous numérotons les théorèmes
+au sein des sections ; quand nous voulons faire référence à un théorème
+d'une autre section, dans le même chapitre, nous indiquons juste \og 
+\verb|comme dans le théorème \ref{zorn}| \fg ; mais si nous voulons faire
+référence à un théorème dans un autre chapitre, nous devons mettre en place
+une étiquette pour ce chapitre et dire alors \og 
+\verb|comme dans le théorème \ref{zorn}, du chapitre \ref{chaptitredezorn}|
+\fg ; si, plus tard, nous déplaçons le théorème ainsi référencé (ou la ligne
+qui y fait référence, nous pourrions avoir à mettre à jour les références ;
+avec cette extension, il n'y a pas besoin de le faire : vous avez à placer
+en début de document : 
 %
 \begin{verbatim}
     \addtoreflist{chapter}
 \end{verbatim}
 %
-and then, every \cmd{\label} is recorded alongside with the chapter in
-which it occurred. When we refer to the theorem, we might now say
+puis, chaque \cmd{\label} est enregistré avec le numéro du chapitre où elle
+est placée. Quand nous faisons référence au théorème, nous pouvons
+maintenant indiquer 
 %
 \begin{verbatim}
-    theorem \ref{zorn}, chapter \chapterref{zorn}
+    théorème \ref{zorn}, chapitre \chapterref{zorn}
 \end{verbatim}
 %
-if we are sure it will always be in another chapter, or
+si nous sommes sûrs qu'il sera toujours dans un autre chapitre ou
 %
 \begin{verbatim}
-    theorem \ref{zorn}\schapterref{zorn}
+    théorème \ref{zorn}\schapterref{zorn}
 \end{verbatim}
 %
-where the second command prints nothing if the chapter is the same
-as the current, or prints `\verb|, chap. \chapterref{zorn}|' if the chapter
-has changed. Since this command sequence is supposed to be used with
-quite a frequency, it is not-so-short-handed by \cmd{\srefchapterref}
-(\cmd{\sref\meta{name}ref}, in general).
+où la seconde commande n'écrit rien si le chapitre est le même que le 
+chapitre courant ou écrit \og \verb|, chap. \chapterref{zorn}| \fg si 
+le chapitre a changé. Dans la mesure où cette séquence de commandes est 
+supposée être utilisée assez fréquemment, elle peut être à peine raccourcie
+par \cmd{\srefchapterref} (\cmd{\sref\meta{nom}ref}, en général).
 
-Here's a complete list of the commands made available by this
-package.
+Voici une liste complète des commandes mises à disposition par cette
+extension.
 %
 \begin{quote}
-  \cmd{\addtoreflist}\marg{name}
+  \cmd{\addtoreflist}\marg{nom}
 \end{quote}
 %
-This is the first command called: it says that the \meta{name} counter
-is to be recorded alongside with all the (following) labels;
-please use it \emph{before} defining any label, because the result is
-unknown if the SmartReference list changes during use (nothing
-special should happen, anyhow; it should work correctly).
+Il s'agit de la première commande appelée : elle indique que le compteur
+\meta{nom} doit être enregistré dans toutes les étiquettes (qui suivent) ;
+il convient donc de la placer dans le document \emph{avant} les différentes
+étiquettes car le résultat n'est pas maîtrisé si la liste des références
+ainsi établie change pendant l'utilisation (rien de particulier ne devrait
+survenir de toute manière ; et cela devrait même fonctionner correctement). 
 
-The previous command defines a few commands, whose name depends
-on the counter chosen. The commands are:
+La commande précédente définit quelques commandes dont le nom dépend du 
+compteur choisi. Ces commandes sont :
 %
 \begin{quote}
-  \cmd{\sget\meta{name}val}\texttt{\{}\cs{\meta{variable}}\texttt{\}}\marg{foo}
+  \cmd{\sget\meta{nom}val}\texttt{\{}\cs{\meta{variable}}\texttt{\}}\marg{test}
 \end{quote}
 %
-This command gets the value of counter \meta{name} recorded with label
-\meta{foo}, and puts this value in the chosen \cs{\meta{variable}}.
-
-\begin{quote}
-  \cs{\meta{name}ref}\marg{foo}
-\end{quote}
-%
-This command prints the value of the counter \meta{name} recorded with
-label \meta{foo}.
+Cette commande récupère la valeur du compteur \meta{nom} enregistré avec
+l'étiquette \meta{test} et la place dans la \cs{\meta{variable}} choisie.
 
 \begin{quote}
-  \cs{if\meta{name}changed}
+  \cs{\meta{nom}ref}\marg{test}
 \end{quote}
 %
-`If' construct for the next two commands:
-%
-\begin{quote}
-  \cmd{\is\meta{name}changed}\marg{foo}
-\end{quote}
-%
-Checks whether the \meta{name} counter is changed from value recorded
-with \meta{foo}, and sets \cs{\meta{name}changed} accordingly
+Cette commande écrit la valeur du compteur \meta{nom} enregistré avec 
+l'étiquette \meta{test}.
 
 \begin{quote}
-  \cmd{\s\meta{name}ref}\marg{foo}
+  \cs{if\meta{nom}changed}
 \end{quote}
 %
-This command prints nothing if the value of \meta{name} is not
-different, but prints
+
+Construction équivalente à un \og if \fg pour les deux commandes suivantes :
+%
+\begin{quote}
+  \cmd{\is\meta{nom}changed}\marg{test}
+\end{quote}
+%
+Vérifie si le compteur \meta{nom} a changé par rapport à la valeur
+enregistré avec l'étiquette \meta{test} et définit \cs{\meta{name}changed}
+en conséquence. 
+
+\begin{quote}
+  \cmd{\s\meta{name}ref}\marg{test}
+\end{quote}
+%
+La commande n'écrit rien si la valeur de \meta{nom} n'est pas différente
+et écrit sinon 
 %
 \begin{quote}
   \ttfamily
-  , \cmd{\short\meta{name}name} \cs{\meta{name}ref}\marg{foo}
+  , \cmd{\short\meta{nom}name} \cs{\meta{nom}ref}\marg{test}
 \end{quote}
 %
-if the
-value did change; the \cmd{\short\meta{name}name} should be defined by the
-user. It queries by using the previous command.
+La commande \cmd{\short\meta{nom}name} doit être définie par l'utilisateur.
+Elle est interrogée en utilisant la commande précédente.
 
 \begin{quote}
-  \cmd{\sref\meta{name}ref}\marg{foo}
+  \cmd{\sref\meta{nom}ref}\marg{test}
 \end{quote}
 %
-Equivalent of `\cmd{\ref}\marg{foo}\cmd{\s\meta{name}ref}\marg{foo}'.
+\'{E}quivalent de \og \cmd{\ref}\marg{test}\cmd{\s\meta{nom}ref}\marg{test}
+\fg.
 
 \pagebreak[2]
 
-The only options accepted, as for now, are \opt{chapter} and \opt{part};
-\opt{chapter} does the following:
+Les seules options acceptées, pour le moment, sont \opt{chapter} et \opt{part} ;
+L'option \opt{chapter} fait les traitements suivants :
 %
 \begin{itemize}
-\item adds the \texttt{chapter} counter to the smart list
-\item defines \cmd{\shortchaptername} to be `Cap.' if \pkg{babel} is loaded with
-  option \opt{italian}, `Chap.' otherwise
-\item defines \cmd{\smartref} to be \cmd{\srefchapterref}
+\item ajout du compteur \texttt{chapter} dans les références conservées ;
+\item définition de \cmd{\shortchaptername} comme valant \og Cap. \fg si 
+\pkg{babel} est chargé avec l'option \opt{italian} et comme valant \og Chap. 
+\fg sinon ;
+\item definition de \cmd{\smartref} comme étant \cmd{\srefchapterref}.
 \end{itemize}
 
-\opt{part} does the following:
+L'option \opt{part} fait les traitements suivants :
+\tradini
 %
 \begin{itemize}
 \item adds the \texttt{part} counter to the smart list

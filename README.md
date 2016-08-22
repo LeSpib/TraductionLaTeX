@@ -86,7 +86,7 @@ Traduction             | Source                      | Avancée                |
 [shellesc-fr]          | [shellesc] v0.02a           | :new_moon:             | 0 / 3           | 
 [showkeys-fr]          | [showkeys] v3.17            | :new_moon:             | 0 / 10          | Traduction préexistante ([FT-tools]).
 [siunitx-fr]           | [siunitx] v2.6q             | :new_moon:             | 0 / 98          |
-[smartref-fr]          | [smartref] v1.9             | :new_moon:             | 0 / 4           |
+[smartref-fr]          | [smartref] v1.9             | :waxing_crescent_moon: | 2 / 4           |
 [somedefs-fr]          | [somedefs] v0.03            | :waxing_gibbous_moon:  | 3               | Traduction préexistante ([FT-tools]).
 [stmaryrd-fr]          | [stmaryrd] v2.02-tmp-CAR    | :new_moon:             | 0 / 9           |
 [tabularx-fr]          | [tabularx] v2.11            | :new_moon:             | 0 / 13          | Traduction préexistante ([FT-tools]).
