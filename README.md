@@ -79,7 +79,6 @@ Traduction             | Source                      | Avancée                |
 [multicol-fr]          | [multicol] v1.8p            | :new_moon:             | 0 / 36          | Traduction préexistante ([FT-tools]).
 [multido-fr]           | [multido] v1.42             | :new_moon:             | 0 / 4           |
 [multirow-fr]          | [multirow] v1.6             | :new_moon:             | 0 / 4           |
-                       | [pgfplots] v1.13            |                        | *. / 544*       |
 [psnfss]               | [psnfss] v9.2               | :new_moon:             | 0 / 15          |
 [rawfonts-fr]          | [rawfonts] v0.01            | :full_moon:            | 4               | Traduction préexistante ([FT-tools]).
 [sectsty-fr]           | [sectsty] v2.0.2            | :new_moon:             | 0 / 16          | 
@@ -92,7 +91,7 @@ Traduction             | Source                      | Avancée                |
 [tabularx-fr]          | [tabularx] v2.11            | :new_moon:             | 0 / 13          | Traduction préexistante ([FT-tools]).
 [theorem-fr]           | [theorem] v2.2c             | :new_moon:             | 0 / 16          | Traduction préexistante ([FT-tools]).
 [thmbox-fr]            | [thmbox] v2.0               | :new_moon:             | 0 / 13          | 
-[tikz+pgf]             | [tikz+pgf] v3.0.1a          | :new_moon:             | 0 / 1131        |
+[tikz+pgf-fr]          | [tikz+pgf] v3.0.1a          | :new_moon:             | 0 / 1131        |
 [titlesec-fr]          | [titlesec] 2.10.2           | :full_moon:            | 25              | 
 [tocbibind-fr]         | [tocbibind] v1.5k           | :first_quarter_moon:   | 18              | 
 [tocloft-fr]           | [tocloft] v1.3f             | :new_moon:             | 0 / 54          | 
