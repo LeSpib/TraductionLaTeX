@@ -92,7 +92,7 @@ Traduction             | Source                      | Avancée                |
 [tabularx-fr]          | [tabularx] v2.11            | :new_moon:             | 0 / 13          | Traduction préexistante ([FT-tools]).
 [theorem-fr]           | [theorem] v2.2c             | :new_moon:             | 0 / 16          | Traduction préexistante ([FT-tools]).
 [thmbox-fr]            | [thmbox] v2.0               | :new_moon:             | 0 / 13          | 
-                       | [tikz+pgf] v3.0.1a          |                        | *. / 1161*      |
+[tikz+pgf]             | [tikz+pgf] v3.0.1a          | :new_moon:             | 0 / 1131        |
 [titlesec-fr]          | [titlesec] 2.10.2           | :full_moon:            | 25              | 
 [tocbibind-fr]         | [tocbibind] v1.5k           | :first_quarter_moon:   | 18              | 
 [tocloft-fr]           | [tocloft] v1.3f             | :new_moon:             | 0 / 54          | 
@@ -291,7 +291,7 @@ Anglais                | Français                                       | Comme
 [thmbox]:               <https://www.ctan.org/pkg/thmbox>
 [thmbox-fr]:            <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/thmbox>
 [tikz+pgf]:             <https://www.ctan.org/pkg/pgf>
-[tikz-fr]:              <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/tikz>
+[tikz+pgf-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/tikz>
 [titlesec]:             <https://www.ctan.org/pkg/titlesec>
 [titlesec-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/titlesec>
 [tocbibind]:            <https://www.ctan.org/pkg/tocbibind>
