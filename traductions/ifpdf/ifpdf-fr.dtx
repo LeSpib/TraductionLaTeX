@@ -52,20 +52,19 @@
 %
 % \section{Implémentation}
 %
-% \tradini
 %    \begin{macrocode}
 %<*package>
 %    \end{macrocode}
 %
-% If \verb|\ifpdf| is not defined define it, taking care that it is
-% outer in plain \TeX.
+% Si \verb|\ifpdf| n'a pas été défini, il l'est alors, en faisant attention à
+% ce qu'il soit \trad{outer} en plain \TeX.
 %    \begin{macrocode}
 \expandafter\ifx\csname ifpdf\endcsname\relax
  \csname newif\expandafter\endcsname\csname ifpdf\endcsname
 \else
 %    \end{macrocode}
-% If \verb|\ifpdf| is already defined but \verb|\pdftrue| is not defined
-% give up.
+% Si \verb|\ifpdf| est déjà défini mais que \verb|\pdftrue| n'est pas défini,
+% le traitement cesse.
 %    \begin{macrocode}
  \ifx\pdftrue\undefined
   \ifx\PackageError\undefined
@@ -76,10 +75,12 @@
  \fi
 \fi
 %    \end{macrocode}
-% Otherwise set the boolean to false unless pdfoutput (outputmode) is greater than zero.
-% For Lua\TeX, do the test in Lua as the tex primitivies may not be enabled, and
-% the primitive name may be \verb|\pdfoutput| or \verb|\outputmode| depending 
-% on the Lua\TeX\ version number.
+% Sinon, le booléen est mis à faux à moins que pdfoutput (outputmode) ne soit
+% plus grand que zéro. 
+% Pour Lua\TeX, le test est fait en Lua dans la mesure où les primitives de 
+% \TeX n'ont peut être pas été activées et que le nom de la primitive peut
+% être \verb|\pdfoutput| ou \verb|\outputmode| selon le numéro de version de
+% Lua\TeX.
 %    \begin{macrocode}
 \let\ifpdf\iffalse
 %    \end{macrocode}
@@ -87,7 +88,7 @@
 %    \begin{macrocode}
 \ifx\directlua\undefined
 %    \end{macrocode}
-% Not Lua\TeX.
+% Sans Lua\TeX.
 %    \begin{macrocode}
 \begingroup\expandafter\expandafter\expandafter\endgroup
 \expandafter\ifx\csname pdfoutput\endcsname\relax
@@ -98,7 +99,7 @@
 \fi
 \else
 %    \end{macrocode}
-% Lua\TeX.
+% Avec Lua\TeX.
 %    \begin{macrocode}
 \directlua{%
 if (tex.outputmode or tex.pdfoutput or 0) > 0 then

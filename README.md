@@ -67,7 +67,7 @@ Traduction             | Source                      | Avancée                |
 [graphicx-fr]          | [graphicx] v1.0g            | :new_moon:             | 0 / 11          |
 [hhline-fr]            | [hhline] v2.03              | :new_moon:             | 0 / 4           | Traduction préexistante ([FT-tools]).
 [hyperref-fr]          | [hyperref] 2012-11          | :new_moon:             | 0 / 31          | Licence GNU FDL
-[ifpdf-fr]             | [ifpdf] v3.1                | :new_moon:             | 0 / 2           |
+[ifpdf-fr]             | [ifpdf] v3.1                | :first_quarter_moon:   | 2               |
 [ifthen-fr]            | [ifthen] v1.1c              | :new_moon:             | 0 / 6           |
 [indentfirst-fr]       | [indentfirst] v1.03         | :full_moon:            | 1               | Traduction préexistante ([FT-tools]).
 [index-fr]             | [index] v4.1beta            | :new_moon:             | 0 / 20          |
