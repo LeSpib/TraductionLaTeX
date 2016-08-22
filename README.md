@@ -54,6 +54,7 @@ Traduction             | Source                      | Avancée                |
 [euler-fr]             | [euler] v2.5                | :new_moon:             | 0 / 12          |
 [fancyhdr-fr]          | [fancyhdr] v3.1             | :new_moon:             | 7 / 26          |
 [fileerr-fr]           | [fileerr] v1.1a             | :full_moon:            | 3               | 
+[floatrow-fr]          | [floatrow] v0.2c            | :new_moon:             | 0 / 107         | 
 [fncychap-fr]          | [fncychap] v1.34            | :full_moon:            | 12              | Ajout d'infos dans le doc
 [fontsmpl-fr]          | [fontsmpl] v0.11            | :first_quarter_moon:   | 6               | Traduction préexistante ([FT-tools]).
 [fontspec-fr]          | [fontspec] v2.4e            | :new_moon:             | 9 / 124         | Auteur contacté et intéressé.
@@ -213,6 +214,8 @@ Anglais                | Français                                       | Comme
 [fancyhdr-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/fancyhdr>
 [fileerr]:              <https://www.ctan.org/pkg/fileerr>
 [fileerr-fr]:           <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/fileerr>
+[floatrow]:             <https://www.ctan.org/pkg/floatrow>
+[floatrow-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/floatrow>
 [fncychap]:             <https://www.ctan.org/pkg/fncychap>
 [fncychap-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/fncychap>
 [fontsmpl]:             <https://www.ctan.org/pkg/fontsmpl>
