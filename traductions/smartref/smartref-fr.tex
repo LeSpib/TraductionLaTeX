@@ -157,109 +157,102 @@ L'option \opt{chapter} fait les traitements suivants :
 \item définition de \cmd{\shortchaptername} comme valant \og Cap. \fg si 
 \pkg{babel} est chargé avec l'option \opt{italian} et comme valant \og Chap. 
 \fg sinon ;
-\item definition de \cmd{\smartref} comme étant \cmd{\srefchapterref}.
+\item définition de \cmd{\smartref} comme étant \cmd{\srefchapterref}.
 \end{itemize}
 
 L'option \opt{part} fait les traitements suivants :
-\tradini
 %
 \begin{itemize}
-\item adds the \texttt{part} counter to the smart list
-\item defines \cmd{\shortpartname} to be `Parte' if \pkg{babel} is loaded with
-  option \opt{italian}, `Part' otherwise
-\item defines \cmd{\smartref} to be \cmd{\srefpartref} if previously undefined,
-  or adds \cmd{\spartref} to previous definition of \cmd{\smartref} (saved in
-  \cmd{\nopart@smartref}) otherwise (this is mainly to be used after the
-  option \opt{chapter}).
+\item ajout du compteur \texttt{part} dans les références conservées ;
+\item définition de \cmd{\shortpartname} comme valant \og Parte \fg si 
+\pkg{babel} est chargé avec l'option \opt{italian} et comme valant \og Part 
+\fg sinon ;
+\item définition de \cmd{\smartref} comme étant \cmd{\srefchapterref} s'il n'est
+pas défini auparavant; Ajout de \cmd{\spartref} à la définition
+précédente (sauvegardée dans \cmd{\nopart@smartref}) sinon (ceci est
+principalement pensé pour être utilisé après l'option \opt{chapter}).
 \end{itemize}
 
-As of version~1.6, the package comes with a small style file:
+Avec la version~1.6, l'extension est fournie avec un petit fichier d'extension :
 %
 \begin{quote}
   \texttt{byname.sty};
 \end{quote}
 %
-it can be used alone, or within \pkg{smartref}, when the option
-\opt{byname} is used; it adds the command
+Cette extension peut être utilisée seul ou avec \pkg{smartref}, quand l'option \opt{byname} est choisie; elle ajoute la commande
 %
 \begin{quote}
-  \cmd{\byname}\marg{label}
+  \cmd{\byname}\marg{étiquette}
 \end{quote}
 %
-that can be used when referencing to a section (subsection, etc) by
-name instead of number. As of version~1.8, the same style file also
-provides the command \cmd{\byshortname} that does the same as \cmd{\byname},
-except that it uses the ``short'' name (the one provided in square
-brackets).
+qui sert à référencer une section (sous-section ou autre) avec son nom au lieu
+de son numéro. Avec la version~1.8, le fichier fournit en plus la commande
+\cmd{\byshortname} qui fait la même chose que \cmd{\byname} mais en utilisant
+le \og nom court \fg : celui figurant en argument optionnel entre crochets des
+commandes de sectionnement.
 
-Note that the references create by \pkg{smartref} and \pkg{byname} are \emph{not}
-hyperlink, when \pkg{hyperref} is active. Maybe in the future \dots
-
-(You can still have ``named'' links with \pkg{hyperref} using the \pkg{nameref}
-style file provided with \pkg{hyperref} itself).
+Notez que les références créées par \pkg{smartref} et \pkg{byname} \emph{ne sont pas} des hyperliens lorsque l'extension \pkg{hyperref} est active. Ce point sera peut être vu plus tard\dots (vous pouvez toujours vous servir des liens \og nommés \fg avec \pkg{hyperref} en utilisant l'extension \pkg{nameref} qui 
+accompagne \pkg{hyperref} elle-même.)
 
 \medskip\centerline{$***$}\medskip
 
-Please send me any bugs, comments, suggestions, hacks, etc etc
-etc \dots
+N'hésitez pas à m'envoyer vos rapports d'anomalies, commentaires, suggestions, astuces, etc.\dots
 
 Giuseppe Bilotta
 
 Email: \mail{bourbaki@bigfoot.com}
 
-Heartily thanks to James Kilfiger (\mail{mapdn@csv.warwick.ac.uk}) whose
-consulence has been essential (let me say vital) to the birth of
-this small package in its first revision (v0.1); it was him who
-gave me the idea to hack the \cmd{\label} command, and then encouraged
-me to put the newborn code in a package (and telling me how to do
-it!); it was also him that pointed out a potential bug in
-documents where chapters don't start on a page on their own
-(seems that the bug is not present, anyway \dots).
+Remerciements \trad{heartily} à James Kilfiger (\mail{mapdn@csv.warwick.ac.uk}) dont la \trad{consulence} a été essentielle (pour ne pas dire vitale) pour la création de la première version (v0.1) de cette petite extension ; c'est lui qui
+m'a donné l'idée d'analyser et modifier la commande \cmd{\label} et qui m'a
+ensuite encouragé à faire du code obtenu une extension (en m'expliquant comment
+le faire !) ; c'est également lui qui m'a indiqué une erreur potentielle pour
+les documents où les chapitres ne commencent pas sur une nouvelle page (il
+semble que l'erreur ne soit pas présente, cependant\dots).
 
 \medskip\centerline{$***$}
 
-
-\section*{TODOs:}
+\section*{À faire}
 
 \begin{itemize}
-\item \pkg{Babel}: instead of \cmd{\chaptername} (for example), this package uses
-  \cmd{\short\-chapter\-name}, and this is not yet changed by \pkg{Babel}; you can
-  set it up to your short form of chapter. Please send me the short
-  names, so that I can implement them.
+\item lien avec \pkg{babel}: au lieu de \cmd{\chaptername} (par exemple), cette 
+  extension utilise \cmd{\short\-chapter\-name}, et ceci n'est pas modifié
+  par \pkg{Babel}; vous pouvez la configurer pour votre propre forme de nom 
+  court pour les chapitres. N'hésitez pas à m'envoyer les noms courts afin
+  que je puisse les implémenter ;
 
-\item Maybe put an option (\opt{long}) to make \cmd{\short\meta{name}name} an alias for
-  \cs{\meta{name}name}
+\item ajout éventuel d'une option (\opt{long}) pour faire de 
+  \cmd{\short\meta{name}name} un synonyme de \cs{\meta{name}name} ;
 
-\item Options: If the option is not recognized, check if it's a counter,
-  and add it; otherwise, do nothing
+\item traitement des options: si une option n'est pas reconnue, vérifier s'il
+  s'agit d'un compteur et alors l'ajouter ; sinon, ne rien faire ;
+  
+\item vérification des compteurs qui sont réinitialisés par d'autres compteurs
+  (la section par le chapitre, par exemple) ; ajout éventuel d'un lien à la
+  commande interne \cmd{\@addtoreset}\dots
 
-\item Smartrefs: check for counters that get reset by other counters
-  (section in chapter, etc); maybe link to the \cmd{\@addtoreset}
-  internal command \dots
-
-\item \pkg{ByName}: refine, and add commands to do both references with a single
-  command
+\item évolution de l'extension \pkg{byname}: l'affiner et ajouter des 
+  commandes pour se servir des deux systèmes de référence avec une seule
+  commande.
 \end{itemize}
 
 \medskip\centerline{$***$}
 
-
-\section*{History:}
+\section*{Historique}
 
 \begin{labeling}{v1.9}
-\item[v0.1] First release (only did chapter and part).
-\item[v1.0] First customizable release.
-\item[v1.1] Made it work with \pkg{HyperRef}.
-\item[v1.5] Added \pkg{nameref.sty}: reference by name.
-\item[v1.6] Changed name to \pkg{byname.sty}, because of name conflict with style
-  file from the \pkg{HyperRef} bundle.
-\item[v1.8] Fixed bugs in \pkg{smartref}, changed behaviour for unknown options,
-  fixed bug in \pkg{byname} that actually prevented it from functioning
-  properly.
-\item[v1.9] Fixed limitation with \hologo{AmSLaTeX}: would not handle \cmd{\labels} within
-  equation because \hologo{AmSLaTeX} redefines the \cmd{\label} command for
-  equations.\\
-  Made \cmd{\smartref} robust.	 
+\item[v0.1] Première version (ne traitait que les chapitres et parties).
+\item[v1.0] Première version paramétrable.
+\item[v1.1] Version qui fonctionne avec \pkg{hyperref}.
+\item[v1.5] Ajout de \pkg{nameref}: référence par nom.
+\item[v1.6] Changement du nom pour \pkg{byname}, du fait d'un conflit de nom
+  avec un fichier de l'ensemble \pkg{hyperref}.
+\item[v1.8] Correction d'erreurs dans \pkg{smartref}, changement du
+  comportement pour les options inconnues, correction d'une anomalie dans 
+  \pkg{byname} qui l'empêchait de fonctionner correctement.
+\item[v1.9] Limites fixées avec \hologo{AmSLaTeX}: cette extension ne 
+  gérera pas la commande \cmd{\label} dans les équations car \hologo{AmSLaTeX}
+   la redéfinit pour les équations.\\
+  La commande \cmd{\smartref} est rendue robuste.	 
 \end{labeling}
 
 \end{document}
