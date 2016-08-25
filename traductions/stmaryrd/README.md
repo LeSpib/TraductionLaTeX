@@ -35,9 +35,9 @@ Page d'avant-propos           | :first_quarter_moon:   | 0               |
 Remerciements                 | :first_quarter_moon:   | 0               |
 Joyeusetés légales            | :first_quarter_moon:   | 0               |
 3. Installation               | :first_quarter_moon:   | 0               |
-4. Documentation              | :new_moon:             | 0 / 1           |
-5. L'extension                | :new_moon:             | 0 / 5           |
-6. Les définitions des...     | :new_moon:             | 0 / 0           |
+4. Documentation              | :first_quarter_moon:   | 1               |
+5. L'extension                | :first_quarter_moon:   | 5               |
+6. Les définitions des...     | :first_quarter_moon:   | 0               |
 
 
 ### Glossaire pour la traduction

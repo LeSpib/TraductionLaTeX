@@ -277,7 +277,7 @@
 % Merci à David Murply pour ses suggestions dans la conception de la police
 % \emph{St Mary's Road}. 
 % Merci à Martin Ward pour la première de passe de conversion de l'extension
-% |stmaryrd| vers \LaTeXe.
+% \textsf{stmaryrd} vers \LaTeXe.
 % Merci à Simon Mercer pour le vin au 45 St.~Mary's Road.
 %
 % \section*{Joyeusetés légales}
@@ -331,8 +331,7 @@
 %
 % \section{Documentation}
 %
-% \tradini
-% We now provide the documentation driver for this document:
+% Est fourni maintenant le pilote de documentation pour ce document :
 %    \begin{macrocode}
 %<*driver>
 \documentclass{ltxdoc}
@@ -345,7 +344,7 @@
 % \begin{macro}{\endsymbols}
 % \begin{macro}{\dosymbol}
 % \begin{macro}{\test}
-%    Some hacks that are used in the documentation:
+%    Suivent quelques fonctions créées pour cette documentation :
 %    \begin{macrocode}
 \def\symbols{\flushleft}
 \def\endsymbols{\endflushleft}
@@ -359,7 +358,7 @@
 % \end{macro}
 % \end{macro}
 % \end{macro}
-% Then we produce the documentation:
+% Nous produisons alors la documentation :
 %    \begin{macrocode}
 \begin{document}
    \DocInput{stmaryrd-fr.dtx}
@@ -367,9 +366,9 @@
 %</driver>
 %    \end{macrocode}
 %
-% \section{The package}
+% \section{L'extension}
 %
-% We can now implement the |stmaryrd| package.
+% Nous passons maintenant à l'implémentation de l'extension \textsf{stmaryrd}.
 %    \begin{macrocode}
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
@@ -377,14 +376,13 @@
 %    \end{macrocode}
 %
 % \begin{macro}{\stmry@if}
-%    Most definitions in this file are preceded by |stm@if|,
-%    which sets its second argument to be undefined, and expands to
-%    |\iftrue| if its second argument is going to be
-%    defined, for example:
+%    La plupart des définitions dans ce fichier sont précédées par |stm@if|,
+%    qui définit son second argument comme non défini et se développe en  
+%    |\iftrue| si son second argument se voit défini, par exemple:
 % \begin{verbatim}
-% \stmry@if\def\foo{baz}\fi
+% \stmry@if\def\truc{test}\fi
 % \end{verbatim}
-%    By default, this is always true.
+%    Par défaut, c'est toujours vrai.
 %    \begin{macrocode}
 \def\stmry@if#1#2{\let#2=\@undefined\iftrue#1#2}
 %    \end{macrocode}
@@ -392,8 +390,8 @@
 %
 % \begin{macro}{\ds@only}
 % \begin{macro}{\stmry@only}
-%    The |only| option causes |\stmry@if| to be true only when its
-%    second argument is defined to be |\relax|.
+%    L'option |only| amène |\stmry@if| à être vrai seulement si son 
+%    second argument est défini comme étant |\relax|.
 %    \begin{macrocode}
 \DeclareOption{only}{\let\stmry@if=\stmry@only}
 \def\stmry@only#1#2{\ifx#2\relax\let#2=\@undefined#1#2}
@@ -403,8 +401,8 @@
 %
 % \begin{macro}{\ds@heavycircles}
 % \begin{macro}{\ifstmry@heavy@}
-%    The |heavycircles| option makes sure all of the heavy circles
-%    are defined, and sets |\stmry@heavy@true|.
+%    L'option |heavycircles| garantit que tous les symboles à cercle épais
+%    sont définis et définit |\stmry@heavy@true|.
 %    \begin{macrocode}
 \newif\ifstmry@heavy@
 \stmry@heavy@false
@@ -421,8 +419,8 @@
 % \end{macro}
 %
 % \begin{macro}{\stmry@option}
-%    For every other option, we call |\stmry@option|, which defines
-%    its argument to be |\relax|.
+%    Pour tout autre option, nous appelons |\stmry@option|, qui définit
+%    son argument comme étant |\relax|.
 %    \begin{macrocode}
 \def\stmry@option#1{\expandafter\let\csname#1\endcsname\relax}
 \DeclareOption*{\stmry@option\CurrentOption}
@@ -438,9 +436,9 @@
 % \begin{macro}{\ds@Longmapsto}
 % \begin{macro}{\ds@longmapsfrom}
 % \begin{macro}{\ds@Longmapsfrom}
-%    All of the other options for |stmaryrd| are command names.  Some of
-%    the commands need others to be defined, so we declare these
-%    explicitly.
+%    Toutes les autres options pour \textsf{stmaryrd} sont des noms de 
+%    commandes. Quelques commandes demandent à ce que d'autres sont définies ;
+%    aussi nous déclarons ces dernières explicitement.
 %    \begin{macrocode}
 \DeclareOption{Mapsto}{%
    \stmry@option{Mapsto}%
@@ -485,16 +483,16 @@
 % \end{macro}
 % \end{macro}
 %
-% Then we can process the options!
+% Puis nous pouvons traiter les options !
 %    \begin{macrocode}
 \ProcessOptions
 %    \end{macrocode}
-% Declare the symbol fonts:
+% Les polices de symboles sont déclarées :
 %    \begin{macrocode}
 \DeclareSymbolFont{stmry}{U}{stmry}{m}{n}
 \SetSymbolFont{stmry}{bold}{U}{stmry}{b}{n}
 %    \end{macrocode}
-% Then we load those symbols!
+% Puis nous chargeons les symboles !
 %    \begin{macrocode}
 \stmry@if\DeclareMathSymbol\shortleftarrow\mathrel{stmry}{"00}\fi
 \stmry@if\DeclareMathSymbol\shortrightarrow\mathrel{stmry}{"01}\fi
@@ -613,18 +611,18 @@
 \stmry@if\DeclareMathDelimiter\rrbracket{\mathclose}{stmry}{"4B}
                                            {stmry}{"79}\fi
 %    \end{macrocode}
-% The heavy \varcopyright:
+% Le \varcopyright{} épais :
 %    \begin{macrocode}
 \stmry@if\def\varcopyright
    {{\ooalign{\hfil\raise.07ex\hbox{c}\hfil\crcr%
      \mbox{$\m@th\varbigcirc$}}}}\fi
 %    \end{macrocode}
-% The long arrow negations.
+% La négation des flèches longues :
 %    \begin{macrocode}
 \stmry@if\def\longarrownot{\mathrel{\mkern5.5mu\arrownot\mkern-5.5mu}}\fi
 \stmry@if\def\Longarrownot{\mathrel{\mkern5.5mu\Arrownot\mkern-5.5mu}}\fi
 %    \end{macrocode}
-% The variants on $\mapsto$:
+% Les variantes de $\mapsto$ :
 %    \begin{macrocode}
 \stmry@if\def\Mapsto{\Mapstochar\Rightarrow}\fi
 \stmry@if\def\mapsfrom{\leftarrow\mapsfromchar}\fi
@@ -633,7 +631,7 @@
 \stmry@if\def\longmapsfrom{\longleftarrow\mapsfromchar}\fi
 \stmry@if\def\Longmapsfrom{\Longleftarrow\Mapsfromchar}\fi
 %    \end{macrocode}
-% The circular circles:
+% Les cercles \og bien circulaires \fg :
 %    \begin{macrocode}
 \ifstmry@heavy@
    \def\@swap#1#2{\let\@tempa#1\let#1#2\let#2\@tempa}
@@ -656,9 +654,9 @@
 %</package>
 %    \end{macrocode}
 %
-% \section{The font definitions}
+% \section{Les définitions de polices}
 %
-% The font definitions for the St Mary's Road fonts are:
+% Les définitions de polices pour les polices \emph{St Mary's Road} sont :
 %    \begin{macrocode}
 %<*fontdef>
 \DeclareFontFamily{U}{stmry}{}

@@ -88,7 +88,7 @@ Traduction             | Source                      | Avancée                |
 [siunitx-fr]           | [siunitx] v2.6q             | :new_moon:             | 0 / 98          |
 [smartref-fr]          | [smartref] v1.9             | :first_quarter_moon:   | 4               |
 [somedefs-fr]          | [somedefs] v0.03            | :waxing_gibbous_moon:  | 3               | Traduction préexistante ([FT-tools]).
-[stmaryrd-fr]          | [stmaryrd] v2.02-tmp-CAR    | :new_moon:             | 3 / 9           |
+[stmaryrd-fr]          | [stmaryrd] v2.02-tmp-CAR    | :first_quarter_moon:   | 9               |
 [tabularx-fr]          | [tabularx] v2.11            | :new_moon:             | 0 / 13          | Traduction préexistante ([FT-tools]).
 [theorem-fr]           | [theorem] v2.2c             | :new_moon:             | 0 / 16          | Traduction préexistante ([FT-tools]).
 [thmbox-fr]            | [thmbox] v2.0               | :new_moon:             | 0 / 13          | 
