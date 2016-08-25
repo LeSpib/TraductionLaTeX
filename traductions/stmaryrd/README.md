@@ -30,11 +30,11 @@ Section                       | Avancée                | Pages traduites | Comm
 ----------------------------- | :--------------------: | :-------------: | -------------------------
 Entête du document tex        | :new_moon:             |                 |
 Page d'avant-propos           | :first_quarter_moon:   | 0               | 
-1. Introduction               | :new_moon:             | 0 / 1           |
-2. Symboles                   | :new_moon:             | 0 / 2           |
-Bricoles juridiques           | :new_moon:             | 0 / 0           |
-Remerciements                 | :new_moon:             | 0 / 0           |
-3. Installation               | :new_moon:             | 0 / 0           |
+1. Introduction               | :first_quarter_moon:   | 1               |
+2. Symboles                   | :first_quarter_moon:   | 2               |
+Remerciements                 | :first_quarter_moon:   | 0               |
+Joyeusetés légales            | :first_quarter_moon:   | 0               |
+3. Installation               | :first_quarter_moon:   | 0               |
 4. Documentation              | :new_moon:             | 0 / 1           |
 5. L'extension                | :new_moon:             | 0 / 5           |
 6. Les définitions des...     | :new_moon:             | 0 / 0           |

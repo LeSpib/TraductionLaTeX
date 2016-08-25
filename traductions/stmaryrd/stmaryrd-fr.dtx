@@ -84,43 +84,44 @@
 %
 % \section{Introduction}
 %
-% \tradini
-% This is a brief guide to the St Mary's Road symbol font, a new symbol
-% font for \TeX\ and \LaTeX.  It is designed to live with the American
-% Mathematical Society's fonts, contained in {\tt amssymb.sty}.
+% Ce document est un guide rapide de la police de symboles \emph{St Mary's
+% Road}, pour \TeX{} et \LaTeX. Elle est pensée pour accompagner les polices de
+% caractères de l'\emph{American Mathematical Society} associées à l'extension
+% \textsf{amssymb}.
 %
-% It provides a number of new symbols, including ones for derivation of
-% functional programming (such as $\varcurlyvee$, $\moo$ and
-% $\merge$), process algebra ($\llfloor$, $\oblong$ and
-% $\lightning$), domain theory ($\bigsqcap$), linear logic
-% ($\binampersand$ and $\bindnasrepma$), multisets ($\Lbag x \Rbag$,
-% $\nplus$, and $\subsetpluseq$) and many more.  It also fixes some `features'
-% with previous symbols ($\oplus$ used not to be circular, now you can
-% use $\varoplus$ instead) and adds obvious variants of others (such as
-% $\mapsfrom$, $\Mapsto$ and $\Mapsfrom$).
-% It is all wrapped up in a \LaTeXe package called {\tt stmaryrd},
-% which can be used by saying:
+% Elle apporte un certain nombre de symboles, incluant ceux des preuves
+% formelles en programmation fonctionnelle (tels que $\varcurlyvee$, $\moo$ et
+% $\merge$), des algèbres de processus ($\llfloor$, $\oblong$ et $\lightning$),
+% de la théorie des domaines ($\bigsqcap$), de la logique linéaire
+% ($\binampersand$ et $\bindnasrepma$), des multiensembles ($\Lbag x \Rbag$,
+% $\nplus$, et $\subsetpluseq$) et bien d'autres. Elle corrige également
+% quelques \og propriétés \fg de certains symboles existants ($\oplus$ n'était
+% pas parfaitement circulaire, et maintenant vous pouvez vous servir de
+% $\varoplus$ en lieu et place) et ajoute des variantes évidentes pour d'autres
+% (telles que $\mapsfrom$, $\Mapsto$ et $\Mapsfrom$).
+% Tout ceci est regroupé dans une extension \LaTeXe appelée \textsf{stmaryrd}
+% qui s'utilise en saisissant :
 % \begin{verbatim}
 %    \usepackage{stmaryrd}
 % \end{verbatim}
-% This package understands a large number of options:
+% Cette extension comprend un grand nombre d'options : 
 % \begin{itemize}
-% \item |heavycircles| says that all of the circular operators
-%    such as |\oplus| and |\otimes| should by default be heavy, and
-%    that |\varoplus| and |\varotimes| should refer to the light ones.
-% \item |only| says that only the symbols listed in the option list
-%    should be defined.  For example:
+% \item |heavycircles| impose que tous les opérateurs circulaires tels que 
+% |\oplus| et |\otimes| doivent être plus épais par défaut et que |\varoplus|
+% et |\varotimes| doivent faire référence aux versions moins épaisses.
+% \item |only| indique que seuls les symboles présents dans la liste des options
+% seront définis. Par exemple :
 % \begin{verbatim}
 %    \usepackage[only,mapsfrom,Mapsto,Mapsfrom]{stmaryrd}
 % \end{verbatim}
-%    says that only the symbols `$\mapsfrom$', `$\Mapsto$' and
-%    `$\Mapsfrom$' should be defined, which is useful if you use a
-%    \TeX{} implementation with limited memory.
+% provoque la définition des seuls symboles \og $\mapsfrom$ \fg, \og $\Mapsto$
+% \fg et \og $\Mapsfrom$ \fg, ce qui peut être pratique si vous utilisez une
+% implémentation de \TeX{} disposant de peu de mémoire.
 % \end{itemize}
 %
-% \section{Symbols}
-%
-% The following operators are defined:
+% \section{Symboles}
+
+% Les opérateurs suivants sont définis :
 % \begin{symbols}
 % \dosymbol\Ydown
 % \dosymbol\Yleft
@@ -179,11 +180,11 @@
 % \dosymbol\varowedge
 % \dosymbol\vartimes
 % \end{symbols}
-% (CAR) Added by Chris Rowley, March 2004:
+% Ajout de Chris Rowley en mars 2004 : si l'extension \textsf{amssymb} a été
+% chargée alors les symboles suivants sont aussi définis : \verb|\oast| et
+% \verb|\ocircle|.
 %
-% If the \textsf{amssymb} package has been loaded then the following
-% are also defined: \verb|\oast| and \verb|\ocircle|.
-% The following large operators are defined:
+%\noindent Les grands opérateurs suivants sont définis :
 % \begin{symbols}
 % \dosymbol\bigbox
 % \dosymbol\bigcurlyvee
@@ -195,7 +196,7 @@
 % \dosymbol\bigtriangledown
 % \dosymbol\bigtriangleup
 % \end{symbols}
-% The following relations are defined:
+% Les symboles de relation suivants sont définis :
 % \begin{symbols}
 % \dosymbol\inplus
 % \dosymbol\niplus
@@ -208,7 +209,7 @@
 % \dosymbol\trianglelefteqslant
 % \dosymbol\trianglerighteqslant
 % \end{symbols}
-% The following arrows are defined:
+% Les flèches suivantes sont définies :
 % \begin{symbols}
 % \dosymbol\Longmapsfrom
 % \dosymbol\Longmapsto
@@ -231,7 +232,7 @@
 % \dosymbol\ssearrow
 % \dosymbol\sswarrow
 % \end{symbols}
-% The following delimiters are defined:
+% Les délimiteurs suivants sont définis :
 % \begin{symbols}
 % \dosymbol\Lbag
 % \dosymbol\Rbag
@@ -245,8 +246,9 @@
 % \dosymbol\rrceil
 % \dosymbol\rrfloor
 % \end{symbols}
-% Note that \verb|\llbracket| and \verb|\rrbracket| are `growing'
-% delimiters that can be used with \verb|\left| and \verb|\right|:
+% Notez que \verb|\llbracket| et \verb|\rrbracket| sont des délimiteurs qui
+% peuvent s'étirer verticalement avec les commandes \verb|\left| et 
+% \verb|\right| :
 % \[
 %    \left\llbracket {\cal P} \right\rrbracket \quad
 %    \left\llbracket \bigbox {\cal P} \right\rrbracket \quad
@@ -256,7 +258,8 @@
 %        \right\rrbracket \quad
 %    \left\llbracket \begin{array}{c}a\\b\\c\\d\\e\\f\end{array} \right\rrbracket
 % \]
-% The following special characters are used in building others:
+% Les symboles spéciaux suivants sont utilisés pour construire d'autres
+% symboles :
 % \begin{symbols}
 % \dosymbol\Arrownot
 % \dosymbol\Mapsfromchar
@@ -264,47 +267,45 @@
 % \dosymbol\arrownot
 % \dosymbol\mapsfromchar
 % \end{symbols}
-% For example, if you type
-% \verb|$\Arrownot\Rightarrow$|
-% you get
-% $\Arrownot\Rightarrow$,
-% and if you type
-% \verb|$\arrownot\rightarrowtriangle$|
-% you get
+% Par exemple, si vous saisissez \verb|$\Arrownot\Rightarrow$|, vous obtenez
+% $\Arrownot\Rightarrow$. Si vous saisissez 
+% \verb|$\arrownot\rightarrowtriangle$|, vous obtenez
 % $\arrownot\rightarrowtriangle$.
 %
-% \section*{Acknowledgements}
+% \section*{Remerciements}
 %
-% Thanks to David Murphy for suggestions in the design of the St
-% Mary's Road font.
-% Thanks to Martin Ward for the first pass of converting the
-% |stmaryrd| package to \LaTeXe.
-% Thanks to Simon Mercer for all the wine at 45 St.~Mary's Road.
+% Merci à David Murply pour ses suggestions dans la conception de la police
+% \emph{St Mary's Road}. 
+% Merci à Martin Ward pour la première de passe de conversion de l'extension
+% |stmaryrd| vers \LaTeXe.
+% Merci à Simon Mercer pour le vin au 45 St.~Mary's Road.
 %
-% \section*{Legal rubbish}
+% \section*{Joyeusetés légales}
 %
-% This document is copyright \copyright~1991--1994 Alan Jeffrey.%
-% The St Mary's Road fonts are copyright \copyright~1991--1994 Jeremy
-% Gibbons and Alan Jeffrey.  All rights are reserved.
-% The moral right of the authors has been asserted.
+% Ce document est sous copyright \copyright~1991--1994 Alan Jeffrey.%
+% Les polices \emph{St Mary's Road} sont sous copyright \copyright~1991--1994
+% Jeremy Gibbons et Alan Jeffrey.  Tous droits réservés. Le droit
+% moral des auteurs a été affirmé.
 %
-% This package may be distributed under the terms of the LaTeX Project Public
-% License, as described in lppl.txt in the base LaTeX distribution.
-% Either version 1.0 or, at your option, any later version.
+% Cette extension peut être distribuée sous les termes de la licence publique
+% du Projet \LaTeX{} (\LaTeX{} Project Public License), comme décrit dans le
+% fichier lppl.txt dans la distribution \LaTeX{} de base.
+% Que ce soit sous la version 1.0 ou, selon votre choix, toute version
+% ultérieure.
 %
 % \StopEventually{}
 %
 % \section{Installation}
 %
-% To begin with, the |stmaryrd| package is
-% installed by running \LaTeXe{} on this document, so we begin with
-% the instllation procedure.  This needs to use \LaTeXe:
+% Pour commencer, l'extension \textsf{stmaryrd} s'installe par compilation
+% de ce document avec \LaTeXe{}. Aussi nous décrivons ici la procédure
+% d'installation. Ceci nécessite d'utiliser \LaTeXe{} :
 %    \begin{macrocode}
 %<*install>
 \NeedsTeXFormat{LaTeX2e}
 %    \end{macrocode}
-% First of all, we write out a little |.ins| file which creates the
-% |stmaryrd| package:
+% Tout d'abord, nous créons le petit fichier |.ins| qui crée à son tour
+% l'extension \textsf{stmaryrd} : 
 %    \begin{macrocode}
 %\begin{filecontents}{stmaryrd.ins}
 %   \generateFile{stmaryrd.sty}{f}{
@@ -313,8 +314,8 @@
 %      \from{stmaryrd.dtx}{fontdef}}
 %\end{filecontents}
 %    \end{macrocode}
-% Then we do some horrible low-level hacks to run docstrip on
-% |stmaryrd.ins|:
+% Ensuite nous commettons d'horribles bidouilles de bas niveau pour
+% pouvoir exécuter docstrip sur |stmaryrd.ins| :
 %    \begin{macrocode}
 %\bgroup
 %   \makeatletter
@@ -323,13 +324,14 @@
 %   \input{docstrip}
 %\egroup
 %    \end{macrocode}
-% That's it for the installation:
+% Et ceci termine l'installation :
 %    \begin{macrocode}
 %</install>
 %    \end{macrocode}
 %
 % \section{Documentation}
 %
+% \tradini
 % We now provide the documentation driver for this document:
 %    \begin{macrocode}
 %<*driver>
