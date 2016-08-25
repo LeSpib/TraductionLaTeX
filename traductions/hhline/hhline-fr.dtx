@@ -75,43 +75,46 @@
 % \doublerulesep=3pt
 %
 % \section{Introduction}
-% \tradini
-% The argument to "\hhline" is similar to the preamble of an {\tt
-% array} or {\tt tabular}. It consists of a list of tokens with the
-% following meanings:
+% L'argument de "\hhline" est similaire au préambule d'un environnement
+% \texttt{array} ou \texttt{tabular}. Il consiste en une liste d'unités 
+% lexicales (\emph{tokens}) ayant les significations suivantes :
 % \[
 % \begin{tabular}{cl}
-%   "="   & A double hline the width of a column.\\
-%   "-"   & A single hline the width of a column.\\[10pt]
-%   "~"   & A column with no hline.\\[10pt]
+%     "="   & Un filet horizontal double sur la largeur d'une colonne.\\
+%     "-"   & Un filet horizontal simple sur la largeur d'une colonne.\\[10pt]
+%     "~"   & Une colonne sans filet horizontal.\\[10pt]
+%     
+%     "|"   & Un filet vertical qui croise un filet horizontal simple ou 
+%             double.\\
+%     ":"   & Un filet vertical qui est brisé par une filet horizontal double.
+%             \\[10pt]
+% 
+%     "#"   & Un filet horizontal double segment entre deux filets verticaux.\\
+%     "t"   & La moitié supérieure d'un filet horizontal double.\\
+%     "b"   & La moitié inférieure d'un filet horizontal double.\\
+% 
+%     "*"   & \verb|*{3}{==#}| se développe en \verb|==#==#==#|,
+%             comme avec \texttt{*} dans le préambule. \\
 %
-%   "|"   & A vline which `cuts' through a double (or single) hline.\\
-%   ":"   & A vline which is broken by a double hline.\\[10pt]
-%
-%   "#"   & A double hline segment between two vlines.\\
-%   "t"   & The top half of a double hline segment.\\
-%   "b"   & The bottom half of a double hline segment.\\
-%
-%   "*"   & "*{3}{==#}" expands to "==#==#==#",
-%                   as in the {\tt*}-form for the preamble.
 % \end{tabular}
 % \]
-% If a double vline is specified ("||" or "::") then the hlines
-% produced by "\hhline" are broken. To obtain the effect of an hline
-% `cutting through' the double vline, use a "#" or omit the vline
-% specifiers, depending on whether or not you wish the double vline to
-% break.
+% Si un double filet vertical est spécifié ("||" ou "::") alors les filets
+% horizontaux produits par "\hhline" sont brisés. Pour obtenir l'effet d'un
+% filet horizontal \og passant au travers \fg d'un filet vertical double,
+% utilisez un "#" ou omettez les spécificateurs de filets verticaux, selon
+% que vous vouliez que le double filet vertical soit brisé ou pas.
 %
-% The tokens {\tt t} and {\tt b} must be used between two vertical
-% rules. "|tb|" produces the same lines  as "#", but is much less
-% efficient. The main use for these are to make constructions like
-% "|t:" (top left corner) and ":b|" (bottom right corner).
+% Les unités lexicales "t" et "b" doivent être utilisées entre deux filets
+% verticaux. La combinaison "|tb|" produit les mêmes lignes que "#" mais est
+% moins efficace. Ces unités lexicales sont plutôt pensées pour faire des
+% combinaisons telles que "|t:" (coin supérieur gauche) et ":b|" (coin
+% inférieur droit).
 %
-% If "\hhline" is used to make a single hline, then the argument
-% should only contain the tokens "-", "~"  and "|" (and
-% {\tt*}-expressions).
+% Si "\hhline" est utilisée pour faire un simple filet horizontal, alors
+% son argument ne doit contenir que des unités lexicales "-", "~" et "|" (et
+% des expressions débutant par "*").
 %
-% An example using most of these features is:
+% Voici un exemple utilisant la plupart de ces possibilités:
 % \[
 % \vcenter{\hsize=2in\begin{verbatim}
 % \begin{tabular}{||cc||c|c||}
@@ -141,33 +144,34 @@
 % \end{tabular}
 % \]
 %
-% The lines produced by \LaTeX's "\hline" consist of a single (\TeX\
-% primitive) "\hrule". The lines produced by "\hhline" are made
-% up of lots of small line segments. \TeX\ will place these very
-% accurately in the {\tt .dvi} file, but the program that you use to
-% print the {\tt .dvi} file may not line up these segments exactly. (A
-% similar problem can occur with diagonal lines in the {\tt picture}
-% environment.)
+% Les filets produits par la commande "\hline" de \LaTeX{} sont formées par
+% une seule primitive de \TeX, "\hrule". Les filets produits par "\hhline"
+% sont constitués de nombreux petits segments. \TeX\ les place très
+% précisément dans le fichier \texttt{.dvi}, mais le programme que vous 
+% utilisez pour imprimer le fichier \texttt{.dvi} peut ne pas les aligner 
+% exactement (un problème similaire peut survenir avec les lignes obliques
+% dans l'environnement \texttt{picture}). 
 %
-% If this effect causes a problem, you could try a different driver
-% program, or if this is not possible, increasing "\arrayrulewidth"
-% may help to reduce the effect.
+% Si ceci pose un problème, vous pouvez soit essayer un autre programme
+% d'impression (si cela est possible), soit augmenter la dimension 
+% "\arrayrulewidth" pour essayer de réduire les effets.
 %
 % \StopEventually{}
 %
-% \section{The Macros}
+% \section{Les commandes}
 %
 %    \begin{macrocode}
 %<*package>
 %    \end{macrocode}
 %
 % \begin{macro}{\HH@box}
-% Makes a box containing a double hline segment. The most common case,
-% both rules of length "\doublerulesep" will be stored in "\box1", this
-% is not initialised until "\hhline" is called as the user may change
-% the parameters "\doublerulesep" and "\arrayrulewidth". The two
-% arguments to "\HH@box" are the widths (ie lengths) of the top and
-% bottom rules.
+% Construit une boîte contenant un segment de double filet horizontal. Dans
+% le cas le plus courant, deux filets de longueur "\doublerulesep" seront
+% stockés dans la boîte "\box1". Ceci n'est pas initialisé tant que "\hhline"
+% n'est pas appelé car l'utilisateur peut changer les paramètres
+% "\doublerulesep" et "\arrayrulewidth". Les deux arguments de "\HH@box" sont
+% les largeurs (autrement dit les longueurs) du filet du haut et du filet du
+% bas.
 %    \begin{macrocode}
 \def\HH@box#1#2{\vbox{%
   \hrule \@height \arrayrulewidth \@width #1
@@ -177,16 +181,16 @@
 % \end{macro}
 %
 % \begin{macro}{\HH@add}
-% Build up the preamble in the register "\toks@".
+% Développe le préambule dans le registre "\toks@".
 %    \begin{macrocode}
 \def\HH@add#1{\toks@\expandafter{\the\toks@#1}}
 %    \end{macrocode}
 % \end{macro}
-
 % \begin{macro}{\HH@xexpast}
 % \begin{macro}{\HH@xexnoop}
-% We `borrow' the version of "\@xexpast" from Mittelbach's array.sty,
-% as this allows "#" to appear in the argument list.
+% Nous \og empruntons \fg la version de "\@xexpast" de l'extension de
+% Mittelbach, car ceci permet de faire apparaître "#" dans la liste des
+% arguments. 
 %    \begin{macrocode}
 \def\HH@xexpast#1*#2#3#4\@@{%
    \@tempcnta #2
@@ -206,12 +210,14 @@
 % \end{macro}
 % \end{macro}
 %
+% \tradini
 % \begin{macro}{\hhline}
-% Use a simplified version of "\@mkpream" to break apart the argument
-% to "\hhline". Actually it is oversimplified, It assumes that the
-% vertical rules are at the end of the column. If you were to specify
-% "c|@{xx}|" in the array argument, then "\hhline" would not be
-% able to access the first vertical rule. (It ought to have an "@"
+% La commande utilise une version simplifiée de "\@mkpream" pour décomposer
+% l'argument à destination de "\hhline". En fait, elle est quasiment
+% schématique. Elle suppose que les filets verticaux sont en fin de colonne.
+% Si vous aviez à spécifier "c|@{xx}|" dans l'argument du tableau, alors 
+% "\hhline" ne serait pas capable d'accéder au premier filet vertica.
+% (It ought to have an "@"
 % option, and add "\leaders" up to the width of a box containing the
 % "@"-expression. We use a loop made with "\futurelet" rather
 % than "\@tfor" so that we can use "#" to denote the crossing of
@@ -280,13 +286,13 @@
            \if@firstamp\@firstampfalse\else\HH@add{&\omit}\fi
               \HH@add{\hfil}\else
 %    \end{macrocode}
-% "-", add a single hline across the column.
+% "-", ajout d'un filet horizontal simple à travers de la colonne.
 %    \begin{macrocode}
   \ifx\@tempb-\@tempswafalse
            \if@firstamp\@firstampfalse\else\HH@add{&\omit}\fi
               \HH@add{\leaders\hrule\@height\arrayrulewidth\hfil}\else
 %    \end{macrocode}
-% "=", add a double hline across the column.
+% "=", ajout d'un filet horizontal double à travers de la colonne.
 %    \begin{macrocode}
   \ifx\@tempb=\@tempswafalse
        \if@firstamp\@firstampfalse\else\HH@add{&\omit}\fi
@@ -294,28 +300,29 @@
 %     Put in as many copies of "\box1" as possible with
 %     "\leaders", this may leave gaps at the ends, so put an extra box
 %     at each end, overlapping the "\leaders".
+% \tradfin
 %    \begin{macrocode}
        \HH@add
           {\rlap{\copy\@ne}\leaders\copy\@ne\hfil\llap{\copy\@ne}}\else
 %    \end{macrocode}
-% "t", add the top half of a double hline segment, in a "\rlap"
-% so that it may be used with {\tt b}.
+% "t", ajoute la moitié haute d'un segment de filet horizontal double dans
+% une commande "\rlap" afin qu'elle puisse être utilisée avec "b".
 %    \begin{macrocode}
   \ifx\@tempb t\HH@add{\rlap{\HH@box\doublerulesep\z@}}\else
 %    \end{macrocode}
-% "b", add the bottom half of a double hline segment in a "\rlap"
-% so that it may be used with {\tt t}.
+% "b", ajoute la moitié basse d'un segment de filet horizontal double dans
+% une commande "\rlap" afin qu'elle puisse être utilisée avec "t".
 %    \begin{macrocode}
   \ifx\@tempb b\HH@add{\rlap{\HH@box\z@\doublerulesep}}\else
 %    \end{macrocode}
-% Otherwise ignore the token, with a warning.
+% Sinon, l'unité lexicale est ignorée, avec un avertissement l'indiquant.
 %    \begin{macrocode}
   \PackageWarning{hhline}%
       {\meaning\@tempb\space ignored in \noexpand\hhline argument%
        \MessageBreak}%
   \fi\fi\fi\fi\fi\fi\fi\fi\fi
 %    \end{macrocode}
-% Go around the loop again.
+% Puis la boucle est parcourue à nouveau.
 %    \begin{macrocode}
   \next}
 %    \end{macrocode}

@@ -65,7 +65,7 @@ Traduction             | Source                      | Avancée                |
 [glossaries-french-fr] | [glossaries-french-fr] v1.0 | :full_moon:            | 2               |
 [graphics-fr]          | [graphics] v1.0t            | :new_moon:             | 0 / 23          |
 [graphicx-fr]          | [graphicx] v1.0g            | :new_moon:             | 0 / 11          |
-[hhline-fr]            | [hhline] v2.03              | :new_moon:             | 0 / 4           | Traduction préexistante ([FT-tools]).
+[hhline-fr]            | [hhline] v2.03              | :waxing_crescent_moon: | 3 / 5           | Traduction préexistante ([FT-tools]).
 [hyperref-fr]          | [hyperref] 2012-11          | :new_moon:             | 0 / 31          | Licence GNU FDL
 [ifpdf-fr]             | [ifpdf] v3.1                | :first_quarter_moon:   | 2               |
 [ifthen-fr]            | [ifthen] v1.1c              | :new_moon:             | 0 / 6           |
