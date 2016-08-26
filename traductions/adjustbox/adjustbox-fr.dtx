@@ -33,18 +33,11 @@
 %<=/VERSION>
     DTX file for the adjustbox package]
 \documentclass[a4paper]{ydoc}[2011/08/11]
+\usepackage{translatex-fr} % Babel n'est pas supporté...
 \usepackage{amsmath}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{fourier}
-% Bloc pour traduction
-\usepackage{xcolor}
-\usepackage{pifont}
-\definecolor{orange5}{RGB}{255,153,0} 
-\newcommand{\trad}[1]{\textbf{\textcolor{orange5}{\noindent\ding{54} #1 \ding{54}}}}
-\newcommand{\tradini}{\color{orange5}\ding{54}}
-\newcommand{\tradfin}{\ding{54}\color{black}}
-% Fin du bloc qui doit être retiré une fois le travail achevé
 \usepackage{newverbs}
 \MakeSpecialShortVerb\qverb\"
 %\AtBeginDocument{\MakeShortMacroArgs\`\relax}
@@ -259,44 +252,63 @@
 %  \fontsize \sf@size \z@ \math@fontsfalse \selectfont A}\vss }}\kern -.15em)\TeX}{(La)TeX}}
 % \makeatother
 %
-% \tradini
 % \begin{abstract}
-%  This package allows to adjust general \LATeX\ material in several ways using a key=value interface.
-%  It got inspired by the interface of \Macro\includegraphics from the \pkg{graphicx} package.
-%  This package also loads the \pkg{trimclip} package which code was once included in this package.
+% Cette extension permet d'ajuster tout élément \LATeX{} de plusieurs
+% manières en utilisant une interface clé=valeur.
+% Il a été inspiré par l'interface de \Macro\includegraphics de l'extension
+% \pkg{graphicx}.
+% Cette extension charge également l'extension \pkg{trimclip} dont le code
+% était auparavant une partie de \pkg{adjustbox}.
 % \end{abstract}
 %
 % ^^A )))
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \section{Introduction} ^^A (((
-% The standard \LaTeX{} package \pkg{graphicx} (the extended version of \pkg{graphics}) provides the macro
-% \Macro\includegraphics[<options>]{<file name>} which can be used to include graphic files. Several options can be used
-% to scale, resize, rotate, trim and/or clip the graphic.
-% The macros \Macro\scalebox, \Macro\resizebox and \Macro\rotatebox are also provided to apply the corresponding
-% operation on \LATeX{} material, which is subsequently placed inside a \Macro\hbox.
-% However no macros are provided to trim or clip \LATeX{} material, most likely because this operations
-% are not done by \TeX{} but by the output format, i.e.\ using PostScript (PS) or PDF operations.
+% L'extension standard \pkg{graphicx} de \LaTeX{} (version étendue de
+% l'extension \pkg{graphics}) fournit la commande
+% \Macro\includegraphics[<options>]{<nom de fichier>} qui sert à insérer
+% des fichiers graphiques. Plusieurs options permettent de changer l'image : changement d'échelle, redimensionnement, rotation, rognage. 
+% Les commandes \Macro\scalebox, \Macro\resizebox et \Macro\rotatebox sont
+% également fournies pour appliquer les opérations correspondantes à des
+% éléments d'une page \LATeX, qui sont ensuite placés dans une \Macro\hbox.
+% Cependant, aucune commande n'est proposée pour rogner des éléments d'une
+% page, très vraisemblablement parce cette opérations n'est pas traitée par
+% \TeX{} mais par le format de sortie, autrement dit soit par PostScript (PS),
+% soit par des opérations PDF.
 %
-% This package started by providing the missing macros \Macro\clipbox and \Macro\trimbox.
-% Then a general \Macro\adjustbox macro which allows to combine many operations using a key=value syntax was added and
-% further extended until it represented the main feature of this package.  Newly added keys are also provided as
-% dedicated macros and corresponding environments.
-% The \Macro\clipbox and \Macro\trimbox macros were then moved together with the required output driver code to a
-% dedicated package \pkg{trimclip}. This allows documents and other packages to use these basic features without
-% loading the full \pkg{adjustbox} package.
+% Cette extension a débuté avec la mise à disposition des commandes manquantes
+% \Macro\clipbox et \Macro\trimbox.
+% Puis une commande générale, \Macro\adjustbox, qui permettait de combiner
+% différentes opérations à l'aide d'une syntaxe clé=valeur a été 
+% ajoutée et puis s'est developpée jusqu'à devenir la principale fonctionnalité 
+% de cette extension. De nouvelles clés sont également proposées ainsi que des
+% commandes dédiées et les environnements correspondants.
+% Les commandes \Macro\clipbox et \Macro\trimbox ont alors été déplacées 
+% ensemble avec le code de pilote de sortie requis dans une extension dédiée
+% \pkg{trimclip}. Ceci permet aux documents et autres extensions d'utiliser
+% ces fonctionnalités sans avoir à charger l'intégralité de l'extension
+% \pkg{adjustbox}.
 %
 %
 % ^^A )))2
-% \subsection{Dependencies} ^^A (((2
-% The \pkg{adjustbox} package and its \pkg{trimclip} sub-package require the author's other packages \pkg{adjcalc}
-% (bundled with \pkg{adjustbox}) and \pkg{collectbox}, as well as the packages \pkg{xkeyval}, \pkg{graphicx} and \pkg{ifpdf}.
-% The \pkg{varwidth} package is automatically loaded if installed, otherwise the \Key{varwidth} and \Key{stack} keys are
-% disables as well as \Macro\stackbox and the \env{stackbox} environment.
-% The \pkg{ifoddpage} package is automatically loaded if installed, otherwise the \Key{outer} and \Key{inner} keys are
-% disables as well as \Macro\outersidebox and \Macro\innersidebox macros and corresponding environments.
-% For features which use colors the \pkg{xcolor} package must also be loaded manually (the \pkg{color} package is fine, too).
-% The experimental |split| and |pagebreak| features also require the \pkg{storebox} package to be loaded manually.
+% \subsection{Dépendances} ^^A (((2
+% L'extension \pkg{adjustbox} et la sous-extension \pkg{trimclip} requiert 
+% d'autres extensions de l'auteur \pkg{adjcalc} (mise à disposition avec
+% \pkg{adjustbox}) et \pkg{collectbox}, de même que les extensions 
+% \pkg{xkeyval}, \pkg{graphicx} et \pkg{ifpdf}. 
+% L'extension \pkg{varwidth} est automatiquement chargée si elle est installée,
+% sinon les clés \Key{varwidth} et \Key{stack} sont désactivées de même que
+% la commande \Macro\stackbox et l'environnement \env{stackbox}.
+% L'extension \pkg{ifoddpage} est automatiquement chargée si elle est installée,
+% sinon les clés \Key{outer} et \Key{inner} sont désactivées de même que les
+% commandes \Macro\outersidebox et \Macro\innersidebox et les environnements
+% associés.
+% Pour les fonctionnalités nécessitant de la couleur, l'extension \pkg{xcolor} 
+% doit être chargée manuellement (l'extension \pkg{color} convient aussi).
+% Les fonctionnalités expérimentales |split| et |pagebreak| demandent à ce que
+% l'extension \pkg{storebox} soit chargée manuellement.
 %
+% \tradini
 % ^^A )))2
 % \subsection{Verbatim Support}\label{sec:verbatim} ^^A (((2
 % The macros provided by \pkg{adjustbox} and \pkg{trimclip} read the content as a horizontal \TeX{} box and not as an

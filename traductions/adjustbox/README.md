@@ -10,6 +10,9 @@ pdflatex adjustbox-fr.dtx
 pdflatex adjustbox-fr.dtx
 ```
 
+Sur ce point, un fichier Makefile est mis à disposition (voir par exemple [OpenClassrooms](https://openclassrooms.com/courses/compilez-sous-gnu-linux#/id/r-1130480) pour plus d'informations).
+
+
 ### Avancement de la traduction, en vision table de matières
 
 L'évolution est précisée par un code visuel identique à celui de la page principale mais avec une définition affinée :
@@ -22,9 +25,9 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 
 Section                       | Avancée                | Pages traduites | Commentaires 
 ----------------------------- | :--------------------: | :-------------: | -------------------------
-En-tête du document tex       | :new_moon:             |                 |
-Page d'avant-propos           | :new_moon:             | 0               | 
-1. Introduction               | :new_moon:             | 0 / 1           |
+Entête du document tex        | :new_moon:             |                 |
+Page d'avant-propos           | :first_quarter_moon:   | 0               | 
+1. Introduction               | :waxing_crescent_moon: | 0 / 1           |
 2. Options de l'extension     | :new_moon:             | 0 / 1           | 
 3. Commandes principales      | :new_moon:             | 0 / 3           |
 4. Clés de la commande...     | :new_moon:             | 0 / 23          |

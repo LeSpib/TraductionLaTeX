@@ -26,7 +26,7 @@ Ce tableau indique les différentes extensions envisagées dans le projet ainsi 
 
 Traduction             | Source                      | Avancée                | Pages traduites | Commentaires 
 ---------------------- | --------------------------- | :--------------------: | :-------------: | ---------------------------------------
-[adjustbox-fr]         | [adjustbox] v1.0            | :new_moon:             | 0 / 29          |
+[adjustbox-fr]         | [adjustbox] v1.0            | :new_moon:             | 1 / 29          |
 [afterpage-fr]         | [afterpage] v1.08           | :waxing_crescent_moon: | 3 / 6           | 
 [algorithm2e-fr]       | [algorithm2e] v5.1          | :new_moon:             | 0 / 54          | 
 [amssymb-fr]           | [amssymb] v3.01             | :first_quarter_moon:   | 6               | 
