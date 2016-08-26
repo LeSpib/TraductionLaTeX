@@ -158,7 +158,7 @@
 %
 % \StopEventually{}
 %
-% \section{Les commandes}
+% \section{Implémentation}
 %
 %    \begin{macrocode}
 %<*package>
@@ -189,7 +189,7 @@
 % \begin{macro}{\HH@xexpast}
 % \begin{macro}{\HH@xexnoop}
 % Nous \og empruntons \fg la version de "\@xexpast" de l'extension de
-% Mittelbach, car ceci permet de faire apparaître "#" dans la liste des
+% Frank Mittelbach, car ceci permet de faire apparaître "#" dans la liste des
 % arguments. 
 %    \begin{macrocode}
 \def\HH@xexpast#1*#2#3#4\@@{%
@@ -210,107 +210,107 @@
 % \end{macro}
 % \end{macro}
 %
-% \tradini
 % \begin{macro}{\hhline}
 % La commande utilise une version simplifiée de "\@mkpream" pour décomposer
-% l'argument à destination de "\hhline". En fait, elle est quasiment
-% schématique. Elle suppose que les filets verticaux sont en fin de colonne.
+% l'argument à destination de "\hhline". En fait, elle est fortement
+% simplifiée. Elle suppose que les filets verticaux sont en fin de colonne.
 % Si vous aviez à spécifier "c|@{xx}|" dans l'argument du tableau, alors 
-% "\hhline" ne serait pas capable d'accéder au premier filet vertica.
-% (It ought to have an "@"
-% option, and add "\leaders" up to the width of a box containing the
-% "@"-expression. We use a loop made with "\futurelet" rather
-% than "\@tfor" so that we can use "#" to denote the crossing of
-% a double hline with a double vline.\\
-% "\if@firstamp" is true in the first column and false otherwise.\\
-% "\if@tempswa"  is true if the previous entry was a vline
-%                     (":", "|" or "#").
+% "\hhline" ne serait pas capable d'accéder au premier filet vertical
+% (il devrait y avoir une option "@{}" et l'ajout de "\leaders" jusqu'à 
+% atteindre la largeur de la boîte contenant l'expression "@{}"). Nous 
+% utilisons une boucle avec "\futurelet" plutôt que "\@tfor" afin que nous
+% puissions utiliser "#" pour indiquer le croisement d'un filet vertical
+% double avec un filet horizontal double.\\
+% "\if@firstamp" est vraie dans la première colonne et faux sinon.\\
+% "\if@tempswa" est vraie si la précédente entrée était un filet vertical
+% (":", "|" or "#").
 %    \begin{macrocode}
 \def\hhline#1{\omit\@firstamptrue\@tempswafalse
 %    \end{macrocode}
-% Put two rules of width "\doublerulesep" in "\box1"
+% Place deux filets de largeur "\doublerulesep" dans "\box1".
 %    \begin{macrocode}
 \global\setbox\@ne\HH@box\doublerulesep\doublerulesep
 %    \end{macrocode}
-% If Mittelbach's {\tt array.sty} is loaded, we do not need the negative
-% "\hskip"'s around vertical rules.
+% Si l'extension \textsf{array} de Frank Mittelbach est chargée, nous n'avons
+% pas besoin d'une commande "\hskip" négative autour des filets verticaux.
 %    \begin{macrocode}
   \xdef\@tempc{\ifx\extrarowheight\HH@undef\hskip-.5\arrayrulewidth\fi}%
 %    \end{macrocode}
-% Now expand the {\tt*}-forms and add dummy tokens ( "\relax" and
-% "`" ) to either end of the token list. Call "\HH@let" to start
-% processing the token list.
+% Maintenant les éléments avec "*" sont développés et des unités lexicales
+% fictives ( "\relax" et "`" ) sont ajoutés aux deux extrémités de la liste
+% des unités lexicales. La commande "\HH@let" est appelée pour commencer le
+% traitement de cette liste.
 %    \begin{macrocode}
     \HH@xexpast\relax#1*0x\@@\toks@{}\expandafter\HH@let\@tempa`}
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\HH@let}
-% Discard the last token, look at the next one.
+% La dernière unité lexicale est écartée et la suivante est analysée.
 %    \begin{macrocode}
 \def\HH@let#1{\futurelet\@tempb\HH@loop}
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\HH@loop}
-% The main loop. Note we use "\ifx" rather than "\if" in
-% version~2 as the new token "~" is active.
+% La boucle principale. Notez que nous utilisons "\ifx" plutôt que "\if" en
+% version~2 car la nouvelle unité lexicale "~" est active.
 %    \begin{macrocode}
 \def\HH@loop{%
 %    \end{macrocode}
-% If next token is "`", stop the loop and put the lines into this row
-% of the alignment.
+% Si l'unité lexicale suivante est "`", la boucle est arrêtée et les filets 
+% sont placés dans la rangée.
 %    \begin{macrocode}
   \ifx\@tempb`\def\next##1{\the\toks@\cr}\else\let\next\HH@let
 %    \end{macrocode}
-% "|", add a vertical rule (across either a double or
-% single hline).
+% "|" ajoute un filet vertical (en travers d'un simple ou d'un double filet
+% horizontal).
 %    \begin{macrocode}
   \ifx\@tempb|\if@tempswa\HH@add{\hskip\doublerulesep}\fi\@tempswatrue
           \HH@add{\@tempc\vline\@tempc}\else
 %    \end{macrocode}
-% ":", add a broken vertical rule (across a double hline).
+% ":" ajoute un filet vertical brisé (à travers un double filet horizontal).
 %    \begin{macrocode}
   \ifx\@tempb:\if@tempswa\HH@add{\hskip\doublerulesep}\fi\@tempswatrue
       \HH@add{\@tempc\HH@box\arrayrulewidth\arrayrulewidth\@tempc}\else
 %    \end{macrocode}
-% "#", add a double hline segment between two vlines.
+% "#" ajoute un double filet horizontal entre deux filets verticaux.
 %    \begin{macrocode}
   \ifx\@tempb##\if@tempswa\HH@add{\hskip\doublerulesep}\fi\@tempswatrue
          \HH@add{\@tempc\vline\@tempc\copy\@ne\@tempc\vline\@tempc}\else
 %    \end{macrocode}
-% "~", A column with no hline (this gives an effect similar to
-% \verb+\cline+).
+% "~" ajoute une colonne sans filet horizontal (ce qui donne un effet
+% similaire à \verb+\cline+).
 %    \begin{macrocode}
   \ifx\@tempb~\@tempswafalse
            \if@firstamp\@firstampfalse\else\HH@add{&\omit}\fi
               \HH@add{\hfil}\else
 %    \end{macrocode}
-% "-", ajout d'un filet horizontal simple à travers de la colonne.
+% "-" ajoute un filet horizontal simple à travers de la colonne.
 %    \begin{macrocode}
   \ifx\@tempb-\@tempswafalse
            \if@firstamp\@firstampfalse\else\HH@add{&\omit}\fi
               \HH@add{\leaders\hrule\@height\arrayrulewidth\hfil}\else
 %    \end{macrocode}
-% "=", ajout d'un filet horizontal double à travers de la colonne.
+% "=" ajoute un filet horizontal double à travers de la colonne.
 %    \begin{macrocode}
   \ifx\@tempb=\@tempswafalse
        \if@firstamp\@firstampfalse\else\HH@add{&\omit}\fi
 %    \end{macrocode}
-%     Put in as many copies of "\box1" as possible with
-%     "\leaders", this may leave gaps at the ends, so put an extra box
-%     at each end, overlapping the "\leaders".
-% \tradfin
+%     Place autant de copies de "\box1" que possible avec la commande
+%     "\leaders", ceci peut laisser des vides aux extrémités, aussi une
+%     boîte supplémentaire est placée à chaque extrémité, superposées aux
+%     "\leaders".
 %    \begin{macrocode}
        \HH@add
           {\rlap{\copy\@ne}\leaders\copy\@ne\hfil\llap{\copy\@ne}}\else
 %    \end{macrocode}
-% "t", ajoute la moitié haute d'un segment de filet horizontal double dans
+% "t" ajoute la moitié haute d'un segment de filet horizontal double dans
 % une commande "\rlap" afin qu'elle puisse être utilisée avec "b".
 %    \begin{macrocode}
   \ifx\@tempb t\HH@add{\rlap{\HH@box\doublerulesep\z@}}\else
 %    \end{macrocode}
-% "b", ajoute la moitié basse d'un segment de filet horizontal double dans
+% "b" ajoute la moitié basse d'un segment de filet horizontal double dans
 % une commande "\rlap" afin qu'elle puisse être utilisée avec "t".
 %    \begin{macrocode}
   \ifx\@tempb b\HH@add{\rlap{\HH@box\z@\doublerulesep}}\else

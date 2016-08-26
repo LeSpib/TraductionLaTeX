@@ -30,10 +30,10 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 
 Section                       | Avancée                | Pages traduites | Commentaires 
 ----------------------------- | :--------------------: | :-------------: | -------------------------
-En-tête du document tex       | :new_moon:             |                 |
+Entête du document tex        | :new_moon:             |                 |
 Page d'avant-propos           | :first_quarter_moon:   | 0               | 
 1. Introduction               | :first_quarter_moon:   | 1               |
-2. Les commandes              | :first_quarter_moon:   | 2 / 4           |
+2. Les commandes              | :first_quarter_moon:   | 4               |
 
 ### Glossaire pour la traduction
 
