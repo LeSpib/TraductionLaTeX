@@ -231,49 +231,53 @@
 \def\AP@ed{\everydisplay\expandafter{\the\toks@}\ignorespaces}
 %    \end{macrocode}
 %
-% \tradini
-% Remove the current vertical list, insert the commands |\AP@|
-% at the top of the page, and then re-insert the saved text.
+% La liste verticale actuelle est retranchée, les commandes |\AP@| sont 
+% insérées en haut de la page et le texte sauvegardé est inséré de nouveau.
 %    \begin{macrocode}
 \def\AP@@{%
   \AP@savetop
   \global\expandafter\let\expandafter\AP@\expandafter\relax\AP@
   \par
 %    \end{macrocode}
-% The text originally at the top of this page is now stored in the box
-% |\AP@partial|, including  |\topskip| glue. Now we want to unbox
-% |\AP@partial|, placing the baseline of the first row |\baselineskip|
-% below the baseline of the last line coming from the afterpage text.
-% If we assumed nothing has too much height or depth (and |\topskip| is
-% rigid), it would be fairly trivial to position the contents of
-% |\AP@partial| so that the baseline of the first row was
-% |\baselineskip| below the last row just added.
+% Le texte à l'origine en haut de cette page est maintenant stocké dans la
+% boîte |\AP@partial|, ressort |\topskip| compris. Maintenant nous voulons
+% \trad{sortir de la boîte} |\AP@partial|, plaçant la ligne de base de la
+% première rangée à une distance |\baselineskip| sous la ligne de base de la
+% dernière ligne veant du texte de la page d'après.
+% Si nous avions supposé que rien n'est trop haut ou trop profond (et que
+% |\topskip| est rigide),  il serait alors trivial de positionner le contenu
+% de |\AP@partial| afin que la ligne de la base de la première rangée soit
+% à une distance |\baselineskip| de la dernière rangée tout juste ajoutée.
 %
-% In this version, I thought it might be fun to try to exactly achieve
-% the |\baselineskip|--or--|\lineskip| calculation that \TeX\ normally
-% does internally.  The call to |\addboxcontents| does the right thing
-% (I hope).
+% Dans cette version, j'ai pensé qu'il pourrait être amusant d'essayer 
+% de répliquer exactement le calcul de |\baselineskip|--ou--|\lineskip|
+% que \TeX{} fait normalement en interne. Le recours à |\addboxcontents| fait
+% ce qui est souhaité (je l'espère).  
 %    \begin{macrocode}
    \addboxcontents\AP@partial
 %    \end{macrocode}
-% Now re-insert any footnote text. This may not be quite the right
-% place, as the text that has just been unboxed may break over a page
-% in its new position. Also it may not be the right number if the text
-% from |\afterpage| itself contains footnotes. Too bad!
+% Maintenant le texte des notes de bas de page est inséré à nouveau. Ceci ne
+% pourrait pas être le bon endroit pour le faire, dans la mesure où le texte
+% vient d'être sorti de la boîte pourrait générer un saut de page du fait de 
+% son nouvel emplacement. De plus, la note pourrait ne pas avoir le bon numéro
+% si le texte de |\afterpage| contient lui-même des notes de bas de page. Quel
+% dommage !
 %    \begin{macrocode}
   \ifvoid\AP@footins\else
          \insert\footins{\unvbox\AP@footins}\fi
 %    \end{macrocode}
-% Now repair things if we started off in horizontal mode.
+% Maintenant les choses sont réparées \trad{comme si} nous avions démarré 
+% en mode horizontal.
 %    \begin{macrocode}
   \AP@noindent}
 %    \end{macrocode}
 %
-% If |\AP@| is not |\relax| then the current page already has some
-% `afterpage' commands, so just add the new commands to the end of the
-% list. Otherwise save the commands in |\AP@|. (within a local group),
-% and switch the output routine. (The new output routine just calls the
-% old one if it is invoked by a \LaTeX{} float.
+% Si |\AP@| n'est pas équivalente à |\relax| alors la page actuelle a déjà
+% des commandes \og afterpage \fg, alors nous ajoutons les nouvelles commandes
+% à la fin de la liste. Sinon, nous sauvegardons les commandes dans |\AP@| (au
+% sein du groupe local) et nous changeons de routine de sortie (la nouvelle 
+% appelle juste l'ancienne si elle est appelée par un flottant \LaTeX).
+
 %    \begin{macrocode}
 \long\def\afterpage#1{%
   \ifx\AP@\relax
@@ -289,8 +293,8 @@
   \fi}
 %    \end{macrocode}
 %
-% If we have got to the end of the document or clearpage
-% just put the stuff out  without any trickery.
+% Si nous sommes arrivés à la fin de document ou à une page vide, nous
+% déposons les éléments sans aucune bidouille.
 %    \begin{macrocode}
 \let\AP@clearpage\clearpage
 \def\clearpage{%
@@ -300,8 +304,8 @@
     \global\output\expandafter{\the\AP@output}%
     \AP@clearpage
 %    \end{macrocode}
-% At this point (since v1.08) Need to clear |\AP@| \emph{before}
-% using its expansion, as otherwise hit an infinite loop. Sigh.
+% À ce point (depuis la version v1.08), nous devons nettoyer |\AP@| \emph{avant}
+% de la développer car sinon elle produit une boucle infini. Soupir...
 %    \begin{macrocode}
     \global\expandafter\let\expandafter\AP@\expandafter\relax
     \expandafter\expandafter\AP@
@@ -319,67 +323,71 @@
 % \end{macro}
 %
 % \begin{macro}{\addboxcontents}
-% \tradini
-% Given a vbox |#1|, add to the current vertical list such that the end
-% result is equivalent to the list that \TeX\ would have built had the
-% contents of |#1| (apart from any initial glue) been added individually
-% to the current list.
+% Etant donné une boîte verticale |#1|, nous l'ajoutons à la liste verticale
+% courante de façon à ce que le résultat soit équivalent à la liste que
+% \TeX{} aurait produit si le contenu de |#1| (hors tout ressort initial) avait
+% été ajouté individuellement à la liste courante.
 
-% So essentially, the problem is that of unboxing |#1|, but replacing
-% the glue at the top of |#1| with (something equivalent to) the
-% |\baselineskip| or |\lineskip| glue that \TeX\ would normally have
-% placed before the first box in |#1|. Also |\prevdepth| must be set at
-% the end.
+% Ainsi, le problème est essentiellement celui de retirer le contenu de la 
+% boîte |#1|, \trad{tout en} remplaçant le ressort en haut de |#1| avec le
+% ressort de |\baselineskip| 
+% ou |\lineskip| (du moins quelque chose d'équivalent) que \TeX{} aurait
+% normalement placé avant la première boîte dans |#1|. De plus, la commande
+% |\prevdepth| doit être définie à la fin.
 %    \begin{macrocode}
 \def\addboxcontents#1{{%
 %    \end{macrocode}
-% Perhaps I shouldn't use grouping here, as I probably don't really want
-% to save |#1|. If it is removed, |\splittopskip| and |\splitmaxdepth|
-% would need to be restored by hand.
+% Peut-être ne devrais-je pas utiliser de groupement ici car je ne veux pas
+% vraiment enregistrer |#1|. Si il est retranché, |\splittopskip| et
+% |\splitmaxdepth| auraient besoin d'être restaurés manuellement.
 %
-% First replace any glue at the top by |\vskip 0pt|.
+% Tout d'abord, le ressort en haut est remplacé par |\vskip 0pt|.
 %    \begin{macrocode}
   \splittopskip\z@
   \splitmaxdepth\maxdimen
   \setbox#1\vbox{\break\unvbox#1}%
   \setbox\z@\vsplit#1to\z@
 %    \end{macrocode}
-% Put the breakpoint back.
+% Le point de coupure est repositionné.
 %    \begin{macrocode}
   \setbox#1\vbox{\break\unvbox#1}%
 %    \end{macrocode}
-% Set |\skip@| to be height of |#1| (without top glue)
+% La commande |\skip@| est définie comme étant la hauteur de |#1| (sans le
+% ressort du haut).
 %    \begin{macrocode}
   \skip@\ht#1%
 %    \end{macrocode}
-% Now make the first baseline of the first row be |\vsize| from the top.
-% (This assumes that the first row has height less than |\vsize|.)
+% Maintenant, la première ligne de base de la première rangée est placée à
+% |\vsize| du haut (ceci suppose que la première rangée a une hauteur inférieure
+% à |\vsize|.)
 %    \begin{macrocode}
   \splittopskip\vsize
   \setbox\z@\vsplit#1to\z@
 %    \end{macrocode}
-% Subtract the new height of |#1| from |\skip@|, and add back on
-% |\splittopskip|, so |\skip@| is now the height of the first row of
-% |#1| This may still be 0pt if (eg) a mark or whatsit is between the
-% top glue and the first box. Save (this height${}-{}$|\splittopskip|)
-% in |\skip\tw@|.
+% La nouvelle hauteur de |#1| est retranchée de |\skip@| et ajoutée en retour
+% à |\splittopskip| de façon à ce que |\skip@| soit maintenant la hauteur de 
+% la première rangée de |#1|. Celle-ci peut être de 0pt si (par exemple) une
+% commande de marque (ou que sais-je encore) est placée entre le ressort du
+% haut et la première boîte. Cette \og dimension${}-{}$|\splittopskip| \fg
+% est enregistrée dans |\skip\tw@|.
 %    \begin{macrocode}
   \advance\skip@-\ht#1%
   \skip\tw@\skip@
   \advance\skip@\splittopskip
 %    \end{macrocode}
-% Now fake \TeX's |\baselineskip| calculation.
+% Maintenant, le calcul simulé de \TeX{} est effectué.
 %    \begin{macrocode}
   \advance\skip@\prevdepth
   \advance\skip@-\baselineskip
   \advance\skip\tw@\ifdim-\skip@<\lineskiplimit\lineskip\else-\skip@\fi
 %    \end{macrocode}
-% Finally add the glue.
+% Finalement, le ressort est ajouté.
 %    \begin{macrocode}
   \vskip\skip\tw@
 %    \end{macrocode}
-% Now unbox the box, setting |\prevdepth| by hand, as |\unvbox| (unlike
-% |\box|) does not automatically set it.
+% Maintenant le contenu de la boîte est sorti de cette dernière, tout en
+% définissant manuellement |\prevdepth| car |\unvbox| (contrairement à |\box|)
+% ne le fait pas automatiquement.
 %    \begin{macrocode}
   \global\dimen@i\dp#1%
   \unvbox#1}%

@@ -27,7 +27,7 @@ Ce tableau indique les différentes extensions envisagées dans le projet ainsi 
 Traduction             | Source                      | Avancée                | Pages traduites | Commentaires 
 ---------------------- | --------------------------- | :--------------------: | :-------------: | ---------------------------------------
 [adjustbox-fr]         | [adjustbox] v1.0            | :new_moon:             | 1 / 29          |
-[afterpage-fr]         | [afterpage] v1.08           | :waxing_crescent_moon: | 3 / 6           | 
+[afterpage-fr]         | [afterpage] v1.08           | :first_quarter_moon:   | 6               | 
 [algorithm2e-fr]       | [algorithm2e] v5.1          | :new_moon:             | 0 / 54          | 
 [amssymb-fr]           | [amssymb] v3.01             | :first_quarter_moon:   | 6               | 
 [appendix-fr]          | [appendix] v1.2b            | :full_moon:            | 16              | Traduction préexistante ([FT-tools]).
@@ -135,23 +135,25 @@ De nombreux termes spécifiques se retrouvent dans les différents documents tra
 
 > *Many specific terms are found in the various documents translated. This section functions as a glossary by grouping some of these terms. Each translation has its own glossary in its ReadMe file.*
 
-Anglais                | Français                                       | Commentaires 
----------------------- | ---------------------------------------------- | -------------------------------
+Anglais                | Français                                       | Source
+---------------------- | ---------------------------------------------- | --------------------------------------------
 *control sequence*     | commande                                       |   
-*cropmarks*            | traits de coupe                                | source Wiktionnaire
+*cropmarks*            | traits de coupe                                | Wiktionnaire
 *device*               | périphérique, input/output d'entrée de sortie  |
 *driver*               | pilote (informatique, graphique...)            |
 *em dash*              | tiret quadratin                                |
 *en dash*              | tiret demi-quadratin                           |
 *error report*         | rapports d'erreur                              |
 *filler*               | motif (de remplissage)                         |
+*glue*                 | ressort                                        | "La maîtrise de Tex et LaTeX" (TLR) 
 *header*               | en-tête                                        |
 *heading(s)*           | titre                                          |
 *leaders*              | points de conduite                             |
 *leading*              | interlignage                                   |
+*output routine*       | routine de sortie                              | Traduction française du "TeXbook"
 *package*              | extension                                      |
-*style guide*          | code typographique                             | source Wikipédia
-*token*                | unité lexicale                                 | source Traduction française du TeXbook
+*style guide*          | code typographique                             | Wikipédia
+*token*                | unité lexicale                                 | Traduction française du "TeXbook"
 
 
 [//]: # (Sur le Markdown : https://guides.github.com/features/mastering-markdown/)
