@@ -1,0 +1,464 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage[sloped]{fourier}
+\usepackage[frenchb]{babel}
+\newcommand{\fourier}{Fourier-GUT\textit{enberg}}
+\renewcommand{\ttdefault}{aett}
+\title{Fourier-GUT{\itshape enberg}}
+\author{Michel Bovani\\\texttt{michel.bovani@wanadoo.fr}}
+\renewcommand{\FrenchLabelItem}{\textbullet}
+\newtheorem{thm}{Théorème}
+\begin{document}
+\maketitle
+
+\section{Qu'est ce que \fourier{} ?}
+\fourier{} est un système de composition scientifique dont le 
+caractère de base est Adobe Utopia. Ce choix n'est pas dû au hasard, 
+et repose sur un certain nombre de constats qui ont été faits \emph{a 
+priori} :
+\begin{itemize}
+\item Adobe a fait don des quatre graisses standard d'Utopia au 
+X-consortium : ces graisses (romain, italique, gras, gras-italique) 
+sont donc gratuites et librement distribuables.\par (Il ne s'agit 
+toutefois pas de logiciel libre au sens de la libre utilisation des 
+sources.)
+\item L'alternative proposée est réelle : une page composée en 
+Fourier sera très différente de la même page composée dans un des 
+systèmes déjà disponibles sous \emph{latex} (à base de Computer 
+Modern, Times ou Palatino, pour les systèmes gratuits).
+\item Utopia est tout à fait adaptée à la composition de textes 
+scientifiques (pour peu que l'on fournisse les fontes complémentaires 
+indispensables, ce que fait justement \fourier{}). En particulier, on 
+peut avec profit utiliser Utopia pour projeter une présentation.
+\item Pour ceux qui voudraient utiliser ce système de façon plus 
+professionnelle, il existe des compléments payants à Utopia (semi 
+gras, codages experts, chiffres bas de casse) dont \fourier{} sait 
+pleinement tirer parti.
+\end{itemize}
+\par
+Le cahier des charges de \fourier{} supposait donc
+que l'on fabrique les fontes scientifiques nécessaires pour rendre 
+possible la composition scientifique avec Utopia. Ce caractère est en 
+effet suffisamment particulier pour que rien de ce qui existe pour 
+Computer Modern, Times, Palatino, etc. ne lui convienne réellement. 
+\fourier{}  est donc un système entièrement autonome ne faisant appel 
+\emph{a priori} à aucune fonte extérieure.
+\par Au départ je pensais me limiter à un système « à la française » 
+avec un grec droit et des capitales romaines en mode mathématique. Je 
+me suis vite rendu compte que cela risquait d'introduire un certain 
+nombre d'incohérences dans des documents déjà existants (les 
+physiciens sont des gens exigeants), et j'ai donc aussi réalisé un 
+système plus classique (capitales latines italiques et grec penché, 
+comme computer modern). Cela permet d'ailleurs de disposer des deux 
+grecs dans le même document. 
+\par Une autre particularité de \fourier{} est de se passer 
+entièrement du codage OT1. Le codage T1 a en revanche été complété 
+--- les fontes standard ne proposent pas de \emph{ j sans point} (\j) 
+ni par exemple le \emph{eng} (\ng, \NG) --- et ce pour toutes les 
+graisses disponibles. Se passer entièrement du codage OT1 supposait 
+naturellement que les codages mathématiques soient quelque peu 
+modifiés : par défaut, c'est là que \emph{latex} trouve les capitales 
+grecques du mode mathématique ($\Gamma$, $\Lambda$, $\Phi$...) et il 
+a bien fallu les placer ailleurs (c'est ce que font aussi les 
+systèmes commerciaux de Y\&Y, comme \emph{Mathtime} ou \emph{Lucida 
+New Math}).
+\par Signalons enfin que \fourier{} ne dispose pas pour l'instant 
+d'un « \verb=\boldmath= » mais propose bon nombre de symboles 
+complémentaires, aussi bien en mode mathématique ($\dblbrackleft, 
+\dblbrackright$) qu'en mode texte (\texteuro, \eurologo).
+\section{Installation \textsc{\&} configuration}
+Le répertoire texmf qui vous est fourni reproduit une tds classique.
+Il faut donc choisir une arborescence texmf dans votre installation,
+et y placer (de façon cohérente) tous les répertoires 
+\texttt{fourier} situés
+au fond de l'arborescence.
+
+Bien entendu, si ce n'est déjà fait vous devez installer les quatre graisses gratuites d'Utopia dans \texttt{texmf/fonts/type1/adobe/utopia}.
+
+Si vous disposez des fontes expert, il faut renommer les fichiers 
+\texttt{*.pfb}
+conformément à ce qui est dans le fichier \texttt{fourier-utopia-expert.map}, 
+ou refaire
+ce fichier, puis installer ces fichiers pfb dans 
+\texttt{texmf/fonts/type1/adobe/utopia-expert}
+
+Il vous reste maintenant à configurer votre installation. Si celle ci 
+est une distribution \texttt{web2c} récente (teTeX, fpTeX...) le plus 
+simple est sans doute d'utiliser la commande \texttt{updmap} et de 
+saisir la ligne de commande suivante :
+\begin{verbatim}
+    % updmap --enable Map fourier.map
+\end{verbatim}
+Si vous voulez installer les fontes expert (qu'il faut acheter 
+chez Adobe, des gens charmants, mais un peu chers...)
+\begin{verbatim}
+    % updmap --enable Map fourier-utopia-expert.map
+\end{verbatim}
+
+Dans le cas où vous ne disposez pas d'updmap (ou si vous ne voulez 
+pas vous en servir), voici ce que vous pouvez faire :
+\begin{itemize}
+\item Pour dvips, ajouter dans config.ps la ligne
+\begin{verbatim}
+  p +fourier.map
+\end{verbatim}
+et si nécessaire (voir ci dessus) 
+\begin{verbatim}
+  p +fourier-utopia-expert.map
+\end{verbatim}
+\item Pour pdf(la)tex ajouter dans pdftex.cfg la ligne
+\begin{verbatim}
+  map +fourier.map
+\end{verbatim}
+et si nécessaire
+\begin{verbatim}
+  map +fourier-utopia-expert.map
+\end{verbatim}
+\end{itemize}
+
+Enfin, suivant l'arboresence texmf choisie pour l'installation, il 
+pourra
+être nécessaire de régénérer la base de données (commande 
+\texttt{maktexlsr} par exemple). Notez que la configuration de la 
+visionneuse dvi n'est pas documentée ici. Il semble que sur les 
+distributions \texttt{web2c} l'emploi de la commande \texttt{updmap} 
+règle aussi ce problème, mais je n'en sais pas beaucoup plus (et je 
+suis preneur de toute information à ce sujet).
+
+Si vous avez des problèmes d'installation ou de configuration, 
+n'hésitez pas
+à me contacter (précisez le système d'exploitation et la distribution
+tex utilisée).
+\section{Utilisation}
+\subsection{L'appel du package et les options}
+On appelle \fourier{} à l'aide de la commande \begin{verbatim}
+    \usepackage[<options>]{fourier}
+\end{verbatim}
+Les options sont 
+\begin{enumerate}
+\item \texttt{sloped} (par défaut)  : le grec bas de casse est 
+penché, les capitales grecques sont droites, les capitales latines 
+italiques.
+\[M\in\Gamma \iff OM=x\rho\]
+\item \texttt{upright} (à la française)  : le grec bas de casse, les 
+capitales grecques, et les capitales latines sont droites.
+\[\mathrm{M}\in\Gamma \iff \mathrm{OM}=x\otherrho\]
+\item \texttt{expert}, \texttt{oldstyle}, \texttt{fulloldstyle} : ces 
+options ne peuvent être employées que si vous disposez du complément 
+expert commercial d'Utopia. Je ne donnerai donc pas ici d'exemple de 
+leur comportement. L'option \texttt{expert} permet d'utiliser les « 
+vraies » petites capitales, ainsi que le semi-gras et l'extra-black 
+(des commandes sont fournies à cet effet, voir plus loin) et donne 
+également accès à davantage de symboles dans le codage companion. 
+L'option \texttt{oldstyle} possède les mêmes possibilités, mais 
+utilise des chiffres bas de casse (ou elzéviriens) dans le texte, 
+l'option \texttt{fulloldstyle} utilise ces chiffres \emph{à la fois} 
+pour le texte et pour le mode mathématique.
+\item \texttt{poorman} (par défaut) : si vous êtes pauvre ou estimez 
+que les fontes expert sont un luxe inutile, cette option est pour 
+vous. Le principal inconvénient est que les petites capitales sont en 
+fait des \textsc{Capitales réduites} (ce qui s'accompagne 
+inévitablement d'une petite atténuation de la graisse). Notez 
+toutefois que ce phénomène se produit également avec la plupart des 
+fontes PostScript utilisables sous \TeX{} (Computer Modern excepté). 
+Vous ne disposez évidemment pas non plus du semi-gras, des chiffres 
+bas de casse, etc. 
+\end{enumerate}
+\subsection{Commandes du codage texte}
+Notez tout d'abord qu'il est inutile, donc probablement nuisible, 
+d'appeler vous même le codage T1 (\verb=\usepackage[T1]{fontenc}=) 
+puisque le package \verb=fourier= s'en charge.
+
+Si vous utilisez l'option \texttt{poorman}, il n'y a rien de bien 
+nouveau par rapport à ce que fait computer modern avec l'appel du 
+codage T1. Notez toutefois que ce codage est complet et que 
+contrairement à ce qui se passe avec la plupart des systèmes 
+utilisant des fontes PostScript au codage adobe (Times, Helvetica, 
+Palatino), les commandes suivantes fonctionnent (dans toutes les 
+graisses, même le semi-gras et l'extra-black) :
+\begin{itemize}
+\item \verb=\j=\quad \j, \textbf{\j}, \textit{\bfseries\j} etc. 
+\item \verb=\ng=, \verb=\NG=\quad \ng, \NG, \textit{\ng}, 
+\textbf{\NG} etc.
+\item \verb=\textperthousand=, \verb=\textpertenthousand= \quad 
+\textperthousand, \textpertenthousand, \textbf{\textperthousand}, 
+\textbf{\itshape\textpertenthousand} etc.
+\end{itemize}
+\subsection{Le codage compagnon}
+Il s'agit du codage TS1 (que l'on appelle en général à l'aide du 
+package\linebreak \verb=textcomp=). Ce codage n'est que partiellement 
+implémenté et ce package est appelé de façon interne par 
+\texttt{fourier} (inutile donc de l'appeler dans votre document).
+\par Ce qui est disponible est essentiellement ce que propose le 
+codage adobe standard (et un peu plus si vous utilisez les fontes 
+expert), auquel il convient d'ajouter : 
+\begin{itemize}
+\item Le symbole de l'euro \verb=\texteuro= \texteuro, 
+\textit{\texteuro}, \textbf{\texteuro}, \textbf{\itshape\texteuro}.
+\item Et sa variante \verb=\eurologo= \eurologo, \textbf{\eurologo}. 
+Notez que comme ce symbole est un logo, il ne prend en principe pas 
+l'italique, mais que si vous tenez absolument à le déformer, vous 
+pouvez vous rabattre sur \verb=\textsl{\eurologo}= \textsl{\eurologo}.
+\end{itemize}
+\par
+Enfin, un certain nombre de symboles ont été placés, faute de place 
+ailleurs pour l'instant, dans les codages mathématiques, mais n'ont 
+pas grand chose à y faire :
+\begin{itemize}
+\item\verb=$\thething$= $\thething$ qui se veut un \emph{QEDsymbol} 
+pour une démonstation fausse. Si vous êtes mathématicien 
+professionnel, vous ne pourrez bientôt plus vous en passer : on gagne 
+un temps fou !
+\item\verb=$\xswordsup$=, \verb=$\xsworddown$= $\xswordsup$ qui 
+peuvent servir à baliser un passage controversé, ou d'ailleurs à 
+n'importe quoi d'autre ! $\xswordsdown$
+\end{itemize}
+\subsection{Les codages mathématiques}
+Nous entrons ici dans le vif du sujet. Tout d'abord, \fourier{} est 
+compatible avec le package \texttt{amsmath}, mais il est 
+indispensable d'appeler \texttt{fourier} \emph{après} 
+\texttt{amsmath}. Pour ce qui concerne le package \texttt{amssymb}, 
+c'est un peu plus compliqué : il n'y a pas de vraie incompatibilité, 
+mais tout de même risque de conflits. Comme \fourier{} propose bon 
+nombre des symboles proposés par \texttt{amssymb}, il convient 
+d'abord de s'assurer que ce package est indispensable (c'est-à-dire 
+que les symboles que vous désirez n'existent pas
+déjà dans \fourier{}). Au cas où l'appel du package \texttt{amssymb} 
+s'avèrerait nécessaire, il est recommandé de l'appeler \emph{avant} 
+\texttt{fourier}.
+\subsubsection*{Commandes mathématiques de \emph{latex} standard}
+En principe et sauf erreur dont il faudrait vous plaindre, toutes les 
+commandes mathématiques de \emph{latex} standard existent dans 
+\fourier{}, à l'exception déjà signalée de la commande 
+\verb=\boldmath= et de l'effet de \verb=\mathbf= sur les capitales 
+grecques.
+
+Bien entendu tous les symboles ont été redessinés pour s'accorder au 
+style et à la graisse d'Utopia. Cela concerne particulièrement le grec
+
+\vspace{-30pt}
+{\Huge
+\[a, \alpha, \mathrm{a}, \otheralpha, n, \eta, \mathrm{n}, \othereta, 
+c, \epsilon, \varepsilon, \mathrm{c}, \otherepsilon, 
+\othervarepsilon, \mathrm{A}, \Lambda\]\par}
+\noindent mais aussi le styles des délimiteurs, et en fait beaucoup 
+d'autres choses :
+\def\testdelim#1#2{%
+  - \left#1\left#1\left#1\left#1\left#1\left#1\left#1\left#1 
+  \smash{\widetilde{D}} 
+  \right#2\right#2\right#2\right#2\right#2\right#2\right#2\right#2 -}
+\begingroup
+\delimitershortfall-1pt
+\begin{displaymath}
+  \testdelim\{\} 
+  \qquad 
+  \testdelim()
+\end{displaymath}
+\begin{displaymath}
+\testdelim\lfloor\rfloor
+\qquad
+\testdelim[]
+\end{displaymath}
+
+\subsubsection*{Alphabets mathématiques}
+Les alphabets latins sont extraits d'Utopia, ce sont des lettres, 
+quoi ! Voici donc
+\begin{itemize}
+\item Les alphabets grecs
+
+\smallskip
+En version penchée
+
+\smallskip
+$\alpha\,\beta\,\gamma\,\delta\,\epsilon\,\eta\,\zeta\,\theta\,\iota\,\kappa\,\lambda\,\mu\,\nu\,\xi\,\pi\,\rho\,\sigma\,\tau\,\upsilon\,\phi\,\chi\,\psi\,\omega$
+
+$\otherGamma$\,$\otherDelta$\,$\otherTheta$\,$\otherLambda$\,$\otherXi$\,$\otherPi$\,$\otherSigma$\,$\otherUpsilon$\,$\otherPhi$\,$\otherPsi$\,$\otherOmega$
+
+
+\smallskip
+\textit{Variantes :}
+$\varepsilon$\,$\vartheta$\,$\varkappa$\,$\varpi$\,$\varrho$\,$\varsigma$\,$\varphi$
+
+
+\smallskip
+En version droite
+
+\smallskip
+$\otheralpha\,\otherbeta\,\othergamma\,\otherdelta\,\otherepsilon\,\othereta\,\otherzeta\,\othertheta\,\otheriota\,\otherkappa\,\otherlambda\,\othermu\,\othernu\,\otherxi\,\otherpi\,\otherrho\,\othersigma\,\othertau\,\otherupsilon\,\otherphi\,\otherchi\,\otherpsi\,\otheromega$
+
+$\Gamma$\,$\Delta$\,$\Theta$\,$\Lambda$\,$\Xi$\,$\Pi$\,$\Sigma$\,$\Upsilon$\,$\Phi$\,$\Psi$\,$\Omega$
+
+
+\smallskip
+\textit{Variantes :}
+$\othervarepsilon$\,$\othervartheta$\,$\othervarkappa$\,$\othervarpi$\,$\othervarrho$\,$\othervarsigma$\,$\othervarphi$
+
+
+
+Les commandes qui permettent d'obtenir ces symboles dépendent de 
+l'option choisie (\texttt{sloped} ou \texttt{upright}). Par exemple, 
+\begin{verbatim}
+   \[\alpha,\otheralpha,\Omega,\otherOmega\]
+\end{verbatim}donnera
+\[\alpha,\otheralpha,\Omega,\otherOmega\]
+avec l'option \texttt{sloped} et 
+\[\otheralpha,\alpha,\Omega,\otherOmega\]
+avec l'option \texttt{upright}.
+D'une façon générale, c'est donc le préfixe \verb=\other= qui permet 
+de passer à \emph{l'autre} grec.
+
+\smallskip
+
+\item L'alphabet calligraphique (commande \verb=\mathcal=)
+
+$\mathcal{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$
+
+\smallskip
+
+\item L'alphabet \emph{blackboard} (commande \verb=\mathbb=). Pas la 
+peine donc de charger \texttt{amssymb} pour l'obtenir, noter que le 1 
+et le k en font partie.
+
+$\mathbb{ABCDEFGHIJKLMNOPQRSTUVWXYZ1k}$
+\end{itemize}
+
+\subsubsection*{Commandes reprises du package \texttt{amssymb}}
+En plus de l'alphabet \emph{blackboard}, les commandes suivantes sont 
+directement disponibles dans \fourier{}.
+
+\begin{tabular}{lll}
+\verb=\leqslant= $\leqslant$&
+\verb=\geqslant= $\geqslant$&
+\verb=\blacktriangleleft= $\blacktriangleleft$\\
+\verb=\intercal= $\intercal$&
+\verb=\vDash= $\vDash$&
+\verb=\blacktriangleright= $\blacktriangleright$\\
+\verb=\nleqslant= $\nleqslant$&
+\verb=\ngeqslant= $\ngeqslant$&
+\verb=\nparallel= $\nparallel$\\
+\verb=\complement= $\complement$&
+\verb=\hslash= $\hslash$&
+\verb=\hbar= $\hbar$\\
+\verb=\nexists= $\nexists$&
+\verb=\notowns= $\notowns$&
+\verb=\varsubsetneq= $\varsubsetneq$\\
+\verb=\smallsetminus= $\smallsetminus$&
+\verb=\nvDash= $\nvDash$&
+
+\end{tabular}
+
+\subsubsection*{Commandes étendues par \fourier{}}
+Les commandes \verb=\widehat= et \verb=\widetilde= voient leur portée 
+étendue (comme par exemple dans \texttt{yhmath}).
+\[\widehat{x}\; \widehat{xx} \;\widehat{xxx} \;\widehat{xxxx} 
+\;\widehat{xxxxx} \;\widehat{xxxxxx} \;\widetilde{x}\; \widetilde{xx} 
+\;\widetilde{xxx} \;\widetilde{xxxx} \;\widetilde{xxxxx} 
+\;\widetilde{xxxxxx} \]
+\subsubsection*{Commandes spécifiques à \fourier{}}
+Les commandes suivantes sont des apports spécifiques de \fourier{}
+\begin{itemize}
+\item \verb=\parallelslant= et \verb=\nparallelslant= : 
+$\parallelslant$, $\nparallelslant$.
+\item \verb=\iint=, \verb=\iiint=,  
+\verb=\oiint=,\verb=\oiiint=,\verb=\slashint= : 
+$\iint,\iiint,\oiint,\oiiint,\slashint$
+\[\iint,\iiint,\oiint,\oiiint,\slashint\]
+\item \verb=\dblbrackleft=, \verb=\dblbrackright=, \verb=\VERT=
+\begin{displaymath}
+  \testdelim\dblbrackleft\dblbrackright
+  \qquad 
+  \testdelim\VERT\VERT
+  \end{displaymath}
+ \item \verb=\wideparen= et \verb=\widering= (comme dans 
+\texttt{yhmath}, mais notez que \verb=\widering= nécessite l'appel du package \texttt{amsmath}).
+ \[\wideparen{XXXXXXXXX}\quad \widering{(A\cup B)\cap(C\cup D)}\]
+\item Enfin la commande \verb=\widearc=
+\[\widearc{AMB}\]
+
+\end{itemize}
+\subsection{Utilisation des graisses commerciales}
+On dispose si l'on est en mesure d'activer les options 
+\texttt{expert}, \texttt{oldstyle} ou \texttt{fulloldstyle} des 
+commandes supplémentaires suivantes :
+\begin{itemize}
+\item  \verb=\textsb= \verb=\sbseries= pour le semi-gras ;
+\item \verb=\textblack= \verb=\blackseries= pour l'extra gras ;
+\item \verb=\texttitle= \verb=\titleshape= pour la fonte de titrage 
+(codage T1 incomplet) ;
+\item \verb=\oldstyle= pour passer aux chiffres bas de casse quand on 
+a activé l'option \texttt{expert} ;
+\item \verb=\lining= pour passer aux chiffres nomaux quand on a 
+activé l'option \texttt{oldstyle}.
+\end{itemize}
+\section{Exemples}
+\subsection*{Exemple \no 1}
+Nous nous intéressons ici à la théorie des fraises sucrées dans un 
+octopuce  $\Omega=\{\alpha,\beta,\gamma,\phi,\chi,\psi\}$. Nous 
+supposerons que les éléments de $\Omega$ sont nilpotents 
+additivement, c'est à dire que $\alpha+\alpha=0$, $\beta+\beta=0$, 
+\ldots{}, $\psi + \psi=0$. Cela peut également s'écrire 
+$\alpha=-\alpha$, $\beta=-\beta$, \ldots, $\psi=-\psi$.
+\par
+Soit maintenant un corps $\mathbf{K}$ et $\zeta\in\Omega$. Nous 
+dirons que $\mathbf{K}$ est $\zeta$-sucreur sur $\Omega$ si pour tout 
+$x\in \mathbf{K}$, $ \Psi(\zeta,x)$ appartient à l'orbite transmuée 
+de $\zeta$, dont nous rappelons qu'elle se note $ 
+\mathcal{O}_\zeta$.\par
+Nous allons pour terminer, rappeler sans démonstration le théorème 
+fondamental des octopuces à fraise sucrée. 
+\begin{thm}
+Si $\Omega$ est un octopuce à fraise sucrée et si $\mathbf{K}$ est 
+complet et $\zeta$-sucreur sur $\Omega$, alors on a pour toute mesure 
+distinguée $\mu$ sur $\mathbf{K}$
+\[\int\limits_{x\in\mathcal{O}_\zeta}\!\!\left(1+\frac{\ln x}{\cos 
+x}\right)\cdot \frac{x\, \mathrm{d}\mu}{\Psi(\zeta,x)}=0\qquad\qquad 
+[2\otherpi].\]
+\end{thm}
+\par
+De ce théorème découle immédiatement la transcendance de $\otherpi$. 
+\hfill $\thething$\hspace{1em}\null
+
+\subsection*{Exemple \no 2}
+La \emph{transformée de Fourier} d'une fonction $f\in 
+L^1(\mathbb{R}^n)$ est la fontion $\hat{f}$ définie par
+\begin{equation*}
+\hat{f}(t)=\int_{\mathbb{R}^n} 
+f_{e_{-t}}\,\mathrm{d}m_n\qquad(t\in\mathbb{R}^n).
+\end{equation*}
+Le terme \og transformation de Fourier \fg{} est souvent utilisé pour 
+désigner l'application qui à $f$ fait correspondre $\hat{f}$. Notons 
+que 
+\begin{equation*}
+\hat{f}(t)=(f\ast e_t)(0).
+\end{equation*}
+\par
+Si $\alpha$ est un multi-indice, alors
+\begin{equation*}
+D_\alpha=(i)^{-\lvert\alpha\rvert}D^\alpha={\left(\frac{1}{i}\frac{\partial}{\partial 
+x_1}\right)}^{\alpha_1}\cdots{\left(\frac{1}{i}\frac{\partial}{\partial 
+x_n}\right)}^{\alpha_n}\,.
+\end{equation*}
+L'utilisation de $D_\alpha$ au lieu de $D^\alpha$ simplifie un peu le 
+formalisme. Notons que
+\begin{equation*}
+D_\alpha e_t=t^\alpha e_t
+\end{equation*}
+où, comme précédemment, $t\alpha=t_1{\alpha_1}\cdots t_n{\alpha_n}$. 
+Si $P$ est un polynôme à $n$ variables, à coefficients complexes, 
+disons
+\begin{equation*}
+P(\xi)=\sum c_\alpha\xi^\alpha=\sum c_\alpha\xi_1^{\alpha_1}\cdots
+\xi_n^{\alpha_n}\,,
+\end{equation*}
+les opérateurs différentiels $P(D)$ et $P(-D)$ sont définis par
+\begin{equation*}
+P(D)=\sum c_\alpha D_\alpha\,,\qquad 
+P(-D)=\sum(-1)^{\lvert\alpha\rvert}c_\alpha D_\alpha\,.
+\end{equation*}
+il s'ensuit que
+\begin{equation*}
+P(D)e_t=P(t)e_t\qquad (t\in\mathbb{R}^n)\,.
+\end{equation*}
+
+\end{document}

@@ -58,6 +58,7 @@ Traduction             | Source                      | Avancée                |
 [fncychap-fr]          | [fncychap] v1.34            | :full_moon:            | 12              | Ajout d'infos dans le doc
 [fontsmpl-fr]          | [fontsmpl] v0.11            | :first_quarter_moon:   | 6               | Traduction préexistante ([FT-tools]).
 [fontspec-fr]          | [fontspec] v2.4e            | :new_moon:             | 9 / 124         | Auteur contacté et intéressé.
+[fourier-fr]           | [fourier] v1.4              | :new_moon:             | 0 / 8           | 
 [framed-fr]            | [framed] v0.96              | :new_moon:             | 0 / 3           | 
 [ftnright-fr]          | [ftnright] v1.1f            | :new_moon:             | 0 / 11          | Traduction préexistante ([FT-tools]).
 [geometry-fr]          | [geometry] v5.6             | :full_moon:            | 42              | Auteur contacté et intéressé.
@@ -222,6 +223,8 @@ Anglais                | Français                                       | Comme
 [fontsmpl-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/fontsmpl>
 [fontspec]:             <https://www.ctan.org/pkg/fontspec>
 [fontspec-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/fontspec>
+[fourier]:              <https://www.ctan.org/pkg/fourier>
+[fourier-fr]:          <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/fourier>
 [framed]:               <https://www.ctan.org/pkg/framed>
 [framed-fr]:            <https://github.com/LeSpib/TransLaTeX/tree/master/traductions/framed>
 [ftnright]:             <https://www.ctan.org/pkg/ftnright>
