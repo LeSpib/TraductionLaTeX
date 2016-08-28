@@ -476,150 +476,150 @@
 % la version 1.00 où des espaces entre ces commandes générait un message 
 % d'erreur vraiment déroutant.}.
 %
-% \tradini
-% In what amounts to quite a big change from former releases, within
-% the macro code I now define three classes of rules. (But we don't need these
-% definitions within ordinary use, so I haven't even mentioned them above.)
-% A class 1 rule (otherwise called a `normal' rule) is any of
-% =\toprule=, =\midrule=, =\bottomrule=, or =\cmidrule=. The class 2
-% rules are =\specialrule= and =\addlinespace=. Finally, a class 0 rule
-% is none of the preceeding --- or in other words, not a rule at
-% all.\footnote{Except that \texttt{\textbackslash hline} and
-% \texttt{\textbackslash cline} are class 0. Still, there
-%   is no reason to lose sleep over this, since one would not want to mix
-%   the two rule-drawing systems.} Note that =\addlinespace= counts as a
-% class 2 rule, not as class 0 text.
+% Grande évolution par rapport aux versions précédentes, je définis maintenant
+% dans le code des commandes trois types de filets (mais nous n'avons pas
+% besoin de ces définitions pour l'utilisation ordinaire, raison pour laquelle
+% je ne les ai pas mentionnées avant). Un filet de type 1 (aussi appelé filet 
+% \og ordinaire \fg) est dans la liste suivante : =\toprule=, =\midrule=,
+% =\bottomrule=, ou =\cmidrule=. Un filet de type 2 est =\specialrule= ou
+% =\addlinespace=. Enfin, un filet de type 0 n'est aucun des précédents ---
+% en d'autres termes, pas un filet du tout\footnote{À ceci près que
+% \texttt{\textbackslash hline} et \texttt{\textbackslash cline} sont de type
+% 0. Toutefois, il n'y a aucune raison de passer ses nuits là-dessus dans la
+% mesure où personne ne souhaite mélanger les deux systèmes de filet.}. Notez
+% que =\addlinespace= compte comme un filet de type 2, pas comme un texte de
+% type 0.
 %
-% In the following, we first describe each command in `normal use', meaning
-% that the rule is being used between two lines of text (or more
-% technically, is preceded and followed by a class 0 rule). After that,
-% we will look at the exceptions.
+% Dans la suite, nous décrivons d'abord chaque commande en \og utilisation
+% normale \fg, ce qui signifie que le filet est placé entre deux lignes de
+% texte (ou, plus techniquement, s'il est précédé et suivi de filets de type
+% 0). Après cela, nous étudierons les exceptions. 
 % \begin{quote}
-%   "\toprule["\meta{wd}"]"
+%   "\toprule["\meta{dimension}"]"
 % \end{quote}
-% A rule of width \meta{wd} (default =\heavyrulewidth=) with
-% =\abovetopsep= space above and
-% =\belowrulesep= extra vertical space inserted below it. By default,
-% =\abovetopsep= is zero, which seems sensible for a rule designed to
-% go at the top. However, if your
-% tables have captions, it can make sense to use =\abovetopsep= to
-% insert a reasonable amount of space between caption and table,
-% rather than remember to use a =\vspace{}= command in the float.
+% Ceci génère un filet d'épaisseur \meta{dimension} (par défaut =\heavyrulewidth=)
+% avec un espace =\abovetopsep= au-dessus et un espace =\belowrulesep=
+% supplémentaire au-dessous.
+% Par défaut, =\abovetopsep= est nul, ce qui semble logique pour un filet
+% devant aller en haut. Toutefois, si vos tables ont des légendes, cela peut
+% avoir du sens de se servir de =\abovetopsep= pour insérer une quantité
+% raisonnable d'espace entre la légende et la table, plutôt que d'avoir à
+% se rappeler d'utiliser la commande =\vspace{}= dans le flottant.
 % \begin{quote}
-%   "\midrule["\meta{wd}"]"
+%   "\midrule["\meta{dimension}"]"
 % \end{quote}
-% A \meta{wd} (default =\lightrulewidth=) rule with
-% =\aboverulesep= space above it and
-% with =\belowrulesep= space below it.
+% Ceci génère un filet d'épaisseur \meta{dimension} (par défaut
+% =\lightrulewidth=) avec un espace  =\aboverulesep= au-dessus et un espace
+%  =\belowrulesep= au-dessous.
 % \begin{quote}
-%   "\bottomrule["\meta{wd}"]"
+%   "\bottomrule["\meta{dimension}"]"
 % \end{quote}
-% A \meta{wd} (default =\heavyrulewidth=) rule with =\aboverulesep=
-% space above it and with =\belowbottomsep= space below it. By default
-% =\belowbottomsep= is zero\footnote{This is a change from Version 1.00,
-% where there was always a \texttt{\textbackslash belowrulesep}}.
-% There is a frequent and legitimate reason
-% you might want space below a bottom rule: namely, when there's a table
-% footnote.\footnote{But don't use footnotes, Donald.}
-% If you don't override the default you could use
-% =\bottomrule \addlinespace[\belowrulesep]=
-% or you could put a suitably sized strut
-% into the footnote text.\footnote{I don't like either of these. Sort it out in
-% Version 1.618?} But the default has to be zero, so that it behaves
-% sensibly in a =longtable= footer.
+% Ceci génère un filet d'épaisseur \meta{dimension} (par défaut
+% =\heavyrulewidth=) avec un espace =\abovetopsep= au-dessus et un espace
+% =\belowbottomsep= supplémentaire au-dessous. Par défaut, =\belowbottomsep=
+% vaut zéro\footnote{Il
+% s'agit d'un changement depuis la version 1.00 où il avait toujours un 
+% \texttt{\textbackslash belowrulesep}}.
+% Il existe une raison fréquente et légitie à la présence d'un espace après un
+% filet de bas de table : une note de bas de tableau\footnote{Mais ne les utilise pas, Donald.}.
+% Si vous n'écrasez pas la valeur par défaut, vous pouvez utiliser 
+% =\bottomrule \addlinespace[\belowrulesep]= ou vous pouvez placer un
+% \trad{strut} de taille adapté dans le texte de votre note de base de table\footnote{Je n'aime aucune de ces deux solutions. Point à régler en version
+% 1.618 ?}. Mais la valeur par défaut doit être zéro afin que le filet se
+% comporte correctement dans le cas d'un pied de table =longtable=.
 % \begin{quote}
-%   "\cmidrule["\meta{wd}"]("\meta{trim}"){"$a$--$b$"}"
+%   "\cmidrule["\meta{dimension}"]("\meta{rognage}"){"$a$--$b$"}"
 % \end{quote}
-% A \meta{wd} (default =\cmidrulewidth=) rule with
-% =\aboverulesep= space above it (unless following another
-% =\cmidrule=, in which case it is on the same vertical alignment; or
-% if following =\morecmidrules=, separated from a previous =\cmidrule=
-% by =\cmidrulesep=). A =\cmidrule= has
-% =\belowrulesep= below it (unless followed by another
-% =\cmidrule=, in which case the following rule is on the same
-% vertical alignment; or if followed by =\morecmdirules=, when there
-% will be
-% =\cmidrulesep= below it).
+% Ceci génère un filet d'épaisseur \meta{dimension} (par défaut
+% =\cmidrulewidth=) avec un espace =\abovetopsep= au-dessus (à moins qu'il
+% ne suive un autre =\cmidrule= auquel cas il est dans le même alignement
+% vertical; ou s'il suit un =\morecmidrules=, il est séparé du précédent
+% =cmidrule= par =\cmidrulesep=). Un =\cmidrule= a un espace =\belowrulesep=
+% sous lui (à moins qu'il ne soit suivi par un autre =\cmidrule= auquel cas
+% il est dans le même alignement ; ou s'il est suivi d'un =\morecmdirules=, 
+% il est séparé du suivant par =\cmidrulesep=).
 %
-% The =\cmidrule= spans columns $a$ to $b$ as specified in the mandatory
-% argument. The optional argument \meta{trim}, which goes in parentheses
-% if at all, can contain any sequence of the tokens =r=, =l= and
-% ={=\meta{wd}=}=, with the latter setting the kerning to be applied to
-% right or left sides as specified by the immediately preceding token.
-% (There's currently no error checking done here, so be careful to get
-% the syntax right.)
+% Conformément à l'argument obligatoire, le filet =\cmidrule= s'étend de la
+% colonne $a$ à la colonne $b$. L'argument optionnel \meta{rognage}, 
+% placé entre parenthèses s'il est utilisé, peut contenir toute séquence 
+% composées des unités lexicales =r=, =l= et ={=\meta{largeur}=}=, la dernière
+% fixant le crénage à appliquer à droite ou à gauche, selon l'unité lexicale
+% qui précède (il n'y a actuellement aucune vérification d'erreur effectuée,
+% aussi pensez bien écrire cet argument).
 % \begin{quote}
 %   "\morecmidrules"
 % \end{quote}
-% Instructs \LaTeX\ to begin a new row of =\cmidrules=,
-% separated from the last by =\cmidrulesep=. Has no meaning
-% in any other context.
+% Cette commande demande à \LaTeX{} de commencer une nouvelle rangée de
+% =\cmidrules=, en la séparant de la dernière par un espace de =\cmidrulesep=.
+% Elle n'a pas de signification dans tout autre contexte.
 % \begin{quote}
-%   "\specialrule{"\meta{wd}"}{"\meta{abovespace}"}{"\meta{belowspace}"}"
+%   "\specialrule{"\meta{dimension}"}{"\meta{espace dessus}"}{"\meta{espace dessous}"}"
 % \end{quote}
-% A \meta{wd} rule (note: here this is a mandatory argument) with
-% \meta{abovespace} above it and \meta{belowspace} below it.
+% Cette commande génère un filet d'épaisseur \meta{dimension} (notez que 
+% l'argument est ici obligatoire) avec un espace \meta{espace dessus} au-dessus
+% et un espace \meta{espace dessous} au-dessous.
 % \begin{quote}
-%   "\addlinespace["\meta{wd}"]"
+%   "\addlinespace["\meta{dimension}"]"
 % \end{quote}
-% Technically this has the same effect as
-% =\specialrule{0pt}{0pt}{=\meta{wd}=}=, i.e. a zero-width rule with no
-% space above and with \meta{wd} (default =\defaultaddspace=) space
-% below. This command was primarily designed to add space between rows
-% in the body of the table, but it may also be used to specify an exact
-% amount of space above or below a class 1 rule.
+% Techniquement, ceci a le même effet que 
+% =\specialrule{0pt}{0pt}{=\meta{dimension}=}=, autrement dit un filet 
+% d'épaisseur nulle sans espace au-dessus et avec un espace de hauteur
+% \meta{dimension} (par défaut =\defaultaddspace=) au-dessous. Cette commande
+% a été à l'origine faite pour ajouter de l'espace entre deux rangées dans le
+% corps d'une table, mais elle peut être aussi utilisée pour placer un 
+% espace dimensionné exactement au-dessus ou au-dessous d'un filet de type 1.
 %
 % \vspace{1em}
-% Now we come to the exceptions to the above. We have already seen in
-% the definitions that the type 2 rules are preceded and followed by
-% exactly the amount of space specified by the arguments. That is, a
-% type 2 rule suppresses the space that would normally be generated by a
-% previous type 1 rule (e.g. =\belowrulesep= after a =\toprule=) and
-% replaces it by the argument of the type 2 rule. Similarly, in the
-% combination \{type 2 rule\}\{type 1 rule\}, the ordinary space above
-% the type 1 rule (e.g. =\aboverulesep=) is suppressed. But in the
-% combination \{type 2 rule\}\{type 2 rule\}, no space is suppressed:
-% the rules will be separated by both the first rule's
-% ={=\meta{belowspace}=}= and the second rule's ={=\meta{abovespace}=}=
-% arguments. Last but not least, the combination \{type 1 rule\}\{type 1
-% rule\} will always give rules separated by =\doublerulesep=,
-% suppressing all normal space generated between the rules (but
-% retaining normal space above the first and below the second).
+% Nous en venons maintenant aux exceptions à ce qui a été indiqué ci-dessus.
+% Nous avons déjà vu que dans les définitions que les filets de type 2 sont 
+% précédées et suivies par la quantité exacte d'espace indiquée dans les 
+% arguments. De fait, un filet de type 2 supprime l'espace normalement généré
+% un filet de type 1 qui le précède (par exemple un =\belowrulesep= après un 
+% =\toprule=) et le remplace par l'argument du filet de type 2. De façon
+% similaire, dans la combinaison \{filet de type 2\}\{filet de type 1\},
+% l'espace ordinaire au-dessus du filet de type 1 (par exemple =\aboverulesep=)
+% est supprimé. Mais, dans la combinaison 
+% \{filet de type 2\}\{filet de type 2\}, aucun espace n'est supprimé : les
+% filets seront séparés par l'espace au-dessous du premier filet
+% (issu de l'argument ={=\meta{espace dessous}=}=) et par l'espace au-dessus du
+% second filet (issue de l'argument ={=\meta{espace dessus}=}=). Enfin, la 
+% combinaison \{filet de type 1\}\{filet de type 1\} donnera toujours des filets
+% séparés par un espace =\doublerulesep=, supprimant tous les autres espaces
+% générés entre les deux filets (tout en conservant l'espace au-dessus du
+% premier filet et l'espace au-dessous du second filet).
 %
-% As an exception to this last exception, `type 1 rule' excludes
-% =\cmidrule=. Such rules combine with other =\cmidrule=s and
-% =\morecmidrules= in normal use as described above. I don't know and
-% I don't care
-% care what the combination =\toprule\cmidrule{1-2}\midrule= would
-% produce. I can see no excuse for such usage.
+% Exception à cette dernière exception, le \og filet de type 1 \fg exclut ici
+% =\cmidrule=. Dans l'utilisation classique, ce filet se combine avec d'autres
+% filets =\cmidrule= et =\morecmidrules=, comme décrit ci-dessus. Je ne sais pas
+% et je veux pas savoir ce que la combinaison =\toprule\cmidrule{1-2}\midrule= 
+% peut produire. Je ne vois aucune justification à un tel usage.
 %
 %\vspace{1em}
-% The default dimensions are defined at the beginning of the macro
-% description section (Section \ref{code}). The user can change
-% these defaults in the preamble, or outside a
-% tabular environment, by simply
-% inserting a command in exactly the same format as in Section \ref{code}; the
-% redefinition will stay in effect for the rest of the document
-% or until redefined again. \emph{Inside a table} you would have to make the
-% assignment globally in a =noalign= group:
-% e.g. \verb|\noalign\{\global\abovetopsep=1em\toprule}|. I hope
-% you never have to do that.
+% Les dimensions par défaut sont définies au début de la section décrivant les
+% commandes (section \ref{code}). L'utilisateur peut les changer dans le
+% préambule ou à l'extérieur de l'environnement =tabular= en insérant une 
+% commande reprenant exactement le même formalisme que celui donné en section
+% \ref{code}; la redéfinition restera en effet pour tout le reste du document
+% ou jusqu'à une nouvelle redéfinition. \emph{Au sein d'une table} vous auriez
+% à faire une définition globale dans un groupe =noalign=, autrement dit :
+% \verb|\noalign\{\global\abovetopsep=1em\toprule}|. J'espère que vous n'aurez
+% jamais à faire cela.
 %
-% \section{Acknowledgments}
-% Hugely indebted of course to DEK and Lamport; the optional
-% argument and =\cmidrule=
-% stuff especially was stolen from =latex.sty=.
-% The documentation driver stuff is stolen from the
-% tools package description =dcolumn.dtx= by David Carlisle.
+% \section{Remerciements}
+% Je suis très largement redevable bien entendu à Donald Knuth et Leslie
+% Lamport; l'argument optionnel et autres éléments de =\cmidrule= ont été 
+% subtilisés dans =latex.sty=. Les éléments associés au pilote de documentation
+% ont été également pris de la description de l'extension =dcolumn.dtx= de
+% David Carlisle.
 %
-% For beta testing and encouragement ...
+% Remerciements également pour les tests avancés et les encouragements\dots
 %
 % \StopEventually
 %
 % \section{The code\label{code}}
 %
-%    The current version is defined at the top of the file looking
-%    something like this
+% La version actuelle du fichier est définie au début du fichier sous la forme
+% suivante :
 %    \begin{macrocode}
 %<*package>
 %\NeedsTeXFormat{LaTeX2e}
@@ -627,7 +627,7 @@
 %        [\filedate\space version\fileversion]
 %    \end{macrocode}
 %
-% First we set up the new dimensions described above:
+% Tout d'abord nous définissons les nouvelles dimensions décrites plus haut :
 %    \begin{macrocode}
 \newdimen\heavyrulewidth
 \newdimen\lightrulewidth
@@ -650,7 +650,8 @@
 \cmidrulekern=.5em
 \defaultaddspace=.5em
 %    \end{macrocode}
-% And some internal counters of no interest to the end user:
+% De même, des compteurs internes (sans intérêt pour l'utilisateur final) sont
+% définis :
 % \changes{v1.618}{28/03/2003}{retrait de la commande \cs{@cmidrulewidth}}
 %    \begin{macrocode}
 \newcount\@cmidla
@@ -662,8 +663,9 @@
 \@lastruleclass=0
 \newdimen\@thisrulewidth
 %    \end{macrocode}
-% which will be described as needed below.
+% Ils sont décrits dans la suite.
 %
+% \tradini
 % \begin{macro}{\futurenonspacelet}
 % Next we define a very useful macro (more-or-less straight from the
 % \TeX book's Dirty Tricks chapter; documented there). Use

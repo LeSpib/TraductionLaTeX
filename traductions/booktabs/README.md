@@ -35,7 +35,7 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 
 Section                       | Avancée                | Pages traduites | Commentaires 
 ----------------------------- | :--------------------: | :-------------: | -------------------------
-En-tête du document tex       | :new_moon:             |                 |
+Entête du document tex        | :new_moon:             |                 |
 Page d'avant-propos           | :first_quarter_moon:   | 1               | 
 1. Introduction               | :first_quarter_moon:   | 1               |
 2. Mise en page de...         | :first_quarter_moon:   | 1               | 
@@ -43,8 +43,8 @@ Page d'avant-propos           | :first_quarter_moon:   | 1               |
 4. Abus des nouvelles...      | :first_quarter_moon:   | 1               |
 5. Booktabs et l'extension... | :first_quarter_moon:   | 1               |
 6. Booktabs et l'extension... | :first_quarter_moon:   | 0               |
-7. Profil technique des...    | :new_moon:             | 0 / 2           | En cours.
-8. Remerciements              | :new_moon:             | 0 / 0           |
+7. Profil technique des...    | :first_quarter_moon:   | 2               | 
+8. Remerciements              | :first_quarter_moon:   | 0               |
 9. Le code                    | :new_moon:             | 0 / 7           |
 Historique                    | :first_quarter_moon:   | 1               |
 Index                         | :full_moon:            | 1               |
