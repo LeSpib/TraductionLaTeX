@@ -33,7 +33,7 @@
 %
 % \title{L'extension \textsf{ifpdf}\thanks{Ce fichier a pour numéro de
 %        version \fileversion\ et a été mis à jour le \filedatefr. Son 
-%        titre original est \og \emph{The \textsf{delarray} package} \fg.
+%        titre original est \og \emph{The \textsf{ifpdf} package} \fg.
 %        Merci de soumettre les anomalies rencontrées à l'adresse 
 %        https://github.com/ho-tex/oberdiek/issues.}}
 % \author{LaTeX3 project}
@@ -44,11 +44,11 @@
 % \section{Introduction}
 % 
 % Cette extension est une nouvelle implémentation de l'extension \textsf{ifpdf}
-% de Heiko Oberdiek, intégrant une structure simplifiée et une mise à jour avec
-% la version actuelle de Lua\TeX.
+% de Heiko Oberdiek, intégrant une structure simplifiée et une mise à jour pour
+% fonctionner avec la version actuelle de Lua\TeX.
 %
-% L'extension définit un nouveau booléen, \verb|\ifpdf| qui est vrai pour
-% pdf\TeX\ et Lua\TeX\ en mode PDF, et qui est faux sinon.
+% L'extension définit un nouveau booléen, \verb|\ifpdf|, qui est vrai pour
+% pdf\TeX\ et pour Lua\TeX\ en mode PDF et qui est faux sinon.
 %
 % \section{Implémentation}
 %
@@ -56,8 +56,10 @@
 %<*package>
 %    \end{macrocode}
 %
-% Si \verb|\ifpdf| n'a pas été défini, il l'est alors, en faisant attention à
-% ce qu'il soit \trad{outer} en plain \TeX.
+% Si \verb|\ifpdf| n'a pas été définie, elle l'est alors, en faisant attention
+% à ce qu'elle soit externe en plain \TeX\footnote{N.D.T. : la traduction
+% pourrait être fausse, le texte original étant \og \emph{taking care that it
+% is outer in plain \TeX} \fg.}
 %    \begin{macrocode}
 \expandafter\ifx\csname ifpdf\endcsname\relax
  \csname newif\expandafter\endcsname\csname ifpdf\endcsname
@@ -75,10 +77,10 @@
  \fi
 \fi
 %    \end{macrocode}
-% Sinon, le booléen est mis à faux à moins que pdfoutput (outputmode) ne soit
-% plus grand que zéro. 
+% Sinon, le booléen vaut faux à moins que \verb|\pdfoutput|(\verb|\outputmode|)
+% ne soit plus grand que zéro. 
 % Pour Lua\TeX, le test est fait en Lua dans la mesure où les primitives de 
-% \TeX n'ont peut être pas été activées et que le nom de la primitive peut
+% \TeX{} peuvent ne pas être activées et que le nom de la primitive peut
 % être \verb|\pdfoutput| ou \verb|\outputmode| selon le numéro de version de
 % Lua\TeX.
 %    \begin{macrocode}

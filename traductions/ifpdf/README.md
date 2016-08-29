@@ -28,11 +28,10 @@ L'évolution est précisée par un code visuel identique à celui de la page pri
 Section                       | Avancée                | Pages traduites | Commentaires 
 ----------------------------- | :--------------------: | :-------------: | -------------------------
 Entête du document tex        | :new_moon:             |                 |
-Page d'avant-propos           | :first_quarter_moon:   | 1               | 
-1. Introduction               | :new_moon:             | 0 / 0           |
-2. Implémentation             | :new_moon:             | 0 / 2           |
+Page d'avant-propos           | :waxing_gibbous_moon:  | 1               | 
+1. Introduction               | :waxing_gibbous_moon:  | 0               |
+2. Implémentation             | :waxing_gibbous_moon:  | 1               |
 
 ### Glossaire pour la traduction
 
-Anglais                | Français                                       | Commentaires 
----------------------- | ---------------------------------------------- | -------------------------------
+Il n'y a pas eu besoin d'un glossaire pour cette traduction.
