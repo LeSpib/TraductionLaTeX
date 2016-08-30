@@ -28,13 +28,14 @@
 %<*driver>
 \documentclass{ltxdoc}
 \usepackage{boxedminipage2e}[2015/03/09]
-\usepackage[inputenc,fontenc,babel]{translatex-fr}
+\usepackage[ltxdoc,inputenc,fontenc,babel]{translatex-fr}
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
 \GetFileInfo{boxedminipage2e.dtx}
 \begin{document}
   \DocInput{boxedminipage2e-fr.dtx}
+  \tradfin
   \PrintChanges
   \PrintIndex
 \end{document}
@@ -60,7 +61,7 @@
 %   Right brace   \}     Tilde         \~}
 %
 %
-% \changes{v1.0}{2015/03/09}{Initial version}
+% \changes{v1.0}{2015/03/09}{première version}
 %
 % \GetFileInfo{boxedminipage2e.dtx}
 %
@@ -83,17 +84,15 @@
 %
 % \section{Introduction}
 %
-% \tradini
-% This is a very simple package.  It defines a single environment,
-% |boxedminipage| that is essentially equivalent to
-% |\fbox{\begin{minipage}|\dots |\end{minipage}}|.  The difference is
-% that the width of a |boxedminipage| includes the width of the frame,
-% while the width of the |\fbox|~$+$ |minipage| combination is wider
-% than the width specified to the |minipage|.
+% Cette extension est très simple. Elle définit un unique environnement 
+% |boxedminipage| qui est quasiment équivalent à 
+% |\fbox{\begin{minipage}|\dots |\end{minipage}}|. La différence réside dans le
+% fait que la largeur de |boxedminipage| inclut l'épaisseur de son cadre tandis
+% que la largeur de la combinaison |\fbox|~$+$ |minipage| dépasse celle 
+% spécifiée pour |minipage|.
 %
-% The following example exaggerates the effect by setting
-% |\fboxrule=8pt| and |\fboxsep=4pt| and defining |minipage|s of width
-% |\linewidth|:
+% L'exemple suivant exagère l'effet en fixant |\fboxrule=8pt| et |\fboxsep=4pt|
+% et en définissant des |minipage| de largeur |\linewidth|, la largeur de la % ligne :
 %
 % \begin{center}
 %   \setlength{\fboxrule}{8pt}
@@ -107,9 +106,10 @@
 %
 %     \noindent\fbox{%
 %     \begin{minipage}[t]{\linewidth}
-%       This box was created by putting a |minipage| within an
-%       \cs{fbox}.  Notice how the frame is aligned with the left margin
-%       of the surrounding text but juts out into the right margin.
+%       Cette boîte a été créée en plaçant un environnement |minipage| dans 
+%       une \cs{fbox}. Notez comment le cadre est aligné avec la marge de 
+%       gauche du texte tout autour mais aussi comment il déborde par rapport
+%       à la marge droite.
 %     \end{minipage}}
 %
 %     Suspendisse pulvinar vel elit at dapibus. Interdum et malesuada
@@ -119,9 +119,9 @@
 %
 %     \noindent
 %     \begin{boxedminipage}[t]{\linewidth}
-%       This box was created with the |boxedminipage| environment.
-%       Notice how the frame is aligned properly with both margins of
-%       the surrounding text.
+%       Cette boîte a été créée avec l'environnement |boxedminipage|. Notez
+%       que le cadre est bien aligné avec les marges gauche et droite du 
+%       texte l'entourant. 
 %     \end{boxedminipage}
 %
 %     Duis est neque, aliquet at augue a, auctor condimentum orci. Donec
@@ -130,22 +130,22 @@
 %   \end{minipage}
 % \end{center}
 %
-% There exists a package called \pkgname{boxedminipage} that also
-% defines a |boxedminipage| environment.  However, the
-% \pkgname{boxedminipage} package, last updated in~1992, lacks support
-% for the \LaTeXe\ |minipage|'s \meta{height} and \meta{inner-pos}
-% arguments.  \pkgname{boxedminipage2e} is an attempt to augment
-% \pkgname{boxedminipage} with support for |minipage|'s complete
-% functionality.  That said, \pkgname{boxedminipage2e} is a complete
-% rewrite; the two packages have no code in common.
+% Il existe une extension appelée \pkgname{boxedminipage} qui définit également
+% un environnement |boxedminipage|. Cependant, l'extension
+% \pkgname{boxedminipage}, mise à jour en~1992 pour la dernière fois, n'intègre 
+% pas les arguments \meta{hauteur} et \meta{position-interne} de l'environnement 
+% |minipage| de \LaTeXe. L'extension \pkgname{boxedminipage2e} est une tentative
+% pour rendre compatible \pkgname{boxedminipage} avec les fonctionnalités
+% intégrales de |minipage|. Ceci dit, \pkgname{boxedminipage2e} constitue une 
+% réécriture complète et les deux extensions n'ont ainsi pas de code en commun.
 %
 %
-% \section{Usage}
+% \section{Utilisation}
 %
 % \DescribeEnv{boxedminipage}
-% The \pkgname{boxedminipage2e} package defines a single environment,
-% |boxedminipage|.  It takes the same parameters as \LaTeXe's |minipage|
-% environment:
+% L'extension \pkgname{boxedminipage2e} définit un unique environnement 
+% |boxedminipage|. Il utilise les mêmes paramèrtes que l'environnement
+% |minipage| de \LaTeXe{} : 
 %
 % \bigskip
 % \DeleteShortVerb{\|}
@@ -153,21 +153,22 @@
 % \begin{tabular}{|l|}
 %   \hline
 %     \verb|\begin{boxedminipage}|
-%     \oarg{pos} \oarg{height} \oarg{inner-pos} \marg{width} \\
-%       \quad\meta{text} \\
+%     \oarg{pos}\oarg{hauteur}\oarg{position-interne}\marg{largeur} \\
+%       \quad\meta{texte} \\
 %     \verb|\end{boxedminipage}| \\
 %   \hline
 % \end{tabular}
 % \MakeShortVerb{\|}
 % \bigskip
 %
-% The semantic difference is that the values specified by the \meta{height}
-% and \meta{width} arguments are reduced to accommodate the space needed
-% by the surrounding frame.
+% La différence sémantique est que les valeurs indiquées dans les arguments
+% \meta{hauteur} et \meta{largeur} sont diminuées pour s'adapter à l'espace
+% nécessaire pour le cadre.
 %
 %
-% \section{Implementation}
+% \section{Implémentation}
 %
+% \tradini
 % \begin{macro}{\bmp@box}
 % The contents of the |minipage| are collected into |\bmp@box|.
 %    \begin{macrocode}

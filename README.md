@@ -36,7 +36,7 @@ Traduction             | Source                      | Avancée                |
 [babel-fr]             | [babel] v3.9r               | :new_moon:             | 0 / 124         | 
 [bm-fr]                | [bm] v1.2b                  | :new_moon:             | 0 / 20          | 
 [booktabs-fr]          | [booktabs] 1.618033         | :waxing_crescent_moon: | 11 / 18         | Traduction préexistante ([FT-tools]).
-[boxedminipage2e-fr]   | [boxedminipage2e] v1.0      | :new_moon:             | 0 / 4           | 
+[boxedminipage2e-fr]   | [boxedminipage2e] v1.0      | :first_quarter_moon:   | 2 / 4           | 
 [calc-fr]              | [calc] v4.3                 | :new_moon:             | 0 / 18          | Traduction préexistante ([FT-tools]).
 [caption-fr]           | [caption] v3.3-144          | :new_moon:             | 0 / 57          | 
 [cleveref-fr]          | [cleveref] v0.19            | :new_moon:             | 0 / 31          |
