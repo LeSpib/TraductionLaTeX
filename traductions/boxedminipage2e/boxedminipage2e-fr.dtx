@@ -35,7 +35,6 @@
 \GetFileInfo{boxedminipage2e.dtx}
 \begin{document}
   \DocInput{boxedminipage2e-fr.dtx}
-  \tradfin
   \PrintChanges
   \PrintIndex
 \end{document}
@@ -168,9 +167,9 @@
 %
 % \section{Implémentation}
 %
-% \tradini
+
 % \begin{macro}{\bmp@box}
-% The contents of the |minipage| are collected into |\bmp@box|.
+% Le contenu de l'environnement |minipage| est récupérée dans |\bmp@box|.
 %    \begin{macrocode}
 \newsavebox{\bmp@box}
 %    \end{macrocode}
@@ -178,8 +177,8 @@
 %
 % \begin{macro}{\bmp@width}
 % \begin{macro}{\bmp@height}
-% The adjusted width and height of the |minipage| are stored in
-% |\bmp@width| and |\bmp@height|, respectively.
+% La largeur et la hauteur de l'environnement |minipage|, toutes deux ajustées,
+% sont stockées dans |\bmp@width| et |\bmp@height|, respectivement.
 %    \begin{macrocode}
 \newlength{\bmp@width}
 \newlength{\bmp@height}
@@ -188,21 +187,22 @@
 % \end{macro}
 %
 % \begin{macro}{\bmp@relax}
-% We determine if the |minipage|'s \meta{height} argument contains only
-% |\relax| by comparing it to |\bmp@relax|.
+% Nous déterminons si l'argument \meta{hauteur} de |minipage| contient seulement
+% |\relax| en le comparant avec |\bmp@relax|. 
 %    \begin{macrocode}
 \def\bmp@relax{\relax}
 %    \end{macrocode}
 % \end{macro}
 %
 % \begin{environment}{boxedminipage}
-% The |boxedminipage| environment is the only environment exposed by the
-% \pkgname{boxedminipage2e} package.  It takes the same parameters as
-% \LaTeXe's ordinary |minipage| environment:\par
+% L'environnement |boxedminipage| est l'unique environnement mis à disposition
+% par l'extension \pkgname{boxedminipage2e}. Il utilise les mêmes paramètres
+% que l'environnement classique |minipage| de \LaTeXe{} :\par
 % \smallskip
 % \begin{tabular}{lcccc}
-%   \emph{Arguments}: & \oarg{pos} & \oarg{height} & \oarg{inner-pos} & \marg{width} \\
-%   \emph{Default values}: & |c| & |\relax| & |s| & --- \\
+%   \emph{Arguments}: & \oarg{pos} & \oarg{hauteur} & \oarg{position-interne} 
+%   & \marg{largeur} \\
+%   \emph{Valeurs par défaut}: & |c| & |\relax| & |s| & --- \\
 % \end{tabular}
 %    \begin{macrocode}
 \newcommand{\boxedminipage}[1][c]{%
@@ -212,9 +212,10 @@
 % \end{environment}
 %
 % \begin{macro}{\bminipage@i}
-% The top-level |boxedminipage| environment invokes |\bminipage@i| with
-% the \meta{pos} and \meta{height} arguments.  |\bminipage@i| checks for
-% an \meta{inner-pos} argument and provides ``|s|'' if absent.
+% L'environnement de haut niveau |boxedminipage| appelle |\bminipage@i| avec
+% les arguments \meta{pos} et \meta{hauteur} . La commande |\bminipage@i|
+% vérifie la présence d'un argument \meta{position-interne} et fournit la valeur
+% \og |s| \fg s'il manque.  
 %    \begin{macrocode}
 \def\bminipage@i[#1][#2]{%
   \@ifnextchar[{\bminipage@ii[#1][#2]}{\bminipage@ii[#1][#2][s]}%
@@ -223,12 +224,12 @@
 % \end{macro}
 %
 % \begin{macro}{\bminipage@ii}
-% The |\bminipage@ii| macro is passed all four of |boxedminipage|'s
-% arguments.  It subtracts two |\fboxrule| and two |\fboxsep| lengths
-% from each of the \meta{height}~(|#2|) and \meta{width}~(|#4|)
-% arguments to make room for the lines and padding that |\fbox|
-% introduces.  |\bminipage@ii| then begins a |minipage| with the
-% appropriate parameters and prepares to store it in box |\bmp@box|.
+% La commande |\bminipage@ii| reçoit l'ensemble des quatres arguments de 
+% |boxedminipage|. Elle soustrait deux |\fboxrule| et deux |\fboxsep| 
+% respectivement aux longueurs \meta{hauteur}~(|#2|) et \meta{largeur}~(|#4|)
+% pour faire de la place aux filets et marges qu'introduit |\fbox|.
+% |\bminipage@ii| commence alors à constituer un environnement |minipage| avec
+% les paramètres appropriés et le stocke dans la boîte |\bmp@box|. 
 %    \begin{macrocode}
 \def\bminipage@ii[#1][#2][#3]#4{%
   \setlength{\bmp@width}{#4}%
@@ -249,8 +250,9 @@
 % \end{macro}
 %
 % \begin{macro}{\endboxedminipage}
-% When the document invokes |\end{boxedminipage}| we typeset the
-% |minipage| we just created within an |\fbox|.
+% Quand le document indique |\end{boxedminipage}| nous composons 
+% l'environnement |minipage| que nous avons tout juste constitué dans une 
+% |\fbox|.
 %    \begin{macrocode}
 \def\endboxedminipage{%
     \end{minipage}%
