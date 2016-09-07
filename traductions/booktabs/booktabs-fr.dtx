@@ -665,16 +665,16 @@
 %    \end{macrocode}
 % Ils sont décrits dans la suite.
 %
-% \tradini
 % \begin{macro}{\futurenonspacelet}
-% Next we define a very useful macro (more-or-less straight from the
-% \TeX book's Dirty Tricks chapter; documented there). Use
-% =\futurenonspacelet= instead of =\futurelet= when looking for the next
-% (non-space) token after a macro that has an argument. (After a macro
-% without an argument, space is ignored anyway, so =\futurenonspacelet=
-% wouldn't be needed.) This hack allows users to type white
-% space between successive rule commands (which did not work in Version
-% 1.00).
+% Nous définissons ensuite une commande très utile (plus ou moins tirée
+% du chapitre \og Diaboliques astuces \fg du \TeX book et documentée là).
+% La commande =\futurenonspacelet= est utilisée à la place de =\futurelet=
+% lors de la recherche de l'unité lexicale (différente d'une espace) placée
+% après une commande qui a un argument (après une commande sans argument,
+% l'espace est de toute façon ignorée et =\futurenonspacelet= n'est alors
+% pas nécessaire). Cette astuce permet à l'utilisateur de saisir une
+% espace entre des commandes successives de filet (ce qui ne fonctionnait
+% pas en version 1.00).
 %    \begin{macrocode}
 \def\futurenonspacelet#1{\def\@BTcs{#1}%
    \afterassignment\@BTfnslone\let\nexttoken= }
@@ -685,29 +685,30 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \subsection{Full width  rules}
+% \subsection{Filets en pleine largeur}
 %
-% When we are not in a =longtable= environment, we can simply
-% implement the full width rules as a =\hrule= in  a =\noalign{}=
-% group. But within a =longtable=, the rule has to be drawn like a
-% =\cmidrule{1-\LT@cols}= (the rationale for this is explained in the
-% =longtable= documentation).
+% Quand nous ne sommes pas dans un environnement =longtable=, nous pouvons
+% implémenter simplement des filets en pleine largeur avec une =\hrule=
+% dans un groupe =\noalign{}=. Mais dans l'environnement =longtable=, le filet
+% doit être tracé comme une =\cmidrule{1-\LT@cols}= (la justification est
+% donnée dans la documentation de l'extension \textsf{longtable}).
 %
-% In order to allow for both, all the rule macros have to
-% open a =\noalign= group immediately, while they work out whether
-% they have been called within a =longtable=; if you don't do this,
-% \TeX's underlying =\halign= process gets hiccups.
-% I use \LaTeX's
-% dirty trick (\verb?\ifnum=0`}?) to fool the parser that the bracket
-% count is OK. The bracket really gets closed after all the skipping
-% at the end of the =\@BTendrule= macro.
+% Afin de permettre les deux, toutes les commandes de filet ouvrent
+% immédiatement un groupe =\noalign= tandis qu'elles déterminent si elles ont
+% été appelés dans un environnement =longtable= ; si cela n'est pas fait,
+% le traitement sous-jacent =\halign= de \TeX peut rencontrer des pépins.
+% J'utilise une astuce diabolique de \LaTeX (\verb?\ifnum=0`}?) pour tromper
+% l'analyseur et lui indiquer que le compteur d'accolade est bon. L'accolade
+% est réellement fermée après tout le \trad{skipping} à la fin de la commande
+% =\@BTendrule=.
 %
-% The class 1 rules, and =\specialrule=, really only differ in the
-% defaults for space above and
-% below, and the width, passed to a common routine, =\@BTrule=,
-% described below. The spaces, =\@aboverulesep= and =\@belowrulesep=,
+% Les filets de type 1 et =\specialrule= ne diffère ne fait que dans les
+% espaces par défaut au-dessus et en-dessous ainsi que par la largeur par défaut
+% tous passés à une routine commune, =\@BTrule=, décrite ci-dessous.
+% \tradini
+% The spaces, =\@aboverulesep= and =\@belowrulesep=,
 % are set within the =\noalign= group, so are inherited by
-% =\@BTrule=. Similarly, =\@BTrule= knows as much as it needs to
+% =\@BTrule=. Similarly, =\@BTrule= knows as much as it needs to 
 % about the routine that called it by examining the inherited
 % =\@thisruleclass=. The optional width argument is parsed by
 % =\@BTrule= after being set to default if absent.

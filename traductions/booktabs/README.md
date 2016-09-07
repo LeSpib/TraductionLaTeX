@@ -45,7 +45,7 @@ Page d'avant-propos           | :first_quarter_moon:   | 1               |
 6. Booktabs et l'extension... | :first_quarter_moon:   | 0               |
 7. Profil technique des...    | :first_quarter_moon:   | 2               | 
 8. Remerciements              | :first_quarter_moon:   | 0               |
-9. Le code                    | :new_moon:             | 0 / 7           |
+9. Le code                    | :new_moon:             | 2 / 7           |
 Historique                    | :first_quarter_moon:   | 1               |
 Index                         | :full_moon:            | 1               |
 
