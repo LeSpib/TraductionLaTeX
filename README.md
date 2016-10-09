@@ -49,7 +49,7 @@ Traduction             | Source                      | Avancée                |
 [delarray-fr]          | [delarray] v1.01            | :full_moon:            | 3               | Traduction préexistante ([FT-tools]).
 [enumerate-fr]         | [enumerate] v3.00           | :new_moon:             | 1 / 4           | Traduction préexistante ([FT-tools]).
 [enumitem-fr]          | [enumitem] v3.5.2           | :new_moon:             | 0 / 17          |
-[epigraph-fr]          | [epigraph] v1.5c            | :new_moon:             | 0 / 12          |
+[epigraph-fr]          | [epigraph] v1.5c            | :new_moon:             | 3 / 12          |
 [etoc-fr]              | [etoc] v1.08g               | :new_moon:             | 0 / 114         |
 [euler-fr]             | [euler] v2.5                | :new_moon:             | 0 / 12          |
 [fancyhdr-fr]          | [fancyhdr] v3.1             | :new_moon:             | 7 / 26          |

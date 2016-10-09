@@ -133,154 +133,153 @@
 % et n'assume aucun {\oe}uvre que tu ne puisses parfaire.}
 %      {\textit{Pythiques \\ Pindare (traduction de Saint-John Perse)}}
 %
-% \tradini
-% Some authors like to add an interesting quotation at either the start
-% or end of a section. The \Lpack{epigraph} package provides commands
-% to assist in the typesetting of a single epigraph. Other authors like to 
-% add many such quotations and the package provides environments to
-% cater for these as well.
+% Certains auteurs aiment ajouter une citation intéressante soit au début soit 
+% à la fin d'une section. L'extension \Lpack{epigraph} fournit des commandes
+% pour faciliter la composition d'épigraphes simples. D'autres auteurs aiment
+% placer à la suite de nombreuses citations de ce type et l'extension fournit
+% des environnements pour répondre à leurs besoins également.
 %
-% This manual is typeset according to the conventions of the
-% \LaTeX{} \textsc{docstrip} utility which enables the automatic
-% extraction of the \LaTeX{} macro source files~\cite{GOOSSENS94}.
+% Ce manuel est composé en respectant les conventions de l'utilitaire 
+% \textsc{docstrip} de \LaTeX{} qui permet l'extraction automatique des
+% fichiers de code source \LaTeX~\cite{GOOSSENS94}.
 %
-%    Section~\ref{sec:usc} describes the usage of the package.
-% Commented source code for the package is in Section~\ref{sec:code}.
+% La section~\ref{sec:usc} décrit l'utilisation de l'extenstion. Le code source
+% commenté de l'extension est en section~\ref{sec:code}.
 %
-% \section{The \Lpack{epigraph} package} \label{sec:usc}
+% \section{L'extension \Lpack{epigraph}} \label{sec:usc}
 %
-% \tepi{The whole is more than the sum of the parts.}
-%      {\textit{Metaphysica \\ Aristotle}}
+% \tepi{La totalité est plus que la somme des parties.}
+%      {\textit{La Métaphysique \\ Aristote}}
 %
-%    The \Lpack{epigraph} package provides commands for typesetting
-% a single epigraph and environments for typesetting a list of epigraphs.
-% Epigraphs can be typeset at either the left, the center or the right of 
-% the typeblock. A few example eipgraphs are exhibited here, and
-% others can be found in an article by
-% Christina Thiele~\cite{TTC199}.
+% L'extension \Lpack{epigraph} fournit des commandes pour composer un épigraphe
+% simple et des environnements pour composer une liste d'épigraphes. Les 
+% épigraphes peuvent être composés à gauche, au milieu ou à droite dans le 
+% corps du texte. Quelques exemples d'épigraphes sont présentés ici, d'autres
+% peuvent être trouvés dans un article de Christina Thiele~\cite{TTC199}.
 %
-% \subsection{The \texttt{epigraph} command}
+% \subsection{La commande \texttt{epigraph}}
 %
-%  The original inspiration for |\epigraph| was Doug Schenck's
-% for the epigraphs in our book~\cite{EBOOK}. That was hard wired for
-% the purpose at hand. The version here provides much more flexibility.
-%
-%
+% L'inspiration originale pour |\epigraph| a été le travail de Doug Schenck
+% pour les épigraphes de notre livre~\cite{EBOOK}. Ce travail avait été pensé
+% pour les besoins du moment. La présente version propose bien plus de
+% flexibilité.
 %
 % \DescribeMacro{\epigraph}
-%  The command |\epigraph{|\meta{text}|}{|\meta{source}|}| 
-% typesets
-% an epigraph using \meta{text} as the main text of the epigraph and
-% \meta{source} being the original author (or book, article, etc.)
-% of the quoted text. By default the epigraph is placed at the right hand 
-% side of the textblock, and the \meta{source} is typeset at the bottom
-% right of the \meta{text}.
+% La commande |\epigraph{|\meta{texte}|}{|\meta{source}|}| 
+% compose un épigraphe utilisant \meta{texte} comme texte principal de 
+% l'épigraphe et \meta{source} comme l'auteur original (ou le livre, l'article,
+% etc.) du texte cité. Par défaut, l'épigraphe est placé du côté droite du 
+% corps de texte et la \meta{source} est composée sous le \meta{text}, à 
+% droite.
 %
 %
-% \subsection{The \texttt{epigraphs} environment}
+% \subsection{L'environnement \texttt{epigraphs}}
 %
 % \DescribeEnv{epigraphs}
-% The |epigraphs| environment typesets a list of epigraphs, and by default
-% places them at the right hand side of the textblock.
+% L'environnement |epigraphs| compose une liste d'épigraphes et les place par
+% défaut du côté droit du corps de texte.
 %
 % \DescribeMacro{\qitem}
-%  Each epigraph in the list is specified by a 
-% |\qitem{|\meta{text}|}{|\meta{source}|}| command (analagous to the |\item|
-% command in ordinary list environments).
-% By default, the \meta{source} is typeset at the bottom right of the
-% \meta{text}. 
+% Chaque épigraphe de la liste est spécifié par une commande |\qitem| de la 
+% forme |\qitem{|\meta{texte}|}{|\meta{source}|}| (analogue à la commande 
+% |\item| dans un environnement de liste).
+% Par défaut, la \meta{source} est composée sous le \meta{texte}, à droite. 
 %
 % 
 %
-% \subsection{General}
+% \subsection{Paramètres}
 %
-% \tepi{Example is the school of mankind, and they will learn at no other.}
-%      {\textit{Letters on a Regicide Peace}\\ \textsc{Edmund Burke}}
+% \tepi{L'exemple est l'école de l'humanité, elle n'y apprend à aucune autre.}
+%      {\textit{Lettres sur une paix régicide}\\ \textsc{Edmund Burke}}
 %
-%   The commands described in this section apply to both the |\epigraph|
-% command and the |epigraphs| environment. But first of all, note that an
-% epigraph immediately after a heading will cause the first paragraph
-% of the following text to be indented. If you want the initial paragraph
-% to have no indentation, then start it with the |\noindent| command.
+% Les commandes décrites dans cette section s'appliquent à la fois à la 
+% commande |\epigraph| et à l'environnement |epigraphs|. Avant toute chose,
+% notez qu'un épigraphe placé immédiatement après un titre causera une
+% indentation du premier paragraphe qui suit. Si vous souhaitez que ce 
+% paragraphe ne soit pas indenté, alors commencez-le avec la commande 
+% |\noindent|.
 %
 % \DescribeMacro{\epigraphwidth}
 % \DescribeMacro{\textflush}
-%  The epigraphs are typeset in a minipage of width |\epigraphwidth|. The default
-% value for this can be changed using the |\setlength| command. Typically,
-% epigraphs are typset in a measure much less than the width of the textblock.
-% In order to avoid bad line breaks, the \meta{text} is normally typeset 
-% raggedright. 
-% The |\textflush| command controls the \meta{text} typesetting style,
-% and it can be redefined from its default value of
-% \texttt{flushleft} (which produces raggedright). The sensible values
-% are \texttt{center} for centered text, \texttt{flushright} for raggedleft
-% text, and \texttt{flushepinormal} for normal justified text.
+% Les épigraphes sont composés avec une minipage de largeur |\epigraphwidth|.
+% La valeur par défaut peut être modifiée en utilisant la commande |\setlength|.
+% Normalement, les épigraphes sont composés sur une largeur moindre que celle
+% du corps du texte. Afin d'éviter de mauvais retours à ligne, le \meta{text}
+% est normalement composé en drapeau à droite. 
+% La commande |\textflush| contrôle le style de composition du \meta{texte} et
+% elle peut être redéfinie par rapport à sa valeur par défaut de 
+% \texttt{flushleft} (qui donne un drapeau à droite). Les valeurs attendues
+% sont \texttt{center} pour du texte centré, \texttt{flushright} pour un 
+% drapeau gauche et \texttt{flushepinormal} pour un texte justifié.
 %
-%    If by any chance you want the \meta{text} to be typeset in some
-% other layout style, the easiest
-% way to do this is by defining a new environment which sets the paragraphing
-% parameters to your desired values. For example, as the \meta{text} is
-% typeset in a minipage, there is no paragraph indentation. If you
-% want the paragraphs to be indented and justified then define
-% a new environment like:\\
-% |\newenvironment{myparastyle}{\setlength{\parindent}{1em}}{}| \\
-% and use it as: \\
-% |\renewcommand{\textflush}{myparastyle}|. 
+% Si, par hasard, vous souhaitez que le \meta{texte} soit composé dans un 
+% autre style, la façon la plus simple de procéder revient à définir un nouvel
+% environnement qui fixe les paramètres de paragraphes aux valeurs que vous
+% souhaitez. Par exemple, comme le \meta{texte} est composé dans un
+% environnement |minipage|, il n'y a pas d'indentation de paragraphe. Si vous
+% voulez avoir des paragraphes indentés et justifiés, définissez alors un
+% environnement similaire au suivant :\\
+% |\newenvironment{monstylepara}{\setlength{\parindent}{1em}}{}| \\
+% et utilisez-le avec : \\
+% |\renewcommand{\textflush}{monstylepara}|. 
 %
 % \DescribeMacro{\epigraphflush}
-%  As noted, the default position of epigraphs is at the right hand side
-% of the textblock. The positioning is controlled by |\epigraphflush|
-% whose default value is \texttt{flushright}. This can be changed
-% to \texttt{flushleft} for positioning at the left hand side or to
-% \texttt{center} for positioning at the center of the textblock.
+% Comme indiqué, la position par défaut des épigraphes est du côté droit du
+% corps du texte. Ce positionnement est contrôlé par |\epigraphflush| dont la
+% valeur par défaut est \texttt{flushright}, drapeau à gauche. Ceci peut être
+% modifié en \texttt{flushleft} pour placer l'épigraphe du côté gauche du corps
+% du texte ou en \texttt{center} pour le placer au centre du corps du texte.
 %
 % \DescribeMacro{\sourceflush}
-% The |\sourceflush| command controls the position of the \meta{source}.
-% The default value is \texttt{flushright}. It can be changed to
-% \texttt{flushleft}, \texttt{center} or \texttt{flushepinormal}.
+% La commande |\sourceflush| contrôle la position de la \meta{source}. La
+% valeur par défaut est \texttt{flushright}. Elle peut être changée en 
+% \texttt{flushleft}, \texttt{center} ou \texttt{flushepinormal}.
 %
-% For example, to have epigraphs centered with the \meta{source} at the left,
-% add the following to your
-% document (after loading the \Lpack{epigraph} package):
+% Par exemple, pour obtenir des épigraphes centrés avec la \meta{source} 
+% placée à gauche, ajoutez ce qui suit à votre document (après avoir chargé
+% l'extension \Lpack{epigraph}):
 % \begin{verbatim}
 % \renewcommand{\epigraphflush}{center}
 % \renewcommand{\sourceflush}{flushleft}
 % \end{verbatim}
 %
 % \DescribeMacro{\epigraphsize}
-% Epigraphs are often typeset in a smaller font than the main text. The
-% |\epigraphsize| command sets the font size to be used.
-% If you don't like the default value, change it by redefining the command,
-% for example: \\
+% Les épigraphes sont souvent composés dans des tailles de caractères plus
+% petites que celle du texte principal. La commande |\epigraphsize| fixe la
+% taille de la police de caractère à utiliser.
+% Si vous n'aimez pas la valeur par défaut, changez-la en rédéfinissant la 
+% commande, par exemple : \\
 % |    \renewcommand{\epigraphsize}{\footnotesize}|
 %		
 % \DescribeMacro{\epigraphrule}
-% By default, a rule is drawn between the \meta{text} and \meta{source},
-% with the rule thickness being given by the value of |\epigraphrule|.
-% The value can be changed by using the \LaTeX{} |\setlength| command.
-% A value of \texttt{0pt} will eliminate the rule. Personally, I dislike
-% the rule in the list environments.
+% Par défaut, un filet est tracé entre le \meta{texte} et la \meta{source},
+% le filet ayant une épaisseur donné par la valeur de |\epigraphrule|. La
+% valeur peut être modifiée en utilisant la commande |\setlength| de \LaTeX.
+% Une valeur de \texttt{0pt} efface le filet. Personnellement, je n'aime pas
+% le filet dans les environnements de liste.
 %
 % \DescribeMacro{\beforeepigraphskip}
 % \DescribeMacro{\afterepigraphskip}
-% The two |...skip| commands specify the amount of vertical space inserted
-% before and after typeset epigraphs. Again, these can be changed by
-% |\setlength|. It is desireable that the sum of their values should be an 
-% integer multiple of the |\baselineskip|.
+% Les deux commandes |...skip| spécifient la quantité d'espace vertical insérée
+% avant et après les épigraphes. Encore une fois, elles peuvent être modifiées
+% par |\setlength|. Il est souhaitable que la somme de leur valeur soit un
+% multiple entier de |\baselineskip|.
 %
-% Note that you can use normal \LaTeX{} commands in the \meta{text} and
-% \meta{source} arguments. You may wish to use different fonts for the
-% \meta{text} (say roman) and the \meta{source} (say italic).
+% Notez que vous pouvez utiliser les commandes \LaTeX{} normales dans les
+% arguments \meta{texte} et \meta{source}. Vous pouvez souhaiter utiliser
+% différentes polices de caractères pour le \meta{texte} (par exemple en 
+% caractères droits) et la \meta{source} (par exemple en italique).
 %
-% The epigraph at the start of this section can be specified as:
+% L'épigraphe au début de cette section peut être spécifiée avec :
 % \begin{verbatim}
-% \epigraph{Example is the school of mankind,
-%           and they will learn at no other.}%
-%  {\textit{Letters on a Regicide Peace}\\ \textsc{Edmund Burke}}
+% \epigraph{L'exemple est l'école de l'humanité, 
+           elle n'y apprend à aucune autre.}%
+% {\textit{Lettres sur une paix régicide}\\ \textsc{Edmund Burke}}
 % \end{verbatim}
 %
-% \subsection{Epigraphs before chapter headings}
+% \subsection{\'{E}pigraphes avant un titre de chapitre}
 %
+% \tradini
 %    The |\epigraph| command and the |epigraphs| environment typeset
 % an epigraph at the point in the text where they are placed. The
 % first thing that a |\chapter| command does is to start off a new page,
@@ -392,7 +391,7 @@
 % \end{verbatim}
 % 
 %
-% \subsection{Epigraphs on Part pages}
+% \subsection{\'{E}pigraphes sur des pages de titre de partie}
 %
 %     The \Lpack{epigraph} package as it stands cannot put an epigraph on the
 % same page as a |\part| or |\part*| title page in 
@@ -435,7 +434,7 @@
 % the page.
 %
 %
-% \subsection{Epigraphed bibliographies}
+% \subsection{Bibliographies avec épigraphes}
 % \changes{v1.2}{1999/09/12}{Added application of an epigraph to a bibliography}
 % One author asked how to associate an epigraph with his bibliography. The
 % following is one way to do it (the example is based on the book class).
@@ -479,7 +478,7 @@
 % between the bibliography heading and the start of the reference list.
 %
 %
-% \section{The package code} \label{sec:code}
+% \section{Le code de l'extension} \label{sec:code}
 %
 % \tepi{And now for something completely different.}{\textit{Monty Python}}
 %
@@ -651,7 +650,7 @@
 %    \end{macrocode}
 % \end{environment}
 %
-% \subsection{Epigraphs before a chapter title}
+% \subsection{\'{E}pigraphes avant un titre de chapitre}
 %
 % \begin{macro}{\cleartoevenpage}
 % Like |\cleardoublepage| except that it skips pages until an even one, and
