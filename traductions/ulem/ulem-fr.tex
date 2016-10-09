@@ -16,7 +16,7 @@
 \hyphenation{normalem uwforbf ulforem}
 
 \title{L'extension \textsf{ulem}\thanks{Ce fichier a pour numéro de
-        version \fileversion\ et a été mis à jour le \filedatefr. Son 
+        version 2012-05-18 et a été mis à jour le \filedatefr. Son 
         titre original est \og \emph{The \textsf{ulem} package:
         underlining for emphasis} \fg.}\\ 
         Soulignement pour marquer l'importance}
@@ -28,40 +28,40 @@
 \sloppy
 
 \begin{abstract}
-  \tradini
-  The ulem package provides various types of underlining that can stretch
-  between words and be broken across lines.  Use it with \LaTeX\ or plain \TeX.
+  L'extension \textsf{ulem} fournit différents types de soulignement qui
+  peuvent s'étendre entre les mots et peuvent être brisés entre plusieurs
+  lignes. Il s'utilise avec \LaTeX\ ou plain \TeX.
 
-  In \LaTeX, ulem normally replaces italics with underlining in text 
-  emphasized by \cs{emph}, and to some extent by \cs{em}. A declaration 
-  of |\normalem| or the |\usepackage| option |[normalem]| disables this 
-  feature.
+  En LaTeX, \textsf{ulem} remplace normalement l'italique par le soulignement
+  dans le texte mis en valeur par \cs{emph} et, dans une certaine mesure, par
+  \cs{em}. La déclaration de |\normalem| ou l'option |[normalem]| pour 
+  |\usepackage| annulent cette fonctionnalité.
 
-   The following commands are defined for general use:\\[5pt]
+  Les commandes suivantes sont définies pour une general use:\\[5pt]
   \indent \begin{tabular}{l@{\quad}l}\hline\noalign{\vskip2pt}
-   |\uline{important}|  & underlined text like \uline{important}\\[1pt]
-   |\uuline{urgent}|    & double-underlined text like  \uuline{urgent}\\[1pt]
-   |\uwave{boat}|       & wavy underline like {\let\ULleaders\cleaders\uwave{boat}}\\[1pt]
-   |\sout{wrong}|       & line struck through word like \sout{wrong}\\[1pt]
-   |\xout{removed}|     & marked over like \xout{removed} \\[1pt]
-   |\dashuline{dashing}|& dashed underline like \dashuline{dashing}\\[1pt]
-   |\dotuline{dotty}|   & dotted underline like \dotuline{dotty}\\[3pt]\hline
+   |\uline{important}|  & soulignement simple tel \uline{important}\\[1pt]
+   |\uuline{urgent}|    & soulignement double tel \uuline{urgent}\\[1pt]
+   |\uwave{boat}|       & soulignement ondulé tel {\let\ULleaders\cleaders\uwave{boat}}\\[1pt]
+   |\sout{wrong}|       & texte barré tel \sout{wrong}\\[1pt]
+   |\xout{removed}|     & texte hachuré tel \xout{removed} \\[1pt]
+   |\dashuline{dashing}|& soulignement par tirets tel \dashuline{dashing}\\[1pt]
+   |\dotuline{dotty}|   & soulignement par pointillés tel \dotuline{dotty}\\[3pt]\hline
   \end{tabular}\\[6pt]
-   Other similar commands can be defined with relative ease by utilizing the
-   \cs{markoverwith} command provided by ulem.
+   D'autres commandes peuvent être définies assez simplement en utilisant la
+   commande \cs{markoverwith} fournie avec \textsf{ulem}.
 \end{abstract}
 
-
 \begin{footnotesize}
-\noindent \tradini The ulem package is Copyright \copyright\ 1989--2011 by 
-Donald Arseneau (Vancouver, Canada).\\
-The package (ulem.sty) and this documentation (ulem.ltx, ulem.pdf) may be 
-freely transmitted, reproduced, or modified for any purpose provided that the
-copyright notice is left intact.
-(Small excerpts may of course be taken and used without any restriction.)\par
+\noindent L'extension \textsf{ulem} est sous copyright \copyright\ 1989--2011 
+par Donald Arseneau (Vancouver, Canada).\\
+L'extension (ulem.sty) et sa documentation (ulem.ltx, ulem.pdf) peuvent être
+gratuitement transmis, reproduits ou modifiés pour tout objectif tant que 
+la notice de copyright est gardée intacte.
+(De courts extraits peuvent bien entendu être pris et utilisés sans aucune
+restriction.)\par
 \end{footnotesize}
 
-\section{Basic Use}
+\section{Utilisation simple}
 \tradini
 Ulem is a package for \LaTeX\ or plain \TeX\ which provides various types of
 underlining that can stretch between words and be broken across lines.
